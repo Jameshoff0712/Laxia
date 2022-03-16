@@ -1,0 +1,142 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "category": "Dental care",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158556/DCA/category/dental_care.jpg",
+            "sub_category": [
+                {
+                    "id": 1,
+                    "value": "Smile Makeover"
+                },
+                {
+                    "id": 2,
+                    "value": "Whitening"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "category": "Fitness",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158555/DCA/category/fitness.jpg",
+            "sub_category": [
+                {
+                    "id": 3,
+                    "value": "Weight Loss Surgery"
+                },
+                {
+                    "id": 4,
+                    "value": "Whitening"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "category": "Laser",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158559/DCA/category/laser.png",
+            "sub_category": [
+                {
+                    "id": 5,
+                    "value": "Hair Removal"
+                },
+                {
+                    "id": 6,
+                    "value": "Bleaching"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "category": "Beauty",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158555/DCA/category/beauty.jpg",
+            "sub_category": [
+                {
+                    "id": 7,
+                    "value": "Face & Chin"
+                },
+                {
+                    "id": 8,
+                    "value": "Breast"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "category": "Eye",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158555/DCA/category/eye.jpg",
+            "sub_category": [
+                {
+                    "id": 9,
+                    "value": "Vision correction"
+                },
+                {
+                    "id": 10,
+                    "value": "Eye Surgery"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "category": "Labs",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158554/DCA/category/labs.jpg",
+            "sub_category": [
+                {
+                    "id": 11,
+                    "value": "Renal Profile"
+                },
+                {
+                    "id": 12,
+                    "value": "Liver Profile"
+                },
+                {
+                    "id": 13,
+                    "value": "Thyroid Profile"
+                },
+                {
+                    "id": 14,
+                    "value": "Hormone Test"
+                },
+                {
+                    "id": 15,
+                    "value": "Blood Count"
+                },
+                {
+                    "id": 16,
+                    "value": "Urine & Stool"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "category": "Hair",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158798/DCA/category/hair.jpg",
+            "sub_category": [
+                {
+                    "id": 17,
+                    "value": "Hair Transplant"
+                },
+                {
+                    "id": 18,
+                    "value": "Hair loss treatment"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "category": "General Surgery",
+            "category_image": "https://res.cloudinary.com/ladla8602/image/upload/v1613158555/DCA/category/surgery.jpg",
+            "sub_category": [
+                {
+                    "id": 19,
+                    "value": "Abdomen"
+                },
+                {
+                    "id": 20,
+                    "value": "Vascular Surgery"
+                }
+            ]
+        }
+    ],
+    "message": "Categories retrieved successfully"
+}

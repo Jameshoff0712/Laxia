@@ -1,0 +1,433 @@
+{
+    "success": true,
+    "data": [{
+            "id": 1,
+            "doctor": {
+                "id": 9,
+                "name": "Dr. Britney Arnold",
+                "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611924830/DCA/doctor-9.jpg",
+                "speciality": "Anesthesiologist",
+                "rating": 4.0,
+                "distance": 17.0,
+                "review_count": 123,
+                "experience": 12.5,
+                "address": "Listowel, Wicklow, Ireland",
+                "is_featured": true,
+                "location": {
+                    "latitude": 22.7333290,
+                    "longitude": 75.8878220
+                },
+                "slot_timings": [{
+                        "booking_count": 0,
+                        "slot_time": "1100"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1115"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1130"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1145"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1200"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1215"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1230"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1245"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1300"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1315"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1330"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1345"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1400"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1415"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1430"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1445"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1500"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1515"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1530"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1545"
+                    }
+                ]
+            },
+            "visit_type": 1,
+            "time_allot": "15 Minutes",
+            "fees": 20,
+            "visit_date": "2021-02-21",
+            "visit_time": "11:00 AM",
+            "reason_for_visit": "Headache in morning",
+            "upcoming": true
+        },
+        {
+            "id": 2,
+            "doctor": {
+                "id": 8,
+                "name": "Dr. Muriëlle Van Merode",
+                "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611924830/DCA/doctor-8.jpg",
+                "speciality": "Anesthesiologist",
+                "rating": 4.0,
+                "distance": 17.0,
+                "review_count": 123,
+                "experience": 12.5,
+                "address": "Varsselder, Overijssel, Netherlands",
+                "is_featured": true,
+                "location": {
+                    "latitude": 22.7338030,
+                    "longitude": 75.8871687
+                },
+                "slot_timings": [{
+                        "booking_count": 0,
+                        "slot_time": "1100"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1115"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1130"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1145"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1200"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1215"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1230"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1245"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1300"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1315"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1330"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1345"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1400"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1415"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1430"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1445"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1500"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1515"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1530"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1545"
+                    }
+                ]
+            },
+            "visit_type": 2,
+            "time_allot": "1 Hour",
+            "fees": 15,
+            "visit_date": "2021-02-21",
+            "visit_time": "11:00 AM",
+            "reason_for_visit": "Headache in morning",
+            "upcoming": true
+        },
+        {
+            "id": 3,
+            "doctor": {
+                "id": 4,
+                "name": "Dr. Saurabh Bhargava",
+                "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                "speciality": "Anesthesiologist",
+                "rating": 4.0,
+                "distance": 10.5,
+                "review_count": 753,
+                "experience": 18.0,
+                "address": "San Francisco",
+                "is_featured": true,
+                "location": {
+                    "latitude": 22.7369109,
+                    "longitude": 75.8805873
+                },
+                "slot_timings": [{
+                        "booking_count": 0,
+                        "slot_time": "1100"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1115"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1130"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1145"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1200"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1215"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1230"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1245"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1300"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1315"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1330"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1345"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1400"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1415"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1430"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1445"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1500"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1515"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1530"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1545"
+                    }
+                ]
+            },
+            "visit_type": 2,
+            "time_allot": "1 Hour",
+            "fees": 15,
+            "visit_date": "2021-02-22",
+            "visit_time": "11:00 AM",
+            "reason_for_visit": "Chest pain",
+            "upcoming": false
+        },
+        {
+            "id": 4,
+            "doctor": {
+                "id": 5,
+                "name": "Dr. Anni Youk",
+                "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                "speciality": "Anesthesiologist",
+                "rating": 4.0,
+                "distance": 50.70,
+                "review_count": 120,
+                "experience": 8.0,
+                "address": "New York",
+                "is_featured": true,
+                "location": {
+                    "latitude": 22.7335044,
+                    "longitude": 75.8871637
+                },
+                "slot_timings": [{
+                        "booking_count": 0,
+                        "slot_time": "1100"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1115"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1130"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1145"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1200"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1215"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1230"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1245"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1300"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1315"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1330"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1345"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1400"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1415"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1430"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1445"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1500"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1515"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1530"
+                    },
+                    {
+                        "booking_count": 0,
+                        "slot_time": "1545"
+                    }
+                ]
+            },
+            "visit_type": 3,
+            "time_allot": "30 Minutes",
+            "fees": 15,
+            "visit_date": "2021-02-21",
+            "visit_time": "11:00 AM",
+            "reason_for_visit": "Headache in morning",
+            "upcoming": true
+        }
+    ],
+    "message": "Slides retrieved successfully"
+}

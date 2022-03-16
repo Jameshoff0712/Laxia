@@ -1,0 +1,920 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Dr. Sam Deniel",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 4.5,
+            "distance": 100,
+            "review_count": 123,
+            "experience": 12.5,
+            "address": "San Francisco",
+            "is_featured": true,
+            "location": {
+                "latitude": 22.7378099,
+                "longitude": 75.8847639
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1000"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1015"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1030"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1045"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Dr. Anni Youk",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 4.0,
+            "distance": 10,
+            "review_count": 53,
+            "experience": 10,
+            "address": "New York",
+            "is_featured": true,
+            "location": {
+                "latitude": 22.7369102,
+                "longitude": 75.8805883
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Dr. Emma Meaburn",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+            "speciality": "Dermatologist",
+            "rating": 5.0,
+            "distance": 20,
+            "review_count": 13,
+            "experience": 5,
+            "address": "Washington DC",
+            "is_featured": false,
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1000"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1015"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1030"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1045"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Dr. Saurabh Bhargava",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 4.0,
+            "distance": 10,
+            "review_count": 753,
+            "experience": 18,
+            "address": "San Francisco",
+            "is_featured": true,
+            "location": {
+                "latitude": 22.7369109,
+                "longitude": 75.8805873
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Dr. Anni Youk",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 4.0,
+            "distance": 50.70,
+            "review_count": 120,
+            "experience": 8,
+            "address": "New York",
+            "is_featured": true,
+            "location": {
+                "latitude": 22.7335044,
+                "longitude": 75.8871637
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Dr. Anni Youk",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 5.0,
+            "distance": 7.0,
+            "review_count": 236,
+            "experience": 9,
+            "address": "New York",
+            "is_featured": false,
+            "location": {
+                "latitude": 22.7335074,
+                "longitude": 75.8871437
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Dr. Sam Deniel",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-7.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 5.0,
+            "distance": 7.0,
+            "review_count": 333,
+            "experience": 20,
+            "address": "San Francisco",
+            "is_featured": true,
+            "location": {
+                "latitude": 22.7335074,
+                "longitude": 75.8871437
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Dr. Muriëlle Van Merode",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611924830/DCA/doctor-8.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 4.0,
+            "distance": 17.0,
+            "review_count": 123,
+            "experience": 12.5,
+            "address": "Varsselder, Overijssel, Netherlands",
+            "is_featured": true,
+            "location": {
+                "latitude": 22.7338030,
+                "longitude": 75.8871687
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Dr. Britney Arnold",
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611932469/DCA/doctor-9.jpg",
+            "speciality": "Anesthesiologist",
+            "rating": 4.0,
+            "distance": 17.0,
+            "review_count": 123,
+            "experience": 12.5,
+            "address": "Listowel, Wicklow, Ireland",
+            "is_featured": true,
+            "location": {
+                "latitude": 22.7333290,
+                "longitude": 75.8878220
+            },
+            "slot_timings": [
+                {
+                    "booking_count": 0,
+                    "slot_time": "1100"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1115"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1130"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1145"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1200"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1215"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1230"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1245"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1300"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1315"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1330"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1345"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1400"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1415"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1430"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1445"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1500"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1515"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1530"
+                },
+                {
+                    "booking_count": 0,
+                    "slot_time": "1545"
+                }
+            ]
+        }
+    ],
+    "message": "Doctor retrieved successfully"
+}

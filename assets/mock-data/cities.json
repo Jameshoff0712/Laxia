@@ -1,0 +1,110 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": "bfb4bcbf-0343-4d2f-b4e9-60fd12bff72b",
+            "name": "Abhā"
+        },
+        {
+            "id": "e79a4570-d798-4ae7-9159-2e3a3350325f",
+            "name": "Abqaiq"
+        },
+        {
+            "id": "bbe0a07a-aecf-4835-bf10-d934eba0391f",
+            "name": "Al-Baḥah"
+        },
+        {
+            "id": "a6ab1ce4-c542-4b9e-8af9-6be3ca432667",
+            "name": "Al-Dammām"
+        },
+        {
+            "id": "f905aa7d-c36e-44f4-9d10-da2f6fe23204",
+            "name": "Al-Hufūf"
+        },
+        {
+            "id": "de65b712-1c5d-41c5-a0ec-1376344e7c98",
+            "name": "Al-Jawf"
+        },
+        {
+            "id": "e07317ae-d75e-45c7-9df7-4ebc72c6dbf7",
+            "name": "Al-Kharj (oasis)"
+        },
+        {
+            "id": "b0affed5-1589-4452-890b-88e0d88f5d0d",
+            "name": "Al-Khubar"
+        },
+        {
+            "id": "fd0e1070-2f09-4c35-9203-dfc1ac33e596",
+            "name": "Al-Qaṭīf"
+        },
+        {
+            "id": "1dbf90e1-d342-4431-a67a-e195fcb7b234",
+            "name": "Al-Ṭaʾif"
+        },
+        {
+            "id": "8849533f-cbba-4567-b5f8-6baf1a6fedfe",
+            "name": "ʿArʿar"
+        },
+        {
+            "id": "fb4a650e-8cc7-4b38-9270-1934c069d88a",
+            "name": "Buraydah"
+        },
+        {
+            "id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "name": "Dhahran"
+        },
+        {
+            "id": "3958c9ba-37b2-43b7-b553-e454dd73dd9d",
+            "name": "Ḥāʾil"
+        },
+        {
+            "id": "82e66b05-8e17-45bb-b8e8-3b2518b898dc",
+            "name": "Jiddah"
+        },
+        {
+            "id": "305f5b69-9a16-4c8d-a600-937aae5e7fb8",
+            "name": "Jīzān"
+        },
+        {
+            "id": "931aa0c0-8123-43de-b7c7-4f4960611d86",
+            "name": "Khamīs Mushayt"
+        },
+        {
+            "id": "64e20fea-0f4d-4563-babc-0bdfad646b3a",
+            "name": "King Khalīd Military City"
+        },
+        {
+            "id": "49740724-0905-4153-bc34-4a94101d2381",
+            "name": "Mecca"
+        },
+        {
+            "id": "db0c2a5f-b1f4-41c3-9f05-0421b125be55",
+            "name": "Medina"
+        },
+        {
+            "id": "8bc9f1d2-c42f-43ea-a6bd-c06900af7672",
+            "name": "Najrān"
+        },
+        {
+            "id": "a76c350f-a8b1-4e5f-a04c-4f7fdab0adc8",
+            "name": "Ras Tanura"
+        },
+        {
+            "id": "b2e57b05-2fa4-4451-bf2f-e003b4beaff6",
+            "name": "Riyadh"
+        },
+        {
+            "id": "12747768-5cc9-46a4-a642-b46d31feeb47",
+            "name": "Sakākā"
+        },
+        {
+            "id": "a439bf69-9b55-4438-a95e-45c1ec285aae",
+            "name": "Tabūk"
+        },
+        {
+            "id": "d4de5c55-2078-40e4-b0fc-cfc2be727cf8",
+            "name": "Yanbuʿ"
+        }
+    ],
+    "message": "Cities retrieved successfully"
+}

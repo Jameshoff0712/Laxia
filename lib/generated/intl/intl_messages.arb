@@ -1,0 +1,73 @@
+{
+  "@@last_modified": "2022-03-16T15:42:09.404775",
+  "offer_off": "オフ",
+  "@offer_off": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "tapAgainToLeave": "もう一度タップして終了します",
+  "@tapAgainToLeave": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "login_content": "LAXIAEログイン\n",
+  "@login_content": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "lets_start_with_login": "日記、投稿や、通知やコメント、クリニックの予約などができるようになります。",
+  "@lets_start_with_login": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "email": "メールアドレスで始める",
+  "@email": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "continues": "で続ける",
+  "@continues": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "i_forgot_password": "パスワードを忘れましたか？",
+  "@i_forgot_password": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "register": "登録",
+  "@register": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "signup_contents": "LAXIAに登録する",
+  "@signup_contents": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "lets_start_with_signup": "プロフィールを作って、ほかのユーザーを\nフォローしたり自分の体験日記を作ってみよう!",
+  "@lets_start_with_signup": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  }
+}

@@ -1,0 +1,54 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "text": "Dentist near you",
+            "button": "Visit Now",
+            "text_position": "bottom_start",
+            "text_color": "#181a3c",
+            "button_text_color": "#ffffff",
+            "button_color": "#00cde7",
+            "background_color": "null",
+            "indicator_color": "#9C9C9C",
+            "image_fit": "cover",
+            "enabled": true,
+            "created_at": "2020-10-15 08:55:10",
+            "updated_at": "2020-11-18 07:16:30",
+            "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+        },
+        {
+            "id": 2,
+            "text": "Dermatologist",
+            "button": "Book",
+            "text_position": "top_start",
+            "text_color": "#ffffff",
+            "button_text_color": "#ffffff",
+            "button_color": "#00cde7",
+            "background_color": "#00cde7",
+            "indicator_color": "#9C9C9C",
+            "image_fit": "cover",
+            "enabled": true,
+            "created_at": "2020-10-20 17:30:04",
+            "updated_at": "2020-11-18 07:28:27",
+            "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+        },
+        {
+            "id": 3,
+            "text": "Dermatologist",
+            "button": "Visit Now",
+            "text_position": "top_end",
+            "text_color": "#181a3c",
+            "button_text_color": "#ffffff",
+            "button_color": "#00cde7",
+            "background_color": "#00cde7",
+            "indicator_color": "#9C9C9C",
+            "image_fit": "cover",
+            "enabled": true,
+            "created_at": "2020-10-20 17:30:04",
+            "updated_at": "2020-11-18 07:28:27",
+            "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+        }
+    ],
+    "message": "Slides retrieved successfully"
+}

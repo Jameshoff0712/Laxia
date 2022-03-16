@@ -1,0 +1,157 @@
+{
+    "success": true,
+    "data": [{
+            "id": 5,
+            "type": "option",
+            "question": "Are you answering for yourself or someone else?",
+            "answer": [{
+                    "id": 15,
+                    "value": "Myself"
+                },
+                {
+                    "id": 16,
+                    "value": "Someone else"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "type": "option",
+            "question": "What is your/their age?",
+            "answer": [{
+                    "id": 17,
+                    "value": "Younger than 2 years old"
+                },
+                {
+                    "id": 18,
+                    "value": "2-4"
+                },
+                {
+                    "id": 19,
+                    "value": "5-9"
+                },
+                {
+                    "id": 20,
+                    "value": "10-12"
+                },
+                {
+                    "id": 21,
+                    "value": "13-17"
+                },
+                {
+                    "id": 22,
+                    "value": "18-29"
+                },
+                {
+                    "id": 23,
+                    "value": "30-39"
+                },
+                {
+                    "id": 24,
+                    "value": "40-49"
+                },
+                {
+                    "id": 25,
+                    "value": "50-59"
+                },
+                {
+                    "id": 26,
+                    "value": "60-64"
+                },
+                {
+                    "id": 27,
+                    "value": "65-69"
+                },
+                {
+                    "id": 28,
+                    "value": "70-79"
+                },
+                {
+                    "id": 29,
+                    "value": "80+"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "type": "multiple",
+            "question": "Are you experiencing any of the following symptoms?",
+            "answer": [{
+                    "id": 1,
+                    "value": "Cough"
+                },
+                {
+                    "id": 2,
+                    "value": "Fever"
+                },
+                {
+                    "id": 3,
+                    "value": "Difficulty in breathing"
+                },
+                {
+                    "id": 4,
+                    "value": "None of above"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "type": "multiple",
+            "question": "Have you ever had any one of the following:",
+            "answer": [{
+                    "id": 5,
+                    "value": "Diabetes"
+                },
+                {
+                    "id": 6,
+                    "value": "Hypertension"
+                },
+                {
+                    "id": 7,
+                    "value": "Lung disease"
+                },
+                {
+                    "id": 8,
+                    "value": "Heart disease"
+                },
+                {
+                    "id": 9,
+                    "value": "None of above"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "type": "option",
+            "question": "Have you travelled anywhere internationally in the last 14 days?",
+            "answer": [{
+                    "id": 10,
+                    "value": "Yes"
+                },
+                {
+                    "id": 11,
+                    "value": "No"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "type": "multiple",
+            "question": "Which of the following applies to you?",
+            "answer": [{
+                    "id": 12,
+                    "value": "I have recently interacted or lived with someone who has tested positive for COVID-19."
+                },
+                {
+                    "id": 13,
+                    "value": "I am a healthcare worker and I examined a COVID-19 confirmed case without protective gear."
+                },
+                {
+                    "id": 14,
+                    "value": "None of above"
+                }
+            ]
+        }
+    ],
+    "message": "Quezes retrieved successfully"
+}

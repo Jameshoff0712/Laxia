@@ -1,0 +1,15 @@
+{
+    "app_name": "Digital Clinic App",
+    "enable_stripe": "1",
+    "default_tax": "10",
+    "default_currency": "₹",
+    "fcm_key": "AAAA_ipUMhk:APA91bH9svBua4iwMuS2UudhblFEmIZyMT1gqpMgti3pWbe9Av7niLszKx6jqsA5Cox2Ue-3-Ovh2Gpg2-VPZY5AxoMsT913yPpEfJyyhO1n4bJs7Q908eb6hJk7iUjGD_hjxkDJ8_Oa",
+    "enable_paypal": "1",
+    "google_maps_key": "AIzaSyBGTjVP7y0I_4f68XK3dnP6qAT1VnP6yK4",
+    "language": "en",
+    "app_version": "2.0.2",
+    "enable_version": "1",
+    "currency_right": "0",
+    "default_currency_decimal_digits": "2",
+    "enable_razorpay": "1"
+}

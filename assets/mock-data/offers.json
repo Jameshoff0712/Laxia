@@ -1,0 +1,3722 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "slides": [
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                }
+            ],
+            "name": "MRI + CT Scan",
+            "provider": "Adamah Clinic, Riyadh",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921134/DCA/clinic-3.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019989/DCA/Offers/hospital-3098683_640.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 50,
+            "offer_price": 30,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 567,
+            "ratings": 4.5,
+            "city_id": "b2e57b05-2fa4-4451-bf2f-e003b4beaff6",
+            "clinic_address": "Ulaya Riyadh 230622 Saudi Arabia",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Tooth Cavity Filling",
+            "provider": "Gobal Dential Clinic, Riyadh",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921134/DCA/clinic-2.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019989/DCA/Offers/1613017121554.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 4.3,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Ceramic tooth implant",
+            "provider": "Royal Skin & Tooth Clinic, Dhahran",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019990/DCA/Offers/pexels-andrea-piacquadio-3779713.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 3.3,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Titanium implants",
+            "provider": "Riyadh Central Clinic, Riyadh",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921106/DCA/doctor-7.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019989/DCA/Offers/1613017121711.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 4.0,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Eye Cataract surgery",
+            "provider": "Future Eye Clinic, Jiddah",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921134/DCA/clinic-1.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019989/DCA/Offers/1613017121607.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 4.3,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Blepharoplasty Eye surgery",
+            "provider": "Laser Surgery Clinic, Al-Khuba",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019991/DCA/Offers/suction-4607283_640.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 4.3,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Metallic & Ceramic Tooth Implant",
+            "provider": "Ahmed Dental Clinic, Al-Khubar",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019990/DCA/Offers/quang-tri-nguyen-VckdJzo7ig0-unsplash.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 5.0,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Root canal treatment",
+            "provider": "NextGen Surgon Clinic, Al-Kharj (oasis)",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613019990/DCA/Offers/pexels-andrea-piacquadio-3779705_2.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 4.3,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "SMILE laser eye surgery",
+            "provider": "Inext Eye Clinic, Riyadh",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611921106/DCA/doctor-7.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613158559/DCA/category/laser.png",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 4.3,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "slides": [
+                {
+                    "id": 3,
+                    "text": "Dermatologist",
+                    "button": "Visit Now",
+                    "text_position": "top_end",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053223/nurse-2019420_640.jpg"
+                },
+                {
+                    "id": 2,
+                    "text": "Dermatologist",
+                    "button": "Book",
+                    "text_position": "top_start",
+                    "text_color": "#ffffff",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "#00cde7",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-20 17:30:04",
+                    "updated_at": "2020-11-18 07:28:27",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053177/nurse-2141808_640.jpg"
+                },
+                {
+                    "id": 1,
+                    "text": "Dentist near you",
+                    "button": "Visit Now",
+                    "text_position": "bottom_start",
+                    "text_color": "#181a3c",
+                    "button_text_color": "#ffffff",
+                    "button_color": "#00cde7",
+                    "background_color": "null",
+                    "indicator_color": "#9C9C9C",
+                    "image_fit": "cover",
+                    "enabled": true,
+                    "created_at": "2020-10-15 08:55:10",
+                    "updated_at": "2020-11-18 07:16:30",
+                    "url": "https://res.cloudinary.com/ladla8602/image/upload/v1609053268/doctor-1149149_640.jpg"
+                }
+            ],
+            "name": "Scalp treatment",
+            "provider": "Skin & Hair Clinic, Riyadh",
+            "provider_url": "https://res.cloudinary.com/ladla8602/image/upload/v1611924830/DCA/doctor-8.jpg",
+            "image_url": "https://res.cloudinary.com/ladla8602/image/upload/v1613158798/DCA/category/hair.jpg",
+            "description": "Lorem ipsum dolor sit amet",
+            "category": "dentist",
+            "currency": "USD",
+            "original_price": 70,
+            "offer_price": 45,
+            "offer_end_day": "2021-02-26T12:09:45+01:00",
+            "views_count": 1551,
+            "ratings": 4.3,
+            "city_id": "c2c73cf7-481a-4196-b02b-b286e92e1476",
+            "clinic_address": "Clinics Almeswak - AlQuds Branch (Al Quds)",
+            "location": {
+                "latitude": 22.7323716,
+                "longitude": 75.8805436
+            },
+            "doctors": [
+                {
+                    "id": 3,
+                    "name": "Dr. Emma Meaburn",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                    "speciality": "Dermatologist",
+                    "rating": 5.0,
+                    "distance": 20,
+                    "review_count": 13,
+                    "experience": 5,
+                    "address": "Washington DC",
+                    "is_featured": false,
+                    "location": {
+                        "latitude": 22.7323716,
+                        "longitude": 75.8805436
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1000"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1015"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1030"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1045"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Dr. Saurabh Bhargava",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 10,
+                    "review_count": 753,
+                    "experience": 18,
+                    "address": "San Francisco",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7369109,
+                        "longitude": 75.8805873
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "Dr. Anni Youk",
+                    "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+                    "speciality": "Anesthesiologist",
+                    "rating": 4.0,
+                    "distance": 50.70,
+                    "review_count": 120,
+                    "experience": 8,
+                    "address": "New York",
+                    "is_featured": true,
+                    "location": {
+                        "latitude": 22.7335044,
+                        "longitude": 75.8871637
+                    },
+                    "slot_timings": [
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1100"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1115"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1130"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1145"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1200"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1215"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1230"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1245"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1300"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1315"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1330"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1345"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1400"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1415"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1430"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1445"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1500"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1515"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1530"
+                        },
+                        {
+                            "booking_count": 0,
+                            "slot_time": "1545"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "message": "Offer retrieved successfully"
+}
