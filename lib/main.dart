@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
-            initialRoute: '/Login',
+            initialRoute: '/Splash',
             onGenerateRoute: RouteGenerator.generateRoute,
             locale: _setting.mobileLanguage.value,
             localizationsDelegates: const [
