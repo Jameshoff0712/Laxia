@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/screens/signup.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
 import '../generated/l10n.dart';
 // import '../controllers/auth_controller.dart';
 import '../common/helper.dart';
@@ -18,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
