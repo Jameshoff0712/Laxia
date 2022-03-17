@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../generated/l10n.dart';
 // import '../controllers/auth_controller.dart';
 import '../common/helper.dart';
+import 'emaillogin.dart';
 // import '../common/app_config.dart' as config;
 
 class LoginScreen extends StatefulWidget {
@@ -113,7 +114,7 @@ class LoginButton extends StatelessWidget {
         ),),
         onPressed: () {
           if(event=="email")
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EMLoginScreen()));
             
         },
       

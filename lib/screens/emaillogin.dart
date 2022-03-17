@@ -127,7 +127,8 @@ class LoginButton extends StatelessWidget {
         ),),
         onPressed: () {
           if(event=="email")
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+          ;
+            // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
             
         },
       

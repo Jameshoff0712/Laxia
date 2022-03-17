@@ -52,6 +52,7 @@ class _MyAppState extends State<MyApp> {
         valueListenable: settingRepo.setting,
         builder: (context, Setting _setting, _) {
           return MaterialApp(
+            theme: ThemeData(fontFamily: 'Hiragino-Kaku-Gothic-Pro-W6'),
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
             initialRoute: '/Splash',
