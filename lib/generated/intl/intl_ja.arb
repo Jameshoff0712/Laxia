@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2022-03-17T04:19:40.594478",
+  "@@last_modified": "2022-03-18T02:07:53.046005",
   "offer_off": "オフ",
   "@offer_off": {
     "description": "",
@@ -198,6 +198,69 @@
   },
   "complete_reset": "再設定が完了しました！",
   "@complete_reset": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "by_continue": "続行することで、LAXIAの",
+  "@by_continue": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "service_term": "利用規約",
+  "@service_term": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "agree_to": "に同意し、",
+  "@agree_to": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "privacy": "プライバシー",
+  "@privacy": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "agree_policy": "ポリシーに同意したことになります。",
+  "@agree_policy": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "do_have_account": "すでにアカウントをお持ちですか？",
+  "@do_have_account": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "email_address": "メールアドレス",
+  "@email_address": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "next": "次へ進む",
+  "@next": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "click_already": "すでにアカウントを持っている方はこちら",
+  "@click_already": {
     "description": "",
     "type": "text",
     "placeholders_order": [],

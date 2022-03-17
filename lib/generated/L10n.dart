@@ -282,6 +282,78 @@ class Trans {
       args: [],
     );
   }
+  String get by_continue {
+    return Intl.message(
+      '続行することで、LAXIAの',
+      name: 'by_continue',
+      desc: '',
+      args: [],
+    );
+  }
+  String get service_term {
+    return Intl.message(
+      '利用規約',
+      name: 'service_term',
+      desc: '',
+      args: [],
+    );
+  }
+  String get agree_to {
+    return Intl.message(
+      'に同意し、',
+      name: 'agree_to',
+      desc: '',
+      args: [],
+    );
+  }
+  String get privacy {
+    return Intl.message(
+      'プライバシー',
+      name: 'privacy',
+      desc: '',
+      args: [],
+    );
+  }
+  String get agree_policy {
+    return Intl.message(
+      'ポリシーに同意したことになります。',
+      name: 'agree_policy',
+      desc: '',
+      args: [],
+    );
+  }
+  String get do_have_account {
+    return Intl.message(
+      'すでにアカウントをお持ちですか？',
+      name: 'do_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+  String get email_address {
+    return Intl.message(
+      'メールアドレス',
+      name: 'email_address',
+      desc: '',
+      args: [],
+    );
+  }
+  String get next {
+    return Intl.message(
+      '次へ進む',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+  String get click_already {
+    return Intl.message(
+      'すでにアカウントを持っている方はこちら',
+      name: 'click_already',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Trans> {
