@@ -88,8 +88,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/cfg/
-    - /images/
-    - assets/images/home
+    - assets/images/
     - assets/map_marker_pin.png
     - assets/icons/
     - assets/mock-data/
