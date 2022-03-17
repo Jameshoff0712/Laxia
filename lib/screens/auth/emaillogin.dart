@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laxia/screens/signup.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/screens/auth/password_reset/passrest_one.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../generated/l10n.dart';
-import '../controllers/auth_controller.dart';
-import '../common/helper.dart';
+import '../../generated/l10n.dart';
+import '../../controllers/auth_controller.dart';
+import '../../common/helper.dart';
 // import '../common/app_config.dart' as config;
 
 class EMLoginScreen extends StatefulWidget {
@@ -31,14 +31,9 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
           children: <Widget>[
             Row(
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(onPressed: ()=>SystemNavigator.pop(),padding: EdgeInsets.only(left: 7), icon: const Icon(Icons.clear,color: Colors.black),iconSize: 16,),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 120),
-                  child: Text(Trans.of(context).login,style: defaultTextStyle(Colors.black, FontWeight.w500,size:20) ),
-                ),
+                Expanded(flex:2,child: Align(alignment: Alignment.topLeft ,child: IconButton(onPressed: ()=>SystemNavigator.pop(),padding: EdgeInsets.only(left: 7), icon: const Icon(Icons.clear,color: Colors.black),iconSize: 16,))),
+                Expanded(flex:6,child: Center(child: Text(Trans.of(context).login,style: defaultTextStyle(Colors.black, FontWeight.w500,size:20) ))),
+                Expanded(flex:2,child: SizedBox(width: double.infinity,)),
               ],
             ),    
             const SizedBox(height: 11,),
@@ -115,9 +110,12 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
               ),
             ),
             SizedBox(height: 10,),
-            TextButton(onPressed: (){
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
-            }, child:Text(Trans.of(context).i_forgot_password,style:TextStyle(color:Color.fromARGB(250, 102, 110, 110),fontWeight:FontWeight.bold,fontSize: 12),)
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(onPressed: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PassRest_One()));
+              }, child:Text(Trans.of(context).i_forgot_password,style:TextStyle(color:Color.fromARGB(250, 102, 110, 110),fontWeight:FontWeight.bold,fontSize: 12),)
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 24,left: 61,right: 61),
@@ -151,86 +149,6 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
           ],
         )
       ),
-    );
-  }
-}
-
-class LoginButton extends StatelessWidget {
-  String  event;
-  String name;
-  IconData icon;
-  MaterialColor ? color;
-  LoginButton({
-    Key? key,required this.name,required this.icon, this.color, this.event="default"
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 12,bottom: 11),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: color ?? Colors.black,
-              size: 30,
-            ),
-            Text(
-              "   "+name,
-              style: defaultTextStyle(Colors.black, FontWeight.w700,size: 14),
-            ),                  
-          ],
-        ),),
-        onPressed: () {
-          if(event=="email")
-          ;
-            // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-            
-        },
-      
-    );
-  }
-}
-
-class TwitterButton extends StatelessWidget {
-  String name;
-  IconData icon;
-  MaterialColor ? color;
-  TwitterButton({
-    Key? key,required this.name,required this.icon, this.color
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 12,bottom: 11),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset("assets/images/twitter.svg",width: 24,height: 19,),
-            Text(
-              "   "+name,
-              style: defaultTextStyle(Colors.black, FontWeight.w700,size: 14),
-            ),                  
-          ],
-        ),),
-        onPressed: () {},
-      
     );
   }
 }

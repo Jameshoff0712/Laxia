@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:image/image.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/screens/login.dart';
+import 'package:laxia/screens/auth/login.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:mvc_pattern/mvc_pattern.dart';
-import '../generated/l10n.dart';
+import '../../generated/l10n.dart';
 // import '../common/helper.dart';
 //import '../common/app_config.dart' as config;
 

@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laxia/screens/signup.dart';
+import 'package:laxia/screens/auth/signup.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:mvc_pattern/mvc_pattern.dart';
-import '../generated/l10n.dart';
+import '../../generated/l10n.dart';
 // import '../controllers/auth_controller.dart';
-import '../common/helper.dart';
+import '../../common/helper.dart';
 import 'emaillogin.dart';
 // import '../common/app_config.dart' as config;
 

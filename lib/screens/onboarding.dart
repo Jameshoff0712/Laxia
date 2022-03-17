@@ -1,5 +1,5 @@
-import 'package:laxia/screens/login.dart';
-import 'package:laxia/screens/signup.dart';
+import 'package:laxia/screens/auth/login.dart';
+import 'package:laxia/screens/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/models/instructions.dart';
