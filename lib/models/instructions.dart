@@ -1,26 +1,32 @@
 class OnBoardingInstructions {
-  final String image, heading ,title, subtitle;
+  final String image, heading, title, subtitle;
 
   OnBoardingInstructions(this.image, this.heading, this.title, this.subtitle);
 }
 
 List<OnBoardingInstructions> onBoardingInstructions = [
   OnBoardingInstructions(
-    "assets/images/onboard1.png",
-    "Welcome",
-    "to Digital Clinic",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Asperiores porro distinctio nemo excepturi labore?",
+    "images/home/Home1.png",
+    "あなたの悩みやしたい施術から",
+    "日記を探してみよう",
+    "",
   ),
   OnBoardingInstructions(
-    "assets/images/onboard2.png",
-    "Ask",
-    "a Doctor Online",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Asperiores porro distinctio nemo excepturi labore?",
+    "images/home/Home2.png",
+    "もう失敗しない！簡単にあなたにぴったりな",
+    "クリニックやドクターが見つかる",
+    "",
   ),
   OnBoardingInstructions(
-    "assets/images/onboard3.png",
-    "Physician",
-    "on You Doorstep",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Asperiores porro distinctio nemo excepturi labore?",
+    "images/home/Home3.png",
+    "たった1分で予約完了！",
+    "チャットで簡単にクリニックの予約が可能",
+    "",
+  ),
+  OnBoardingInstructions(
+    "images/home/Home4.png",
+    "施術が終わったら日記を書いて、",
+    "友達に共有しよう",
+    "",
   ),
 ];

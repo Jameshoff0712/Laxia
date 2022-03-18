@@ -1,7 +1,14 @@
 {
-  "@@last_modified": "2022-03-16T04:22:52.438409",
-  "app_name": "Laxia App",
-  "@app_name": {
+  "@@last_modified": "2022-03-18T02:07:53.046005",
+  "offer_off": "オフ",
+  "@offer_off": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "tapAgainToLeave": "もう一度タップして終了します",
+  "@tapAgainToLeave": {
     "description": "",
     "type": "text",
     "placeholders_order": [],
@@ -9,20 +16,6 @@
   },
   "login_content": "LAXIAEログイン\n",
   "@login_content": {
-    "description": "",
-    "type": "text",
-    "placeholders_order": [],
-    "placeholders": {}
-  },
-  "signup_contents": "LAXIAに登録する",
-  "@signup_contents": {
-    "description": "",
-    "type": "text",
-    "placeholders_order": [],
-    "placeholders": {}
-  },
-  "offer_off": "オフ",
-  "@offer_off": {
     "description": "",
     "type": "text",
     "placeholders_order": [],
@@ -63,8 +56,43 @@
     "placeholders_order": [],
     "placeholders": {}
   },
-  "tapAgainToLeave": "もう一度タップして終了します",
-  "@tapAgainToLeave": {
+  "cancel": "キャンセル",
+  "@cancel": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "dont_register_email": "このメールアドレスは未登録です。",
+  "@dont_register_email": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "go_login": "ログインする",
+  "@go_login": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "input_email": "メールアドレスを入力してください",
+  "@input_email": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "input_email_then_help": "メールアドレスを入力してください。パスワード再設定のご案内を送らせていただきます。",
+  "@input_email_then_help": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "input_new_password": "新しいパスワードを入力してください。",
+  "@input_new_password": {
     "description": "",
     "type": "text",
     "placeholders_order": [],
@@ -72,6 +100,167 @@
   },
   "lets_start_with_signup": "プロフィールを作って、ほかのユーザーを\nフォローしたり自分の体験日記を作ってみよう!",
   "@lets_start_with_signup": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "login": "ログイン",
+  "@login": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "mailbox": "メールボックス",
+  "@mailbox": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "member_regirtration": "会員登録",
+  "@member_regirtration": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "password": "パスワード",
+  "@password": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "required_password": "パスワードは、英数字/記号で8文字以上必要です",
+  "@required_password": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "reset_password": "パスワードをリセット",
+  "@reset_password": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "reset_password_end": "パスワードをリセットしました",
+  "@reset_password_end": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "reset_password_res": "パスワード再設定",
+  "@reset_password_res": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "send_email_success": "メールを送信しました！",
+  "@send_email_success": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "send_url_for_reset": "再設定用のURLを送信する",
+  "@send_url_for_reset": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "signup_contents": "LAXIAに登録する\n",
+  "@signup_contents": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "update_password": "パスワードを更新",
+  "@update_password": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "verify_email": "メールを確認してください",
+  "@verify_email": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "complete_reset": "再設定が完了しました！",
+  "@complete_reset": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "by_continue": "続行することで、LAXIAの",
+  "@by_continue": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "service_term": "利用規約",
+  "@service_term": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "agree_to": "に同意し、",
+  "@agree_to": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "privacy": "プライバシー",
+  "@privacy": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "agree_policy": "ポリシーに同意したことになります。",
+  "@agree_policy": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "do_have_account": "すでにアカウントをお持ちですか？",
+  "@do_have_account": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "email_address": "メールアドレス",
+  "@email_address": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "next": "次へ進む",
+  "@next": {
+    "description": "",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "click_already": "すでにアカウントを持っている方はこちら",
+  "@click_already": {
     "description": "",
     "type": "text",
     "placeholders_order": [],
