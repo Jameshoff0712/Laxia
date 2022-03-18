@@ -1,4 +1,5 @@
-import 'package:laxia/screens/signup.dart';
+import 'package:laxia/screens/auth/login.dart';
+import 'package:laxia/screens/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/models/instructions.dart';
@@ -37,123 +38,208 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         currentPageValue = _pageController.page;
       });
     });
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Padding(
-          padding: const EdgeInsets.only(top: 10.0, right: 10, bottom: 15, left: 10),
-          child: Column(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.topRight,
-                child: TextButton(
-                  child: Text("Skip", style: defaultTextStyle(Helper.mainColor, FontWeight.w700)),
-                  onPressed: () =>
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpScreen())),
+    var list;
+    if (currentPageValue!.floor() != 3) {
+      return SafeArea(
+        child: Scaffold(
+          backgroundColor: Color.fromARGB(255, 110, 198, 210),
+          body: Padding(
+            padding:
+                const EdgeInsets.only(top: 0, right: 0, bottom: 0, left: 0),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: onBoardingInstructions.length,
+                    itemBuilder: (context, i) => Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(top: 142, bottom: 32),
+                          alignment: Alignment.topCenter,
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: "${onBoardingInstructions[i].heading} \n",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.5,
+                                    fontSize: 16),
+                              ),
+                              TextSpan(
+                                text: "${onBoardingInstructions[i].title}",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.5,
+                                    fontSize: 16),
+                              ),
+                            ]),
+                          ),
+                        ),
+                        Flexible(
+                          child: Image.asset(
+                            "${onBoardingInstructions[i].image}",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: onBoardingInstructions.length,
-                  itemBuilder: (context, i) => Column(
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 25, top: 75),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        alignment: Alignment.topLeft,
-                        child: RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(children: [
-                            TextSpan(
-                              text: "${onBoardingInstructions[i].heading} \n",
-                              style: defaultTextStyle(Helper.mainColor, FontWeight.w700, size: 36),
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          onBoardingInstructions.length,
+                          (f) => Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              color: f == currentPageValue!.floor()
+                                  ? Color.fromARGB(255, 255, 255, 255)
+                                  : Color.fromARGB(255, 153, 215, 224),
+                              borderRadius: BorderRadius.circular(7.0),
                             ),
-                            TextSpan(
-                              text: "${onBoardingInstructions[i].title}",
-                              style: defaultTextStyle(Colors.blueGrey, FontWeight.w700, size: 32),
-                            ),
-                          ]),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 5),
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "${onBoardingInstructions[i].subtitle}",
-                          style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.grey),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                      Flexible(
-                        child: Image.asset(
-                          "${onBoardingInstructions[i].image}",
-                          fit: BoxFit.cover,
+                            width: f == currentPageValue!.floor() ? 7 : 7,
+                            height: 7,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0, left: 12.0, right: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        onBoardingInstructions.length,
-                        (f) => Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: BoxDecoration(
-                            shape: f == currentPageValue!.floor() ? BoxShape.rectangle : BoxShape.circle,
-                            color: f == currentPageValue!.floor() ? Helper.mainColor : Colors.blueGrey,
-                            borderRadius: f == currentPageValue!.floor() ? BorderRadius.circular(5.0) : null,
-                          ),
-                          width: f == currentPageValue!.floor() ? 15 : 5,
-                          height: 5,
-                        ),
-                      ),
+                Container(
+                  padding: const EdgeInsets.only(bottom: 18),
+                  alignment: Alignment.center,
+                  child: TextButton(
+                    child: Text(
+                      "すぐに始める",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5,
+                          fontSize: 14,
+                          decoration: TextDecoration.underline),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Helper.mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Next ",
-                              style: defaultTextStyle(Colors.white, FontWeight.w700),
-                            ),
-                            Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 18,
-                            )
-                          ],
-                        ),
-                        onPressed: () {
-                          if (onBoardingInstructions.length - 1 == _pageController.page) {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
-                          } else
-                            _pageController.nextPage(duration: Duration(milliseconds: 250), curve: Curves.easeIn);
-                        },
-                      ),
-                    )
-                  ],
+                    onPressed: () => Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LoginScreen())),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      return SafeArea(
+        child: Scaffold(
+          backgroundColor: Color.fromARGB(255, 110, 198, 210),
+          body: Padding(
+            padding:
+                const EdgeInsets.only(top: 0, right: 0, bottom: 0, left: 0),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: onBoardingInstructions.length,
+                    itemBuilder: (context, i) => Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(top: 142, bottom: 32),
+                          alignment: Alignment.topCenter,
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: "${onBoardingInstructions[i].heading} \n",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.5,
+                                    fontSize: 16),
+                              ),
+                              TextSpan(
+                                text: "${onBoardingInstructions[i].title}",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.5,
+                                    fontSize: 16),
+                              ),
+                            ]),
+                          ),
+                        ),
+                        Flexible(
+                          child: Image.asset(
+                            "${onBoardingInstructions[i].image}",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 32.0, left: 0.0, right: 0.0, bottom: 76.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 219,
+                        height: 44,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color.fromARGB(255, 240, 154, 55),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40.0),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "さあ, はじめよう！",
+                                style: defaultTextStyle(
+                                    Colors.white, FontWeight.w700,
+                                    size: 14),
+                              ),
+                            ],
+                          ),
+                          onPressed: () {
+                            if (onBoardingInstructions.length - 1 ==
+                                _pageController.page) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen()));
+                            } else
+                              _pageController.nextPage(
+                                  duration: Duration(milliseconds: 250),
+                                  curve: Curves.easeIn);
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
   }
 }
