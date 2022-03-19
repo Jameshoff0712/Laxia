@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/screens/auth/emaillogin.dart';
 import 'package:laxia/screens/auth/login.dart';
+import 'package:laxia/screens/home.dart';
 import 'package:laxia/screens/onboarding.dart';
 import 'package:laxia/screens/auth/signup.dart';
 class RouteGenerator {
@@ -15,6 +16,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OnBoardingScreen());
       case '/Signup':
         return  MaterialPageRoute(builder: (_)=>SignUpScreen());
+      case '/Home':
+        return  MaterialPageRoute(builder: (_)=>HomeScreen());
       default:
         return MaterialPageRoute(builder: (_)=>EMLoginScreen());
     }
