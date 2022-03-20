@@ -22,8 +22,6 @@ class SearchBarWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              // width: 16,
-              // height: 16,
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: Container(
