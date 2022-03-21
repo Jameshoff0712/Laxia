@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:laxia/screens/Home/dashboard.dart';
 import 'package:laxia/screens/auth/emaillogin.dart';
 import 'package:laxia/screens/auth/login.dart';
 import 'package:laxia/screens/onboarding.dart';
@@ -9,6 +10,8 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings){
     final args=settings.arguments;
     switch(settings.name){
+      case '/Pages':
+        return MaterialPageRoute(builder: (_) => DashboardScreen(currentTab: args));
       case '/Login':
         return MaterialPageRoute(builder: (_)=>LoginScreen());
       case '/Splash':
