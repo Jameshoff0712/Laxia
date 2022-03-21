@@ -49,6 +49,7 @@ class Trans {
   static Trans? maybeOf(BuildContext context) {
     return Localizations.of<Trans>(context, Trans);
   }
+
   /// `OFF`
   String get offer_off {
     return Intl.message(
@@ -58,6 +59,7 @@ class Trans {
       args: [],
     );
   }
+
   String get tapAgainToLeave {
     return Intl.message(
       'もう一度タップして終了します',
@@ -66,6 +68,7 @@ class Trans {
       args: [],
     );
   }
+
   String get login_content {
     return Intl.message(
       'LAXIAEログイン\n',
@@ -74,6 +77,7 @@ class Trans {
       args: [],
     );
   }
+
   String get lets_start_with_login {
     return Intl.message(
       '日記、投稿や、通知やコメント、クリニックの予約などができるようになります。',
@@ -82,6 +86,7 @@ class Trans {
       args: [],
     );
   }
+
   String get email {
     return Intl.message(
       'メールアドレスで始める',
@@ -90,6 +95,7 @@ class Trans {
       args: [],
     );
   }
+
   String get continues {
     return Intl.message(
       'で続ける',
@@ -98,6 +104,7 @@ class Trans {
       args: [],
     );
   }
+
   String get i_forgot_password {
     return Intl.message(
       'パスワードを忘れましたか？',
@@ -106,6 +113,7 @@ class Trans {
       args: [],
     );
   }
+
   String get register {
     return Intl.message(
       '登録',
@@ -114,6 +122,7 @@ class Trans {
       args: [],
     );
   }
+
   String get cancel {
     return Intl.message(
       'キャンセル',
@@ -122,6 +131,7 @@ class Trans {
       args: [],
     );
   }
+
   String get dont_register_email {
     return Intl.message(
       'このメールアドレスは未登録です。',
@@ -130,6 +140,7 @@ class Trans {
       args: [],
     );
   }
+
   String get go_login {
     return Intl.message(
       'ログインする',
@@ -138,6 +149,7 @@ class Trans {
       args: [],
     );
   }
+
   String get input_email {
     return Intl.message(
       'メールアドレスを入力してください',
@@ -146,6 +158,7 @@ class Trans {
       args: [],
     );
   }
+
   String get input_email_then_help {
     return Intl.message(
       'メールアドレスを入力してください。パスワード再設定のご案内を送らせていただきます。',
@@ -154,6 +167,7 @@ class Trans {
       args: [],
     );
   }
+
   String get input_new_password {
     return Intl.message(
       '新しいパスワードを入力してください。',
@@ -162,6 +176,7 @@ class Trans {
       args: [],
     );
   }
+
   String get lets_start_with_signup {
     return Intl.message(
       'プロフィールを作って、ほかのユーザーを\nフォローしたり自分の体験日記を作ってみよう!',
@@ -170,6 +185,7 @@ class Trans {
       args: [],
     );
   }
+
   String get login {
     return Intl.message(
       'ログイン',
@@ -178,6 +194,7 @@ class Trans {
       args: [],
     );
   }
+
   String get mailbox {
     return Intl.message(
       'メールボックス',
@@ -186,6 +203,7 @@ class Trans {
       args: [],
     );
   }
+
   String get member_regirtration {
     return Intl.message(
       '会員登録',
@@ -194,6 +212,7 @@ class Trans {
       args: [],
     );
   }
+
   String get password {
     return Intl.message(
       'パスワード',
@@ -202,6 +221,7 @@ class Trans {
       args: [],
     );
   }
+
   String get required_password {
     return Intl.message(
       'パスワードは、英数字/記号で8文字以上必要です',
@@ -210,6 +230,7 @@ class Trans {
       args: [],
     );
   }
+
   String get reset_password {
     return Intl.message(
       'パスワードをリセット',
@@ -218,6 +239,7 @@ class Trans {
       args: [],
     );
   }
+
   String get reset_password_end {
     return Intl.message(
       'パスワードをリセットしました',
@@ -226,6 +248,7 @@ class Trans {
       args: [],
     );
   }
+
   String get reset_password_res {
     return Intl.message(
       'パスワード再設定',
@@ -234,6 +257,7 @@ class Trans {
       args: [],
     );
   }
+
   String get send_email_success {
     return Intl.message(
       'メールを送信しました！',
@@ -242,6 +266,7 @@ class Trans {
       args: [],
     );
   }
+
   String get send_url_for_reset {
     return Intl.message(
       '再設定用のURLを送信する',
@@ -250,6 +275,7 @@ class Trans {
       args: [],
     );
   }
+
   String get signup_contents {
     return Intl.message(
       'LAXIAに登録する\n',
@@ -258,6 +284,7 @@ class Trans {
       args: [],
     );
   }
+
   String get update_password {
     return Intl.message(
       'パスワードを更新',
@@ -266,6 +293,7 @@ class Trans {
       args: [],
     );
   }
+
   String get verify_email {
     return Intl.message(
       'メールを確認してください',
@@ -274,6 +302,7 @@ class Trans {
       args: [],
     );
   }
+
   String get complete_reset {
     return Intl.message(
       '再設定が完了しました！',
@@ -282,6 +311,7 @@ class Trans {
       args: [],
     );
   }
+
   String get by_continue {
     return Intl.message(
       '続行することで、LAXIAの',
@@ -290,6 +320,7 @@ class Trans {
       args: [],
     );
   }
+
   String get service_term {
     return Intl.message(
       '利用規約',
@@ -298,6 +329,7 @@ class Trans {
       args: [],
     );
   }
+
   String get agree_to {
     return Intl.message(
       'に同意し、',
@@ -306,6 +338,7 @@ class Trans {
       args: [],
     );
   }
+
   String get privacy {
     return Intl.message(
       'プライバシー',
@@ -314,6 +347,7 @@ class Trans {
       args: [],
     );
   }
+
   String get agree_policy {
     return Intl.message(
       'ポリシーに同意したことになります。',
@@ -322,6 +356,7 @@ class Trans {
       args: [],
     );
   }
+
   String get do_have_account {
     return Intl.message(
       'すでにアカウントをお持ちですか？',
@@ -330,6 +365,7 @@ class Trans {
       args: [],
     );
   }
+
   String get email_address {
     return Intl.message(
       'メールアドレス',
@@ -338,6 +374,7 @@ class Trans {
       args: [],
     );
   }
+
   String get next {
     return Intl.message(
       '次へ進む',
@@ -346,6 +383,7 @@ class Trans {
       args: [],
     );
   }
+
   String get click_already {
     return Intl.message(
       'すでにアカウントを持っている方はこちら',
@@ -353,6 +391,36 @@ class Trans {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Home`
+  String get home_page {
+    return Intl.message(
+      'Home',
+      name: 'home_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  ///`Appointment`
+  String get appointment_page {
+    return Intl.message(
+      'Appointment',
+      name: 'appointment_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  ///`Favorite`
+  String get favorite_page {
+    return Intl.message('Favorite', name: 'favorite_page', desc: '', args: []);
+  }
+
+  ///`Mypage`
+  String get my_page {
+    return Intl.message('Mypage', name: 'my_page', desc: '', args: []);
   }
 }
 
