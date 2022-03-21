@@ -142,7 +142,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   ],
                 ),
                 onPressed: () {
-
+                  Navigator.of(context).pushReplacementNamed('/Pages', arguments: 0);
                 },
               ),
             ),

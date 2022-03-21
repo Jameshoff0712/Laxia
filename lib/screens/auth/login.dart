@@ -35,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
               textAlign: TextAlign.center,
               text: TextSpan(children: [
                 TextSpan(text: Trans.of(context).login_content,style: TextStyle(color:Color(0xff333333),fontWeight: FontWeight.bold,height:1.5,fontSize:20.0)),
-                TextSpan(text: "\n",style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold,height:18,fontSize:10)),
                 TextSpan(text: Trans.of(context).lets_start_with_login,style: TextStyle(color:Colors.black,fontWeight: FontWeight.w400,height:1.3,fontSize:16.0)),
               ]),
             ),
