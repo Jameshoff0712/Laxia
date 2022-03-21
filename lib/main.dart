@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:laxia/provider/user_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
@@ -12,10 +13,13 @@ import 'services/settings_service.dart' as settingRepo;
 import 'package:global_configuration/global_configuration.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();  //async program
+  WidgetsFlutterBinding.ensureInitialized(); //async program
   await GlobalConfiguration().loadFromAsset("configurations");
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
-    runApp(MyApp());
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(MultiProvider(providers: [
+      ChangeNotifierProvider<UserProvider>.value(value: UserProvider())
+    ], child: MyApp()));
   }); //lotation stop
 }
 
@@ -42,7 +46,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   final locationService = GeoLocationService();
-  
+
   @override
   Widget build(BuildContext context) {
     return FutureProvider(
