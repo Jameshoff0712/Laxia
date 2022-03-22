@@ -1,5 +1,5 @@
-import 'package:laxia/screens/auth/login.dart';
-import 'package:laxia/screens/auth/signup.dart';
+import 'package:laxia/views/pages/auth/login.dart';
+import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/models/instructions.dart';
@@ -129,10 +129,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           fontSize: 14,
                           decoration: TextDecoration.underline),
                     ),
-                    onPressed: () => Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LoginScreen())),
+                    onPressed: () => Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen())),
                   ),
                 ),
               ],
