@@ -39,7 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       key: scaffoldKey,
       body: PageView(
-        physics: const BouncingScrollPhysics(),
+        physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
         onPageChanged: (value) => {userProperties.setCurrentPageIndex(value)},
         children: const [
