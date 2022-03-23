@@ -27,8 +27,8 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
-        selectedItemHighlightColor:Color.fromARGB(255,110, 198, 210),
-        buttonPadding: EdgeInsets.symmetric(horizontal: widget.horizontal, vertical: 9),
+        buttonPadding:
+            EdgeInsets.symmetric(horizontal: widget.horizontal, vertical: 9),
         enableFeedback: true,
         onTap: () {
           setState(() {
@@ -64,13 +64,35 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
         items: widget.items
             .map((item) => DropdownMenuItem<String>(
                   value: item,
-                  child: Text(
-                    item,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255,51, 51, 51),
-                      fontSize: 14,
-                    ),
-                  ),
+                  child: selectedValue == item
+                      ? Padding(
+                        padding: const EdgeInsets.only(right:8.0),
+                        child: Row(
+                            children: [
+                              Text(
+                                item,
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 110, 198, 210),
+                                  fontSize: 14,
+                                ),
+                              ),
+                              Expanded(
+                                  child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Icon(
+                                Icons.check,
+                                color: Color.fromARGB(255, 110, 198, 210),
+                              )))
+                            ],
+                          ),
+                      )
+                      : Text(
+                          item,
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 51, 51, 51),
+                            fontSize: 14,
+                          ),
+                        ),
                 ))
             .toList(),
         isExpanded: true,
@@ -85,9 +107,11 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
         itemPadding: EdgeInsets.fromLTRB(16, 15, 2, 12),
         dropdownWidth: MediaQuery.of(context).size.width,
         dropdownDecoration: BoxDecoration(
-            borderRadius: BorderRadius.only(bottomLeft:Radius.circular(10),bottomRight:Radius.circular(10)),
-            color: Colors.white,
-          ),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)),
+          color: Colors.white,
+        ),
       ),
     );
   }

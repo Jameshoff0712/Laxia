@@ -51,9 +51,9 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
           color: _hintColor,
           size: 16,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
-        ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(color: Colors.red),
+        // ),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),

@@ -37,6 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
+      backgroundColor:Colors.white,
       key: scaffoldKey,
       body: PageView(
         physics: NeverScrollableScrollPhysics(),

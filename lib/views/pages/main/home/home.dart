@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/views/pages/main/home/sub/home_case.dart';
+import 'package:laxia/views/pages/main/home/sub/home_clinic.dart';
+import 'package:laxia/views/pages/main/home/sub/home_counseling.dart';
+import 'package:laxia/views/pages/main/home/sub/home_diary.dart';
+import 'package:laxia/views/pages/main/home/sub/home_doctor.dart';
+import 'package:laxia/views/pages/main/home/sub/home_menu.dart';
+import 'package:laxia/views/pages/main/home/sub/home_question.dart';
+import 'package:laxia/views/pages/main/home/sub/home_sub.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
+import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
+import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   final GlobalKey<ScaffoldState>? parentScaffoldKey;
@@ -44,14 +54,14 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
           child: TabBarView(
             physics: NeverScrollableScrollPhysics(),
             children: [
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_bike)),
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_bike)),
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_transit)),
+              Home_Sub(),
+              Home_Menu(),
+              Home_Clinic(),
+              Home_Doctor(),
+              Home_Diary(),
+              Home_Case(),
+              Home_Counseling(),
+              Home_Question(),
             ],
             controller:_tabController,
           ),
