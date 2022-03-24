@@ -70,70 +70,73 @@ class _Menu_CardState extends State<Menu_Card> {
               child: Container(
                 color: _whiteColor,
                 height: 130,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 41,
-                            child: Text(
-                              widget.heading,
-                              style: defaultTextStyle(
-                                  greyTextcolor, FontWeight.w700,
-                                  size: 14.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: 41,
+                              child: Text(
+                                widget.heading,
+                                style: defaultTextStyle(
+                                    greyTextcolor, FontWeight.w700,
+                                    size: 14.0),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 7,
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 26,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          widget.price,
-                          style: defaultTextStyle(priceColor, FontWeight.w700,
-                              size: 16.0),
-                        ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          widget.tax,
-                          style: defaultTextStyle(
-                              greyTextcolor, FontWeight.w500,
-                              size: 10.0),
-                        ),
-                      ],
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
+                          SizedBox(
+                            width: 7,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 26,
+                      ),
+                      Row(
                         children: [
-                          SvgPicture.asset(
-                            "icons/menubar/clinic.svg",
-                            width: 12,
-                            height: 12,
+                          Text(
+                            widget.price,
+                            style: defaultTextStyle(priceColor, FontWeight.w700,
+                                size: 16.0),
                           ),
                           SizedBox(
-                            width: 4,
+                            width: 6,
                           ),
                           Text(
-                            widget.clinic,
+                            widget.tax,
                             style: defaultTextStyle(
-                                Helper.appTxtColor, FontWeight.w500,
-                                size: 12.0),
+                                greyTextcolor, FontWeight.w500,
+                                size: 10.0),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              "icons/menubar/clinic.svg",
+                              width: 12,
+                              height: 12,
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              widget.clinic,
+                              style: defaultTextStyle(
+                                  Helper.appTxtColor, FontWeight.w500,
+                                  size: 12.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

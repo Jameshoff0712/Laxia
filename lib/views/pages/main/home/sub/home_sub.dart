@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/models/home_model.dart';
+import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
 
@@ -27,34 +29,67 @@ class _Home_SubState extends State<Home_Sub> {
       });
     });
     return Container(
-      color: Color.fromARGB(250, 240, 242, 245),
-        child: Column(
-          children: [
-            Horizontal_Dockbar(pageController: _pageController),
-            Container(
-              decoration: BoxDecoration(color: Colors.white),
-              child: Column(children: [
-                SizedBox(
-                  height: 13,
-                ),
-                DockBar_Bottom(
-                pageController: _pageController,
-                currentPageValue: currentPageValue),
-                SizedBox(height: 16,width: MediaQuery.of(context).size.width,),
-              ]),
-            )
-            
-            // Home_Card(
-            //   title: "まず前々から気になっていたのは目の下のクマでしたあああ...",
-            //   type: "二重",
-            //   clinic: "湘南美容クリニック新宿...",
-            //   recommend: "999",
-            //   chat: "444",
-            //   source: "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
-            //   doctorimage: "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
-            //   name:"Yuka111",
-            // ),
-          ],
+        color: Color.fromARGB(250, 240, 242, 245),
+        child: SingleChildScrollView(
+          physics:AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+              Horizontal_Dockbar(pageController: _pageController),
+              Container(
+                decoration: BoxDecoration(color: Colors.white),
+                child: Column(children: [
+                  SizedBox(
+                    height: 13,
+                  ),
+                  DockBar_Bottom(
+                      pageController: _pageController,
+                      currentPageValue: currentPageValue),
+                  SizedBox(
+                    height: 16,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ]),
+              ),
+              Container(
+                child: GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    scrollDirection: Axis.vertical,
+                    gridDelegate:
+                    SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio:175/291,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10),
+                    itemCount: home_list.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Home_Card(
+                        onpress: () {},
+                        title: home_list[index].title,
+                        type: home_list[index].type,
+                        clinic: home_list[index].clinic,
+                        recommend: home_list[index].recommend,
+                        source: home_list[index].source,
+                        name: home_list[index].name,
+                        doctorimage: home_list[index].doctorimage,
+                        chat: home_list[index].chat,
+                      );
+                    }),
+              ),
+              // Home_Card(
+              //   title: "まず前々から気になっていたのは目の下のクマでしたあああ...",
+              //   type: "二重",
+              //   clinic: "湘南美容クリニック新宿...",
+              //   recommend: "999",
+              //   chat: "444",
+              //   source: "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+              //   doctorimage: "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+              //   name:"Yuka111",
+              // ),
+            ],
+          ),
         ));
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/models/question_model.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
+import 'package:laxia/views/widgets/question_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class Home_Question extends StatefulWidget {
@@ -36,6 +38,26 @@ class _Home_QuestionState extends State<Home_Question> {
                 ),
               ],
             ),
+          ),
+          Expanded(
+            child: ListView.builder(
+                padding:EdgeInsets.all(8),
+                itemCount: question_list.length,
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  return Question_Card(
+                    hearts: question_list[index].hearts,
+                    chats: question_list[index].chats,
+                    avator: question_list[index].avator,
+                    image2:  question_list[index].image2,
+                    image1:  question_list[index].image1,
+                    eyes:  question_list[index].eyes,
+                    name:  question_list[index].name,
+                    onpress: () {},
+                    sentence:  question_list[index].sentence,
+                    type:  question_list[index].type,
+                  );
+                }),
           ),
         ],
         

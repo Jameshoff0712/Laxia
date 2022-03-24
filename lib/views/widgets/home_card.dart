@@ -29,7 +29,7 @@ class _Home_CardState extends State<Home_Card> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         color: Colors.white,
       ),
       width: 175,
@@ -40,7 +40,7 @@ class _Home_CardState extends State<Home_Card> {
           children: [
             SizedBox(
               height: 175,
-              width: 175,
+              width: double.infinity,
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl: widget.source,
@@ -72,7 +72,7 @@ class _Home_CardState extends State<Home_Card> {
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/heart.svg",
+                          "icons/menubar/ping.svg",
                           width: 12,
                           height: 12,
                         ),
@@ -97,7 +97,7 @@ class _Home_CardState extends State<Home_Card> {
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/heart.svg",
+                          "icons/menubar/clinic.svg",
                           width: 12,
                           height: 12,
                         ),
