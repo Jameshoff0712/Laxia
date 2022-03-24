@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/widgets/chatStatus.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
 
 class Appointment extends StatefulWidget {
@@ -27,6 +28,18 @@ class _AppointmentState extends State<Appointment>
 
   @override
   Widget build(BuildContext context) {
+    // return Column(
+    //   children: [
+    //     chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+    //     chatStatus(statusCode: 2, clinicName: '湘南美容クリニック 銀座院', bookDate: '予約日時：2020/07/25 11：００〜',),
+    //     chatStatus(statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+    //     chatStatus(statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+    //     chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院', notificCount: 4,),
+    //   ],
+    // );
+
+    
+  
     return Scaffold(
       body: Container(
         child: Column(
@@ -80,52 +93,23 @@ class _AppointmentState extends State<Appointment>
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   Expanded(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Text(
-                          '予約済みのクリニックはまだありません',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: Color.fromARGB(255, 102, 110, 110),
-                          ),
-                        ),
-                        Column(
-                          verticalDirection: VerticalDirection.up,
-                          children: <Widget>[
-                            SizedBox(width: double.infinity, height: 64),
-                            TextButton(
-                              onPressed: (){}, 
-                              child: Container(
-                                padding: EdgeInsets.only(
-                                    left: 62, right: 62),
-                                height: 44,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 110, 198, 210),
-                                  borderRadius: BorderRadius.circular(22),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 12, bottom: 15),
-                                  child: Text(
-                                    'クリニックを探す',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'Hiragino Kaku Gothic Pro',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
+                    child: Container(color: Color.fromARGB(255, 240, 242, 245), child: _buildEmptyClinic()),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: Color.fromARGB(255, 240, 242, 245),
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(statusCode: 2, clinicName: '湘南美容クリニック 銀座院', bookDate: '予約日時：2020/07/25 11：００〜',),
+                          chatStatus(statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院', notificCount: 4,),
+                        ],
+                      ),
                     ),
                   ),
-                  Tab(icon: Icon(Icons.directions_bike)),
                   Tab(icon: Icon(Icons.directions_car)),
                   Tab(icon: Icon(Icons.directions_transit)),
                   Tab(icon: Icon(Icons.directions_transit)),
@@ -136,6 +120,52 @@ class _AppointmentState extends State<Appointment>
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildEmptyClinic() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Text(
+          '予約済みのクリニックはまだありません',
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+            color: Color.fromARGB(255, 102, 110, 110),
+          ),
+        ),
+        Column(
+          verticalDirection: VerticalDirection.up,
+          children: <Widget>[
+            SizedBox(width: double.infinity, height: 64),
+            TextButton(
+              onPressed: () {},
+              child: Container(
+                padding: EdgeInsets.only(left: 62, right: 62),
+                height: 44,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 110, 198, 210),
+                  borderRadius: BorderRadius.circular(22),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12, bottom: 15),
+                  child: Text(
+                    'クリニックを探す',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Hiragino Kaku Gothic Pro',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
