@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/models/m_message.dart';
+import 'package:laxia/views/pages/main/appointment/chatScreen.dart';
 import 'package:laxia/views/pages/main/favorite/favorite.dart';
 import 'package:laxia/views/pages/main/mypage/mypage.dart';
 import 'package:laxia/views/pages/auth/emaillogin.dart';
@@ -25,6 +27,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case '/Appointment':
         return MaterialPageRoute(builder: (_) => Appointment());
+      case '/Chat':
+        return MaterialPageRoute(builder: (_) => ChatScreen(user: favorites[0]));
       case '/Favorite':
         return MaterialPageRoute(builder: (_) => Favorite());
       case '/Mypage':

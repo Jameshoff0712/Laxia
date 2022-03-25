@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/widgets/chat.dart';
 import 'package:laxia/views/widgets/chatStatus.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
 
@@ -28,6 +29,65 @@ class _AppointmentState extends State<Appointment>
 
   @override
   Widget build(BuildContext context) {
+    // return chat(avatar: 'images/brazil.png', chatContent: 'ryu', sendTime: '10:21',);
+    // return Container(
+    //   margin: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+    //   child: Row(
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: [
+    //       Container(
+    //         width: 32,
+    //         height: 32,
+    //         decoration: BoxDecoration(
+    //           borderRadius: BorderRadius.circular(16),
+    //         ),
+    //         child: Image.asset('images/brazil.png'),
+    //       ),
+    //       SizedBox(width: 8,),
+    //       Column(
+    //         crossAxisAlignment: CrossAxisAlignment.end,
+    //         children: [
+    //           Container(
+    //             padding: EdgeInsets.all(10),
+    //             width: MediaQuery.of(context).size.width - 72,
+    //             decoration: BoxDecoration(
+    //               borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
+    //               color: Colors.red,        
+    //             ),
+    //             child: Text(
+    //               'ご予約ありがとうございます。ただいま、調整中でございます。追ってご連絡差し上げます。',
+    //               style: TextStyle(
+    //                 fontFamily: 'Hiragino Kaku Gothic Pro',
+    //                 fontWeight: FontWeight.w400,
+    //                 fontSize: 14,
+    //                 color: Color.fromARGB(255, 51, 51, 51),
+    //                 decoration: TextDecoration.none,
+    //                 height: 1.8,
+    //               ),
+    //             ),
+    //           ),
+    //           SizedBox(height: 4,),
+    //           Align(
+    //             alignment: Alignment.topRight,
+    //             child: Text(
+    //               '10:21',
+    //               style: TextStyle(
+    //                 fontFamily: 'Hiragino Kaku Gothic Pro',
+    //                 fontWeight: FontWeight.w400,
+    //                 fontSize: 12,
+    //                 color: Color.fromARGB(255, 156, 161, 161),
+    //                 decoration: TextDecoration.none,
+    //                 height: 1.5,
+    //               ),
+    //             ),
+    //           )
+    //         ],
+    //       )
+    //     ],
+    //   )
+    // );
+
+
     // return Column(
     //   children: [
     //     chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
