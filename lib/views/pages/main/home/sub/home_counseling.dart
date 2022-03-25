@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/models/counseling_model%20.dart';
+import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -25,7 +26,12 @@ class _Home_CounselingState extends State<Home_Counseling> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123, textname: "エリア選択", onpress: () {})),
+                        width: 123, textname: "エリア選択", onpress: () {
+                           Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SelectPrefecture()));
+                        })),
                 Expanded(
                   flex: 3,
                   child: TextButton_Drawer(

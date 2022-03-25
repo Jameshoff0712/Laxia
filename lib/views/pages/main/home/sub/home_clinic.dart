@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/models/clinic_model.dart';
+import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -26,7 +27,12 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123, textname: "エリア選択", onpress: () {})),
+                        width: 123, textname: "エリア選択", onpress: () {
+                           Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SelectPrefecture()));
+                        })),
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(

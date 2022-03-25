@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -25,7 +26,14 @@ class _Home_MenuState extends State<Home_Menu> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123, textname: "エリア選択", onpress: () {})),
+                        width: 123,
+                        textname: "エリア選択",
+                        onpress: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SelectPrefecture()));
+                        })), //SelectPrefecture
                 Expanded(
                   flex: 3,
                   child: TextButton_Drawer(
@@ -34,7 +42,7 @@ class _Home_MenuState extends State<Home_Menu> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
-                      items: <String>["日記数が多い順", "評価が高い順","値段が高い順","値段が安い順"],
+                      items: <String>["日記数が多い順", "評価が高い順", "値段が高い順", "値段が安い順"],
                       hintText: "並び替え",
                       horizontal: 20),
                 ),
@@ -42,7 +50,8 @@ class _Home_MenuState extends State<Home_Menu> {
             ),
           ),
           Expanded(
-            child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
+            child: LayoutBuilder(
+                builder: (context, BoxConstraints viewportConstraints) {
               return Column(
                 children: [
                   Expanded(
@@ -64,7 +73,6 @@ class _Home_MenuState extends State<Home_Menu> {
             }),
           ),
         ],
-        
       ),
     );
   }
