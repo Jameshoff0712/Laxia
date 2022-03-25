@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/views/widgets/chat.dart';
 import 'package:laxia/views/widgets/chatStatus.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_message.dart';
 import 'package:laxia/models/m_user.dart';
+import 'package:laxia/views/widgets/chatSlot.dart';
 
 class ChatScreen extends StatefulWidget {
   final User? user;
@@ -61,9 +62,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     final Message message = messages[index];
                     final bool isMe = message.sender!.id == currentUser.id;
-                    final bool isSameUser = prevUserId == message.sender!.id;
                     prevUserId = message.sender!.id;
-                    return _buildChatSlot(message, isMe, isSameUser);
+                    return ChatSlot(message: message, isMe: isMe);
                   })),
           SizedBox(
             height: 24,
@@ -74,149 +74,6 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _buildChatSlot(Message message, bool isMe, bool isSameUser) {
-    if (isMe) {
-      return Container(
-        margin: EdgeInsets.only(top: 24, left: 16, right: 16),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(
-                alignment: Alignment.topRight,
-                constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.8),
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 110, 198, 210),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(5.0),
-                      bottomRight: Radius.circular(5.0),
-                      bottomLeft: Radius.circular(5.0),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                            child: Text(
-                              message.text!,
-                              style: TextStyle(
-                                  fontFamily: 'Hiragino Kaku Gothic Pro',
-                                  color: Color.fromARGB(255, 51, 51, 51),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  height: 1.8),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        message.time!,
-                        style: TextStyle(
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
-                            color: Color.fromARGB(255, 156, 161, 161),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                            height: 1.5),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ]),
-      );
-    } else {
-      return Container(
-        margin: EdgeInsets.only(top: 24, left: 16, right: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: SizedBox(
-                height: 32,
-                width: 32,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    imageUrl: message.sender!.imageUrl!,
-                    placeholder: (context, url) => Image.asset(
-                      'assets/images/loading.gif',
-                      fit: BoxFit.cover,
-                    ),
-                    errorWidget: (context, url, error) => Image.asset(
-                      'assets/images/profile.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(width: 8),
-            Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.8),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(5.0),
-                          bottomRight: Radius.circular(5.0),
-                          bottomLeft: Radius.circular(5.0),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Stack(
-                            children: [
-                              Container(
-                                child: Text(
-                                  message.text!,
-                                  style: TextStyle(
-                                      fontFamily: 'Hiragino Kaku Gothic Pro',
-                                      color: Color.fromARGB(255, 51, 51, 51),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      height: 1.8),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            message.time!,
-                            style: TextStyle(
-                                fontFamily: 'Hiragino Kaku Gothic Pro',
-                                color: Color.fromARGB(255, 156, 161, 161),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                height: 1.5),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ]),
-          ],
-        ),
-      );
-    }
-  }
 
   Widget _buildSendMessageBox() {
     return Container(
