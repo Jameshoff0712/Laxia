@@ -288,7 +288,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Saggingr.png",
+                      image: "icons/menubar/Sagging.png",
                       onpress: () {},
                       text: "たるみ",
                     ),
