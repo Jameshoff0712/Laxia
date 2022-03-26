@@ -10,6 +10,7 @@ import 'package:laxia/views/pages/main/appointment/appointment.dart';
 import 'package:laxia/views/pages/main/home/home.dart';
 import 'package:laxia/views/onboarding.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
+import 'package:laxia/views/pages/main/reservation/reservation.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -29,6 +30,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Appointment());
       case '/Chat':
         return MaterialPageRoute(builder: (_) => ChatScreen(user: favorites[0]));
+      case '/Reservation':
+        return MaterialPageRoute(builder: (_) => Reservation());
       case '/Favorite':
         return MaterialPageRoute(builder: (_) => Favorite());
       case '/Mypage':
