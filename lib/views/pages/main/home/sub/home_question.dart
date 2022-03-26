@@ -46,6 +46,8 @@ class _Home_QuestionState extends State<Home_Question> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return Question_Card(
+                    buttoncolor: Color.fromARGB(255,110, 198, 210),
+                    buttontext: "回答あり",
                     hearts: question_list[index].hearts,
                     chats: question_list[index].chats,
                     avator: question_list[index].avator,

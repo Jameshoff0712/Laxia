@@ -5,6 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 class Question_Card extends StatefulWidget {
   final VoidCallback onpress;
+  final Color? buttoncolor, fontcolor;
   final String avator,
       name,
       image1,
@@ -14,19 +15,23 @@ class Question_Card extends StatefulWidget {
       eyes,
       hearts,
       chats;
-  const Question_Card(
-      {Key? key,
-      required this.onpress,
-      required this.avator,
-      required this.name,
-      required this.image1,
-      required this.image2,
-      required this.sentence,
-      required this.type,
-      required this.hearts,
-      required this.chats,
-      required this.eyes,})
-      : super(key: key);
+  final String? buttontext;
+  const Question_Card({
+    Key? key,
+    required this.onpress,
+    required this.avator,
+    required this.name,
+    required this.image1,
+    required this.image2,
+    required this.sentence,
+    required this.type,
+    required this.hearts,
+    required this.chats,
+    required this.eyes,
+    this.buttoncolor,
+    this.fontcolor,
+    this.buttontext="",
+  }) : super(key: key);
 
   @override
   State<Question_Card> createState() => _Question_CardState();
@@ -42,7 +47,6 @@ class _Question_CardState extends State<Question_Card> {
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
         ),
-        
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: InkWell(
@@ -78,15 +82,37 @@ class _Question_CardState extends State<Question_Card> {
                           fontWeight: FontWeight.w700,
                           color: Color.fromARGB(255, 51, 51, 51)),
                     ),
+                    widget.buttontext!.isEmpty
+                        ? SizedBox(
+                            width: 1,
+                          )
+                        : Expanded(
+                            child: Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3),color: widget.buttoncolor,),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 6),
+                                child: Text(
+                                  widget.buttontext!,
+                                  style: TextStyle(
+                                      color: widget.fontcolor,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                            ),
+                          ))
                   ],
                 ),
                 Text(
-                      widget.sentence,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromARGB(255, 51, 51, 51)),
-                    ),
+                  widget.sentence,
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromARGB(255, 51, 51, 51)),
+                ),
                 Container(
                   child: GridView(
                     shrinkWrap: true,
@@ -109,8 +135,7 @@ class _Question_CardState extends State<Question_Card> {
                               'assets/images/loading.gif',
                               fit: BoxFit.cover,
                             ),
-                            errorWidget: (context, url, error) =>
-                                Image.asset(
+                            errorWidget: (context, url, error) => Image.asset(
                               'assets/images/ProDoctor.png',
                               fit: BoxFit.cover,
                             ),
@@ -129,8 +154,7 @@ class _Question_CardState extends State<Question_Card> {
                               'assets/images/loading.gif',
                               fit: BoxFit.cover,
                             ),
-                            errorWidget: (context, url, error) =>
-                                Image.asset(
+                            errorWidget: (context, url, error) => Image.asset(
                               'assets/images/ProDoctor.png',
                               fit: BoxFit.cover,
                             ),
