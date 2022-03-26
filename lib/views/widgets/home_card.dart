@@ -40,7 +40,7 @@ class _Home_CardState extends State<Home_Card> {
           children: [
             SizedBox(
               height: 175,
-              width: double.infinity,
+              width: 175,
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl: widget.source,

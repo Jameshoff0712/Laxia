@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -29,15 +28,14 @@ class _Home_MenuState extends State<Home_Menu> {
                         width: 123,
                         textname: "エリア選択",
                         onpress: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SelectPrefecture()));
+                           Navigator.of(context).pushNamed("/SelectPrefecture");
                         })), //SelectPrefecture
                 Expanded(
                   flex: 3,
                   child: TextButton_Drawer(
-                      width: 123, textname: "悩み・目的", onpress: () {}),
+                      width: 123, textname: "悩み・目的", onpress: () {
+                        Navigator.of(context).pushNamed("/SelectSurgery");
+                      }),
                 ),
                 Expanded(
                   flex: 3,

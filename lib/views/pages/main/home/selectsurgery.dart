@@ -4,19 +4,19 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:laxia/views/widgets/multiselect.dart';
 
-class SelectPrefecture extends StatefulWidget {
-  const SelectPrefecture({Key? key}) : super(key: key);
+class SelectSurgery extends StatefulWidget {
+  const SelectSurgery({Key? key}) : super(key: key);
 
   @override
-  State<SelectPrefecture> createState() => _SelectPrefectureState();
+  State<SelectSurgery> createState() => _SelectSurgeryState();
 }
 
-class _SelectPrefectureState extends State<SelectPrefecture> {
+class _SelectSurgeryState extends State<SelectSurgery> {
   int _selectedIndex = 0;
   List countys = [];
   Future<void> initSettings() async {
     String countyText =
-        await rootBundle.loadString("assets/cfg/japanese-city-data.json");
+        await rootBundle.loadString("assets/cfg/treatment_location.json");
     setState(() {
       countys = json.decode(countyText);
     });

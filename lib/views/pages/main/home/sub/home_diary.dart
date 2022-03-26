@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/models/diary_model.dart';
-import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -27,15 +26,14 @@ class _Home_DiaryState extends State<Home_Diary> {
                     flex: 3,
                     child: TextButton_Drawer(
                         width: 123, textname: "エリア選択", onpress: () {
-                           Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SelectPrefecture()));
+                           Navigator.of(context).pushNamed("/SelectPrefecture");
                         })),
                 Expanded(
                   flex: 3,
                   child: TextButton_Drawer(
-                      width: 123, textname: "絞り込み", onpress: () {}),
+                      width: 123, textname: "絞り込み", onpress: () {
+                        Navigator.of(context).pushNamed("/NarrowDiary");
+                      }),
                 ),
                 Expanded(
                   flex: 3,

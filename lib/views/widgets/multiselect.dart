@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:easy_sidemenu/easy_sidemenu.dart';
-import 'package:laxia/models/menu_model.dart';
 
 class MultiSelectDart extends StatefulWidget {
   final List menu_list;
@@ -79,7 +77,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 8),
                                     child:
-                                        Text(widget.menu_list[index]["label"]),
+                                        Text(widget.menu_list[index]["label"],softWrap: true,),
                                   ),
                                 ),
                               ),
@@ -104,24 +102,27 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(22),
-                                  border: Border.all(
-                                      width: 1,
-                                      color:
-                                          Color.fromARGB(255, 110, 198, 210)),
-                                  color: Colors.white),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 3),
-                                child: Text(
-                                  "すべて",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      color:
-                                          Color.fromARGB(255, 110, 198, 210)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(22),
+                                    border: Border.all(
+                                        width: 1,
+                                        color:
+                                            Color.fromARGB(255, 110, 198, 210)),
+                                    color: Colors.white),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 3),
+                                  child: Text(
+                                    "すべて",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        color:
+                                            Color.fromARGB(255, 110, 198, 210)),
+                                  ),
                                 ),
                               ),
                             ),

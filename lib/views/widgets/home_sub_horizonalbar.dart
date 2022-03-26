@@ -22,8 +22,6 @@ class _Home_Sub_HorizonalbarState extends State<Home_Sub_Horizonalbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.height,
-      height: widget.height,
       decoration: BoxDecoration(color: Colors.white),
       child: InkWell(
         onTap: widget.onpress,
