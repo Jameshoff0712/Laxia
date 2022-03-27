@@ -41,7 +41,7 @@ class _Home_QuestionState extends State<Home_Question> {
           ),
           Expanded(
             child: ListView.builder(
-                padding:EdgeInsets.all(8),
+                padding:EdgeInsets.only(top:8,left:8,right:8),
                 itemCount: question_list.length,
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {

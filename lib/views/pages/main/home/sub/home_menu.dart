@@ -48,27 +48,30 @@ class _Home_MenuState extends State<Home_Menu> {
             ),
           ),
           Expanded(
-            child: LayoutBuilder(
-                builder: (context, BoxConstraints viewportConstraints) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: menu_list.length,
-                        // physics: const AlwaysScrollableScrollPhysics(),
-                        // scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Menu_Card(
-                              image: menu_list[index].image,
-                              heading: menu_list[index].heading,
-                              price: menu_list[index].price,
-                              tax: menu_list[index].tax,
-                              clinic: menu_list[index].clinic);
-                        }),
-                  ),
-                ],
-              );
-            }),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: LayoutBuilder(
+                  builder: (context, BoxConstraints viewportConstraints) {
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: menu_list.length,
+                          // physics: const AlwaysScrollableScrollPhysics(),
+                          // scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Menu_Card(
+                                image: menu_list[index].image,
+                                heading: menu_list[index].heading,
+                                price: menu_list[index].price,
+                                tax: menu_list[index].tax,
+                                clinic: menu_list[index].clinic);
+                          }),
+                    ),
+                  ],
+                );
+              }),
+            ),
           ),
         ],
       ),

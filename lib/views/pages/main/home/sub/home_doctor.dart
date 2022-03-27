@@ -40,27 +40,30 @@ class _Home_DoctorState extends State<Home_Doctor> {
             ),
           ),
           Expanded(
-            child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
-              return Column(
-                children: [
-                  // menuAppBar(context),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: doctor_list.length,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) {
-                          return Doctor_Card(
-                              image: doctor_list[index].image,
-                              post: doctor_list[index].post,
-                              name: doctor_list[index].name,
-                              mark: doctor_list[index].mark,
-                              day: doctor_list[index].day,
-                              clinic: doctor_list[index].clinic);
-                        }),
-                  ),
-                ],
-              );
-            }),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
+                return Column(
+                  children: [
+                    // menuAppBar(context),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: doctor_list.length,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return Doctor_Card(
+                                image: doctor_list[index].image,
+                                post: doctor_list[index].post,
+                                name: doctor_list[index].name,
+                                mark: doctor_list[index].mark,
+                                day: doctor_list[index].day,
+                                clinic: doctor_list[index].clinic);
+                          }),
+                    ),
+                  ],
+                );
+              }),
+            ),
           ),
         ],
       ),
