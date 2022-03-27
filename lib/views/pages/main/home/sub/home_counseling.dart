@@ -40,7 +40,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
           ),
           Expanded(
             child: ListView.builder(
-                padding:EdgeInsets.all(8),
+                padding:EdgeInsets.only(top:8,left:8,right:8),
                 itemCount: counseling_list.length,
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {

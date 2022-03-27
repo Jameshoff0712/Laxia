@@ -40,27 +40,30 @@ class _Home_ClinicState extends State<Home_Clinic> {
             ),
           ),
           Expanded(
-            child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
-              return Column(
-                children: [
-                  // menuAppBar(context),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: clinic_list.length,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index) {
-                          return Clinic_Card(
-                              image: clinic_list[index].image,
-                              post: clinic_list[index].post,
-                              name: clinic_list[index].name,
-                              mark: clinic_list[index].mark,
-                              day: clinic_list[index].day,
-                              clinic: clinic_list[index].clinic);
-                        }),
-                  ),
-                ],
-              );
-            }),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
+                return Column(
+                  children: [
+                    // menuAppBar(context),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: clinic_list.length,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return Clinic_Card(
+                                image: clinic_list[index].image,
+                                post: clinic_list[index].post,
+                                name: clinic_list[index].name,
+                                mark: clinic_list[index].mark,
+                                day: clinic_list[index].day,
+                                clinic: clinic_list[index].clinic);
+                          }),
+                    ),
+                  ],
+                );
+              }),
+            ),
           ),
         ],
       ),

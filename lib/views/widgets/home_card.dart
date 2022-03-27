@@ -27,160 +27,163 @@ class Home_Card extends StatefulWidget {
 class _Home_CardState extends State<Home_Card> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      width: 175,
-      height: 291,
-      child: InkWell(
-        onTap: widget.onpress,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 175,
-              width: 175,
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: widget.source,
-                placeholder: (context, url) => Image.asset(
-                  'assets/images/loading.gif',
+    return FittedBox(
+      fit: BoxFit.fill,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+        ),
+        width: 175,
+        height: 291,
+        child: InkWell(
+          onTap: widget.onpress,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 175,
+                width: double.infinity,
+                child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                ),
-                errorWidget: (context, url, error) => Image.asset(
-                  'assets/images/ProDoctor.png',
-                  fit: BoxFit.cover,
+                  imageUrl: widget.source,
+                  placeholder: (context, url) => Image.asset(
+                    'assets/images/loading.gif',
+                    fit: BoxFit.cover,
+                  ),
+                  errorWidget: (context, url, error) => Image.asset(
+                    'assets/images/ProDoctor.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(2),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      widget.title,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromARGB(255, 51, 51, 51)),
+              Padding(
+                padding: EdgeInsets.all(2),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        widget.title,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 51, 51, 51)),
+                      ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            "icons/menubar/ping.svg",
+                            width: 12,
+                            height: 12,
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            widget.type,
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 102, 110, 110)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            "icons/menubar/clinic.svg",
+                            width: 12,
+                            height: 12,
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            widget.clinic,
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 102, 110, 110)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Row(
                       children: [
-                        SvgPicture.asset(
-                          "icons/menubar/ping.svg",
-                          width: 12,
-                          height: 12,
-                        ),
                         SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          widget.type,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 102, 110, 110)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          "icons/menubar/clinic.svg",
-                          width: 12,
-                          height: 12,
-                        ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          widget.clinic,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 102, 110, 110)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 13,
-                        width: 13,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(7),
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: widget.doctorimage,
-                            placeholder: (context, url) => Image.asset(
-                              'assets/images/loading.gif',
+                          height: 13,
+                          width: 13,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(7),
+                            child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                            ),
-                            errorWidget: (context, url, error) => Image.asset(
-                              'assets/images/ProDoctor.png',
-                              fit: BoxFit.cover,
+                              imageUrl: widget.doctorimage,
+                              placeholder: (context, url) => Image.asset(
+                                'assets/images/loading.gif',
+                                fit: BoxFit.cover,
+                              ),
+                              errorWidget: (context, url, error) => Image.asset(
+                                'assets/images/ProDoctor.png',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Text(
-                        widget.name,
-                        style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 156, 161, 161)),
-                      ),
-                      SizedBox(
-                        width: 25,
-                      ),
-                      SvgPicture.asset(
-                        "icons/menubar/heart.svg",
-                        width: 10,
-                        height: 9,
-                      ),
-                      Text(
-                        widget.recommend,
-                        style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 156, 161, 161)),
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      SvgPicture.asset(
-                        "icons/menubar/comment.svg",
-                        width: 10,
-                        height: 9,
-                      ),
-                      Text(
-                        widget.recommend,
-                        style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 156, 161, 161)),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+                        Text(
+                          widget.name,
+                          style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromARGB(255, 156, 161, 161)),
+                        ),
+                        SizedBox(
+                          width: 25,
+                        ),
+                        SvgPicture.asset(
+                          "icons/menubar/heart.svg",
+                          width: 10,
+                          height: 9,
+                        ),
+                        Text(
+                          widget.recommend,
+                          style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromARGB(255, 156, 161, 161)),
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        SvgPicture.asset(
+                          "icons/menubar/comment.svg",
+                          width: 10,
+                          height: 9,
+                        ),
+                        Text(
+                          widget.recommend,
+                          style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromARGB(255, 156, 161, 161)),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

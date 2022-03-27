@@ -53,7 +53,7 @@ class _Home_CaseState extends State<Home_Case> {
                   // menuAppBar(context),
                   Expanded(
                     child: ListView.builder(
-                        padding:EdgeInsets.all(8),
+                        padding:EdgeInsets.only(top:8,left:8,right:8),
                         itemCount: case_list.length,
                         physics: const AlwaysScrollableScrollPhysics(),
                         itemBuilder: (BuildContext context, int index) {
