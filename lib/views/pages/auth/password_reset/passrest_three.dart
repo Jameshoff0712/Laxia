@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laxia/views/pages/auth/password_reset/passrest_four.dart';
+import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
+import 'package:laxia/generated/L10n.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../controllers/auth_controller.dart';
-import '../../../../common/helper.dart';
 
 // import '../common/app_config.dart' as config;
 class PassRest_Three extends StatefulWidget {
@@ -146,10 +145,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PassRest_Four()));
+                    Navigator.of(context).pushNamed("/PassRest_Four");
                   },
                 ),
               ),

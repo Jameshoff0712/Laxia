@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../generated/l10n.dart';
-// import '../controllers/auth_controller.dart';
-import '../../../common/helper.dart';
-import 'emaillogin.dart';
+import 'package:laxia/common/helper.dart';
+import 'package:laxia/generated/L10n.dart';
 // import '../common/app_config.dart' as config;
 
 class LoginScreen extends StatefulWidget {
@@ -111,10 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUpScreen()));
+                            Navigator.of(context).pushNamed("/Signup");
                           },
                           child: Text(
                             Trans.of(context).register,
@@ -172,8 +165,7 @@ class LoginButton extends StatelessWidget {
       ),
       onPressed: () {
         if (event == "email")
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => EMLoginScreen()));
+          Navigator.of(context).pushNamed("/EmailLogin");
       },
     );
   }
