@@ -43,15 +43,15 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   onPressed: () => Navigator.pop(context),
                 ),
-                Text(
-                  '湘南美容クリニック　銀座院',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 51, 51, 51),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  )
-                ),
-                SizedBox(width: 40,)
+                Text('湘南美容クリニック　銀座院',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 51, 51, 51),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    )),
+                SizedBox(
+                  width: 40,
+                )
               ],
             ),
           ),
@@ -74,7 +74,6 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-
   Widget _buildSendMessageBox() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 7),
@@ -87,23 +86,19 @@ class _ChatScreenState extends State<ChatScreen> {
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 9, horizontal: 20),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 156, 161, 161),
-                    )),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 156, 161, 161),
-                    )),
+                    const EdgeInsets.symmetric(vertical: 13, horizontal: 20),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderSide: BorderSide.none,
+                ),
+                fillColor: Color.fromARGB(255, 245, 245, 245),
+                filled: true,
                 hintText: 'Name of pill',
                 hintStyle: TextStyle(
                   color: Color.fromARGB(255, 156, 161, 161),
                   fontFamily: 'Hiragino Kaku Gothic Pro',
                   fontSize: 12,
-                  // height: 1.5,
+                  height: 1.5,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -111,11 +106,12 @@ class _ChatScreenState extends State<ChatScreen> {
                 color: Color.fromARGB(255, 51, 51, 51),
                 fontFamily: 'Hiragino Kaku Gothic Pro',
                 fontSize: 12,
-                // height: 1.5,
+                height: 1.5,
                 fontWeight: FontWeight.w400,
               ),
               keyboardType: TextInputType.multiline,
-              maxLines: null,
+              minLines: 1,
+              maxLines: 3,
             ),
           ),
           SizedBox(width: 15),

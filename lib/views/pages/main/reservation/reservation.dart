@@ -10,7 +10,8 @@ class Reservation extends StatefulWidget {
 }
 
 class _ReservationState extends State<Reservation> {
-  String? selectedValue;
+  String? selectedValue; //for dropdown
+  bool checkBoxValue = false;
   List<String> items = [
     '希望ドクターはなし',
     '希望ドクタ',
@@ -326,23 +327,42 @@ class _ReservationState extends State<Reservation> {
                               _buildTimeButton('13:30'),
                               _buildTimeButton('14:00'),
                             ],
-                          ))
+                          )),
                     ],
                   )),
                   SizedBox(
                     height: 30,
                   ),
-                  Text('選択した候補日',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 51, 51, 51),
-                        fontFamily: 'Hiragino Kaku Gothic Pro',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        height: 1.5,
-                        decoration: TextDecoration.none,
-                      )),
+                  Container(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('選択した候補日',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 51, 51, 51),
+                            fontFamily: 'Hiragino Kaku Gothic Pro',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5,
+                            decoration: TextDecoration.none,
+                          )),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return _buildReservationItem();
+                        },
+                        separatorBuilder: (context, index) => SizedBox(
+                          height: 20,
+                        ),
+                        itemCount: 3,
+                      ),
+                    ],
+                  )),
                   SizedBox(
-                    height: 34,
+                    height: 40,
                   ),
                 ],
               ),
@@ -535,8 +555,8 @@ class _ReservationState extends State<Reservation> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: TextButton(
-                              onPressed: () {},
+                            child: InkWell(
+                              onTap: () {},
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 height: 46,
@@ -564,8 +584,8 @@ class _ReservationState extends State<Reservation> {
                           ),
                           Expanded(
                             flex: 1,
-                            child: TextButton(
-                              onPressed: () {},
+                            child: InkWell(
+                              onTap: () {},
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 height: 46,
@@ -752,19 +772,76 @@ class _ReservationState extends State<Reservation> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text('1ポイント1円として利用できます',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 156, 161, 161),
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 156, 161, 161),
+                              fontFamily: 'Hiragino Kaku Gothic Pro',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              decoration: TextDecoration.none,
+                            )),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Transform.scale(
+                            scale: 0.7,
+                            child: Checkbox(
+                              value: this.checkBoxValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  this.checkBoxValue = value!;
+                                });
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text('全てのポイントを利用する',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 51, 51, 51),
                                   fontFamily: 'Hiragino Kaku Gothic Pro',
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   decoration: TextDecoration.none,
-                                )),
+                                  height: 1.5)),
+                        ],
                       ),
                       SizedBox(
                         height: 20,
                       ),
                     ],
                   )),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 58,
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Color.fromARGB(255, 110, 198, 210)),
+                      child: Text('ご予約の確認画面へ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Hiragino Kaku Gothic Pro',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5,
+                            decoration: TextDecoration.none,
+                          )),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
                 ],
               ),
             )
@@ -774,13 +851,67 @@ class _ReservationState extends State<Reservation> {
     );
   }
 
+  Widget _buildReservationItem() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      padding: EdgeInsets.only(top: 16, left: 9, bottom: 10, right: 9),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(color: Color.fromARGB(255, 102, 110, 110)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('希望日1',
+              style: TextStyle(
+                color: Color.fromARGB(255, 102, 110, 110),
+                fontFamily: 'Hiragino Kaku Gothic Pro',
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                height: 1.5,
+                decoration: TextDecoration.none,
+              )),
+          Text('2021年5月24日(木) 11:30',
+              style: TextStyle(
+                color: Color.fromARGB(255, 51, 51, 51),
+                fontFamily: 'Hiragino Kaku Gothic Pro',
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                height: 1.5,
+                decoration: TextDecoration.none,
+              )),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              width: 15,
+              height: 15,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Color.fromARGB(255, 102, 110, 110),
+              ),
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: Icon(
+                  Icons.close,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   Widget _buildTimeButton(String time) {
-    return TextButton(
-      onPressed: () {},
+    return InkWell(
+      onTap: () {},
       child: Container(
         width: 100,
         height: 34,
         padding: EdgeInsets.only(top: 8, left: 28, right: 28, bottom: 2),
+        margin: EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(3),
             border: Border.all(color: Color.fromARGB(255, 210, 210, 212))),
