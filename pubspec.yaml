@@ -64,6 +64,8 @@ dependencies:
   dropdown_button2: ^1.2.2
   table_calendar: ^2.1.0
 
+  easy_sidemenu: ^0.2.0
+  side_menu: ^0.0.3
 
 dev_dependencies:
   flutter_test:

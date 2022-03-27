@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:laxia/views/pages/auth/emaillogin.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../common/helper.dart';
+import 'package:laxia/common/helper.dart';
+import 'package:laxia/generated/L10n.dart';
 // import '../common/app_config.dart' as config;
 
 class PassRest_Four extends StatefulWidget {
@@ -69,10 +67,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EMLoginScreen()));
+                    Navigator.of(context).pushNamed("/EmailLogin");
                   },
                 ),
               ),
