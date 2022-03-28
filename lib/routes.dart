@@ -19,6 +19,7 @@ import 'package:laxia/views/pages/main/appointment/appointment.dart';
 import 'package:laxia/views/pages/main/home/home.dart';
 import 'package:laxia/views/onboarding.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
+import 'package:laxia/views/pages/main/reservation/completion.dart';
 import 'package:laxia/views/pages/main/reservation/reservation.dart';
 
 class RouteGenerator {
@@ -61,6 +62,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Reservation());
       case '/Confirmation':
         return MaterialPageRoute(builder: (_) => Confirmation());
+      case '/Completion':
+        return MaterialPageRoute(builder: (_) => Completion());
       case '/Favorite':
         return MaterialPageRoute(builder: (_) => Favorite());
       case '/Mypage':
