@@ -113,7 +113,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Hiragino-Kaku-Gothic-Pro-W6
+    - family: Hiragino Kaku Gothic Pro W6
       fonts:
         - asset: assets/fonts/Hiragino-Kaku-Gothic-Pro-W6.otf
   #   - family: Trajan Pro

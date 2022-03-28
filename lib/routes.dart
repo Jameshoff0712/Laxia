@@ -5,6 +5,7 @@ import 'package:laxia/views/pages/auth/password_reset/passrest_four.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_three.dart';
 import 'package:laxia/views/pages/auth/registration.dart';
+import 'package:laxia/views/pages/main/appointment/confirmation.dart';
 import 'package:laxia/views/pages/main/favorite/favorite.dart';
 import 'package:laxia/views/pages/main/home/narrow_case.dart';
 import 'package:laxia/views/pages/main/home/narrow_diary.dart';
@@ -58,6 +59,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ChatScreen(user: favorites[0]));
       case '/Reservation':
         return MaterialPageRoute(builder: (_) => Reservation());
+      case '/Confirmation':
+        return MaterialPageRoute(builder: (_) => Confirmation());
       case '/Favorite':
         return MaterialPageRoute(builder: (_) => Favorite());
       case '/Mypage':
