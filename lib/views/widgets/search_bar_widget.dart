@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:laxia/common/helper.dart';
-import 'package:laxia/generated/l10n.dart';
 
 class SearchbarWidget extends StatefulWidget {
   final bool state;
-  final String searchtext;
+  final VoidCallback? onchange,oncompleted;
   final TextEditingController filter;
   const SearchbarWidget(
       {Key? key, 
-      required this.searchtext, 
       required this.state,
-      required this.filter})
+      required this.filter, this.onchange, this.oncompleted})
       : super(key: key);
 
   @override
@@ -30,13 +27,24 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autofocus:false,
       onTap: (){
         if(widget.state){
-          //navigator
+          Navigator.of(context).pushNamed("/SearchView");     
+        }
+      },
+      onChanged: (value){
+        if(widget.state==false){
+          widget.onchange!();
+        }
+      },
+      onEditingComplete: (){
+        if(widget.state==false){
+          widget.oncompleted!();
         }
       },
       controller: widget.filter,
-      autofocus: true, //Display the keyboard when TextField is displayed
+      //Display the keyboard when TextField is displayed
       cursorColor: Colors.white,
       style: TextStyle(
         color: Colors.black,
@@ -51,9 +59,9 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
           color: _hintColor,
           size: 16,
         ),
-        // enabledBorder: OutlineInputBorder(
-        //   borderSide: BorderSide(color: Colors.red),
-        // ),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.all(Radius.circular(5.0))),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),

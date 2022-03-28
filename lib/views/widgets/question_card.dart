@@ -60,7 +60,7 @@ class _Question_CardState extends State<Question_Card> {
                       height: 29,
                       width: 29,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(30),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl: widget.avator,

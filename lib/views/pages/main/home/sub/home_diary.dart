@@ -5,13 +5,31 @@ import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class Home_Diary extends StatefulWidget {
-  const Home_Diary({Key? key}) : super(key: key);
+  final bool  issearch;
+  final List ? model;
+  const Home_Diary({Key? key, required this.issearch, this.model}) : super(key: key);
 
   @override
   State<Home_Diary> createState() => _Home_DiaryState();
 }
 
 class _Home_DiaryState extends State<Home_Diary> {
+  List mid=[];
+  @override
+  void initState(){
+    if(!widget.issearch){
+      for(int i=0;i<diary_list.length;i++)
+        setState((){
+          mid.add(diary_list[i]);
+        });
+    }else{
+      for(int i=0;i<widget.model!.length;i++)
+      setState((){
+        mid.add(widget.model![i]);
+      });
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,21 +72,21 @@ class _Home_DiaryState extends State<Home_Diary> {
                   Expanded(
                     child: ListView.builder(
                         padding:EdgeInsets.only(top:8,left:8,right:8),
-                        itemCount: diary_list.length,
+                        itemCount: mid.length,
                         physics: const AlwaysScrollableScrollPhysics(),
                         itemBuilder: (BuildContext context, int index) {
                           return Diary_Card(
-                            avator: diary_list[index].avator,
-                            check: diary_list[index].check,
-                            image2:  diary_list[index].image2,
-                            image1:  diary_list[index].image1,
-                            eyes:  diary_list[index].eyes,
-                            clinic:  diary_list[index].clinic,
-                            name:  diary_list[index].name,
+                            avator: mid[index]["avator"],
+                            check: mid[index]["check"],
+                            image2:  mid[index]["image2"],
+                            image1:  mid[index]["image1"],
+                            eyes:  mid[index]["eyes"],
+                            clinic:  mid[index]["clinic"],
+                            name:  mid[index]["name"],
                             onpress: () {},
-                            price:  diary_list[index].price,
-                            sentence:  diary_list[index].sentence,
-                            type:  diary_list[index].type,
+                            price:  mid[index]["price"],
+                            sentence:  mid[index]["sentence"],
+                            type:  mid[index]["type"],
                           );
                         }),
                   ),

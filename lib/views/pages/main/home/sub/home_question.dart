@@ -2,16 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:laxia/models/question_model.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
-import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class Home_Question extends StatefulWidget {
-  const Home_Question({ Key? key }) : super(key: key);
+  final bool  issearch;
+  final List ? model;
+  const Home_Question({ Key? key, required this.issearch, this.model }) : super(key: key);
 
   @override
   State<Home_Question> createState() => _Home_QuestionState();
 }
 
 class _Home_QuestionState extends State<Home_Question> {
+  List mid=[];
+  @override
+  void initState(){
+    if(!widget.issearch){
+      for(int i=0;i<question_list.length;i++)
+        setState((){
+          mid.add(question_list[i]);
+        });
+    }else{
+      for(int i=0;i<widget.model!.length;i++)
+      setState((){
+        mid.add(widget.model![i]);
+      });
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,22 +59,22 @@ class _Home_QuestionState extends State<Home_Question> {
           Expanded(
             child: ListView.builder(
                 padding:EdgeInsets.only(top:8,left:8,right:8),
-                itemCount: question_list.length,
+                itemCount: mid.length,
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return Question_Card(
                     buttoncolor: Color.fromARGB(255,110, 198, 210),
                     buttontext: "回答あり",
-                    hearts: question_list[index].hearts,
-                    chats: question_list[index].chats,
-                    avator: question_list[index].avator,
-                    image2:  question_list[index].image2,
-                    image1:  question_list[index].image1,
-                    eyes:  question_list[index].eyes,
-                    name:  question_list[index].name,
+                    hearts: mid[index]["hearts"],
+                    chats: mid[index]["chats"],
+                    avator: mid[index]["avator"],
+                    image2:  mid[index]["image2"],
+                    image1:  mid[index]["image1"],
+                    eyes:  mid[index]["eyes"],
+                    name:  mid[index]["name"],
                     onpress: () {},
-                    sentence:  question_list[index].sentence,
-                    type:  question_list[index].type,
+                    sentence:  mid[index]["sentence"],
+                    type:  mid[index]["type"],
                   );
                 }),
           ),

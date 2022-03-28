@@ -71,7 +71,7 @@ class Trans {
 
   String get login_content {
     return Intl.message(
-      'LAXIAEログイン\n',
+      'LAXIAEログイン',
       name: 'login_content',
       desc: '',
       args: [],
@@ -179,7 +179,7 @@ class Trans {
 
   String get lets_start_with_signup {
     return Intl.message(
-      'プロフィールを作って、ほかのユーザーを\nフォローしたり自分の体験日記を作ってみよう!',
+      'プロフィールを作って、ほかのユーザーをフォローしたり自分の体験日記を作ってみよう!',
       name: 'lets_start_with_signup',
       desc: '',
       args: [],
@@ -278,7 +278,7 @@ class Trans {
 
   String get signup_contents {
     return Intl.message(
-      'LAXIAに登録する\n',
+      'LAXIAに登録する',
       name: 'signup_contents',
       desc: '',
       args: [],

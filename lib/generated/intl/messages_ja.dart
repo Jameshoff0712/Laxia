@@ -49,7 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lets_start_with_signup": MessageLookupByLibrary.simpleMessage(
             "プロフィールを作って、ほかのユーザーを\nフォローしたり自分の体験日記を作ってみよう!"),
         "login": MessageLookupByLibrary.simpleMessage("ログイン"),
-        "login_content": MessageLookupByLibrary.simpleMessage("LAXIAEログイン\n"),
+        "login_content": MessageLookupByLibrary.simpleMessage("LAXIAEログイン"),
         "mailbox": MessageLookupByLibrary.simpleMessage("メールボックス"),
         "member_regirtration": MessageLookupByLibrary.simpleMessage("会員登録"),
         "next": MessageLookupByLibrary.simpleMessage("次へ進む"),
@@ -68,7 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "send_url_for_reset":
             MessageLookupByLibrary.simpleMessage("再設定用のURLを送信する"),
         "service_term": MessageLookupByLibrary.simpleMessage("利用規約"),
-        "signup_contents": MessageLookupByLibrary.simpleMessage("LAXIAに登録する\n"),
+        "signup_contents": MessageLookupByLibrary.simpleMessage("LAXIAに登録する"),
         "tapAgainToLeave":
             MessageLookupByLibrary.simpleMessage("もう一度タップして終了します"),
         "update_password": MessageLookupByLibrary.simpleMessage("パスワードを更新"),

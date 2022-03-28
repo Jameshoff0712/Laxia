@@ -1,77 +1,48 @@
-class Counseling_Model {
-  final String avator, name,image1, image2, sentence,type,eyes,hearts,chats;
-
-  Counseling_Model(this.avator, this.name, this.image1, this.image2, this.sentence, this.type,this.eyes, this.hearts, this.chats);
-}
-
-List<Counseling_Model> question_list = [
-  Counseling_Model(
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "Yuka1111",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "まず前々から気になっていたのは目の下のクマでした。沼澤先生にカウンセリングをしていただき、目の下の脂肪が出てきていることにににににににに....",
-    "二重切開",
-    "11",
-    "88",
-    "4"
-  ),
-  Counseling_Model(
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "Yuka1111",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "まず前々から気になっていたのは目の下のクマでした。沼澤先生にカウンセリングをしていただき、目の下の脂肪が出てきていることにににににににに....",
-    "二重切開",
-    "11",
-    "88",
-    "4"
-  ),
-  Counseling_Model(
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "Yuka1111",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "まず前々から気になっていたのは目の下のクマでした。沼澤先生にカウンセリングをしていただき、目の下の脂肪が出てきていることにににににににに....",
-    "二重切開",
-    "11",
-    "88",
-    "4"
-  ),
-  Counseling_Model(
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "Yuka1111",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "まず前々から気になっていたのは目の下のクマでした。沼澤先生にカウンセリングをしていただき、目の下の脂肪が出てきていることにににににににに....",
-    "二重切開",
-    "11",
-    "88",
-    "4"
-  ),
-  Counseling_Model(
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "Yuka1111",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "まず前々から気になっていたのは目の下のクマでした。沼澤先生にカウンセリングをしていただき、目の下の脂肪が出てきていることにににににににに....",
-    "二重切開",
-    "11",
-    "88",
-    "4"
-  ),
-  Counseling_Model(
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "Yuka1111",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
-    "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-    "まず前々から気になっていたのは目の下のクマでした。沼澤先生にカウンセリングをしていただき、目の下の脂肪が出てきていることにににににににに....",
-    "二重切開",
-    "11",
-    "88",
-    "4"
-  ),
-  
+List question_list = [
+  {
+      "avator"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+      "name"       : "東京中央クリニック 渋谷院",
+      "image1"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg",
+      "image2"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+      "sentence"   : "2日目、起床直後の様子です。腫れは昨日とくくら...",
+      "type"       : "二重切開",
+      "eyes"       : "11",
+      "hearts"     : "88",
+      "chats"      : "4"
+  },
+  {
+      "avator"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+      "name"       : "東京中央クリニック 渋谷院",
+      "image1"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+      "image2"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+      "sentence"   : "2日目、起床直後の様子です。腫れは昨日とくくら...",
+      "type"       : "二重切開",
+      "eyes"       : "11",
+      "hearts"     : "88",
+      "chats"      : "4"
+    },
+    {
+      "avator"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-5.jpg",
+      "name"       : "東京中央クリニック 渋谷院",
+      "image1"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+      "image2"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-8.jpg",
+      "sentence"   : "2日目、起床直後の様子です。腫れは昨日とくくら...",
+      "type"       : "二重切開",
+      "eyes"       : "11",
+      "hearts"     : "88",
+      "chats"      : "4"
+  },
+  {
+      "avator"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+      "name"       : "東京中央クリニック 渋谷院",
+      "image1"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+      "image2"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+      "sentence"   : "2日目、起床直後の様子です。腫れは昨日とくくら...",
+      "type"       : "二重切開",
+      "eyes"       : "11",
+      "hearts"     : "88",
+      "chats"      : "4"
+    }
 ];
 
 

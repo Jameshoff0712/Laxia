@@ -6,13 +6,31 @@ import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 
 class Home_Doctor extends StatefulWidget {
-  const Home_Doctor({Key? key}) : super(key: key);
+  final bool  issearch;
+  final List ? model;
+  const Home_Doctor({Key? key, required this.issearch, this.model}) : super(key: key);
 
   @override
   State<Home_Doctor> createState() => _Home_DoctorState();
 }
 
 class _Home_DoctorState extends State<Home_Doctor> {
+  List mid=[];
+  @override
+  void initState(){
+    if(!widget.issearch){
+      for(int i=0;i<doctor_list.length;i++)
+        setState((){
+          mid.add(doctor_list[i]);
+        });
+    }else{
+      for(int i=0;i<widget.model!.length;i++)
+      setState((){
+        mid.add(widget.model![i]);
+      });
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,16 +66,16 @@ class _Home_DoctorState extends State<Home_Doctor> {
                     // menuAppBar(context),
                     Expanded(
                       child: ListView.builder(
-                          itemCount: doctor_list.length,
+                          itemCount: mid.length,
                           physics: const AlwaysScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
                             return Doctor_Card(
-                                image: doctor_list[index].image,
-                                post: doctor_list[index].post,
-                                name: doctor_list[index].name,
-                                mark: doctor_list[index].mark,
-                                day: doctor_list[index].day,
-                                clinic: doctor_list[index].clinic);
+                                image: mid[index]["image"],
+                                post: mid[index]["post"],
+                                name: mid[index]["name"],
+                                mark: mid[index]["mark"],
+                                day: mid[index]["day"],
+                                clinic: mid[index]["clinic"]);
                           }),
                     ),
                   ],

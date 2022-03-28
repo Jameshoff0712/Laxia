@@ -152,6 +152,7 @@ class _BottomNavState extends State<BottomNav> {
             label: Trans.of(context).my_page)
       ],
       onTap: (value) {
+         userProperties.setSearchtext("");
         userProperties.setCurrentPageIndex(value);
         widget.pageController.animateToPage(value,
             duration: const Duration(microseconds: 300), curve: Curves.easeIn);

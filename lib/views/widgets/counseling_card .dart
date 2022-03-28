@@ -64,7 +64,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                       height: 29,
                       width: 29,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(30),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl: widget.avator,

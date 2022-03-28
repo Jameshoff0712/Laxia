@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:laxia/models/counseling_model%20.dart';
+import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class Home_Counseling extends StatefulWidget {
-  const Home_Counseling({ Key? key }) : super(key: key);
+  final bool  issearch;
+  final List ? model;
+  const Home_Counseling({ Key? key, required this.issearch, this.model }) : super(key: key);
 
   @override
   State<Home_Counseling> createState() => _Home_CounselingState();
 }
 
 class _Home_CounselingState extends State<Home_Counseling> {
+  List mid=[];
+  @override
+  void initState(){
+    if(!widget.issearch){
+      for(int i=0;i<counseling_list.length;i++)
+        setState((){
+          mid.add(counseling_list[i]);
+        });
+    }else{
+      for(int i=0;i<widget.model!.length;i++)
+      setState((){
+        mid.add(widget.model![i]);
+      });
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,24 +59,24 @@ class _Home_CounselingState extends State<Home_Counseling> {
           Expanded(
             child: ListView.builder(
                 padding:EdgeInsets.only(top:8,left:8,right:8),
-                itemCount: counseling_list.length,
+                itemCount: mid.length,
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return Counseling_Card(
-                    hearts: counseling_list[index].hearts,
-                    chats: counseling_list[index].chats,
-                    avator: counseling_list[index].avator,
-                    check: counseling_list[index].check,
-                    image2:  counseling_list[index].image2,
-                    image1:  counseling_list[index].image1,
-                    image3:  counseling_list[index].image3,
-                    image4:  counseling_list[index].image4,
-                    eyes:  counseling_list[index].eyes,
-                    name:  counseling_list[index].name,
+                    hearts: mid[index]["hearts"],
+                    chats: mid[index]["chats"],
+                    avator: mid[index]["avator"],
+                    check: mid[index]["check"],
+                    image2:  mid[index]["image2"],
+                    image1:  mid[index]["image1"],
+                    image3:  mid[index]["image3"],
+                    image4:  mid[index]["image4"],
+                    eyes:  mid[index]["eyes"],
+                    name:  mid[index]["name"],
                     onpress: () {},
-                    sentence:  counseling_list[index].sentence,
-                    type:  counseling_list[index].type,
-                    clinic: counseling_list[index].clinic,
+                    sentence:  mid[index]["sentence"],
+                    type:  mid[index]["type"],
+                    clinic: mid[index]["clinic"],
                   );
                 }),
           ),
