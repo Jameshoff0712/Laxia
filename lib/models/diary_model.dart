@@ -9,7 +9,8 @@ List diary_list = [
     "name" : "君島 剛",
     "check"    : "田中圭 医師",
     "price"    : "2万8000円",
-    "eyes"     : "1"
+    "eyes"     : "1",
+    "status"    : "未公開",
   },
   {
       "avator"    : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
@@ -21,7 +22,8 @@ List diary_list = [
       "name" : "君島 剛",
       "check"    : "田中圭 医師",
       "price"    : "2万8000円",
-      "eyes"     : "1"
+      "eyes"     : "1",
+      "status"    : "公開済",
   },
   {
     "avator"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -33,7 +35,8 @@ List diary_list = [
     "name" : "君島 剛",
     "check"    : "田中圭 医師",
     "price"    : "2万8000円",
-    "eyes"     : "1"
+    "eyes"     : "1",
+    "status"    : "未公開",
   },
   {
       "avator"     : "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -45,7 +48,8 @@ List diary_list = [
       "name" : "君島 剛",
       "check"    : "田中圭 医師",
       "price"    : "2万8000円",
-      "eyes"     : "1"
+      "eyes"     : "1",
+      "status"    : "公開済",
   }
 ];
 

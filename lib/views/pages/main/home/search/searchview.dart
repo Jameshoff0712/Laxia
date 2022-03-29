@@ -40,7 +40,7 @@ class _SearchViewState extends State<SearchView> {
     initSettings();
     super.initState();
   }
-
+  bool issuffixicon=false;
   String searchtext = "";
   TextEditingController filter = new TextEditingController();
   @override
@@ -62,35 +62,73 @@ class _SearchViewState extends State<SearchView> {
             child: Column(
               children: [
                 SizedBox(height: 44),
-                Focus(
-                    child: SearchbarWidget(
-                      state: false,
-                      filter: filter,
-                      onchange: () {
-                        searchCount();
-                        if (filter.text.isEmpty) {
-                          setState(() {
-                            flag = true;
-                            unchange = true;
-                          });
-                        } else {
-                          setState(() {
-                            unchange = false;
-                          });
-                        }
-                      },
-                      oncompleted: () {
-                        userProperties.setSearchtext(filter.text);
-                        Navigator.of(context).pushNamed("/Pages");
-                      },
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Focus(
+                          child: SearchbarWidget(
+                            issuffixicon: issuffixicon,
+                            onpress: (){
+                              setState(() {
+                                flag = true;
+                                unchange = true;
+                                issuffixicon=false;
+                              });
+                              filter.clear();
+                            },
+                            state: false,
+                            filter: filter,
+                            onchange: () {
+                              searchCount();
+                              if (filter.text.isEmpty) {
+                                setState(() {
+                                  issuffixicon=false;
+                                  flag = true;
+                                  unchange = true;
+                                });
+                              } else {
+                                setState(() {
+                                  issuffixicon=true;
+                                  unchange = false;
+                                });
+                              }
+                            },
+                            oncompleted: () {
+                              userProperties.setSearchtext(filter.text);
+                              Navigator.pop(context);
+                            },
+                          ),
+                          onFocusChange: (hasfocus) {
+                            if (hasfocus) {
+                              setState(() {
+                                flag = true;
+                              });
+                            }
+                          }),
                     ),
-                    onFocusChange: (hasfocus) {
-                      if (hasfocus) {
-                        setState(() {
-                          flag = true;
-                        });
-                      }
-                    }),
+                    issuffixicon
+                        ? Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              child: Center(
+                                  child: InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        "キャンセル",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                            color: Helper.mainColor),
+                                      ))),
+                            ))
+                        : SizedBox(width: 0),
+                  ],
+                ),
               ],
             ),
           ),
@@ -156,8 +194,8 @@ class _SearchViewState extends State<SearchView> {
                                       unchange = false;
                                       flag = true;
                                     });
-                                     userProperties.setSearchtext(filter.text);
-                                      Navigator.of(context).pushNamed("/Pages");
+                                    userProperties.setSearchtext(filter.text);
+                                    Navigator.of(context).pushNamed("/Pages");
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(

@@ -11,7 +11,13 @@ class NarrowDownn extends StatefulWidget {
 
 class _NarrowDownnState extends State<NarrowDownn> {
   RangeValues _currentRangeValues = const RangeValues(0, 100);
-  int selectstar = 0;
+  List<bool> selectstar = [
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,27 +53,31 @@ class _NarrowDownnState extends State<NarrowDownn> {
           SizedBox(
             height: 24,
           ),
-          widget.isStar?Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("施術の満足度",
-                  style: TextStyle(
-                      color: Helper.titleColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  for (int i = 0; i < 5; i++)
-                    Star(
-                        i,
-                        selectstar > i
-                            ? Helper.starColor
-                            : Helper.blackColor),
-                ],
-              ),
-            ],
-          ):SizedBox(height: 0,),
+          widget.isStar
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("施術の満足度",
+                        style: TextStyle(
+                            color: Helper.titleColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        for (int i = 0; i < 5; i++)
+                          Star(
+                              i,
+                              selectstar[i] == true
+                                  ? Helper.starColor
+                                  : Helper.blackColor),
+                      ],
+                    ),
+                  ],
+                )
+              : SizedBox(
+                  height: 0,
+                ),
           SizedBox(
             height: 26,
           ),
@@ -81,7 +91,11 @@ class _NarrowDownnState extends State<NarrowDownn> {
           ),
           Row(
             children: [
-              Text("下限なし",
+              Text(
+                  _currentRangeValues.start.round() == 0
+                      ? "下限なし"
+                      : (_currentRangeValues.start.round() * 4).toString() +
+                          "万円以上",
                   style: TextStyle(
                       color: Helper.titleColor,
                       fontSize: 16,
@@ -97,7 +111,11 @@ class _NarrowDownnState extends State<NarrowDownn> {
               SizedBox(
                 width: 8,
               ),
-              Text("上限なし",
+              Text(
+                  _currentRangeValues.end.round() == 100
+                      ? "上限なし"
+                      : (_currentRangeValues.end.round() * 4).toString() +
+                          "万円以下",
                   style: TextStyle(
                       color: Helper.titleColor,
                       fontSize: 16,
@@ -112,11 +130,11 @@ class _NarrowDownnState extends State<NarrowDownn> {
               values: _currentRangeValues,
               min: 0,
               max: 100,
-              divisions: 10,
-              labels: RangeLabels(
-                _currentRangeValues.start.round().toString(),
-                _currentRangeValues.end.round().toString(),
-              ),
+              divisions: 100,
+              // labels: RangeLabels(
+              //   _currentRangeValues.start.round().toString(),
+              //   _currentRangeValues.end.round().toString(),
+              // ),
               onChanged: (RangeValues values) {
                 setState(() {
                   _currentRangeValues = values;
@@ -132,30 +150,49 @@ class _NarrowDownnState extends State<NarrowDownn> {
                   color: Helper.titleColor,
                   fontSize: 16,
                   fontWeight: FontWeight.w700)),
+          SizedBox(
+            height: 35,
+          ),
           Expanded(
-            child: Row(
+            child: Column(
               children: [
-                Text("年代",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 18, 18, 18),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400)),
-                Expanded(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("指定しない",
+                    Text("年代",
                         style: TextStyle(
-                            color: Color.fromARGB(255, 156, 161, 161),
+                            color: Color.fromARGB(255, 18, 18, 18),
                             fontSize: 16,
                             fontWeight: FontWeight.w400)),
-                    Icon(
-                      Icons.navigate_next,
-                      color: Color.fromARGB(255, 156, 161, 161),
-                      size: 18,
-                    ),
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("指定しない",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 156, 161, 161),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400)),
+                        Icon(
+                          Icons.navigate_next,
+                          color: Color.fromARGB(255, 156, 161, 161),
+                          size: 18,
+                        ),
+                      ],
+                    ))
                   ],
-                ))
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 2,
+                  decoration:
+                      BoxDecoration(color: Helper.maintxtColor),
+                  child: SizedBox(
+                    height: 2,
+                    width: double.infinity,
+                  ),
+                ),
               ],
             ),
           ),
@@ -189,11 +226,14 @@ class _NarrowDownnState extends State<NarrowDownn> {
     );
   }
 
-  Widget Star(int index, Color color) {
+  Widget Star(
+    int index,
+    Color color,
+  ) {
     return InkWell(
       onTap: () {
         setState(() {
-          selectstar = index + 1;
+          selectstar[index] = !selectstar[index];
         });
       },
       child: Container(
