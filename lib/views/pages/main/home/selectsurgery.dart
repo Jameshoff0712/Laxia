@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:laxia/common/helper.dart';
 import 'dart:convert';
 import 'package:laxia/views/widgets/multiselect.dart';
 
@@ -55,7 +56,7 @@ class _SelectSurgeryState extends State<SelectSurgery> {
                 onTap: (){},
                 child: Text("クリア",
                     style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
+                        color:Helper.unClickClearButtonColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w400)),
               )
@@ -69,12 +70,12 @@ class _SelectSurgeryState extends State<SelectSurgery> {
         InkWell(
           onTap: (){},
           child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Color.fromARGB(255,110, 198, 210)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Helper.btnBgMainColor),
             width: 300,
             height: 45,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 114, vertical: 12),
-              child: Text("結果を表示",style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w700),),
+              child: Text("結果を表示",style: TextStyle(color: Helper.whiteColor,fontSize: 12,fontWeight: FontWeight.w700),),
             ),
           ),
         ),

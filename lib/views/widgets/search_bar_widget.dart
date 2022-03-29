@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class SearchbarWidget extends StatefulWidget {
   final bool state;
@@ -15,9 +16,6 @@ class SearchbarWidget extends StatefulWidget {
 }
 
 class _SearchbarWidgetState extends State<SearchbarWidget> {
-  final _hintColor = Color.fromARGB(255, 156, 161, 161);
-  final _whiteColor = Colors.white;
-
   String hinttext="";
   @override
   void dispose(){
@@ -45,9 +43,9 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
       },
       controller: widget.filter,
       //Display the keyboard when TextField is displayed
-      cursorColor: Colors.white,
+      cursorColor: Helper.whiteColor,
       style: TextStyle(
-        color: Colors.black,
+        color: Helper.blackColor,
         fontSize: 14,
       ),
       textInputAction: TextInputAction.search,
@@ -56,19 +54,19 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
         filled: true,
         prefixIcon: Icon(
           Icons.search,
-          color: _hintColor,
+          color: Helper.searchBartxtColor,
           size: 16,
         ),
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: Helper.whiteColor),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: Helper.whiteColor),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),
         contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
         hintText:'施術名やクリニック名で検索',
         hintStyle: TextStyle(
-          color: _hintColor,
+          color: Helper.searchBartxtColor,
           fontSize: 14,
         ),
       ),

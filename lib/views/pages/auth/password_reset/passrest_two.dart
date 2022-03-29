@@ -16,7 +16,7 @@ class _PassRest_TwoState extends State<PassRest_Two> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Helper.whiteColor,
       body: Padding(
           padding: const EdgeInsets.only(top: 129.83, left: 10, right: 10),
           child: Column(
@@ -33,7 +33,7 @@ class _PassRest_TwoState extends State<PassRest_Two> {
               Center(
                   child: Text(Trans.of(context).send_email_success,
                       style: defaultTextStyle(
-                          Color.fromARGB(255, 110, 198, 210), FontWeight.w700,
+                          Helper.btnBgMainColor, FontWeight.w700,
                           size: 18))),
               SizedBox(
                 height: 20,
@@ -41,7 +41,7 @@ class _PassRest_TwoState extends State<PassRest_Two> {
               Center(
                   child: Text(Trans.of(context).verify_email,
                       style: defaultTextStyle(
-                          Color.fromARGB(255, 156, 161, 161), FontWeight.w700,
+                          Helper.maintxtColor, FontWeight.w700,
                           size: 14))),
             ],
           )),

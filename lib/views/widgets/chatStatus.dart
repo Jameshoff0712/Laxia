@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class chatStatus extends StatefulWidget {
   final int statusCode;
@@ -52,7 +53,7 @@ class _chatStatusState extends State<chatStatus> {
           width: double.infinity,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
+              color: Helper.whiteColor,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +72,7 @@ class _chatStatusState extends State<chatStatus> {
                       fontFamily: 'Hiragino Kaku Gothic Pro',
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                      color: Helper.whiteColor,
                       decoration: TextDecoration.none,
                     ),
                   ),
@@ -114,7 +115,7 @@ class _chatStatusState extends State<chatStatus> {
                                 fontFamily: 'Hiragino Kaku Gothic Pro',
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
-                                color: Colors.white,
+                                color: Helper.whiteColor,
                                 decoration: TextDecoration.none,
                               ),
                             ),

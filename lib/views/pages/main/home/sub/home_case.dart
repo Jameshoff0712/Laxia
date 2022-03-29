@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/case_model.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -35,11 +36,11 @@ class _Home_CaseState extends State<Home_Case> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(250, 240, 242, 245),
+      color: Helper.homeBgColor,
       child: Column(
         children: [
           Container(
-            color: Colors.white,
+            color: Helper.whiteColor,
             child: Row(
               children: [
                 Expanded(
@@ -85,7 +86,7 @@ class _Home_CaseState extends State<Home_Case> {
                           physics: const AlwaysScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
                             return Diary_Card(
-                              buttoncolor: Color.fromARGB(255, 110, 198, 210),
+                              buttoncolor: Helper.btnBgMainColor,
                               buttontext: mid[index]["buttontext"],
                               hearts: mid[index]["hearts"],
                               chats: mid[index]["chats"],

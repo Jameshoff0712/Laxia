@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/diary_model.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -35,11 +36,11 @@ class _Home_DiaryState extends State<Home_Diary> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(250, 240, 242, 245),
+      color: Helper.homeBgColor,
       child: Column(
         children: [
           Container(
-            color: Colors.white,
+            color: Helper.whiteColor,
             child: Row(
               children: [
                 Expanded(

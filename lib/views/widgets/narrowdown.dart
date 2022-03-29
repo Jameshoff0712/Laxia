@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class NarrowDownn extends StatefulWidget {
   final bool isStar;
@@ -37,7 +38,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                 onTap: () {},
                 child: Text("クリア",
                     style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
+                        color: Helper.maintxtColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w400)),
               )
@@ -51,7 +52,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
             children: [
               Text("施術の満足度",
                   style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
+                      color: Helper.titleColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w700)),
               Row(
@@ -61,8 +62,8 @@ class _NarrowDownnState extends State<NarrowDownn> {
                     Star(
                         i,
                         selectstar > i
-                            ? Colors.yellow
-                            : Color.fromARGB(255, 0, 0, 0)),
+                            ? Helper.starColor
+                            : Helper.blackColor),
                 ],
               ),
             ],
@@ -72,7 +73,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
           ),
           Text("価格帯",
               style: TextStyle(
-                  color: Color.fromARGB(255, 51, 51, 51),
+                  color: Helper.titleColor,
                   fontSize: 16,
                   fontWeight: FontWeight.w700)),
           SizedBox(
@@ -82,7 +83,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
             children: [
               Text("下限なし",
                   style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
+                      color: Helper.titleColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w400)),
               SizedBox(
@@ -90,7 +91,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
               ),
               Text("-",
                   style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
+                      color: Helper.titleColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w400)),
               SizedBox(
@@ -98,7 +99,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
               ),
               Text("上限なし",
                   style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
+                      color: Helper.titleColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w400)),
             ],
@@ -107,7 +108,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
             padding: EdgeInsets.all(15.0),
             child: Center(
                 child: RangeSlider(
-              activeColor: Color.fromARGB(255, 110, 198, 210),
+              activeColor: Helper.mainColor,
               values: _currentRangeValues,
               min: 0,
               max: 100,
@@ -128,7 +129,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
           ),
           Text("年代",
               style: TextStyle(
-                  color: Color.fromARGB(255, 51, 51, 51),
+                  color: Helper.titleColor,
                   fontSize: 16,
                   fontWeight: FontWeight.w700)),
           Expanded(
@@ -164,7 +165,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Color.fromARGB(255, 110, 198, 210)),
+                    color: Helper.btnBgMainColor),
                 width: 300,
                 height: 45,
                 child: Padding(
@@ -172,7 +173,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                   child: Text(
                     "結果を表示",
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Helper.whiteColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w700),
                   ),
@@ -206,7 +207,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
             Text(
               (index + 1).toString(),
               style: TextStyle(
-                  color: Colors.black,
+                  color: Helper.unstarColor,
                   fontSize: 14,
                   fontWeight: FontWeight.w400),
             ),

@@ -24,7 +24,7 @@ class _BottomNavState extends State<BottomNav> {
   final _unselectedItemColor = Helper.darkGrey;
   final _selectedBgColor = Helper.mainColor;
   final _unselectedBgColor = Colors.transparent;
-  final _whiteColor = Colors.white;
+  final _whiteColor = Helper.whiteColor;
 
   @override
   void initState() {

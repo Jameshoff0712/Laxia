@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class Question_Card extends StatefulWidget {
@@ -45,7 +46,7 @@ class _Question_CardState extends State<Question_Card> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
+          color: Helper.whiteColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -80,7 +81,7 @@ class _Question_CardState extends State<Question_Card> {
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 51, 51, 51)),
+                          color: Helper.titleColor),
                     ),
                     widget.buttontext!.isEmpty
                         ? SizedBox(
@@ -111,7 +112,7 @@ class _Question_CardState extends State<Question_Card> {
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: Color.fromARGB(255, 51, 51, 51)),
+                      color: Helper.titleColor),
                 ),
                 Container(
                   child: GridView(
@@ -190,7 +191,7 @@ class _Question_CardState extends State<Question_Card> {
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 102, 110, 110)),
+                            color: Helper.maintxtColor),
                       ),
                     ],
                   ),
@@ -219,7 +220,7 @@ class _Question_CardState extends State<Question_Card> {
                               style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 156, 161, 161)),
+                                  color: Helper.txtColor),
                             ),
                             SizedBox(
                               width: 10,
@@ -237,7 +238,7 @@ class _Question_CardState extends State<Question_Card> {
                               style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 156, 161, 161)),
+                                  color: Helper.txtColor),
                             ),
                             SizedBox(
                               width: 10,
@@ -255,7 +256,7 @@ class _Question_CardState extends State<Question_Card> {
                               style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 156, 161, 161)),
+                                  color: Helper.txtColor),
                             )
                           ]),
                     ))

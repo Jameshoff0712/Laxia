@@ -8,8 +8,37 @@ export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /* APP VARIABLES or CONSTANTS */
 class Helper {
+  static const whiteColor = Colors.white;
+  static const blackColor = Colors.black;
   static const appTitle = 'Laxia project';
-  static const mainColor = Color(0xFF00cde7); //72ea3a
+  static const mainColor = Color.fromARGB(255,0, 184, 169); 
+  static const btnBgMainColor = mainColor; 
+  static const btnBgYellowColor = Color.fromARGB(255,249, 161, 56); 
+  static const searchBarBgColor= Color.fromARGB(255,245, 245, 245);
+  static const searchBartxtColor= Color.fromARGB(255,156, 161, 161); 
+  static const selectTabColor= Color.fromARGB(255,18, 18, 18); 
+  static const unSelectTabColor=searchBartxtColor;
+  static const unSelectSmallTabColor= Color.fromARGB(255,102, 110, 110);
+  static const selectSmallTabColor=mainColor;
+  static const smallDrawerColor=selectSmallTabColor;
+  static const titleColor=Color.fromARGB(255,51, 51, 51);
+  static const maintxtColor=unSelectSmallTabColor;
+  static const txtColor= searchBartxtColor; 
+  static const selectBottomColor= mainColor;
+  static const unSelectBottomColor= searchBartxtColor;
+  static const priceColor= btnBgYellowColor;
+  static const starColor= Color.fromARGB(255,206, 176, 88);
+  static const unstarColor= titleColor;
+  static const allowStateButtonColor=mainColor;
+  static const unAllowStateButtonColor=searchBartxtColor;
+  static const appTitleColor=blackColor;
+  static const closeIconColor= selectSmallTabColor;
+  static const clickClearButtonColor= mainColor ;
+  static const unClickClearButtonColor=selectSmallTabColor ;
+  static const authHintColor= Color.fromARGB(255, 210, 210, 212);
+  static const loginButtonColor= searchBartxtColor;
+   static const homeBgColor= Color.fromARGB(250, 240, 242, 245);
+
   static const appTxtColor = Color(0xFF181a3c);
   static const green = Color(0xFF1ec760);
   static const bodyBgColor = Color(0xFFf7f9fc);

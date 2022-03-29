@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
@@ -42,11 +43,11 @@ class _SearchResultAllState extends State<SearchResultAll> {
                 child: Column(
                   children: [
                     Container(
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
                           Container(
-                            decoration: BoxDecoration(color: Colors.white),
+                            decoration: BoxDecoration(color: Helper.whiteColor),
                             child: Column(
                               children: [
                                 Padding(
@@ -117,7 +118,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                     ),
                     SizedBox(height: 10,),
                     Container(
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
                           Padding(
@@ -179,7 +180,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                     ),
                     SizedBox(height: 10,),
                     Container(
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
                           Padding(
@@ -241,7 +242,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                     ),
                     SizedBox(height: 10,),
                     Container(
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
                           Padding(
@@ -309,7 +310,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                     ),
                     SizedBox(height: 10,),
                     Container(
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
                           Padding(
@@ -382,7 +383,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                     ),
                     SizedBox(height: 10,),
                     Container(
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
                           Padding(
@@ -453,7 +454,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                     ),
                     SizedBox(height: 10,),
                     Container(
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
                           Padding(

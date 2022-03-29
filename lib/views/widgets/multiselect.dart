@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class MultiSelectDart extends StatefulWidget {
   final List menu_list;
@@ -53,7 +54,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: currentpage == index
-                                        ? Colors.white
+                                        ? Helper.whiteColor
                                         : Color.fromARGB(255, 248, 250, 249),
                                     border: currentpage == index
                                         ? Border(
@@ -98,7 +99,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                   children: [
                     for (int i = 0; i < widget.menu_list.length; i++)
                       Container(
-                        color: Colors.white,
+                        color: Helper.whiteColor,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -110,8 +111,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                     border: Border.all(
                                         width: 1,
                                         color:
-                                            Color.fromARGB(255, 110, 198, 210)),
-                                    color: Colors.white),
+                                            Helper.mainColor),
+                                    color: Helper.whiteColor),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 3),
@@ -121,7 +122,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
                                         color:
-                                            Color.fromARGB(255, 110, 198, 210)),
+                                            Helper.mainColor),
                                   ),
                                 ),
                               ),
@@ -160,12 +161,10 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                     BorderRadius.circular(22),
                                                 border: Border.all(
                                                     width: 1,
-                                                    color: Color.fromARGB(
-                                                        255, 110, 198, 210)),
+                                                    color: Helper.mainColor),
                                                 color: selected[currentpage][j]
-                                                    ? Color.fromARGB(
-                                                        255, 110, 198, 210)
-                                                    : Colors.white),
+                                                    ? Helper.mainColor
+                                                    : Helper.whiteColor),
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 8, vertical: 3),
@@ -177,9 +176,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                     fontSize: 12,
                                                     color: selected[currentpage]
                                                             [j]
-                                                        ? Colors.white
-                                                        : Color.fromARGB(255,
-                                                            110, 198, 210)),
+                                                        ? Helper.whiteColor
+                                                        : Helper.mainColor),
                                               ),
                                             ),
                                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class SearchResult extends StatefulWidget {
   final int index, count;
@@ -29,14 +30,14 @@ class _SearchResultState extends State<SearchResult> {
       padding: EdgeInsets.only(bottom: 8.0),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: BoxDecoration(color: Helper.whiteColor),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 9),
             child: Text(
               tabMenus[widget.index],
               style: TextStyle(
-                  color: Color.fromARGB(255, 51, 51, 51),
+                  color: Helper.titleColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w700),
             ),
@@ -52,19 +53,14 @@ class _SearchResultState extends State<SearchResult> {
                     Text(
                       "検索結果" + (i + 1).toString(),
                       style: TextStyle(
-                          color: Color.fromARGB(255, 18, 18, 18),
+                          color: Helper.selectTabColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
                     ),
                     Icon(
                       Icons.navigate_next,
                       size: 15,
-                      color: Color.fromARGB(
-                        255,
-                        102,
-                        110,
-                        110,
-                      ),
+                      color: Helper.maintxtColor,
                     )
                   ],
                 ),

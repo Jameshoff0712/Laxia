@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -35,11 +36,11 @@ class _Home_CounselingState extends State<Home_Counseling> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(250, 240, 242, 245),
+      color: Helper.homeBgColor,
       child: Column(
         children: [
           Container(
-            color: Colors.white,
+            color: Helper.whiteColor,
             child: Row(
               children: [
                 Expanded(

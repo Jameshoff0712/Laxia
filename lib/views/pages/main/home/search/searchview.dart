@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'dart:async';
@@ -138,7 +139,7 @@ class _SearchViewState extends State<SearchView> {
                       decoration: BoxDecoration(
                           color: flag
                               ? Color.fromARGB(255, 85, 83, 83).withOpacity(0.3)
-                              : Colors.white),
+                              : Helper.whiteColor),
                       child: AbsorbPointer(
                         absorbing: flag ? true : false,
                         child: Padding(

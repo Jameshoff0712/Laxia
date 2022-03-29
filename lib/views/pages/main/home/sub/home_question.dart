@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/question_model.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
@@ -34,11 +35,11 @@ class _Home_QuestionState extends State<Home_Question> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(250, 240, 242, 245),
+      color: Helper.homeBgColor,
       child: Column(
         children: [
           Container(
-            color: Colors.white,
+            color: Helper.whiteColor,
             child: Row(
               children: [
                 Expanded(
@@ -67,7 +68,7 @@ class _Home_QuestionState extends State<Home_Question> {
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Question_Card(
-                        buttoncolor: Color.fromARGB(255, 110, 198, 210),
+                        buttoncolor: Helper.allowStateButtonColor,
                         buttontext: "回答あり",
                         hearts: mid[index]["hearts"],
                         chats: mid[index]["chats"],

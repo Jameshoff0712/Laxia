@@ -21,7 +21,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Helper.whiteColor,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context, "");
@@ -74,10 +74,10 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     Container(
                         height: 20,
                         width: 24,
-                        decoration: BoxDecoration(color: Colors.black45),
+                        decoration: BoxDecoration(color: Helper.blackColor),
                         child: Icon(
                           Icons.camera_alt_outlined,
-                          color: Colors.white,
+                          color: Helper.whiteColor,
                         ))
                   ],
                 ),
