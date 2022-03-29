@@ -21,9 +21,6 @@ class _ConfirmationState extends State<Confirmation> {
           ),
           Container(
             height: 44,
-            decoration: BoxDecoration(
-              color: Colors.red,
-            ),
             child: Stack(
               children: [
                 Container(
@@ -102,10 +99,13 @@ class _ConfirmationState extends State<Confirmation> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildReservationItem(),
-                          _buildReservationItem(),
-                          _buildReservationItem(),
-                          _buildReservationItem(),
+                          for(int i = 0; i < 5; i++) 
+                            _buildReservationItem(i, 5)
+                          //  _buildReservationItem()
+                          // _buildReservationItem(),
+                          // _buildReservationItem(),
+                          // _buildReservationItem(),
+                          // _buildReservationItem(),
                         ],
                       ),
 
@@ -243,14 +243,17 @@ class _ConfirmationState extends State<Confirmation> {
   }
 }
 
-Widget _buildReservationItem() {
-  return Text('第1希望：2020/04/08(水) 18:00',
-      style: TextStyle(
-        color: Color.fromARGB(255, 51, 51, 51),
-        fontFamily: 'Hiragino Kaku Gothic Pro',
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        height: 1.5,
-        decoration: TextDecoration.none,
-      ));
+Widget _buildReservationItem(int index, int length) {
+  return Container(
+    margin: index != length - 1 ? EdgeInsets.only(bottom: 10) : EdgeInsets.only(bottom: 0),
+    child: Text('第1希望：2020/04/08(水) 18:00',
+        style: TextStyle(
+          color: Color.fromARGB(255, 51, 51, 51),
+          fontFamily: 'Hiragino Kaku Gothic Pro',
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          height: 1.5,
+          decoration: TextDecoration.none,
+        )),
+  );
 }

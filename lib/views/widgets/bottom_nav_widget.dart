@@ -4,6 +4,7 @@ import 'package:laxia/generated/l10n.dart';
 import 'package:laxia/models/m_settings.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:laxia/views/widgets/contribution_selector.dart';
 
 class BottomNav extends StatefulWidget {
   final PageController pageController;
@@ -152,9 +153,20 @@ class _BottomNavState extends State<BottomNav> {
             label: Trans.of(context).my_page)
       ],
       onTap: (value) {
-        userProperties.setCurrentPageIndex(value);
-        widget.pageController.animateToPage(value,
-            duration: const Duration(microseconds: 300), curve: Curves.easeIn);
+        if (value == 2) {
+          showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+            ),
+            context: context,
+            builder: (context) {
+              return ModalBottomSheet();
+            });
+        } else {
+          userProperties.setCurrentPageIndex(value);
+          widget.pageController.animateToPage(value,
+              duration: const Duration(microseconds: 300), curve: Curves.easeIn);
+        }
       },
     );
   }

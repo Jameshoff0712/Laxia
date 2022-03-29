@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
+import 'package:laxia/views/dashboard.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../generated/l10n.dart';
 import '../../../controllers/auth_controller.dart';
@@ -150,7 +152,10 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/passwordResetone");
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PassRest_One()));
                     },
                     child: Text(
                       Trans.of(context).i_forgot_password,
@@ -185,7 +190,10 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/Pages");
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DashboardScreen()));
                   },
                 ),
               ),

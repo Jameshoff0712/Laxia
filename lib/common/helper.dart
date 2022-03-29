@@ -136,8 +136,8 @@ class Helper {
 // Text Styles - please do not overwrite below code unless you know what you are doing
 
 TextStyle defaultTextStyle(Color color, FontWeight fontWeight,
-    {double                                                                                                                    size = 18, FontStyle fontStyle = FontStyle.normal}) {
-  return TextStyle(color: color, fontWeight: fontWeight, fontSize: size, fontStyle: fontStyle);
+    {double size = 18, FontStyle fontStyle = FontStyle.normal, String fontFamily = 'Poppins'}) {
+  return TextStyle(color: color, fontWeight: fontWeight, fontSize: size, fontFamily: fontFamily, fontStyle: fontStyle);
 }
 
 // function to check whether the screen is Portrait or Landscape

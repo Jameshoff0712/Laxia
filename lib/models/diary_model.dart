@@ -10,9 +10,9 @@
   //     price,
   //     eyes;
 class Diary_Model {
-  final String avator, name,image1, image2, sentence,type,clinic,check,price,eyes;
+  final String avator, name,image1, image2, sentence,type,clinic,check,price,eyes,status;
 
-  Diary_Model(this.avator, this.name, this.image1, this.image2, this.sentence, this.type, this.clinic, this.check, this.price, this.eyes);
+  Diary_Model(this.avator, this.name, this.image1, this.image2, this.sentence, this.type, this.clinic, this.check, this.price, this.eyes, this.status);
 }
 
 List<Diary_Model> diary_list = [
@@ -26,7 +26,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "未公開",
   ),
   Diary_Model(
     "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -38,7 +39,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "公開済",
   ),
   Diary_Model(
     "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -50,7 +52,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "未公開",
   ),
   Diary_Model(
     "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -62,7 +65,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "公開済",
   ),
   Diary_Model(
     "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -74,7 +78,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "公開済",
   ),
   Diary_Model(
     "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -86,7 +91,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "公開済",
   ),
   Diary_Model(
     "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -98,7 +104,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "公開済",
   ),
   Diary_Model(
     "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
@@ -110,7 +117,8 @@ List<Diary_Model> diary_list = [
     "ラシア美容クリニック　DEF院",
     "田中圭 医師",
     "2万8000円",
-    "11"
+    "11",
+    "公開済",
   ),
 ];
 

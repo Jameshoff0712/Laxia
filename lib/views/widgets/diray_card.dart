@@ -64,7 +64,7 @@ class _Diary_CardState extends State<Diary_Card> {
                       height: 29,
                       width: 29,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(15),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl: widget.avator,
@@ -120,79 +120,85 @@ class _Diary_CardState extends State<Diary_Card> {
                         crossAxisCount: 2,
                         childAspectRatio: 1),
                     children: [
-                      FittedBox(
-                        fit: BoxFit.fill,
+                      SizedBox(
+                        height: 160,
+                        width: 160,
                         child: Stack(
-                          alignment : AlignmentDirectional.bottomStart,
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(15),
                               child: CachedNetworkImage(
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                                 imageUrl: widget.image1,
                                 placeholder: (context, url) => Image.asset(
                                   'assets/images/loading.gif',
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
                                   'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Container(
-                                width: 100,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(30),
-                                        bottomLeft: Radius.circular(30))),
-                                child: Center(
-                                  child: Text(
-                                    "Before",
-                                    style: TextStyle(color: white,fontSize: 20,fontWeight: FontWeight.w600),
-                                  ),
-                                ))
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Container(
+                                  width: 50,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.5),
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(15),
+                                          bottomLeft: Radius.circular(15))),
+                                  child: Center(
+                                    child: Text(
+                                      "Before",
+                                      style: TextStyle(color: white,fontSize: 12,fontWeight: FontWeight.w400),
+                                    ),
+                                  )),
+                            )
                           ],
                         ),
                       ),
-                      FittedBox(
-                        fit: BoxFit.fill,
+                      SizedBox(
+                        height: 160,
+                        width: 160,
                         child: Stack(
-                          alignment : AlignmentDirectional.bottomStart,
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(15),
                               child: CachedNetworkImage(
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                                 imageUrl: widget.image2,
                                 placeholder: (context, url) => Image.asset(
                                   'assets/images/loading.gif',
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
                                   'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Container(
-                                width: 100,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(30),
-                                        bottomLeft: Radius.circular(30))),
-                                child: Center(
-                                  child: Text(
-                                    "After",
-                                    style: TextStyle(color: white,fontSize: 20,fontWeight: FontWeight.w600),
-                                  ),
-                                ))
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Container(
+                                  width: 50,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.5),
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(15),
+                                          bottomLeft: Radius.circular(15))),
+                                  child: Center(
+                                    child: Text(
+                                      "After",
+                                      style: TextStyle(color: white,fontSize: 12,fontWeight: FontWeight.w400),
+                                    ),
+                                  )),
+                            )
                           ],
                         ),
                       ),

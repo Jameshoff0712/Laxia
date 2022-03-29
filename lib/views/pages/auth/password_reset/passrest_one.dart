@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:laxia/common/helper.dart';
-import 'package:laxia/controllers/auth_controller.dart';
-import 'package:laxia/generated/L10n.dart';
+import 'package:flutter/services.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../controllers/auth_controller.dart';
+import '../../../../common/helper.dart';
 // import '../common/app_config.dart' as config;
+import './passrest_three.dart';
 
 class PassRest_One extends StatefulWidget {
   const PassRest_One({Key? key}) : super(key: key);
@@ -139,7 +141,10 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/PassRest_Three");
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PassRest_Three()));
                   },
                 ),
               ),

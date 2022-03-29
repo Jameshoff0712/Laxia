@@ -27,7 +27,6 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
-        dropdownElevation: 0,
         buttonPadding:
             EdgeInsets.symmetric(horizontal: widget.horizontal, vertical: 9),
         enableFeedback: true,
@@ -45,13 +44,13 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
             ? Text(
                 widget.hintText,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 14,
                   color: unselectedColor,
                 ),
               )
             : Text(
                 widget.hintText,
-                style: TextStyle(fontSize: 12, color: selectedColor),
+                style: TextStyle(fontSize: 14, color: selectedColor),
               ),
         icon: drop
             ? Icon(
