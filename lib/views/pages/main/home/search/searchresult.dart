@@ -7,8 +7,9 @@ import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/question_card.dart';
 
 class SearchResultAll extends StatefulWidget {
+  final TabController tabController;
   final List model;
-  const SearchResultAll({Key? key, required this.model}) : super(key: key);
+  const SearchResultAll({Key? key, required this.model, required this.tabController}) : super(key: key);
 
   @override
   State<SearchResultAll> createState() => _SearchResultAllState();
@@ -64,7 +65,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                             fontWeight: FontWeight.w700),
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          widget.tabController.animateTo(1);
+                                        },
                                         child: Row(
                                           children: [
                                             Text(
@@ -131,7 +134,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                 onTap: () {
+                                          widget.tabController.animateTo(2);
+                                        },
                                   child: Row(
                                     children: [
                                       Text(
@@ -191,7 +196,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                 onTap: () {
+                                          widget.tabController.animateTo(3);
+                                        },
                                   child: Row(
                                     children: [
                                       Text(
@@ -251,7 +258,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                 onTap: () {
+                                          widget.tabController.animateTo(4);
+                                        },
                                   child: Row(
                                     children: [
                                       Text(
@@ -317,7 +326,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                 onTap: () {
+                                          widget.tabController.animateTo(5);
+                                        },
                                   child: Row(
                                     children: [
                                       Text(
@@ -388,7 +399,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                 onTap: () {
+                                          widget.tabController.animateTo(6);
+                                        },
                                   child: Row(
                                     children: [
                                       Text(
@@ -457,7 +470,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                 onTap: () {
+                                          widget.tabController.animateTo(7);
+                                        },
                                   child: Row(
                                     children: [
                                       Text(

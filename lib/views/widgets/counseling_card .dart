@@ -97,6 +97,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                     ),
                 Container(
                   child: GridView(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.symmetric(vertical: 10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

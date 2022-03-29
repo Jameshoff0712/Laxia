@@ -115,6 +115,7 @@ class _Question_CardState extends State<Question_Card> {
                 ),
                 Container(
                   child: GridView(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.symmetric(vertical: 10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

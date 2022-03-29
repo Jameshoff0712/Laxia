@@ -15,11 +15,6 @@ class _Home_SubState extends State<Home_Sub> {
   final ScrollController _scrollController = ScrollController();
   PageController _pageController = PageController();
   double? currentPageValue = 0.0;
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-  }
 
   @override
   Widget build(BuildContext context) {

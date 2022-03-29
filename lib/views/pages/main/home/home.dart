@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen>
                 child: TabBarView(
                   physics: NeverScrollableScrollPhysics(),
                   children: [
-                   SearchResultAll(model:searchResult),
+                   SearchResultAll(model:searchResult, tabController: _tabController,),
                     Home_Menu(issearch: true,model: searchResult[0],),
                     Home_Clinic(issearch: true,model: searchResult[1],),
                     Home_Doctor(issearch: true,model: searchResult[2],),
