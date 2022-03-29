@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';

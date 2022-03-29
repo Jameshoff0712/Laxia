@@ -27,7 +27,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  final List<String> tabMenus = [
+  List<String> tabMenus = [
     'ホーム',
     'メニュー',
     'クリニック',
@@ -57,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    tabMenus[0]="ホーム";
     if (userProperties.searchtext != "") {
+      tabMenus[0]="総合";
       initSettings();
     }
     TextEditingController filter = new TextEditingController(text: userProperties.searchtext);

@@ -37,6 +37,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
             child: LayoutBuilder(
                 builder: (context, BoxConstraints viewportConstraints) {
               return SingleChildScrollView(
+                physics:AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Container(
@@ -87,6 +88,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                   ),
                                 ),
                                 ListView.builder(
+                                   physics: NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: widget.model[0].length,
                                     // physics: const AlwaysScrollableScrollPhysics(),
@@ -153,6 +155,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[1].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -212,6 +215,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[2].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -271,6 +275,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[3].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -336,6 +341,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[4].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -406,6 +412,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[5].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -474,6 +481,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[6].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
