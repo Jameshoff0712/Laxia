@@ -134,7 +134,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                     padding: EdgeInsets.only(top: 20),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed("/AddCounselProgress");
+                        Navigator.of(context).pushNamed("/AddCounselStep1");
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 1,
