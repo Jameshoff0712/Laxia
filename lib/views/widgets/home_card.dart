@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/common/helper.dart';
 
 class Home_Card extends StatefulWidget {
   final VoidCallback onpress;
@@ -32,7 +33,7 @@ class _Home_CardState extends State<Home_Card> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
+          color: Helper.whiteColor,
         ),
         width: 175,
         height: 291,
@@ -66,7 +67,7 @@ class _Home_CardState extends State<Home_Card> {
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 51, 51, 51)),
+                            color: Helper.titleColor),
                       ),
                     ),
                     Align(
@@ -86,7 +87,7 @@ class _Home_CardState extends State<Home_Card> {
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(255, 102, 110, 110)),
+                                color: Helper.maintxtColor),
                           ),
                         ],
                       ),
@@ -111,7 +112,7 @@ class _Home_CardState extends State<Home_Card> {
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromARGB(255, 102, 110, 110)),
+                                color: Helper.maintxtColor),
                           ),
                         ],
                       ),
@@ -145,7 +146,7 @@ class _Home_CardState extends State<Home_Card> {
                           style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 156, 161, 161)),
+                              color: Helper.txtColor),
                         ),
                         SizedBox(
                           width: 25,
@@ -160,7 +161,7 @@ class _Home_CardState extends State<Home_Card> {
                           style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 156, 161, 161)),
+                              color: Helper.txtColor),
                         ),
                         SizedBox(
                           width: 4,
@@ -175,7 +176,7 @@ class _Home_CardState extends State<Home_Card> {
                           style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 156, 161, 161)),
+                              color: Helper.txtColor),
                         ),
                       ],
                     ),

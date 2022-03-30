@@ -21,7 +21,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Helper.whiteColor,
       body: Padding(
           padding:
               const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
@@ -37,7 +37,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                             onPressed: () => Navigator.pop(context),
                             padding: EdgeInsets.only(left: 7),
                             icon: const Icon(Icons.arrow_back_ios,
-                                color: Colors.black),
+                                color: Helper.blackColor),
                             iconSize: 16,
                           ))),
                   Expanded(
@@ -45,7 +45,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                       child: Center(
                           child: Text(Trans.of(context).reset_password,
                               style: defaultTextStyle(
-                                  Colors.black, FontWeight.w700,
+                                  Helper.blackColor, FontWeight.w700,
                                   size: 20)))),
                   Expanded(
                       flex: 2,
@@ -63,7 +63,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                   TextSpan(
                       text: Trans.of(context).input_email_then_help,
                       style: TextStyle(
-                          color: Color.fromARGB(250, 102, 110, 110),
+                          color: Helper.maintxtColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 14)),
                 ]),
@@ -90,17 +90,17 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                 decoration: InputDecoration(
                   labelText: Trans.of(context).input_email,
                   labelStyle: TextStyle(
-                      color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
+                      color: Helper.authHintColor, fontSize: 14),
                   // filled: true,
-                  // fillColor: Colors.white.withOpacity(0.2),
+                  // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   // hintText: 'john@doe.com',
-                  // errorStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
-                  // hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                  // // prefixIcon: Icon(Icons.alternate_email, color: Colors.white),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                  // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                  // // prefixIcon: Icon(Icons.alternate_email, color: Helper.whiteColor),
                   // border: OutlineInputBorder(
                   //   // borderRadius: BorderRadius.all(Radius.circular(100)),
                   //   borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212)),
@@ -109,7 +109,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
                   border: UnderlineInputBorder(
                     borderSide:
-                        BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
+                        BorderSide(color: Color.fromARGB(255, 210, 210, 212)),
                   ),
                 ),
               ),
@@ -118,7 +118,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                 padding: const EdgeInsets.only(left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 110, 198, 210),
+                    primary: Helper.btnBgMainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -132,7 +132,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).send_url_for_reset,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),

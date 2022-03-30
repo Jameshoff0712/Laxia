@@ -101,11 +101,11 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                                 bottomLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
                                 bottomRight: Radius.zero),
-                            color: Colors.black45),
+                            color: Helper.blackColor),
                         alignment: AlignmentDirectional.bottomStart,
                         child: Text(
                           "Before",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                          style: TextStyle(color: Helper.whiteColor, fontSize: 16),
                         ),
                       )
                     ],
@@ -132,11 +132,11 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                                 bottomLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
                                 bottomRight: Radius.zero),
-                            color: Colors.black45),
+                            color: Helper.blackColor),
                         alignment: AlignmentDirectional.bottomStart,
                         child: Text(
                           "After",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                          style: TextStyle(color: Helper.whiteColor, fontSize: 16),
                         ),
                       )
                     ],

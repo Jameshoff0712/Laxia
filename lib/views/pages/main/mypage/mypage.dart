@@ -31,8 +31,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        shadowColor: Colors.white,
+        backgroundColor: Helper.whiteColor,
+        shadowColor: Helper.whiteColor,
         title: Center(
           child: Text(
             'Ayaka11',
@@ -65,19 +65,19 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
           Tab(
             child: Text(
               "日記",
-              style: defaultTextStyle(Colors.black, FontWeight.bold, size: 16),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
             ),
           ),
           Tab(
             child: Text(
               "カウセレポ",
-              style: defaultTextStyle(Colors.black, FontWeight.bold, size: 16),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
             ),
           ),
           Tab(
             child: Text(
               "質問",
-              style: defaultTextStyle(Colors.black, FontWeight.bold, size: 16),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
             ),
           )
         ]);
@@ -158,10 +158,10 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         expandedHeight: 400,
         floating: true,
         pinned: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Helper.whiteColor,
         flexibleSpace: FlexibleSpaceBar(
           background: Container(
-            color: Colors.white,
+            color: Helper.whiteColor,
             child: Padding(
               padding: const EdgeInsets.only(
                   top: 15.0, left: 16.0, right: 16.0, bottom: 15.0),
@@ -397,7 +397,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     // TODO: implement build
     return Container(
-      color: Colors.white,
+      color: Helper.whiteColor,
       child: _tabBar,
     );
   }

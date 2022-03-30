@@ -216,7 +216,7 @@ class _AppointmentState extends State<Appointment>
                       fontFamily: 'Hiragino Kaku Gothic Pro',
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
-                      color: Colors.white,
+                      color: Helper.whiteColor,
                     ),
                   ),
                 ),

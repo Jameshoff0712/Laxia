@@ -30,7 +30,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.dark,
-      statusBarColor: Colors.white,
+      statusBarColor: Helper.whiteColor,
     ));
     _pageController.addListener(() {
       setState(() {
@@ -41,7 +41,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     if (currentPageValue!.floor() != 3) {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 110, 198, 210),
+          backgroundColor: Helper.mainColor,
           body: Padding(
             padding:
                 const EdgeInsets.only(top: 0, right: 0, bottom: 0, left: 0),
@@ -63,7 +63,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               TextSpan(
                                 text: "${onBoardingInstructions[i].heading} \n",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Helper.whiteColor,
                                     fontWeight: FontWeight.w600,
                                     height: 1.5,
                                     fontSize: 16),
@@ -71,7 +71,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               TextSpan(
                                 text: "${onBoardingInstructions[i].title}",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Helper.whiteColor,
                                     fontWeight: FontWeight.w600,
                                     height: 1.5,
                                     fontSize: 16),
@@ -104,7 +104,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               shape: BoxShape.rectangle,
                               color: f == currentPageValue!.floor()
                                   ? Color.fromARGB(255, 255, 255, 255)
-                                  : Color.fromARGB(255, 153, 215, 224),
+                                  : Helper.mainColor,
                               borderRadius: BorderRadius.circular(7.0),
                             ),
                             width: f == currentPageValue!.floor() ? 7 : 7,
@@ -122,7 +122,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     child: Text(
                       "すぐに始める",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Helper.whiteColor,
                           fontWeight: FontWeight.w400,
                           height: 1.5,
                           fontSize: 14,
@@ -140,7 +140,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     } else {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 110, 198, 210),
+          backgroundColor:Helper.mainColor,
           body: Padding(
             padding:
                 const EdgeInsets.only(top: 0, right: 0, bottom: 0, left: 0),
@@ -162,7 +162,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               TextSpan(
                                 text: "${onBoardingInstructions[i].heading} \n",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Helper.whiteColor,
                                     fontWeight: FontWeight.w600,
                                     height: 1.5,
                                     fontSize: 16),
@@ -170,7 +170,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               TextSpan(
                                 text: "${onBoardingInstructions[i].title}",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Helper.whiteColor,
                                     fontWeight: FontWeight.w600,
                                     height: 1.5,
                                     fontSize: 16),
@@ -199,7 +199,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         height: 44,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 240, 154, 55),
+                            primary: Helper.btnBgYellowColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
@@ -210,7 +210,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               Text(
                                 "さあ, はじめよう！",
                                 style: defaultTextStyle(
-                                    Colors.white, FontWeight.w700,
+                                    Helper.whiteColor, FontWeight.w700,
                                     size: 14),
                               ),
                             ],

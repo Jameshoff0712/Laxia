@@ -43,7 +43,7 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
                         value: item,
                         child: Text(
                           item,
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color: Helper.blackColor),
                         ),
                       ))
                   .toList(),

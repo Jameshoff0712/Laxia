@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 
 class TabBarWidget extends StatefulWidget {
@@ -28,9 +29,9 @@ class _TabBarWidgetState extends State<TabBarWidget> with SingleTickerProviderSt
             TabBar(
               padding: EdgeInsets.only(left: 9, top: 0, right: 16, bottom: 3),
               labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 8),
-              labelColor: Color.fromARGB(255, 18, 18, 18),
-              unselectedLabelColor: Color.fromARGB(255, 156, 161, 161),
-              indicatorColor: Color.fromARGB(255, 110, 198, 210),
+              labelColor: Helper.selectTabColor,
+              unselectedLabelColor: Helper.searchBartxtColor,
+              indicatorColor: Helper.mainColor,
               indicatorWeight: 2,
               indicatorSize: TabBarIndicatorSize.label,
               indicatorPadding: EdgeInsets.only(bottom: -1, left: 4, right: 4),              

@@ -22,7 +22,7 @@ class _RegistrationState extends StateMVC<Registration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Helper.whiteColor,
       body: Padding(
           padding:
               const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
@@ -37,7 +37,7 @@ class _RegistrationState extends StateMVC<Registration> {
                           child: IconButton(
                             onPressed: () => SystemNavigator.pop(),
                             padding: EdgeInsets.only(left: 7),
-                            icon: const Icon(Icons.clear, color: Colors.black),
+                            icon: const Icon(Icons.clear, color: Helper.blackColor),
                             iconSize: 16,
                           ))),
                   Expanded(
@@ -45,7 +45,7 @@ class _RegistrationState extends StateMVC<Registration> {
                       child: Center(
                           child: Text(Trans.of(context).member_regirtration,
                               style: defaultTextStyle(
-                                  Colors.black, FontWeight.w500,
+                                  Helper.blackColor, FontWeight.w500,
                                   size: 20)))),
                   Expanded(
                       flex: 2,
@@ -76,17 +76,17 @@ class _RegistrationState extends StateMVC<Registration> {
                 decoration: InputDecoration(
                   labelText: Trans.of(context).input_email,
                   labelStyle: TextStyle(
-                      color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
+                      color: Helper.authHintColor, fontSize: 14),
                   // filled: true,
-                  // fillColor: Colors.white.withOpacity(0.2),
+                  // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   // hintText: 'john@doe.com',
-                  // errorStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
-                  // hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                  // // prefixIcon: Icon(Icons.alternate_email, color: Colors.white),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                  // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                  // // prefixIcon: Icon(Icons.alternate_email, color: Helper.whiteColor),
                   // border: OutlineInputBorder(
                   //   // borderRadius: BorderRadius.all(Radius.circular(100)),
                   //   borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212)),
@@ -95,7 +95,7 @@ class _RegistrationState extends StateMVC<Registration> {
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
                   border: UnderlineInputBorder(
                     borderSide:
-                        BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
+                        BorderSide(color: Helper.authHintColor),
                   ),
                 ),
               ),
@@ -107,39 +107,39 @@ class _RegistrationState extends StateMVC<Registration> {
                 obscureText: _con.hidePassword,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.2),
+                  fillColor: Helper.whiteColor.withOpacity(0.2),
                   labelText: Trans.of(context).password,
                   labelStyle: TextStyle(
-                      color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
+                      color: Helper.authHintColor, fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   // hintText: '••••••••••••',
-                  // errorStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
-                  // hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                  // prefixIcon: Icon(Icons.lock_outline, color: Colors.white),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                  // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                  // prefixIcon: Icon(Icons.lock_outline, color: Helper.whiteColor),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
                         _con.hidePassword = !_con.hidePassword;
                       });
                     },
-                    color: Color.fromARGB(255, 210, 210, 212),
+                    color: Helper.authHintColor,
                     icon: Icon(_con.hidePassword
                         ? Icons.visibility
                         : Icons.visibility_off),
                   ),
                   border: UnderlineInputBorder(
                     borderSide:
-                        BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
+                        BorderSide(color: Helper.authHintColor),
                   ),
                   // border: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                   // focusedBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.5))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
                   // enabledBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                 ),
               ),
               SizedBox(
@@ -154,7 +154,7 @@ class _RegistrationState extends StateMVC<Registration> {
                     child: Text(
                       Trans.of(context).required_password,
                       style: TextStyle(
-                          color: Color.fromARGB(250, 102, 110, 110),
+                          color: Helper.titleColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 12),
                     )),
@@ -163,7 +163,7 @@ class _RegistrationState extends StateMVC<Registration> {
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 110, 198, 210),
+                    primary: Helper.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -177,7 +177,7 @@ class _RegistrationState extends StateMVC<Registration> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).next,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),

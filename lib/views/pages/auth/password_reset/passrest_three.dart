@@ -22,7 +22,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Helper.whiteColor,
       body: Padding(
           padding:
               const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
@@ -37,7 +37,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                           child: IconButton(
                             onPressed: () => SystemNavigator.pop(),
                             padding: EdgeInsets.only(left: 7),
-                            icon: const Icon(Icons.clear, color: Colors.black),
+                            icon: const Icon(Icons.clear, color: Helper.blackColor),
                             iconSize: 16,
                           ))),
                   Expanded(
@@ -45,7 +45,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                       child: Center(
                           child: Text(Trans.of(context).reset_password_res,
                               style: defaultTextStyle(
-                                  Colors.black, FontWeight.w700,
+                                  Helper.blackColor, FontWeight.w700,
                                   size: 16)))),
                   Expanded(
                       flex: 2,
@@ -74,25 +74,25 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                 obscureText: _con.hidePassword,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.2),
+                  fillColor: Helper.whiteColor.withOpacity(0.2),
                   labelText: Trans.of(context).password,
                   labelStyle: TextStyle(
-                      color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
+                      color: Helper.authHintColor, fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   // hintText: '••••••••••••',
-                  // errorStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
-                  // hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                  // prefixIcon: Icon(Icons.lock_outline, color: Colors.white),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                  // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                  // prefixIcon: Icon(Icons.lock_outline, color: Helper.whiteColor),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
                         _con.hidePassword = !_con.hidePassword;
                       });
                     },
-                    color: Color.fromARGB(255, 210, 210, 212),
+                    color: Helper.authHintColor,
                     icon: Icon(_con.hidePassword
                         ? Icons.visibility
                         : Icons.visibility_off),
@@ -102,11 +102,11 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                         BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
                   ),
                   // border: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                   // focusedBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.5))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
                   // enabledBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                 ),
               ),
               SizedBox(height: 12),
@@ -116,7 +116,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                     alignment: Alignment.centerLeft,
                     child: Text(Trans.of(context).required_password,
                         style: defaultTextStyle(
-                            Color.fromARGB(255, 51, 51, 51), FontWeight.w400,
+                            Helper.titleColor, FontWeight.w400,
                             size: 12))),
               ),
               SizedBox(height: 50),
@@ -124,7 +124,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                 padding: const EdgeInsets.only(left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 110, 198, 210),
+                    primary:Helper.btnBgMainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -138,7 +138,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).update_password,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),

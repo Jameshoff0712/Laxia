@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/home_model.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/home_card.dart';
@@ -15,11 +16,6 @@ class _Home_SubState extends State<Home_Sub> {
   final ScrollController _scrollController = ScrollController();
   PageController _pageController = PageController();
   double? currentPageValue = 0.0;
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +25,14 @@ class _Home_SubState extends State<Home_Sub> {
       });
     });
     return Container(
-        color: Color.fromARGB(250, 240, 242, 245),
+        color: Helper.homeBgColor,
         child: SingleChildScrollView(
           physics:AlwaysScrollableScrollPhysics(),
           child: Column(
             children: <Widget>[
               Horizontal_Dockbar(pageController: _pageController),
               Container(
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: BoxDecoration(color: Helper.whiteColor),
                 child: Column(children: [
                   SizedBox(
                     height: 13,
@@ -134,7 +130,7 @@ class DockBar_Bottom extends StatelessWidget {
                 width: 16,
                 height: 6,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 110, 198, 210),
+                  color: Helper.mainColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
@@ -159,7 +155,7 @@ class Horizontal_Dockbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Helper.whiteColor,
       ),
       height: 150,
       child: PageView(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:laxia/provider/question_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +20,9 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(MultiProvider(providers: [
-      ChangeNotifierProvider<UserProvider>.value(value: UserProvider())
+      ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
+      ChangeNotifierProvider<SurGeryProvider>.value(value: SurGeryProvider()),
+      ChangeNotifierProvider<QuestionProvider>.value(value: QuestionProvider()),
     ], child: MyApp()));
   }); //lotation stop
 }

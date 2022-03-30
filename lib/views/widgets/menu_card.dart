@@ -20,9 +20,7 @@ class Menu_Card extends StatefulWidget {
 }
 
 class _Menu_CardState extends State<Menu_Card> {
-  final greyTextcolor = Color.fromARGB(255, 51, 51, 51);
-  final priceColor = Color.fromARGB(255, 240, 154, 55);
-  final _whiteColor = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,7 +33,7 @@ class _Menu_CardState extends State<Menu_Card> {
         child: Row(
           children: [
             Container(
-              decoration: BoxDecoration(color: _whiteColor),
+              decoration: BoxDecoration(color: Helper.whiteColor),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10, left: 7, bottom: 10),
                 child: SizedBox(
@@ -60,7 +58,7 @@ class _Menu_CardState extends State<Menu_Card> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(color: _whiteColor),
+              decoration: BoxDecoration(color: Helper.whiteColor),
               child: SizedBox(
                 width: 10,
                 height: 130,
@@ -68,7 +66,7 @@ class _Menu_CardState extends State<Menu_Card> {
             ),
             Expanded(
               child: Container(
-                color: _whiteColor,
+                color: Helper.whiteColor,
                 height: 130,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
@@ -83,7 +81,7 @@ class _Menu_CardState extends State<Menu_Card> {
                               child: Text(
                                 widget.heading,
                                 style: defaultTextStyle(
-                                    greyTextcolor, FontWeight.w700,
+                                    Helper.titleColor, FontWeight.w700,
                                     size: 14.0),
                               ),
                             ),
@@ -100,7 +98,7 @@ class _Menu_CardState extends State<Menu_Card> {
                         children: [
                           Text(
                             widget.price,
-                            style: defaultTextStyle(priceColor, FontWeight.w700,
+                            style: defaultTextStyle(Helper.priceColor, FontWeight.w700,
                                 size: 16.0),
                           ),
                           SizedBox(
@@ -109,7 +107,7 @@ class _Menu_CardState extends State<Menu_Card> {
                           Text(
                             widget.tax,
                             style: defaultTextStyle(
-                                greyTextcolor, FontWeight.w500,
+                                Helper.titleColor, FontWeight.w500,
                                 size: 10.0),
                           ),
                         ],
