@@ -16,9 +16,6 @@ class _ConfirmationState extends State<Confirmation> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 44,
-          ),
           Container(
             height: 44,
             child: Stack(
@@ -30,7 +27,7 @@ class _ConfirmationState extends State<Confirmation> {
                     child: Text('ご予約内容の確認',
                         style: TextStyle(
                           color: Color.fromARGB(255, 51, 51, 51),
-                          fontFamily: 'Hiragino Kaku Gothic Pro',
+                          
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                           height: 1.5,
@@ -85,7 +82,7 @@ class _ConfirmationState extends State<Confirmation> {
                         '来院希望日',
                         style: TextStyle(
                             color: Color.fromARGB(255, 18, 18, 18),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
+                            
                             fontSize: 12,
                             height: 1.5,
                             fontWeight: FontWeight.w700),
@@ -148,7 +145,7 @@ class _ConfirmationState extends State<Confirmation> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Hiragino Kaku Gothic Pro',
+                      
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                       height: 1.5,
@@ -175,7 +172,7 @@ class _ConfirmationState extends State<Confirmation> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Hiragino Kaku Gothic Pro',
+                      
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                       height: 1.5,
@@ -214,7 +211,7 @@ class _ConfirmationState extends State<Confirmation> {
                   confirmTopic,
                   style: TextStyle(
                       color: Color.fromARGB(255, 18, 18, 18),
-                      fontFamily: 'Hiragino Kaku Gothic Pro',
+                      
                       fontSize: 12,
                       height: 1.5,
                       fontWeight: FontWeight.w700),
@@ -229,7 +226,7 @@ class _ConfirmationState extends State<Confirmation> {
                   confirmContent,
                   style: TextStyle(
                       color: Color.fromARGB(255, 18, 18, 18),
-                      fontFamily: 'Hiragino Kaku Gothic Pro',
+                      
                       fontSize: 12,
                       height: 1.5,
                       fontWeight: FontWeight.w400),
@@ -249,7 +246,7 @@ Widget _buildReservationItem(int index, int length) {
     child: Text('第1希望：2020/04/08(水) 18:00',
         style: TextStyle(
           color: Color.fromARGB(255, 51, 51, 51),
-          fontFamily: 'Hiragino Kaku Gothic Pro',
+          
           fontSize: 12,
           fontWeight: FontWeight.w400,
           height: 1.5,

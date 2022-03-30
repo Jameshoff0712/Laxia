@@ -30,7 +30,7 @@ class _TabBarWidgetState extends State<TabBarWidget> with SingleTickerProviderSt
               labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 8),
               labelColor: Color.fromARGB(255, 18, 18, 18),
               unselectedLabelColor: Color.fromARGB(255, 156, 161, 161),
-              indicatorColor: Color.fromARGB(255, 110, 198, 210),
+              indicatorColor: Color.fromARGB(255, 0, 184, 169),
               indicatorWeight: 2,
               indicatorSize: TabBarIndicatorSize.label,
               indicatorPadding: EdgeInsets.only(bottom: -1, left: 4, right: 4),              

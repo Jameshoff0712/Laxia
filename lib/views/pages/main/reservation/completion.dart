@@ -16,9 +16,6 @@ class _CompletionState extends State<Completion> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 44,
-            ),
             Container(
               height: 44,
               child: Stack(
@@ -30,7 +27,7 @@ class _CompletionState extends State<Completion> {
                       child: Text('予約完了',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
+                            
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -73,7 +70,7 @@ class _CompletionState extends State<Completion> {
               child: Text('予約申し込みを受け付けました',
                   style: TextStyle(
                     color: Color.fromARGB(255, 110, 198, 210),
-                    fontFamily: 'Hiragino Kaku Gothic Pro',
+                    
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                     height: 1.5,
@@ -88,7 +85,7 @@ class _CompletionState extends State<Completion> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontFamily: 'Hiragino Kaku Gothic Pro',
+                    
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     height: 1.8,
@@ -109,7 +106,7 @@ class _CompletionState extends State<Completion> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontFamily: 'Hiragino Kaku Gothic Pro',
+                    
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.none,

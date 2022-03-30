@@ -29,7 +29,7 @@ class _ChatSlotState extends State<ChatSlot> {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 110, 198, 210),
+                    color: Color.fromARGB(255, 0, 184, 169),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(5.0),
                       bottomRight: Radius.circular(5.0),

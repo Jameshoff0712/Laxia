@@ -14,6 +14,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final textController = TextEditingController();
+  String contentChat = '';
   @override
   Widget build(BuildContext context) {
     int? prevUserId;
@@ -23,12 +25,6 @@ class _ChatScreenState extends State<ChatScreen> {
         // mainAxisAlignment: MainAxisAlignment.start,
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 44,
-            child: Container(
-              color: Colors.white,
-            ),
-          ),
           Container(
             color: Colors.white,
             height: 44,
@@ -83,6 +79,12 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: TextField(
+              controller: textController,
+              onChanged: (value) {
+                setState(() {
+                  contentChat = value;
+                });
+              },
               decoration: InputDecoration(
                 isDense: true,
                 contentPadding:
@@ -96,7 +98,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 hintText: 'Name of pill',
                 hintStyle: TextStyle(
                   color: Color.fromARGB(255, 156, 161, 161),
-                  fontFamily: 'Hiragino Kaku Gothic Pro',
+                  
                   fontSize: 12,
                   height: 1.5,
                   fontWeight: FontWeight.w400,
@@ -104,7 +106,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               style: TextStyle(
                 color: Color.fromARGB(255, 51, 51, 51),
-                fontFamily: 'Hiragino Kaku Gothic Pro',
+                
                 fontSize: 12,
                 height: 1.5,
                 fontWeight: FontWeight.w400,
@@ -115,10 +117,15 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           SizedBox(width: 15),
-          Icon(
-            Icons.send,
-            color: Color.fromARGB(255, 222, 222, 222),
-            size: 20,
+          IconButton(
+            icon: Icon(
+              Icons.send,
+              color: contentChat.isEmpty
+                  ? Color.fromARGB(255, 222, 222, 222)
+                  : Color.fromARGB(255, 0, 184, 169),
+              size: 20,
+            ),
+            onPressed: () {},
           )
         ],
       ),
