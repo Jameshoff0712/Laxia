@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Helper.whiteColor,
       body: Padding(
           padding:
               const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: IconButton(
                   onPressed: () => SystemNavigator.pop(),
                   padding: EdgeInsets.only(left: 7),
-                  icon: const Icon(Icons.clear, color: Colors.black),
+                  icon: const Icon(Icons.clear, color: Helper.closeIconColor),
                   iconSize: 16,
                 ),
               ),
@@ -44,21 +44,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextSpan(
                       text: Trans.of(context).login_content,
                       style: TextStyle(
-                          color: Color(0xff333333),
+                          color:Helper.titleColor,
                           fontWeight: FontWeight.bold,
                           height: 1.5,
                           fontSize: 20.0)),
                   TextSpan(
                       text: "\n",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Helper.whiteColor,
                           fontWeight: FontWeight.bold,
                           height: 18,
                           fontSize: 10)),
                   TextSpan(
                       text: Trans.of(context).lets_start_with_login,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Helper.blackColor,
                           fontWeight: FontWeight.w400,
                           height: 1.3,
                           fontSize: 16.0)),
@@ -148,7 +148,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
         ),
@@ -160,12 +160,12 @@ class LoginButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: color ?? Colors.black,
+              color: color ?? Helper.blackColor,
               size: 30,
             ),
             Text(
               "   " + name,
-              style: defaultTextStyle(Colors.black, FontWeight.w700, size: 14),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.w700, size: 14),
             ),
           ],
         ),
@@ -190,7 +190,7 @@ class TwitterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
         ),
@@ -207,7 +207,7 @@ class TwitterButton extends StatelessWidget {
             ),
             Text(
               "   " + name,
-              style: defaultTextStyle(Colors.black, FontWeight.w700, size: 14),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.w700, size: 14),
             ),
           ],
         ),

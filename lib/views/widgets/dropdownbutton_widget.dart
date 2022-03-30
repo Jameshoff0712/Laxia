@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class Dropdownbutton extends StatefulWidget {
   final List<String> items;
@@ -17,8 +18,6 @@ class Dropdownbutton extends StatefulWidget {
 }
 
 class _DropdownbuttonState extends State<Dropdownbutton> {
-  final Color unselectedColor = Color.fromARGB(255, 102, 110, 110);
-  final Color selectedColor = Color.fromARGB(255, 110, 198, 210);
 
   String? selectedValue;
   String? mid;
@@ -44,22 +43,22 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
             ? Text(
                 widget.hintText,
                 style: TextStyle(
-                  fontSize: 14,
-                  color: unselectedColor,
+                  fontSize: 12,
+                  color: Helper.unSelectSmallTabColor,
                 ),
               )
             : Text(
                 widget.hintText,
-                style: TextStyle(fontSize: 14, color: selectedColor),
+                style: TextStyle(fontSize: 12, color: Helper.selectSmallTabColor),
               ),
         icon: drop
             ? Icon(
                 Icons.arrow_drop_down,
-                color: unselectedColor,
+                color: Helper.unSelectSmallTabColor,
               )
             : Icon(
                 Icons.arrow_drop_up,
-                color: selectedColor,
+                color: Helper.selectSmallTabColor,
               ),
         items: widget.items
             .map((item) => DropdownMenuItem<String>(
@@ -110,7 +109,7 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),
-          color: Colors.white,
+          color: Helper.whiteColor,
         ),
       ),
     );

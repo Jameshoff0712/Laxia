@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/app_config.dart';
+import 'package:laxia/common/helper.dart';
 
 class TextButton_Drawer extends StatefulWidget {
   final double width;
@@ -17,7 +18,6 @@ class TextButton_Drawer extends StatefulWidget {
 }
 
 class _TextButton_DrawerState extends State<TextButton_Drawer> {
-  final fontColor = Color.fromARGB(255, 102, 110, 110);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -31,7 +31,7 @@ class _TextButton_DrawerState extends State<TextButton_Drawer> {
               Text(
                 widget.textname,
                 style: TextStyle(
-                    color: fontColor,
+                    color: Helper.unSelectSmallTabColor,
                     fontWeight: FontWeight.w400,
                     fontSize: 12),
               ),
@@ -41,7 +41,7 @@ class _TextButton_DrawerState extends State<TextButton_Drawer> {
               Icon(
                 Icons.arrow_drop_down,
                 size: 24,
-                color: fontColor,
+                color: Helper.unSelectSmallTabColor,
               ),
             ]),
         onPressed: widget.onpress,

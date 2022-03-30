@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
@@ -32,7 +33,7 @@ class _CalendarState extends State<Calendar> {
                   todayStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 22.0,
-                      color: Colors.white)),
+                      color: Helper.whiteColor)),
               headerStyle: HeaderStyle(
                 centerHeaderTitle: true,
                 formatButtonVisible: false
@@ -50,7 +51,7 @@ class _CalendarState extends State<Calendar> {
                         borderRadius: BorderRadius.circular(80.0)),
                     child: Text(
                       date.day.toString(),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Helper.whiteColor),
                     )),
                 todayDayBuilder: (context, date, events) => Container(
                     margin: const EdgeInsets.all(5.0),
@@ -60,7 +61,7 @@ class _CalendarState extends State<Calendar> {
                         borderRadius: BorderRadius.circular(80.0)),
                     child: Text(
                       date.day.toString(),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Helper.whiteColor),
                     )),
                 outsideWeekendDayBuilder: (context, date, events) => Container(
                     margin: const EdgeInsets.all(5.0),

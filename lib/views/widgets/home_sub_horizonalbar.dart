@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 
 class Home_Sub_Horizonalbar extends StatefulWidget {
@@ -22,9 +23,7 @@ class _Home_Sub_HorizonalbarState extends State<Home_Sub_Horizonalbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.height,
-      height: widget.height,
-      decoration: BoxDecoration(color: Colors.white),
+      decoration: BoxDecoration(color: Helper.whiteColor),
       child: InkWell(
         onTap: widget.onpress,
         child: Column(
@@ -44,7 +43,7 @@ class _Home_Sub_HorizonalbarState extends State<Home_Sub_Horizonalbar> {
                 child: Text(
               widget.text,
               style: TextStyle(
-                  color: Color.fromARGB(255, 102, 110, 110),
+                  color: Helper.unSelectSmallTabColor,
                   fontSize: 10,
                   fontWeight: FontWeight.w400),
             ))

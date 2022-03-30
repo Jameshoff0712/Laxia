@@ -20,9 +20,7 @@ class Menu_Card extends StatefulWidget {
 }
 
 class _Menu_CardState extends State<Menu_Card> {
-  final greyTextcolor = Color.fromARGB(255, 51, 51, 51);
-  final priceColor = Color.fromARGB(255, 240, 154, 55);
-  final _whiteColor = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,7 +33,7 @@ class _Menu_CardState extends State<Menu_Card> {
         child: Row(
           children: [
             Container(
-              decoration: BoxDecoration(color: _whiteColor),
+              decoration: BoxDecoration(color: Helper.whiteColor),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10, left: 7, bottom: 10),
                 child: SizedBox(
@@ -60,7 +58,7 @@ class _Menu_CardState extends State<Menu_Card> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(color: _whiteColor),
+              decoration: BoxDecoration(color: Helper.whiteColor),
               child: SizedBox(
                 width: 10,
                 height: 130,
@@ -68,72 +66,75 @@ class _Menu_CardState extends State<Menu_Card> {
             ),
             Expanded(
               child: Container(
-                color: _whiteColor,
+                color: Helper.whiteColor,
                 height: 130,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 41,
-                            child: Text(
-                              widget.heading,
-                              style: defaultTextStyle(
-                                  greyTextcolor, FontWeight.w700,
-                                  size: 14.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: 41,
+                              child: Text(
+                                widget.heading,
+                                style: defaultTextStyle(
+                                    Helper.titleColor, FontWeight.w700,
+                                    size: 14.0),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 7,
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 26,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          widget.price,
-                          style: defaultTextStyle(priceColor, FontWeight.w700,
-                              size: 16.0),
-                        ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          widget.tax,
-                          style: defaultTextStyle(
-                              greyTextcolor, FontWeight.w500,
-                              size: 10.0),
-                        ),
-                      ],
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
+                          SizedBox(
+                            width: 7,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 26,
+                      ),
+                      Row(
                         children: [
-                          SvgPicture.asset(
-                            "icons/menubar/clinic.svg",
-                            width: 12,
-                            height: 12,
+                          Text(
+                            widget.price,
+                            style: defaultTextStyle(Helper.priceColor, FontWeight.w700,
+                                size: 16.0),
                           ),
                           SizedBox(
-                            width: 4,
+                            width: 6,
                           ),
                           Text(
-                            widget.clinic,
+                            widget.tax,
                             style: defaultTextStyle(
-                                Helper.appTxtColor, FontWeight.w500,
-                                size: 12.0),
+                                Helper.titleColor, FontWeight.w500,
+                                size: 10.0),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              "icons/menubar/clinic.svg",
+                              width: 12,
+                              height: 12,
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              widget.clinic,
+                              style: defaultTextStyle(
+                                  Helper.appTxtColor, FontWeight.w500,
+                                  size: 12.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

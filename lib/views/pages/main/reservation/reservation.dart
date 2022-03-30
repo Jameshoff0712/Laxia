@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/widgets/calendar.dart';
 
 class Reservation extends StatefulWidget {
@@ -293,7 +294,7 @@ class _ReservationState extends State<Reservation> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                               borderSide: BorderSide(
-                                  color: Colors.white.withOpacity(0.2))),
+                                  color: Helper.whiteColor.withOpacity(0.2))),
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 210, 210, 212),
                               
@@ -528,7 +529,7 @@ class _ReservationState extends State<Reservation> {
                                             Radius.circular(10)),
                                         borderSide: BorderSide(
                                             color:
-                                                Colors.white.withOpacity(0.2))),
+                                                Helper.whiteColor.withOpacity(0.2))),
                                     hintStyle: TextStyle(
                                         color:
                                             Color.fromARGB(255, 210, 210, 212),
@@ -582,7 +583,7 @@ class _ReservationState extends State<Reservation> {
                                             Radius.circular(10)),
                                         borderSide: BorderSide(
                                             color:
-                                                Colors.white.withOpacity(0.2))),
+                                                Helper.whiteColor.withOpacity(0.2))),
                                     hintStyle: TextStyle(
                                         color:
                                             Color.fromARGB(255, 210, 210, 212),
@@ -766,7 +767,7 @@ class _ReservationState extends State<Reservation> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                               borderSide: BorderSide(
-                                  color: Colors.white.withOpacity(0.2))),
+                                  color: Helper.whiteColor.withOpacity(0.2))),
                           focusedBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
@@ -852,7 +853,7 @@ class _ReservationState extends State<Reservation> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     borderSide: BorderSide(
-                                        color: Colors.white.withOpacity(0.2))),
+                                        color: Helper.whiteColor.withOpacity(0.2))),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)),

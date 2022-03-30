@@ -26,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            color: Colors.white,
+            color: Helper.whiteColor,
             height: 44,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +74,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 7),
       // height: 50,
-      color: Colors.white,
+      color: Helper.whiteColor,
       child: Row(
         children: [
           Expanded(

@@ -20,9 +20,6 @@ class Clinic_Card extends StatefulWidget {
 }
 
 class _Clinic_CardState extends State<Clinic_Card> {
-  final greyTextcolor = Color.fromARGB(255, 51, 51, 51);
-  final clinicColor = Color.fromARGB(255, 102, 110, 110);
-  final _whiteColor = Colors.white;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -36,7 +33,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              decoration: BoxDecoration(color: _whiteColor),
+              decoration: BoxDecoration(color: Helper.whiteColor),
               child: Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Column(
@@ -73,7 +70,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(color: _whiteColor),
+              decoration: BoxDecoration(color: Helper.whiteColor),
               child: SizedBox(
                 width: 12,
                 height: 109,
@@ -81,7 +78,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
             ),
             Expanded(
               child: Container(
-                color: _whiteColor,
+                color: Helper.whiteColor,
                 height: 110,
                 child: Column(
                   children: [
@@ -93,7 +90,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         Text(
                           widget.name,
                           style: defaultTextStyle(
-                              greyTextcolor, FontWeight.w700,
+                              Helper.titleColor, FontWeight.w700,
                               size: 16.0),
                         ),
                         SizedBox(
@@ -101,7 +98,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         ),
                         Text(
                           widget.post,
-                          style: defaultTextStyle(clinicColor, FontWeight.w700,
+                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
                               size: 10.0),
                         ),
                       ],
@@ -121,7 +118,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         Text(
                           widget.mark,
                           style: defaultTextStyle(
-                              greyTextcolor, FontWeight.w700,
+                              Helper.titleColor, FontWeight.w700,
                               size: 11.0),
                         ),
                         SizedBox(
@@ -130,7 +127,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         Text(
                           widget.day,
                           style: defaultTextStyle(
-                              greyTextcolor, FontWeight.w700,
+                              Helper.titleColor, FontWeight.w700,
                               size: 11.0),
                         ),
                         SizedBox(
@@ -138,7 +135,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         ),
                         Text(
                           "日記",
-                          style: defaultTextStyle(clinicColor, FontWeight.w400,
+                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
                               size: 11.0),
                         ),
                       ],
@@ -159,7 +156,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         ),
                         Text(
                           widget.clinic,
-                          style: defaultTextStyle(clinicColor, FontWeight.w400,
+                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
                               size: 12.0),
                         ),
                       ],

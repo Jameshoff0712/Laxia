@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_message.dart';
 
 class ChatSlot extends StatefulWidget {
@@ -111,7 +112,7 @@ class _ChatSlotState extends State<ChatSlot> {
                     child: Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Helper.whiteColor,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(5.0),
                           bottomRight: Radius.circular(5.0),

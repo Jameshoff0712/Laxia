@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/appointment/appointment.dart';
 import 'package:laxia/views/pages/main/favorite/favorite.dart';
@@ -37,7 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
-      backgroundColor:Colors.white,
+      backgroundColor:Helper.whiteColor,
       key: scaffoldKey,
       body: PageView(
         physics: NeverScrollableScrollPhysics(),

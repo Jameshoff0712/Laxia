@@ -25,7 +25,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Helper.whiteColor,
       body: Padding(
           padding:
               const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
@@ -40,7 +40,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                           child: IconButton(
                             onPressed: () => SystemNavigator.pop(),
                             padding: EdgeInsets.only(left: 7),
-                            icon: const Icon(Icons.clear, color: Colors.black),
+                            icon: const Icon(Icons.clear, color: Helper.blackColor),
                             iconSize: 16,
                           ))),
                   Expanded(
@@ -48,7 +48,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                       child: Center(
                           child: Text(Trans.of(context).login,
                               style: defaultTextStyle(
-                                  Colors.black, FontWeight.w500,
+                                  Helper.blackColor, FontWeight.w500,
                                   size: 20)))),
                   Expanded(
                       flex: 2,
@@ -81,15 +81,15 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   labelStyle: TextStyle(
                       color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
                   // filled: true,
-                  // fillColor: Colors.white.withOpacity(0.2),
+                  // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   // hintText: 'john@doe.com',
-                  // errorStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
-                  // hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                  // // prefixIcon: Icon(Icons.alternate_email, color: Colors.white),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                  // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                  // // prefixIcon: Icon(Icons.alternate_email, color: Helper.whiteColor),
                   // border: OutlineInputBorder(
                   //   // borderRadius: BorderRadius.all(Radius.circular(100)),
                   //   borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212)),
@@ -110,18 +110,18 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 obscureText: _con.hidePassword,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.2),
+                  fillColor: Helper.whiteColor.withOpacity(0.2),
                   labelText: Trans.of(context).password,
                   labelStyle: TextStyle(
                       color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   // hintText: '••••••••••••',
-                  // errorStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                  // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
-                  // hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                  // prefixIcon: Icon(Icons.lock_outline, color: Colors.white),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                  // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                  // prefixIcon: Icon(Icons.lock_outline, color: Helper.whiteColor),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -138,11 +138,11 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                         BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
                   ),
                   // border: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                   // focusedBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.5))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
                   // enabledBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Colors.white.withOpacity(0.2))),
+                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                 ),
               ),
               SizedBox(
@@ -160,7 +160,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                     child: Text(
                       Trans.of(context).i_forgot_password,
                       style: TextStyle(
-                          color: Color.fromARGB(250, 102, 110, 110),
+                          color: Helper.titleColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 12),
                     )),
@@ -169,7 +169,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 110, 198, 210),
+                    primary: Helper.loginButtonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -183,7 +183,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).go_login,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),

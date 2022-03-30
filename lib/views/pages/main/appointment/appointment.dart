@@ -197,7 +197,7 @@ class _AppointmentState extends State<Appointment>
                       
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
-                      color: Colors.white,
+                      color: Helper.whiteColor,
                     ),
                   ),
                 ),

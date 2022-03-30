@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/common/helper.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class Diary_Card extends StatefulWidget {
@@ -48,7 +49,7 @@ class _Diary_CardState extends State<Diary_Card> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
+          color: Helper.whiteColor,
         ),
         width: double.infinity,
         child: Padding(
@@ -84,7 +85,7 @@ class _Diary_CardState extends State<Diary_Card> {
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 51, 51, 51)),
+                          color: Helper.titleColor),
                     ),
                     widget.buttontext!.isEmpty
                         ? SizedBox(
@@ -112,6 +113,7 @@ class _Diary_CardState extends State<Diary_Card> {
                 ),
                 Container(
                   child: GridView(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.symmetric(vertical: 10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -141,23 +143,20 @@ class _Diary_CardState extends State<Diary_Card> {
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                  width: 50,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.5),
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(15),
-                                          bottomLeft: Radius.circular(15))),
-                                  child: Center(
-                                    child: Text(
-                                      "Before",
-                                      style: TextStyle(color: white,fontSize: 12,fontWeight: FontWeight.w400),
-                                    ),
-                                  )),
-                            )
+                            Container(
+                                width: 100,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: Helper.blackColor.withOpacity(0.5),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(30),
+                                        bottomLeft: Radius.circular(30))),
+                                child: Center(
+                                  child: Text(
+                                    "Before",
+                                    style: TextStyle(color: white,fontSize: 20,fontWeight: FontWeight.w600),
+                                  ),
+                                ))
                           ],
                         ),
                       ),
@@ -182,23 +181,20 @@ class _Diary_CardState extends State<Diary_Card> {
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                  width: 50,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.5),
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(15),
-                                          bottomLeft: Radius.circular(15))),
-                                  child: Center(
-                                    child: Text(
-                                      "After",
-                                      style: TextStyle(color: white,fontSize: 12,fontWeight: FontWeight.w400),
-                                    ),
-                                  )),
-                            )
+                            Container(
+                                width: 100,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: Helper.blackColor.withOpacity(0.5),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(30),
+                                        bottomLeft: Radius.circular(30))),
+                                child: Center(
+                                  child: Text(
+                                    "After",
+                                    style: TextStyle(color: white,fontSize: 20,fontWeight: FontWeight.w600),
+                                  ),
+                                ))
                           ],
                         ),
                       ),
@@ -215,7 +211,7 @@ class _Diary_CardState extends State<Diary_Card> {
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: Color.fromARGB(255, 51, 51, 51)),
+                        color: Helper.titleColor),
                   ),
                 ),
                 SizedBox(
@@ -238,7 +234,7 @@ class _Diary_CardState extends State<Diary_Card> {
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 102, 110, 110)),
+                            color: Helper.maintxtColor),
                       ),
                     ],
                   ),
@@ -270,7 +266,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,
                                       color:
-                                          Color.fromARGB(255, 102, 110, 110)),
+                                          Helper.maintxtColor),
                                 ),
                               ],
                             ),
@@ -297,7 +293,7 @@ class _Diary_CardState extends State<Diary_Card> {
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 102, 110, 110)),
+                            color: Helper.maintxtColor),
                       ),
                     ],
                   ),
@@ -323,7 +319,7 @@ class _Diary_CardState extends State<Diary_Card> {
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 102, 110, 110)),
+                            color: Helper.maintxtColor),
                       ),
                     ],
                   ),
@@ -352,7 +348,7 @@ class _Diary_CardState extends State<Diary_Card> {
                               style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 156, 161, 161)),
+                                  color: Helper.txtColor),
                             ),
                             widget.chats!.isEmpty
                                 ? SizedBox(
@@ -376,8 +372,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         style: TextStyle(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w400,
-                                            color: Color.fromARGB(
-                                                255, 156, 161, 161)),
+                                            color: Helper.txtColor),
                                       ),
                                       SizedBox(
                                         width: 10,
@@ -395,8 +390,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         style: TextStyle(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w400,
-                                            color: Color.fromARGB(
-                                                255, 156, 161, 161)),
+                                            color: Helper.txtColor),
                                       ),
                                     ],
                                   )

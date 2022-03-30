@@ -17,7 +17,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Helper.whiteColor,
       body: Padding(
           padding: const EdgeInsets.only(top: 124.42),
           child: Column(
@@ -34,7 +34,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
               Center(
                   child: Text(Trans.of(context).complete_reset,
                       style: defaultTextStyle(
-                          Color.fromARGB(255, 110, 198, 210), FontWeight.w700,
+                          Helper.mainColor, FontWeight.w700,
                           size: 18))),
               SizedBox(
                 height: 20,
@@ -42,13 +42,13 @@ class _PassRest_FourState extends State<PassRest_Four> {
               Center(
                   child: Text(Trans.of(context).reset_password_end,
                       style: defaultTextStyle(
-                          Color.fromARGB(255, 156, 161, 161), FontWeight.w700,
+                          Helper.maintxtColor, FontWeight.w700,
                           size: 14))),
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromARGB(255, 110, 198, 210),
+                    primary: Helper.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -62,7 +62,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).login,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),
