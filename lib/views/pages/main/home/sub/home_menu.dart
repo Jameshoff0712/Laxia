@@ -62,7 +62,7 @@ class _Home_MenuState extends State<Home_Menu> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
-                      items: <String>["日記数が多い順", "評価が高い順", "値段が高い順", "値段が安い順"],
+                      items: <String>["日記数が多い順", "評価が高い順","値段が高い順","値段が安い順"],
                       hintText: "並び替え",
                       horizontal: 20),
                 ),
@@ -99,6 +99,7 @@ class _Home_MenuState extends State<Home_Menu> {
             ),
           ),
         ],
+        
       ),
     );
   }

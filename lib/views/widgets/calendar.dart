@@ -28,8 +28,8 @@ class _CalendarState extends State<Calendar> {
               calendarStyle: CalendarStyle(
                 weekendStyle: TextStyle(),
                 outsideDaysVisible: false,
-                  todayColor: Colors.blue,
-                  selectedColor: Theme.of(context).primaryColor,
+                  todayColor: Color.fromARGB(255, 0, 184, 169),
+                  selectedColor: Color.fromARGB(255, 0, 184, 169),
                   todayStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 22.0,
@@ -47,7 +47,7 @@ class _CalendarState extends State<Calendar> {
                     margin: const EdgeInsets.all(5.0),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        color: Color.fromARGB(255, 0, 184, 169),
                         borderRadius: BorderRadius.circular(80.0)),
                     child: Text(
                       date.day.toString(),
@@ -57,7 +57,7 @@ class _CalendarState extends State<Calendar> {
                     margin: const EdgeInsets.all(5.0),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 0, 184, 169),
                         borderRadius: BorderRadius.circular(80.0)),
                     child: Text(
                       date.day.toString(),

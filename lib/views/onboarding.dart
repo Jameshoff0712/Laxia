@@ -1,4 +1,5 @@
 import 'package:laxia/views/pages/auth/login.dart';
+import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/models/instructions.dart';

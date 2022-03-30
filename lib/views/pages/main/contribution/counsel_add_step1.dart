@@ -19,6 +19,18 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
   //   _con = controller as OfferController;
   // }
 
+  enableAddButton() {
+    setState(() {
+      isAddEnabled = true;
+    });
+  }
+
+  disableAddButton() {
+    setState(() {
+      isAddEnabled = false;
+    });
+  }
+
   AddCounselStep2Page() {
     showDialog(
       context: context,

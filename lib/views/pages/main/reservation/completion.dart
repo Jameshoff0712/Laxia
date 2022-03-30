@@ -30,7 +30,6 @@ class _CompletionState extends State<Completion> {
                       child: Text('予約完了',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -73,7 +72,6 @@ class _CompletionState extends State<Completion> {
               child: Text('予約申し込みを受け付けました',
                   style: TextStyle(
                     color: Color.fromARGB(255, 110, 198, 210),
-                    fontFamily: 'Hiragino Kaku Gothic Pro',
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                     height: 1.5,
@@ -84,11 +82,11 @@ class _CompletionState extends State<Completion> {
             Container(
               // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
               alignment: Alignment.center,
-              child: Text('空き状況を確認中でございますので、\n予約が確定するまでお待ちください。\nチャットにてご連絡させていただきます。',
+              child: Text(
+                  '空き状況を確認中でございますので、\n予約が確定するまでお待ちください。\nチャットにてご連絡させていただきます。',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontFamily: 'Hiragino Kaku Gothic Pro',
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     height: 1.8,
@@ -103,17 +101,17 @@ class _CompletionState extends State<Completion> {
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Color.fromARGB(255, 110, 198, 210))),
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                          color: Color.fromARGB(255, 110, 198, 210))),
                   child: Text('ページトップに戻る',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 102, 110, 110),
-                    fontFamily: 'Hiragino Kaku Gothic Pro',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    decoration: TextDecoration.none,
-                  )),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 102, 110, 110),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        decoration: TextDecoration.none,
+                      )),
                 ),
               ),
             )

@@ -63,7 +63,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
-                      items: <String>["人気投稿順", "満足度が高い順", "新着順"],
+                      items: <String>["人気投稿順", "満足度が高い順","新着順"],
                       hintText: "並び替え",
                       horizontal: 20),
                 ),
@@ -105,6 +105,7 @@ class _Home_DiaryState extends State<Home_Diary> {
             }),
           ),
         ],
+        
       ),
     );
   }

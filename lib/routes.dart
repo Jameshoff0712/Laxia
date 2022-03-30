@@ -63,7 +63,7 @@ class RouteGenerator {
       case '/SelectPrefecture':
         return MaterialPageRoute(builder: (_) => SelectPrefecture());
       case '/SelectSurgery':
-        return MaterialPageRoute(builder: (_) => SelectSurgery());      
+        return MaterialPageRoute(builder: (_) => SelectSurgery());
       case '/NarrowCase':
         return MaterialPageRoute(builder: (_) => NarrowCase());
       case '/NarrowDiary':
@@ -71,7 +71,8 @@ class RouteGenerator {
       case '/Appointment':
         return MaterialPageRoute(builder: (_) => Appointment());
       case '/Chat':
-        return MaterialPageRoute(builder: (_) => ChatScreen(user: favorites[0]));
+        return MaterialPageRoute(
+            builder: (_) => ChatScreen(user: favorites[0]));
       case '/Reservation':
         return MaterialPageRoute(builder: (_) => Reservation());
       case '/Confirmation':

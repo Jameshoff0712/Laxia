@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:laxia/common/helper.dart';
-import 'package:laxia/generated/L10n.dart';
+import 'package:laxia/views/pages/auth/login.dart';
+import 'package:laxia/views/pages/auth/registration.dart';
+// import 'package:mvc_pattern/mvc_pattern.dart';
+import '../../../generated/l10n.dart';
+// import '../controllers/auth_controller.dart';
+import '../../../common/helper.dart';
+// import '../common/app_config.dart' as config;
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -148,7 +153,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.of(context).pushNamed("/Login");
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()));
                           },
                           child: Text(
                             Trans.of(context).login,
@@ -208,7 +216,8 @@ class LoginButton extends StatelessWidget {
       ),
       onPressed: () {
         if (event == "email") ;
-        Navigator.of(context).pushNamed("/Registration");
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Registration()));
       },
     );
   }
