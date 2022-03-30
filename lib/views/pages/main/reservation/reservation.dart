@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/reservation/confirmation.dart';
 import 'package:laxia/views/widgets/calendar.dart';
 
 class Reservation extends StatefulWidget {
@@ -18,7 +19,7 @@ class _ReservationState extends State<Reservation> {
     '希望ドクタ',
     '希望ド',
   ];
-  double progress = 0.3;
+  double progress = 1;
   int sexId = -1;
   List<bool> selectedTime = List<bool>.filled(4, false);
   List<bool> statusReservation = [];
@@ -40,7 +41,6 @@ class _ReservationState extends State<Reservation> {
                     child: Text('来院のご予約',
                         style: TextStyle(
                           color: Color.fromARGB(255, 51, 51, 51),
-                          
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                           height: 1.5,
@@ -71,7 +71,6 @@ class _ReservationState extends State<Reservation> {
                                       'ご予約を途中で終了しますか？',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        
                                         fontSize: 16,
                                         height: 1.5,
                                         fontWeight: FontWeight.w700,
@@ -114,7 +113,8 @@ class _ReservationState extends State<Reservation> {
                                                 color: Colors.white,
                                                 // color: Color.fromARGB(
                                                 //     255, 0, 184, 169),
-                                                    borderRadius: BorderRadius.circular(45),
+                                                borderRadius:
+                                                    BorderRadius.circular(45),
                                               ),
                                               child: Text(
                                                 'いいえ',
@@ -126,16 +126,14 @@ class _ReservationState extends State<Reservation> {
                                                   fontWeight: FontWeight.w400,
                                                   // color: Colors.white,
                                                   color: Color.fromARGB(
-                                                    255, 0, 184, 169),
+                                                      255, 0, 184, 169),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           InkWell(
                                             onHover: (value) {
-                                              setState(() {
-                                                
-                                              });
+                                              setState(() {});
                                             },
                                             child: Container(
                                               padding: EdgeInsets.symmetric(
@@ -143,7 +141,8 @@ class _ReservationState extends State<Reservation> {
                                               decoration: BoxDecoration(
                                                 color: Color.fromARGB(
                                                     255, 0, 184, 169),
-                                                    borderRadius: BorderRadius.circular(45),
+                                                borderRadius:
+                                                    BorderRadius.circular(45),
                                               ),
                                               child: Text(
                                                 'はい',
@@ -195,7 +194,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご予約クリニック',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -207,7 +205,6 @@ class _ReservationState extends State<Reservation> {
                       Text('湘南美容クリニック 新宿院',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                             height: 1.5,
@@ -225,7 +222,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご予約の施術',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -237,7 +233,6 @@ class _ReservationState extends State<Reservation> {
                       Text('クイックコスメティーク･ダブルNeo',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                             height: 1.5,
@@ -255,7 +250,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご希望のドクター',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -277,7 +271,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご希望の施術やご相談したいことは？',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -297,7 +290,6 @@ class _ReservationState extends State<Reservation> {
                                   color: Helper.whiteColor.withOpacity(0.2))),
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 210, 210, 212),
-                              
                               fontSize: 14,
                               height: 1.8,
                               fontWeight: FontWeight.w400),
@@ -319,7 +311,6 @@ class _ReservationState extends State<Reservation> {
                         maxLines: 4,
                         style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 14,
                             height: 1.8,
                             fontWeight: FontWeight.w400),
@@ -337,7 +328,6 @@ class _ReservationState extends State<Reservation> {
                             '施術一覧から選択する',
                             style: TextStyle(
                                 color: Color.fromARGB(255, 0, 184, 169),
-                                
                                 fontSize: 14,
                                 height: 1.5,
                                 fontWeight: FontWeight.w400),
@@ -360,7 +350,6 @@ class _ReservationState extends State<Reservation> {
                       Text('当日は施術を希望しますか？',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -399,7 +388,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご来院希望日の選択',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -421,7 +409,6 @@ class _ReservationState extends State<Reservation> {
                       Text('来院時間帯を選択',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -452,7 +439,6 @@ class _ReservationState extends State<Reservation> {
                       Text('選択した候補日',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -503,7 +489,6 @@ class _ReservationState extends State<Reservation> {
                           Text('お名前(カタカナフルネーム)',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 51, 51, 51),
-                                
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
                                 height: 1.5,
@@ -528,12 +513,11 @@ class _ReservationState extends State<Reservation> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
                                         borderSide: BorderSide(
-                                            color:
-                                                Helper.whiteColor.withOpacity(0.2))),
+                                            color: Helper.whiteColor
+                                                .withOpacity(0.2))),
                                     hintStyle: TextStyle(
                                         color:
                                             Color.fromARGB(255, 210, 210, 212),
-                                        
                                         fontSize: 16,
                                         height: 1.5,
                                         fontWeight: FontWeight.w400),
@@ -555,7 +539,6 @@ class _ReservationState extends State<Reservation> {
                                   ),
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      
                                       fontSize: 16,
                                       height: 1.5,
                                       fontWeight: FontWeight.w400),
@@ -582,12 +565,11 @@ class _ReservationState extends State<Reservation> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
                                         borderSide: BorderSide(
-                                            color:
-                                                Helper.whiteColor.withOpacity(0.2))),
+                                            color: Helper.whiteColor
+                                                .withOpacity(0.2))),
                                     hintStyle: TextStyle(
                                         color:
                                             Color.fromARGB(255, 210, 210, 212),
-                                        
                                         fontSize: 16,
                                         height: 1.5,
                                         fontWeight: FontWeight.w400),
@@ -609,7 +591,6 @@ class _ReservationState extends State<Reservation> {
                                   ),
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      
                                       fontSize: 16,
                                       height: 1.5,
                                       fontWeight: FontWeight.w400),
@@ -633,7 +614,6 @@ class _ReservationState extends State<Reservation> {
                       Text('生年月日',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -655,7 +635,6 @@ class _ReservationState extends State<Reservation> {
                       Text('性別',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -690,7 +669,6 @@ class _ReservationState extends State<Reservation> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       height: 1.5,
@@ -726,7 +704,6 @@ class _ReservationState extends State<Reservation> {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       height: 1.5,
@@ -749,7 +726,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご連絡先の携帯番号',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -783,7 +759,6 @@ class _ReservationState extends State<Reservation> {
                         ),
                         style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 16,
                             height: 1.5,
                             fontWeight: FontWeight.w400),
@@ -804,7 +779,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご利用ポイント',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -818,7 +792,6 @@ class _ReservationState extends State<Reservation> {
                             text: '保有ポイント：',
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
-                              
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               height: 1.5,
@@ -829,7 +802,6 @@ class _ReservationState extends State<Reservation> {
                                   text: '2400',
                                   style: TextStyle(
                                     color: Color.fromARGB(255, 0, 184, 169),
-                                    
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                     height: 1.5,
@@ -853,7 +825,8 @@ class _ReservationState extends State<Reservation> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     borderSide: BorderSide(
-                                        color: Helper.whiteColor.withOpacity(0.2))),
+                                        color: Helper.whiteColor
+                                            .withOpacity(0.2))),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)),
@@ -869,7 +842,6 @@ class _ReservationState extends State<Reservation> {
                               ),
                               style: TextStyle(
                                   color: Color.fromARGB(255, 51, 51, 51),
-                                  
                                   fontSize: 16,
                                   height: 1.5,
                                   fontWeight: FontWeight.w400),
@@ -885,7 +857,6 @@ class _ReservationState extends State<Reservation> {
                           Text('ポイント',
                               style: TextStyle(
                                 color: Colors.black,
-                                
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
                                 height: 1.5,
@@ -901,7 +872,6 @@ class _ReservationState extends State<Reservation> {
                         child: Text('1ポイント1円として利用できます',
                             style: TextStyle(
                               color: Color.fromARGB(255, 156, 161, 161),
-                              
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               decoration: TextDecoration.none,
@@ -930,7 +900,6 @@ class _ReservationState extends State<Reservation> {
                           Text('全てのポイントを利用する',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 51, 51, 51),
-                                  
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   decoration: TextDecoration.none,
@@ -946,14 +915,20 @@ class _ReservationState extends State<Reservation> {
                     height: 50,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: progress == 1 ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Confirmation()),
+                      );
+                    } : null,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 58,
                       padding: EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: progress < 1
+                        color: progress != 1
                             ? Color.fromARGB(255, 210, 210, 212)
                             : Color.fromARGB(255, 0, 184, 169),
                       ),
@@ -961,7 +936,6 @@ class _ReservationState extends State<Reservation> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
-                            
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -998,7 +972,6 @@ class _ReservationState extends State<Reservation> {
                 Text('希望日1',
                     style: TextStyle(
                       color: Color.fromARGB(255, 102, 110, 110),
-                      
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       height: 1.5,
@@ -1007,7 +980,6 @@ class _ReservationState extends State<Reservation> {
                 Text('2021年5月24日(木) 11:30',
                     style: TextStyle(
                       color: Color.fromARGB(255, 51, 51, 51),
-                      
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       height: 1.5,
@@ -1063,7 +1035,6 @@ class _ReservationState extends State<Reservation> {
         child: Text(time,
             style: TextStyle(
               color: Color.fromARGB(255, 51, 51, 51),
-              
               fontSize: 16,
               fontWeight: FontWeight.w400,
               height: 1.5,
@@ -1098,7 +1069,6 @@ class _ReservationState extends State<Reservation> {
                   child: Text(
                     item,
                     style: const TextStyle(
-                      
                       fontSize: 16,
                       height: 1.5,
                       fontWeight: FontWeight.bold,

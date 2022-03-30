@@ -65,7 +65,7 @@ class _Diary_CardState extends State<Diary_Card> {
                       height: 29,
                       width: 29,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(30),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl: widget.avator,
@@ -122,24 +122,24 @@ class _Diary_CardState extends State<Diary_Card> {
                         crossAxisCount: 2,
                         childAspectRatio: 1),
                     children: [
-                      SizedBox(
-                        height: 160,
-                        width: 160,
+                      FittedBox(
+                        fit: BoxFit.fill,
                         child: Stack(
+                          alignment : AlignmentDirectional.bottomStart,
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(30),
                               child: CachedNetworkImage(
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                                 imageUrl: widget.image1,
                                 placeholder: (context, url) => Image.asset(
                                   'assets/images/loading.gif',
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
                                   'assets/images/ProDoctor.png',
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),
@@ -160,24 +160,24 @@ class _Diary_CardState extends State<Diary_Card> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 160,
-                        width: 160,
+                      FittedBox(
+                        fit: BoxFit.fill,
                         child: Stack(
+                          alignment : AlignmentDirectional.bottomStart,
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(30),
                               child: CachedNetworkImage(
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                                 imageUrl: widget.image2,
                                 placeholder: (context, url) => Image.asset(
                                   'assets/images/loading.gif',
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
                                   'assets/images/ProDoctor.png',
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),

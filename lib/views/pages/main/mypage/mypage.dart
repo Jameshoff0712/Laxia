@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/generated/L10n.dart';
 import 'package:laxia/models/m_user.dart';
 import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
@@ -8,11 +10,22 @@ class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);
 
   @override
-  State<Mypage> createState() => _MypageState();
+  _MypageState createState() => _MypageState();
 }
 
-class _MypageState extends State<Mypage> {
-  var _tabController;
+class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

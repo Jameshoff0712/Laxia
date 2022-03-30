@@ -74,86 +74,101 @@ class _AppointmentState extends State<Appointment>
           child: TabBarView(
             physics: NeverScrollableScrollPhysics(),
             children: [
-              Expanded(
-                child: Container(
-                  color: Color.fromARGB(255, 240, 242, 245),
-                  child: isEmpty
-                      ? _buildEmptyClinic()
-                      : Expanded(
-                          child: Container(
-                            color: Color.fromARGB(255, 240, 242, 245),
-                            child: ListView(
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              children: [
-                                chatStatus(
-                                    statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-                                chatStatus(
-                                  statusCode: 2,
-                                  clinicName: '湘南美容クリニック 銀座院',
-                                  bookDate: '予約日時：2020/07/25 11：００〜',
-                                ),
-                                chatStatus(
-                                    statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                                chatStatus(
-                                    statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                              ],
-                            ),
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Color.fromARGB(255, 240, 242, 245),
+                      child: isEmpty
+                          ? _buildEmptyClinic()
+                          : ListView(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            children: [
+                              chatStatus(
+                                  statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                              chatStatus(
+                                statusCode: 2,
+                                clinicName: '湘南美容クリニック 銀座院',
+                                bookDate: '予約日時：2020/07/25 11：００〜',
+                              ),
+                              chatStatus(
+                                  statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                              chatStatus(
+                                  statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                            ],
                           ),
-                        ),
-                ),
+                    ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Container(
-                  color: Color.fromARGB(255, 240, 242, 245),
-                  child: ListView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    children: [
-                      chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-                      chatStatus(
-                        statusCode: 1,
-                        clinicName: '湘南美容クリニック 銀座院',
-                        notificCount: 1,
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Color.fromARGB(255, 240, 242, 245),
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(
+                            statusCode: 1,
+                            clinicName: '湘南美容クリニック 銀座院',
+                            notificCount: 1,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Container(
-                  color: Color.fromARGB(255, 240, 242, 245),
-                  child: ListView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    children: [
-                      chatStatus(
-                        statusCode: 2,
-                        clinicName: '湘南美容クリニック 銀座院',
-                        bookDate: '予約日時：2020/07/25 11：００〜',
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Color.fromARGB(255, 240, 242, 245),
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          chatStatus(
+                            statusCode: 2,
+                            clinicName: '湘南美容クリニック 銀座院',
+                            bookDate: '予約日時：2020/07/25 11：００〜',
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Container(
-                  color: Color.fromARGB(255, 240, 242, 245),
-                  child: ListView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    children: [
-                      chatStatus(statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                    ],
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Color.fromARGB(255, 240, 242, 245),
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          chatStatus(statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-              Expanded(
-                child: Container(
-                  color: Color.fromARGB(255, 240, 242, 245),
-                  child: ListView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    children: [
-                      chatStatus(statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                    ],
+              Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Color.fromARGB(255, 240, 242, 245),
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        children: [
+                          chatStatus(statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
             controller: _tabController,
