@@ -47,7 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: const [
           HomeScreen(),
           Appointment(),
-          Mypage(),
+          SizedBox(width: 20,),
           Favorite(),
           Mypage(),
         ],

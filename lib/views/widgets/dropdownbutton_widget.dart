@@ -26,7 +26,6 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
-        dropdownElevation: 0,
         buttonPadding:
             EdgeInsets.symmetric(horizontal: widget.horizontal, vertical: 9),
         enableFeedback: true,

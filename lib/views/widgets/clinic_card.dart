@@ -55,7 +55,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                             fit: BoxFit.cover,
                           ),
                           errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/clinic_profile.png',
+                            'assets/images/profile.png',
                             fit: BoxFit.cover,
                           ),
                         ),

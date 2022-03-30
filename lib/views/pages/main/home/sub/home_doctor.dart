@@ -45,9 +45,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123, textname: "エリア選択", onpress: () {
-                            Navigator.of(context).pushNamed("/SelectPrefecture");
-                        })),
+                        width: 123, textname: "エリア選択", onpress: () {})),
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(

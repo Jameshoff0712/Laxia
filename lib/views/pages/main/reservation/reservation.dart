@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/reservation/confirmation.dart';
 import 'package:laxia/views/widgets/calendar.dart';
 
 class Reservation extends StatefulWidget {
@@ -11,12 +12,17 @@ class Reservation extends StatefulWidget {
 }
 
 class _ReservationState extends State<Reservation> {
-  String? selectedValue;
+  String? selectedValue; //for dropdown
+  bool checkBoxValue = false;
   List<String> items = [
     '希望ドクターはなし',
     '希望ドクタ',
     '希望ド',
   ];
+  double progress = 1;
+  int sexId = -1;
+  List<bool> selectedTime = List<bool>.filled(4, false);
+  List<bool> statusReservation = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +31,6 @@ class _ReservationState extends State<Reservation> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 44,
-            ),
             Container(
               height: 44,
               child: Row(
@@ -38,7 +41,6 @@ class _ReservationState extends State<Reservation> {
                     child: Text('来院のご予約',
                         style: TextStyle(
                           color: Color.fromARGB(255, 51, 51, 51),
-                          fontFamily: 'Hiragino Kaku Gothic Pro',
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                           height: 1.5,
@@ -53,7 +55,116 @@ class _ReservationState extends State<Reservation> {
                         size: 22,
                         color: Color.fromARGB(255, 51, 51, 51),
                       ),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Dialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(24)),
+                              child: Container(
+                                height: 180,
+                                padding: EdgeInsets.symmetric(vertical: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'ご予約を途中で終了しますか？',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 14,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'まだご予約が完了しておりません。\n戻ると入力内容が消えてしまいます。',
+                                        style: TextStyle(
+                                          fontFamily:
+                                              'Hiragino Kaku Gothic Pro',
+                                          fontSize: 14,
+                                          height: 1.5,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 40),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 3, horizontal: 20),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                // color: Color.fromARGB(
+                                                //     255, 0, 184, 169),
+                                                borderRadius:
+                                                    BorderRadius.circular(45),
+                                              ),
+                                              child: Text(
+                                                'いいえ',
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                      'Hiragino Kaku Gothic Pro',
+                                                  fontSize: 16,
+                                                  height: 1.5,
+                                                  fontWeight: FontWeight.w400,
+                                                  // color: Colors.white,
+                                                  color: Color.fromARGB(
+                                                      255, 0, 184, 169),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onHover: (value) {
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 3, horizontal: 20),
+                                              decoration: BoxDecoration(
+                                                color: Color.fromARGB(
+                                                    255, 0, 184, 169),
+                                                borderRadius:
+                                                    BorderRadius.circular(45),
+                                              ),
+                                              child: Text(
+                                                'はい',
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                      'Hiragino Kaku Gothic Pro',
+                                                  fontSize: 16,
+                                                  height: 1.5,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
                     ),
                   ),
                 ],
@@ -64,8 +175,8 @@ class _ReservationState extends State<Reservation> {
               padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
               child: LinearProgressIndicator(
                 backgroundColor: Color.fromARGB(255, 196, 196, 196),
-                color: Color.fromARGB(255, 110, 198, 210),
-                value: 0.3,
+                color: Color.fromARGB(255, 0, 184, 169),
+                value: progress,
               ),
             ),
             SizedBox(
@@ -83,7 +194,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご予約クリニック',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -95,7 +205,6 @@ class _ReservationState extends State<Reservation> {
                       Text('湘南美容クリニック 新宿院',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                             height: 1.5,
@@ -113,7 +222,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご予約の施術',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -125,7 +233,6 @@ class _ReservationState extends State<Reservation> {
                       Text('クイックコスメティーク･ダブルNeo',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                             height: 1.5,
@@ -143,7 +250,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご希望のドクター',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -165,7 +271,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご希望の施術やご相談したいことは？',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -185,7 +290,6 @@ class _ReservationState extends State<Reservation> {
                                   color: Helper.whiteColor.withOpacity(0.2))),
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 210, 210, 212),
-                              fontFamily: 'Hiragino Kaku Gothic Pro',
                               fontSize: 14,
                               height: 1.8,
                               fontWeight: FontWeight.w400),
@@ -195,19 +299,18 @@ class _ReservationState extends State<Reservation> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
-                                color: Color.fromARGB(255, 110, 198, 210),
+                                color: Color.fromARGB(255, 0, 184, 169),
                               )),
                           enabledBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
-                                color: Color.fromARGB(255, 110, 198, 210),
+                                color: Color.fromARGB(255, 0, 184, 169),
                               )),
                         ),
                         maxLines: 4,
                         style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 14,
                             height: 1.8,
                             fontWeight: FontWeight.w400),
@@ -224,15 +327,14 @@ class _ReservationState extends State<Reservation> {
                           Text(
                             '施術一覧から選択する',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 110, 198, 210),
-                                fontFamily: 'Hiragino Kaku Gothic Pro',
+                                color: Color.fromARGB(255, 0, 184, 169),
                                 fontSize: 14,
                                 height: 1.5,
                                 fontWeight: FontWeight.w400),
                           ),
                           Icon(
                             Icons.keyboard_arrow_right,
-                            color: Color.fromARGB(255, 110, 198, 210),
+                            color: Color.fromARGB(255, 0, 184, 169),
                           ),
                         ],
                       )
@@ -248,7 +350,6 @@ class _ReservationState extends State<Reservation> {
                       Text('当日は施術を希望しますか？',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -287,7 +388,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご来院希望日の選択',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -309,7 +409,6 @@ class _ReservationState extends State<Reservation> {
                       Text('来院時間帯を選択',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -322,28 +421,47 @@ class _ReservationState extends State<Reservation> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              _buildTimeButton('12:30'),
-                              _buildTimeButton('13:00'),
-                              _buildTimeButton('13:30'),
-                              _buildTimeButton('14:00'),
+                              _buildTimeButton(0, '12:30'),
+                              _buildTimeButton(1, '13:00'),
+                              _buildTimeButton(2, '13:30'),
+                              _buildTimeButton(3, '14:00'),
                             ],
-                          ))
+                          )),
                     ],
                   )),
                   SizedBox(
                     height: 30,
                   ),
-                  Text('選択した候補日',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 51, 51, 51),
-                        fontFamily: 'Hiragino Kaku Gothic Pro',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        height: 1.5,
-                        decoration: TextDecoration.none,
-                      )),
+                  Container(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('選択した候補日',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 51, 51, 51),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5,
+                            decoration: TextDecoration.none,
+                          )),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          statusReservation.add(true);
+                          return _buildReservationItem(index);
+                        },
+                        separatorBuilder: (context, index) => SizedBox(
+                          height: 20,
+                        ),
+                        itemCount: 3,
+                      ),
+                    ],
+                  )),
                   SizedBox(
-                    height: 34,
+                    height: 40,
                   ),
                 ],
               ),
@@ -371,7 +489,6 @@ class _ReservationState extends State<Reservation> {
                           Text('お名前(カタカナフルネーム)',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 51, 51, 51),
-                                fontFamily: 'Hiragino Kaku Gothic Pro',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
                                 height: 1.5,
@@ -396,12 +513,11 @@ class _ReservationState extends State<Reservation> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
                                         borderSide: BorderSide(
-                                            color:
-                                                Helper.whiteColor.withOpacity(0.2))),
+                                            color: Helper.whiteColor
+                                                .withOpacity(0.2))),
                                     hintStyle: TextStyle(
                                         color:
                                             Color.fromARGB(255, 210, 210, 212),
-                                        fontFamily: 'Hiragino Kaku Gothic Pro',
                                         fontSize: 16,
                                         height: 1.5,
                                         fontWeight: FontWeight.w400),
@@ -410,20 +526,19 @@ class _ReservationState extends State<Reservation> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5)),
                                         borderSide: BorderSide(
-                                          color: Color.fromARGB(
-                                              255, 110, 198, 210),
+                                          color:
+                                              Color.fromARGB(255, 0, 184, 169),
                                         )),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5)),
                                         borderSide: BorderSide(
-                                          color: Color.fromARGB(
-                                              255, 110, 198, 210),
+                                          color:
+                                              Color.fromARGB(255, 0, 184, 169),
                                         )),
                                   ),
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      fontFamily: 'Hiragino Kaku Gothic Pro',
                                       fontSize: 16,
                                       height: 1.5,
                                       fontWeight: FontWeight.w400),
@@ -450,12 +565,11 @@ class _ReservationState extends State<Reservation> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)),
                                         borderSide: BorderSide(
-                                            color:
-                                                Helper.whiteColor.withOpacity(0.2))),
+                                            color: Helper.whiteColor
+                                                .withOpacity(0.2))),
                                     hintStyle: TextStyle(
                                         color:
                                             Color.fromARGB(255, 210, 210, 212),
-                                        fontFamily: 'Hiragino Kaku Gothic Pro',
                                         fontSize: 16,
                                         height: 1.5,
                                         fontWeight: FontWeight.w400),
@@ -464,20 +578,19 @@ class _ReservationState extends State<Reservation> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5)),
                                         borderSide: BorderSide(
-                                          color: Color.fromARGB(
-                                              255, 110, 198, 210),
+                                          color:
+                                              Color.fromARGB(255, 0, 184, 169),
                                         )),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5)),
                                         borderSide: BorderSide(
-                                          color: Color.fromARGB(
-                                              255, 110, 198, 210),
+                                          color:
+                                              Color.fromARGB(255, 0, 184, 169),
                                         )),
                                   ),
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      fontFamily: 'Hiragino Kaku Gothic Pro',
                                       fontSize: 16,
                                       height: 1.5,
                                       fontWeight: FontWeight.w400),
@@ -501,7 +614,6 @@ class _ReservationState extends State<Reservation> {
                       Text('生年月日',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -523,7 +635,6 @@ class _ReservationState extends State<Reservation> {
                       Text('性別',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -536,22 +647,28 @@ class _ReservationState extends State<Reservation> {
                         children: [
                           Expanded(
                             flex: 1,
-                            child: TextButton(
-                              onPressed: () {},
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  sexId = 0;
+                                });
+                              },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 height: 46,
                                 padding: EdgeInsets.only(top: 14, bottom: 8),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(3),
-                                    border: Border.all(
-                                        color: Color.fromARGB(
-                                            255, 110, 198, 210))),
+                                  borderRadius: BorderRadius.circular(3),
+                                  border: Border.all(
+                                      color: Color.fromARGB(255, 0, 184, 169)),
+                                  color: sexId == 0
+                                      ? Color.fromARGB(255, 240, 253, 255)
+                                      : Colors.white,
+                                ),
                                 child: Text('女性',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      fontFamily: 'Hiragino Kaku Gothic Pro',
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       height: 1.5,
@@ -565,22 +682,28 @@ class _ReservationState extends State<Reservation> {
                           ),
                           Expanded(
                             flex: 1,
-                            child: TextButton(
-                              onPressed: () {},
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  sexId = 1;
+                                });
+                              },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 height: 46,
                                 padding: EdgeInsets.only(top: 14, bottom: 8),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(3),
-                                    border: Border.all(
-                                        color: Color.fromARGB(
-                                            255, 110, 198, 210))),
-                                child: Text('女性',
+                                  borderRadius: BorderRadius.circular(3),
+                                  border: Border.all(
+                                      color: Color.fromARGB(255, 0, 184, 169)),
+                                  color: sexId == 1
+                                      ? Color.fromARGB(255, 240, 253, 255)
+                                      : Colors.white,
+                                ),
+                                child: Text('男性',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      fontFamily: 'Hiragino Kaku Gothic Pro',
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
                                       height: 1.5,
@@ -603,7 +726,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご連絡先の携帯番号',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -626,18 +748,17 @@ class _ReservationState extends State<Reservation> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
-                                color: Color.fromARGB(255, 110, 198, 210),
+                                color: Color.fromARGB(255, 0, 184, 169),
                               )),
                           enabledBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
                               borderSide: BorderSide(
-                                color: Color.fromARGB(255, 110, 198, 210),
+                                color: Color.fromARGB(255, 0, 184, 169),
                               )),
                         ),
                         style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 16,
                             height: 1.5,
                             fontWeight: FontWeight.w400),
@@ -658,7 +779,6 @@ class _ReservationState extends State<Reservation> {
                       Text('ご利用ポイント',
                           style: TextStyle(
                             color: Color.fromARGB(255, 51, 51, 51),
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                             height: 1.5,
@@ -672,7 +792,6 @@ class _ReservationState extends State<Reservation> {
                             text: '保有ポイント：',
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
-                              fontFamily: 'Hiragino Kaku Gothic Pro',
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               height: 1.5,
@@ -682,8 +801,7 @@ class _ReservationState extends State<Reservation> {
                               TextSpan(
                                   text: '2400',
                                   style: TextStyle(
-                                    color: Color.fromARGB(255, 110, 198, 210),
-                                    fontFamily: 'Hiragino Kaku Gothic Pro',
+                                    color: Color.fromARGB(255, 0, 184, 169),
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                     height: 1.5,
@@ -707,23 +825,23 @@ class _ReservationState extends State<Reservation> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     borderSide: BorderSide(
-                                        color: Helper.whiteColor.withOpacity(0.2))),
+                                        color: Helper.whiteColor
+                                            .withOpacity(0.2))),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)),
                                     borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 110, 198, 210),
+                                      color: Color.fromARGB(255, 0, 184, 169),
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)),
                                     borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 110, 198, 210),
+                                      color: Color.fromARGB(255, 0, 184, 169),
                                     )),
                               ),
                               style: TextStyle(
                                   color: Color.fromARGB(255, 51, 51, 51),
-                                  fontFamily: 'Hiragino Kaku Gothic Pro',
                                   fontSize: 16,
                                   height: 1.5,
                                   fontWeight: FontWeight.w400),
@@ -738,8 +856,7 @@ class _ReservationState extends State<Reservation> {
                           ),
                           Text('ポイント',
                               style: TextStyle(
-                                color: Helper.blackColor,
-                                fontFamily: 'Hiragino Kaku Gothic Pro',
+                                color: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
                                 height: 1.5,
@@ -753,19 +870,82 @@ class _ReservationState extends State<Reservation> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text('1ポイント1円として利用できます',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 156, 161, 161),
-                                  fontFamily: 'Hiragino Kaku Gothic Pro',
-                                  fontSize: 10,
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 156, 161, 161),
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              decoration: TextDecoration.none,
+                            )),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Transform.scale(
+                            scale: 0.7,
+                            child: Checkbox(
+                              value: this.checkBoxValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  this.checkBoxValue = value!;
+                                });
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text('全てのポイントを利用する',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 51, 51, 51),
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   decoration: TextDecoration.none,
-                                )),
+                                  height: 1.5)),
+                        ],
                       ),
                       SizedBox(
                         height: 20,
                       ),
                     ],
                   )),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  InkWell(
+                    onTap: progress == 1 ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Confirmation()),
+                      );
+                    } : null,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 58,
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: progress != 1
+                            ? Color.fromARGB(255, 210, 210, 212)
+                            : Color.fromARGB(255, 0, 184, 169),
+                      ),
+                      child: Text('ご予約の確認画面へ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5,
+                            decoration: TextDecoration.none,
+                          )),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
                 ],
               ),
             )
@@ -775,20 +955,86 @@ class _ReservationState extends State<Reservation> {
     );
   }
 
-  Widget _buildTimeButton(String time) {
-    return TextButton(
-      onPressed: () {},
+  Widget _buildReservationItem(int index) {
+    return !statusReservation[index]
+        ? Container()
+        : Container(
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            padding: EdgeInsets.only(top: 16, left: 9, bottom: 10, right: 9),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: Color.fromARGB(255, 102, 110, 110)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('希望日1',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 102, 110, 110),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      height: 1.5,
+                      decoration: TextDecoration.none,
+                    )),
+                Text('2021年5月24日(木) 11:30',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 51, 51, 51),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      height: 1.5,
+                      decoration: TextDecoration.none,
+                    )),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      statusReservation[index] = false;
+                    });
+                  },
+                  child: Container(
+                    width: 15,
+                    height: 15,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Color.fromARGB(255, 102, 110, 110),
+                    ),
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+  }
+
+  Widget _buildTimeButton(int index, String time) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          selectedTime = List<bool>.filled(4, false);
+          selectedTime[index] = true;
+        });
+      },
       child: Container(
         width: 100,
         height: 34,
         padding: EdgeInsets.only(top: 8, left: 28, right: 28, bottom: 2),
+        margin: EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
-            border: Border.all(color: Color.fromARGB(255, 210, 210, 212))),
+          borderRadius: BorderRadius.circular(3),
+          border: Border.all(color: Color.fromARGB(255, 210, 210, 212)),
+          color: selectedTime[index]
+              ? Color.fromARGB(255, 240, 253, 255)
+              : Colors.white,
+        ),
         child: Text(time,
             style: TextStyle(
               color: Color.fromARGB(255, 51, 51, 51),
-              fontFamily: 'Hiragino Kaku Gothic Pro',
               fontSize: 16,
               fontWeight: FontWeight.w400,
               height: 1.5,
@@ -804,13 +1050,15 @@ class _ReservationState extends State<Reservation> {
       padding: EdgeInsets.only(top: 14, left: 10, bottom: 8, right: 18),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: Color.fromARGB(255, 110, 198, 210)),
+        border: Border.all(
+          color: Color.fromARGB(255, 0, 184, 169),
+        ),
       ),
       child: DropdownButton2(
           value: selectedValue,
           icon: Icon(
             Icons.keyboard_arrow_down,
-            color: Color.fromARGB(255, 110, 198, 210),
+            color: Color.fromARGB(255, 0, 184, 169),
           ),
           isExpanded: true,
           underline: Container(),
@@ -821,7 +1069,6 @@ class _ReservationState extends State<Reservation> {
                   child: Text(
                     item,
                     style: const TextStyle(
-                      fontFamily: 'Hiragino Kaku Gothic Pro',
                       fontSize: 16,
                       height: 1.5,
                       fontWeight: FontWeight.bold,

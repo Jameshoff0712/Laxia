@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/models/m_message.dart';
+import 'package:laxia/views/pages/main/appointment/chatScreen.dart';
 import 'package:laxia/common/helper.dart';
 
 class chatStatus extends StatefulWidget {
@@ -26,7 +28,7 @@ class _chatStatusState extends State<chatStatus> {
         break;
         case 2: {
           statusText = '予約済';
-          statusColor = Color.fromARGB(255, 110, 198, 210);
+          statusColor = Color.fromARGB(255, 0, 184, 169);
         }
         break;
         case 3: {
@@ -45,103 +47,109 @@ class _chatStatusState extends State<chatStatus> {
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Helper.whiteColor,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 64,
-                height: 17,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: statusColor,
+    return InkWell(
+      onTap: widget.statusCode == 4 ? toChatScreen: null,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Colors.white,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 64,
+              height: 17,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: statusColor,
+              ),
+              child: Center(
+                child: Text(
+                  statusText,
+                  style: TextStyle(
+                    
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                  ),
                 ),
-                child: Center(
+              ),
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  height: 24,
                   child: Text(
-                    statusText,
+                    '湘南美容クリニック 銀座院',
                     style: TextStyle(
-                      fontFamily: 'Hiragino Kaku Gothic Pro',
-                      fontSize: 12,
+                      
+                      fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      color: Helper.whiteColor,
+                      color: Color.fromARGB(255, 51, 51, 51),
                       decoration: TextDecoration.none,
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 14,
-              ),
-              Row(
-                children: <Widget>[
-                  Container(
-                    height: 24,
-                    child: Text(
-                      '湘南美容クリニック 銀座院',
-                      style: TextStyle(
-                        fontFamily: 'Hiragino Kaku Gothic Pro',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(255, 51, 51, 51),
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                  ),
-                  if (widget.notificCount == null) Container() else Expanded(
-                    child: 
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          margin: EdgeInsets.only(right: 20),
-                          width: 18,
-                          height: 18,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(36),
-                            color: Color.fromARGB(255, 240, 154, 55),
-                          ),
-                          child: Center(
-                            child: Text(
-                              widget.notificCount.toString(),
-                              style: TextStyle(
-                                fontFamily: 'Hiragino Kaku Gothic Pro',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12,
-                                color: Helper.whiteColor,
-                                decoration: TextDecoration.none,
-                              ),
+                if (widget.notificCount == null) Container() else Expanded(
+                  child: 
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        margin: EdgeInsets.only(right: 20),
+                        width: 18,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(36),
+                          color: Color.fromARGB(255, 240, 154, 55),
+                        ),
+                        child: Center(
+                          child: Text(
+                            widget.notificCount.toString(),
+                            style: TextStyle(
+                              
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12,
+                              color: Colors.white,
+                              decoration: TextDecoration.none,
                             ),
                           ),
                         ),
                       ),
-                  )
-                ],
-              ),
-              widget.bookDate == null ? Container() : Container(
-                height: 18,
-                child: Text(
-                  '予約日時：2020/07/25 11：００〜',
-                  style: TextStyle(
-                    fontFamily: 'Hiragino Kaku Gothic Pro',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 156, 161, 161),
-                    decoration: TextDecoration.none,
-                  ),
+                    ),
+                )
+              ],
+            ),
+            widget.bookDate == null ? Container() : Container(
+              height: 18,
+              child: Text(
+                '予約日時：2020/07/25 11：００〜',
+                style: TextStyle(
+                  
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromARGB(255, 156, 161, 161),
+                  decoration: TextDecoration.none,
                 ),
-              )
-            ],
-          ),
-        ),                        
-      ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  void toChatScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ChatScreen(user: favorites[0]))
     );
   }
 }
