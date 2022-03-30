@@ -5,6 +5,8 @@ import 'package:laxia/generated/L10n.dart';
 import 'package:laxia/models/m_user.dart';
 import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
+import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
+import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
 
 class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);
@@ -232,43 +234,67 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Text(
-                            "26",
-                            style: TextStyle(
-                              color: Helper.appTxtColor,
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => FollowingListPage())
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: Text(
+                                  "26",
+                                  style: TextStyle(
+                                    color: Helper.appTxtColor,
+                                  ),
+                                )),
+                            SizedBox(
+                              width: 5,
                             ),
-                          )),
-                      SizedBox(
-                        width: 5,
+                            SizedBox(
+                                child: Text(
+                              "フォロー",
+                              style: TextStyle(color: Helper.extraGrey, fontSize: 14),
+                            )),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                          child: Text(
-                        "フォロー",
-                        style: TextStyle(color: Helper.extraGrey, fontSize: 14),
-                      )),
                       SizedBox(
                         width: 25,
                       ),
-                      SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Text(
-                            "26",
-                            style: TextStyle(
-                              color: Helper.appTxtColor,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => FollowerListPage())
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: Text(
+                                  "26",
+                                  style: TextStyle(
+                                    color: Helper.appTxtColor,
+                                  ),
+                                )),
+                            SizedBox(
+                              width: 5,
                             ),
-                          )),
-                      SizedBox(
-                        width: 5,
+                            SizedBox(
+                                child: Text(
+                              "フォロワー",
+                              style: TextStyle(color: Helper.extraGrey, fontSize: 14),
+                            )),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                          child: Text(
-                        "フォロワー",
-                        style: TextStyle(color: Helper.extraGrey, fontSize: 14),
-                      )),
                     ],
                   ),
                   SizedBox(
