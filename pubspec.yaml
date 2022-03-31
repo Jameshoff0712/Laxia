@@ -68,7 +68,6 @@ dependencies:
   side_menu: ^0.0.3
   flutter_xlider: ^3.4.0
   flappy_search_bar: ^1.7.2
-  flutter_xlider: ^3.4.0
 
 dev_dependencies:
   flutter_test:
