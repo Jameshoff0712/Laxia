@@ -11,7 +11,7 @@ class Home_Doctor extends StatefulWidget {
   final VoidCallback? scrollTop;
   final bool  issearch;
   final List ? model;
-  const Home_Doctor({Key? key, required this.issearch, this.model, this.isScrollable=false, this.scrollTop=null}) : super(key: key);
+  const Home_Doctor({Key? key, required this.issearch, this.model, this.isScrollable=true, this.scrollTop=null}) : super(key: key);
 
   @override
   State<Home_Doctor> createState() => _Home_DoctorState();

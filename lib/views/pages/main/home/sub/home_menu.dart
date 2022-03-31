@@ -10,7 +10,7 @@ class Home_Menu extends StatefulWidget {
   final VoidCallback? scrollTop;
   final bool issearch;
   final List? model;
-  Home_Menu({Key? key, this.model, required this.issearch, this.isScrollable=false, this.scrollTop=null}) : super(key: key);
+  Home_Menu({Key? key, this.model, required this.issearch, this.isScrollable=true, this.scrollTop=null}) : super(key: key);
 
   @override
   State<Home_Menu> createState() => _Home_MenuState();

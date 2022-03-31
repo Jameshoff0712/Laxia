@@ -64,198 +64,198 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: 44,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 10.0, left: 24, right: 16, bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      padding: EdgeInsets.only(left: 7),
-                      icon: const Icon(Icons.arrow_back_ios,
-                          color: Helper.blackColor),
-                      iconSize: 16,
-                    )),
-                Center(
-                    child: Text(
-                        treatment[userProperties.currentPartIndex]["label"],
-                        style: defaultTextStyle(
-                            Helper.blackColor, FontWeight.w700,
-                            size: 20))),
-                SizedBox(
-                  width: 14,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              physics:AlwaysScrollableScrollPhysics(),
-              controller: scrollController,
-              child: Column(
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 10.0, left: 24, right: 16, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: Column(
-                        children: [
-                          ExtendedWrap(
-                              alignment: WrapAlignment.center,
-                              maxLines: expanded ? 2 : 100,
-                              clipBehavior: Clip.none,
-                              runSpacing: 10,
-                              spacing: 10,
-                              children: [
-                                for (int i = 0;
-                                    i <
-                                        treatment[userProperties
-                                                .currentPartIndex]["children"]
-                                            .length;
-                                    i++)
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        if (index == i) {
-                                          index = -1;
-                                        } else {
-                                          index = i;
-                                        }
-                                      });
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(22),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: Helper.mainColor),
-                                          color: index == i
-                                              ? Helper.mainColor
-                                              : Helper.whiteColor),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8, vertical: 3),
-                                        child: Text(
-                                          treatment[userProperties
-                                                  .currentPartIndex]["children"]
-                                              [i]["label"],
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                              color: index == i
-                                                  ? Helper.whiteColor
-                                                  : Helper.mainColor),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ]),
-                        ],
-                      ),
-                    ),
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        padding: EdgeInsets.only(left: 7),
+                        icon: const Icon(Icons.arrow_back_ios,
+                            color: Helper.blackColor),
+                        iconSize: 16,
+                      )),
+                  Center(
+                      child: Text(
+                          treatment[userProperties.currentPartIndex]["label"],
+                          style: defaultTextStyle(
+                              Helper.blackColor, FontWeight.w700,
+                              size: 20))),
+                  SizedBox(
+                    width: 14,
                   ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        expanded = !expanded;
-                      });
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "すべて表示",
-                            style: TextStyle(
-                                color: Helper.mainColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12),
-                          ),
-                          SizedBox(
-                            width: 8.41,
-                          ),
-                          Icon(
-                            expanded
-                                ? Icons.arrow_drop_down
-                                : Icons.arrow_drop_up,
-                            size: 24,
-                            color: Helper.mainColor,
-                          ),
-                        ]),
-                  ),
-                  Container(
-                      child: Column(
-                    children: [
-                      TabBarWidget(
-                        tabMenus: tabMenus,
-                        tabController: _tabController,
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height - 145,
-                        child: TabBarView(
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            Home_Diary(
-                              issearch: true,
-                              model: partResult[0],
-                              isScrollable: isChildScrollable,
-                              scrollTop: () {
-                                setState(() {
-                                  isChildScrollable = false;
-                                });
-                              },
-                            ),
-                            Home_Menu(
-                              issearch: true,
-                              model: partResult[1],
-                              isScrollable: isChildScrollable,
-                              scrollTop: () {
-                                setState(() {
-                                  isChildScrollable = false;
-                                });
-                              },
-                            ),
-                            Home_Clinic(
-                              issearch: true,
-                              model: partResult[2],
-                              isScrollable: isChildScrollable,
-                              scrollTop: () {
-                                setState(() {
-                                  isChildScrollable = false;
-                                });
-                              },
-                            ),
-                            Home_Doctor(
-                              issearch: true,
-                              model: partResult[3],
-                              isScrollable: isChildScrollable,
-                              scrollTop: () {
-                                setState(() {
-                                  isChildScrollable = false;
-                                });
-                              },
-                            ),
-                          ],
-                          controller: _tabController,
-                        ),
-                      )
-                    ],
-                  )),
                 ],
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: SingleChildScrollView(
+                physics:AlwaysScrollableScrollPhysics(),
+                controller: scrollController,
+                child: Column(
+                  children: [
+                    Container(
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        child: Column(
+                          children: [
+                            ExtendedWrap(
+                                alignment: WrapAlignment.center,
+                                maxLines: expanded ? 2 : 100,
+                                clipBehavior: Clip.none,
+                                runSpacing: 10,
+                                spacing: 10,
+                                children: [
+                                  for (int i = 0;
+                                      i <
+                                          treatment[userProperties
+                                                  .currentPartIndex]["children"]
+                                              .length;
+                                      i++)
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          if (index == i) {
+                                            index = -1;
+                                          } else {
+                                            index = i;
+                                          }
+                                        });
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(22),
+                                            border: Border.all(
+                                                width: 1,
+                                                color: Helper.mainColor),
+                                            color: index == i
+                                                ? Helper.mainColor
+                                                : Helper.whiteColor),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8, vertical: 3),
+                                          child: Text(
+                                            treatment[userProperties
+                                                    .currentPartIndex]["children"]
+                                                [i]["label"],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                                color: index == i
+                                                    ? Helper.whiteColor
+                                                    : Helper.mainColor),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ]),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          expanded = !expanded;
+                        });
+                      },
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "すべて表示",
+                              style: TextStyle(
+                                  color: Helper.mainColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12),
+                            ),
+                            SizedBox(
+                              width: 8.41,
+                            ),
+                            Icon(
+                              expanded
+                                  ? Icons.arrow_drop_down
+                                  : Icons.arrow_drop_up,
+                              size: 24,
+                              color: Helper.mainColor,
+                            ),
+                          ]),
+                    ),
+                    Container(
+                        child: Column(
+                      children: [
+                        TabBarWidget(
+                          tabMenus: tabMenus,
+                          tabController: _tabController,
+                          padding: 25,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height - 189,
+                          child: TabBarView(
+                            physics: NeverScrollableScrollPhysics(),
+                            children: [
+                              Home_Diary(
+                                issearch: true,
+                                model: partResult[0],
+                                isScrollable: isChildScrollable,
+                                scrollTop: () {
+                                  setState(() {
+                                    isChildScrollable = false;
+                                  });
+                                },
+                              ),
+                              Home_Menu(
+                                issearch: true,
+                                model: partResult[1],
+                                isScrollable: isChildScrollable,
+                                scrollTop: () {
+                                  setState(() {
+                                    isChildScrollable = false;
+                                  });
+                                },
+                              ),
+                              Home_Clinic(
+                                issearch: true,
+                                model: partResult[2],
+                                isScrollable: isChildScrollable,
+                                scrollTop: () {
+                                  setState(() {
+                                    isChildScrollable = false;
+                                  });
+                                },
+                              ),
+                              Home_Doctor(
+                                issearch: true,
+                                model: partResult[3],
+                                isScrollable: isChildScrollable,
+                                scrollTop: () {
+                                  setState(() {
+                                    isChildScrollable = false;
+                                  });
+                                },
+                              ),
+                            ],
+                            controller: _tabController,
+                          ),
+                        )
+                      ],
+                    )),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
