@@ -7,6 +7,7 @@ import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
+import 'package:laxia/views/pages/main/mypage/point_page.dart';
 
 class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);
@@ -67,19 +68,22 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
           Tab(
             child: Text(
               "日記",
-              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.bold,
+                  size: 16),
             ),
           ),
           Tab(
             child: Text(
               "カウセレポ",
-              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.bold,
+                  size: 16),
             ),
           ),
           Tab(
             child: Text(
               "質問",
-              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.bold,
+                  size: 16),
             ),
           )
         ]);
@@ -235,11 +239,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
-                            context, 
-                            MaterialPageRoute(builder: (context) => FollowingListPage())
-                          );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FollowingListPage()));
                         },
                         child: Row(
                           children: [
@@ -258,7 +262,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             SizedBox(
                                 child: Text(
                               "フォロー",
-                              style: TextStyle(color: Helper.extraGrey, fontSize: 14),
+                              style: TextStyle(
+                                  color: Helper.extraGrey, fontSize: 14),
                             )),
                           ],
                         ),
@@ -269,9 +274,9 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                            context, 
-                            MaterialPageRoute(builder: (context) => FollowerListPage())
-                          );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FollowerListPage()));
                         },
                         child: Row(
                           children: [
@@ -290,7 +295,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             SizedBox(
                                 child: Text(
                               "フォロワー",
-                              style: TextStyle(color: Helper.extraGrey, fontSize: 14),
+                              style: TextStyle(
+                                  color: Helper.extraGrey, fontSize: 14),
                             )),
                           ],
                         ),
@@ -341,7 +347,13 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             IconButton(
                               icon: const Icon(Icons.chevron_right_sharp),
                               color: Helper.appTxtColor,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            PointPage()));
+                              },
                             )
                           ],
                         ))
