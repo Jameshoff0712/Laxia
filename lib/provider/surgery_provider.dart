@@ -35,6 +35,7 @@ class SurGeryProvider extends ChangeNotifier {
   void initSelected() {
     selectedCurePos.clear();
     selectedCurePosStr.clear();
+    notifyListeners();
   }
 
   get getButtonText => btnText;

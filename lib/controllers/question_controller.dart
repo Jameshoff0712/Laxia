@@ -3,8 +3,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 
 class QuestionController extends ControllerMVC {
   GlobalKey<ScaffoldState>? scaffoldKey;
-  int cure_value = 0;
-  String cure_content = "";
+  //String cure_content = "";
   List<String>? image_list = [];
   TextEditingController question_titleCtrl = TextEditingController();
   TextEditingController question_contentCtrl = TextEditingController();

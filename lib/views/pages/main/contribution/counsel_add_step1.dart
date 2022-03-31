@@ -2,6 +2,8 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/provider/surgery_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddCounselStep1Page extends StatefulWidget {
   @override
@@ -86,6 +88,19 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
 
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryProvider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+
+    if (surgeryProvider.selectedCurePos.isNotEmpty) {
+      setState(() {
+        isAddEnabled = true;
+      });
+    } else {
+      setState(() {
+        isAddEnabled = false;
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -145,16 +160,23 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                 fontSize: 16),
                           ),
                         ),
-                        Text(
-                          "選択してください",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Text(
+                            surgeryProvider.selectedCurePos.isEmpty
+                                ? "選択してください"
+                                : surgeryProvider.getSelectedCurePosStr,
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16),
+                          ),
                         ),
                         GestureDetector(
                           onTap: () =>
-                              Navigator.of(context).pushNamed("/TreatmentPart"),
+                              Navigator.of(context).pushNamed("/SelectSurgery"),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.grey,
@@ -189,16 +211,21 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                 fontSize: 16),
                           ),
                         ),
-                        Text(
-                          "選択してください",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Text(
+                            "選択してください",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16),
+                          ),
                         ),
                         GestureDetector(
                           onTap: () =>
-                              Navigator.of(context).pushNamed("/TreatmentPart"),
+                              Navigator.of(context).pushNamed("/SelectList"),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.grey,
@@ -233,12 +260,17 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                 fontSize: 16),
                           ),
                         ),
-                        Text(
-                          "選択してください",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Text(
+                            "選択してください",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16),
+                          ),
                         ),
                         GestureDetector(
                           onTap: () =>
@@ -277,12 +309,17 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                 fontSize: 16),
                           ),
                         ),
-                        Text(
-                          "選択してください",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Text(
+                            "選択してください",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16),
+                          ),
                         ),
                         GestureDetector(
                           onTap: () =>

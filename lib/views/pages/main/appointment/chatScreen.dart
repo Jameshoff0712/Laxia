@@ -25,6 +25,9 @@ class _ChatScreenState extends State<ChatScreen> {
         // mainAxisAlignment: MainAxisAlignment.start,
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 44,
+          ),
           Container(
             color: Helper.whiteColor,
             height: 44,
@@ -98,7 +101,6 @@ class _ChatScreenState extends State<ChatScreen> {
                 hintText: 'Name of pill',
                 hintStyle: TextStyle(
                   color: Color.fromARGB(255, 156, 161, 161),
-                  
                   fontSize: 12,
                   height: 1.5,
                   fontWeight: FontWeight.w400,
@@ -106,7 +108,6 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               style: TextStyle(
                 color: Color.fromARGB(255, 51, 51, 51),
-                
                 fontSize: 12,
                 height: 1.5,
                 fontWeight: FontWeight.w400,
