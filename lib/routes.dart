@@ -8,6 +8,7 @@ import 'package:laxia/views/pages/auth/registration.dart';
 import 'package:laxia/views/pages/main/favorite/favorite.dart';
 import 'package:laxia/views/pages/main/home/narrow_case.dart';
 import 'package:laxia/views/pages/main/home/narrow_diary.dart';
+import 'package:laxia/views/pages/main/home/part/part.dart';
 import 'package:laxia/views/pages/main/home/search/searchview.dart';
 import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/pages/main/home/selectsurgery.dart';
@@ -55,6 +56,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NarrowCase());
       case '/NarrowDiary':
         return MaterialPageRoute(builder: (_) => NarrowDiary());
+      case '/Part':
+        return MaterialPageRoute(builder: (_) => Part());
       case '/Appointment':
         return MaterialPageRoute(builder: (_) => Appointment());
       case '/Chat':

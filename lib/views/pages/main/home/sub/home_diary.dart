@@ -6,9 +6,11 @@ import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class Home_Diary extends StatefulWidget {
+  final bool? isScrollable;
+  final VoidCallback? scrollTop;
   final bool issearch;
   final List? model;
-  const Home_Diary({Key? key, required this.issearch, this.model})
+  const Home_Diary({Key? key, required this.issearch, this.model, this.isScrollable=false, this.scrollTop=null})
       : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class Home_Diary extends StatefulWidget {
 
 class _Home_DiaryState extends State<Home_Diary> {
   List mid = [];
+  late ScrollController scrollController;
   @override
   void initState() {
     if (!widget.issearch) {
@@ -30,6 +33,15 @@ class _Home_DiaryState extends State<Home_Diary> {
           mid.add(widget.model![i]);
         });
     }
+      scrollController=ScrollController();
+      scrollController.addListener((){
+        if (scrollController.offset <= scrollController.position.minScrollExtent &&
+            !scrollController.position.outOfRange) {
+          setState(() {
+            widget.scrollTop!();
+          });
+        }
+    });
     super.initState();
   }
 
@@ -82,7 +94,9 @@ class _Home_DiaryState extends State<Home_Diary> {
                       return ListView.builder(
                           padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                           itemCount: mid.length,
-                          physics: const AlwaysScrollableScrollPhysics(),
+                          controller:scrollController,
+                          physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
+                          shrinkWrap:true,
                           itemBuilder: (BuildContext context, int index) {
                             return Diary_Card(
                               avator: mid[index]["avator"],

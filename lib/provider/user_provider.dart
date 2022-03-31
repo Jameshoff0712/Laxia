@@ -8,6 +8,13 @@ class UserProvider extends ChangeNotifier {
     currentPageIndex = PageIndex;
     notifyListeners();
   }
+  late int currentPartIndex = 0;
+
+  get getCurrentPartIndex => currentPageIndex;
+  void setCurrentPartIndex(int PartIndex) {
+    currentPartIndex = PartIndex;
+    notifyListeners();
+  }
   late String searchtext = "";
 
   get getSearchtext => searchtext;

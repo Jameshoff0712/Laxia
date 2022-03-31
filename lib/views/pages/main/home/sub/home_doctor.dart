@@ -7,9 +7,11 @@ import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 
 class Home_Doctor extends StatefulWidget {
+  final bool? isScrollable;
+  final VoidCallback? scrollTop;
   final bool  issearch;
   final List ? model;
-  const Home_Doctor({Key? key, required this.issearch, this.model}) : super(key: key);
+  const Home_Doctor({Key? key, required this.issearch, this.model, this.isScrollable=false, this.scrollTop=null}) : super(key: key);
 
   @override
   State<Home_Doctor> createState() => _Home_DoctorState();
@@ -17,6 +19,7 @@ class Home_Doctor extends StatefulWidget {
 
 class _Home_DoctorState extends State<Home_Doctor> {
   List mid=[];
+  late ScrollController scrollController;
   @override
   void initState(){
     if(!widget.issearch){
@@ -30,6 +33,15 @@ class _Home_DoctorState extends State<Home_Doctor> {
         mid.add(widget.model![i]);
       });
     }
+    scrollController=ScrollController();
+      scrollController.addListener((){
+        if (scrollController.offset <= scrollController.position.minScrollExtent &&
+            !scrollController.position.outOfRange) {
+          setState(() {
+            widget.scrollTop!();
+          });
+        }
+    });
     super.initState();
   }
   @override
@@ -68,7 +80,9 @@ class _Home_DoctorState extends State<Home_Doctor> {
                     Expanded(
                       child: ListView.builder(
                           itemCount: mid.length,
-                          physics: const AlwaysScrollableScrollPhysics(),
+                          controller:scrollController,
+                          physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
+                          shrinkWrap:true,
                           itemBuilder: (BuildContext context, int index) {
                             return Doctor_Card(
                                 image: mid[index]["image"],

@@ -67,6 +67,7 @@ dependencies:
   easy_sidemenu: ^0.2.0
   side_menu: ^0.0.3
   flappy_search_bar: ^1.7.2
+  extended_wrap: ^0.1.0
 
 dev_dependencies:
   flutter_test:

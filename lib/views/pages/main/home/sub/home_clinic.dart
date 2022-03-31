@@ -6,9 +6,11 @@ import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class Home_Clinic extends StatefulWidget {
+  final bool? isScrollable;
+  final VoidCallback? scrollTop;
   final bool issearch;
   final List? model;
-  const Home_Clinic({Key? key, required this.issearch, this.model})
+  const Home_Clinic({Key? key, required this.issearch, this.model, this.isScrollable=false, this.scrollTop=null})
       : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class Home_Clinic extends StatefulWidget {
 
 class _Home_ClinicState extends State<Home_Clinic> {
   List mid = [];
+  late ScrollController scrollController;
   @override
   void initState() {
     if (!widget.issearch) {
@@ -30,6 +33,15 @@ class _Home_ClinicState extends State<Home_Clinic> {
           mid.add(widget.model![i]);
         });
     }
+    scrollController=ScrollController();
+      scrollController.addListener((){
+        if (scrollController.offset <= scrollController.position.minScrollExtent &&
+            !scrollController.position.outOfRange) {
+          setState(() {
+            widget.scrollTop!();
+          });
+        }
+    });
     super.initState();
   }
 
@@ -66,28 +78,20 @@ class _Home_ClinicState extends State<Home_Clinic> {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: LayoutBuilder(
                   builder: (context, BoxConstraints viewportConstraints) {
-                return Column(
-                  children: [
-                    // menuAppBar(context),
-                    Expanded(
-                      child: LayoutBuilder(builder:
-                          (context, BoxConstraints viewportConstraints) {
-                        return ListView.builder(
-                            itemCount: mid.length,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) {
-                              return Clinic_Card(
-                                  image: mid[index]["image"],
-                                  post: mid[index]["post"],
-                                  name: mid[index]["name"],
-                                  mark: mid[index]["mark"],
-                                  day: mid[index]["day"],
-                                  clinic: mid[index]["clinic"]);
-                            });
-                      }),
-                    ),
-                  ],
-                );
+                return ListView.builder(
+                          itemCount: mid.length,
+                          controller:scrollController,
+                          physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
+                          shrinkWrap:true,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Clinic_Card(
+                                image: mid[index]["image"],
+                                post: mid[index]["post"],
+                                name: mid[index]["name"],
+                                mark: mid[index]["mark"],
+                                day: mid[index]["day"],
+                                clinic: mid[index]["clinic"]);
+                          });
               }),
             ),
           ),

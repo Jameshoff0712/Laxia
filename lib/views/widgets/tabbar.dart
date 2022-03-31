@@ -27,7 +27,7 @@ class _TabBarWidgetState extends State<TabBarWidget> with SingleTickerProviderSt
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TabBar(
-              padding: EdgeInsets.only(left: 9, top: 0, right: 16, bottom: 3),
+              padding: EdgeInsets.only(left: 9, top: 0, right: 1, bottom: 3),
               labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 8),
               labelColor: Helper.selectTabColor,
               unselectedLabelColor: Helper.searchBartxtColor,
