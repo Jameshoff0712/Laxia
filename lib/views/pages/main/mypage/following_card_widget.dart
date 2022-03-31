@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_user.dart';
 
-class FollowerCardWidget extends StatefulWidget {
-  const FollowerCardWidget({Key? key}) : super(key: key);
+class FollowingCardWidget extends StatefulWidget {
+  const FollowingCardWidget({Key? key}) : super(key: key);
 
   @override
-  State<FollowerCardWidget> createState() => _FollowerCardWidgetState();
+  State<FollowingCardWidget> createState() => _FollowingCardWidgetState();
 }
 
-class _FollowerCardWidgetState extends State<FollowerCardWidget> {
+class _FollowingCardWidgetState extends State<FollowingCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,14 +61,14 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Helper.mainColor,
+                    border: Border.all(color: Helper.mainColor),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    "フォローする",
+                    "フォロー中",
                     textAlign: TextAlign.justify,
                     style: TextStyle(
-                        color: Helper.whiteColor,
+                        color: Helper.mainColor,
                         fontWeight: FontWeight.w100,
                         fontSize: 16,
                         height: 1.5),
