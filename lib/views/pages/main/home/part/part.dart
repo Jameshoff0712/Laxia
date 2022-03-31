@@ -200,7 +200,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                           padding: 25,
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height - 189,
+                          height: MediaQuery.of(context).size.height - 101,
                           child: TabBarView(
                             physics: NeverScrollableScrollPhysics(),
                             children: [
