@@ -17,7 +17,7 @@ class _SelectSurgeryState extends State<SelectSurgery> {
     String countyText =
         await rootBundle.loadString("assets/cfg/treatment_location.json");
     setState(() {
-      countys = json.decode(countyText);
+      countys.addAll(json.decode(countyText));
     });
   }
 

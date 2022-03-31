@@ -334,5 +334,549 @@
                 "label": "その他"
             }
         ]
+    },
+    {
+        "value": 4,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 5,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 6,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 7,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 8,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 9,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 10,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 11,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 12,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 13,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 14,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 15,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 16,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 17,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 18,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
+    },
+    {
+        "value": 19,
+        "label": "耳",
+        "children": [
+            {
+                "value": 0,
+                "label": "立ち耳"
+            },
+            {
+                "value": 1,
+                "label": "柔道耳"
+            },
+            {
+                "value": 2,
+                "label": "耳たぶピアス"
+            },
+            {
+                "value": 3,
+                "label": "耳軟骨ピアス"
+            },
+            {
+                "value": 4,
+                "label": "耳鼻科"
+            },
+            {
+                "value": 5,
+                "label": "ボディピアス"
+            },
+            {
+                "value": 6,
+                "label": "その他"
+            }
+        ]
     }
 ]

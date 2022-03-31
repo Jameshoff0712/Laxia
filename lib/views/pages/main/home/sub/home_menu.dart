@@ -6,9 +6,11 @@ import 'package:laxia/views/widgets/textbutton_drawer.dart';
 import 'package:laxia/models/menu_model.dart';
 
 class Home_Menu extends StatefulWidget {
+  final bool? isScrollable;
+  final VoidCallback? scrollTop;
   final bool issearch;
   final List? model;
-  Home_Menu({Key? key, this.model, required this.issearch}) : super(key: key);
+  Home_Menu({Key? key, this.model, required this.issearch, this.isScrollable=true, this.scrollTop=null}) : super(key: key);
 
   @override
   State<Home_Menu> createState() => _Home_MenuState();
@@ -16,6 +18,7 @@ class Home_Menu extends StatefulWidget {
 
 class _Home_MenuState extends State<Home_Menu> {
   List mid = [];
+  late ScrollController scrollController;
   @override
   void initState() {
     if (!widget.issearch) {
@@ -29,6 +32,15 @@ class _Home_MenuState extends State<Home_Menu> {
           mid.add(widget.model![i]);
         });
     }
+    scrollController=ScrollController();
+      scrollController.addListener((){
+        if (scrollController.offset <= scrollController.position.minScrollExtent &&
+            !scrollController.position.outOfRange) {
+          setState(() {
+            widget.scrollTop!();
+          });
+        }
+    });
     super.initState();
   }
 
@@ -81,6 +93,9 @@ class _Home_MenuState extends State<Home_Menu> {
                           (context, BoxConstraints viewportConstraints) {
                         return ListView.builder(
                             itemCount: mid.length,
+                            controller:scrollController,
+                          physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
+                          shrinkWrap:true,
                             // physics: const AlwaysScrollableScrollPhysics(),
                             // scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {

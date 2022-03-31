@@ -223,6 +223,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Wrap(
+                                          alignment: WrapAlignment.spaceBetween,
                                           runSpacing: 10,
                                           spacing: 10,
                                           children: [
