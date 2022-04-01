@@ -134,7 +134,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
             Column(
               children: [
                 ListView.builder(
-                  shrinkWrap: true,
+                    shrinkWrap: true,
                     itemCount: CounselQuestion_list.length,
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {

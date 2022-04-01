@@ -1,21 +1,25 @@
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/surgery_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:laxia/controllers/question_controller.dart';
 
 class AddQuestion extends StatefulWidget {
   @override
   _AddQuestionState createState() => _AddQuestionState();
 }
 
-class _AddQuestionState extends State<AddQuestion> {
+class _AddQuestionState extends StateMVC<AddQuestion> {
   bool isAddEnabled = false;
   //File imageURI;
-  // late OfferController _con;
+  late QuestionController _con;
 
-  // _AddQuestionState() : super(OfferController()) {
-  //   _con = controller as OfferController;
-  // }
+  _AddQuestionState() : super(QuestionController()) {
+    _con = controller as QuestionController;
+  }
 
   enableAddButton() {
     setState(() {
@@ -55,7 +59,8 @@ class _AddQuestionState extends State<AddQuestion> {
                       borderRadius: BorderRadius.circular(15)),
                   child: new Text('はい'),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    //Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed("/Pages");
                   },
                 )
               ],
@@ -85,6 +90,21 @@ class _AddQuestionState extends State<AddQuestion> {
 
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryProvider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+
+    if (surgeryProvider.selectedCurePos.isNotEmpty &&
+        _con.question_titleCtrl.text.isNotEmpty &&
+        _con.question_contentCtrl.text.isNotEmpty) {
+      setState(() {
+        isAddEnabled = true;
+      });
+    } else {
+      setState(() {
+        isAddEnabled = false;
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -92,7 +112,7 @@ class _AddQuestionState extends State<AddQuestion> {
         centerTitle: true,
         title: Text(
           '質問内容を入力',
-          style: TextStyle(color:Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
           icon: Icon(Icons.close, size: 22, color: Colors.black),
@@ -113,7 +133,8 @@ class _AddQuestionState extends State<AddQuestion> {
                 title: Text(
                   '質問の詳細',
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color:Colors.grey, fontWeight: FontWeight.normal),
+                  style: TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.normal),
                 ),
               ),
             ),
@@ -126,17 +147,30 @@ class _AddQuestionState extends State<AddQuestion> {
                     children: [
                       Text(
                         "質問したい施術内容",
-                        style: TextStyle(color:Colors.black, fontWeight: FontWeight.normal,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
                             fontSize: 16),
                       ),
-                      Text(
-                        "選択してください",
-                        style: TextStyle(color:Colors.grey, fontWeight: FontWeight.normal,
-                            fontSize: 16),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: Text(
+                          surgeryProvider.selectedCurePos.isEmpty
+                              ? "選択してください"
+                              : surgeryProvider.getSelectedCurePosStr,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16),
+                        ),
                       ),
                       GestureDetector(
-                        onTap: () =>
-                            Navigator.of(context).pushNamed("/TreatmentPart"),
+                        onTap: () {
+                          surgeryProvider.setButtonText("次へ");
+                          Navigator.of(context).pushNamed("/SelectSurgery");
+                        },
                         child: Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.grey,
@@ -156,11 +190,14 @@ class _AddQuestionState extends State<AddQuestion> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 0.0),
                     child: TextFormField(
+                      controller: _con.question_titleCtrl,
                       keyboardType: TextInputType.text,
                       maxLength: 40,
                       //onSaved: (input) => editTitle(input),
                       onChanged: (text) {
-                        if (text.isNotEmpty) {
+                        if (surgeryProvider.selectedCurePos.isNotEmpty &&
+                            _con.question_titleCtrl.text.isNotEmpty &&
+                            _con.question_contentCtrl.text.isNotEmpty) {
                           setState(() {
                             isAddEnabled = true;
                           });
@@ -186,11 +223,14 @@ class _AddQuestionState extends State<AddQuestion> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 8.0),
                     child: TextFormField(
+                      controller: _con.question_contentCtrl,
                       keyboardType: TextInputType.multiline,
                       maxLength: 1000,
                       maxLines: 10,
                       onChanged: (text) {
-                        if (text.isNotEmpty) {
+                        if (surgeryProvider.selectedCurePos.isNotEmpty &&
+                            _con.question_titleCtrl.text.isNotEmpty &&
+                            _con.question_contentCtrl.text.isNotEmpty) {
                           setState(() {
                             isAddEnabled = true;
                           });
@@ -276,7 +316,7 @@ Widget imagePicker(BuildContext context) {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text('写真を追加', style: TextStyle(color:Colors.white)),
+                    child: Text('写真を追加', style: TextStyle(color: Colors.white)),
                   ),
                 ],
               ),
@@ -285,7 +325,7 @@ Widget imagePicker(BuildContext context) {
           SizedBox(width: 9),
           Expanded(
             child: SingleChildScrollView(
-              scrollDirection:Axis.horizontal,
+              scrollDirection: Axis.horizontal,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

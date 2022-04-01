@@ -31,6 +31,9 @@ class _ReservationState extends State<Reservation> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 44,
+            ),
             Container(
               height: 44,
               child: Row(
@@ -915,13 +918,15 @@ class _ReservationState extends State<Reservation> {
                     height: 50,
                   ),
                   InkWell(
-                    onTap: progress == 1 ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Confirmation()),
-                      );
-                    } : null,
+                    onTap: progress == 1
+                        ? () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Confirmation()),
+                            );
+                          }
+                        : null,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 58,

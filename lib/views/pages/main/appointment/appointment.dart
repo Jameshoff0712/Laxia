@@ -30,6 +30,9 @@ class _AppointmentState extends State<Appointment>
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        SizedBox(
+          height: 44,
+        ),
         Stack(
           children: [
             Padding(
@@ -44,7 +47,6 @@ class _AppointmentState extends State<Appointment>
                       '予約',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
                         color: Color.fromARGB(255, 51, 51, 51),
@@ -82,21 +84,21 @@ class _AppointmentState extends State<Appointment>
                       child: isEmpty
                           ? _buildEmptyClinic()
                           : ListView(
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            children: [
-                              chatStatus(
-                                  statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-                              chatStatus(
-                                statusCode: 2,
-                                clinicName: '湘南美容クリニック 銀座院',
-                                bookDate: '予約日時：2020/07/25 11：００〜',
-                              ),
-                              chatStatus(
-                                  statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                              chatStatus(
-                                  statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                            ],
-                          ),
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              children: [
+                                chatStatus(
+                                    statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                                chatStatus(
+                                  statusCode: 2,
+                                  clinicName: '湘南美容クリニック 銀座院',
+                                  bookDate: '予約日時：2020/07/25 11：００〜',
+                                ),
+                                chatStatus(
+                                    statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                                chatStatus(
+                                    statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                              ],
+                            ),
                     ),
                   ),
                 ],
@@ -109,7 +111,8 @@ class _AppointmentState extends State<Appointment>
                       child: ListView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
-                          chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(
+                              statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
                           chatStatus(
                             statusCode: 1,
                             clinicName: '湘南美容クリニック 銀座院',
@@ -148,7 +151,8 @@ class _AppointmentState extends State<Appointment>
                       child: ListView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
-                          chatStatus(statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(
+                              statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
                         ],
                       ),
                     ),
@@ -163,7 +167,8 @@ class _AppointmentState extends State<Appointment>
                       child: ListView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
-                          chatStatus(statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(
+                              statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
                         ],
                       ),
                     ),
@@ -209,7 +214,6 @@ class _AppointmentState extends State<Appointment>
                     'クリニックを探す',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
                       color: Helper.whiteColor,
