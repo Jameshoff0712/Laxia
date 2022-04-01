@@ -31,7 +31,12 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
         children: [
           Text(
             widget.name,
-            style: TextStyle(color: Helper.appTxtColor),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 14,
+              height: 1.5,
+              color: Color.fromARGB(255, 18, 18, 18),
+            ),
           ),
           SizedBox(
             height: 10,
@@ -43,7 +48,12 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
                         value: item,
                         child: Text(
                           item,
-                          style: TextStyle(color: Helper.blackColor),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            height: 1.5,
+                            color: Color.fromARGB(255, 18, 18, 18),
+                          ),
                         ),
                       ))
                   .toList(),

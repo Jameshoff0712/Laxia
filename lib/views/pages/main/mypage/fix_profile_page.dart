@@ -24,17 +24,22 @@ class _FixProfilePageState extends State<FixProfilePage> {
         backgroundColor: Helper.whiteColor,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context, "");
+              Navigator.pop(context);
             },
             icon: const Icon(
               Icons.close,
-              color: Helper.appTxtColor,
+              color: Helper.titleColor,
             )),
         centerTitle: true,
         title: Center(
           child: Text(
             'プロフィールを編集',
-            style: TextStyle(color: Helper.appTxtColor, fontSize: 16.0),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              height: 1.5,
+              color: Helper.titleColor,
+            ),
           ),
         ),
         actions: [
@@ -44,7 +49,12 @@ class _FixProfilePageState extends State<FixProfilePage> {
               child: Container(
                 child: Text(
                   "保存",
-                  style: TextStyle(color: Helper.mainColor),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5,
+                    color: Helper.mainColor,
+                  ),
                 ),
               ),
             ),
@@ -53,10 +63,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
             width: 16,
           ),
         ],
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             children: [
               Container(
@@ -67,14 +78,14 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     CircleAvatar(
                       radius: 40,
                       child: ClipOval(
-                        child: Image.asset('assets/images/user/user1.jpg',
+                        child: Image.asset('images/user/user1.jpg',
                             width: 80, height: 80, fit: BoxFit.cover),
                       ),
                     ),
                     Container(
                         height: 20,
                         width: 24,
-                        decoration: BoxDecoration(color: Helper.blackColor),
+                        // decoration: BoxDecoration(color: Helper.blackColor),
                         child: Icon(
                           Icons.camera_alt_outlined,
                           color: Helper.whiteColor,
@@ -83,13 +94,18 @@ class _FixProfilePageState extends State<FixProfilePage> {
                 ),
               ),
               SizedBox(
-                height: 10.0,
+                height: 8,
               ),
               Text(
                 "プロフィール写真を変更",
-                style: TextStyle(color: Helper.mainColor, fontSize: 16.0),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 11,
+                    height: 1.5,
+                    color: Helper.mainColor,
+                  ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 16.0),
               Container(
                 child: Column(
                   children: [
