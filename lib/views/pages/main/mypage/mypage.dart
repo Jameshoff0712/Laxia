@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
@@ -8,6 +10,7 @@ import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
+import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 
 class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);
@@ -463,23 +466,30 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             width: 20,
                           ),
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.settings,
-                                  color: Helper.titleColor,
-                                ),
-                                Text(
-                                  "設定",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12,
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) =>
+                                            SettingPage()));
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.settings,
                                     color: Helper.titleColor,
                                   ),
-                                )
-                              ],
+                                  Text(
+                                    "設定",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                      color: Helper.titleColor,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           )
                         ],

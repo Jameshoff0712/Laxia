@@ -23,6 +23,7 @@ import 'package:laxia/views/pages/main/home/home.dart';
 import 'package:laxia/views/onboarding.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
+import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 import 'package:laxia/views/pages/main/reservation/completion.dart';
 import 'package:laxia/views/pages/main/reservation/confirmation.dart';
 import 'package:laxia/views/pages/main/reservation/reservation.dart';
@@ -95,6 +96,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => FollowerListPage());
       case '/Point':
         return MaterialPageRoute(builder: (_) => PointPage());
+      case '/Setting':
+        return MaterialPageRoute(builder: (_) => SettingPage());
       case '/AddDiaryList':
         return MaterialPageRoute(builder: (_) => DiaryPage());
       case '/AddDiaryStep1':
