@@ -39,7 +39,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                   ),
                 ),
                 SizedBox(
-                  width: 9,
+                  width: 3,
                 ),
                 Expanded(
                     child: Row(
@@ -52,21 +52,26 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                           fit: FlexFit.tight,
                           child: Text(
                             "Yuka111",
-                            style: defaultTextStyle(
-                                Helper.appTxtColor, FontWeight.w700,
-                                size: 14),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12,
+                              height: 1.5,
+                              color: Helper.titleColor,
+                            ),
                           )),
                     ),
                     InkWell(
                         onTap: () {},
                         child: Container(
                           padding: EdgeInsets.all(5.0),
-                          color: Helper.lightGrey,
+                          color: Color.fromARGB(51, 240, 154, 55),
                           child: Text(
                             "未公開",
-                            style: defaultTextStyle(
-                                Helper.darkGrey, FontWeight.w100,
-                                size: 10),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10,
+                              color: Color.fromARGB(255, 249, 161, 56),
+                            ),
                           ),
                         )),
                   ],
@@ -81,7 +86,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: (MediaQuery.of(context).size.width - 60) / 2,
+                  width: (MediaQuery.of(context).size.width - 70) / 2,
                   child: Stack(
                     alignment: AlignmentDirectional.bottomStart,
                     children: [
@@ -89,30 +94,39 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           child: Image(
                             image: AssetImage(
-                              'assets/images/user/eyebefore.jpg',
+                              'images/user/eyebefore.jpg',
                             ),
                           )),
                       Container(
-                        padding: EdgeInsets.all(2.0),
-                        width: 80,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        width: 60,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.zero,
-                                bottomLeft: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                                bottomRight: Radius.zero),
-                            color: Helper.blackColor),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.zero),
+                          color: Color.fromARGB(128, 0, 0, 0),
+                        ),
                         alignment: AlignmentDirectional.bottomStart,
                         child: Text(
                           "Before",
-                          style: TextStyle(color: Helper.whiteColor, fontSize: 16),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10,
+                              height: 1.5,
+                              color: Helper.whiteColor),
                         ),
                       )
                     ],
                   ),
                 ),
                 SizedBox(
-                  width: (MediaQuery.of(context).size.width - 60) / 2,
+                  width: 10,
+                ),
+                SizedBox(
+                  width: (MediaQuery.of(context).size.width - 70) / 2,
                   child: Stack(
                     alignment: AlignmentDirectional.bottomStart,
                     children: [
@@ -120,23 +134,29 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           child: Image(
                             image: AssetImage(
-                              'assets/images/user/eyeafter.jpg',
+                              'images/user/eyeafter.jpg',
                             ),
                           )),
                       Container(
-                        padding: EdgeInsets.all(2.0),
-                        width: 80,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        width: 60,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.zero,
-                                bottomLeft: Radius.circular(10),
-                                topRight: Radius.circular(10),
-                                bottomRight: Radius.zero),
-                            color: Helper.blackColor),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.zero,
+                              bottomLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.zero),
+                          color: Color.fromARGB(128, 0, 0, 0),
+                        ),
                         alignment: AlignmentDirectional.bottomStart,
                         child: Text(
                           "After",
-                          style: TextStyle(color: Helper.whiteColor, fontSize: 16),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10,
+                              height: 1.5,
+                              color: Helper.whiteColor),
                         ),
                       )
                     ],
@@ -148,93 +168,145 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
               height: 20,
             ),
             Container(
-              child: Text("2日目、起床直後の様子です。腫れは昨日とくくら腫れは昨日とくくら...",
-                  overflow: TextOverflow.clip,
-                  textAlign: TextAlign.justify,
-                  maxLines: 1),
+              child: Text(
+                "2日目、起床直後の様子です。腫れは昨日とくくら腫れは昨日とくくら...",
+                overflow: TextOverflow.clip,
+                textAlign: TextAlign.justify,
+                maxLines: 1,
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  height: 1.3,
+                  color: Helper.titleColor,
+                ),
+              ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Column(
               children: [
                 _buildInfoTile(
                     Text(
                       "二重切開",
-                      style: TextStyle(color: Helper.darkGrey),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5,
+                        color: Helper.maintxtColor,
+                      ),
                     ),
                     FaIcon(FontAwesomeIcons.tags,
-                        color: Helper.darkGrey, size: 16)),
+                        color: Helper.maintxtColor, size: 10)),
                 SizedBox(
                   height: 10,
                 ),
                 _buildInfoTile(
                     Text(
                       "ラシア美容クリニック　DEF院",
-                      style: TextStyle(color: Helper.darkGrey),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5,
+                        color: Helper.maintxtColor,
+                      ),
                     ),
                     FaIcon(FontAwesomeIcons.hospital,
-                        color: Helper.darkGrey, size: 16)),
+                        color: Helper.maintxtColor, size: 10)),
                 SizedBox(
                   height: 10,
                 ),
                 _buildInfoTile(
                     Text(
                       "田中圭 医師",
-                      style: TextStyle(color: Helper.darkGrey),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5,
+                        color: Helper.maintxtColor,
+                      ),
                     ),
                     FaIcon(FontAwesomeIcons.userNurse,
-                        color: Helper.darkGrey, size: 16)),
+                        color: Helper.maintxtColor, size: 10)),
                 SizedBox(
                   height: 10,
                 ),
                 _buildInfoTile(
                     Text(
                       "2万8000円",
-                      style: TextStyle(color: Helper.darkGrey),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5,
+                        color: Helper.maintxtColor,
+                      ),
                     ),
                     FaIcon(FontAwesomeIcons.moneyBill,
-                        color: Helper.darkGrey, size: 16)),
+                        color: Helper.maintxtColor, size: 10)),
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 7,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Icon(
                   Icons.remove_red_eye_sharp,
-                  color: Helper.darkGrey,
-                  size: 16,
+                  color: Helper.maintxtColor,
+                  size: 15,
+                ),
+                SizedBox(
+                  width: 5,
                 ),
                 Text(
                   "11",
-                  style: TextStyle(color: Helper.darkGrey),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 11,
+                    height: 1.5,
+                    color: Helper.maintxtColor,
+                  ),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 FaIcon(
                   FontAwesomeIcons.heart,
-                  color: Helper.darkGrey,
-                  size: 16,
+                  color: Helper.maintxtColor,
+                  size: 15,
+                ),
+                SizedBox(
+                  width: 5,
                 ),
                 Text(
                   "88",
-                  style: TextStyle(color: Helper.darkGrey),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 11,
+                    height: 1.5,
+                    color: Helper.maintxtColor,
+                  ),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 FaIcon(
                   FontAwesomeIcons.comment,
-                  color: Helper.darkGrey,
-                  size: 16,
+                  color: Helper.maintxtColor,
+                  size: 15,
+                ),
+                SizedBox(
+                  width: 5,
                 ),
                 Text(
                   "4",
-                  style: TextStyle(color: Helper.darkGrey),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 11,
+                    height: 1.5,
+                    color: Helper.maintxtColor,
+                  ),
                 ),
               ],
             )
@@ -252,11 +324,11 @@ Widget _buildInfoTile(Text label, FaIcon icon) {
       children: [
         SizedBox(
           child: icon,
-          width: 16,
-          height: 16,
+          width: 12,
+          height: 12,
         ),
         SizedBox(
-          width: 15,
+          width: 9,
         ),
         label,
       ],
