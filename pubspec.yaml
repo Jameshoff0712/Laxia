@@ -60,6 +60,15 @@ dependencies:
   google_sign_in: ^5.2.4
   shared_preferences: ^2.0.13
   intl_generator: ^0.2.1
+  nb_utils: ^4.4.14
+  dropdown_button2: ^1.2.2
+  table_calendar: ^2.1.0
+
+  easy_sidemenu: ^0.2.0
+  side_menu: ^0.0.3
+  flutter_xlider: ^3.4.0
+  flappy_search_bar: ^1.7.2
+  extended_wrap: ^0.1.0
 
 dev_dependencies:
   flutter_test:
@@ -107,9 +116,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Hiragino-Kaku-Gothic-Pro-W6
-      fonts:
-        - asset: assets/fonts/Hiragino-Kaku-Gothic-Pro-W6.otf
+      - family: Hiragino Kaku Gothic Pro W6
+        fonts:
+          - asset: assets/fonts/Hiragino-Kaku-Gothic-Pro-W6.otf
+            weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
