@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/pages/main/mypage/input_code_page.dart';
+import 'package:laxia/views/pages/main/mypage/invite_share_page.dart';
 
 class InvitePage extends StatefulWidget {
   const InvitePage({Key? key}) : super(key: key);
@@ -175,7 +176,15 @@ class _InvitePageState extends State<InvitePage> {
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return InviteSharePage();
+                          },
+                          isScrollControlled: true,
+                        );
+                      },
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 13),
                         decoration: BoxDecoration(
@@ -191,7 +200,7 @@ class _InvitePageState extends State<InvitePage> {
                               width: 15,
                             ),
                             Text(
-                              'あなたの紹介コード',
+                              '招待コードを友達に送る',
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16,

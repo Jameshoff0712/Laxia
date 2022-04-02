@@ -12,8 +12,10 @@ import 'package:laxia/views/pages/main/home/part/part.dart';
 import 'package:laxia/views/pages/main/home/search/searchview.dart';
 import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/pages/main/home/selectsurgery.dart';
+import 'package:laxia/views/pages/main/mypage/contact_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
+import 'package:laxia/views/pages/main/mypage/invite_page.dart';
 import 'package:laxia/views/pages/main/mypage/mypage.dart';
 import 'package:laxia/views/pages/auth/emaillogin.dart';
 import 'package:laxia/views/pages/auth/login.dart';
@@ -24,6 +26,8 @@ import 'package:laxia/views/onboarding.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
+import 'package:laxia/views/pages/main/mypage/terms_of_service.dart';
+import 'package:laxia/views/pages/main/mypage/terms_of_service_web.dart';
 import 'package:laxia/views/pages/main/reservation/completion.dart';
 import 'package:laxia/views/pages/main/reservation/confirmation.dart';
 import 'package:laxia/views/pages/main/reservation/reservation.dart';
@@ -98,6 +102,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PointPage());
       case '/Setting':
         return MaterialPageRoute(builder: (_) => SettingPage());
+      case '/TermsOfService':
+        return MaterialPageRoute(builder: (_) => TermsOfServicePage());
+      case '/Contact':
+        return MaterialPageRoute(builder: (_) => ContactPage());
+      case '/TermsOfServiceWeb':
+        return MaterialPageRoute(builder: (_) => TermsOfServiceWeb());
+      case '/Invite':
+        return MaterialPageRoute(builder: (_) => InvitePage());
       case '/AddDiaryList':
         return MaterialPageRoute(builder: (_) => DiaryPage());
       case '/AddDiaryStep1':
