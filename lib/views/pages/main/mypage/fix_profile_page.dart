@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/mypage/input_text_widget.dart';
 import 'package:laxia/views/pages/main/mypage/selectbox_widget.dart';
+import 'package:provider/provider.dart';
 
 class FixProfilePage extends StatefulWidget {
   @override
@@ -10,14 +15,29 @@ class FixProfilePage extends StatefulWidget {
 
 class _FixProfilePageState extends State<FixProfilePage> {
   String _enteredText = '';
+  List<String> _cities = [];
+
+  Future<void> readCities() async {
+    final String response =
+        await rootBundle.loadString('cfg/japanese-city-data.json');
+    final data = await json.decode(response);
+    setState(() {
+      for (int i = 0; i < data.length; i++) {
+        _cities.add(data[i]["label"]);
+      }
+    });
+  }
 
   @override
   void initState() {
+    readCities();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryProvider =
+        Provider.of<SurGeryProvider>(context, listen: true);
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -99,11 +119,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
               Text(
                 "プロフィール写真を変更",
                 style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 11,
-                    height: 1.5,
-                    color: Helper.mainColor,
-                  ),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 11,
+                  height: 1.5,
+                  color: Helper.mainColor,
+                ),
               ),
               SizedBox(height: 16.0),
               Container(
@@ -147,16 +167,59 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     ),
                     SelectBoxWidget(
                       name: "施術希望エリア",
-                      items: [],
+                      items: _cities,
                       chosenValue: "",
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
-                    SelectBoxWidget(
-                      name: "気になっている施術・部位",
-                      items: [],
-                      chosenValue: "",
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '気になっている施術・部位',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                          height: 1.5,
+                          color: Color.fromARGB(255, 18, 18, 18),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(color: Colors.white),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(18.0, 14.0, 18.0, 14.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  surgeryProvider.selectedCurePos.isEmpty
+                                      ? "選択してください"
+                                      : surgeryProvider.getSelectedCurePosStr,
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 16),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  surgeryProvider.setButtonText("次へ");
+                                  Navigator.of(context)
+                                      .pushNamed("/SelectSurgery");
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ]),
+                      ),
                     ),
                   ],
                 ),

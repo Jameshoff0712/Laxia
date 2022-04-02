@@ -4,7 +4,7 @@ import 'package:laxia/common/helper.dart';
 class SelectBoxWidget extends StatefulWidget {
   String name = '';
   List<String> items = [];
-  String chosenValue = '';
+  String? chosenValue;
   SelectBoxWidget(
       {required this.name, required this.items, required this.chosenValue});
   @override
@@ -16,9 +16,9 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
   @override
   void initState() {
     super.initState();
-    _chosenValue = widget.chosenValue;
+    _chosenValue = widget.chosenValue!;
     setState(() {
-      _chosenValue = widget.chosenValue;
+      _chosenValue = widget.chosenValue!;
     });
   }
 
@@ -42,7 +42,6 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
             height: 10,
           ),
           DropdownButtonFormField<String>(
-              value: _chosenValue,
               items: widget.items
                   .map((item) => DropdownMenuItem<String>(
                         value: item,
