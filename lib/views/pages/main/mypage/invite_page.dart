@@ -9,6 +9,7 @@ class InvitePage extends StatefulWidget {
 }
 
 class _InvitePageState extends State<InvitePage> {
+  bool isCopied = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -115,29 +116,64 @@ class _InvitePageState extends State<InvitePage> {
                     ]),
                 child: Column(
                   children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            fillColor: Color.fromARGB(255, 245, 245, 245),
+                            filled: true,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isCopied = true;
+                                });
+                                Future.delayed(Duration(seconds: 2)).then((_) {
+                                  setState(() {
+                                    isCopied = false;
+                                  });
+                                });
+                              },
+                              child:
+                                  Icon(Icons.copy, color: Helper.maintxtColor),
+                            ),
+                          ),
+                          onChanged: (text) {},
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        fillColor: Color.fromARGB(255, 245, 245, 245),
-                        filled: true,
-                        suffixIcon: InkWell(
-                          onTap: () {},
-                          child: Icon(Icons.copy, color: Helper.maintxtColor),
-                        ),
-                      ),
-                      onChanged: (text) {},
+                        isCopied
+                            ? Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 13, horizontal: 32),
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(128, 0, 0, 0),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Text(
+                                    "コピーしました",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16,
+                                      height: 1.5,
+                                      color: Helper.whiteColor,
+                                    ),
+                                  )),
+                            )
+                            : Container()
+                      ],
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {},
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 13),
@@ -148,7 +184,8 @@ class _InvitePageState extends State<InvitePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.ios_share_sharp, color: Helper.whiteColor),
+                            Icon(Icons.ios_share_sharp,
+                                color: Helper.whiteColor),
                             SizedBox(
                               width: 15,
                             ),
@@ -172,7 +209,7 @@ class _InvitePageState extends State<InvitePage> {
             SizedBox(
               height: 30,
             ),
-            InkWell(
+            GestureDetector(
               onTap: () {},
               child: Text(
                 'すでに紹介コードをお持ち方はこちら',
