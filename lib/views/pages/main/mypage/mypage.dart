@@ -9,6 +9,7 @@ import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
+import 'package:laxia/views/pages/main/mypage/invite_page.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 
@@ -439,23 +440,39 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.supervisor_account,
-                                  color: Helper.titleColor,
-                                ),
-                                Text(
-                                  "友達招待",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12,
+                            child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10.0),
+                                        topRight: Radius.circular(10.0)),
+                                  ),
+                                  context: context,
+                                  builder: (context) {
+                                    return InvitePage();
+                                  },
+                                  isScrollControlled: true,
+                                );
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.supervisor_account,
                                     color: Helper.titleColor,
                                   ),
-                                )
-                              ],
+                                  Text(
+                                    "友達招待",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                      color: Helper.titleColor,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           const VerticalDivider(
@@ -467,10 +484,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                           ),
                           Expanded(
                             child: InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) =>
-                                            SettingPage()));
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SettingPage()));
                               },
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
