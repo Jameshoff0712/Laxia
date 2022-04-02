@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/mypage/input_code_page.dart';
 
 class InvitePage extends StatefulWidget {
   const InvitePage({Key? key}) : super(key: key);
@@ -150,23 +151,23 @@ class _InvitePageState extends State<InvitePage> {
                         ),
                         isCopied
                             ? Align(
-                              alignment: Alignment.center,
-                              child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 13, horizontal: 32),
-                                  decoration: BoxDecoration(
-                                      color: Color.fromARGB(128, 0, 0, 0),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Text(
-                                    "コピーしました",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16,
-                                      height: 1.5,
-                                      color: Helper.whiteColor,
-                                    ),
-                                  )),
-                            )
+                                alignment: Alignment.center,
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 13, horizontal: 32),
+                                    decoration: BoxDecoration(
+                                        color: Color.fromARGB(128, 0, 0, 0),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Text(
+                                      "コピーしました",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16,
+                                        height: 1.5,
+                                        color: Helper.whiteColor,
+                                      ),
+                                    )),
+                              )
                             : Container()
                       ],
                     ),
@@ -210,7 +211,20 @@ class _InvitePageState extends State<InvitePage> {
               height: 30,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0)),
+                  ),
+                  context: context,
+                  builder: (context) {
+                    return InputCodePage();
+                  },
+                  isScrollControlled: true,
+                );
+              },
               child: Text(
                 'すでに紹介コードをお持ち方はこちら',
                 style: TextStyle(
