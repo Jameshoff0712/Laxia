@@ -13,6 +13,8 @@ import 'package:laxia/views/pages/main/home/search/searchview.dart';
 import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/pages/main/home/selectsurgery.dart';
 import 'package:laxia/views/pages/main/mypage/contact_page.dart';
+import 'package:laxia/views/pages/main/mypage/diary_detail_fix_page.dart';
+import 'package:laxia/views/pages/main/mypage/diary_fix_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/invite_page.dart';
@@ -110,6 +112,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => TermsOfServiceWeb());
       case '/Invite':
         return MaterialPageRoute(builder: (_) => InvitePage());
+      case '/DiaryFix':
+        return MaterialPageRoute(builder: (_) => DiaryFixPage());
+      case '/DiaryDetailFix':
+        return MaterialPageRoute(builder: (_) => DiaryDetailFixPage());
       case '/AddDiaryList':
         return MaterialPageRoute(builder: (_) => DiaryPage());
       case '/AddDiaryStep1':

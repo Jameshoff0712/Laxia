@@ -70,6 +70,7 @@ dependencies:
   flappy_search_bar: ^1.7.2
   extended_wrap: ^0.1.0
   webview_flutter: ^3.0.1
+  flutter_image_slideshow: ^0.1.2
 
 dev_dependencies:
   flutter_test:
