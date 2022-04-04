@@ -12,8 +12,6 @@ import 'package:laxia/views/pages/main/home/sub/home_question.dart';
 import 'package:laxia/views/pages/main/home/sub/home_sub.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
-import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
-import 'package:laxia/views/widgets/textbutton_drawer.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'dart:async';

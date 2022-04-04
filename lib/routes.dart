@@ -6,6 +6,9 @@ import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_three.dart';
 import 'package:laxia/views/pages/auth/registration.dart';
 import 'package:laxia/views/pages/main/favorite/favorite.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 import 'package:laxia/views/pages/main/home/narrow_case.dart';
 import 'package:laxia/views/pages/main/home/narrow_diary.dart';
 import 'package:laxia/views/pages/main/home/part/part.dart';
@@ -84,11 +87,16 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NarrowDiary());
       case '/Part':
         return MaterialPageRoute(builder: (_) => Part());
+      case '/Clinic_Datail':
+        return MaterialPageRoute(builder: (_) => Clinic_Datail());
+      case '/Menu_Datail':
+        return MaterialPageRoute(builder: (_) => Menu_Datail());
+      case '/Doctor_Detail':
+        return MaterialPageRoute(builder: (_) => Doctor_Detail());
       case '/Appointment':
         return MaterialPageRoute(builder: (_) => Appointment());
       case '/Chat':
-        return MaterialPageRoute(
-            builder: (_) => ChatScreen(user: favorites[0]));
+        return MaterialPageRoute(builder: (_) => ChatScreen(user: favorites[0]));
       case '/Reservation':
         return MaterialPageRoute(builder: (_) => Reservation());
       case '/Confirmation':

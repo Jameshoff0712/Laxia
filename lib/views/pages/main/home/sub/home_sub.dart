@@ -1,10 +1,7 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/home_model.dart';
 import 'package:laxia/provider/user_provider.dart';
-import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
 import 'package:provider/provider.dart';

@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   dynamic currentTab;
-
   Widget currentPage = HomeScreen();
   DashboardScreen({Key? key, this.currentTab}) {
     currentTab = 0;
