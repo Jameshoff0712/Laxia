@@ -53,6 +53,7 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
           ),
           Container(
             padding: EdgeInsets.all(16),
+            width: double.infinity,
             color: Helper.whiteColor,
             child: Text(
               '二重切開 , 目頭切開',
@@ -78,6 +79,7 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
           ),
           Container(
             padding: EdgeInsets.all(16),
+            width: double.infinity,
             color: Helper.whiteColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
