@@ -242,7 +242,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                           ),
                           OutlinedButton(
                               onPressed: () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
