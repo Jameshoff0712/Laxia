@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class Clinic_Card extends StatefulWidget {
+  final VoidCallback ? onpress;
   final String image, post, name, mark, day, clinic;
   const Clinic_Card(
       {Key? key,
@@ -12,7 +13,7 @@ class Clinic_Card extends StatefulWidget {
       required this.name,
       required this.mark,
       required this.day,
-      required this.clinic})
+      required this.clinic, this.onpress=null})
       : super(key: key);
 
   @override
@@ -23,16 +24,13 @@ class _Clinic_CardState extends State<Clinic_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (_) => MessageScreen(user: favorites[index])));
-      },
+      onTap:widget.onpress,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            widget.image!="none"?Container(
               decoration: BoxDecoration(color: Helper.whiteColor),
               child: Padding(
                 padding: const EdgeInsets.only(left: 12),
@@ -68,7 +66,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                   ],
                 ),
               ),
-            ),
+            ):SizedBox(width: 0,),
             Container(
               decoration: BoxDecoration(color: Helper.whiteColor),
               child: SizedBox(

@@ -12,7 +12,6 @@ import '../models/m_settings.dart';
 ValueNotifier<Setting> setting = ValueNotifier(Setting());
 final navigatorKey = GlobalKey<NavigatorState>();
 
-// TODO: Make it dynamic setting from api
 Future<Setting> initSettings() async {
   Setting _setting;
   String appSetting = await rootBundle.loadString("assets/cfg/app-settings.json");

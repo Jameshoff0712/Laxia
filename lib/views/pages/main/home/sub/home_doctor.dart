@@ -7,11 +7,11 @@ import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 
 class Home_Doctor extends StatefulWidget {
-  final bool? isScrollable;
+  final bool? isScrollable,isdrawer;
   final VoidCallback? scrollTop;
   final bool  issearch;
   final List ? model;
-  const Home_Doctor({Key? key, required this.issearch, this.model, this.isScrollable=true, this.scrollTop=null}) : super(key: key);
+  const Home_Doctor({Key? key, required this.issearch, this.model, this.isScrollable=true, this.scrollTop=null, this.isdrawer=true}) : super(key: key);
 
   @override
   State<Home_Doctor> createState() => _Home_DoctorState();
@@ -50,9 +50,9 @@ class _Home_DoctorState extends State<Home_Doctor> {
       color: Helper.homeBgColor,
       child: Column(
         children: [
-           Container(
+           widget.isdrawer!? Container(
             color: Helper.whiteColor,
-            child: Row(
+           child: Row(
               children: [
                 Expanded(
                     flex: 3,
@@ -67,7 +67,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                 ),
               ],
             ),
-          ),
+          ):SizedBox(height: 0,),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
@@ -83,6 +83,9 @@ class _Home_DoctorState extends State<Home_Doctor> {
                           shrinkWrap:true,
                           itemBuilder: (BuildContext context, int index) {
                             return Doctor_Card(
+                                onpress: (){
+                                  Navigator.of(context).pushNamed("/Doctor_Detail");
+                                },
                                 image: mid[index]["image"],
                                 post: mid[index]["post"],
                                 name: mid[index]["name"],
