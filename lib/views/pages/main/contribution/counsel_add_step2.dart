@@ -2,6 +2,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/models/counsel_question_model.dart';
+import 'package:laxia/views/widgets/ToggleSwitchButton.dart';
 import 'package:laxia/views/widgets/counsel_question_card.dart';
 
 class AddCounselStep2Page extends StatefulWidget {
@@ -12,6 +13,7 @@ class AddCounselStep2Page extends StatefulWidget {
 class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
   bool isAddEnabled = true;
   int selectstar = 0;
+  bool _notificationStatus = true;
   // late OfferController _con;
 
   // _AddCounselStep2PageState() : super(OfferController()) {
@@ -131,6 +133,39 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Helper.authHintColor)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add_circle_outline_sharp,
+                        color: Helper.mainColor,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        ' 質問・相談を追加',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                          height: 1.5,
+                          color: Helper.mainColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Column(
               children: [
                 ListView.builder(
@@ -244,16 +279,100 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
             Container(
               color: Colors.white,
               padding: EdgeInsets.only(left: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  for (int i = 0; i < 5; i++)
-                    Star(
-                        i,
-                        selectstar > i
-                            ? Color.fromARGB(255, 242, 201, 76)
-                            : Color.fromARGB(255, 222, 222, 222)),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      for (int i = 0; i < 5; i++)
+                        Star(
+                            i,
+                            selectstar > i
+                                ? Color.fromARGB(255, 242, 201, 76)
+                                : Color.fromARGB(255, 222, 222, 222)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    '5段階評価で入力してください。',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
+                      color: Helper.txtColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: ListTile(
+                contentPadding: EdgeInsets.symmetric(vertical: 0),
+                title: Text(
+                  '公開設定',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 102, 110, 110),
+                      fontWeight: FontWeight.normal),
+                ),
+              ),
+            ),
+            Container(
+                color: Colors.white,
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'レポートを公開',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        height: 1.5,
+                        color: Helper.titleColor,
+                      ),
+                    ),
+                    ToggleSwitchButton(
+                      value: _notificationStatus,
+                      activeColor: Helper.mainColor,
+                      onChanged: (value) => setState(() {
+                        _notificationStatus = value;
+                      }),
+                    ),
+                  ],
+                )),
+            SizedBox(
+              height: 48,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: InkWell(
+                onTap: (){},
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 62),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: Helper.mainColor,)
+                  ),
+                  child: Text(
+                    "編集を完了",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      height: 1.5,
+                      color: Helper.mainColor,
+                    ),
+                  ),
+                ),
               ),
             ),
             Center(
