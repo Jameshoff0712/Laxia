@@ -85,6 +85,10 @@ class _Home_ClinicState extends State<Home_Clinic> {
                           shrinkWrap:true,
                           itemBuilder: (BuildContext context, int index) {
                             return Clinic_Card(
+                              onpress: (){
+                                // print("object");
+                                Navigator.of(context).pushNamed("/Clinic_Datail");
+                              },
                                 image: mid[index]["image"],
                                 post: mid[index]["post"],
                                 name: mid[index]["name"],
