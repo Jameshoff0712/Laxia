@@ -442,6 +442,13 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                                 ),
                                 fillColor: Color.fromARGB(255, 243, 243, 243),
                                 filled: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 6, horizontal: 10),
+                              ),
+                              style: TextStyle(
+                                fontSize: 12,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400,
                               ),
                               onChanged: (text) {},
                             ),

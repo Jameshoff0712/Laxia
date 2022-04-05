@@ -16,6 +16,7 @@ import 'package:laxia/views/pages/main/home/search/searchview.dart';
 import 'package:laxia/views/pages/main/home/selectprefecture.dart';
 import 'package:laxia/views/pages/main/home/selectsurgery.dart';
 import 'package:laxia/views/pages/main/mypage/contact_page.dart';
+import 'package:laxia/views/pages/main/mypage/counseling_fix_page.dart';
 import 'package:laxia/views/pages/main/mypage/diary_detail_fix_page.dart';
 import 'package:laxia/views/pages/main/mypage/diary_fix_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
@@ -30,6 +31,8 @@ import 'package:laxia/views/pages/main/home/home.dart';
 import 'package:laxia/views/onboarding.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
+import 'package:laxia/views/pages/main/mypage/question_fix_page.dart';
+import 'package:laxia/views/pages/main/mypage/question_fix_post.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 import 'package:laxia/views/pages/main/mypage/terms_of_service.dart';
 import 'package:laxia/views/pages/main/mypage/terms_of_service_web.dart';
@@ -124,6 +127,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DiaryFixPage());
       case '/DiaryDetailFix':
         return MaterialPageRoute(builder: (_) => DiaryDetailFixPage());
+      case '/CounselingFix':
+        return MaterialPageRoute(builder: (_) => CounselingFixPage());
+      case '/QuestionFix':
+        return MaterialPageRoute(builder: (_) => QuestionFixPage());
+      case '/QuestionFixPost':
+        return MaterialPageRoute(builder: (_) => QuestionFixPostPage());
       case '/AddDiaryList':
         return MaterialPageRoute(builder: (_) => DiaryPage());
       case '/AddDiaryStep1':
