@@ -59,6 +59,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
               color: Helper.titleColor,
               size: 30,
             )),
+            elevation: 0,
       ),
       body: Container(
         margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
