@@ -30,6 +30,7 @@ class _PointPageState extends State<PointPage> {
               color: Colors.black,
               size: 40,
             )),
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -111,11 +112,10 @@ class _PointPageState extends State<PointPage> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
-                children: List.generate(
-                  point_info.length, 
-                  (index) => _buildPointHistoryInfo(index),
-                )
-              ),
+                  children: List.generate(
+                point_info.length,
+                (index) => _buildPointHistoryInfo(index),
+              )),
             ),
           )),
         ],
@@ -143,7 +143,9 @@ class _PointPageState extends State<PointPage> {
           shrinkWrap: true,
           itemCount: point_info[index]["items"].length,
           itemBuilder: (BuildContext context, int subIndex) {
-            return _buildPointHistoryRow(point_info[index]["items"][subIndex]["type"], point_info[index]["items"][subIndex]["price"]);
+            return _buildPointHistoryRow(
+                point_info[index]["items"][subIndex]["type"],
+                point_info[index]["items"][subIndex]["price"]);
           },
         ),
       ],

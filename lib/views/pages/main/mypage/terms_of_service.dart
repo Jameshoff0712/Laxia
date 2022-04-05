@@ -34,6 +34,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(

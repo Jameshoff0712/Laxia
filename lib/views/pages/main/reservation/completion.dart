@@ -34,6 +34,7 @@ class _CompletionState extends State<Completion> {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -95,7 +96,8 @@ class _CompletionState extends State<Completion> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
-                          color: Helper.mainColor,)),
+                        color: Helper.mainColor,
+                      )),
                   child: Text('ページトップに戻る',
                       textAlign: TextAlign.center,
                       style: TextStyle(

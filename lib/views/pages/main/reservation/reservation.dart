@@ -170,6 +170,7 @@ class _ReservationState extends State<Reservation> {
             ),
           ),
         ),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -34,6 +34,7 @@ class _ConfirmationState extends State<Confirmation> {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
           child: Column(
