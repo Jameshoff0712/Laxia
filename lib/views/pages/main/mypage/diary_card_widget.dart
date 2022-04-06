@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_user.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail_default.dart';
 import 'package:laxia/views/pages/main/mypage/diary_fix_page.dart';
 
 class DiaryCardWidget extends StatefulWidget {
@@ -20,7 +22,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryFixPage()));
+            context, MaterialPageRoute(builder: (context) => Diary_Detail(isMyDiary: true,)));
       },
       child: Card(
         // borderOnForeground: true,

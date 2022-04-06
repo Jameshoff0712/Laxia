@@ -35,6 +35,7 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,29 +135,34 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
               ],
             ),
           ),
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                onTap: (){},
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 62),
-                  decoration: BoxDecoration(
+            alignment: Alignment.center,
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 62),
+                decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Helper.mainColor,)
-                  ),
-                  child: Text(
-                    "編集を完了",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5,
+                    border: Border.all(
                       color: Helper.mainColor,
-                    ),
+                    )),
+                child: Text(
+                  "編集を完了",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5,
+                    color: Helper.mainColor,
                   ),
                 ),
               ),
             ),
+          ),
         ],
       ),
     );

@@ -51,6 +51,7 @@ class _AppointmentState extends State<Appointment>
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: Column(children: [
         TabBarWidget(

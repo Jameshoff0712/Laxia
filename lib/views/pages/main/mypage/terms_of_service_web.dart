@@ -5,7 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:laxia/common/helper.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
-
 class TermsOfServiceWeb extends StatefulWidget {
   const TermsOfServiceWeb({Key? key}) : super(key: key);
 
@@ -14,7 +13,6 @@ class TermsOfServiceWeb extends StatefulWidget {
 }
 
 class _TermsOfServiceWebState extends State<TermsOfServiceWeb> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +38,7 @@ class _TermsOfServiceWebState extends State<TermsOfServiceWeb> {
               color: Helper.mainColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: InAppWebView(
         initialUrlRequest: URLRequest(url: Uri.parse('https://flutter.dev')),

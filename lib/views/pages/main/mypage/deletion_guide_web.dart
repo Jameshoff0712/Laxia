@@ -5,7 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:laxia/common/helper.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
-
 class DeletionGuideWeb extends StatefulWidget {
   const DeletionGuideWeb({Key? key}) : super(key: key);
 
@@ -14,7 +13,6 @@ class DeletionGuideWeb extends StatefulWidget {
 }
 
 class _DeletionGuideWebState extends State<DeletionGuideWeb> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +38,7 @@ class _DeletionGuideWebState extends State<DeletionGuideWeb> {
               color: Helper.mainColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: InAppWebView(
         initialUrlRequest: URLRequest(url: Uri.parse('https://flutter.dev')),

@@ -31,6 +31,7 @@ import 'package:laxia/views/pages/main/appointment/appointment.dart';
 import 'package:laxia/views/pages/main/home/home.dart';
 import 'package:laxia/views/onboarding.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
+import 'package:laxia/views/pages/main/mypage/notice_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/question_fix_page.dart';
 import 'package:laxia/views/pages/main/mypage/question_fix_post.dart';
@@ -103,7 +104,8 @@ class RouteGenerator {
       case '/Appointment':
         return MaterialPageRoute(builder: (_) => Appointment());
       case '/Chat':
-        return MaterialPageRoute(builder: (_) => ChatScreen(user: favorites[0]));
+        return MaterialPageRoute(
+            builder: (_) => ChatScreen(user: favorites[0]));
       case '/Reservation':
         return MaterialPageRoute(builder: (_) => Reservation());
       case '/Confirmation':
@@ -130,6 +132,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => TermsOfServiceWeb());
       case '/Invite':
         return MaterialPageRoute(builder: (_) => InvitePage());
+      case '/NoticeList':
+        return MaterialPageRoute(builder: (_) => NoticeListPage());
       case '/DiaryFix':
         return MaterialPageRoute(builder: (_) => DiaryFixPage());
       case '/DiaryDetailFix':

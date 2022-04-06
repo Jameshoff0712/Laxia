@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/mypage/contact_page.dart';
+import 'package:laxia/views/pages/main/mypage/deletion_guide_web.dart';
+import 'package:laxia/views/pages/main/mypage/privacy_policy_web.dart';
+import 'package:laxia/views/pages/main/mypage/terms_of_service.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -9,6 +13,101 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  String appVersion = '1.1.0';
+  List setting_itmes = [
+    {
+      'item_text': '運営ポリシー',
+      'item_right': Icon(
+        Icons.keyboard_arrow_right,
+        color: Helper.txtColor,
+        size: 20,
+      ),
+      'item_taped': (BuildContext context) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => TermsOfServicePage()));
+      }
+    },
+    {
+      'item_text': 'プライバシーポリシー',
+      'item_right': Icon(
+        Icons.keyboard_arrow_right,
+        color: Helper.txtColor,
+        size: 20,
+      ),
+      'item_taped': (BuildContext context) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PrivacyPolicyWeb()));
+      }
+    },
+    {
+      'item_text': '利用規約',
+      'item_right': Icon(
+        Icons.keyboard_arrow_right,
+        color: Helper.txtColor,
+        size: 20,
+      ),
+      'item_taped': (BuildContext context) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => TermsOfServicePage()));
+      }
+    },
+    {
+      'item_text': 'ポイント利用規約',
+      'item_right': Icon(
+        Icons.keyboard_arrow_right,
+        color: Helper.txtColor,
+        size: 20,
+      ),
+      'item_taped': (BuildContext context) {}
+    },
+    {
+      'item_text': '削除ガイドライン',
+      'item_right': Icon(
+        Icons.keyboard_arrow_right,
+        color: Helper.txtColor,
+        size: 20,
+      ),
+      'item_taped': (BuildContext context) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DeletionGuideWeb()));
+      }
+    },
+    {
+      'item_text': 'よくある質問',
+      'item_right': Icon(
+        Icons.keyboard_arrow_right,
+        color: Helper.txtColor,
+        size: 20,
+      ),
+      'item_taped': (BuildContext context) {}
+    },
+    {
+      'item_text': 'お問い合わせ',
+      'item_right': Icon(
+        Icons.keyboard_arrow_right,
+        color: Helper.txtColor,
+        size: 20,
+      ),
+      'item_taped': (BuildContext context) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ContactPage()));
+      }
+    },
+    {
+      'item_text': 'アプリのバージョン',
+      'item_right': Text(
+        '1.1.0',
+        style: TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 14,
+          height: 1.2,
+          color: Color.fromARGB(255, 102, 110, 110),
+        ),
+      ),
+      'item_taped': (BuildContext context) {}
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +133,7 @@ class _SettingPageState extends State<SettingPage> {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -52,7 +152,14 @@ class _SettingPageState extends State<SettingPage> {
                       bottom: BorderSide(
                         color: Color.fromARGB(255, 200, 199, 204),
                       ))),
-              child: _buildSettingItem(),
+              child: _buildSettingItem(
+                  'プロフィールを編集',
+                  Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Helper.txtColor,
+                    size: 20,
+                  ),
+                  (context) {}),
             ),
             SizedBox(
               height: 32,
@@ -67,7 +174,7 @@ class _SettingPageState extends State<SettingPage> {
                         color: Color.fromARGB(255, 200, 199, 204),
                       ))),
               child: ListView.separated(
-                  itemCount: 8,
+                  itemCount: setting_itmes.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
@@ -75,7 +182,10 @@ class _SettingPageState extends State<SettingPage> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                       ),
-                      child: _buildSettingItem(),
+                      child: _buildSettingItem(
+                          setting_itmes[index]['item_text'],
+                          setting_itmes[index]['item_right'],
+                          setting_itmes[index]['item_taped']),
                     );
                   },
                   separatorBuilder: (context, index) => Container(
@@ -93,15 +203,14 @@ class _SettingPageState extends State<SettingPage> {
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(
+                  color: Colors.white,
+                  border: Border(
                       top: BorderSide(
                         color: Color.fromARGB(255, 200, 199, 204),
                       ),
                       bottom: BorderSide(
                         color: Color.fromARGB(255, 200, 199, 204),
-                      ))
-              ),
+                      ))),
               child: Text(
                 'ログアウト',
                 textAlign: TextAlign.center,
@@ -120,15 +229,14 @@ class _SettingPageState extends State<SettingPage> {
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(
+                  color: Colors.white,
+                  border: Border(
                       top: BorderSide(
                         color: Color.fromARGB(255, 200, 199, 204),
                       ),
                       bottom: BorderSide(
                         color: Color.fromARGB(255, 200, 199, 204),
-                      ))
-              ),
+                      ))),
               child: Text(
                 'アカウント削除',
                 textAlign: TextAlign.center,
@@ -146,14 +254,16 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
-  InkWell _buildSettingItem() {
+  InkWell _buildSettingItem(String text, Widget Right, Function taped) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        taped(context);
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'プロフィールを編集',
+            text,
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,
@@ -161,11 +271,7 @@ class _SettingPageState extends State<SettingPage> {
               color: Color.fromARGB(255, 18, 18, 18),
             ),
           ),
-          Icon(
-            Icons.keyboard_arrow_right,
-            color: Helper.txtColor,
-            size: 20,
-          )
+          Right,
         ],
       ),
     );

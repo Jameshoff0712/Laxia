@@ -34,6 +34,7 @@ class _ContactPageState extends State<ContactPage> {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -159,12 +160,11 @@ class _ContactPageState extends State<ContactPage> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 14, horizontal: 36),
-                              decoration: BoxDecoration(
-                                color: Helper.mainColor,
-                                borderRadius: BorderRadius.circular(5)
-                              ),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 14, horizontal: 36),
+                          decoration: BoxDecoration(
+                              color: Helper.mainColor,
+                              borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             'お問い合わせ内容を送信する',
                             style: TextStyle(

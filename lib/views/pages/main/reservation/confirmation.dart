@@ -34,6 +34,7 @@ class _ConfirmationState extends State<Confirmation> {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -126,7 +127,9 @@ class _ConfirmationState extends State<Confirmation> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed("/Completion");
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 58,
