@@ -36,7 +36,7 @@ class _Menu_Sub_Detail_ThreeState extends State<Menu_Sub_Detail_Three> {
                   widget.detailList,
                   style: defaultTextStyle(
                       Helper.maintxtColor, FontWeight.w700,
-                      size: 18),
+                      size: 14),
                 ),
             Expanded(
               child: Align(
@@ -49,7 +49,7 @@ class _Menu_Sub_Detail_ThreeState extends State<Menu_Sub_Detail_Three> {
                         height: 44,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Helper.whiteColor,
+                          primary: Helper.mainColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
@@ -58,14 +58,15 @@ class _Menu_Sub_Detail_ThreeState extends State<Menu_Sub_Detail_Three> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "詳細を表示",
+                              "閉じる",
                               style: defaultTextStyle(
-                                  Helper.mainColor, FontWeight.w700,
+                                  Helper.whiteColor, FontWeight.w700,
                                   size: 13),
                             ),
                           ],
                         ),
                         onPressed: () {
+                          Navigator.of(context).pop();
                         },
                       ),
                     ),

@@ -80,9 +80,9 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>   with SingleTick
                               fontWeight: FontWeight.w700),
                         ),
                       SvgPicture.asset(
-                        "icons/upright.svg",
-                        width: 30,
-                        height: 30,
+                        "icons/upright_nobg.svg",
+                        width: 20,
+                        height: 20,
                       ),
                     ],
                   ),
@@ -156,7 +156,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>   with SingleTick
                   ],
                 ),
                 onPressed: () {
-                  
+                  Navigator.of(context).pushNamed("/Reservation");
                 },
               ),
         ],),

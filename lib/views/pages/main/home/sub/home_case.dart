@@ -169,6 +169,9 @@ class _Home_CaseState extends State<Home_Case> {
                           physics: const AlwaysScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
                             return Diary_Card(
+                              onpress: (){
+                                Navigator.of(context).pushNamed("/CaseDetail");
+                              },
                               buttoncolor: Helper.btnBgMainColor,
                               buttontext: mid[index]["buttontext"],
                               hearts: mid[index]["hearts"],
@@ -179,7 +182,6 @@ class _Home_CaseState extends State<Home_Case> {
                               image1: mid[index]["image1"],
                               eyes: mid[index]["eyes"],
                               name: mid[index]["name"],
-                              onpress: () {},
                               price: mid[index]["price"],
                               sentence: mid[index]["sentence"],
                               type: mid[index]["type"],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 
 class Doctor_Card extends StatefulWidget {
   final VoidCallback? onpress;
@@ -25,7 +26,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onpress,
+      onTap:widget.onpress!,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Row(

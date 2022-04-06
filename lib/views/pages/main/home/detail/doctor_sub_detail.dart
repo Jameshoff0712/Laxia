@@ -77,9 +77,9 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
                               fontWeight: FontWeight.w700),
                         ),
                       SvgPicture.asset(
-                        "icons/upright.svg",
-                        width: 30,
-                        height: 30,
+                        "icons/upright_nobg.svg",
+                        width: 20,
+                        height: 20,
                       ),
                     ],
                   ),

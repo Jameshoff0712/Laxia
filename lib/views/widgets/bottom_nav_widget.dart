@@ -135,16 +135,8 @@ class _BottomNavState extends State<BottomNav> {
             icon: _buildIcon(context, FontAwesomeIcons.calendar, 1),
             label: Trans.of(context).appointment_page),
         BottomNavigationBarItem(
-            icon: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  margin: EdgeInsets.only(top: 0),
-                  decoration: BoxDecoration(
-                      color: _selectedItemColor, shape: BoxShape.circle),
-                  padding: EdgeInsets.all(13.8),
-                  child: _buildIcon(context, FontAwesomeIcons.pen, 2),
-                )),
-            label: ""),
+            icon: _buildIcon(context, FontAwesomeIcons.plusSquare, 5),
+            label: "作成"),
         BottomNavigationBarItem(
             icon: _buildIcon(context, FontAwesomeIcons.heart, 3),
             label: Trans.of(context).favorite_page),

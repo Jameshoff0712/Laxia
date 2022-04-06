@@ -183,7 +183,7 @@ class _Home_MenuState extends State<Home_Menu> {
                             itemBuilder: (BuildContext context, int index) {
                               return Menu_Card(
                                 onpress: (){
-                                  Navigator.of(context).pushNamed("/Menu_Datail");
+                                  Navigator.of(context).pushNamed("/Menu_Detail");
                                 },
                                   image: mid[index]["image"],
                                   heading: mid[index]["heading"],

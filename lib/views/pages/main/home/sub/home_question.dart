@@ -160,7 +160,9 @@ class _Home_QuestionState extends State<Home_Question> {
                         image1: mid[index]["image1"],
                         eyes: mid[index]["eyes"],
                         name: mid[index]["name"],
-                        onpress: () {},
+                        onpress: () {
+                          Navigator.of(context).pushNamed("/QuestionDetail");
+                        },
                         sentence: mid[index]["sentence"],
                         type: mid[index]["type"],
                       );

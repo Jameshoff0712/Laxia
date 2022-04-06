@@ -100,6 +100,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return Menu_Card(
+                                          onpress:(){},
                                           image: widget.model[0][index]
                                               ["image"],
                                           heading: widget.model[0][index]
@@ -168,12 +169,16 @@ class _SearchResultAllState extends State<SearchResultAll> {
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Clinic_Card(
+                                    onpress: (){
+                                      // print("object");
+                                      Navigator.of(context).pushNamed("/Clinic_Datail");
+                                    },
                                     image: widget.model[1][index]["image"],
                                     post: widget.model[1][index]["post"],
                                     name: widget.model[1][index]["name"],
                                     mark: widget.model[1][index]["mark"],
                                     day: widget.model[1][index]["day"],
-                                    clinic: widget.model[1][index]["clinic"]);
+                                    pos: widget.model[1][index]["clinic"]);
                               }),
                         ],
                       ),
@@ -230,6 +235,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Doctor_Card(
+                                    onpress:(){},
                                     image: widget.model[2][index]["image"],
                                     post: widget.model[2][index]["post"],
                                     name: widget.model[2][index]["name"],

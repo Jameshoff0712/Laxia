@@ -5,7 +5,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class Menu_Card extends StatefulWidget {
-  final VoidCallback? onpress;
+  final VoidCallback?onpress;
   final String image, heading, price, tax, clinic;
   final BoxShadow? shadow;
   const Menu_Card(
@@ -26,7 +26,7 @@ class _Menu_CardState extends State<Menu_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onpress,
+      onTap:widget.onpress,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Container(
