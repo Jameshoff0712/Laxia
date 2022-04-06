@@ -61,11 +61,11 @@
    "cert":{
       "label":"通常の埋没法より固定力（強度）が強い、イセア独自の埋没法通常の埋没法より固定力（強度）が強イセア独自の埋没法通法通常のあ度）が強イセア独自の埋....",
       "children":[
-         "通常の通常の埋没法より固定力（強度）が強い、イセア独自の埋没法/n/n<< イセアの埋没法ダブル(５年保証)3つのポイント >><< イセアの埋没法ダブル(５年保証)3つのポイント >>/n①完成後1ヶ月間二重幅変更無料!",
-         "通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。/n/n<< イセアの埋没法ダブル(５年保証)3つのポイント >>/n ①完成後1ヶ月間二重幅変更無料!/n②何点留めでも一律料金！/n③術後５年間同一幅での再手術無料!/n通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。"
+         "通常の通常の埋没法より固定力（強度）が強い、イセア独自の埋没法\n\n<< イセアの埋没法ダブル(５年保証)3つのポイント >><< イセアの埋没法ダブル(５年保証)3つのポイント >>\n①完成後1ヶ月間二重幅変更無料!",
+         "通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。\n\n<< イセアの埋没法ダブル(５年保証)3つのポイント >>\n ①完成後1ヶ月間二重幅変更無料!\n②何点留めでも一律料金！\n③術後５年間同一幅での再手術無料!\n通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。"
       ]
    },
-   "check":"通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。/n/n<< イセアの埋没法ダブル(５年保証)3つのポイント >>/n ①完成後1ヶ月間二重幅変更無料!/n②何点留めでも一律料金！/n③術後５年間同一幅での再手術無料!/n通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。",
+   "check":"通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。\n\n<< イセアの埋没法ダブル(５年保証)3つのポイント >>\n ①完成後1ヶ月間二重幅変更無料!\n②何点留めでも一律料金！\n③術後５年間同一幅での再手術無料!\n通常の埋没法より固定力（強度）が強い、イセア独自の埋没法。",
    "images":[
       "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
       "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
@@ -161,6 +161,68 @@
          "eyes"     : "1",
          "status"    : "未公開"
        }
+      ],
+      "home": [
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         }
       ]      
    }
 ]

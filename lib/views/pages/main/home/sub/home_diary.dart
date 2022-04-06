@@ -189,7 +189,9 @@ class _Home_DiaryState extends State<Home_Diary> {
                               eyes: mid[index]["eyes"],
                               clinic: mid[index]["clinic"],
                               name: mid[index]["name"],
-                              onpress: () {},
+                              onpress: () {
+                                Navigator.of(context).pushNamed("/Diary_Detail");
+                              },
                               price: mid[index]["price"],
                               sentence: mid[index]["sentence"],
                               type: mid[index]["type"],

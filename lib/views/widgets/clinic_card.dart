@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 
 class Clinic_Card extends StatefulWidget {
-  final VoidCallback ? onpress;
-  final String image, post, name, mark, day, clinic;
+  final VoidCallback? onpress,posPress;
+  final String image, post, name, mark, day, pos;
   const Clinic_Card(
       {Key? key,
       required this.image,
@@ -13,7 +14,7 @@ class Clinic_Card extends StatefulWidget {
       required this.name,
       required this.mark,
       required this.day,
-      required this.clinic, this.onpress=null})
+      required this.pos, this.onpress=null, this.posPress=null})
       : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:widget.onpress,
+      onTap:widget.onpress!,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Row(
@@ -141,23 +142,32 @@ class _Clinic_CardState extends State<Clinic_Card> {
                     SizedBox(
                       height: 20,
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(
-                          "icons/menubar/pin.svg",
-                          width: 12,
-                          height: 12,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          widget.clinic,
-                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
-                              size: 12.0),
-                        ),
-                      ],
+                    InkWell(
+                      onTap: (){
+                        if(widget.posPress!=null)
+                        {
+                          widget.posPress!();
+                        }
+                      },
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SvgPicture.asset(
+                            "icons/menubar/pin.svg",
+                            width: 12,
+                            height: 12,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            widget.pos,
+                            overflow:TextOverflow.ellipsis ,
+                            style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
+                                size: 12.0),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

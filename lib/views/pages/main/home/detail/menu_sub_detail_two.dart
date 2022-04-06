@@ -37,7 +37,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
               widget.detailList[0],
               style: defaultTextStyle(
                   Helper.maintxtColor, FontWeight.w400,
-                  size: 18),
+                  size: 14,),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -52,7 +52,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
               widget.detailList[1],
               style: defaultTextStyle(
                   Helper.maintxtColor, FontWeight.w400,
-                  size: 18),
+                  size: 14),
             ),
             Expanded(
               child: Align(
@@ -65,7 +65,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
                         height: 44,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Helper.whiteColor,
+                          primary: Helper.mainColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
@@ -74,14 +74,15 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "詳細を表示",
+                              "閉じる",
                               style: defaultTextStyle(
-                                  Helper.mainColor, FontWeight.w700,
+                                  Helper.whiteColor, FontWeight.w700,
                                   size: 13),
                             ),
                           ],
                         ),
                         onPressed: () {
+                          Navigator.of(context).pop();
                         },
                       ),
                     ),

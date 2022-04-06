@@ -163,7 +163,9 @@ class _Home_CounselingState extends State<Home_Counseling> {
                       image4: mid[index]["image4"],
                       eyes: mid[index]["eyes"],
                       name: mid[index]["name"],
-                      onpress: () {},
+                       onpress: (){
+                          Navigator.of(context).pushNamed("/CounselDetail");
+                        },
                       sentence: mid[index]["sentence"],
                       type: mid[index]["type"],
                       clinic: mid[index]["clinic"],

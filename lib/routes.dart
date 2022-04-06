@@ -5,6 +5,7 @@ import 'package:laxia/views/pages/auth/password_reset/passrest_four.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_three.dart';
 import 'package:laxia/views/pages/auth/registration.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/pages/main/favorite/favorite.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
@@ -51,6 +52,10 @@ import 'package:laxia/views/pages/main/contribution/counsel_list.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step2.dart';
 import 'package:laxia/views/pages/main/contribution/question.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
+import 'package:laxia/views/pages/main/contribution/case_detail.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail_default.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -88,12 +93,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NarrowDiary());
       case '/Part':
         return MaterialPageRoute(builder: (_) => Part());
-      case '/Clinic_Datail':
-        return MaterialPageRoute(builder: (_) => Clinic_Datail());
-      case '/Menu_Datail':
-        return MaterialPageRoute(builder: (_) => Menu_Datail());
+      case '/Clinic_Detail':
+        return MaterialPageRoute(builder: (_) => Clinic_Detail());
+      case '/Menu_Detail':
+        return MaterialPageRoute(builder: (_) => Menu_Detail());
       case '/Doctor_Detail':
         return MaterialPageRoute(builder: (_) => Doctor_Detail());
+      case '/Diary_Detail':
+        return MaterialPageRoute(builder: (_) => Diary_Detail());
       case '/Appointment':
         return MaterialPageRoute(builder: (_) => Appointment());
       case '/Chat':
@@ -159,6 +166,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => AddCounselStep2Page());
       case '/AddQuestion':
         return MaterialPageRoute(builder: (_) => AddQuestion());
+      case '/QuestionDetail':
+        return MaterialPageRoute(builder: (_) => QuestionDetail());
+      case '/CaseDetail':
+        return MaterialPageRoute(builder: (_) => CaseDetail());
+      case '/CounselDetail':
+        return MaterialPageRoute(builder: (_) => CounselDetail());
+      case '/DiaryDetailDefault':
+        return MaterialPageRoute(builder: (_) => DiaryDetailDefault());
       default:
         return MaterialPageRoute(builder: (_) => EMLoginScreen());
     }

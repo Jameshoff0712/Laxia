@@ -87,14 +87,14 @@ class _Home_ClinicState extends State<Home_Clinic> {
                             return Clinic_Card(
                               onpress: (){
                                 // print("object");
-                                Navigator.of(context).pushNamed("/Clinic_Datail");
+                                Navigator.of(context).pushNamed("/Clinic_Detail");
                               },
                                 image: mid[index]["image"],
                                 post: mid[index]["post"],
                                 name: mid[index]["name"],
                                 mark: mid[index]["mark"],
                                 day: mid[index]["day"],
-                                clinic: mid[index]["clinic"]);
+                                pos: mid[index]["clinic"]);
                           });
               }),
             ),
