@@ -93,7 +93,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
         centerTitle: true,
         title: Text(
           '基本情報を入力',
-          style: TextStyle(color:Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
@@ -114,7 +114,9 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 title: Text(
                   '基本情報',
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color:Color.fromARGB(255, 102, 110, 110), fontWeight: FontWeight.normal),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 102, 110, 110),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
             ),
@@ -137,13 +139,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(
                             "施術日",
-                            style: TextStyle(color:Colors.black, fontWeight: FontWeight.normal,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
                                 fontSize: 16),
                           ),
                         ),
                         Text(
                           "選択してください",
-                          style: TextStyle(color:Colors.grey, fontWeight: FontWeight.normal,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16),
                         ),
                         GestureDetector(
@@ -177,14 +183,18 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(
                             "施術箇所",
-                            style: TextStyle(color:Colors.black, fontWeight: FontWeight.normal,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
                                 fontSize: 16),
                           ),
                         ),
                         Text(
                           "選択してください",
-                          style: TextStyle(color:Colors.grey, fontWeight: FontWeight.normal,
-                            fontSize: 16),
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16),
                         ),
                         GestureDetector(
                           onTap: () =>
@@ -217,13 +227,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(
                             "クリニック",
-                            style: TextStyle(color:Colors.black, fontWeight: FontWeight.normal,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
                                 fontSize: 16),
                           ),
                         ),
                         Text(
                           "選択してください",
-                          style: TextStyle(color:Colors.grey, fontWeight: FontWeight.normal,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16),
                         ),
                         GestureDetector(
@@ -257,13 +271,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(
                             "担当ドクター",
-                            style: TextStyle(color:Colors.black, fontWeight: FontWeight.normal,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
                                 fontSize: 16),
                           ),
                         ),
                         Text(
                           "選択してください",
-                          style: TextStyle(color:Colors.grey, fontWeight: FontWeight.normal,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16),
                         ),
                         GestureDetector(
@@ -297,13 +315,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(
                             "施術内容",
-                            style: TextStyle(color:Colors.black, fontWeight: FontWeight.normal,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
                                 fontSize: 16),
                           ),
                         ),
                         Text(
                           "選択してください",
-                          style: TextStyle(color:Colors.grey, fontWeight: FontWeight.normal,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal,
                               fontSize: 16),
                         ),
                         GestureDetector(
@@ -325,7 +347,9 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 title: Text(
                   '施術前の写真',
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color:Color.fromARGB(255, 102, 110, 110), fontWeight: FontWeight.normal),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 102, 110, 110),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
             ),
@@ -403,10 +427,10 @@ Widget imagePicker(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                  PhotoCarouselWidget(),
-                  PhotoCarouselWidget(),
-                  PhotoCarouselWidget(),
-                  PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
                 ],
               ),
             ),

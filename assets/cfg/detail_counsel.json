@@ -1,0 +1,60 @@
+[
+   {
+      "name": "たっきー",
+      "avator": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+      "date": "2020/03/01",
+      "surgery": [
+         "二重埋没",
+         "目頭切開"
+      ],
+      "title": "二重切開(施術名)東京中央美容外科のカウンセリング",
+      "clinic":"湘南美容クリニック 新宿院",
+      "doctor":"田中圭 医師",
+      "question": [
+         {
+            "question": "どんなことで悩んでいたのか？",
+            "answer": "笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい\n笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい"
+         },{
+            "question": "このクリニック、ドクターを選んだ理由は？",
+            "answer": "笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい\n笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい"
+         },
+         {
+            "question": "カウンセリングの様子は？",
+            "answer": "笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい\n笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい"
+         },
+         {
+            "question": "カウンセリングに行ってみての感想は？",
+            "answer": "笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい\n笑った時や目をぎゅっと閉じた時に涙袋を書くから涙袋が2つあるみたいになる皮膚のたるみが出る前に取りたい"
+         }
+      ],
+      "self_images": [
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg"
+      ],
+      "ideal_images": [
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg"
+      ],
+      "non_ideal_images": [
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+         "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg"
+      ],
+      "custom_question": [
+         {
+            "question": "ボトックスは眉間や額に打つのは効果的であるのか？",
+            "answer": "効果はあります。"
+         },{
+            "question": "入院は必須か？",
+            "answer": "効3日〜出来たら4日入院必須"
+         },
+         {
+            "question": "ダウンタイムはどのくらいか？",
+            "answer": "1週間程度"
+         }
+      ]
+   }
+]

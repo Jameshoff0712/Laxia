@@ -61,13 +61,16 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                icon: Icon(FontAwesomeIcons.chevronCircleLeft,
-                                    size: 30,
-                                    color: Colors.black.withOpacity(0.7))),
+                            InkWell(
+                              onTap: (){
+                                Navigator.of(context).pop();
+                              },
+                              child: SvgPicture.asset(
+                                "icons/back_detail.svg",
+                                width: 30,
+                                height: 30,
+                              ),
+                            ),
                             SvgPicture.asset(
                               "icons/upright.svg",
                               width: 30,
@@ -109,14 +112,16 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
             Container(
               color: Helper.whiteColor,
               child: Clinic_Card(
+                onpress: (){
+                },
                   image: "none",
                   post: doctor_Details[0]["post"],
                   name: doctor_Details[0]["name"],
                   mark: doctor_Details[0]["mark"],
                   day: "",
-                  clinic: doctor_Details[0]["clinic"]),
+                  pos: doctor_Details[0]["clinic"]),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5,),
             Container(
               color: Helper.whiteColor,
               child: Column(
@@ -225,7 +230,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5,),
             Container(
               color: Helper.whiteColor,
               child: Column(

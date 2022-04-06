@@ -8,6 +8,7 @@ import 'package:laxia/common/helper.dart';
 class Detail_Image extends StatefulWidget {
   final bool ? insidestar;
   final VoidCallback onPressBack, onPressUpRight;
+  final VoidCallback? onStar;
   final List imageList;
   final double height;
   const Detail_Image(
@@ -15,7 +16,7 @@ class Detail_Image extends StatefulWidget {
       required this.height,
       required this.imageList,
       required this.onPressBack,
-      required this.onPressUpRight, this.insidestar=false})
+      required this.onPressUpRight, this.insidestar=false, this.onStar})
       : super(key: key);
 
   @override
@@ -70,25 +71,31 @@ class _Detail_ImageState extends State<Detail_Image> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                iconSize:30,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(FontAwesomeIcons.chevronCircleLeft,
-                      size: 30, color: Colors.black.withOpacity(0.7))),
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).pop();
+                },
+                child: SvgPicture.asset(
+                  "icons/back_detail.svg",
+                  width: 30,
+                  height: 30,
+                ),
+              ),
               Row(
                 children: [
                   SvgPicture.asset(
-                    "icons/insidestar.svg",
+                    "icons/upright.svg",
                     width: 30,
                     height: 30,
                   ),
                   SizedBox(width: 10,),
-                  widget.insidestar!?SvgPicture.asset(
-                    "icons/upright.svg",
-                    width: 30,
-                    height: 30,
+                  widget.insidestar!?InkWell(
+                    onTap: widget.onStar,
+                    child: SvgPicture.asset(
+                      "icons/insidestar.svg",
+                      width: 30,
+                      height: 30,
+                    ),
                   ):SizedBox(width: 0,),
                 ],
               ),
