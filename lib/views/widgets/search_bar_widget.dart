@@ -68,7 +68,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
                     width:10,
                     height:10,
                     child: SvgPicture.asset(
-                      "icons/close.svg",
+                      "assets/icons/close.svg",
                       width: 5,
                       height: 5,
                     ),

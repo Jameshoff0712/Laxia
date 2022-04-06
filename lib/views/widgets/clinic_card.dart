@@ -153,7 +153,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SvgPicture.asset(
-                            "icons/menubar/pin.svg",
+                            "assets/icons/menubar/pin.svg",
                             width: 12,
                             height: 12,
                           ),

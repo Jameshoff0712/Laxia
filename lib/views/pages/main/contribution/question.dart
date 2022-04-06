@@ -310,7 +310,7 @@ Widget imagePicker(BuildContext context) {
               child: Column(
                 children: [
                   SvgPicture.asset(
-                    "icons/photo.svg",
+                    "assets/icons/photo.svg",
                     width: 36,
                     height: 36,
                   ),

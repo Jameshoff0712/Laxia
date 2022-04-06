@@ -126,7 +126,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                 ),
                 SizedBox(width: 10,),
 SvgPicture.asset(
-                  "icons/upright_nobg.svg",
+                  "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
                 ),

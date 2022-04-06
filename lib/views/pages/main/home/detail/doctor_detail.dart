@@ -66,13 +66,13 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                 Navigator.of(context).pop();
                               },
                               child: SvgPicture.asset(
-                                "icons/back_detail.svg",
+                                "assets/icons/back_detail.svg",
                                 width: 30,
                                 height: 30,
                               ),
                             ),
                             SvgPicture.asset(
-                              "icons/upright.svg",
+                              "assets/icons/upright.svg",
                               width: 30,
                               height: 30,
                             ),

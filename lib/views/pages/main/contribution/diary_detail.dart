@@ -137,7 +137,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 ),
                 SizedBox(width: 5),
                 SvgPicture.asset(
-                  "icons/upright_nobg.svg",
+                  "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
                 ),
@@ -269,18 +269,22 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       child: Stack(
                         alignment: AlignmentDirectional.bottomStart,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl: diary_Details[0]["image1"],
-                              placeholder: (context, url) => Image.asset(
-                                'assets/images/loading.gif',
+                          Container(
+                            width: 426,
+                            height: 426,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: CachedNetworkImage(
                                 fit: BoxFit.fill,
-                              ),
-                              errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/ProDoctor.png',
-                                fit: BoxFit.fill,
+                                imageUrl: diary_Details[0]["image1"],
+                                placeholder: (context, url) => Image.asset(
+                                  'assets/images/loading.gif',
+                                  fit: BoxFit.fill,
+                                ),
+                                errorWidget: (context, url, error) => Image.asset(
+                                  'assets/images/ProDoctor.png',
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           ),
@@ -309,18 +313,22 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       child: Stack(
                         alignment: AlignmentDirectional.bottomStart,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl: diary_Details[0]["image2"],
-                              placeholder: (context, url) => Image.asset(
-                                'assets/images/loading.gif',
+                          Container(
+                            width: 426,
+                            height: 426,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: CachedNetworkImage(
                                 fit: BoxFit.fill,
-                              ),
-                              errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/ProDoctor.png',
-                                fit: BoxFit.fill,
+                                imageUrl: diary_Details[0]["image2"],
+                                placeholder: (context, url) => Image.asset(
+                                  'assets/images/loading.gif',
+                                  fit: BoxFit.fill,
+                                ),
+                                errorWidget: (context, url, error) => Image.asset(
+                                  'assets/images/ProDoctor.png',
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           ),
@@ -391,7 +399,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/tag_fill.svg",
+                          "assets/icons/tag_fill.svg",
                           width: 14,
                           height: 14,
                           color: Helper.mainColor,
@@ -459,7 +467,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             Row(
                               children: [
                                 SvgPicture.asset(
-                                  "icons/tag_fill.svg",
+                                  "assets/icons/tag_fill.svg",
                                   width: 14,
                                   height: 14,
                                   color: Helper.mainColor,
@@ -501,7 +509,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             Row(
                               children: [
                                 SvgPicture.asset(
-                                  "icons/tag_fill.svg",
+                                  "assets/icons/tag_fill.svg",
                                   width: 14,
                                   height: 14,
                                   color: Helper.mainColor,
@@ -552,7 +560,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             Row(
                               children: [
                                 SvgPicture.asset(
-                                  "icons/tag_fill.svg",
+                                  "assets/icons/tag_fill.svg",
                                   width: 14,
                                   height: 14,
                                   color: Helper.mainColor,
@@ -594,7 +602,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             Row(
                               children: [
                                 SvgPicture.asset(
-                                  "icons/tag_fill.svg",
+                                  "assets/icons/tag_fill.svg",
                                   width: 14,
                                   height: 14,
                                   color: Helper.mainColor,

@@ -219,7 +219,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/doctor.svg",
+                          "assets/icons/doctor.svg",
                           width: 15,
                           height: 15,
                         ),
@@ -261,7 +261,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/history.svg",
+                            "assets/icons/history.svg",
                             width: 15,
                             height: 15,
                           ),
@@ -304,7 +304,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/qualify.svg",
+                            "assets/icons/qualify.svg",
                             width: 15,
                             height: 15,
                           ),

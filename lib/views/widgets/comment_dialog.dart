@@ -111,7 +111,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                             ),
                           ),
                         ),
-                        SvgPicture.asset("icons/send.svg",
+                        SvgPicture.asset("assets/icons/send.svg",
                             width: 30,
                             height: 30,
                             color: bSend ? Helper.mainColor : Helper.extraGrey),

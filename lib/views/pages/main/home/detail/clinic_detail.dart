@@ -664,7 +664,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "さあ, はじめよう！",
+                      "クリニックを予約",
                       style: defaultTextStyle(
                           Helper.whiteColor, FontWeight.w700,
                           size: 14),

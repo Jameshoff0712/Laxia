@@ -75,7 +75,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
               children: [
                 SizedBox(width: 10,),
                 SvgPicture.asset(
-                  "icons/upright_nobg.svg",
+                  "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
                 ),
@@ -149,19 +149,23 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                         child: Stack(
                           alignment: AlignmentDirectional.bottomStart,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: disease_Details[0]["image_before"][0],
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: disease_Details[0]["image_before"][0],
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    'assets/images/ProDoctor.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
@@ -190,19 +194,23 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                         child: Stack(
                           alignment: AlignmentDirectional.bottomStart,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: disease_Details[0]["image_after"][0],
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: disease_Details[0]["image_after"][0],
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    'assets/images/ProDoctor.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
@@ -317,7 +325,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                               child: Row(
                                 children: [
                                   SvgPicture.asset(
-                                    "icons/menubar/tag_fill.svg",
+                                    "assets/icons/menubar/tag_fill.svg",
                                     width: 12,
                                     height: 12,
                                   ),

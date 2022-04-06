@@ -86,122 +86,103 @@ class _Home_DiaryState extends State<Home_Diary> {
               ],
             ),
           ):
-          Container(
-            color: Helper.whiteColor,
-            child: Column(
+          SizedBox(height: 0,),
+          Expanded(
+            child: SingleChildScrollView(
+              physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
+              controller:scrollController,
+              child:Column(
               children: [
-                ExtendedWrap(
-                  alignment: WrapAlignment.center,
-                  maxLines: expanded ? 2 : 100,
-                  clipBehavior: Clip.none,
-                  runSpacing: 10,
-                  spacing: 10,
+                widget.isdrawer!?SizedBox(height: 0,):
+              Container(
+                color: Helper.whiteColor,
+                child: Column(
                   children: [
-                    for (int i = 0;
-                        i <widget.last!.length;
-                        i++)
+                    ExtendedWrap(
+                      alignment: WrapAlignment.center,
+                      maxLines: expanded ? 2 : 100,
+                      clipBehavior: Clip.none,
+                      runSpacing: 10,
+                      spacing: 10,
+                      children: [
+                        for (int i = 0;
+                            i <widget.last!.length;
+                            i++)
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                if (index == i) {
+                                  index = -1;
+                                } else {
+                                  index = i;
+                                }
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.circular(22),
+                                  color: index == i
+                                      ? Helper.mainColor
+                                      : Helper.homeBgColor),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 3),
+                                child: Text(
+                                widget.last![i]["label"],
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12,
+                                      color: index == i
+                                          ? Helper.whiteColor
+                                          : Helper.titleColor),
+                                ),
+                              ),
+                            ),
+                          )
+                      ]),
                       InkWell(
                         onTap: () {
                           setState(() {
-                            if (index == i) {
-                              index = -1;
-                            } else {
-                              index = i;
-                            }
+                            expanded = !expanded;
                           });
                         },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(22),
-                              color: index == i
-                                  ? Helper.mainColor
-                                  : Helper.homeBgColor),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 3),
-                            child: Text(
-                             widget.last![i]["label"],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: index == i
-                                      ? Helper.whiteColor
-                                      : Helper.titleColor),
-                            ),
-                          ),
-                        ),
-                      )
-                  ]),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        expanded = !expanded;
-                      });
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "すべて表示",
-                            style: TextStyle(
-                                color: Helper.mainColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12),
-                          ),
-                          SizedBox(
-                            width: 8.41,
-                          ),
-                          Icon(
-                            expanded
-                                ? Icons.arrow_drop_down
-                                : Icons.arrow_drop_up,
-                            size: 24,
-                            color: Helper.mainColor,
-                          ),
-                        ]),
-                  ),
+                        child: Icon(
+                                expanded
+                                    ? FontAwesomeIcons.angleDown
+                                    : FontAwesomeIcons.angleUp,
+                                size: 24,
+                                color: Helper.titleColor,
+                              ),
+                      ),
+                  ],
+                ),
+              ),
+                ListView.builder(
+                  padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                  itemCount: mid.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap:true,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Diary_Card(
+                      avator: mid[index]["avator"],
+                      check: mid[index]["check"],
+                      image2: mid[index]["image2"],
+                      image1: mid[index]["image1"],
+                      eyes: mid[index]["eyes"],
+                      clinic: mid[index]["clinic"],
+                      name: mid[index]["name"],
+                      onpress: () {
+                        Navigator.of(context).pushNamed("/Diary_Detail");
+                      },
+                      price: mid[index]["price"],
+                      sentence: mid[index]["sentence"],
+                      type: mid[index]["type"],
+                    );
+                  }),
               ],
             ),
-          ),
-          Expanded(
-            child: LayoutBuilder(
-                builder: (context, BoxConstraints viewportConstraints) {
-              return Column(
-                children: [
-                  // menuAppBar(context),
-                  Expanded(
-                    child: LayoutBuilder(
-                        builder: (context, BoxConstraints viewportConstraints) {
-                      return ListView.builder(
-                          padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                          itemCount: mid.length,
-                          controller:scrollController,
-                          physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
-                          shrinkWrap:true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Diary_Card(
-                              avator: mid[index]["avator"],
-                              check: mid[index]["check"],
-                              image2: mid[index]["image2"],
-                              image1: mid[index]["image1"],
-                              eyes: mid[index]["eyes"],
-                              clinic: mid[index]["clinic"],
-                              name: mid[index]["name"],
-                              onpress: () {
-                                Navigator.of(context).pushNamed("/Diary_Detail");
-                              },
-                              price: mid[index]["price"],
-                              sentence: mid[index]["sentence"],
-                              type: mid[index]["type"],
-                            );
-                          });
-                    }),
-                  ),
-                ],
-              );
-            }),
+          )
           ),
         ],
         

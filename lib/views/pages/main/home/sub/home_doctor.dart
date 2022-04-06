@@ -69,35 +69,33 @@ class _Home_DoctorState extends State<Home_Doctor> {
             ),
           ):SizedBox(height: 0,),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
-                return Column(
-                  children: [
-                    // menuAppBar(context),
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: mid.length,
-                          controller:scrollController,
-                          physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
-                          shrinkWrap:true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Doctor_Card(
-                                onpress: (){
-                                  Navigator.of(context).pushNamed("/Doctor_Detail");
-                                },
-                                image: mid[index]["image"],
-                                post: mid[index]["post"],
-                                name: mid[index]["name"],
-                                mark: mid[index]["mark"],
-                                day: mid[index]["day"],
-                                clinic: mid[index]["clinic"]);
-                          }),
-                    ),
-                  ],
-                );
-              }),
-            ),
+            child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
+              return Column(
+                children: [
+                  // menuAppBar(context),
+                  Expanded(
+                    child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        itemCount: mid.length,
+                        controller:scrollController,
+                        physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
+                        shrinkWrap:true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Doctor_Card(
+                              onpress: (){
+                                Navigator.of(context).pushNamed("/Doctor_Detail");
+                              },
+                              image: mid[index]["image"],
+                              post: mid[index]["post"],
+                              name: mid[index]["name"],
+                              mark: mid[index]["mark"],
+                              day: mid[index]["day"],
+                              clinic: mid[index]["clinic"]);
+                        }),
+                  ),
+                ],
+              );
+            }),
           ),
         ],
       ),

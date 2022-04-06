@@ -119,7 +119,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
-                                      "icons/menubar/karute.svg",
+                                      "assets/icons/menubar/karute.svg",
                                       width: 12,
                                       height: 12,
                                     ),
@@ -151,7 +151,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                           child: Row(
                                             children: [
                                               SvgPicture.asset(
-                                                "icons/menubar/clinic.svg",
+                                                "assets/icons/menubar/clinic.svg",
                                                 width: 12,
                                                 height: 12,
                                               ),
@@ -179,7 +179,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
-                                      "icons/menubar/part.svg",
+                                      "assets/icons/menubar/part.svg",
                                       width: 12,
                                       height: 12,
                                     ),

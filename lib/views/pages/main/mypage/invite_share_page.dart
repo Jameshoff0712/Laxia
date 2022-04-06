@@ -134,7 +134,7 @@ class _InviteSharePageState extends State<InviteSharePage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(70 / 2),
                 child: Image.asset(
-                  "icons/menubar/doubles.png",
+                  "assets/icons/menubar/doubles.png",
                   fit: BoxFit.cover,
                 ),
               ),
@@ -168,7 +168,7 @@ class _InviteSharePageState extends State<InviteSharePage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(0),
                 child: Image.asset(
-                  "icons/menubar/doubles.png",
+                  "assets/icons/menubar/doubles.png",
                   fit: BoxFit.cover,
                 ),
               ),
