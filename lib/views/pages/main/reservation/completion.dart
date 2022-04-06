@@ -90,7 +90,12 @@ class _CompletionState extends State<Completion> {
             Container(
               alignment: Alignment.center,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                   decoration: BoxDecoration(

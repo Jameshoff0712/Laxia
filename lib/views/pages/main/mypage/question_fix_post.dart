@@ -141,7 +141,9 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
           Align(
             alignment: Alignment.center,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+              },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 12, horizontal: 62),
                 decoration: BoxDecoration(

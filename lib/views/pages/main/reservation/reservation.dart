@@ -118,8 +118,9 @@ class _ReservationState extends State<Reservation> {
                                     ),
                                   ),
                                   InkWell(
-                                    onHover: (value) {
-                                      setState(() {});
+                                    onTap: (){
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
                                     },
                                     child: Container(
                                       padding: EdgeInsets.symmetric(

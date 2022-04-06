@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -13,6 +14,8 @@ import 'package:laxia/views/widgets/comment_dialog.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 
 class DiaryDetailDefault extends StatefulWidget {
+  final bool isMyDiary;
+  const DiaryDetailDefault({ Key? key, this.isMyDiary = false }) : super(key: key);
   @override
   _DiaryDetailDefaultState createState() => _DiaryDetailDefaultState();
 }
@@ -20,6 +23,7 @@ class DiaryDetailDefault extends StatefulWidget {
 class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
   List question_Details = [];
   bool isfavourite = false;
+  int currentSlider = 1;
 
   Future<void> get_counsel_info() async {
     String mid = await rootBundle.loadString("cfg/detail_diary_default.json");
@@ -73,9 +77,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                     Text(
                       question_Details[0]["name"],
                       style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13),
+                          color: Helper.titleColor, fontWeight: FontWeight.bold,fontSize: 12),
                     ),
                     Text(
                       "施術 " +
@@ -84,7 +86,8 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                           "経過" +
                           question_Details[0]["days"] +
                           "日",
-                      style: TextStyle(color: Helper.darkGrey, fontSize: 10),
+                      style: TextStyle(
+                              color: Helper.maintxtColor, fontWeight: FontWeight.w400,fontSize: 8),
                     ),
                   ],
                 ),
@@ -92,6 +95,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
             ),
             Row(
               children: [
+                !widget.isMyDiary ?
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed("/AddDiaryProgress");
@@ -123,9 +127,41 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                       ],
                     ),
                   ),
+                )
+                : ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/AddDiaryProgress");
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    primary: Color.fromARGB(255, 249, 161, 56),
+                    onPrimary: Colors.white,
+                    onSurface: Color.fromARGB(255, 110, 198, 210),
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "投稿を修正",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            height: 1.5,
+                            color: Helper.whiteColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(width: 10,),
-SvgPicture.asset(
+                SizedBox(
+                  width: 10,
+                ),
+                SvgPicture.asset(
                   "icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
@@ -287,6 +323,50 @@ SvgPicture.asset(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
+              Stack(
+                children: [
+                  ImageSlideshow(
+                    width: double.infinity,
+                    height: 480,
+                    initialPage: 0,
+                    indicatorColor: Colors.blue,
+                    indicatorBackgroundColor: Colors.grey,
+                    onPageChanged: (value) {
+                      setState(() {
+                        currentSlider = value + 1;
+                      });
+                    },
+                    autoPlayInterval: 0,
+                    isLoop: true,
+                    children: [
+                      for (int j = 0; j < 5; j++)
+                        Image.asset(
+                          'images/canada.png',
+                          fit: BoxFit.cover,
+                        ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 15,
+                    right: 15,
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(179, 0, 0, 0),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text(
+                        "$currentSlider/5",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            height: 1.5,
+                            color: Helper.whiteColor),
+                      ),
+                    ),
+                  )
+                ],
+              ),
               Container(
                 padding: const EdgeInsets.only(top: 15, bottom: 10),
                 child: Column(

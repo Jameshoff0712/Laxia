@@ -127,7 +127,9 @@ class _ConfirmationState extends State<Confirmation> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed("/Completion");
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 58,
