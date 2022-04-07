@@ -6,11 +6,11 @@ class Home_Model {
 
 List<Home_Model> home_list = [
   Home_Model(
-    "まず前々から気になっていたのは目の下のクマでしたあああ...",
+   "まず前々から気になっていたのは目の下のクマでしたあああ...",
   "二重",
   "湘南美容クリニック新宿...",
   "999",
-   "444",
+  "444",
   "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
   "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
   "Yuka111",

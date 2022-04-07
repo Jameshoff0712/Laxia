@@ -106,6 +106,12 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
         itemPadding: EdgeInsets.fromLTRB(16, 15, 2, 12),
         dropdownWidth: MediaQuery.of(context).size.width,
         dropdownDecoration: BoxDecoration(
+          boxShadow: [
+                        BoxShadow(
+                             offset:  Offset(1000,1000),
+                            color: Colors.black.withOpacity(.7),
+                            spreadRadius: 1000)
+                            ],
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),

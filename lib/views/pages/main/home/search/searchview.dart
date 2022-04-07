@@ -175,50 +175,62 @@ class _SearchViewState extends State<SearchView> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                          color: flag
-                              ? Color.fromARGB(255, 85, 83, 83).withOpacity(0.3)
-                              : Helper.whiteColor),
+                          color:Helper.whiteColor),
                       child: AbsorbPointer(
                         absorbing: flag ? true : false,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Wrap(
-                            runSpacing: 10,
-                            spacing: 10,
-                            children: [
-                              for (int j = 0; j < menu_list.length; j++)
-                                InkWell(
-                                  onTap: () {
-                                    filter.text = menu_list[j]["label"];
-                                    setState(() {
-                                      unchange = false;
-                                      flag = true;
-                                    });
-                                    userProperties.setSearchtext(filter.text);
-                                    Navigator.of(context).pushNamed("/Pages");
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Color.fromARGB(255, 245, 245, 245),
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 6),
-                                      child: Text(
-                                        menu_list[j]["label"],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11,
-                                            color: Color.fromARGB(
-                                                255, 102, 110, 110)),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Wrap(
+                                runSpacing: 10,
+                                spacing: 10,
+                                children: [
+                                  for (int j = 0; j < menu_list.length; j++)
+                                    InkWell(
+                                      onTap: () {
+                                        filter.text = menu_list[j]["label"];
+                                        setState(() {
+                                          unchange = false;
+                                          flag = true;
+                                        });
+                                        userProperties.setSearchtext(filter.text);
+                                        Navigator.of(context).pushNamed("/Pages");
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color:
+                                                Color.fromARGB(255, 245, 245, 245),
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 6),
+                                          child: Text(
+                                            menu_list[j]["label"],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 11,
+                                                color: Color.fromARGB(
+                                                    255, 102, 110, 110)),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                )
-                            ],
-                          ),
+                                    )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              decoration:  flag?BoxDecoration(
+                                boxShadow: [
+                                   BoxShadow(
+                                        offset:  Offset(1000,1000),
+                                        color: Colors.black.withOpacity(.7),
+                                        spreadRadius: 1000)
+                                    ],
+                              ):BoxDecoration(),
+                            )
+                          ],
                         ),
                       ),
                     ),

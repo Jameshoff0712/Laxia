@@ -468,7 +468,7 @@ Widget imagePicker(BuildContext context) {
               child: Column(
                 children: [
                   SvgPicture.asset(
-                    "icons/photo.svg",
+                    "assets/icons/photo.svg",
                     width: 36,
                     height: 36,
                   ),
@@ -488,10 +488,10 @@ Widget imagePicker(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                  PhotoCarouselWidget(),
-                  PhotoCarouselWidget(),
-                  PhotoCarouselWidget(),
-                  PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
+                  // PhotoCarouselWidget(),
                 ],
               ),
             ),

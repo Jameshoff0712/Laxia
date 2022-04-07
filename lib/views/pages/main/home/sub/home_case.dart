@@ -1,3 +1,4 @@
+import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/case_model.dart';
@@ -7,8 +8,9 @@ import 'package:laxia/views/widgets/textbutton_drawer.dart';
 
 class Home_Case extends StatefulWidget {
   final bool issearch;
-  final List? model;
-  const Home_Case({Key? key, required this.issearch, this.model})
+  final bool? isdrawer;
+  final List? model,last;
+  const Home_Case({Key? key, required this.issearch, this.model, this.isdrawer=true, this.last})
       : super(key: key);
 
   @override
@@ -16,6 +18,8 @@ class Home_Case extends StatefulWidget {
 }
 
 class _Home_CaseState extends State<Home_Case> {
+  bool expanded=true;
+  int index=-1;
   List mid = [];
   @override
   void initState() {
@@ -39,7 +43,7 @@ class _Home_CaseState extends State<Home_Case> {
       color: Helper.homeBgColor,
       child: Column(
         children: [
-          Container(
+          widget.isdrawer!?Container(
             color: Helper.whiteColor,
             child: Row(
               children: [
@@ -69,44 +73,107 @@ class _Home_CaseState extends State<Home_Case> {
                 ),
               ],
             ),
-          ),
+          ):
+          SizedBox(height: 0,),
           Expanded(
-            child: LayoutBuilder(
-                builder: (context, BoxConstraints viewportConstraints) {
-              return Column(
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
                 children: [
-                  // menuAppBar(context),
-                  Expanded(
-                    child: LayoutBuilder(
-                        builder: (context, BoxConstraints viewportConstraints) {
-                      return
-                      ListView.builder(
-                          padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                          itemCount: mid.length,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          itemBuilder: (BuildContext context, int index) {
-                            return Diary_Card(
-                              buttoncolor: Helper.btnBgMainColor,
-                              buttontext: mid[index]["buttontext"],
-                              hearts: mid[index]["hearts"],
-                              chats: mid[index]["chats"],
-                              avator: mid[index]["avator"],
-                              check: mid[index]["check"],
-                              image2: mid[index]["image2"],
-                              image1: mid[index]["image1"],
-                              eyes: mid[index]["eyes"],
-                              name: mid[index]["name"],
-                              onpress: () {},
-                              price: mid[index]["price"],
-                              sentence: mid[index]["sentence"],
-                              type: mid[index]["type"],
-                            );
-                          });
-                    }),
+                  widget.isdrawer!?SizedBox(height: 0,):
+                  Container(
+                    color: Helper.whiteColor,
+                    child: Column(
+                      children: [
+                        ExtendedWrap(
+                          alignment: WrapAlignment.center,
+                          maxLines: expanded ? 2 : 100,
+                          clipBehavior: Clip.none,
+                          runSpacing: 10,
+                          spacing: 10,
+                          children: [
+                            for (int i = 0;
+                                i <widget.last!.length;
+                                i++)
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    if (index == i) {
+                                      index = -1;
+                                    } else {
+                                      index = i;
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(22),
+                                      color: index == i
+                                          ? Helper.mainColor
+                                          : Helper.homeBgColor),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 3),
+                                    child: Text(
+                                    widget.last![i]["label"],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12,
+                                          color: index == i
+                                              ? Helper.whiteColor
+                                              : Helper.titleColor),
+                                    ),
+                                  ),
+                                ),
+                              )
+                          ]),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                expanded = !expanded;
+                              });
+                            },
+                            child: Icon(
+                                    expanded
+                                        ? FontAwesomeIcons.angleDown
+                                        : FontAwesomeIcons.angleUp,
+                                    size: 24,
+                                    color: Helper.titleColor,
+                                  ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                    itemCount: mid.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Diary_Card(
+                        onpress: (){
+                          Navigator.of(context).pushNamed("/CaseDetail");
+                        },
+                        buttoncolor: Helper.btnBgMainColor,
+                        buttontext: mid[index]["buttontext"],
+                        hearts: mid[index]["hearts"],
+                        chats: mid[index]["chats"],
+                        avator: mid[index]["avator"],
+                        check: mid[index]["check"],
+                        image2: mid[index]["image2"],
+                        image1: mid[index]["image1"],
+                        eyes: mid[index]["eyes"],
+                        name: mid[index]["name"],
+                        price: mid[index]["price"],
+                        sentence: mid[index]["sentence"],
+                        type: mid[index]["type"],
+                      );
+                    }
                   ),
                 ],
-              );
-            }),
+              ),
+            )
           ),
         ],
       ),

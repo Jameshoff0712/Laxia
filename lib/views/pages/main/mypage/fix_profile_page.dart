@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/mypage/input_text_widget.dart';
 import 'package:laxia/views/pages/main/mypage/selectbox_widget.dart';
+import 'package:provider/provider.dart';
 
 class FixProfilePage extends StatefulWidget {
   @override
@@ -10,31 +15,51 @@ class FixProfilePage extends StatefulWidget {
 
 class _FixProfilePageState extends State<FixProfilePage> {
   String _enteredText = '';
+  List<String> _cities = [];
+
+  Future<void> readCities() async {
+    final String response =
+        await rootBundle.loadString('cfg/japanese-city-data.json');
+    final data = await json.decode(response);
+    setState(() {
+      for (int i = 0; i < data.length; i++) {
+        _cities.add(data[i]["label"]);
+      }
+    });
+  }
 
   @override
   void initState() {
+    readCities();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryProvider =
+        Provider.of<SurGeryProvider>(context, listen: true);
     // TODO: implement build
-    return Scaffold(
+    return _cities.isNotEmpty? Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context, "");
+              Navigator.pop(context);
             },
             icon: const Icon(
               Icons.close,
-              color: Helper.appTxtColor,
+              color: Helper.titleColor,
             )),
         centerTitle: true,
         title: Center(
           child: Text(
             'プロフィールを編集',
-            style: TextStyle(color: Helper.appTxtColor, fontSize: 16.0),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              height: 1.5,
+              color: Helper.titleColor,
+            ),
           ),
         ),
         actions: [
@@ -44,7 +69,12 @@ class _FixProfilePageState extends State<FixProfilePage> {
               child: Container(
                 child: Text(
                   "保存",
-                  style: TextStyle(color: Helper.mainColor),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5,
+                    color: Helper.mainColor,
+                  ),
                 ),
               ),
             ),
@@ -53,10 +83,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
             width: 16,
           ),
         ],
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             children: [
               Container(
@@ -67,14 +98,14 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     CircleAvatar(
                       radius: 40,
                       child: ClipOval(
-                        child: Image.asset('assets/images/user/user1.jpg',
+                        child: Image.asset('images/user/user1.jpg',
                             width: 80, height: 80, fit: BoxFit.cover),
                       ),
                     ),
                     Container(
                         height: 20,
                         width: 24,
-                        decoration: BoxDecoration(color: Helper.blackColor),
+                        // decoration: BoxDecoration(color: Helper.blackColor),
                         child: Icon(
                           Icons.camera_alt_outlined,
                           color: Helper.whiteColor,
@@ -83,13 +114,18 @@ class _FixProfilePageState extends State<FixProfilePage> {
                 ),
               ),
               SizedBox(
-                height: 10.0,
+                height: 8,
               ),
               Text(
                 "プロフィール写真を変更",
-                style: TextStyle(color: Helper.mainColor, fontSize: 16.0),
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 11,
+                  height: 1.5,
+                  color: Helper.mainColor,
+                ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 16.0),
               Container(
                 child: Column(
                   children: [
@@ -131,16 +167,59 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     ),
                     SelectBoxWidget(
                       name: "施術希望エリア",
-                      items: [],
+                      items: _cities,
                       chosenValue: "",
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
-                    SelectBoxWidget(
-                      name: "気になっている施術・部位",
-                      items: [],
-                      chosenValue: "",
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '気になっている施術・部位',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                          height: 1.5,
+                          color: Color.fromARGB(255, 18, 18, 18),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(color: Colors.white),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(18.0, 14.0, 18.0, 14.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  surgeryProvider.selectedCurePos.isEmpty
+                                      ? "選択してください"
+                                      : surgeryProvider.getSelectedCurePosStr,
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 16),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  surgeryProvider.setButtonText("次へ");
+                                  Navigator.of(context)
+                                      .pushNamed("/SelectSurgery");
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ]),
+                      ),
                     ),
                   ],
                 ),
@@ -149,6 +228,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
           ),
         ),
       ),
-    );
+    ):Scaffold();
   }
 }

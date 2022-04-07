@@ -480,7 +480,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              "icons/star.svg",
+              "assets/icons/star.svg",
               width: 42,
               height: 42,
               color: color,

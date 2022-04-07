@@ -26,162 +26,167 @@ class _ReservationState extends State<Reservation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Helper.whiteColor,
+        shadowColor: Helper.whiteColor,
+        automaticallyImplyLeading: false,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 30),
+          child: Text(
+            '来院のご予約',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 18,
+              height: 1.5,
+              color: Helper.titleColor,
+            ),
+          ),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24)),
+                      child: Container(
+                        height: 180,
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'ご予約を途中で終了しますか？',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.5,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'まだご予約が完了しておりません。\n戻ると入力内容が消えてしまいます。',
+                                style: TextStyle(
+                                  fontFamily: 'Hiragino Kaku Gothic Pro',
+                                  fontSize: 14,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 40),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 3, horizontal: 20),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        // color: Color.fromARGB(
+                                        //     255, 0, 184, 169),
+                                        borderRadius: BorderRadius.circular(45),
+                                      ),
+                                      child: Text(
+                                        'いいえ',
+                                        style: TextStyle(
+                                          fontFamily:
+                                              'Hiragino Kaku Gothic Pro',
+                                          fontSize: 16,
+                                          height: 1.5,
+                                          fontWeight: FontWeight.w400,
+                                          // color: Colors.white,
+                                          color:
+                                              Color.fromARGB(255, 0, 184, 169),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 3, horizontal: 20),
+                                      decoration: BoxDecoration(
+                                        color: Color.fromARGB(255, 0, 184, 169),
+                                        borderRadius: BorderRadius.circular(45),
+                                      ),
+                                      child: Text(
+                                        'はい',
+                                        style: TextStyle(
+                                          fontFamily:
+                                              'Hiragino Kaku Gothic Pro',
+                                          fontSize: 16,
+                                          height: 1.5,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+              icon: Icon(
+                Icons.close,
+                color: Helper.titleColor,
+                size: 30,
+              )),
+          SizedBox(
+            width: 18,
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(30),
+          child: Container(
+            height: 25,
+            padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
+            child: LinearProgressIndicator(
+              backgroundColor: Color.fromARGB(255, 196, 196, 196),
+              color: Color.fromARGB(255, 0, 184, 169),
+              value: progress,
+            ),
+          ),
+        ),
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 44,
-            ),
-            Container(
-              height: 44,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Text('来院のご予約',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 51, 51, 51),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          height: 1.5,
-                          decoration: TextDecoration.none,
-                        )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.close,
-                        size: 22,
-                        color: Color.fromARGB(255, 51, 51, 51),
-                      ),
-                      onPressed: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Dialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(24)),
-                              child: Container(
-                                height: 180,
-                                padding: EdgeInsets.symmetric(vertical: 20),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'ご予約を途中で終了しますか？',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        height: 1.5,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 14,
-                                    ),
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        'まだご予約が完了しておりません。\n戻ると入力内容が消えてしまいます。',
-                                        style: TextStyle(
-                                          fontFamily:
-                                              'Hiragino Kaku Gothic Pro',
-                                          fontSize: 14,
-                                          height: 1.5,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 30,
-                                    ),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 40),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 3, horizontal: 20),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                // color: Color.fromARGB(
-                                                //     255, 0, 184, 169),
-                                                borderRadius:
-                                                    BorderRadius.circular(45),
-                                              ),
-                                              child: Text(
-                                                'いいえ',
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      'Hiragino Kaku Gothic Pro',
-                                                  fontSize: 16,
-                                                  height: 1.5,
-                                                  fontWeight: FontWeight.w400,
-                                                  // color: Colors.white,
-                                                  color: Color.fromARGB(
-                                                      255, 0, 184, 169),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          InkWell(
-                                            onHover: (value) {
-                                              setState(() {});
-                                            },
-                                            child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 3, horizontal: 20),
-                                              decoration: BoxDecoration(
-                                                color: Color.fromARGB(
-                                                    255, 0, 184, 169),
-                                                borderRadius:
-                                                    BorderRadius.circular(45),
-                                              ),
-                                              child: Text(
-                                                'はい',
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      'Hiragino Kaku Gothic Pro',
-                                                  fontSize: 16,
-                                                  height: 1.5,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 25,
-              padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
-              child: LinearProgressIndicator(
-                backgroundColor: Color.fromARGB(255, 196, 196, 196),
-                color: Color.fromARGB(255, 0, 184, 169),
-                value: progress,
-              ),
-            ),
+            // Container(
+            //   height: 25,
+            //   padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
+            //   child: LinearProgressIndicator(
+            //     backgroundColor: Color.fromARGB(255, 196, 196, 196),
+            //     color: Color.fromARGB(255, 0, 184, 169),
+            //     value: progress,
+            //   ),
+            // ),
             SizedBox(
               height: 30,
             ),

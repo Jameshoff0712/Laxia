@@ -12,8 +12,6 @@ import 'package:laxia/views/pages/main/home/sub/home_question.dart';
 import 'package:laxia/views/pages/main/home/sub/home_sub.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
-import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
-import 'package:laxia/views/widgets/textbutton_drawer.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'dart:async';
@@ -45,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
     String countyText =
         await rootBundle.loadString("assets/cfg/searchresult.json");
     setState(() {
-      searchResult = json.decode(countyText);
+      searchResult.addAll(json.decode(countyText));
     });
   }
 
@@ -80,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen>
           tabMenus: tabMenus,
           tabController: _tabController,
         ),
-        searchResult.isEmpty
+        userProperties.searchtext.isEmpty
             ? Expanded(
                 child: TabBarView(
                   physics: NeverScrollableScrollPhysics(),
@@ -98,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               )
             : Expanded(
-                child: TabBarView(
+                child: searchResult.isNotEmpty? TabBarView(
                   physics: NeverScrollableScrollPhysics(),
                   children: [
                    SearchResultAll(model:searchResult, tabController: _tabController,),
@@ -111,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen>
                     Home_Question(issearch: true,model: searchResult[6],),
                   ],
                   controller: _tabController,
-                ),
+                ):Container(),
               ),
       ],
     ));

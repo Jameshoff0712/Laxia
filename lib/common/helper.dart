@@ -165,7 +165,7 @@ class Helper {
 // Text Styles - please do not overwrite below code unless you know what you are doing
 
 TextStyle defaultTextStyle(Color color, FontWeight fontWeight,
-    {double size = 18, FontStyle fontStyle = FontStyle.normal, String fontFamily = 'Poppins'}) {
+    {double size = 18, FontStyle fontStyle = FontStyle.normal, String fontFamily = 'Hiragino Kaku Gothic Pro W6'}) {
   return TextStyle(color: color, fontWeight: fontWeight, fontSize: size, fontFamily: fontFamily, fontStyle: fontStyle);
 }
 

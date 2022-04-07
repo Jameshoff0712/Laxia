@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class Confirmation extends StatefulWidget {
   const Confirmation({Key? key}) : super(key: key);
@@ -11,43 +12,35 @@ class _ConfirmationState extends State<Confirmation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Helper.whiteColor,
+        shadowColor: Helper.whiteColor,
+        title: Text(
+          'ご予約内容の確認',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            height: 1.5,
+            color: Helper.titleColor,
+          ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Helper.titleColor,
+              size: 30,
+            )),
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 44,
-          ),
-          Container(
-            height: 44,
-            child: Stack(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text('ご予約内容の確認',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 51, 51, 51),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          height: 1.5,
-                          decoration: TextDecoration.none,
-                        )),
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.keyboard_arrow_left,
-                    size: 27,
-                    color: Color.fromARGB(255, 51, 51, 51),
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-          ),
           SizedBox(
             height: 15,
             child: Container(
@@ -134,7 +127,9 @@ class _ConfirmationState extends State<Confirmation> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed("/Completion");
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 58,
