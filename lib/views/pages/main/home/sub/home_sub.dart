@@ -1,10 +1,7 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/home_model.dart';
 import 'package:laxia/provider/user_provider.dart';
-import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
 import 'package:provider/provider.dart';
@@ -183,7 +180,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/doubles.png",
+                      image: "assets/icons/menubar/doubles.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(0);
                         Navigator.of(context).pushNamed("/Part");
@@ -193,7 +190,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Contour.png",
+                      image: "assets/icons/menubar/Contour.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(1);
                         Navigator.of(context).pushNamed("/Part");
@@ -203,7 +200,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Raise_nose.png",
+                      image: "assets/icons/menubar/Raise_nose.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(2);
                         Navigator.of(context).pushNamed("/Part");
@@ -213,7 +210,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/drooping_eye.png",
+                      image: "assets/icons/menubar/drooping_eye.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(3);
                         Navigator.of(context).pushNamed("/Part");
@@ -223,7 +220,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Hair_loss.png",
+                      image: "assets/icons/menubar/Hair_loss.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(4);
                         Navigator.of(context).pushNamed("/Part");
@@ -233,7 +230,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/chest.png",
+                      image: "assets/icons/menubar/chest.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(5);
                         Navigator.of(context).pushNamed("/Part");
@@ -243,7 +240,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/body.png",
+                      image: "assets/icons/menubar/body.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(6);
                         Navigator.of(context).pushNamed("/Part");
@@ -253,7 +250,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Nose.png",
+                      image: "assets/icons/menubar/Nose.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(7);
                         Navigator.of(context).pushNamed("/Part");
@@ -263,7 +260,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Wrinkles.png",
+                      image: "assets/icons/menubar/Wrinkles.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(8);
                         Navigator.of(context).pushNamed("/Part");
@@ -273,7 +270,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Spots_freckles.png",
+                      image: "assets/icons/menubar/Spots_freckles.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(9);
                         Navigator.of(context).pushNamed("/Part");
@@ -299,7 +296,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/mouth.png",
+                      image: "assets/icons/menubar/mouth.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(10);
                         Navigator.of(context).pushNamed("/Part");
@@ -309,7 +306,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Inner_eye.png",
+                      image: "assets/icons/menubar/Inner_eye.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(11);
                         Navigator.of(context).pushNamed("/Part");
@@ -319,7 +316,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/pores.png",
+                      image: "assets/icons/menubar/pores.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(12);
                         Navigator.of(context).pushNamed("/Part");
@@ -329,7 +326,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Sagging.png",
+                      image: "assets/icons/menubar/Sagging.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(13);
                         Navigator.of(context).pushNamed("/Part");
@@ -339,7 +336,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Eyes.png",
+                      image: "assets/icons/menubar/Eyes.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(14);
                         Navigator.of(context).pushNamed("/Part");
@@ -349,7 +346,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Mole_warts.png",
+                      image: "assets/icons/menubar/Mole_warts.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(15);
                         Navigator.of(context).pushNamed("/Part");
@@ -359,7 +356,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Permanent_makeup.png",
+                      image: "assets/icons/menubar/Permanent_makeup.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(16);
                         Navigator.of(context).pushNamed("/Part");
@@ -369,7 +366,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Nose_tip.png",
+                      image: "assets/icons/menubar/Nose_tip.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(17);
                         Navigator.of(context).pushNamed("/Part");
@@ -379,7 +376,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/Aesthetic_dentistry.png",
+                      image: "assets/icons/menubar/Aesthetic_dentistry.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(18);
                         Navigator.of(context).pushNamed("/Part");
@@ -389,7 +386,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "icons/menubar/all.png",
+                      image: "assets/icons/menubar/all.png",
                       onpress: () {
                         userProperties.setCurrentPartIndex(19);
                         Navigator.of(context).pushNamed("/Part");

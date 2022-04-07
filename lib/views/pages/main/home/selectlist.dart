@@ -17,7 +17,7 @@ class _SelectSurgeryState extends State<SelectSurgery> {
     String countyText =
         await rootBundle.loadString("assets/cfg/treatment_location.json");
     setState(() {
-      countys = json.decode(countyText);
+      countys.addAll(json.decode(countyText));
     });
   }
 
@@ -29,7 +29,7 @@ class _SelectSurgeryState extends State<SelectSurgery> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return countys.isNotEmpty? Scaffold(
         body: Column(
       children: [
         MultiSelectDart(
@@ -39,6 +39,6 @@ class _SelectSurgeryState extends State<SelectSurgery> {
           title: 'エリア選択',
         ),
       ],
-    ));
+    )):Scaffold();
   }
 }

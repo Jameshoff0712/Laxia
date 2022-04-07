@@ -127,19 +127,23 @@ class _Diary_CardState extends State<Diary_Card> {
                         child: Stack(
                           alignment : AlignmentDirectional.bottomStart,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: widget.image1,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: widget.image1,
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    'assets/images/ProDoctor.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
@@ -165,19 +169,23 @@ class _Diary_CardState extends State<Diary_Card> {
                         child: Stack(
                           alignment : AlignmentDirectional.bottomStart,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: widget.image2,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: widget.image2,
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    'assets/images/ProDoctor.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
@@ -222,7 +230,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/ping.svg",
+                        "assets/icons/menubar/ping.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -253,7 +261,7 @@ class _Diary_CardState extends State<Diary_Card> {
                             child: Row(
                               children: [
                                 SvgPicture.asset(
-                                  "icons/menubar/clinic.svg",
+                                  "assets/icons/menubar/clinic.svg",
                                   width: 12,
                                   height: 12,
                                 ),
@@ -281,7 +289,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/part.svg",
+                        "assets/icons/menubar/part.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -307,7 +315,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/money.svg",
+                        "assets/icons/menubar/money.svg",
                         width: 10,
                         height: 9,
                       ),
@@ -336,7 +344,7 @@ class _Diary_CardState extends State<Diary_Card> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SvgPicture.asset(
-                              "icons/menubar/eye.svg",
+                              "assets/icons/menubar/eye.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -360,7 +368,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         width: 10,
                                       ),
                                       SvgPicture.asset(
-                                        "icons/menubar/heart.svg",
+                                        "assets/icons/menubar/heart.svg",
                                         width: 13,
                                         height: 13,
                                       ),
@@ -378,7 +386,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         width: 10,
                                       ),
                                       SvgPicture.asset(
-                                        "icons/menubar/comment.svg",
+                                        "assets/icons/menubar/comment.svg",
                                         width: 13,
                                         height: 13,
                                       ),

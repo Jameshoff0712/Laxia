@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 
 class Doctor_Card extends StatefulWidget {
+  final VoidCallback? onpress;
   final String image, post, name, mark, day, clinic;
   const Doctor_Card(
       {Key? key,
@@ -12,7 +14,7 @@ class Doctor_Card extends StatefulWidget {
       required this.name,
       required this.mark,
       required this.day,
-      required this.clinic})
+      required this.clinic, this.onpress=null})
       : super(key: key);
 
   @override
@@ -24,10 +26,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (_) => MessageScreen(user: favorites[index])));
-      },
+      onTap:widget.onpress!,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Row(
@@ -148,7 +147,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/clinic.svg",
+                          "assets/icons/menubar/clinic.svg",
                           width: 12,
                           height: 12,
                         ),

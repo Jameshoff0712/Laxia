@@ -211,7 +211,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/ping.svg",
+                        "assets/icons/menubar/ping.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -236,7 +236,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/clinic.svg",
+                        "assets/icons/menubar/clinic.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -261,7 +261,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/part.svg",
+                        "assets/icons/menubar/part.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -290,7 +290,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SvgPicture.asset(
-                              "icons/menubar/eye.svg",
+                              "assets/icons/menubar/eye.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -308,7 +308,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               width: 10,
                             ),
                             SvgPicture.asset(
-                              "icons/menubar/heart.svg",
+                              "assets/icons/menubar/heart.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -326,7 +326,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               width: 10,
                             ),
                             SvgPicture.asset(
-                              "icons/menubar/comment.svg",
+                              "assets/icons/menubar/comment.svg",
                               width: 13,
                               height: 13,
                             ),

@@ -245,7 +245,7 @@ class TwitterButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              "images/twitter.svg",
+              "assets/images/twitter.svg",
               width: 24,
               height: 19,
             ),
