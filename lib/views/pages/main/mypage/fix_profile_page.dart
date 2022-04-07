@@ -30,8 +30,8 @@ class _FixProfilePageState extends State<FixProfilePage> {
 
   @override
   void initState() {
-    readCities();
     super.initState();
+    readCities();
   }
 
   @override
