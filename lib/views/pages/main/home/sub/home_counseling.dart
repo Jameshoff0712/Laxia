@@ -65,92 +65,82 @@ class _Home_CounselingState extends State<Home_Counseling> {
               ],
             ),
           ):
-          Container(
-            color: Helper.whiteColor,
-            child: Column(
-              children: [
-                ExtendedWrap(
-                  alignment: WrapAlignment.center,
-                  maxLines: expanded ? 2 : 100,
-                  clipBehavior: Clip.none,
-                  runSpacing: 10,
-                  spacing: 10,
-                  children: [
-                    for (int i = 0;
-                        i <widget.last!.length;
-                        i++)
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            if (index == i) {
-                              index = -1;
-                            } else {
-                              index = i;
-                            }
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(22),
-                              color: index == i
-                                  ? Helper.mainColor
-                                  : Helper.homeBgColor),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 3),
-                            child: Text(
-                             widget.last![i]["label"],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: index == i
-                                      ? Helper.whiteColor
-                                      : Helper.titleColor),
-                            ),
-                          ),
-                        ),
-                      )
-                  ]),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        expanded = !expanded;
-                      });
-                    },
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "すべて表示",
-                            style: TextStyle(
-                                color: Helper.mainColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12),
-                          ),
-                          SizedBox(
-                            width: 8.41,
-                          ),
-                          Icon(
-                            expanded
-                                ? Icons.arrow_drop_down
-                                : Icons.arrow_drop_up,
-                            size: 24,
-                            color: Helper.mainColor,
-                          ),
-                        ]),
-                  ),
-              ],
-            ),
-          ),
+          SizedBox(height: 0,),
           Expanded(
-            child: LayoutBuilder(
-                builder: (context, BoxConstraints viewportConstraints) {
-              return ListView.builder(
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  widget.isdrawer!?SizedBox(height: 0,):
+                  Container(
+                    color: Helper.whiteColor,
+                    child: Column(
+                      children: [
+                        ExtendedWrap(
+                          alignment: WrapAlignment.center,
+                          maxLines: expanded ? 2 : 100,
+                          clipBehavior: Clip.none,
+                          runSpacing: 10,
+                          spacing: 10,
+                          children: [
+                            for (int i = 0;
+                                i <widget.last!.length;
+                                i++)
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    if (index == i) {
+                                      index = -1;
+                                    } else {
+                                      index = i;
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(22),
+                                      color: index == i
+                                          ? Helper.mainColor
+                                          : Helper.homeBgColor),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 3),
+                                    child: Text(
+                                    widget.last![i]["label"],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12,
+                                          color: index == i
+                                              ? Helper.whiteColor
+                                              : Helper.titleColor),
+                                    ),
+                                  ),
+                                ),
+                              )
+                          ]),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                expanded = !expanded;
+                              });
+                            },
+                            child: Icon(
+                                    expanded
+                                        ? FontAwesomeIcons.angleDown
+                                        : FontAwesomeIcons.angleUp,
+                                    size: 24,
+                                    color: Helper.titleColor,
+                                  ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ListView.builder(
                   padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                   itemCount: mid.length,
-                  physics: const AlwaysScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Counseling_Card(
                       hearts: mid[index]["hearts"],
@@ -170,8 +160,10 @@ class _Home_CounselingState extends State<Home_Counseling> {
                       type: mid[index]["type"],
                       clinic: mid[index]["clinic"],
                     );
-                  });
-            }),
+                  }
+                )
+              ],),
+              )
           ),
         ],
       ),

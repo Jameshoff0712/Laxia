@@ -461,7 +461,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              "icons/star.svg",
+              "assets/icons/star.svg",
               width: 42,
               height: 42,
               color: color,

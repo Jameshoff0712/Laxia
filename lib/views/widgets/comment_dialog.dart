@@ -28,14 +28,14 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
   }
 
   Future<void> get_comment_info() async {
-    String mid = await rootBundle.loadString("cfg/comment_info.json");
+    String mid = await rootBundle.loadString("assets/cfg/comment_info.json");
     setState(() {
       comment_list.addAll(json.decode(mid));
     });
   }
 
   Widget build(BuildContext context) {
-    return Container(
+    return comment_list.isNotEmpty? Container(
       height: MediaQuery.of(context).size.height * 0.9,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -111,7 +111,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                             ),
                           ),
                         ),
-                        SvgPicture.asset("icons/send.svg",
+                        SvgPicture.asset("assets/icons/send.svg",
                             width: 30,
                             height: 30,
                             color: bSend ? Helper.mainColor : Helper.extraGrey),
@@ -122,6 +122,6 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
           )
         ],
       ),
-    );
+    ):Container();
   }
 }

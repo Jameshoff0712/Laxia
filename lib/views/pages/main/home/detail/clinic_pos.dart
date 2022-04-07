@@ -37,7 +37,7 @@ class _Clinic_PosState extends State<Clinic_Pos> {
                     color:Helper.titleColor)
               ),
               SvgPicture.asset(
-                    "icons/upright_nobg.svg",
+                    "assets/icons/upright_nobg.svg",
                     width: 20,
                     height: 20,
                   ),
@@ -87,7 +87,7 @@ class _Clinic_PosState extends State<Clinic_Pos> {
                 Expanded(
                   flex: 1,
                   child: SvgPicture.asset(
-                    "icons/double_map.svg",
+                    "assets/icons/double_map.svg",
                     width: 20,
                     height: 20,
                   ),

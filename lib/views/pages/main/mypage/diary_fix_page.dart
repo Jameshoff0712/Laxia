@@ -107,7 +107,7 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                 ),
                 SizedBox(width: 5),
                 SvgPicture.asset(
-                  "icons/upright.svg",
+                  "assets/icons/upright.svg",
                   width: 30,
                   height: 30,
                 ),
@@ -462,7 +462,7 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                     Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/clinic.svg",
+                          "assets/icons/menubar/clinic.svg",
                           width: 12,
                           height: 12,
                         ),
@@ -506,7 +506,7 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                     Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/part.svg",
+                          "assets/icons/menubar/part.svg",
                           width: 12,
                           height: 12,
                         ),
@@ -560,7 +560,7 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                     Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/ping.svg",
+                          "assets/icons/menubar/ping.svg",
                           width: 14,
                           height: 14,
                           color: Helper.mainColor,

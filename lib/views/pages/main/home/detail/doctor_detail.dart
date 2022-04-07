@@ -22,7 +22,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
   bool isfavourite=false;
   List doctor_Details = [];
   Future<void> get_doctor_Details() async {
-    String mid = await rootBundle.loadString("cfg/detail_doctor.json");
+    String mid = await rootBundle.loadString("assets/cfg/detail_doctor.json");
     setState(() {
       doctor_Details.addAll(json.decode(mid));
     });
@@ -36,8 +36,8 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
 
   @override
   Widget build(BuildContext context) {
-    //print(doctor_Details[0]);
-    return Scaffold(
+    print(doctor_Details.isNotEmpty);
+    return doctor_Details.isNotEmpty? Scaffold(
       backgroundColor: Helper.homeBgColor,
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
@@ -66,13 +66,13 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                 Navigator.of(context).pop();
                               },
                               child: SvgPicture.asset(
-                                "icons/back_detail.svg",
+                                "assets/icons/back_detail.svg",
                                 width: 30,
                                 height: 30,
                               ),
                             ),
                             SvgPicture.asset(
-                              "icons/upright.svg",
+                              "assets/icons/upright.svg",
                               width: 30,
                               height: 30,
                             ),
@@ -396,6 +396,6 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
               ),
         ],),
       ),
-    );
+    ):Scaffold();
   }
 }

@@ -74,30 +74,28 @@ class _Home_ClinicState extends State<Home_Clinic> {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: LayoutBuilder(
-                  builder: (context, BoxConstraints viewportConstraints) {
-                return ListView.builder(
-                          itemCount: mid.length,
-                          controller:scrollController,
-                          physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
-                          shrinkWrap:true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Clinic_Card(
-                              onpress: (){
-                                // print("object");
-                                Navigator.of(context).pushNamed("/Clinic_Detail");
-                              },
-                                image: mid[index]["image"],
-                                post: mid[index]["post"],
-                                name: mid[index]["name"],
-                                mark: mid[index]["mark"],
-                                day: mid[index]["day"],
-                                pos: mid[index]["clinic"]);
-                          });
-              }),
-            ),
+            child: LayoutBuilder(
+                builder: (context, BoxConstraints viewportConstraints) {
+              return ListView.builder(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        itemCount: mid.length,
+                        controller:scrollController,
+                        physics: widget.isScrollable!?AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
+                        shrinkWrap:true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Clinic_Card(
+                            onpress: (){
+                              // print("object");
+                              Navigator.of(context).pushNamed("/Clinic_Detail");
+                            },
+                              image: mid[index]["image"],
+                              post: mid[index]["post"],
+                              name: mid[index]["name"],
+                              mark: mid[index]["mark"],
+                              day: mid[index]["day"],
+                              pos: mid[index]["clinic"]);
+                        });
+            }),
           ),
         ],
       ),

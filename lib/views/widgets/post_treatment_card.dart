@@ -594,7 +594,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SvgPicture.asset(
-                  "icons/menubar/heart.svg",
+                  "assets/icons/menubar/heart.svg",
                   width: 13,
                   height: 13,
                 ),
@@ -614,7 +614,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                       width: 10,
                     ),
                     SvgPicture.asset(
-                      "icons/menubar/comment.svg",
+                      "assets/icons/menubar/comment.svg",
                       width: 13,
                       height: 13,
                     ),

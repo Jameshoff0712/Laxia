@@ -52,7 +52,7 @@ class _Home_CardState extends State<Home_Card> {
                     fit: BoxFit.cover,
                   ),
                   errorWidget: (context, url, error) => Image.asset(
-                    'assets/images/ProDoctor.png',
+                    'assets/images/Profile.png',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -75,7 +75,7 @@ class _Home_CardState extends State<Home_Card> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/menubar/ping.svg",
+                            "assets/icons/menubar/ping.svg",
                             width: 12,
                             height: 12,
                           ),
@@ -100,7 +100,7 @@ class _Home_CardState extends State<Home_Card> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/menubar/clinic.svg",
+                            "assets/icons/menubar/clinic.svg",
                             width: 12,
                             height: 12,
                           ),
@@ -135,7 +135,7 @@ class _Home_CardState extends State<Home_Card> {
                                 fit: BoxFit.cover,
                               ),
                               errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/ProDoctor.png',
+                                'assets/images/Profile.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -152,7 +152,7 @@ class _Home_CardState extends State<Home_Card> {
                           width: 25,
                         ),
                         SvgPicture.asset(
-                          "icons/menubar/heart.svg",
+                          "assets/icons/menubar/heart.svg",
                           width: 10,
                           height: 9,
                         ),
@@ -167,7 +167,7 @@ class _Home_CardState extends State<Home_Card> {
                           width: 4,
                         ),
                         SvgPicture.asset(
-                          "icons/menubar/comment.svg",
+                          "assets/icons/menubar/comment.svg",
                           width: 10,
                           height: 9,
                         ),

@@ -76,7 +76,7 @@ class _Detail_ImageState extends State<Detail_Image> {
                   Navigator.of(context).pop();
                 },
                 child: SvgPicture.asset(
-                  "icons/back_detail.svg",
+                  "assets/icons/back_detail.svg",
                   width: 30,
                   height: 30,
                 ),
@@ -84,7 +84,7 @@ class _Detail_ImageState extends State<Detail_Image> {
               Row(
                 children: [
                   SvgPicture.asset(
-                    "icons/upright.svg",
+                    "assets/icons/upright.svg",
                     width: 30,
                     height: 30,
                   ),
@@ -92,7 +92,7 @@ class _Detail_ImageState extends State<Detail_Image> {
                   widget.insidestar!?InkWell(
                     onTap: widget.onStar,
                     child: SvgPicture.asset(
-                      "icons/insidestar.svg",
+                      "assets/icons/insidestar.svg",
                       width: 30,
                       height: 30,
                     ),

@@ -17,7 +17,7 @@ class _SelectPrefectureState extends State<SelectPrefecture> {
     String countyText =
         await rootBundle.loadString("assets/cfg/japanese-city-data.json");
     setState(() {
-      countys = json.decode(countyText);
+      countys.addAll(json.decode(countyText));
     });
   }
 

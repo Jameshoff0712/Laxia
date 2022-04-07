@@ -162,7 +162,7 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/clinic.svg",
+                        "assets/icons/menubar/clinic.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -206,7 +206,7 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/part.svg",
+                        "assets/icons/menubar/part.svg",
                         width: 12,
                         height: 12,
                       ),

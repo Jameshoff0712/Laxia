@@ -23,7 +23,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
             children: <Widget>[
               Center(
                   child: SvgPicture.asset(
-                "images/check_mail.svg",
+                "assets/images/check_mail.svg",
                 width: 54.17,
                 height: 54.17,
               )),

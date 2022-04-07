@@ -39,9 +39,9 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
   @override
   Widget build(BuildContext context) {
     // print(clinic_Details[0]);
-    return Scaffold(
+    return clinic_Details.isNotEmpty? Scaffold(
      backgroundColor:Helper.homeBgColor,
-      body: SingleChildScrollView(
+      body:clinic_Details.isNotEmpty? SingleChildScrollView(
         physics:AlwaysScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -625,7 +625,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
             )
           ],
         ),
-      ),
+      ):Container(),
       bottomNavigationBar: Container(
         height: 66,
          decoration: BoxDecoration(color: Helper.whiteColor),
@@ -664,7 +664,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "さあ, はじめよう！",
+                      "クリニックを予約",
                       style: defaultTextStyle(
                           Helper.whiteColor, FontWeight.w700,
                           size: 14),
@@ -677,6 +677,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
               ),
         ],),
       ),
-    );
+    ):Scaffold();
   }
 }

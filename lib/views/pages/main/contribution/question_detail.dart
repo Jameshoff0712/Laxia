@@ -23,7 +23,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
   bool isfavourite = false;
 
   Future<void> get_question_info() async {
-    String mid = await rootBundle.loadString("cfg/detail_question.json");
+    String mid = await rootBundle.loadString("assets/cfg/detail_question.json");
     setState(() {
       question_Details.addAll(json.decode(mid));
     });
@@ -37,7 +37,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return question_Details.isNotEmpty? Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -144,7 +144,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                 ),
                 SizedBox(width: 10,),
                 SvgPicture.asset(
-                                  "icons/upright_nobg.svg",
+                                  "assets/icons/upright_nobg.svg",
                                   width: 20,
                                   height: 20,
                                 ),
@@ -466,6 +466,6 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
           ),
         ),
       ),
-    );
+    ):Scaffold();
   }
 }

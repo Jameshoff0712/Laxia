@@ -67,7 +67,7 @@ class PhotoCarouselWidget extends StatelessWidget {
                             // top: 0,
                             // right: -20,
                             child: SvgPicture.asset(
-                              "icons/close.svg",
+                              "assets/icons/close.svg",
                               width: 20,
                               height: 20,
                             ),
