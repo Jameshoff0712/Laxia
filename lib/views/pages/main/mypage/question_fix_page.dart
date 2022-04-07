@@ -116,7 +116,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                 ),
                 SizedBox(width: 5),
                 SvgPicture.asset(
-                  "icons/upright.svg",
+                  "assets/icons/upright.svg",
                   width: 30,
                   height: 30,
                 ),
@@ -334,7 +334,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                     Column(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/heart.svg",
+                          "assets/icons/menubar/heart.svg",
                           width: 25,
                           height: 25,
                         ),
@@ -355,7 +355,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                     Column(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/star.svg",
+                          "assets/icons/menubar/star.svg",
                           width: 25,
                           height: 25,
                         ),
@@ -376,7 +376,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                     Column(
                       children: [
                         SvgPicture.asset(
-                          "icons/menubar/comment.svg",
+                          "assets/icons/menubar/comment.svg",
                           width: 25,
                           height: 25,
                         ),

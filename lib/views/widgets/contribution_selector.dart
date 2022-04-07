@@ -59,7 +59,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
               },
               child: ListTile(
                 leading: SvgPicture.asset(
-                  "icons/diary.svg",
+                  "assets/icons/diary.svg",
                   width: 36,
                   height: 36,
                 ),
@@ -74,7 +74,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
               },
               child: ListTile(
                 leading: SvgPicture.asset(
-                  "icons/counsel.svg",
+                  "assets/icons/counsel.svg",
                   width: 36,
                   height: 36,
                 ),
@@ -89,7 +89,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
               },
               child: ListTile(
                 leading: SvgPicture.asset(
-                  "icons/question.svg",
+                  "assets/icons/question.svg",
                   width: 36,
                   height: 36,
                 ),

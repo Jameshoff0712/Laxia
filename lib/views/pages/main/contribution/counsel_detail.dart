@@ -25,7 +25,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
   bool isfavourite = false;
 
   Future<void> get_counsel_info() async {
-    String mid = await rootBundle.loadString("cfg/detail_counsel.json");
+    String mid = await rootBundle.loadString("assets/cfg/detail_counsel.json");
     setState(() {
       question_Details.addAll(json.decode(mid));
     });
@@ -39,7 +39,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return question_Details.isNotEmpty? Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -158,7 +158,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                 ),
                 SizedBox(width: 10,),
 SvgPicture.asset(
-                  "icons/upright_nobg.svg",
+                  "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
                 ),
@@ -623,6 +623,6 @@ SvgPicture.asset(
           ),
         ),
       ),
-    );
+    ):Scaffold();
   }
 }

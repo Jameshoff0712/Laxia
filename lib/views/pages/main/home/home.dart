@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
     String countyText =
         await rootBundle.loadString("assets/cfg/searchresult.json");
     setState(() {
-      searchResult = json.decode(countyText);
+      searchResult.addAll(json.decode(countyText));
     });
   }
 
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen>
           tabMenus: tabMenus,
           tabController: _tabController,
         ),
-        searchResult.isEmpty
+        userProperties.searchtext.isEmpty
             ? Expanded(
                 child: TabBarView(
                   physics: NeverScrollableScrollPhysics(),
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               )
             : Expanded(
-                child: TabBarView(
+                child: searchResult.isNotEmpty? TabBarView(
                   physics: NeverScrollableScrollPhysics(),
                   children: [
                    SearchResultAll(model:searchResult, tabController: _tabController,),
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen>
                     Home_Question(issearch: true,model: searchResult[6],),
                   ],
                   controller: _tabController,
-                ),
+                ):Container(),
               ),
       ],
     ));

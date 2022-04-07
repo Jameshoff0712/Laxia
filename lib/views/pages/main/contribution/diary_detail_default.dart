@@ -26,7 +26,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
   int currentSlider = 1;
 
   Future<void> get_counsel_info() async {
-    String mid = await rootBundle.loadString("cfg/detail_diary_default.json");
+    String mid = await rootBundle.loadString("assets/cfg/detail_diary_default.json");
     setState(() {
       question_Details.addAll(json.decode(mid));
     });
@@ -40,7 +40,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return question_Details.isNotEmpty? Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -158,11 +158,9 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                SvgPicture.asset(
-                  "icons/upright_nobg.svg",
+                SizedBox(width: 10,),
+SvgPicture.asset(
+                  "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
                 ),
@@ -530,6 +528,6 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
           ),
         ),
       ),
-    );
+    ):Scaffold();
   }
 }

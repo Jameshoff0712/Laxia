@@ -13,6 +13,7 @@ import 'package:laxia/views/widgets/detail_image.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 
+
 class Menu_Detail extends StatefulWidget {
   const Menu_Detail({Key? key}) : super(key: key);
 
@@ -38,9 +39,9 @@ class _Menu_DetailState extends State<Menu_Detail> {
   @override
   Widget build(BuildContext context) {
     // print(Menu_Datails[0]);
-    return Scaffold(
+    return Menu_Datails.isNotEmpty?Scaffold(
      backgroundColor:Helper.homeBgColor,
-      body: SingleChildScrollView(
+      body: Menu_Datails.isNotEmpty? SingleChildScrollView(
         physics:AlwaysScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -571,7 +572,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
             ),
           ],
         ),
-      ),
+      ):Container(),
       bottomNavigationBar: Container(
         height: 70,
          decoration: BoxDecoration(color: Helper.whiteColor),
@@ -648,6 +649,6 @@ class _Menu_DetailState extends State<Menu_Detail> {
               ),
         ],),
       ),
-    );
+    ):Container();
   }
 }

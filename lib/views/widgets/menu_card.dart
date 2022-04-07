@@ -119,7 +119,7 @@ class _Menu_CardState extends State<Menu_Card> {
                           child: Row(
                             children: [
                               SvgPicture.asset(
-                                "icons/menubar/clinic.svg",
+                                "assets/icons/menubar/clinic.svg",
                                 width: 12,
                                 height: 12,
                               ),

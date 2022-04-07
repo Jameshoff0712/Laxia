@@ -33,7 +33,7 @@ class _QA_CardState extends State<QA_Card> {
                 child: Row(
                   children: [
                     SvgPicture.asset(
-                      "icons/symbol_q.svg",
+                      "assets/icons/symbol_q.svg",
                       width: 25,
                       height: 25,
                     ),
@@ -58,7 +58,7 @@ class _QA_CardState extends State<QA_Card> {
                 child: Row(
                   children: [
                     SvgPicture.asset(
-                      "icons/symbol_a.svg",
+                      "assets/icons/symbol_a.svg",
                       width: 25,
                       height: 25,
                     ),

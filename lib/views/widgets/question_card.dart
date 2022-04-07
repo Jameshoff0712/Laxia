@@ -179,7 +179,7 @@ class _Question_CardState extends State<Question_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/ping.svg",
+                        "assets/icons/menubar/ping.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -208,7 +208,7 @@ class _Question_CardState extends State<Question_Card> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SvgPicture.asset(
-                              "icons/menubar/eye.svg",
+                              "assets/icons/menubar/eye.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -226,7 +226,7 @@ class _Question_CardState extends State<Question_Card> {
                               width: 10,
                             ),
                             SvgPicture.asset(
-                              "icons/menubar/heart.svg",
+                              "assets/icons/menubar/heart.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -244,7 +244,7 @@ class _Question_CardState extends State<Question_Card> {
                               width: 10,
                             ),
                             SvgPicture.asset(
-                              "icons/menubar/comment.svg",
+                              "assets/icons/menubar/comment.svg",
                               width: 13,
                               height: 13,
                             ),
