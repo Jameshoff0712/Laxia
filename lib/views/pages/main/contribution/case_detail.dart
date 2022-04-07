@@ -20,7 +20,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
   bool isfavourite = false;
 
   Future<void> get_disease_info() async {
-    String mid = await rootBundle.loadString("cfg/detail_disease.json");
+    String mid = await rootBundle.loadString("assets/cfg/detail_disease.json");
     setState(() {
       disease_Details.addAll(json.decode(mid));
     });
@@ -34,7 +34,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return disease_Details.isNotEmpty? Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -407,6 +407,6 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
           ),
         ),
       ),
-    );
+    ):Scaffold();
   }
 }

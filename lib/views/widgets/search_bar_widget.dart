@@ -59,18 +59,18 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
       decoration: InputDecoration(
         suffixIcon: widget.issuffixicon!
             ? Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(14.0),
               child: InkWell(
                   onTap: () {
                     widget.onpress!();
                   },
                   child: Container(
-                    width:10,
-                    height:10,
+                    width:13,
+                    height:13,
                     child: SvgPicture.asset(
                       "assets/icons/close.svg",
-                      width: 5,
-                      height: 5,
+                      width: 3,
+                      height: 3,
                     ),
                   ),
                 ),
@@ -83,7 +83,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
         prefixIcon: Icon(
           Icons.search,
           color: Helper.searchBartxtColor,
-          size: 16,
+          size: 23,
         ),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Helper.whiteColor),

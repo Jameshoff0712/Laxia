@@ -48,7 +48,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return treatment.isNotEmpty? Scaffold(
       body: SafeArea(
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -157,6 +157,6 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
               ),
         ],),
       ),
-    );
+    ):Scaffold();
   }
 }

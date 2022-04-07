@@ -21,7 +21,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
   bool isfavourite = false,isVisible=false,isPostVisible=false;
 
   Future<void> get_question_info() async {
-    String mid = await rootBundle.loadString("cfg/detail_diary.json");
+    String mid = await rootBundle.loadString("assets/cfg/detail_diary.json");
     setState(() {
       diary_Details.addAll(json.decode(mid));
     });
@@ -34,7 +34,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return diary_Details.isNotEmpty? Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -840,6 +840,6 @@ class _Diary_DetailState extends State<Diary_Detail> {
           ),
         ),
       ),
-    );
+    ):Scaffold();
   }
 }
