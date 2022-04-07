@@ -30,8 +30,8 @@ class _FixProfilePageState extends State<FixProfilePage> {
 
   @override
   void initState() {
-    readCities();
     super.initState();
+    readCities();
   }
 
   @override
@@ -39,7 +39,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
     // TODO: implement build
-    return Scaffold(
+    return _cities.isNotEmpty? Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         leading: IconButton(
@@ -228,6 +228,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
           ),
         ),
       ),
-    );
+    ):Scaffold();
   }
 }
