@@ -3,6 +3,10 @@ import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/generated/L10n.dart';
 import 'package:laxia/models/m_user.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
+import 'package:laxia/views/pages/main/contribution/question.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
+import 'package:laxia/views/pages/main/mypage/counseling_fix_page.dart';
 import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
@@ -10,6 +14,11 @@ import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/invite_page.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
+import 'package:laxia/views/widgets/counseling_card%20.dart';
+import 'package:laxia/views/widgets/question_card.dart';
+
+import '../../../../models/counseling_model.dart';
+import '../../../../models/question_model.dart';
 
 class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);
@@ -20,10 +29,20 @@ class Mypage extends StatefulWidget {
 
 class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  List mid = [];
+  List nid = [];
   @override
   void initState() {
     super.initState();
     _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+    for (int i = 0; i < counseling_list.length; i++)
+      setState(() {
+        mid.add(counseling_list[i]);
+      });
+    for (int i = 0; i < question_list.length; i++)
+      setState(() {
+        nid.add(question_list[i]);
+      });
   }
 
   @override
@@ -57,6 +76,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
               color: Helper.titleColor,
               size: 30,
             )),
+        elevation: 0,
       ),
       body: Container(
         margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
@@ -152,16 +172,43 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return Container(
       height: 640,
       color: Helper.bodyBgColor,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            DiaryCardWidget(),
-            SizedBox(
-              height: 8,
-            ),
-            DiaryCardWidget()
-          ],
-        ),
+      child: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+                builder: (context, BoxConstraints viewportConstraints) {
+              return ListView.builder(
+                  padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                  itemCount: mid.length,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Counseling_Card(
+                      hearts: mid[index]["hearts"],
+                      chats: mid[index]["chats"],
+                      avator: mid[index]["avator"],
+                      check: mid[index]["check"],
+                      image2: mid[index]["image2"],
+                      image1: mid[index]["image1"],
+                      image3: mid[index]["image3"],
+                      image4: mid[index]["image4"],
+                      eyes: mid[index]["eyes"],
+                      name: mid[index]["name"],
+                      onpress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CounselDetail(
+                                      isMyDiary: true,
+                                    )));
+                      },
+                      sentence: mid[index]["sentence"],
+                      type: mid[index]["type"],
+                      clinic: mid[index]["clinic"],
+                    );
+                  });
+            }),
+          ),
+        ],
       ),
     );
   }
@@ -170,16 +217,40 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return Container(
       height: 640,
       color: Helper.bodyBgColor,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            DiaryCardWidget(),
-            SizedBox(
-              height: 8,
+      child: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+              builder: (context, BoxConstraints viewportConstraints) {
+                return ListView.builder(
+                    padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                    itemCount: mid.length,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Question_Card(
+                        buttoncolor: Helper.allowStateButtonColor,
+                        buttontext: "回答あり",
+                        hearts: mid[index]["hearts"],
+                        chats: mid[index]["chats"],
+                        avator: mid[index]["avator"],
+                        image2: mid[index]["image2"],
+                        image1: mid[index]["image1"],
+                        eyes: mid[index]["eyes"],
+                        name: mid[index]["name"],
+                        onpress: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => QuestionDetail(isMyDiary: true,)));
+                        },
+                        sentence: mid[index]["sentence"],
+                        type: mid[index]["type"],
+                      );
+                    });
+              },
             ),
-            DiaryCardWidget()
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

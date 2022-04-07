@@ -12,6 +12,20 @@ class CounselingFixPage extends StatefulWidget {
 }
 
 class _CounselingFixPageState extends State<CounselingFixPage> {
+  List lImageList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    lImageList = [
+      "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+      "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+      "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+      "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg"
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -362,10 +376,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                              // PhotoCarouselWidget(),
-                              // PhotoCarouselWidget(),
-                              // PhotoCarouselWidget(),
-                              // PhotoCarouselWidget(),
+                              PhotoCarouselWidget(ImageList: lImageList ),
                             ],
                           ),
                         ),
@@ -402,10 +413,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                              // PhotoCarouselWidget(),
-                              // PhotoCarouselWidget(),
-                              // PhotoCarouselWidget(),
-                              // PhotoCarouselWidget(),
+                              PhotoCarouselWidget(ImageList: lImageList ),
                             ],
                           ),
                         ),

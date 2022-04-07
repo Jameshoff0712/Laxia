@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
+import 'package:laxia/views/pages/main/mypage/invite_page.dart';
 
 class DiaryFixPage extends StatefulWidget {
   const DiaryFixPage({Key? key}) : super(key: key);
@@ -72,7 +74,10 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed("");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddDiaryStep1Page()));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -133,15 +138,16 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                         alignment: AlignmentDirectional.bottomStart,
                         children: [
                           ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
                               child: Image(
                                 image: AssetImage(
                                   'images/user/eyebefore.jpg',
                                 ),
                               )),
                           Container(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
                             width: 60,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -176,15 +182,16 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                         alignment: AlignmentDirectional.bottomStart,
                         children: [
                           ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
                               child: Image(
                                 image: AssetImage(
                                   'images/user/eyeafter.jpg',
                                 ),
                               )),
                           Container(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
                             width: 60,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -381,7 +388,8 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                                 ),
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -416,7 +424,8 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                                       shape: const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(20))),
-                                      primary: Color.fromARGB(255, 249, 161, 56),
+                                      primary:
+                                          Color.fromARGB(255, 249, 161, 56),
                                       onPrimary: Colors.white,
                                       onSurface:
                                           Color.fromARGB(255, 110, 198, 210),
@@ -606,7 +615,7 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         setState(() {
                           isVisible = !isVisible;
                         });
@@ -623,7 +632,9 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                               color: Helper.mainColor,
                             ),
                           ),
-                          SizedBox(width: 5,),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Icon(
                             Icons.keyboard_arrow_down,
                             color: Helper.mainColor,

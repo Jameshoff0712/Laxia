@@ -5,6 +5,8 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_add_step1.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_add_step2.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:laxia/views/widgets/counsel_short_card.dart';
 import 'package:laxia/views/widgets/qa_card.dart';
@@ -12,6 +14,8 @@ import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:laxia/views/widgets/comment_dialog.dart';
 
 class CounselDetail extends StatefulWidget {
+  final bool isMyDiary;
+  const CounselDetail({ Key? key, this.isMyDiary = false }) : super(key: key);
   @override
   _CounselDetailState createState() => _CounselDetailState();
 }
@@ -86,6 +90,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
             ),
             Row(
               children: [
+                !widget.isMyDiary ?
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed("/AddDiaryProgress");
@@ -113,6 +118,39 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                           style: TextStyle(
                               fontSize: 10,
                               color: Color.fromARGB(255, 110, 198, 210)),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                : ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddCounselStep1Page()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    primary: Color.fromARGB(255, 249, 161, 56),
+                    onPrimary: Colors.white,
+                    onSurface: Color.fromARGB(255, 110, 198, 210),
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "投稿を修正",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            height: 1.5,
+                            color: Helper.whiteColor,
+                          ),
                         ),
                       ],
                     ),

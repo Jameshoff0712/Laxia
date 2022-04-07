@@ -40,6 +40,7 @@ class _InvitePageState extends State<InvitePage> {
                 color: Helper.titleColor,
                 size: 30,
               )),
+          elevation: 0,
         ),
         body: Column(
           children: [

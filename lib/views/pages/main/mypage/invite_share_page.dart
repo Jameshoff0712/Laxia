@@ -40,7 +40,15 @@ class _InviteSharePageState extends State<InviteSharePage> {
                   ),
                 ),
                 Expanded(child: Container()),
-                Icon(Icons.close),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.close,
+                      color: Helper.titleColor,
+                      size: 30,
+                    )),
               ],
             ),
           ),
@@ -88,13 +96,16 @@ class _InviteSharePageState extends State<InviteSharePage> {
                 fillColor: Color.fromARGB(255, 245, 245, 245),
                 filled: true,
                 suffixIcon: GestureDetector(
-                  child: Icon(Icons.file_copy_outlined, color: Helper.maintxtColor),
+                  child: Icon(Icons.file_copy_outlined,
+                      color: Helper.maintxtColor),
                 ),
               ),
               onChanged: (text) {},
             ),
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: TextField(

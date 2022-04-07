@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/diary_medialist.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
 
 class Diary_Detail extends StatefulWidget {
-  const Diary_Detail({ Key? key }) : super(key: key);
+  final bool isMyDiary;
+  const Diary_Detail({ Key? key, this.isMyDiary = false }) : super(key: key);
 
   @override
   State<Diary_Detail> createState() => _Diary_DetailState();
@@ -103,6 +105,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
             ),
             Row(
               children: [
+                !widget.isMyDiary?
                 ElevatedButton(
                   onPressed: () {
                     
@@ -130,6 +133,39 @@ class _Diary_DetailState extends State<Diary_Detail> {
                           style: TextStyle(
                               fontSize: 13,
                               color: Color.fromARGB(255, 110, 198, 210)),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                : ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddDiaryStep1Page()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    primary: Color.fromARGB(255, 249, 161, 56),
+                    onPrimary: Colors.white,
+                    onSurface: Color.fromARGB(255, 110, 198, 210),
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "投稿を修正",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            height: 1.5,
+                            color: Helper.whiteColor,
+                          ),
                         ),
                       ],
                     ),
