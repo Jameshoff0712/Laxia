@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class QuestionDetail extends StatefulWidget {
 
 class _QuestionDetailState extends StateMVC<QuestionDetail> {
   List question_Details = [];
-  bool isfavourite = false;
+  bool isfavourite = false,isStar=false;
 
   Future<void> get_question_info() async {
     String mid = await rootBundle.loadString("assets/cfg/detail_question.json");
@@ -38,6 +37,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
   @override
   Widget build(BuildContext context) {
     return question_Details.isNotEmpty? Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -47,21 +47,26 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
           children: [
             Row(
               children: [
-                SizedBox(
-                  height: 32,
-                  width: 32,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: question_Details[0]["avator"],
-                      placeholder: (context, url) => Image.asset(
-                        'assets/images/loading.gif',
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushNamed("/Mypage");
+                  },
+                  child: SizedBox(
+                    height: 32,
+                    width: 32,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                      ),
-                      errorWidget: (context, url, error) => Image.asset(
-                        'assets/images/profile.png',
-                        fit: BoxFit.cover,
+                        imageUrl: question_Details[0]["avator"],
+                        placeholder: (context, url) => Image.asset(
+                          'assets/images/loading.gif',
+                          fit: BoxFit.cover,
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          'assets/images/profile.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -202,13 +207,13 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
             InkWell(
               onTap: () {
                 setState(() {
-                  isfavourite = !isfavourite;
+                  isStar = !isStar;
                 });
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  isfavourite
+                  isStar
                       ? Icon(
                           Icons.star,
                           color: Helper.btnBgYellowColor,
@@ -222,7 +227,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                   Text(
                     "お気に入り",
                     style: TextStyle(
-                        color: isfavourite
+                        color: isStar
                             ? Helper.btnBgYellowColor
                             : Helper.txtColor,
                         fontSize: 12,
@@ -233,11 +238,8 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
             ),
             InkWell(
               onTap: () {
-                setState(() {
-                  isfavourite = !isfavourite;
-                });
-
                 showModalBottomSheet(
+                  constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
                     isScrollControlled: true,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
@@ -252,13 +254,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  isfavourite
-                      ? Icon(
-                          FontAwesomeIcons.commentDots,
-                          color: Helper.btnBgYellowColor,
-                          size: 30,
-                        )
-                      : Icon(
+                        Icon(
                           FontAwesomeIcons.commentDots,
                           color: Helper.txtColor,
                           size: 30,
@@ -266,9 +262,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                   Text(
                     "20",
                     style: TextStyle(
-                        color: isfavourite
-                            ? Helper.btnBgYellowColor
-                            : Helper.txtColor,
+                        color:Helper.txtColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w400),
                   ),
@@ -298,6 +292,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
         ),
       ),
       body: SingleChildScrollView(
+        reverse: false,
         padding: EdgeInsets.symmetric(vertical: 10),
         child: Container(
           color: Helper.whiteColor,

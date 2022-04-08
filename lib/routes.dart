@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/models/m_message.dart';
+import 'package:laxia/views/pages/auth/sigunup_two.dart';
 import 'package:laxia/views/pages/main/appointment/chatScreen.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_four.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
@@ -77,6 +78,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OnBoardingScreen());
       case '/Signup':
         return MaterialPageRoute(builder: (_) => SignUpScreen());
+      case '/SignupTwo':
+        return MaterialPageRoute(builder: (_) => Signup_Two());
       case '/Pages':
         return MaterialPageRoute(builder: (_) => DashboardScreen());
       case '/Home':
@@ -175,7 +178,7 @@ class RouteGenerator {
       case '/DiaryDetailDefault':
         return MaterialPageRoute(builder: (_) => DiaryDetailDefault());
       default:
-        return MaterialPageRoute(builder: (_) => EMLoginScreen());
+        return MaterialPageRoute(builder: (_) => Text("end"));
     }
   }
 }

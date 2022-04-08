@@ -146,10 +146,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PassRest_Four()));
+                     Navigator.of(context).pushNamed("/PassRest_Four");
                   },
                 ),
               ),

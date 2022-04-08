@@ -32,8 +32,10 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly:widget.state?true:false,
       autofocus: false,
       onTap: () {
+        FocusScope.of(context).unfocus();
         if (widget.state) {
           Navigator.of(context).pushNamed("/SearchView");
         }
