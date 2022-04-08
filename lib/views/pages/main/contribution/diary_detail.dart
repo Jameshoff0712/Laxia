@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/diary_medialist.dart';
@@ -20,7 +21,7 @@ class Diary_Detail extends StatefulWidget {
 
 class _Diary_DetailState extends State<Diary_Detail> {
    List diary_Details = [];
-  bool isfavourite = false,isVisible=false,isPostVisible=false;
+  bool isfavourite = false,isVisible=false,isPostVisible=false,isStar = false;
 
   Future<void> get_question_info() async {
     String mid = await rootBundle.loadString("assets/cfg/detail_diary.json");
@@ -37,30 +38,35 @@ class _Diary_DetailState extends State<Diary_Detail> {
   @override
   Widget build(BuildContext context) {
     return diary_Details.isNotEmpty? Scaffold(
+      
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                SizedBox(
-                  height: 32,
-                  width: 32,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: diary_Details[0]["avator"],
-                      placeholder: (context, url) => Image.asset(
-                        'assets/images/loading.gif',
+                InkWell(
+                  onTap:(){
+                    Navigator.of(context).pushNamed("/Mypage");
+                  },
+                  child: SizedBox(
+                    height: 32,
+                    width: 32,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                      ),
-                      errorWidget: (context, url, error) => Image.asset(
-                        'assets/images/profile.png',
-                        fit: BoxFit.cover,
+                        imageUrl: diary_Details[0]["avator"],
+                        placeholder: (context, url) => Image.asset(
+                          'assets/images/loading.gif',
+                          fit: BoxFit.cover,
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          'assets/images/profile.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -197,13 +203,13 @@ class _Diary_DetailState extends State<Diary_Detail> {
             InkWell(
               onTap: () {
                 setState(() {
-                  isfavourite = !isfavourite;
+                  isStar = !isStar;
                 });
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  isfavourite
+                  isStar
                       ? Icon(
                           Icons.star,
                           color: Helper.btnBgYellowColor,
@@ -217,7 +223,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   Text(
                     "お気に入り",
                     style: TextStyle(
-                        color: isfavourite
+                        color: isStar
                             ? Helper.btnBgYellowColor
                             : Helper.txtColor,
                         fontSize: 12,
@@ -275,7 +281,9 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   ),
                 ],
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed("/Reservation");
+              },
             ),
           ],
         ),
@@ -300,97 +308,153 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       crossAxisCount: 2,
                       childAspectRatio: 1),
                   children: [
-                    FittedBox(
-                      fit: BoxFit.fill,
-                      child: Stack(
-                        alignment: AlignmentDirectional.bottomStart,
-                        children: [
-                          Container(
-                            width: 426,
-                            height: 426,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: diary_Details[0]["image1"],
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                    InkWell(
+                      onTap: (){
+                        ImageViewer.showImageSlider(
+                            images: [
+                              diary_Details[0]["image1"],
+                            ],
+                            startingPosition: 1,
+                          );
+                      },
+                      child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: Stack(
+                          alignment: AlignmentDirectional.bottomStart,
+                          children: [
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) => Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: diary_Details[0]["image1"],
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) => Image.asset(
+                                    'assets/images/ProDoctor.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                              width: 100,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Helper.blackColor.withOpacity(0.5),
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(30),
-                                      bottomLeft: Radius.circular(30))),
-                              child: Center(
-                                child: Text(
-                                  "Before",
-                                  style: TextStyle(
-                                      color: Helper.whiteColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ))
-                        ],
+                            Container(
+                                width: 100,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: Helper.blackColor.withOpacity(0.5),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(30),
+                                        bottomLeft: Radius.circular(30))),
+                                child: Center(
+                                  child: Text(
+                                    "Before",
+                                    style: TextStyle(
+                                        color: Helper.whiteColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ))
+                          ],
+                        ),
                       ),
                     ),
-                    FittedBox(
-                      fit: BoxFit.fill,
-                      child: Stack(
-                        alignment: AlignmentDirectional.bottomStart,
-                        children: [
-                          Container(
-                            width: 426,
-                            height: 426,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: diary_Details[0]["image2"],
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                    InkWell(
+                      onTap: (){
+                          ImageViewer.showImageSlider(
+                            images: [
+                              diary_Details[0]["image1"],
+                            ],
+                            startingPosition: 1,
+                          );
+                      },
+                      child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: Stack(
+                          alignment: AlignmentDirectional.bottomStart,
+                          children: [
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) => Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: diary_Details[0]["image2"],
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) => Image.asset(
+                                    'assets/images/ProDoctor.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                              width: 100,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Helper.blackColor.withOpacity(0.5),
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(30),
-                                      bottomLeft: Radius.circular(30))),
-                              child: Center(
-                                child: Text(
-                                  "After",
-                                  style: TextStyle(
-                                      color: Helper.whiteColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ))
-                        ],
+                            Container(
+                                width: 100,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: Helper.blackColor.withOpacity(0.5),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(30),
+                                        bottomLeft: Radius.circular(30))),
+                                child: Center(
+                                  child: Text(
+                                    "After",
+                                    style: TextStyle(
+                                        color: Helper.whiteColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ))
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),    
+              ),
+              Wrap(
+                 alignment: WrapAlignment.start,
+                runSpacing: 10,
+                spacing: 10,
+                children: [
+                for(int i=0;i<diary_Details[0]["treatment"].length;i++)
+                InkWell(
+                  onTap: () {
+                    //
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(
+                                22),
+                        border: Border.all(
+                            width: 1,
+                            color:Helper.mainColor),
+                        color: Helper.whiteColor),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 3),
+                      child: Text(
+                        diary_Details[0]["treatment"][i]["label"],
+                        style: TextStyle(
+                            fontWeight:
+                                FontWeight.w400,
+                            fontSize: 12,
+                            color:Helper.mainColor),
+                      ),
+                    ),
+                  ),
+                )
+              ],),    
               Row(
                 children: [
                   Text(
@@ -497,8 +561,10 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     children: [
                       SizedBox(height: 8,),
                       Container(
+                        width: double.infinity,
                         padding: EdgeInsets.only(top: 24, left: 8, right: 8),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
@@ -567,13 +633,14 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
                               child: Container(
+                                width: double.infinity,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                     for(int i=0;i<diary_Details[0]["clinic_menu"][2]["list"].length;i++)
                                       Container(
                                         child: Text(
-                                          diary_Details[0]["clinic_menu"][2]["list"][i],
+                                          "・"+diary_Details[0]["clinic_menu"][2]["list"][i],
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 14,
@@ -660,7 +727,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
                               child:Text(
-                                "・"+diary_Details[0]["clinic_menu"][4]["description"],
+                                diary_Details[0]["clinic_menu"][4]["description"],
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14,
@@ -716,7 +783,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 height: 120,
                 child: GridView.builder(
                   scrollDirection:Axis.horizontal,
-                  itemCount:diary_Details[0]["before_image"].length,
+                  itemCount:3,
                   physics: AlwaysScrollableScrollPhysics(),
                   shrinkWrap: true,
                     padding: EdgeInsets.symmetric(vertical: 10),
@@ -728,7 +795,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     itemBuilder:  (BuildContext context, int index){
                       return InkWell(
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Diary_MediaList(post_treatment:  diary_Details[0]["post-treatment"],)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Diary_MediaList(post_treatment:  diary_Details[0]["post-treatment"], before: {"label":"施術前","images":diary_Details[0]["before_image"]["images"]},)));
                         },
                         child: SizedBox(
                           height: 78,
@@ -737,7 +804,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             borderRadius: BorderRadius.circular(8),
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl:  diary_Details[0]["before_image"][index],
+                              imageUrl:  diary_Details[0]["before_image"]["images"][index],
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,
