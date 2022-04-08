@@ -6,7 +6,7 @@ import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 
 class Clinic_Card extends StatefulWidget {
   final VoidCallback? onpress,posPress;
-  final String image, post, name, mark, day, pos;
+  final String image, post, name, mark, day, location;
   const Clinic_Card(
       {Key? key,
       required this.image,
@@ -14,7 +14,7 @@ class Clinic_Card extends StatefulWidget {
       required this.name,
       required this.mark,
       required this.day,
-      required this.pos, this.onpress=null, this.posPress=null})
+      required this.location, this.onpress=null, this.posPress=null})
       : super(key: key);
 
   @override
@@ -92,14 +92,14 @@ class _Clinic_CardState extends State<Clinic_Card> {
                               Helper.titleColor, FontWeight.w700,
                               size: 16.0),
                         ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        Text(
-                          widget.post,
-                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
-                              size: 10.0),
-                        ),
+                        // SizedBox(
+                        //   width: 3,
+                        // ),
+                        // Text(
+                        //   widget.post,
+                        //   style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
+                        //       size: 10.0),
+                        // ),
                       ],
                     ),
                     SizedBox(
@@ -161,7 +161,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                             width: 4,
                           ),
                           Text(
-                            widget.pos,
+                            widget.location,
                             overflow:TextOverflow.ellipsis ,
                             style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
                                 size: 12.0),
