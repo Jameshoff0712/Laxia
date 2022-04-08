@@ -339,7 +339,7 @@ SvgPicture.asset(
                     children: [
                       for (int j = 0; j < 5; j++)
                         Image.asset(
-                          'images/canada.png',
+                          'assets/images/canada.png',
                           fit: BoxFit.cover,
                         ),
                     ],
@@ -463,6 +463,19 @@ SvgPicture.asset(
                             ),
                             Expanded(
                               child: TextField(
+                                onTap: (){
+                                  showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(15.0),
+                                          topRight: Radius.circular(15.0)),
+                                    ),
+                                    context: context,
+                                    builder: (context) {
+                                      return CommentDialogSheet();
+                                    });
+                                  },
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(
                                       top: 0, left: 15, right: 15, bottom: 0),

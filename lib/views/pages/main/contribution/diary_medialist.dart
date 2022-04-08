@@ -5,14 +5,23 @@ import 'package:laxia/common/helper.dart';
 
 
 class Diary_MediaList extends StatefulWidget {
+  final dynamic before;
   final List post_treatment;
-  const Diary_MediaList({ Key? key, required this.post_treatment}) : super(key: key);
+  const Diary_MediaList({ Key? key, required this.post_treatment, this.before}) : super(key: key);
 
   @override
   State<Diary_MediaList> createState() => _Diary_MediaListState();
 }
 
 class _Diary_MediaListState extends State<Diary_MediaList> {
+  List mid=[];
+  @override
+  void initState(){
+    mid.add(widget.before);
+    for(int i=0;i<widget.post_treatment.length;i++)
+      mid.add(widget.post_treatment[i]["post_list"]);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,12 +47,12 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            for(int i=0;i<widget.post_treatment.length;i++)
+            for(int i=0;i<mid.length;i++)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.post_treatment[i]["label"],
+                    mid[i]["label"],
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                         fontSize: 16,
@@ -60,7 +69,7 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
                         crossAxisCount: 3,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10),
-                        itemCount: widget.post_treatment[i]["post_list"]["images"].length,
+                        itemCount: mid[i]["images"].length,
                         itemBuilder: (BuildContext context, int index) {
                           return Image_Widget(context,index,i);
                   }),
@@ -78,8 +87,8 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
         onTap: (){
           ImageViewer.showImageSlider(
               images: [
-                for (int j = 0; j < widget.post_treatment[index]["post_list"]["images"].length; j++)
-                   widget.post_treatment[index]["post_list"]["images"][j]
+                for (int j = 0; j < mid[index]["images"].length; j++)
+                   mid[index]["images"][j]
               ],
               startingPosition: imageUrl,
             );
@@ -91,7 +100,7 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
               borderRadius: BorderRadius.circular(10),
               child: CachedNetworkImage(
                 fit: BoxFit.fill,
-                imageUrl: widget.post_treatment[index]["post_list"]["images"][imageUrl],
+                imageUrl: mid[index]["images"][imageUrl],
                 placeholder: (context, url) => Image.asset(
                   'assets/images/loading.gif',
                   fit: BoxFit.fill,

@@ -105,7 +105,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               shape: BoxShape.rectangle,
                               color: f == currentPageValue!.floor()
                                   ? Color.fromARGB(255, 255, 255, 255)
-                                  : Helper.mainColor,
+                                  : Helper.whiteColor.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(7.0),
                             ),
                             width: f == currentPageValue!.floor() ? 7 : 7,
