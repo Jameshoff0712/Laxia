@@ -116,7 +116,7 @@ class RouteGenerator {
       case '/Completion':
         return MaterialPageRoute(builder: (_) => Completion());
       case '/Favorite':
-        return MaterialPageRoute(builder: (_) => Favorite());
+        return MaterialPageRoute(builder: (_) => FavoriteScreen());
       case '/Mypage':
         return MaterialPageRoute(builder: (_) => Mypage());
       case '/FollowingList':
