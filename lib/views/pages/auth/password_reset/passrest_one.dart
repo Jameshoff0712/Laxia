@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
+import 'package:laxia/generated/l10n.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../controllers/auth_controller.dart';
-import '../../../../common/helper.dart';
 // import '../common/app_config.dart' as config;
 import './passrest_three.dart';
 
@@ -36,7 +36,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () => Navigator.of(context).pop(),
                             padding: EdgeInsets.only(left: 7),
                             icon: const Icon(Icons.arrow_back_ios,
                                 color: Helper.blackColor),
@@ -141,10 +141,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PassRest_Three()));
+                    Navigator.of(context).pushNamed("/PassRest_Three");
                   },
                 ),
               ),

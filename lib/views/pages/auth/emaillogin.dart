@@ -38,7 +38,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
-                            onPressed: () => SystemNavigator.pop(),
+                            onPressed: () => Navigator.of(context).pop(),
                             padding: EdgeInsets.only(left: 7),
                             icon: const Icon(Icons.clear, color: Helper.blackColor),
                             iconSize: 16,
@@ -152,10 +152,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PassRest_One()));
+                      Navigator.of(context).pushNamed("/passwordResetone");
                     },
                     child: Text(
                       Trans.of(context).i_forgot_password,
@@ -190,10 +187,8 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DashboardScreen()));
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed("/Pages");
                   },
                 ),
               ),

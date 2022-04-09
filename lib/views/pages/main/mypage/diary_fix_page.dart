@@ -142,7 +142,7 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                                   BorderRadius.all(Radius.circular(10)),
                               child: Image(
                                 image: AssetImage(
-                                  'images/user/eyebefore.jpg',
+                                  'assets/images/user/eyebefore.jpg',
                                 ),
                               )),
                           Container(
@@ -186,7 +186,7 @@ class _DiaryFixPageState extends State<DiaryFixPage> {
                                   BorderRadius.all(Radius.circular(10)),
                               child: Image(
                                 image: AssetImage(
-                                  'images/user/eyeafter.jpg',
+                                  'assets/images/user/eyeafter.jpg',
                                 ),
                               )),
                           Container(

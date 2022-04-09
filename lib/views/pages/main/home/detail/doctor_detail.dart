@@ -119,7 +119,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                   name: doctor_Details[0]["name"],
                   mark: doctor_Details[0]["mark"],
                   day: "",
-                  pos: doctor_Details[0]["clinic"]),
+                  location: doctor_Details[0]["clinic"]),
             ),
             SizedBox(height: 5,),
             Container(

@@ -26,21 +26,26 @@ class _Comment_CardState extends State<Comment_Card> {
         children: [
           Row(
             children: [
-              SizedBox(
-                height: 32,
-                width: 32,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    imageUrl: widget.avatar,
-                    placeholder: (context, url) => Image.asset(
-                      'assets/images/loading.gif',
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).pushNamed("/Mypage");
+                },
+                child: SizedBox(
+                  height: 32,
+                  width: 32,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                    ),
-                    errorWidget: (context, url, error) => Image.asset(
-                      'assets/images/profile.png',
-                      fit: BoxFit.cover,
+                      imageUrl: widget.avatar,
+                      placeholder: (context, url) => Image.asset(
+                        'assets/images/loading.gif',
+                        fit: BoxFit.cover,
+                      ),
+                      errorWidget: (context, url, error) => Image.asset(
+                        'assets/images/profile.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
