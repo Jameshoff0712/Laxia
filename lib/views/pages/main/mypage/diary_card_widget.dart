@@ -6,6 +6,8 @@ import 'package:laxia/views/pages/main/contribution/diary_detail_default.dart';
 import 'package:laxia/views/pages/main/mypage/diary_fix_page.dart';
 
 class DiaryCardWidget extends StatefulWidget {
+  final bool isMe;
+  const DiaryCardWidget({Key? key, required this.isMe}) : super(key: key);
   @override
   State<DiaryCardWidget> createState() => _DiaryCardWidgetState();
 }
@@ -22,7 +24,11 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Diary_Detail(isMyDiary: true,)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => Diary_Detail(
+                      isMyDiary: true,
+                    )));
       },
       child: Card(
         // borderOnForeground: true,
@@ -69,20 +75,22 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                               ),
                             )),
                       ),
-                      InkWell(
-                          onTap: () {},
-                          child: Container(
-                            padding: EdgeInsets.all(5.0),
-                            color: Color.fromARGB(51, 240, 154, 55),
-                            child: Text(
-                              "未公開",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 10,
-                                color: Color.fromARGB(255, 249, 161, 56),
-                              ),
-                            ),
-                          )),
+                      widget.isMe
+                          ? InkWell(
+                              onTap: () {},
+                              child: Container(
+                                padding: EdgeInsets.all(5.0),
+                                color: Color.fromARGB(51, 240, 154, 55),
+                                child: Text(
+                                  "未公開",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 10,
+                                    color: Color.fromARGB(255, 249, 161, 56),
+                                  ),
+                                ),
+                              ))
+                          : Container(),
                     ],
                   ))
                 ],
