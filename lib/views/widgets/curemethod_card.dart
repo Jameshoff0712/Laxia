@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,8 +26,7 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (_) => MessageScreen(user: favorites[index])));
+        Navigator.of(context).pushNamed("/Menu_Detail");
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -76,7 +74,6 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                   Expanded(
                     child: Container(
                       color: Helper.whiteColor,
-                      height: 70,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Column(
@@ -95,13 +92,10 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 7,
-                                )
                               ],
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,7 +138,9 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                                       ),
                                     ],
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                     Navigator.of(context).pushNamed("/Reservation");
+                                  },
                                 ),
                               ],
                             ),
@@ -184,7 +180,10 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                           size: 15,
                           color: Helper.mainColor,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                            Navigator.of(context).pushNamed("/Clinic_Detail");
+                          
+                        },
                       ),
                     ],
                   ),
@@ -228,7 +227,10 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                           size: 15,
                           color: Helper.mainColor,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                  Navigator.of(context).pushNamed("/Clinic_Detail");
+
+                        },
                       ),
                     ],
                   ),

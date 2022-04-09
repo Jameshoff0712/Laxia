@@ -68,10 +68,9 @@ class _PassRest_FourState extends State<PassRest_Four> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EMLoginScreen()));
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
                   },
                 ),
               ),
