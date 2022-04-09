@@ -40,15 +40,16 @@ class _InputTextWidgetState extends State<InputTextWidget> {
                   color: Color.fromARGB(255, 18, 18, 18),
                 ),
               ),
-              Text(
-                "${_enteredText.length}/${widget.maxLegnth}",
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12,
-                  height: 1.5,
-                  color: Helper.maintxtColor,
-                ),
-              )
+              if (widget.maxLegnth != '')
+                Text(
+                  "${_enteredText.length}/${widget.maxLegnth}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                    height: 1.5,
+                    color: Helper.maintxtColor,
+                  ),
+                )
             ],
           ),
         ),

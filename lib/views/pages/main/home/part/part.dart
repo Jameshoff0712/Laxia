@@ -66,6 +66,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
         Provider.of<UserProvider>(context, listen: true);
     return (partResult.isNotEmpty&&treatment.isNotEmpty)? SafeArea(
       child: Scaffold(
+        backgroundColor:Helper.whiteColor,
         body: Column(
           children: [
             Padding(

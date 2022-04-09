@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
@@ -49,21 +48,26 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
           children: [
             Row(
               children: [
-                SizedBox(
-                  height: 32,
-                  width: 32,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: question_Details[0]["avator"],
-                      placeholder: (context, url) => Image.asset(
-                        'assets/images/loading.gif',
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushNamed("/Mypage");
+                  },
+                  child: SizedBox(
+                    height: 32,
+                    width: 32,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                      ),
-                      errorWidget: (context, url, error) => Image.asset(
-                        'assets/images/profile.png',
-                        fit: BoxFit.cover,
+                        imageUrl: question_Details[0]["avator"],
+                        placeholder: (context, url) => Image.asset(
+                          'assets/images/loading.gif',
+                          fit: BoxFit.cover,
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          'assets/images/profile.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -312,6 +316,7 @@ SvgPicture.asset(
         ),
       ),
       body: SingleChildScrollView(
+        reverse: false,
         padding: EdgeInsets.symmetric(vertical: 10),
         child: Container(
           color: Helper.whiteColor,
@@ -363,9 +368,14 @@ SvgPicture.asset(
                   ],
                 ),
               ),
-              CounselShort_Card(
-                  clinic: question_Details[0]["clinic"],
-                  doctor: question_Details[0]["doctor"]),
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).pushNamed("/Clinic_Detail");
+                },
+                child: CounselShort_Card(
+                    clinic: question_Details[0]["clinic"],
+                    doctor: question_Details[0]["doctor"]),
+              ),
               Container(
                 padding: const EdgeInsets.only(top: 15, bottom: 10),
                 child: Column(

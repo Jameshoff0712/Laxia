@@ -27,7 +27,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
              ),
              SizedBox(width: 10,),
              Text(
-                widget.post_treatment["label"],
+                widget.post_treatment["post_list"]["label"],
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 18,
@@ -101,7 +101,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["label"],
+                  widget.post_treatment["post_list"]["label"],
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -153,7 +153,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["label"],
+                  widget.post_treatment["post_list"]["label"],
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -219,7 +219,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["label"],
+                  widget.post_treatment["post_list"]["label"],
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -319,7 +319,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["label"],
+                  widget.post_treatment["post_list"]["label"],
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -387,7 +387,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["label"],
+                  widget.post_treatment["post_list"]["label"],
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -478,7 +478,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["label"],
+                  widget.post_treatment["post_list"]["label"],
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,

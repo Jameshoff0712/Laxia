@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
+import 'package:laxia/generated/l10n.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../generated/l10n.dart';
-import '../../../controllers/auth_controller.dart';
-import '../../../common/helper.dart';
 // import '../common/app_config.dart' as config;
 
 class Registration extends StatefulWidget {
@@ -37,7 +37,7 @@ class _RegistrationState extends StateMVC<Registration> {
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
-                            onPressed: () => SystemNavigator.pop(),
+                            onPressed: () => Navigator.of(context).pop(),
                             padding: EdgeInsets.only(left: 7),
                             icon: const Icon(Icons.clear, color: Helper.blackColor),
                             iconSize: 16,
@@ -151,10 +151,7 @@ class _RegistrationState extends StateMVC<Registration> {
                 alignment: Alignment.centerLeft,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PassRest_One()));
+                      Navigator.of(context).pushNamed("/passwordResetone");
                     },
                     child: Text(
                       Trans.of(context).required_password,

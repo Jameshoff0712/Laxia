@@ -19,7 +19,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
 
   Future<void> readCities() async {
     final String response =
-        await rootBundle.loadString('cfg/japanese-city-data.json');
+        await rootBundle.loadString('assets/cfg/japanese-city-data.json');
     final data = await json.decode(response);
     setState(() {
       for (int i = 0; i < data.length; i++) {
@@ -30,8 +30,8 @@ class _FixProfilePageState extends State<FixProfilePage> {
 
   @override
   void initState() {
-    readCities();
     super.initState();
+    readCities();
   }
 
   @override
@@ -98,7 +98,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     CircleAvatar(
                       radius: 40,
                       child: ClipOval(
-                        child: Image.asset('images/user/user1.jpg',
+                        child: Image.asset('assets/images/user/user1.jpg',
                             width: 80, height: 80, fit: BoxFit.cover),
                       ),
                     ),
