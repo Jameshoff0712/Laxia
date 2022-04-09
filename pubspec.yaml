@@ -73,6 +73,9 @@ dependencies:
   widget_mask: ^1.0.0+0
   webview_flutter: ^3.0.1
   flutter_image_slideshow: ^0.1.2
+  syncfusion_flutter_sliders: ^19.4.56
+  syncfusion_flutter_core: ^19.4.56
+  image_picker: ^0.8.5
 
 dev_dependencies:
   flutter_test:

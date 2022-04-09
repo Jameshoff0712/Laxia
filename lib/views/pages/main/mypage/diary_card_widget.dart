@@ -146,7 +146,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             child: Image(
                               image: AssetImage(
-                                'asssets/images/user/eyeafter.jpg',
+                                'assets/images/user/eyeafter.jpg',
                               ),
                             )),
                         Container(
