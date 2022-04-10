@@ -70,6 +70,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
+              Navigator.of(context).pushNamed('/Pages');
             },
             icon: Icon(
               Icons.keyboard_arrow_left,
