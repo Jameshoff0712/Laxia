@@ -848,68 +848,70 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     ),
                   )
                 : Container(),
-            bottomNavigationBar: Container(
-              height: 66,
-              decoration: BoxDecoration(color: Helper.whiteColor),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        isfavourite = !isfavourite;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        isfavourite
-                            ? Icon(
-                                Icons.star,
-                                color: Helper.btnBgYellowColor,
-                                size: 30,
-                              )
-                            : Icon(
-                                Icons.star_border,
-                                color: Helper.txtColor,
-                                size: 30,
-                              ),
-                        Text(
-                          "お気に入り",
-                          style: TextStyle(
-                              color: isfavourite
-                                  ? Helper.btnBgYellowColor
-                                  : Helper.txtColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Helper.btnBgYellowColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
+            bottomNavigationBar: SafeArea(
+              child: Container(
+                height: 66,
+                decoration: BoxDecoration(color: Helper.whiteColor),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          isfavourite = !isfavourite;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          isfavourite
+                              ? Icon(
+                                  Icons.star,
+                                  color: Helper.btnBgYellowColor,
+                                  size: 30,
+                                )
+                              : Icon(
+                                  Icons.star_border,
+                                  color: Helper.txtColor,
+                                  size: 30,
+                                ),
+                          Text(
+                            "お気に入り",
+                            style: TextStyle(
+                                color: isfavourite
+                                    ? Helper.btnBgYellowColor
+                                    : Helper.txtColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "クリニックを予約",
-                          style: defaultTextStyle(
-                              Helper.whiteColor, FontWeight.w700,
-                              size: 14),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Helper.btnBgYellowColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0),
                         ),
-                      ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "クリニックを予約",
+                            style: defaultTextStyle(
+                                Helper.whiteColor, FontWeight.w700,
+                                size: 14),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/Reservation");
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed("/Reservation");
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )

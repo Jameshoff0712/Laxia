@@ -73,6 +73,7 @@ dependencies:
   widget_mask: ^1.0.0+0
   webview_flutter: ^3.0.1
   flutter_image_slideshow: ^0.1.2
+  resize: ^1.0.0
 
 dev_dependencies:
   flutter_test:

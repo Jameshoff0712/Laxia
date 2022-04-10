@@ -36,7 +36,6 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
 
   Widget build(BuildContext context) {
     return comment_list.isNotEmpty? Scaffold(
-      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

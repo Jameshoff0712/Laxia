@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 
 class SearchbarWidget extends StatefulWidget {
+  final String? hinttext;
   final bool state;
   final bool? issuffixicon;
   final VoidCallback? onchange, oncompleted, onpress;
@@ -14,7 +15,7 @@ class SearchbarWidget extends StatefulWidget {
       this.onchange,
       this.oncompleted,
       this.issuffixicon = false,
-      this.onpress})
+      this.onpress, this.hinttext="施術名やクリニック名で検索"})
       : super(key: key);
 
   @override
@@ -94,7 +95,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
             borderSide: BorderSide(color: Helper.whiteColor),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),
         contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-        hintText: '施術名やクリニック名で検索',
+        hintText: widget.hinttext!,
         hintStyle: TextStyle(
           color: Helper.searchBartxtColor,
           fontSize: 14,
