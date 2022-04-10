@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -138,6 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       fontSize: 12),
                                 ),
                                 TextSpan(
+                                    recognizer: new TapGestureRecognizer()..onTap = (){Navigator.of(context).pushNamed("/TermsOfService");},
                                     text: Trans.of(context).service_term,
                                     style: TextStyle(
                                         color: Colors.blue,
@@ -150,6 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12)),
                                 TextSpan(
+                                    recognizer: new TapGestureRecognizer()..onTap = (){Navigator.of(context).pushNamed("/TermsOfService");},
                                     text: Trans.of(context).privacy + "\n",
                                     style: TextStyle(
                                         color: Colors.blue,
@@ -200,6 +203,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget LoginButton(String name,IconData icon,String event){
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+         side: BorderSide(color: Helper.txtColor, width: 1),
+        elevation:0,
         primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
@@ -300,6 +305,8 @@ class TwitterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+         side: BorderSide(color: Helper.txtColor, width: 1),
+        elevation:0,
         primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),

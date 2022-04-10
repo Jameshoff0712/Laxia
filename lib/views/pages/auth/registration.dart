@@ -16,6 +16,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends StateMVC<Registration> {
+  bool isBtnColor=true;
   late AuthController _con;
   _RegistrationState() : super(AuthController()) {
     _con = controller as AuthController;
@@ -27,7 +28,7 @@ class _RegistrationState extends StateMVC<Registration> {
       backgroundColor: Helper.whiteColor,
       body: Padding(
           padding:
-              const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
+              const EdgeInsets.only(top: 57.0, left: 16, right: 16),
           child: Column(
             children: <Widget>[
               Row(
@@ -60,6 +61,11 @@ class _RegistrationState extends StateMVC<Registration> {
                 height: 11,
               ),
               TextFormField(
+                onTap:(){
+                  setState(() {
+                    isBtnColor=false;
+                  });
+                },
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (input) => _con.user.email = input,
                 validator: (input) {
@@ -165,7 +171,9 @@ class _RegistrationState extends StateMVC<Registration> {
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Helper.mainColor,
+                    side: BorderSide(color: Helper.txtColor, width: 1),
+                    elevation:0,
+                    primary:isBtnColor? Helper.whiteColor: Helper.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -179,13 +187,34 @@ class _RegistrationState extends StateMVC<Registration> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).next,
-                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
+                            style: TextStyle(color:isBtnColor?Helper.txtColor: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),
                     ],
                   ),
                   onPressed: () {},
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        "すでにアカウントを持っている方はこちら",
+                        style: TextStyle(
+                            color: Helper.mainColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14),
+                      )
+                    ),
+                     SizedBox(height: 12,)
+                  ],
                 ),
               ),
             ],
