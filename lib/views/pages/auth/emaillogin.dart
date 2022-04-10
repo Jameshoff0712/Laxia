@@ -166,7 +166,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Helper.loginButtonColor,
+                    primary: Helper.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
