@@ -48,7 +48,10 @@ class _SearchViewState extends State<SearchView> {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: false);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Helper.whiteColor,
       body: Column(
+        crossAxisAlignment:CrossAxisAlignment.start,
         children: [
           Visibility(
             child: TextField(
@@ -137,22 +140,27 @@ class _SearchViewState extends State<SearchView> {
                   child: Column(
                     children: [
                       flag
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 13),
-                              child: Text(
-                                "施術したい箇所やクリニック名で検索してみましょう",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 102, 110, 110),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
+                          ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                       vertical: 13),
+                                  child: Text(
+                                    "施術したい箇所やクリニック名で検索してみましょう",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 102, 110, 110),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                            ],
+                          )
                           : Padding(
                               padding:
-                                  const EdgeInsets.only(top: 28, bottom: 20),
+                                  const EdgeInsets.only(top: 28, bottom: 20,left: 20),
                               child: Text(
-                                "人気検索ワード",
+                                "直近の検索",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 51, 51, 51),
                                     fontSize: 16,
@@ -178,58 +186,115 @@ class _SearchViewState extends State<SearchView> {
                           color:Helper.whiteColor),
                       child: AbsorbPointer(
                         absorbing: flag ? true : false,
-                        child: Stack(
+                        child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Wrap(
-                                runSpacing: 10,
-                                spacing: 10,
-                                children: [
-                                  for (int j = 0; j < menu_list.length; j++)
-                                    InkWell(
-                                      onTap: () {
-                                        filter.text = menu_list[j]["label"];
-                                        setState(() {
-                                          unchange = false;
-                                          flag = true;
-                                        });
-                                        userProperties.setSearchtext(filter.text);
-                                        Navigator.of(context).pushNamed("/Pages");
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color:
-                                                Color.fromARGB(255, 245, 245, 245),
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 15, vertical: 6),
-                                          child: Text(
-                                            menu_list[j]["label"],
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 11,
-                                                color: Color.fromARGB(
-                                                    255, 102, 110, 110)),
-                                          ),
-                                        ),
+                            Stack(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                                      child: Wrap(
+                                        runSpacing: 10,
+                                        spacing: 10,
+                                        children: [
+                                          for (int j = 0; j < 20; j++)
+                                            InkWell(
+                                              onTap: () {
+                                                filter.text = menu_list[j]["label"];
+                                                setState(() {
+                                                  unchange = false;
+                                                  flag = true;
+                                                });
+                                                userProperties.setSearchtext(filter.text);
+                                                Navigator.of(context).pushNamed("/Pages");
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color:
+                                                        Color.fromARGB(255, 245, 245, 245),
+                                                    borderRadius:
+                                                        BorderRadius.circular(20)),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15, vertical: 6),
+                                                  child: Text(
+                                                    menu_list[j]["label"],
+                                                    style: TextStyle(
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 11,
+                                                        color: Color.fromARGB(
+                                                            255, 102, 110, 110)),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            
+                                        ],
                                       ),
-                                    )
-                                ],
-                              ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(20),
+                                      child: Text(
+                                        "人気検索ワード",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(255, 51, 51, 51),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                    Wrap(
+                                      runSpacing: 10,
+                                      spacing: 10,
+                                      children: [
+                                        for (int j = 0; j < 20; j++)
+                                          InkWell(
+                                            onTap: () {
+                                              filter.text = menu_list[j]["label"];
+                                              setState(() {
+                                                unchange = false;
+                                                flag = true;
+                                              });
+                                              userProperties.setSearchtext(filter.text);
+                                              Navigator.of(context).pushNamed("/Pages");
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      Color.fromARGB(255, 245, 245, 245),
+                                                  borderRadius:
+                                                      BorderRadius.circular(20)),
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 15, vertical: 6),
+                                                child: Text(
+                                                  menu_list[j]["label"],
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 11,
+                                                      color: Color.fromARGB(
+                                                          255, 102, 110, 110)),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration:  flag?BoxDecoration(
+                                    boxShadow: [
+                                       BoxShadow(
+                                            offset:  Offset(1000,1000),
+                                            color: Colors.black.withOpacity(.7),
+                                            spreadRadius: 1000)
+                                        ],
+                                  ):BoxDecoration(),
+                                )
+                              ],
                             ),
-                            Container(
-                              decoration:  flag?BoxDecoration(
-                                boxShadow: [
-                                   BoxShadow(
-                                        offset:  Offset(1000,1000),
-                                        color: Colors.black.withOpacity(.7),
-                                        spreadRadius: 1000)
-                                    ],
-                              ):BoxDecoration(),
-                            )
                           ],
                         ),
                       ),

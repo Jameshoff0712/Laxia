@@ -133,6 +133,8 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        side: BorderSide(color: Helper.txtColor, width: 1),
+        elevation:0,
         primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
@@ -174,6 +176,8 @@ class TwitterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+         side: BorderSide(color: Helper.txtColor, width: 1),
+        elevation:0,
         primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),

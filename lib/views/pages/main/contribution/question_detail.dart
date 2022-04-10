@@ -164,131 +164,133 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        height: 60,
-        decoration: BoxDecoration(color: Helper.whiteColor),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-              onTap: () {
-                setState(() {
-                  isfavourite = !isfavourite;
-                });
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  isfavourite
-                      ? Icon(
-                          Icons.favorite,
-                          color: Helper.btnBgYellowColor,
-                          size: 30,
-                        )
-                      : Icon(
-                          Icons.favorite_border,
-                          color: Helper.txtColor,
-                          size: 30,
-                        ),
-                  Text(
-                    "223",
-                    style: TextStyle(
-                        color: isfavourite
-                            ? Helper.btnBgYellowColor
-                            : Helper.txtColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  isStar = !isStar;
-                });
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  isStar
-                      ? Icon(
-                          Icons.star,
-                          color: Helper.btnBgYellowColor,
-                          size: 30,
-                        )
-                      : Icon(
-                          Icons.star_border,
-                          color: Helper.txtColor,
-                          size: 30,
-                        ),
-                  Text(
-                    "お気に入り",
-                    style: TextStyle(
-                        color: isStar
-                            ? Helper.btnBgYellowColor
-                            : Helper.txtColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
-                    isScrollControlled: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15.0),
-                          topRight: Radius.circular(15.0)),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 5),
+          height: 60,
+          decoration: BoxDecoration(color: Helper.whiteColor),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    isfavourite = !isfavourite;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    isfavourite
+                        ? Icon(
+                            Icons.favorite,
+                            color: Helper.btnBgYellowColor,
+                            size: 30,
+                          )
+                        : Icon(
+                            Icons.favorite_border,
+                            color: Helper.txtColor,
+                            size: 30,
+                          ),
+                    Text(
+                      "223",
+                      style: TextStyle(
+                          color: isfavourite
+                              ? Helper.btnBgYellowColor
+                              : Helper.txtColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
                     ),
-                    context: context,
-                    builder: (context) {
-                      return CommentDialogSheet();
-                    });
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                        Icon(
-                          FontAwesomeIcons.commentDots,
-                          color: Helper.txtColor,
-                          size: 30,
-                        ),
-                  Text(
-                    "20",
-                    style: TextStyle(
-                        color:Helper.txtColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Helper.btnBgYellowColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
+                  ],
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "コメントする",
-                    style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                        size: 14),
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    isStar = !isStar;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    isStar
+                        ? Icon(
+                            Icons.star,
+                            color: Helper.btnBgYellowColor,
+                            size: 30,
+                          )
+                        : Icon(
+                            Icons.star_border,
+                            color: Helper.txtColor,
+                            size: 30,
+                          ),
+                    Text(
+                      "お気に入り",
+                      style: TextStyle(
+                          color: isStar
+                              ? Helper.btnBgYellowColor
+                              : Helper.txtColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
               ),
-              onPressed: () {},
-            ),
-          ],
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15.0),
+                            topRight: Radius.circular(15.0)),
+                      ),
+                      context: context,
+                      builder: (context) {
+                        return CommentDialogSheet();
+                      });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                          Icon(
+                            FontAwesomeIcons.commentDots,
+                            color: Helper.txtColor,
+                            size: 30,
+                          ),
+                    Text(
+                      "20",
+                      style: TextStyle(
+                          color:Helper.txtColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Helper.btnBgYellowColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40.0),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "コメントする",
+                      style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
+                          size: 14),
+                    ),
+                  ],
+                ),
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
