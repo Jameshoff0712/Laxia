@@ -47,7 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           HomeScreen(),
           Appointment(),
           SizedBox(width: 20,),
-          Favorite(),
+          FavoriteScreen(),
           Mypage(),
         ],
       ),

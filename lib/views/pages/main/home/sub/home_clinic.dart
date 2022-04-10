@@ -93,7 +93,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                               name: mid[index]["name"],
                               mark: mid[index]["mark"],
                               day: mid[index]["day"],
-                              pos: mid[index]["clinic"]);
+                              location: mid[index]["location"]);
                         });
             }),
           ),

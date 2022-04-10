@@ -88,7 +88,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       },
                                       onpress: () {},
                                       image: "none",
-                                      pos: clinic_Details[0]["clinic"],
+                                      location: clinic_Details[0]["clinic"],
                                       name: clinic_Details[0]["name"],
                                       mark: clinic_Details[0]["mark"],
                                       day: "",

@@ -178,7 +178,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                     name: widget.model[1][index]["name"],
                                     mark: widget.model[1][index]["mark"],
                                     day: widget.model[1][index]["day"],
-                                    pos: widget.model[1][index]["clinic"]);
+                                    location: widget.model[1][index]["clinic"]);
                               }),
                         ],
                       ),

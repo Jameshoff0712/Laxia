@@ -39,6 +39,7 @@ import 'package:laxia/views/pages/main/mypage/question_fix_post.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 import 'package:laxia/views/pages/main/mypage/terms_of_service.dart';
 import 'package:laxia/views/pages/main/mypage/terms_of_service_web.dart';
+import 'package:laxia/views/pages/main/mypage/user_page.dart';
 import 'package:laxia/views/pages/main/reservation/completion.dart';
 import 'package:laxia/views/pages/main/reservation/confirmation.dart';
 import 'package:laxia/views/pages/main/reservation/reservation.dart';
@@ -116,9 +117,11 @@ class RouteGenerator {
       case '/Completion':
         return MaterialPageRoute(builder: (_) => Completion());
       case '/Favorite':
-        return MaterialPageRoute(builder: (_) => Favorite());
+        return MaterialPageRoute(builder: (_) => FavoriteScreen());
       case '/Mypage':
         return MaterialPageRoute(builder: (_) => Mypage());
+      case '/Userpage':
+        return MaterialPageRoute(builder: (_) => UserPage());
       case '/FollowingList':
         return MaterialPageRoute(builder: (_) => FollowingListPage());
       case '/FollowerList':
