@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class StateSliderWidget extends StatefulWidget {
   final String state_str;
@@ -20,6 +22,7 @@ class StateSliderWidget extends StatefulWidget {
 class _StateSliderWidgetState extends State<StateSliderWidget> {
   bool isBorder = false;
   List<double> stateval = [];
+  double _value = 0;
   @override
   void initState() {
     super.initState();
@@ -43,11 +46,11 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 74,
       color: Colors.white,
-      padding: const EdgeInsets.only(left: 0.0, top: 10, right: 0, bottom: 10),
+      padding: const EdgeInsets.all(15),
       child: Container(
-        padding: const EdgeInsets.only(right: 25),
+        padding: EdgeInsets.only(right: 25),
         decoration: BoxDecoration(
           color: Colors.white,
           border: isBorder
@@ -59,78 +62,61 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
         child: Row(
           children: <Widget>[
             Container(
-                padding: EdgeInsets.only(right: 10),
-                child: Text(widget.state_str)),
-            Expanded(
-              //height: 80,
-              //padding: EdgeInsets.symmetric(horizontal: 10),
-              child: FlutterSlider(
-                jump: true,
-                values: stateval,
-                min: 0,
-                max: 100,
-                fixedValues: [
-                  FlutterSliderFixedValue(percent: 0, value: ""),
-                  FlutterSliderFixedValue(percent: 33, value: ""),
-                  FlutterSliderFixedValue(percent: 66, value: ""),
-                  FlutterSliderFixedValue(percent: 100, value: ""),
-                ],
-                // ignoreSteps: [
-                //   FlutterSliderIgnoreSteps(from: 1, to: 32),
-                //   FlutterSliderIgnoreSteps(from: 33, to: 65),
-                //   FlutterSliderIgnoreSteps(from: 67, to: 99),
-                // ],
-                step: FlutterSliderStep(step: 33),
-                handlerWidth: 25,
-                hatchMark: FlutterSliderHatchMark(
-                  linesDistanceFromTrackBar: -12,
-                  labelsDistanceFromTrackBar: -50,
-                  density: 0.15,
-                  displayLines: true,
-                  bigLine: FlutterSliderSizedBox(
-                      height: 15,
-                      width: 15,
-                      decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius: BorderRadius.circular(20))),
-                  smallLine: FlutterSliderSizedBox(height: 1, width: 1),
-                  labels: [
-                    FlutterSliderHatchMarkLabel(
-                        percent: 0,
-                        label: Text('なし', style: TextStyle(fontSize: 10))),
-                    FlutterSliderHatchMarkLabel(
-                        percent: 33,
-                        label: Text('少しある', style: TextStyle(fontSize: 10))),
-                    FlutterSliderHatchMarkLabel(
-                        percent: 66,
-                        label: Text('ある', style: TextStyle(fontSize: 10))),
-                    FlutterSliderHatchMarkLabel(
-                        percent: 100,
-                        label: Text('かなりある', style: TextStyle(fontSize: 10))),
-                  ],
-                ),
-                //rangeSlider: true,
-                //visibleTouchArea: true,
-                trackBar: FlutterSliderTrackBar(
-                  inactiveTrackBarHeight: 5,
-                  activeTrackBarHeight: 5,
-                  activeTrackBarDraggable: true,
-                  inactiveTrackBar: BoxDecoration(color: Colors.black12),
-                  activeTrackBar: BoxDecoration(color: Colors.black12),
-                ),
-                handler: FlutterSliderHandler(
-                  decoration: BoxDecoration(),
-                  child: Container(
-                    decoration: new BoxDecoration(
-                      color: Helper.mainColor,
-                      shape: BoxShape.circle,
-                    ),
+                width: 62,
+                padding: EdgeInsets.only(top: 13, bottom: 10),
+                child: Text(
+                  widget.state_str,
+                  style: TextStyle(
+                    fontSize: 14,
+                    height: 1.5,
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromARGB(255, 18, 18, 18),
                   ),
-                ),
-                selectByTap: true,
-                onDragging: (handlerIndex, lowerValue, upperValue) {},
-              ),
-            ),
+                )),
+            Expanded(
+                child: SfSliderTheme(
+                    data: SfSliderThemeData(
+                      activeDividerRadius: 5,
+                      inactiveDividerRadius: 5,
+                      activeTrackHeight: 2,
+                      inactiveTrackHeight: 2,
+                      activeDividerColor: Color.fromARGB(255, 225, 227, 227),
+                      inactiveDividerColor: Color.fromARGB(255, 225, 227, 227),
+                      activeTrackColor: Color.fromARGB(255, 225, 227, 227),
+                      inactiveTrackColor: Color.fromARGB(255, 225, 227, 227),
+                      thumbColor: Helper.mainColor,
+                      labelOffset: Offset(0, -35),
+                      activeLabelStyle: TextStyle(color: Helper.mainColor, fontSize: 12, fontWeight: FontWeight.w700, height: 1.5),
+                      inactiveLabelStyle: TextStyle(color: Color.fromARGB(255, 18, 18, 18), fontSize: 12, fontWeight: FontWeight.w700, height: 1.5),
+                    ),
+                    child: SfSlider(
+                      min: 0.0,
+                      max: 3.0,
+                      interval: 1,
+                      stepSize: 1,
+                      showDividers: true,
+                      showLabels: true,
+                      labelPlacement: LabelPlacement.onTicks,
+                      labelFormatterCallback:
+                          (dynamic actualValue, String formattedText) {
+                        String strLabel;
+                        if (actualValue == 0)
+                          strLabel = "なし";
+                        else if (actualValue == 1)
+                          strLabel = "少しある";
+                        else if (actualValue == 2)
+                          strLabel = "ある";
+                        else
+                          strLabel = "かなりある";
+                        return strLabel;
+                      },
+                      value: _value,
+                      onChanged: (dynamic newValue) {
+                        setState(() {
+                          _value = newValue;
+                        });
+                      },
+                    ))),
           ],
         ),
       ),

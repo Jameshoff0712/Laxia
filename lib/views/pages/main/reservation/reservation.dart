@@ -1031,7 +1031,7 @@ class _ReservationState extends State<Reservation> {
         });
       },
       child: Container(
-        width: 100,
+        // width: 100,
         height: 34,
         padding: EdgeInsets.only(top: 8, left: 28, right: 28, bottom: 2),
         margin: EdgeInsets.only(right: 8),

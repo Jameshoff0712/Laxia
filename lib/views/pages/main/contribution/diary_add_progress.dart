@@ -135,9 +135,9 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 ),
               ),
             ),
-            StateSliderWidget(state_str: "痛み", state_val: 0),
-            StateSliderWidget(state_str: "腫れ", state_val: 0),
-            StateSliderWidget(state_str: "傷あと", state_val: 0),
+            StateSliderWidget(state_str: "痛み", state_val: 0, ),
+            StateSliderWidget(state_str: "腫れ", state_val: 0, ),
+            StateSliderWidget(state_str: "傷あと", state_val: 0, ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ListTile(

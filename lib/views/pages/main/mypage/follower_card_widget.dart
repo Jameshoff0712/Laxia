@@ -41,17 +41,19 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                   children: [
                     Text(
                       "りりこ",
-                      style: defaultTextStyle(
-                          Helper.appTxtColor, FontWeight.w700,
-                          size: 20),
-                    ),
-                    SizedBox(
-                      height: 2.0,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 18, 18, 18),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          height: 1.5),
                     ),
                     Text(
                       "@tanaka_kei",
-                      style: defaultTextStyle(Helper.lightGrey, FontWeight.w700,
-                          size: 20),
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 102, 110, 110),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          height: 1.5),
                     ),
                   ],
                 ),
@@ -59,7 +61,7 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
+                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
                   decoration: BoxDecoration(
                     color: Helper.mainColor,
                     borderRadius: BorderRadius.circular(20),
@@ -69,8 +71,8 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                         color: Helper.whiteColor,
-                        fontWeight: FontWeight.w100,
-                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 10,
                         height: 1.5),
                   ),
                 ),

@@ -32,7 +32,7 @@ class _FollowerListPageState extends State<FollowerListPage> {
               )),
           elevation: 0,
         ),
-        body: !true
+        body: true
             ? Column(
                 children: [
                   SizedBox(
@@ -57,15 +57,15 @@ class _FollowerListPageState extends State<FollowerListPage> {
                   )
                 ],
               )
-            : Center(
-                child: Expanded(
-                    child: Column(
+            : Align(
+                alignment: Alignment.center,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: 60,
                     ),
-                    Image.asset('images/LAXIA.png'),
+                    Image.asset('assets/images/LAXIA.png'),
                     SizedBox(
                       height: 50,
                     ),
@@ -79,7 +79,7 @@ class _FollowerListPageState extends State<FollowerListPage> {
                       ),
                     )
                   ],
-                )),
+                ),
               ));
   }
 }

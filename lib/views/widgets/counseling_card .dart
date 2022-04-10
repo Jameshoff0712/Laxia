@@ -58,36 +58,41 @@ class _Counseling_CardState extends State<Counseling_Card> {
             onTap: widget.onpress,
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 29,
-                      width: 29,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: widget.avator,
-                          placeholder: (context, url) => Image.asset(
-                            'assets/images/loading.gif',
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushNamed('/Userpage');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 29,
+                        width: 29,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                          ),
-                          errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/ProDoctor.png',
-                            fit: BoxFit.cover,
+                            imageUrl: widget.avator,
+                            placeholder: (context, url) => Image.asset(
+                              'assets/images/loading.gif',
+                              fit: BoxFit.cover,
+                            ),
+                            errorWidget: (context, url, error) => Image.asset(
+                              'assets/images/ProDoctor.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Text(
-                      widget.name,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: Helper.titleColor),
-                    ),
-                  ],
+                      Text(
+                        widget.name,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: Helper.titleColor),
+                      ),
+                    ],
+                  ),
                 ),
                 Text(
                       widget.sentence,
