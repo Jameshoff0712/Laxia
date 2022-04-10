@@ -55,28 +55,30 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                   ),
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 7),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: (){
-                                Navigator.of(context).pop();
-                              },
-                              child: SvgPicture.asset(
-                                "assets/icons/back_detail.svg",
+                      SafeArea(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 7),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                  Navigator.of(context).pop();
+                                },
+                                child: SvgPicture.asset(
+                                  "assets/icons/back_detail.svg",
+                                  width: 30,
+                                  height: 30,
+                                ),
+                              ),
+                              SvgPicture.asset(
+                                "assets/icons/upright.svg",
                                 width: 30,
                                 height: 30,
                               ),
-                            ),
-                            SvgPicture.asset(
-                              "assets/icons/upright.svg",
-                              width: 30,
-                              height: 30,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Container(
@@ -345,56 +347,58 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 66,
-         decoration: BoxDecoration(color: Helper.whiteColor),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-              InkWell(
-                onTap: (){
-                  setState(() {
-                    isfavourite=!isfavourite;
-                  });
-                },
-                child: Column(
-                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                  isfavourite?Icon(Icons.star,color: Helper.btnBgYellowColor,size: 30,)
-                  : Icon(Icons.star_border,color: Helper.txtColor,size: 30,),
-                  Text(
-                    "お気に入り",
-                    style: TextStyle(
-                        color: isfavourite?Helper.btnBgYellowColor:Helper.txtColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Helper.btnBgYellowColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          height: 66,
+           decoration: BoxDecoration(color: Helper.whiteColor),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      isfavourite=!isfavourite;
+                    });
+                  },
+                  child: Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                    isfavourite?Icon(Icons.star,color: Helper.btnBgYellowColor,size: 30,)
+                    : Icon(Icons.star_border,color: Helper.txtColor,size: 30,),
                     Text(
-                      "さあ, はじめよう！",
-                      style: defaultTextStyle(
-                          Helper.whiteColor, FontWeight.w700,
-                          size: 14),
+                      "お気に入り",
+                      style: TextStyle(
+                          color: isfavourite?Helper.btnBgYellowColor:Helper.txtColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
                     ),
-                  ],
+                  ],),
                 ),
-                onPressed: () {
-                  
-                },
-              ),
-        ],),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Helper.btnBgYellowColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "さあ, はじめよう！",
+                        style: defaultTextStyle(
+                            Helper.whiteColor, FontWeight.w700,
+                            size: 14),
+                      ),
+                    ],
+                  ),
+                  onPressed: () {
+                    
+                  },
+                ),
+          ],),
+        ),
       ),
     ):Scaffold();
   }

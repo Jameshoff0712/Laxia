@@ -20,17 +20,19 @@ import 'package:laxia/views/widgets/question_card.dart';
 import '../../../../models/counseling_model.dart';
 import '../../../../models/question_model.dart';
 
-class Mypage extends StatefulWidget {
-  const Mypage({Key? key}) : super(key: key);
+class UserPage extends StatefulWidget {
+  const UserPage({Key? key}) : super(key: key);
 
   @override
-  _MypageState createState() => _MypageState();
+  _UserPageState createState() => _UserPageState();
 }
 
-class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
+class _UserPageState extends State<UserPage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   List mid = [];
   List nid = [];
+  bool isFollowing = true;
   @override
   void initState() {
     super.initState();
@@ -157,11 +159,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            DiaryCardWidget(isMe: true,),
+            DiaryCardWidget(isMe: false),
             SizedBox(
               height: 8,
             ),
-            DiaryCardWidget(isMe: true,)
+            DiaryCardWidget(isMe: false)
           ],
         ),
       ),
@@ -239,9 +241,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         name: mid[index]["name"],
                         onpress: () {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => QuestionDetail(isMyDiary: true,)));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => QuestionDetail(
+                                        isMyDiary: true,
+                                      )));
                         },
                         sentence: mid[index]["sentence"],
                         type: mid[index]["type"],
@@ -259,7 +263,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return <Widget>[
       SliverAppBar(
         elevation: 0,
-        expandedHeight: 350,
+        expandedHeight: 210,
         floating: true,
         pinned: false,
         automaticallyImplyLeading: false,
@@ -311,27 +315,36 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                           ),
                           OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            FixProfilePage()));
+                                setState(() {
+                                  isFollowing = !isFollowing;
+                                });
                               },
                               style: OutlinedButton.styleFrom(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 20.0),
                                   shape: StadiumBorder(),
                                   side: BorderSide(
-                                      width: 1, color: Helper.mainColor)),
-                              child: Text(
-                                "変更",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  height: 1.5,
-                                  color: Helper.mainColor,
-                                ),
-                              )),
+                                      width: 1, color: Helper.mainColor),
+                                      backgroundColor: isFollowing ? Helper.whiteColor : Helper.mainColor),
+                              child: isFollowing
+                                  ? Text(
+                                      "フォロー中",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        height: 1.5,
+                                        color: Helper.mainColor,
+                                      ),
+                                    )
+                                  : Text(
+                                      "フォローする",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        height: 1.5,
+                                        color: Helper.whiteColor,
+                                      ),
+                                    )),
                         ],
                       ))
                     ],
@@ -446,143 +459,6 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                       ),
                     )
                   ]),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.grey)),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "保有ポイント",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            height: 1.5,
-                            color: Color.fromARGB(255, 18, 18, 18),
-                          ),
-                        ),
-                        Expanded(
-                            child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              "1000 p",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16,
-                                height: 1.5,
-                                color: Color.fromARGB(255, 18, 18, 18),
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.chevron_right_sharp),
-                              color: Helper.titleColor,
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PointPage()));
-                              },
-                            )
-                          ],
-                        ))
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        top: 2.0, left: 5.0, right: 5.0, bottom: 2.0),
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.grey)),
-                    child: IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10.0),
-                                        topRight: Radius.circular(10.0)),
-                                  ),
-                                  context: context,
-                                  builder: (context) {
-                                    return InvitePage();
-                                  },
-                                  isScrollControlled: true,
-                                );
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.supervisor_account,
-                                    color: Helper.titleColor,
-                                  ),
-                                  Text(
-                                    "友達招待",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12,
-                                      color: Helper.titleColor,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          const VerticalDivider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            indent: 0,
-                            endIndent: 0,
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SettingPage()));
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.settings,
-                                    color: Helper.titleColor,
-                                  ),
-                                  Text(
-                                    "設定",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12,
-                                      color: Helper.titleColor,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

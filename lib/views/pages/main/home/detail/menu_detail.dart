@@ -573,81 +573,84 @@ class _Menu_DetailState extends State<Menu_Detail> {
           ],
         ),
       ):Container(),
-      bottomNavigationBar: Container(
-        height: 70,
-         decoration: BoxDecoration(color: Helper.whiteColor),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        Menu_Datails[0]["price"],
-                        style: defaultTextStyle(Helper.priceColor, FontWeight.w700,
-                            size: 24.0),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          height: 90,
+          padding: EdgeInsets.all(10),
+           decoration: BoxDecoration(color: Helper.whiteColor),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          Menu_Datails[0]["price"],
+                          style: defaultTextStyle(Helper.priceColor, FontWeight.w700,
+                              size: 24.0),
+                        ),
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text(
+                          Menu_Datails[0]["tax"],
+                          style: defaultTextStyle(
+                              Helper.titleColor, FontWeight.w500,
+                              size: 12.0),
+                        ),
+                        SizedBox(
+                        width: 2.5,
                       ),
-                      SizedBox(
-                        width: 6,
-                      ),
-                      Text(
-                        Menu_Datails[0]["tax"],
-                        style: defaultTextStyle(
-                            Helper.titleColor, FontWeight.w500,
-                            size: 12.0),
-                      ),
-                      SizedBox(
-                      width: 2.5,
+                      
+                      ],
                     ),
-                    
-                    ],
-                  ),
-                  Row(
-                    children: [
-                    isfavourite?Icon(Icons.star,color: Helper.btnBgYellowColor,size: 25,)
-                    : Icon(Icons.star_border,color: Helper.txtColor,size: 25,),
-                    Text(
-                      "4.23(102)",
-                      style: TextStyle(
-                          color: Helper.titleColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ],),
-                ],
-              ),
-              SizedBox(
-                width: 185,
-                height: 44,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Helper.btnBgYellowColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    Row(
+                      children: [
+                      isfavourite?Icon(Icons.star,color: Helper.btnBgYellowColor,size: 25,)
+                      : Icon(Icons.star_border,color: Helper.txtColor,size: 25,),
                       Text(
-                        "さあ, はじめよう！",
-                        style: defaultTextStyle(
-                            Helper.whiteColor, FontWeight.w700,
-                            size: 14),
+                        "4.23(102)",
+                        style: TextStyle(
+                            color: Helper.titleColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400),
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed("/Reservation");
-                  },
+                    ],),
+                  ],
                 ),
-              ),
-        ],),
+                SizedBox(
+                  width: 185,
+                  height: 44,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Helper.btnBgYellowColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "さあ, はじめよう！",
+                          style: defaultTextStyle(
+                              Helper.whiteColor, FontWeight.w700,
+                              size: 14),
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/Reservation");
+                    },
+                  ),
+                ),
+          ],),
+        ),
       ),
     ):Container();
   }

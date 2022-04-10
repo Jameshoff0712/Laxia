@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:laxia/common/helper.dart';
 import 'dart:convert';
 import 'package:laxia/views/widgets/multiselect.dart';
 
@@ -30,6 +31,7 @@ class _SelectSurgeryState extends State<SelectSurgery> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Helper.whiteColor,
         body: Column(
       children: [
         MultiSelectDart(

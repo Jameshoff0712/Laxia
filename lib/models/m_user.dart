@@ -20,7 +20,7 @@ final User currentUser = User(
     name: 'Shin Ye Eun',
     age: '24',
     gender: 'Female',
-    imageUrl: 'assets/images/user-profile.jpg',
+    imageUrl: 'assets/images/user/user1.jpg',
     email: 'shin@yopmail.com',
     username: '_@shin_098',
     mobile: '+91-9000000000',

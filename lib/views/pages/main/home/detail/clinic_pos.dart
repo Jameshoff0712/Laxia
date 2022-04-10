@@ -25,31 +25,18 @@ class _Clinic_PosState extends State<Clinic_Pos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
+        centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        leadingWidth: 0,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
+        leading:IconButton(
                 icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              Text('湘南美容クリニック 新宿院',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      color: Helper.titleColor)),
-              SvgPicture.asset(
-                "assets/icons/upright_nobg.svg",
-                width: 20,
-                height: 20,
-              ),
-            ],
-          ),
+        title: Text('湘南美容クリニック 新宿院',
+          style: TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 16,
+          color: Helper.titleColor)
         ),
       ),
       body: Container(
@@ -86,7 +73,7 @@ class _Clinic_PosState extends State<Clinic_Pos> {
                       child: Container(
                         decoration: BoxDecoration(
                             color: Helper.mainColor,
-                            borderRadius: BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(18)),
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
@@ -101,31 +88,36 @@ class _Clinic_PosState extends State<Clinic_Pos> {
                   )),
             ],
           )),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              children: [
-                Expanded(
-                    flex: 9,
-                    child: Text(
-                      "東京都新宿区西新宿６丁目５−１ 新宿アイランドタワ 24F",
-                      softWrap: true,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Helper.maintxtColor),
-                    )),
-                Expanded(
-                  flex: 1,
-                  child: SvgPicture.asset(
-                    "assets/icons/double_map.svg",
-                    width: 20,
-                    height: 20,
-                  ),
+          SafeArea(
+            child: Container(
+              color: Helper.whiteColor,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                        flex: 9,
+                        child: Text(
+                          "東京都新宿区西新宿６丁目５−１ 新宿アイランドタワ 24F",
+                          softWrap: true,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Helper.maintxtColor),
+                        )),
+                    Expanded(
+                      flex: 1,
+                      child: SvgPicture.asset(
+                        "assets/icons/double_map.svg",
+                        width: 20,
+                        height: 20,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          )
+          ),
         ]),
       ),
     );
