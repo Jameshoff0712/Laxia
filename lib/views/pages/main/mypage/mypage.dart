@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/generated/L10n.dart';
 import 'package:laxia/models/m_user.dart';
+import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
 import 'package:laxia/views/pages/main/contribution/question.dart';
 import 'package:laxia/views/pages/main/contribution/question_detail.dart';
@@ -16,6 +17,7 @@ import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/question_card.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../models/counseling_model.dart';
 import '../../../../models/question_model.dart';
@@ -53,6 +55,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
@@ -69,7 +73,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              userProperties.setCurrentPageIndex(0);
               Navigator.of(context).pushNamed('/Pages');
             },
             icon: Icon(
