@@ -11,6 +11,7 @@ import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_three.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_two.dart';
 import 'package:laxia/views/widgets/detail_image.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 
 
@@ -48,13 +49,13 @@ class _Menu_DetailState extends State<Menu_Detail> {
           children: [
           InkWell(
             onTap:(){
-              ImageViewer.showImageSlider(
-                images: [
+              Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget( onBoardingInstructions: [
                   for (int j = 0; j < Menu_Datails[0]["images"].length; j++)
                     Menu_Datails[0]["images"][j]
                 ],
-                startingPosition: 1,
-              );
+                startindex: 1,)));
             },
             child: Detail_Image(
                     insidestar: true,
@@ -624,7 +625,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                   ],
                 ),
                 SizedBox(
-                  width: 185,
+                  width: 170,
                   height: 44,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

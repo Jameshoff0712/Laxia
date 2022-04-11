@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen>
     '質問',
   ];
   late TabController _tabController;
+  bool isvisible=true;
   List searchResult = [];
   Future<void> initSettings() async {
     String countyText =
@@ -74,16 +75,21 @@ class _HomeScreenState extends State<HomeScreen>
               filter: filter,
             ),
           ),
-          TabBarWidget(
-            tabMenus: tabMenus,
-            tabController: _tabController,
+          Visibility(
+            visible: isvisible,
+            child: TabBarWidget(
+              tabMenus: tabMenus,
+              tabController: _tabController,
+            ),
           ),
           userProperties.searchtext.isEmpty
               ? Expanded(
                   child: TabBarView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      Home_Sub(),
+                      Home_Sub(isvisible: isvisible, onpress: () {  setState(() {
+                        isvisible=!isvisible;
+                      });},),
                       Home_Menu(issearch: false,),
                       Home_Clinic(issearch: false,),
                       Home_Doctor(issearch: false,),
