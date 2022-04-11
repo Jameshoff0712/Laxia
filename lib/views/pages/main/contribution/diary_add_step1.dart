@@ -347,7 +347,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                                         return InkWell(
                                                           onTap: (){
                                                             setState(() {
-                                                              addList[2]= clinic_list[index]["clinic"];
+                                                              addList[2]= clinic_list[index]["name"];
                                                             });
                                                             Navigator.of(context).pop();
                                                           },
@@ -364,7 +364,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                                                   child: Padding(
                                                                     padding: const EdgeInsets.symmetric(horizontal: 19,vertical: 16),
                                                                     child: Text(
-                                                                    clinic_list[index]["clinic"],
+                                                                    clinic_list[index]["name"],
                                                                     style: TextStyle(
                                                                         color: Colors.black,
                                                                         fontWeight: FontWeight.normal,
