@@ -4,31 +4,100 @@ import 'package:laxia/models/home_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
+import 'package:laxia/views/widgets/tabbar.dart';
 import 'package:provider/provider.dart';
 
 class Home_Sub extends StatefulWidget {
-  const Home_Sub({Key? key}) : super(key: key);
+  final VoidCallback onpress;
+  final bool isvisible;
+  const Home_Sub({Key? key, required this.onpress, required this.isvisible}) : super(key: key);
 
   @override
   State<Home_Sub> createState() => _Home_SubState();
 }
 
-class _Home_SubState extends State<Home_Sub> {
+class _Home_SubState extends State<Home_Sub> with SingleTickerProviderStateMixin  {
+    List<String> tabMenus = [
+    'おすすめ',
+    '二重',
+    '美容皮膚',
+    'ボディ',
+    '輪郭',
+    'しわ・たるみ',
+  ];
+  late TabController _tabController;
+  bool flag=false;
+  ScrollController scrollController=new ScrollController();
   PageController _pageController = PageController();
   double? currentPageValue = 0.0;
-
   @override
-  Widget build(BuildContext context) {
+  void initState(){
+     _tabController = new TabController(length: 6, vsync: this);
     _pageController.addListener(() {
       setState(() {
         currentPageValue = _pageController.page;
       });
     });
+    scrollController.addListener(() {
+       if (scrollController.offset >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange) {
+                 widget.onpress();
+      } else if(widget.isvisible==false){
+        widget.onpress();
+      }
+    });
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
     return Container(
         color: Helper.homeBgColor,
-        child: SingleChildScrollView(
-          physics:AlwaysScrollableScrollPhysics(),
-          child: Column(
+        child: NestedScrollView(
+          controller: scrollController,
+          headerSliverBuilder: _silverBuilder,
+          body: Container(
+            decoration: BoxDecoration(color: Helper.whiteColor),
+            child: Column(
+                children: <Widget>[
+                    // _buildTabBar(),
+                  TabBarWidget(
+                    tabMenus: tabMenus,
+                    tabController: _tabController,
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(color: Helper.homeBgColor),
+                    child: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        Subscrollbarbody(),
+                        Subscrollbarbody(),
+                        Subscrollbarbody(),
+                        Subscrollbarbody(),
+                        Subscrollbarbody(),
+                        Subscrollbarbody(),
+                      ],
+                      controller: _tabController,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+   List<Widget> _silverBuilder(BuildContext context, bool innerBoxIsScrolled) {
+     return <Widget>[
+       SliverAppBar(
+        elevation: 0,
+        expandedHeight: 189,
+        floating: true,
+        pinned: false,
+        automaticallyImplyLeading: false,
+        backgroundColor: Helper.whiteColor,
+        flexibleSpace: FlexibleSpaceBar(
+          background: Column(
             children: <Widget>[
               Horizontal_Dockbar(pageController: _pageController),
               Container(
@@ -46,48 +115,43 @@ class _Home_SubState extends State<Home_Sub> {
                   ),
                 ]),
               ),
-              Container(
-                child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                    scrollDirection: Axis.vertical,
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio:175/291,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10),
-                    itemCount: home_list.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Home_Card(
-                        onpress: () {
-                      },
-                        title: home_list[index].title,
-                        type: home_list[index].type,
-                        clinic: home_list[index].clinic,
-                        recommend: home_list[index].recommend,
-                        source: home_list[index].source,
-                        name: home_list[index].name,
-                        doctorimage: home_list[index].doctorimage,
-                        chat: home_list[index].chat,
-                      );
-                    }),
-              ),
-              // Home_Card(
-              //   title: "まず前々から気になっていたのは目の下のクマでしたあああ...",
-              //   type: "二重",
-              //   clinic: "湘南美容クリニック新宿...",
-              //   recommend: "999",
-              //   chat: "444",
-              //   source: "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
-              //   doctorimage: "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
-              //   name:"Yuka111",
-              // ),
+              
             ],
           ),
-        ));
+        )
+       )
+     ];
+   }
+  Widget Subscrollbarbody(){
+    return Container(
+        child: GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            padding:
+                EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            scrollDirection: Axis.vertical,
+            gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio:175/291,
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10),
+            itemCount: home_list.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Home_Card(
+                onpress: () {
+              },
+                title: home_list[index].title,
+                type: home_list[index].type,
+                clinic: home_list[index].clinic,
+                recommend: home_list[index].recommend,
+                source: home_list[index].source,
+                name: home_list[index].name,
+                doctorimage: home_list[index].doctorimage,
+                chat: home_list[index].chat,
+              );
+            }),
+      );
   }
 }
 
@@ -119,7 +183,7 @@ class DockBar_Bottom extends StatelessWidget {
               width: 31,
               height: 6,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 239, 239, 239),
+                color: Color.fromARGB(255, 111, 82, 82),
                 borderRadius: BorderRadius.circular(20),
               ),
             ),

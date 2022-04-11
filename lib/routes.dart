@@ -181,7 +181,7 @@ class RouteGenerator {
       case '/DiaryDetailDefault':
         return MaterialPageRoute(builder: (_) => DiaryDetailDefault());
       default:
-        return MaterialPageRoute(builder: (_) => Text("end"));
+        return MaterialPageRoute(builder: (_) => DashboardScreen());
     }
   }
 }

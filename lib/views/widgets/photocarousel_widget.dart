@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_viewer/image_viewer.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 
 class PhotoCarouselWidget extends StatelessWidget {
   //final List<Offer>? offerList;
@@ -28,13 +29,13 @@ class PhotoCarouselWidget extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          ImageViewer.showImageSlider(
-                            images: [
+                          Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget( onBoardingInstructions: [
                               for (int j = 0; j < ImageList.length; j++)
                                 ImageList[j],
                             ],
-                            startingPosition: 1,
-                          );
+                            startindex: 1,)));
                         },
                         child: Container(
                           width: 110,
