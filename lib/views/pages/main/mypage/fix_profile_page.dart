@@ -129,14 +129,16 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                         height: 80,
                                         fit: BoxFit.cover)),
                           ),
-                          Container(
-                              height: 20,
-                              width: 24,
-                              // decoration: BoxDecoration(color: Helper.blackColor),
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Helper.whiteColor,
-                              ))
+                          InkWell(
+                            onTap: _openImagePicker,
+                            child: Container(
+                                height: 20,
+                                width: 24,
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: Helper.whiteColor,
+                                )),
+                          )
                         ],
                       ),
                     ),
