@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail_default.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
+import 'package:video_player/video_player.dart';
 
 class Post_Treatment_Card extends StatefulWidget {
   final dynamic post_treatment;
@@ -13,6 +15,19 @@ class Post_Treatment_Card extends StatefulWidget {
 }
 
 class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
+  late  VideoPlayerController _controller;
+  @override
+  void initState(){
+    if(widget.post_treatment["post_list"]["isvideo"]!){
+      _controller = VideoPlayerController.network(
+        widget.post_treatment["post_list"]["images"][0])
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     if(widget.post_treatment["post_list"]["isvideo"]!){
@@ -44,28 +59,35 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                  padding: EdgeInsets.only(left: 10,top: 5),
                  child: Column(
                    children: [
-                     FittedBox(
-                      fit: BoxFit.fill,
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.width,
-                          width: MediaQuery.of(context).size.width,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl: widget.post_treatment["video"],
-                              placeholder: (context, url) => Image.asset(
-                                'assets/images/loading.gif',
-                                fit: BoxFit.fill,
-                              ),
-                              errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/profile.png',
-                                fit: BoxFit.fill,
-                              ),
-                            ),
+                     Stack(
+                       alignment: Alignment.center,
+                       children: [
+                         LayoutBuilder(
+                                builder: (context, constraints) => _controller.value.isInitialized
+                                    ? AspectRatio(
+                                        aspectRatio: _controller.value.aspectRatio,
+                                        // _controller.value.aspectRatio,
+                                        child: VideoPlayer(_controller),
+                                      )
+                                    : Container(),
                           ),
-                        ),
-                    ),
+                          Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: (){
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                    builder: (context) => PageViewWidget(onBoardingInstructions: [widget.post_treatment["post_list"]["images"][0]],isimage:false)));   //
+                                },
+                                child: SvgPicture.asset(
+                                        "assets/icons/menubar/video_play.svg",
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                              ),
+                            )
+                       ],
+                     ),
                      Text(
                         widget.post_treatment["description"],
                         style: TextStyle(

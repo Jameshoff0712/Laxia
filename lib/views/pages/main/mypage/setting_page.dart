@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/pages/main/mypage/contact_page.dart';
 import 'package:laxia/views/pages/main/mypage/deletion_guide_web.dart';
+import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/privacy_policy_web.dart';
 import 'package:laxia/views/pages/main/mypage/terms_of_service.dart';
 
@@ -158,8 +159,14 @@ class _SettingPageState extends State<SettingPage> {
                     Icons.keyboard_arrow_right,
                     color: Helper.txtColor,
                     size: 20,
-                  ),
-                  (context) {}),
+                  ), 
+                  (context) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FixProfilePage()));
+                  }
+              ),
             ),
             SizedBox(
               height: 32,

@@ -76,6 +76,7 @@ dependencies:
   syncfusion_flutter_sliders: ^19.4.56
   syncfusion_flutter_core: ^19.4.56
   image_picker: ^0.8.5
+  video_controls: ^0.1.0
 
 dev_dependencies:
   flutter_test:
