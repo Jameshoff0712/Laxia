@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/instructions.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/diary_medialist.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
 
@@ -312,12 +314,12 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   children: [
                     InkWell(
                       onTap: (){
-                        ImageViewer.showImageSlider(
-                            images: [
+                        Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget(onBoardingInstructions: [
                               diary_Details[0]["image1"],
                             ],
-                            startingPosition: 1,
-                          );
+                            startindex: 1,)));
                       },
                       child: FittedBox(
                         fit: BoxFit.fill,
@@ -366,12 +368,12 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     ),
                     InkWell(
                       onTap: (){
-                          ImageViewer.showImageSlider(
-                            images: [
+                        Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget( onBoardingInstructions: [
                               diary_Details[0]["image1"],
                             ],
-                            startingPosition: 1,
-                          );
+                            startindex: 1,)));
                       },
                       child: FittedBox(
                         fit: BoxFit.fill,

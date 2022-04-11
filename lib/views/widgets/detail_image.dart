@@ -40,7 +40,7 @@ class _Detail_ImageState extends State<Detail_Image> {
               },
               height: widget.height,
               viewportFraction: 1.0,
-              autoPlay: true),
+              autoPlay: false),
           items: widget.imageList.map((image) {
             return Builder(
               builder: (BuildContext context) {

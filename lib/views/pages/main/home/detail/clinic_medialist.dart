@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 
 
 class Clinic_MediaList extends StatefulWidget {
@@ -59,13 +60,13 @@ class _Clinic_MediaListState extends State<Clinic_MediaList> {
       fit: BoxFit.fill,
       child: InkWell(
         onTap: (){
-          ImageViewer.showImageSlider(
-              images: [
+          Navigator.of(context).push(
+                    MaterialPageRoute(
+            builder: (context) => PageViewWidget(onBoardingInstructions: [
                 for (int j = 0; j < widget.clinic_list.length; j++)
                    widget.clinic_list[j]
               ],
-              startingPosition: imageUrl,
-            );
+              startindex: imageUrl,)));
         },
         child: SizedBox(
             height: MediaQuery.of(context).size.width,

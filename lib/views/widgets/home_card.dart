@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:video_player/video_player.dart';
 
 class Home_Card extends StatefulWidget {
@@ -32,7 +33,6 @@ class _Home_CardState extends State<Home_Card> {
   @override 
   void initState(){
     if(!widget.source.contains(".jpg")){
-      print("object");
       setState(() {
         isvideo=true;
       });
@@ -90,10 +90,12 @@ class _Home_CardState extends State<Home_Card> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: (){
-                                 _controller.play();
+                                Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget(onBoardingInstructions: ["1"],isimage:false)));   //
                         },
                         child: SvgPicture.asset(
-                                "icons/menubar/video_play.svg",
+                                "assets/icons/menubar/video_play.svg",
                                 width: 24,
                                 height: 24,
                               ),

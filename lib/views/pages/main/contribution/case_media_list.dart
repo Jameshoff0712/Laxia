@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:laxia/models/instructions.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:image_viewer/image_viewer.dart';
 
@@ -82,8 +84,10 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                         fit: BoxFit.fill,
                         child: InkWell(
                           onTap: () {
-                            ImageViewer.showImageSlider(
-                              images: [
+                            Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget(
+                              onBoardingInstructions: [
                                 for (int j = 0;
                                     j <
                                         disease_Details[0]["image_before"]
@@ -91,8 +95,8 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                                     j++)
                                   disease_Details[0]["image_before"][j],
                               ],
-                              startingPosition: 1,
-                            );
+                              startindex: i,
+                            )));
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
@@ -139,8 +143,9 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                         fit: BoxFit.fill,
                         child: InkWell(
                           onTap: () {
-                            ImageViewer.showImageSlider(
-                              images: [
+                            Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget(onBoardingInstructions: [
                                 for (int j = 0;
                                     j <
                                         disease_Details[0]["image_after"]
@@ -148,8 +153,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                                     j++)
                                   disease_Details[0]["image_after"][j],
                               ],
-                              startingPosition: 1,
-                            );
+                              startindex: 1,)));
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),

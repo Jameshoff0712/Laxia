@@ -64,13 +64,9 @@ class _DiaryPageState extends State<DiaryPage> {
                           style: TextStyle(fontSize: 18),
                         ),
                         SizedBox(width: 20),
-                        GestureDetector(
-                          onTap: () =>
-                              Navigator.of(context).pushNamed("/TreatmentPart"),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.white,
-                          ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
                         )
                       ],
                     ),
