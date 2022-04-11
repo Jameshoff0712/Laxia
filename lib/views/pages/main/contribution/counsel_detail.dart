@@ -419,7 +419,7 @@ SvgPicture.asset(
                               children: [
                                 PhotoCarouselWidget(
                                     ImageList: question_Details[0]
-                                        ["self_images"])
+                                        ["self_images"], onRemove: (int ) {  },)
                               ],
                             ),
                           ),
@@ -449,8 +449,9 @@ SvgPicture.asset(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 PhotoCarouselWidget(
+                                  bRemove: false,
                                     ImageList: question_Details[0]
-                                        ["ideal_images"])
+                                        ["ideal_images"], onRemove: (int ) {  },)
                               ],
                             ),
                           ),
@@ -481,7 +482,7 @@ SvgPicture.asset(
                               children: [
                                 PhotoCarouselWidget(
                                     ImageList: question_Details[0]
-                                        ["non_ideal_images"])
+                                        ["non_ideal_images"], onRemove: (int ) {  },)
                               ],
                             ),
                           ),

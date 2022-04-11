@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/surgery_provider.dart';
@@ -24,13 +27,18 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
     "選択してください"
   ];
   bool isAddEnabled = true,isUsed=false;
-  //File imageURI;
-  // late OfferController _con;
-
-  // _AddDiaryStep1PageState() : super(OfferController()) {
-  //   _con = controller as OfferController;
-  // }
-
+    int index=0;
+  List images=[];
+ final _picker = ImagePicker();
+    Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        images.add(File(pickedImage.path));
+      });
+    }
+  }
   enableAddButton() {
     setState(() {
       isAddEnabled = true;
@@ -171,12 +179,14 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                 fontSize: 16),
                           ),
                         ),
-                        Text(
-                          addList[0],
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
+                        Expanded(
+                          child: Text(
+                            addList[0],
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16),
+                          ),
                         ),
                         GestureDetector(
                           onTap: () async {
@@ -454,7 +464,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                                 Navigator.of(context).pop();
                                               }, icon: Icon(Icons.close,size: 20,)),
                                               Text(
-                                                "担当ドクターを選択",
+                                                addList[3],
                                                 style: defaultTextStyle(
                                                     Helper.titleColor, FontWeight.w700,
                                                     size: 18),
@@ -606,12 +616,14 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                 fontSize: 16),
                           ),
                         ),
-                        Text(
-                          addList[4],
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
+                        Expanded(
+                          child: Text(
+                            addList[4],
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16),
+                          ),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -682,58 +694,57 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       ),
     );
   }
-}
-
-Widget imagePicker(BuildContext context) {
-  return Container(
-    padding: const EdgeInsets.only(left: 12.0, top: 0, right: 12, bottom: 12),
-    child: GestureDetector(
-      child: Row(
-        children: <Widget>[
-          InkWell(
-            //onTap: () => context.getImageFromGallery(),
-            child: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.only(top: 15),
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Column(
-                children: [
-                  SvgPicture.asset(
-                    "assets/icons/photo.svg",
-                    width: 36,
-                    height: 36,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text('写真を追加', style: TextStyle(color: Colors.white)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(width: 9),
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                  // PhotoCarouselWidget(),
-                  // PhotoCarouselWidget(),
-                  // PhotoCarouselWidget(),
-                  // PhotoCarouselWidget(),
-                ],
+  Widget imagePicker(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 12.0, top: 0, right: 12, bottom: 12),
+      child: GestureDetector(
+        child: Row(
+          children: <Widget>[
+            InkWell(
+              onTap: (){
+                _openImagePicker();
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(top: 15),
+                height: 100,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Column(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/icons/photo.svg",
+                      width: 36,
+                      height: 36,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text('写真を追加', style: TextStyle(color: Colors.white)),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            SizedBox(width: 9),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      PhotoCarouselWidget(ImageList: images, onRemove: (int ) { setState(() {
+                        images.removeAt(int);
+                      }); },),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

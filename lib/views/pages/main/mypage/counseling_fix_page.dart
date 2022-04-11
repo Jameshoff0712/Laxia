@@ -376,7 +376,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                              PhotoCarouselWidget(ImageList: lImageList ),
+                              PhotoCarouselWidget(ImageList: lImageList,bRemove: false, onRemove: (int ) {  }, ),
                             ],
                           ),
                         ),
@@ -413,7 +413,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                              PhotoCarouselWidget(ImageList: lImageList ),
+                              PhotoCarouselWidget(ImageList: lImageList,bRemove: false, onRemove: (int ) {  }, ),
                             ],
                           ),
                         ),
