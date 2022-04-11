@@ -123,8 +123,8 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover)
-                                    : Image.network(
-                                        _image!.path,
+                                    : Image.file(
+                                        _image!,
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover)),
