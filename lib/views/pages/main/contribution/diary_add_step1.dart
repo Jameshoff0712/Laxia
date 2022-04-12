@@ -12,6 +12,8 @@ import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:laxia/models/clinic_model.dart';
 import 'package:laxia/models/doctor_model.dart';
+import 'package:flutter_datetime_picker_forked/flutter_datetime_picker_forked.dart';
+
 
 class AddDiaryStep1Page extends StatefulWidget {
   @override
@@ -189,25 +191,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context, 
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2000), 
-                                lastDate: DateTime(2101)
-                            );
-                            if(pickedDate != null ){
-                                print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                                String formattedDate = DateFormat('yyyy/MM/dd').format(pickedDate); 
-                                print(formattedDate); //formatted date output using intl package =>  2021-03-16
-                                  //you can implement different kind of Date Format here according to your requirement
-              
+                          onTap: ()  {
+                              DatePicker.showDatePicker(context,
+                                  showTitleActions: true,
+                                  minTime: DateTime(2018, 3, 5),
+                                  maxTime: DateTime(2200, 6, 7), onChanged: (date) {
+                              }, onConfirm: (date) {
                                 setState(() {
-                                    addList[0] = formattedDate; //set output date to TextField value. 
+                                  addList[0] = date.year.toString()+"-"+date.month.toString()+"-"+date.day.toString(); 
                                 });
-                            }else{
-                                print("Date is not selected");
-                            }
+                              }, currentTime: DateTime.now(), locale: LocaleType.jp);
+
                           },
                           child: Icon(
                             Icons.arrow_forward_ios,

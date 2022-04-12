@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
-
+import 'package:flutter_datetime_picker_forked/flutter_datetime_picker_forked.dart';
 class Signup_Two extends StatefulWidget {
   const Signup_Two({ Key? key }) : super(key: key);
 
@@ -14,6 +14,7 @@ class Signup_Two extends StatefulWidget {
 }
 
 class _Signup_TwoState extends State<Signup_Two> {
+  DateTime _selectedDate = DateTime.now();
   List items=[];
   TextEditingController dateinput = TextEditingController(); 
    Future<void> initSettings() async {
@@ -139,25 +140,14 @@ class _Signup_TwoState extends State<Signup_Two> {
                   style: TextStyle(
                         color: Helper.maintxtColor, fontSize: 14),
                   keyboardType: TextInputType.datetime,
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                        context: context, 
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000), 
-                        lastDate: DateTime(2101)
-                    );
-                    if(pickedDate != null ){
-                        print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                        String formattedDate = DateFormat('yyyy/MM/dd').format(pickedDate); 
-                        print(formattedDate); //formatted date output using intl package =>  2021-03-16
-                          //you can implement different kind of Date Format here according to your requirement
-      
-                        setState(() {
-                            dateinput.text = formattedDate; //set output date to TextField value. 
-                        });
-                    }else{
-                        print("Date is not selected");
-                    }
+                  onTap: ()  {
+                        DatePicker.showDatePicker(context,
+                            showTitleActions: true,
+                            minTime: DateTime(2018, 3, 5),
+                            maxTime: DateTime(2200, 6, 7), onChanged: (date) {
+                        }, onConfirm: (date) {
+                        }, currentTime: DateTime.now(), locale: LocaleType.jp);
+
                   },
                   validator: (input) {
                     // if (input!.contains(new RegExp(r'^[0-9]+$'))) {
