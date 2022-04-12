@@ -77,8 +77,8 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  labelText: Trans.of(context).input_email,
-                  labelStyle: TextStyle(
+                  hintText: Trans.of(context).input_email,
+                  hintStyle: TextStyle(
                       color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
@@ -94,8 +94,8 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   //   // borderRadius: BorderRadius.all(Radius.circular(100)),
                   //   borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212)),
                   // ),
-                  // focusedBorder: UnderlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
+                  focusedBorder: UnderlineInputBorder(
+                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   border: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
@@ -111,8 +111,8 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Helper.whiteColor.withOpacity(0.2),
-                  labelText: Trans.of(context).password,
-                  labelStyle: TextStyle(
+                 hintText: Trans.of(context).password,
+                 hintStyle: TextStyle(
                       color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
@@ -139,8 +139,8 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   ),
                   // border: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
-                  // focusedBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
+                  focusedBorder: UnderlineInputBorder(
+                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // enabledBorder: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                 ),

@@ -26,25 +26,50 @@ class _SignUpScreenState extends State<SignUpScreen> {
           title: Text("下書きに保存しますか？"),
           content: Text("まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
               style: TextStyle(fontSize: 14)),
+          buttonPadding:EdgeInsets.all(0),
           actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Column(
               children: [
-                new FlatButton(
-                  textColor: Color.fromARGB(255, 110, 198, 210),
-                  child: new Text('保存しない'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                Container(
+                  width: double.infinity,
+                  height:1,
+                  color: Helper.txtColor,
                 ),
-                new FlatButton(
-                  
-                   textColor: Color.fromARGB(255, 110, 198, 210),
-                  child: new Text('保存する'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 1,
+                      height: 40,
+                      color: Helper.whiteColor,
+                    ),
+                    new FlatButton(
+                      textColor: Color.fromARGB(255, 110, 198, 210),
+                      child: new Text('保存しない'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    Container(
+                      width: 1,
+                      height: 40,
+                      color: Helper.txtColor,
+                    ),
+                    new FlatButton(
+                      
+                       textColor: Color.fromARGB(255, 110, 198, 210),
+                      child: new Text('保存する'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    Container(
+                      width: 1,
+                      height: 40,
+                      color: Helper.whiteColor,
+                    ),
+                  ],
+                ),
               ],
             )
           ],
@@ -142,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     recognizer: new TapGestureRecognizer()..onTap = (){Navigator.of(context).pushNamed("/TermsOfService");},
                                     text: Trans.of(context).service_term,
                                     style: TextStyle(
-                                        color: Colors.blue,
+                                        color: Helper.mainColor,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12)),
                                 TextSpan(
@@ -155,7 +180,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     recognizer: new TapGestureRecognizer()..onTap = (){Navigator.of(context).pushNamed("/TermsOfService");},
                                     text: Trans.of(context).privacy + "\n",
                                     style: TextStyle(
-                                        color: Colors.blue,
+                                        color: Helper.mainColor,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12)),
                                 TextSpan(
@@ -185,7 +210,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         child: Text(
                                           Trans.of(context).login,
                                           style: TextStyle(
-                                              color: Colors.blue,
+                                              color: Helper.mainColor,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 16.0),
                                         ))

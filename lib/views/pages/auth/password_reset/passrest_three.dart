@@ -76,11 +76,13 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Helper.whiteColor.withOpacity(0.2),
-                  labelText: Trans.of(context).password,
-                  labelStyle: TextStyle(
+                  hintText: Trans.of(context).password,
+                  hintStyle: TextStyle(
                       color: Helper.authHintColor, fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                  focusedBorder: UnderlineInputBorder(
+                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: '••••••••••••',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
