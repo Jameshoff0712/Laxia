@@ -13,6 +13,7 @@ import 'routes.dart';
 import 'services/geolocation-service.dart';
 import 'services/settings_service.dart' as settingRepo;
 import 'package:global_configuration/global_configuration.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //async program
@@ -35,6 +36,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     settingRepo.initSettings();
     super.initState();
   }
