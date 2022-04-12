@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen>
         Provider.of<UserProvider>(context, listen: true);
     tabMenus[0]="ホーム";
     if (userProperties.searchtext != "") {
+          isvisible=true;
       tabMenus[0]="総合";
       initSettings();
     }
