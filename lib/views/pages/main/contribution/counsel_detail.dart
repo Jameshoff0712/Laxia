@@ -481,6 +481,7 @@ SvgPicture.asset(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 PhotoCarouselWidget(
+                                  bRemove: false,
                                     ImageList: question_Details[0]
                                         ["non_ideal_images"], onRemove: (int ) {  },)
                               ],
