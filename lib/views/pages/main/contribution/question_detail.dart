@@ -392,7 +392,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               PhotoCarouselWidget(
-                                  ImageList: question_Details[0]["images"])
+                                  ImageList: question_Details[0]["images"],bRemove: false, onRemove: (int ) {  },)
                             ],
                           ),
                         ),

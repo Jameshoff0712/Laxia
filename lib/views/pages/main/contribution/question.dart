@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +19,18 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
   bool isAddEnabled = false;
   //File imageURI;
   late QuestionController _con;
+    int index=0;
+    List images=[];
+  final _picker = ImagePicker();
+      Future<void> _openImagePicker() async {
+      final XFile? pickedImage =
+          await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        setState(() {
+          images.add(File(pickedImage.path));
+        });
+      }
+    }
 
   _AddQuestionState() : super(QuestionController()) {
     _con = controller as QuestionController;
@@ -288,58 +303,55 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
       ),
     );
   }
-}
-
-Widget imagePicker(BuildContext context) {
-  return Container(
-    padding: const EdgeInsets.all(12.0),
-    child: GestureDetector(
-      child: Row(
-        children: <Widget>[
-          InkWell(
-            //onTap: () => context.getImageFromGallery(),
-            child: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.only(top: 15),
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Column(
-                children: [
-                  SvgPicture.asset(
-                    "assets/icons/photo.svg",
-                    width: 36,
-                    height: 36,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text('写真を追加', style: TextStyle(color: Colors.white)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(width: 9),
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                  //PhotoCarouselWidget(),
-                  //PhotoCarouselWidget(),
-                  //PhotoCarouselWidget(),
-                  //PhotoCarouselWidget(),
-                ],
+  Widget imagePicker(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 12.0, top: 0, right: 12, bottom: 12),
+      child: GestureDetector(
+        child: Row(
+          children: <Widget>[
+            InkWell(
+              onTap: (){
+                _openImagePicker();
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(top: 15),
+                height: 100,
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Column(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/icons/photo.svg",
+                      width: 36,
+                      height: 36,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text('写真を追加', style: TextStyle(color: Colors.white)),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            SizedBox(width: 9),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      PhotoCarouselWidget(ImageList: images, onRemove: (int ) { setState(() {images.removeAt(int);}); },),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
