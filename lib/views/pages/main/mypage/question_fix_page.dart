@@ -244,7 +244,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PhotoCarouselWidget(ImageList: lImageList ),
+                          PhotoCarouselWidget(ImageList: lImageList,bRemove: false, onRemove: (int ) {  }, ),
                         ],
                       ),
                     ),
