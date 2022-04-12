@@ -48,11 +48,24 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(5),
                                 topRight: Radius.circular(5)),
-                            child: Image.file(
+                            child: widget.bRemove!?
+                            Image.file(
                                         widget.ImageList[i]!,
                                         width: 80,
                                         height: 80,
-                                        fit: BoxFit.cover),
+                                        fit: BoxFit.cover):
+                                        CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: widget.ImageList[i]!,
+                              placeholder: (context, url) => Image.asset(
+                                'assets/images/loading.gif',
+                                fit: BoxFit.cover,
+                              ),
+                              errorWidget: (context, url, error) => Image.asset(
+                                'assets/images/profile.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                       ),
