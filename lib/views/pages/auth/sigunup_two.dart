@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:async';
-import 'dart:html';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,6 +37,7 @@ class _Signup_TwoState extends State<Signup_Two> {
     return items.isNotEmpty? SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: Helper.whiteColor,
           leading: IconButton(
             onPressed: () => Navigator.of(context).pop(),
