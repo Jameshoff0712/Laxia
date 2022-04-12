@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_add_step2.dart';
 
 class AddCounselStep1Page extends StatefulWidget {
+  final bool? isMyDiary;
+  const AddCounselStep1Page({Key? key, this.isMyDiary = false}) : super(key: key);
   @override
   _AddCounselStep1PageState createState() => _AddCounselStep1PageState();
 }
@@ -31,7 +34,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     });
   }
 
-  AddCounselStep2Page() {
+  _AddCounselStep2Page() {
     showDialog(
       context: context,
       builder: (context) {
@@ -415,13 +418,14 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
               ),
             ),
             imagePicker(context),
-            Center(
+            !widget.isMyDiary!
+            ? Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 height: 76,
                 padding: EdgeInsets.only(top: 20),
                 child: ElevatedButton(
-                  onPressed: isAddEnabled ? () => AddCounselStep2Page() : null,
+                  onPressed: isAddEnabled ? () => _AddCounselStep2Page() : null,
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -440,7 +444,43 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                   ),
                 ),
               ),
-            ),
+            )
+            : Center(
+                    child: Container(
+                    padding: EdgeInsets.only(top: 50),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddCounselStep2Page(isMyDiary: widget.isMyDiary)));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 1,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 70),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        side: const BorderSide(
+                            color: Helper.mainColor,
+                            width: 1,
+                            style: BorderStyle.solid),
+                        primary: Helper.whiteColor,
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          '次へ進む',
+                          style: TextStyle(
+                              fontSize: 14,
+                              height: 1.5,
+                              fontWeight: FontWeight.w700,
+                              color: Helper.mainColor),
+                        ),
+                      ),
+                    ),
+                  )),
           ],
         ),
       ),

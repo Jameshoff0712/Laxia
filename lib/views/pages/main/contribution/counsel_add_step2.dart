@@ -6,6 +6,8 @@ import 'package:laxia/views/widgets/ToggleSwitchButton.dart';
 import 'package:laxia/views/widgets/counsel_question_card.dart';
 
 class AddCounselStep2Page extends StatefulWidget {
+  final bool? isMyDiary;
+  const AddCounselStep2Page({Key? key, this.isMyDiary = false}) : super(key: key);
   @override
   _AddCounselStep2PageState createState() => _AddCounselStep2PageState();
 }
@@ -356,7 +358,10 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
             Align(
               alignment: Alignment.center,
               child: InkWell(
-                onTap: (){},
+                onTap: (){
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 62),
                   decoration: BoxDecoration(
