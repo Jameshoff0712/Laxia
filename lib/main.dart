@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W6'),
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
-            initialRoute: '/SignupTwo',
+            initialRoute: '/Doctor_Detail',
             onGenerateRoute: RouteGenerator.generateRoute,
             locale: _setting.mobileLanguage.value,
             localizationsDelegates: const [
