@@ -90,13 +90,15 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  labelText: Trans.of(context).input_email,
-                  labelStyle: TextStyle(
+                  hintText: Trans.of(context).input_email,
+                  hintStyle: TextStyle(
                       color: Helper.authHintColor, fontSize: 14),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                  focusedBorder: UnderlineInputBorder(
+                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: 'john@doe.com',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(

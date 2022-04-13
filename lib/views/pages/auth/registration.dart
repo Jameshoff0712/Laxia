@@ -82,13 +82,15 @@ class _RegistrationState extends StateMVC<Registration> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  labelText: Trans.of(context).input_email,
-                  labelStyle: TextStyle(
+                 hintText: Trans.of(context).input_email,
+                 hintStyle: TextStyle(
                       color: Helper.authHintColor, fontSize: 14),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                  focusedBorder: UnderlineInputBorder(
+                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: 'john@doe.com',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
@@ -116,11 +118,13 @@ class _RegistrationState extends StateMVC<Registration> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Helper.whiteColor.withOpacity(0.2),
-                  labelText: Trans.of(context).password,
-                  labelStyle: TextStyle(
+                  hintText: Trans.of(context).password,
+                  hintStyle: TextStyle(
                       color: Helper.authHintColor, fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                  focusedBorder: UnderlineInputBorder(
+                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: '••••••••••••',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
@@ -193,7 +197,10 @@ class _RegistrationState extends StateMVC<Registration> {
                       ),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if(!isBtnColor)
+                      Navigator.of(context).pushNamed("/SignupTwo");
+                  },
                 ),
               ),
               Expanded(
