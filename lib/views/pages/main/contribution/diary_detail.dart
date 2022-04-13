@@ -151,7 +151,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddDiaryStep1Page()));
+                            builder: (context) => AddDiaryStep1Page(isMyDiary: widget.isMyDiary)));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
