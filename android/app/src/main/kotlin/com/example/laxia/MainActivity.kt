@@ -1,4 +1,4 @@
-package com.example.laxia
+package com.rashia.laxia
 
 import io.flutter.embedding.android.FlutterActivity
 
