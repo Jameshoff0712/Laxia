@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,9 +14,9 @@ import 'routes.dart';
 import 'services/geolocation-service.dart';
 import 'services/settings_service.dart' as settingRepo;
 import 'package:global_configuration/global_configuration.dart';
-import 'package:flutter/services.dart';
 
 Future<void> main() async {
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized(); //async program
   await GlobalConfiguration().loadFromAsset("configurations");
   SystemChrome.setPreferredOrientations(

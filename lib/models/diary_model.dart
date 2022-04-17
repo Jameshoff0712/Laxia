@@ -1,3 +1,36 @@
+import 'package:laxia/models/categories.dart';
+import 'package:laxia/models/m_clinic.dart';
+import 'package:laxia/models/m_doctor.dart';
+import 'package:laxia/models/m_user.dart';
+import 'package:laxia/models/parts.dart';
+
+class Diary {
+  final int id;
+  final int patientId;
+  final int clinicId;
+  final String treatDate;
+  final int doctorId;
+  final int price;
+  final dynamic createdAt;
+  final dynamic updatedAt;
+  final int rate01;
+  const Diary(this.id, this.patientId, this.clinicId, this.treatDate,
+      this.doctorId, this.price, this.createdAt, this.updatedAt, this.rate01);
+}
+
+class DiaryProgress {
+  int? id;
+  User? user;
+  List<Surgeries>? tags;
+  Doctor? doctor;
+  Clinic? clinic;
+  Parts? part;
+  int? elapsedDay;
+  List<String>? postImages;
+  Map<String, dynamic>? evaluations;
+  String? abstract;
+}
+
 List diary_list = [
   {
     "avator":

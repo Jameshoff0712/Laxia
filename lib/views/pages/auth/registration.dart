@@ -5,7 +5,6 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/generated/l10n.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
 // import '../common/app_config.dart' as config;
 
 class Registration extends StatefulWidget {
@@ -15,20 +14,18 @@ class Registration extends StatefulWidget {
   _RegistrationState createState() => _RegistrationState();
 }
 
-class _RegistrationState extends StateMVC<Registration> {
-  bool isBtnColor=true;
-  late AuthController _con;
-  _RegistrationState() : super(AuthController()) {
-    _con = controller as AuthController;
-  }
+class _RegistrationState extends State<Registration> {
+  bool isBtnColor = true;
+  final _con = AuthController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Helper.whiteColor,
       body: Padding(
-          padding:
-              const EdgeInsets.only(top: 57.0, left: 16, right: 16),
+          padding: const EdgeInsets.only(top: 57.0, left: 16, right: 16),
           child: Column(
             children: <Widget>[
               Row(
@@ -40,7 +37,8 @@ class _RegistrationState extends StateMVC<Registration> {
                           child: IconButton(
                             onPressed: () => Navigator.of(context).pop(),
                             padding: EdgeInsets.only(left: 7),
-                            icon: const Icon(Icons.clear, color: Helper.blackColor),
+                            icon: const Icon(Icons.clear,
+                                color: Helper.blackColor),
                             iconSize: 16,
                           ))),
                   Expanded(
@@ -61,13 +59,14 @@ class _RegistrationState extends StateMVC<Registration> {
                 height: 11,
               ),
               TextFormField(
-                onTap:(){
+                controller: _emailController,
+                onTap: () {
                   setState(() {
-                    isBtnColor=false;
+                    isBtnColor = false;
                   });
                 },
                 keyboardType: TextInputType.emailAddress,
-                onSaved: (input) => _con.user.email = input,
+                // onSaved: (input) => _con.user.email = input,
                 validator: (input) {
                   if (input!.contains(new RegExp(r'^[0-9]+$'))) {
                     if (input.length < 10) {
@@ -82,15 +81,16 @@ class _RegistrationState extends StateMVC<Registration> {
                   return null;
                 },
                 decoration: InputDecoration(
-                 hintText: Trans.of(context).input_email,
-                 hintStyle: TextStyle(
-                      color: Helper.authHintColor, fontSize: 14),
+                  hintText: Trans.of(context).input_email,
+                  hintStyle:
+                      TextStyle(color: Helper.authHintColor, fontSize: 14),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   focusedBorder: UnderlineInputBorder(
-                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
+                      borderSide:
+                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: 'john@doe.com',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
@@ -104,27 +104,28 @@ class _RegistrationState extends StateMVC<Registration> {
                   // focusedBorder: UnderlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
                   border: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Helper.authHintColor),
+                    borderSide: BorderSide(color: Helper.authHintColor),
                   ),
                 ),
               ),
               SizedBox(height: 20),
               TextFormField(
+                controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
-                onSaved: (input) => _con.user.password = input,
+                // onSaved: (input) => _con.user.password = input,
                 validator: (input) => input!.length < 3 ? null : null,
                 obscureText: _con.hidePassword,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Helper.whiteColor.withOpacity(0.2),
                   hintText: Trans.of(context).password,
-                  hintStyle: TextStyle(
-                      color: Helper.authHintColor, fontSize: 14),
+                  hintStyle:
+                      TextStyle(color: Helper.authHintColor, fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   focusedBorder: UnderlineInputBorder(
-                     borderSide: BorderSide(color: Helper.mainColor.withOpacity(0.5))),
+                      borderSide:
+                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: '••••••••••••',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
@@ -143,13 +144,12 @@ class _RegistrationState extends StateMVC<Registration> {
                         : Icons.visibility_off),
                   ),
                   border: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Helper.authHintColor),
+                    borderSide: BorderSide(color: Helper.authHintColor),
                   ),
                   // border: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                   // focusedBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
+                  //     borderRadius: BorderRadius.rall(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
                   // enabledBorder: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                 ),
@@ -176,8 +176,8 @@ class _RegistrationState extends StateMVC<Registration> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     side: BorderSide(color: Helper.txtColor, width: 1),
-                    elevation:0,
-                    primary:isBtnColor? Helper.whiteColor: Helper.mainColor,
+                    elevation: 0,
+                    primary: isBtnColor ? Helper.whiteColor : Helper.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -191,14 +191,18 @@ class _RegistrationState extends StateMVC<Registration> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).next,
-                            style: TextStyle(color:isBtnColor?Helper.txtColor: Helper.whiteColor, fontSize: 12),
+                            style: TextStyle(
+                                color: isBtnColor
+                                    ? Helper.txtColor
+                                    : Helper.whiteColor,
+                                fontSize: 12),
                           ),
                         ),
                       ),
                     ],
                   ),
                   onPressed: () {
-                    if(!isBtnColor)
+                    if (!isBtnColor)
                       Navigator.of(context).pushNamed("/SignupTwo");
                   },
                 ),
@@ -208,19 +212,20 @@ class _RegistrationState extends StateMVC<Registration> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        "すでにアカウントを持っている方はこちら",
-                        style: TextStyle(
-                            color: Helper.mainColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
-                      )
-                    ),
-                     SizedBox(height: 12,)
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          "すでにアカウントを持っている方はこちら",
+                          style: TextStyle(
+                              color: Helper.mainColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        )),
+                    SizedBox(
+                      height: 12,
+                    )
                   ],
                 ),
               ),

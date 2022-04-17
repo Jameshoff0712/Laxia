@@ -38,7 +38,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         currentPageValue = _pageController.page;
       });
     });
-    var list;
     if (currentPageValue!.floor() != 3) {
       return SafeArea(
         child: Scaffold(
@@ -141,7 +140,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     } else {
       return SafeArea(
         child: Scaffold(
-          backgroundColor:Helper.mainColor,
+          backgroundColor: Helper.mainColor,
           body: Padding(
             padding:
                 const EdgeInsets.only(top: 0, right: 0, bottom: 0, left: 0),
@@ -222,7 +221,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                                      builder: (context) =>
+                                          const LoginScreen()));
                             } else
                               _pageController.nextPage(
                                   duration: Duration(milliseconds: 250),
