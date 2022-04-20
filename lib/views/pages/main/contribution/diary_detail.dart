@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/instructions.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/diary_medialist.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
 
@@ -149,7 +151,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddDiaryStep1Page()));
+                            builder: (context) => AddDiaryStep1Page(isMyDiary: widget.isMyDiary)));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -192,100 +194,102 @@ class _Diary_DetailState extends State<Diary_Detail> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        height: 60,
-        decoration: BoxDecoration(color: Helper.whiteColor),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-              onTap: () {
-                setState(() {
-                  isStar = !isStar;
-                });
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  isStar
-                      ? Icon(
-                          Icons.star,
-                          color: Helper.btnBgYellowColor,
-                          size: 30,
-                        )
-                      : Icon(
-                          Icons.star_border,
-                          color: Helper.txtColor,
-                          size: 30,
-                        ),
-                  Text(
-                    "お気に入り",
-                    style: TextStyle(
-                        color: isStar
-                            ? Helper.btnBgYellowColor
-                            : Helper.txtColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  isfavourite = !isfavourite;
-                });
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  isfavourite
-                      ? Icon(
-                          Icons.favorite,
-                          color: Helper.btnBgYellowColor,
-                          size: 30,
-                        )
-                      : Icon(
-                          Icons.favorite_border,
-                          color: Helper.txtColor,
-                          size: 30,
-                        ),
-                  Text(
-                    "223",
-                    style: TextStyle(
-                        color: isfavourite
-                            ? Helper.btnBgYellowColor
-                            : Helper.txtColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Helper.btnBgYellowColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 5),
+          height: 60,
+          decoration: BoxDecoration(color: Helper.whiteColor),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    isStar = !isStar;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    isStar
+                        ? Icon(
+                            Icons.star,
+                            color: Helper.btnBgYellowColor,
+                            size: 30,
+                          )
+                        : Icon(
+                            Icons.star_border,
+                            color: Helper.txtColor,
+                            size: 30,
+                          ),
+                    Text(
+                      "お気に入り",
+                      style: TextStyle(
+                          color: isStar
+                              ? Helper.btnBgYellowColor
+                              : Helper.txtColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "同じクリニックを予約",
-                    style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                        size: 14),
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    isfavourite = !isfavourite;
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    isfavourite
+                        ? Icon(
+                            Icons.favorite,
+                            color: Helper.btnBgYellowColor,
+                            size: 30,
+                          )
+                        : Icon(
+                            Icons.favorite_border,
+                            color: Helper.txtColor,
+                            size: 30,
+                          ),
+                    Text(
+                      "223",
+                      style: TextStyle(
+                          color: isfavourite
+                              ? Helper.btnBgYellowColor
+                              : Helper.txtColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
               ),
-              onPressed: () {
-                Navigator.of(context).pushNamed("/Reservation");
-              },
-            ),
-          ],
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Helper.btnBgYellowColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40.0),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "同じクリニックを予約",
+                      style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
+                          size: 14),
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/Reservation");
+                },
+              ),
+            ],
+          ),
         ),
       ),
       body: Padding(
@@ -310,12 +314,12 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   children: [
                     InkWell(
                       onTap: (){
-                        ImageViewer.showImageSlider(
-                            images: [
+                        Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget(onBoardingInstructions: [
                               diary_Details[0]["image1"],
                             ],
-                            startingPosition: 1,
-                          );
+                            startindex: 1,)));
                       },
                       child: FittedBox(
                         fit: BoxFit.fill,
@@ -364,12 +368,12 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     ),
                     InkWell(
                       onTap: (){
-                          ImageViewer.showImageSlider(
-                            images: [
+                        Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget( onBoardingInstructions: [
                               diary_Details[0]["image1"],
                             ],
-                            startingPosition: 1,
-                          );
+                            startindex: 1,)));
                       },
                       child: FittedBox(
                         fit: BoxFit.fill,

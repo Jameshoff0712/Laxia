@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +14,18 @@ class AddDiaryProgressPage extends StatefulWidget {
 
 class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
   bool isAddEnabled = true;
-
+  int index=0;
+  List images=[];
+ final _picker = ImagePicker();
+    Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        images.add(File(pickedImage.path));
+      });
+    }
+  }
   AddDiaryPage() {
     Navigator.of(context).pushNamed("/AddDiaryList");
   }
@@ -135,9 +149,9 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 ),
               ),
             ),
-            StateSliderWidget(state_str: "痛み", state_val: 0),
-            StateSliderWidget(state_str: "腫れ", state_val: 0),
-            StateSliderWidget(state_str: "傷あと", state_val: 0),
+            StateSliderWidget(state_str: "痛み", state_val: 0, ),
+            StateSliderWidget(state_str: "腫れ", state_val: 0, ),
+            StateSliderWidget(state_str: "傷あと", state_val: 0, ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ListTile(
@@ -209,15 +223,16 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
       ),
     );
   }
-
-  Widget imagePicker(BuildContext context) {
+ Widget imagePicker(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 12.0, top: 0, right: 12, bottom: 12),
       child: GestureDetector(
         child: Row(
           children: <Widget>[
             InkWell(
-              //onTap: () => context.getImageFromGallery(),
+              onTap: (){
+                _openImagePicker();
+              },
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(top: 15),
@@ -236,8 +251,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child:
-                          Text('写真を追加', style: TextStyle(color: Colors.white)),
+                      child: Text('写真を追加', style: TextStyle(color: Colors.white)),
                     ),
                   ],
                 ),
@@ -250,11 +264,9 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                    // PhotoCarouselWidget(),
-                    // PhotoCarouselWidget(),
-                    // PhotoCarouselWidget(),
-                    // PhotoCarouselWidget(),
+                     PhotoCarouselWidget(ImageList: images, onRemove: (int ) { setState(() {
+                       images.removeAt(int);
+                     }); },),
                   ],
                 ),
               ),

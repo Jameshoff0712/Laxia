@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/views/pages/auth/emaillogin.dart';
-import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../generated/l10n.dart';
@@ -32,23 +30,30 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Helper.whiteColor,
       body: SafeArea(
         child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16,vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
             child: Column(
               children: <Widget>[
-                SizedBox(height: 53,),
-                Text(
-                   Trans.of(context).login_content,
-                  style: TextStyle(
-                      color: Helper.titleColor, fontWeight: FontWeight.bold,fontSize: 20),
+                SizedBox(
+                  height: 53,
                 ),
-                SizedBox(height: 19,),
                 Text(
-                    Trans.of(context).lets_start_with_login,
-                    softWrap: true,
-                     textAlign: TextAlign.center,
+                  Trans.of(context).login_content,
                   style: TextStyle(
-                      color: Helper.titleColor, fontWeight: FontWeight.w400,fontSize: 16),
+                      color: Helper.titleColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+                SizedBox(
+                  height: 19,
+                ),
+                Text(
+                  Trans.of(context).lets_start_with_login,
+                  softWrap: true,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Helper.titleColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16),
                 ),
                 const SizedBox(
                   height: 64,
@@ -102,8 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             child: Text(
                               Trans.of(context).register,
-                              style:
-                                  defaultTextStyle(Colors.blue, FontWeight.bold),
+                              style: defaultTextStyle(
+                                  Colors.blue, FontWeight.bold),
                             ))
                       ],
                     ),
@@ -133,6 +138,8 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        side: BorderSide(color: Helper.txtColor, width: 1),
+        elevation: 0,
         primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
@@ -150,14 +157,14 @@ class LoginButton extends StatelessWidget {
             ),
             Text(
               "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w700, size: 14),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.w700,
+                  size: 14),
             ),
           ],
         ),
       ),
       onPressed: () {
-        if (event == "email")
-          Navigator.of(context).pushNamed("/EmailLogin");
+        if (event == "email") Navigator.of(context).pushNamed("/EmailLogin");
       },
     );
   }
@@ -174,6 +181,8 @@ class TwitterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        side: BorderSide(color: Helper.txtColor, width: 1),
+        elevation: 0,
         primary: Helper.whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
@@ -191,7 +200,8 @@ class TwitterButton extends StatelessWidget {
             ),
             Text(
               "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w700, size: 14),
+              style: defaultTextStyle(Helper.blackColor, FontWeight.w700,
+                  size: 14),
             ),
           ],
         ),

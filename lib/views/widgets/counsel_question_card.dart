@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nb_utils/nb_utils.dart';
-import 'package:laxia/common/helper.dart';
 
 class CounselQuestion_Card extends StatefulWidget {
   final VoidCallback onpress;

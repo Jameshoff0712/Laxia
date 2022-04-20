@@ -2,20 +2,25 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_viewer/image_viewer.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 
-class PhotoCarouselWidget extends StatelessWidget {
-  //final List<Offer>? offerList;
-  List ImageList;
-  bool? bRemove;
-
-  //PhotoCarouselWidget({Key? key, this.offerList, this.heroTag}) : super(key: key);
-  PhotoCarouselWidget({Key? key, required this.ImageList, this.bRemove})
-      : super(key: key);
+class PhotoCarouselWidget extends StatefulWidget {
+   final Function(int) onRemove;
+  final List ImageList;
+  final bool? bRemove;
+  const PhotoCarouselWidget({ Key? key, required this.onRemove, required this.ImageList, this.bRemove=true }) : super(key: key);
 
   @override
+  State<PhotoCarouselWidget> createState() => _PhotoCarouselWidgetState();
+}
+
+class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
+  
+
+ @override
   Widget build(BuildContext context) {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      for (int i = 0; i < ImageList.length; i++)
+      for (int i = 0; i < widget.ImageList.length; i++)
         Padding(
           padding: const EdgeInsets.only(left: 5),
           child: Column(
@@ -28,13 +33,13 @@ class PhotoCarouselWidget extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          ImageViewer.showImageSlider(
-                            images: [
-                              for (int j = 0; j < ImageList.length; j++)
-                                ImageList[j],
+                          Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget( onBoardingInstructions: [
+                              for (int j = 0; j < widget.ImageList.length; j++)
+                                widget.ImageList[j],
                             ],
-                            startingPosition: 1,
-                          );
+                            startindex: 1,)));
                         },
                         child: Container(
                           width: 110,
@@ -43,25 +48,33 @@ class PhotoCarouselWidget extends StatelessWidget {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(5),
                                 topRight: Radius.circular(5)),
-                            child: CachedNetworkImage(
+                            child: widget.bRemove!?
+                            Image.file(
+                                        widget.ImageList[i]!,
+                                        width: 80,
+                                        height: 80,
+                                        fit: BoxFit.cover):
+                                        CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl: ImageList[i],
+                              imageUrl: widget.ImageList[i]!,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,
                               ),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                              errorWidget: (context, url, error) => Image.asset(
+                                'assets/images/profile.png',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  bRemove == true
+                  widget.bRemove == true
                       ? InkWell(
                           onTap: () {
-                            print("remove");
+                            widget.onRemove(i);
                           },
                           child: Container(
                             // top: 0,

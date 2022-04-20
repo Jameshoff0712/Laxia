@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laxia/common/app_config.dart';
 import 'package:laxia/common/helper.dart';
 
 class TextButton_Drawer extends StatefulWidget {

@@ -6,6 +6,8 @@ import 'package:laxia/views/widgets/ToggleSwitchButton.dart';
 import 'package:laxia/views/widgets/counsel_question_card.dart';
 
 class AddCounselStep2Page extends StatefulWidget {
+  final bool? isMyDiary;
+  const AddCounselStep2Page({Key? key, this.isMyDiary = false}) : super(key: key);
   @override
   _AddCounselStep2PageState createState() => _AddCounselStep2PageState();
 }
@@ -136,7 +138,126 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet(
+                    constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15.0),
+                            topRight: Radius.circular(15.0)),
+                      ),
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          color: Helper.whiteColor,
+                          height:  MediaQuery.of(context).size.height * 0.9,
+                          child: Column(
+                            children: [
+                              SizedBox(height: 15,),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16,),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconButton(onPressed: (){
+                                      Navigator.of(context).pop();
+                                    }, icon: Icon(Icons.arrow_back_ios, size: 20,)),
+                                    Text(
+                                      "質問と回答",
+                                      style: defaultTextStyle(
+                                          Helper.titleColor, FontWeight.w700,
+                                          size: 18),
+                                    ),
+                                    Icon(Icons.arrow_back_ios,size: 20,color: Helper.whiteColor,)
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(color: Colors.white),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 0.0),
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.text,
+                                        maxLength: 60,
+                                        //onSaved: (input) => editTitle(input),
+                                        onChanged: (text) {
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText: '質問（必須60文字）',
+                                          hintStyle: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          ),
+                                          border: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(1, 210, 210, 212)),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 8.0),
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.multiline,
+                                        maxLength: 1000,
+                                        maxLines: 10,
+                                        onChanged: (text) {
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText: '回答（必須1000文字以内）',
+                                          hintStyle: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          ),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child:  Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                   Center(
+                                      child: Container(
+                                        width: MediaQuery.of(context).size.width * 0.9,
+                                        height: 76,
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: ElevatedButton(
+                                          onPressed: isAddEnabled ? () => Navigator.of(context).pop() : null,
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 1,
+                                            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(6))),
+                                            primary: Helper.mainColor,
+                                            onPrimary: Colors.white,
+                                            onSurface: Colors.grey,
+                                          ),
+                                          child: FittedBox(
+                                            fit: BoxFit.fitWidth,
+                                            child: Text(
+                                              '質問を投稿',
+                                              style: TextStyle(fontSize: 18),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 10,)
+                                ],)
+                              )
+                            ],
+                          ),
+                        );
+                      });
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
@@ -356,7 +477,10 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
             Align(
               alignment: Alignment.center,
               child: InkWell(
-                onTap: (){},
+                onTap: (){
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 62),
                   decoration: BoxDecoration(

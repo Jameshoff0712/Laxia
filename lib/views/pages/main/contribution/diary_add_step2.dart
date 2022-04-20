@@ -1,9 +1,12 @@
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step4.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AddDiaryStep2Page extends StatefulWidget {
+  final bool? isMyDiary;
+  const AddDiaryStep2Page({Key? key, this.isMyDiary = false}) : super(key: key);
   @override
   _AddDiaryStep2PageState createState() => _AddDiaryStep2PageState();
 }
@@ -254,60 +257,99 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 17.0, 18.0, 17.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "合計金額: ",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                        Text(
-                          "円",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      ]),
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 76,
-                padding: EdgeInsets.only(top: 20),
-                child: ElevatedButton(
-                  onPressed: isAddEnabled ? () => AddDiaryStep3Page() : null,
-                  style: ElevatedButton.styleFrom(
-                    elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(6))),
-                    primary: Helper.mainColor,
-                    onPrimary: Colors.white,
-                    onSurface: Colors.grey,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      '次に進む',
-                      style: TextStyle(fontSize: 18),
+                  child:
+                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    Text(
+                      "合計金額: ",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
                     ),
-                  ),
+                    Text(
+                      "0",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                    Text(
+                      "円",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ]),
                 ),
               ),
             ),
+            !widget.isMyDiary!
+                ? Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: 76,
+                      padding: EdgeInsets.only(top: 20),
+                      child: ElevatedButton(
+                        onPressed:
+                            isAddEnabled ? () => AddDiaryStep3Page() : null,
+                        style: ElevatedButton.styleFrom(
+                          elevation: 1,
+                          padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6))),
+                          primary: Helper.mainColor,
+                          onPrimary: Colors.white,
+                          onSurface: Colors.grey,
+                        ),
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            '次に進む',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Center(
+                    child: Container(
+                    padding: EdgeInsets.only(top: 50),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddDiaryStep4Page(
+                                    isMyDiary: widget.isMyDiary)));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 1,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 70),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        side: const BorderSide(
+                            color: Helper.mainColor,
+                            width: 1,
+                            style: BorderStyle.solid),
+                        primary: Helper.whiteColor,
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          '次へ進む',
+                          style: TextStyle(
+                              fontSize: 14,
+                              height: 1.5,
+                              fontWeight: FontWeight.w700,
+                              color: Helper.mainColor),
+                        ),
+                      ),
+                    ),
+                  )),
           ],
         ),
       ),

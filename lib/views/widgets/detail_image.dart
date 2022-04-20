@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:laxia/common/helper.dart';
 
 class Detail_Image extends StatefulWidget {
-  final bool ? insidestar;
+  final bool ? insidestar,isDoctor;
   final VoidCallback onPressBack, onPressUpRight;
   final VoidCallback? onStar;
   final List imageList;
@@ -16,7 +16,7 @@ class Detail_Image extends StatefulWidget {
       required this.height,
       required this.imageList,
       required this.onPressBack,
-      required this.onPressUpRight, this.insidestar=false, this.onStar})
+      required this.onPressUpRight, this.insidestar=false, this.onStar, this.isDoctor=false})
       : super(key: key);
 
   @override
@@ -40,7 +40,7 @@ class _Detail_ImageState extends State<Detail_Image> {
               },
               height: widget.height,
               viewportFraction: 1.0,
-              autoPlay: true),
+              autoPlay: false),
           items: widget.imageList.map((image) {
             return Builder(
               builder: (BuildContext context) {
@@ -89,7 +89,7 @@ class _Detail_ImageState extends State<Detail_Image> {
                     height: 30,
                   ),
                   SizedBox(width: 10,),
-                  widget.insidestar!?InkWell(
+                  (widget.insidestar!)&&(!widget.isDoctor!)?InkWell(
                     onTap: widget.onStar,
                     child: SvgPicture.asset(
                       "assets/icons/insidestar.svg",
@@ -104,7 +104,7 @@ class _Detail_ImageState extends State<Detail_Image> {
         )),
         Padding(
 
-          padding: widget.insidestar!?EdgeInsets.only(right: 16, top: widget.height - 40):EdgeInsets.only(left: 16, top: widget.height - 40),
+          padding: widget.insidestar!?EdgeInsets.only(right: 16, top: widget.isDoctor!?(widget.height - 115):(widget.height - 40)):EdgeInsets.only(left: 16, top: widget.height - 40),
           child: Container(
               decoration: BoxDecoration(
                   color: Helper.blackColor.withOpacity(0.7),
@@ -112,7 +112,7 @@ class _Detail_ImageState extends State<Detail_Image> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Text(
-                  _currentpage.toString() +
+                  (_currentpage+1).toString() +
                       "/" +
                       widget.imageList.length.toString(),
                   style: TextStyle(letterSpacing: 2, color: Helper.whiteColor,fontSize: 12),

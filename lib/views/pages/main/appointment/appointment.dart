@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/chatStatus.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
+import 'package:provider/provider.dart';
 
 class Appointment extends StatefulWidget {
-  const Appointment({Key? key}) : super(key: key);
+  // final PageController pageController;
+  const Appointment({
+    Key? key,
+    // required this.pageController,
+  }) : super(key: key);
 
   State<Appointment> createState() => _AppointmentState();
 }
@@ -28,6 +34,8 @@ class _AppointmentState extends State<Appointment>
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
@@ -44,7 +52,8 @@ class _AppointmentState extends State<Appointment>
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              userProperties.setCurrentPageIndex(0);
+              Navigator.of(context).pushNamed('/Pages');
             },
             icon: Icon(
               Icons.keyboard_arrow_left,

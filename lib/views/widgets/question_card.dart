@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -31,7 +31,7 @@ class Question_Card extends StatefulWidget {
     required this.eyes,
     this.buttoncolor,
     this.fontcolor,
-    this.buttontext="",
+    this.buttontext = "",
   }) : super(key: key);
 
   @override
@@ -91,7 +91,10 @@ class _Question_CardState extends State<Question_Card> {
                             child: Align(
                             alignment: Alignment.topRight,
                             child: Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3),color: widget.buttoncolor,),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                color: widget.buttoncolor,
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 6),

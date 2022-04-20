@@ -95,32 +95,34 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        height: 60,
-        decoration: BoxDecoration(color: Helper.whiteColor),
-        child: Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.7,
-            //padding: EdgeInsets.symmetric(vertical: 10),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Helper.btnBgYellowColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "クリニックを予約",
-                    style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                        size: 14),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 5),
+          height: 60,
+          decoration: BoxDecoration(color: Helper.whiteColor),
+          child: Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              //padding: EdgeInsets.symmetric(vertical: 10),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Helper.btnBgYellowColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40.0),
                   ),
-                ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "クリニックを予約",
+                      style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
+                          size: 14),
+                    ),
+                  ],
+                ),
+                onPressed: () {},
               ),
-              onPressed: () {},
             ),
           ),
         ),
