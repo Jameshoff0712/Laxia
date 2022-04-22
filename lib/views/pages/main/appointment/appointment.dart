@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/reserve_controller.dart';
 import 'package:laxia/controllers/status_controller.dart';
 import 'package:laxia/models/status_model.dart';
 import 'package:laxia/provider/user_provider.dart';
@@ -19,7 +20,7 @@ class Appointment extends StatefulWidget {
 
 class _AppointmentState extends State<Appointment>
     with SingleTickerProviderStateMixin {
-  final _con = StatusController();
+  final _con = ReserveController();
   final List<String> tabMenus = [
     'すべて',
     '調整中',

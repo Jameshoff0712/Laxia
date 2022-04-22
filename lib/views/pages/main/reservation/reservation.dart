@@ -13,14 +13,6 @@ class Reservation extends StatefulWidget {
 }
 
 class _ReservationState extends State<Reservation> {
-  String? selectedValue; //for dropdown
-  bool checkBoxValue = false;
-  List<String> items = [
-    '希望ドクターはなし',
-    '希望ドクタ',
-    '希望ド',
-  ];
-
   double progress = 0.1;
   final _formKey = GlobalKey<FormState>();
   String? doctorValue;
@@ -35,9 +27,9 @@ class _ReservationState extends State<Reservation> {
   String? todayValue;
   bool selectedToday = false;
   List<String> options_Today = [
-    '希望ドクターはなし',
-    '希望ドクタ',
-    '希望ド',
+    'カウンセリングのみ',
+    '施術',
+    'カウンセリング・施術',
   ];
   late CalendarController _controller;
   List<bool> selectedTime = List<bool>.filled(4, false);
@@ -52,12 +44,16 @@ class _ReservationState extends State<Reservation> {
   bool? isSecondName;
   final _birthController = TextEditingController();
   bool isBirth = false;
+  int? birthYear;
+  int? birthMonth;
+  int? birthDay;
   int sexId = -1;
   bool selectedSex = false;
   String? mobile;
   bool? isMobile;
   String? usedPoints;
   bool? isUsedPoints;
+  bool checkBoxValue = false;
 
   @override
   void initState() {
@@ -903,6 +899,9 @@ class _ReservationState extends State<Reservation> {
                               setState(() {
                                 _birthController.text =
                                     '${pickedDate.year}年${pickedDate.month}月${pickedDate.day}日';
+                                birthYear = pickedDate.year;
+                                birthMonth = pickedDate.month;
+                                birthDay = pickedDate.day;
                                 if (!isBirth) progress += 0.1;
                                 isBirth = true;
                               });
@@ -1287,7 +1286,22 @@ class _ReservationState extends State<Reservation> {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const Confirmation()),
+      MaterialPageRoute(
+          builder: (context) => Confirmation(
+                doctor: doctorValue!,
+                wantedValue: wantedValue!,
+                todayValue: todayValue!,
+                list_ReservedTime: list_ReservedTime,
+                firstName: firstName!,
+                secondName: secondName!,
+                birth: _birthController.text,
+                birthYear: birthYear!,
+                birthMonth: birthMonth!,
+                birthDay: birthDay!,
+                sexId: sexId,
+                mobile: mobile!,
+                usedPoints: int.parse(usedPoints!),
+              )),
     );
   }
 
@@ -1395,44 +1409,44 @@ class _ReservationState extends State<Reservation> {
     );
   }
 
-  Widget _buildDropDownButton(List<String> items) {
-    return Container(
-      height: 46,
-      padding: EdgeInsets.only(top: 14, left: 10, bottom: 8, right: 18),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: Color.fromARGB(255, 0, 184, 169),
-        ),
-      ),
-      child: DropdownButton2(
-          value: selectedValue,
-          icon: Icon(
-            Icons.keyboard_arrow_down,
-            color: Color.fromARGB(255, 0, 184, 169),
-          ),
-          isExpanded: true,
-          underline: Container(),
-          offset: const Offset(-10, -10),
-          items: items
-              .map((item) => DropdownMenuItem(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      height: 1.5,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 51, 51, 51),
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  )))
-              .toList(),
-          onChanged: (value) {
-            setState(() {
-              selectedValue = value as String?;
-            });
-          }),
-    );
-  }
+  // Widget _buildDropDownButton(List<String> items) {
+  //   return Container(
+  //     height: 46,
+  //     padding: EdgeInsets.only(top: 14, left: 10, bottom: 8, right: 18),
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(5),
+  //       border: Border.all(
+  //         color: Color.fromARGB(255, 0, 184, 169),
+  //       ),
+  //     ),
+  //     child: DropdownButton2(
+  //         value: selectedValue,
+  //         icon: Icon(
+  //           Icons.keyboard_arrow_down,
+  //           color: Color.fromARGB(255, 0, 184, 169),
+  //         ),
+  //         isExpanded: true,
+  //         underline: Container(),
+  //         offset: const Offset(-10, -10),
+  //         items: items
+  //             .map((item) => DropdownMenuItem(
+  //                 value: item,
+  //                 child: Text(
+  //                   item,
+  //                   style: const TextStyle(
+  //                     fontSize: 16,
+  //                     height: 1.5,
+  //                     fontWeight: FontWeight.bold,
+  //                     color: Color.fromARGB(255, 51, 51, 51),
+  //                   ),
+  //                   overflow: TextOverflow.ellipsis,
+  //                 )))
+  //             .toList(),
+  //         onChanged: (value) {
+  //           setState(() {
+  //             selectedValue = value as String?;
+  //           });
+  //         }),
+  //   );
+  // }
 }

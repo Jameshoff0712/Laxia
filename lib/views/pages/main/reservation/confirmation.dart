@@ -1,14 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/reserve_controller.dart';
 
 class Confirmation extends StatefulWidget {
-  const Confirmation({Key? key}) : super(key: key);
+  final String doctor;
+  final String wantedValue;
+  final String todayValue;
+  final List<String> list_ReservedTime;
+  final String firstName;
+  final String secondName;
+  final String birth;
+  final int birthYear;
+  final int birthMonth;
+  final int birthDay;
+  final int sexId;
+  final String mobile;
+  final int usedPoints;
+  const Confirmation(
+      {Key? key,
+      required this.doctor,
+      required this.wantedValue,
+      required this.todayValue,
+      required this.list_ReservedTime,
+      required this.firstName,
+      required this.secondName,
+      required this.birth,
+      required this.birthYear,
+      required this.birthMonth,
+      required this.birthDay,
+      required this.sexId,
+      required this.mobile,
+      required this.usedPoints})
+      : super(key: key);
 
   @override
   State<Confirmation> createState() => _ConfirmationState();
 }
 
 class _ConfirmationState extends State<Confirmation> {
+  final _con = ReserveController();
+  String _errorMsg = "";
+  Future<void> confirm(BuildContext context) async {
+    try {
+      await _con.reserve(1, "", 5, "i wanna do operation", 10, "ryu", "eva",
+          "male", "123456", "1995/11/7", 200, "");
+
+      // await _con.reserve(1, "", 5, "", 10, widget.firstName, widget.secondName,
+      //     widget.sexId.toString(), widget.mobile, widget.birth, widget.usedPoints, );
+      // if (true) {
+      Navigator.of(context).pushNamed("/Completion");
+      // Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+      // }
+    } catch (e) {
+      setState(() {
+        _errorMsg = "メールアドレスもしくはパスワードが間違っています。";
+      });
+      print(_errorMsg);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +102,9 @@ class _ConfirmationState extends State<Confirmation> {
           ),
           _buildConfirmRow('クリニック', '湘南美容クリニック 銀座院'),
           _buildConfirmRow('施術', 'クイックコスメティーク･ダブルNeo'),
-          _buildConfirmRow('ご希望のドクター', '田中圭'),
-          _buildConfirmRow('ご相談・ご要望', 'ニキビ跡や肌荒れで悩んでいます。どういった施術が適していますでしょうか？'),
-          _buildConfirmRow('当日施術', '当日相談して決めたい'),
+          _buildConfirmRow('ご希望のドクター', widget.doctor),
+          _buildConfirmRow('ご相談・ご要望', widget.wantedValue),
+          _buildConfirmRow('当日施術', widget.todayValue),
           Container(
             decoration: BoxDecoration(
                 border: Border(
@@ -90,8 +140,13 @@ class _ConfirmationState extends State<Confirmation> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          for (int i = 0; i < 5; i++)
-                            _buildReservationItem(i, 5)
+                          for (int i = 0;
+                              i < widget.list_ReservedTime.length;
+                              i++)
+                            _buildReservationItem(
+                                i,
+                                widget.list_ReservedTime.length,
+                                widget.list_ReservedTime)
                           //  _buildReservationItem()
                           // _buildReservationItem(),
                           // _buildReservationItem(),
@@ -116,11 +171,12 @@ class _ConfirmationState extends State<Confirmation> {
               ),
             ),
           ),
-          _buildConfirmRow('お名前(カタカナ)', 'タナカ ケイ'),
-          _buildConfirmRow('生年月日', '1994年2月11日'),
-          _buildConfirmRow('性別', '男性'),
-          _buildConfirmRow('電話番号', '09000000012'),
-          _buildConfirmRow('ご利用ポイント', '2000 ポイント'),
+          _buildConfirmRow(
+              'お名前(カタカナ)', '${widget.firstName} ${widget.secondName}'),
+          _buildConfirmRow('生年月日', '${widget.birth}'),
+          _buildConfirmRow('性別', widget.sexId == 0 ? '女性' : '男性'),
+          _buildConfirmRow('電話番号', '${widget.mobile}'),
+          _buildConfirmRow('ご利用ポイント', '${widget.usedPoints} ポイント'),
           SizedBox(
             height: 50,
           ),
@@ -128,7 +184,7 @@ class _ConfirmationState extends State<Confirmation> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed("/Completion");
+                confirm(context);
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -232,12 +288,12 @@ class _ConfirmationState extends State<Confirmation> {
   }
 }
 
-Widget _buildReservationItem(int index, int length) {
+Widget _buildReservationItem(int index, int length, List reservedTimes) {
   return Container(
     margin: index != length - 1
         ? EdgeInsets.only(bottom: 10)
         : EdgeInsets.only(bottom: 0),
-    child: Text('第1希望：2020/04/08(水) 18:00',
+    child: Text('第${index + 1}希望：${reservedTimes[index]}',
         style: TextStyle(
           color: Color.fromARGB(255, 51, 51, 51),
           fontSize: 12,
