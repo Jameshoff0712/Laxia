@@ -1,3 +1,4 @@
+import 'package:laxia/models/clinic_api_model.dart';
 import 'package:laxia/models/doctor_model.dart';
 import 'package:laxia/models/doctor_api_model.dart';
 import 'package:laxia/models/menu_api_model.dart';
@@ -14,6 +15,15 @@ class FavoriteApi extends Api {
     for(int i=0; i < res.data["menus"]["data"].length; i++)
       listsFavMenu.add(Menu.fromJson(res.data["menus"]["data"][i]));
     return listsFavMenu;
+  }
+  Future<List<Clinic>> getFavClinic() async {
+    final List<Clinic> listsFavClinic = [];
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get(
+        "$apiUrl/clinics?per_page=10&page=1&q=&favorite=&city_id=&pref_id=", token);
+    for(int i=0; i < res.data["clinics"]["data"].length; i++)
+      listsFavClinic.add(Clinic.fromJson(res.data["clinics"]["data"][i]));
+    return listsFavClinic;
   }
   Future<List<Doctor>> getFavDoctor() async {
     final List<Doctor> listsFavDoctor = [];

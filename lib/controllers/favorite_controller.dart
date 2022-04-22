@@ -1,4 +1,5 @@
 import 'package:laxia/controllers/base_controller.dart';
+import 'package:laxia/models/clinic_api_model.dart';
 import 'package:laxia/models/doctor_model.dart';
 import 'package:laxia/models/menu_api_model.dart';
 import 'package:laxia/services/http/favorite_api.dart';
@@ -12,6 +13,9 @@ class FavoriteController extends BaseController {
 
   Future<List<Menu>> getFavMenu() async {
     return await api.getFavMenu();
+  }
+  Future<List<Clinic>> getFavClinic() async {
+    return await api.getFavClinic();
   }
   Future<List<Doctor>> getFavDoctor() async {
     return await api.getFavDoctor();
