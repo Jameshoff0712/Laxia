@@ -1,10 +1,13 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/home_modell.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 import 'package:laxia/models/menu_model.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class Home_Menu extends StatefulWidget {
   final bool? isScrollable,isdrawer;
@@ -18,12 +21,36 @@ class Home_Menu extends StatefulWidget {
 }
 
 class _Home_MenuState extends State<Home_Menu> {
+   bool flag = true;
+   int page = 1;
   bool expanded=true;
   int index=-1;
   List mid = [];
   late ScrollController scrollController;
+  late Home menu_data;
+  final _con = HomeController();
+  Future<void> getData(
+        {required String page}) async {
+      try {
+        final mid = await _con.getMenuData(
+            page: page);
+          setState(() {
+          if (flag) {
+            flag = false;
+          } else {
+            menu_data.data.addAll(mid.data);
+          }
+        });
+      } catch (e) {
+        setState(() {
+          print(e.toString());
+        });
+      }
+    }
+
   @override
   void initState() {
+    getData(page: page.toString());
     if (!widget.issearch) {
       for (int i = 0; i < menu_list.length; i++)
         setState(() {
@@ -54,7 +81,7 @@ class _Home_MenuState extends State<Home_Menu> {
       child: Column(
         children: [
           widget.isdrawer!?Container(
-            color: Helper.whiteColor,
+            color: Color.fromARGB(255, 43, 11, 11),
             child: Row(
               children: [
                 Expanded(
