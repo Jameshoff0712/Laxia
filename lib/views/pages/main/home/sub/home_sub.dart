@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/models/home_model.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/home_modell.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
@@ -10,14 +11,16 @@ import 'package:provider/provider.dart';
 class Home_Sub extends StatefulWidget {
   final VoidCallback onpress;
   final bool isvisible;
-  const Home_Sub({Key? key, required this.onpress, required this.isvisible}) : super(key: key);
+  const Home_Sub({Key? key, required this.onpress, required this.isvisible})
+      : super(key: key);
 
   @override
   State<Home_Sub> createState() => _Home_SubState();
 }
 
-class _Home_SubState extends State<Home_Sub> with SingleTickerProviderStateMixin  {
-    List<String> tabMenus = [
+class _Home_SubState extends State<Home_Sub>
+    with SingleTickerProviderStateMixin {
+  List<String> tabMenus = [
     'おすすめ',
     '二重',
     '美容皮膚',
@@ -26,29 +29,56 @@ class _Home_SubState extends State<Home_Sub> with SingleTickerProviderStateMixin
     'しわ・たるみ',
   ];
   late TabController _tabController;
-  bool flag=false;
-  ScrollController scrollController=new ScrollController();
+  bool flag = true,isLoading=true;
+  late Home home_data;
+  ScrollController scrollController = new ScrollController();
   PageController _pageController = PageController();
   double? currentPageValue = 0.0;
+  int page=1;
+  final _con = HomeController();
+  Future<void> getData(String id) async {
+    try {
+      setState(() {
+        flag = true;
+      });
+      final mid = await _con.getHomeDate(id);
+      setState(() {
+        home_data = mid;
+        flag = false;
+      });
+    } catch (e) {
+      setState(() {
+        print("error occured");
+      });
+    }
+  }
+
   @override
-  void initState(){
-     _tabController = new TabController(length: 6, vsync: this);
+  void initState() {
+    _tabController = new TabController(length: 6, vsync: this);
+    getData("");
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        getData(_tabController.index.toString());
+      }
+    });
     _pageController.addListener(() {
       setState(() {
         currentPageValue = _pageController.page;
       });
     });
     scrollController.addListener(() {
-       if (scrollController.offset >=
+      if (scrollController.offset >=
               scrollController.position.maxScrollExtent &&
           !scrollController.position.outOfRange) {
-                 widget.onpress();
-      } else if(widget.isvisible==false){
+        widget.onpress();
+      } else if (widget.isvisible == false) {
         widget.onpress();
       }
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,11 +89,11 @@ class _Home_SubState extends State<Home_Sub> with SingleTickerProviderStateMixin
           body: Container(
             decoration: BoxDecoration(color: Helper.whiteColor),
             child: Column(
-                children: <Widget>[
-                    // _buildTabBar(),
-                  TabBarWidget(
-                    tabMenus: tabMenus,
-                    tabController: _tabController,
+              children: <Widget>[
+                // _buildTabBar(),
+                TabBarWidget(
+                  tabMenus: tabMenus,
+                  tabController: _tabController,
                 ),
                 Expanded(
                   child: Container(
@@ -87,71 +117,100 @@ class _Home_SubState extends State<Home_Sub> with SingleTickerProviderStateMixin
           ),
         ));
   }
-   List<Widget> _silverBuilder(BuildContext context, bool innerBoxIsScrolled) {
-     return <Widget>[
-       SliverAppBar(
-        elevation: 0,
-        expandedHeight: 189,
-        floating: true,
-        pinned: false,
-        automaticallyImplyLeading: false,
-        backgroundColor: Helper.whiteColor,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Column(
-            children: <Widget>[
-              Horizontal_Dockbar(pageController: _pageController),
-              Container(
-                decoration: BoxDecoration(color: Helper.whiteColor),
-                child: Column(children: [
-                  SizedBox(
-                    height: 13,
-                  ),
-                  DockBar_Bottom(
-                      pageController: _pageController,
-                      currentPageValue: currentPageValue),
-                  SizedBox(
-                    height: 16,
-                    width: MediaQuery.of(context).size.width,
-                  ),
-                ]),
-              ),
-              
-            ],
-          ),
-        )
-       )
-     ];
-   }
-  Widget Subscrollbarbody(){
-    return Container(
-        child: GridView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            padding:
-                EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            scrollDirection: Axis.vertical,
-            gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio:175/291,
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10),
-            itemCount: home_list.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Home_Card(
-                onpress: () {
+
+  List<Widget> _silverBuilder(BuildContext context, bool innerBoxIsScrolled) {
+    return <Widget>[
+      SliverAppBar(
+          elevation: 0,
+          expandedHeight: 189,
+          floating: true,
+          pinned: false,
+          automaticallyImplyLeading: false,
+          backgroundColor: Helper.whiteColor,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Column(
+              children: <Widget>[
+                Horizontal_Dockbar(pageController: _pageController),
+                Container(
+                  decoration: BoxDecoration(color: Helper.whiteColor),
+                  child: Column(children: [
+                    SizedBox(
+                      height: 13,
+                    ),
+                    DockBar_Bottom(
+                        pageController: _pageController,
+                        currentPageValue: currentPageValue),
+                    SizedBox(
+                      height: 16,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+          ))
+    ];
+  }
+
+  Widget Subscrollbarbody() {
+    return flag
+        ? Container(
+            child: Container(
+            height: isLoading ? MediaQuery.of(context).size.width*0.5: 0,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ))
+        : Container(
+            child: NotificationListener<ScrollNotification>(
+                onNotification: (ScrollNotification scrollInfo) {
+                if (scrollInfo.metrics.pixels ==scrollInfo.metrics.maxScrollExtent) {
+                  // getData(page: (page+1).toString());
+                  // setState(() {
+                  //   page+=1;
+                  // }); 
+                }
+                return true;
               },
-                title: home_list[index].title,
-                type: home_list[index].type,
-                clinic: home_list[index].clinic,
-                recommend: home_list[index].recommend,
-                source: home_list[index].source,
-                name: home_list[index].name,
-                doctorimage: home_list[index].doctorimage,
-                chat: home_list[index].chat,
-              );
-            }),
-      );
+              child: GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  scrollDirection: Axis.vertical,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 175 / 291,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10),
+                  itemCount: home_data.data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Home_Card(
+                      onpress: () {},
+                      title: home_data.data[index]["first_content"] == null
+                          ? ""
+                          : home_data.data[index]["first_content"],
+                      type: home_data.data[index]["type"] == null
+                          ? ""
+                          : home_data.data[index]["type"],
+                      clinic: home_data.data[index]["clinic"] == null
+                          ? ""
+                          : home_data.data[index]["clinic"],
+                      recommend: home_data.data[index]["comments_count"] == null
+                          ? " "
+                          : home_data.data[index]["comments_count"].toString(),
+                      source: home_data.data[index]["photo"],
+                      name: home_data.data[index]["nickname"] == null
+                          ? ""
+                          : home_data.data[index]["nickname"],
+                      doctorimage: home_data.data[index]["photo"],
+                      chat: home_data.data[index]["views_count"] == null
+                          ? " "
+                          : home_data.data[index]["views_count"].toString(),
+                    );
+                  }),
+            ),
+          );
   }
 }
 
@@ -236,7 +295,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                   scrollDirection: Axis.horizontal,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.9,
+                      childAspectRatio: 0.9,
                       crossAxisCount: 2,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 0),
@@ -352,7 +411,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                   scrollDirection: Axis.horizontal,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.9,
+                      childAspectRatio: 0.9,
                       crossAxisCount: 2,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 0),
