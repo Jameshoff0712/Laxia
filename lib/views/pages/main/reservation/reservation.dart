@@ -34,6 +34,7 @@ class _ReservationState extends State<Reservation> {
   late CalendarController _controller;
   List<bool> selectedTime = List<bool>.filled(4, false);
   List<String> list_ReservedTime = [];
+  List<Map> list_ReservedRealTime = [];
   List<String> stringWeekDay = ['月', '火', '水', '木', '金', '土', '日'];
   late int year, month, day, index_weekday;
   late String weekday;
@@ -1292,6 +1293,7 @@ class _ReservationState extends State<Reservation> {
                 wantedValue: wantedValue!,
                 todayValue: todayValue!,
                 list_ReservedTime: list_ReservedTime,
+                list_ReservedRealTime: list_ReservedRealTime,
                 firstName: firstName!,
                 secondName: secondName!,
                 birth: _birthController.text,
@@ -1339,6 +1341,7 @@ class _ReservationState extends State<Reservation> {
             onTap: () {
               setState(() {
                 list_ReservedTime.removeAt(index);
+                list_ReservedRealTime.removeAt(index);
                 if (list_ReservedTime.length == 0 && isReservedTime == true) {
                   progress -= 0.1;
                   isReservedTime = false;
@@ -1378,6 +1381,12 @@ class _ReservationState extends State<Reservation> {
           }
           if (selectedTime[index] == true && list_ReservedTime.length < 6) {
             list_ReservedTime.add('$year年$month月$day日($weekday) $time');
+            var item = new Map();
+            item['year'] = year;
+            item['month'] = month;
+            item['day'] = day;
+            item['time'] = time;
+            list_ReservedRealTime.add(item);
           }
           if (list_ReservedTime.length != 0 && isReservedTime != true) {
             progress += 0.1;
@@ -1385,6 +1394,7 @@ class _ReservationState extends State<Reservation> {
           }
         });
         print(list_ReservedTime);
+        print(list_ReservedRealTime);
       },
       child: Container(
         height: 34,

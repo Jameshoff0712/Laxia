@@ -1,3 +1,4 @@
+import 'package:laxia/models/reserve_post_model.dart';
 import 'package:laxia/models/status_model.dart';
 import 'package:laxia/models/token_model.dart';
 import 'package:laxia/services/http/api.dart';
@@ -13,39 +14,41 @@ class ReservationApi extends Api {
     return StatusInfo.fromJson(res.data);
   }
 
-  Future<void> reserve(
-      int clinic_id,
-      String doctor_id,
-      int type,
-      String note,
-      int hope_treat,
-      String kana1,
-      String kana2,
-      String gender,
-      String phone_number,
-      String birthday,
-      int use_point,
-      String time) async {
+  Future<void> reserve(ReservePost rsv) async {
     String? token = await preferenceUtil.getToken();
-    final res =
-        await Api.post("$apiUrl/reservations", <String, String>{
-          "rsv[clinic_id]" : clinic_id.toString(),
-          "rsv[doctor_id]" : doctor_id,
-          "rsv[type]" : type.toString(),
-          "rsv[note]" : note,
-          "rsv[hope_treat]" : hope_treat.toString(),
-          "info[kana01]" : kana1,
-          "info[kana02]" : kana2,
-          "info[gender]" : gender,
-          "info[phone_number]" : phone_number,
-          "info[birthday]" : birthday,
-          "time[0][date]" : time
-        }, token);
+    final res = await Api.post(
+        "$apiUrl/reservations",
+        <String, String>{
+          "rsv[clinic_id]": rsv.clinic_id.toString(),
+          // rsv.opertion_type
+          "rsv[operation_type]": rsv.opertion_type.toString(),
+          "rsv[doctor_id]": "",//rsv.doctor_id.toString(),
+          "rsv[note]": rsv.question_content,
+          "rsv[hope_treat]": rsv.decision_type_today.toString(),
+          for (int i = 0; i < rsv.list_visitDates.length; i++)
+            "time[" + i.toString() + "][date]":
+                rsv.list_visitDates[i]["year"].toString() +
+                    "/" +
+                    rsv.list_visitDates[i]["month"].toString() +
+                    "/" +
+                    rsv.list_visitDates[i]["day"].toString(),
+          for (int i = 0; i < rsv.list_visitDates.length; i++)
+            "time[" + i.toString() + "][start_time]":
+                rsv.list_visitDates[i]["time"].toString(),
+          "info[kana01]": rsv.firstName,
+          "info[kana02]": rsv.secondName,
+          "info[birthday]": rsv.birthday,
+          "info[gender]": rsv.gender_id == 0 ? "female" : "male",
+          "info[phone_number]": rsv.mobileNumber,
+          "rsv[use_point]": rsv.usedPoint.toString(),
+
+          "rsv[type]": "5"
+        },
+        token);
     if (res != null) {
       // print(res.data['status']);
-      
-      if (res.data['status'] != 0) {
 
+      if (res.data['status'] != 0) {
       } else {
         print(res.code);
         if (res.code == 401) {

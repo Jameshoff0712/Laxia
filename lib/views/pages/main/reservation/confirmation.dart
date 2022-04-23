@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/reserve_controller.dart';
+import 'package:laxia/models/reserve_post_model.dart';
 
 class Confirmation extends StatefulWidget {
   final String doctor;
   final String wantedValue;
   final String todayValue;
   final List<String> list_ReservedTime;
+  final List<Map> list_ReservedRealTime;
   final String firstName;
   final String secondName;
   final String birth;
@@ -16,22 +18,23 @@ class Confirmation extends StatefulWidget {
   final int sexId;
   final String mobile;
   final int usedPoints;
-  const Confirmation(
-      {Key? key,
-      required this.doctor,
-      required this.wantedValue,
-      required this.todayValue,
-      required this.list_ReservedTime,
-      required this.firstName,
-      required this.secondName,
-      required this.birth,
-      required this.birthYear,
-      required this.birthMonth,
-      required this.birthDay,
-      required this.sexId,
-      required this.mobile,
-      required this.usedPoints})
-      : super(key: key);
+  const Confirmation({
+    Key? key,
+    required this.doctor,
+    required this.wantedValue,
+    required this.todayValue,
+    required this.list_ReservedTime,
+    required this.list_ReservedRealTime,
+    required this.firstName,
+    required this.secondName,
+    required this.birth,
+    required this.birthYear,
+    required this.birthMonth,
+    required this.birthDay,
+    required this.sexId,
+    required this.mobile,
+    required this.usedPoints,
+  }) : super(key: key);
 
   @override
   State<Confirmation> createState() => _ConfirmationState();
@@ -40,14 +43,28 @@ class Confirmation extends StatefulWidget {
 class _ConfirmationState extends State<Confirmation> {
   final _con = ReserveController();
   String _errorMsg = "";
+  late ReservePost rsv;
+  @override
+  initState() {
+    rsv = new ReservePost(
+      clinic_id: 1, //widget.clinic_id
+      opertion_type: 0, //widget.operation_type
+      doctor_id: 0, //widget.doctor_id
+      question_content: widget.wantedValue,
+      decision_type_today: 0, //widget.todayValue,
+      list_visitDates: widget.list_ReservedRealTime,
+      firstName: widget.firstName,
+      secondName: widget.secondName,
+      birthday: widget.birthYear.toString() + "/" + widget.birthMonth.toString() + "/" + widget.birthDay.toString(),
+      gender_id: widget.sexId,
+      mobileNumber: widget.mobile,
+      usedPoint: widget.usedPoints);
+    super.initState();
+  }
+
   Future<void> confirm(BuildContext context) async {
     try {
-      await _con.reserve(1, "", 5, "i wanna do operation", 10, "ryu", "eva",
-          "male", "123456", "1995/11/7", 200, "");
-
-      // await _con.reserve(1, "", 5, "", 10, widget.firstName, widget.secondName,
-      //     widget.sexId.toString(), widget.mobile, widget.birth, widget.usedPoints, );
-      // if (true) {
+      await _con.reserve(rsv);
       Navigator.of(context).pushNamed("/Completion");
       // Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
       // }
