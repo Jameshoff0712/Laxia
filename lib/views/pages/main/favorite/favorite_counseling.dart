@@ -2,6 +2,7 @@ import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
+import 'package:laxia/models/counseling_api_model.dart';
 import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -19,7 +20,7 @@ class Favorite_Counseling extends StatefulWidget {
 class _Favorite_CounselingState extends State<Favorite_Counseling> {
   bool expanded = true;
   int index = -1;
-  List mid = [];
+  List<Counseling> mid = [];
   FavoriteController _con = FavoriteController();
 
   Future<void> getFavCounseling() async {
@@ -28,7 +29,6 @@ class _Favorite_CounselingState extends State<Favorite_Counseling> {
       for(int i=0; i< listFavCounseling.length; i++)
         mid.add(listFavCounseling[i]);
     });
-    print(mid[0].photo);
   }
   @override
   initState(){
@@ -51,16 +51,16 @@ class _Favorite_CounselingState extends State<Favorite_Counseling> {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return Counseling_Card(
-                    avator: mid[index].patient_photo,
-                    name: mid[index].patient_nickname,
-                    sentence: mid[index].content,
-                    image1: mid[index].patient_photo,
-                    image2: mid[index].patient_photo,
-                    image3: mid[index].patient_photo,
-                    image4: mid[index].patient_photo,
-                    type: mid[index].counseling_date,
-                    clinic: mid[index].clinic_name,
-                    check: mid[index].doctor_name,
+                    avator: mid[index].patient_photo!,
+                    name: mid[index].patient_nickname!,
+                    sentence: mid[index].content!,
+                    image1: mid[index].patient_photo!,
+                    image2: mid[index].patient_photo!,
+                    image3: mid[index].patient_photo!,
+                    image4: mid[index].patient_photo!,
+                    type: mid[index].counseling_date!,
+                    clinic: mid[index].clinic_name!,
+                    check: mid[index].doctor_name!,
                     eyes: mid[index].views_count.toString(),
                     hearts: mid[index].likes_count.toString(),
                     chats: mid[index].comments_count.toString(),
