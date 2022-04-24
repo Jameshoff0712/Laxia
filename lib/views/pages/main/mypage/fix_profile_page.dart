@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/mypage/input_text_widget.dart';
+import 'package:laxia/views/pages/main/mypage/mypage.dart';
 import 'package:laxia/views/pages/main/mypage/selectbox_widget.dart';
 // import 'package:laxia/views/widgets/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -81,8 +82,12 @@ class _FixProfilePageState extends State<FixProfilePage> {
               ),
               actions: [
                 GestureDetector(
-                  onTap: () =>
-                      print("[Account Screen] Notification button clicked!"),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Mypage()));
+                  },
                   child: Center(
                     child: Container(
                       child: Text(
@@ -123,8 +128,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover)
-                                    : Image.file(
-                                        _image!,
+                                    : Image.file(_image!,
                                         width: 80,
                                         height: 80,
                                         fit: BoxFit.cover)),
