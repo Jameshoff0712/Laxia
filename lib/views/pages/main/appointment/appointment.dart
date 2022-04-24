@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/reserve_controller.dart';
+import 'package:laxia/controllers/status_controller.dart';
+import 'package:laxia/models/status_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/chatStatus.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
@@ -17,6 +20,7 @@ class Appointment extends StatefulWidget {
 
 class _AppointmentState extends State<Appointment>
     with SingleTickerProviderStateMixin {
+  final _con = ReserveController();
   final List<String> tabMenus = [
     'すべて',
     '調整中',
@@ -26,9 +30,20 @@ class _AppointmentState extends State<Appointment>
   ];
   late TabController _tabController;
   bool isEmpty = true;
+  StatusInfo? statusInfo;
+  Future<void> getStatusInfo() async {
+    final info = await _con.getAllStatus() as StatusInfo;
+    setState(() {
+      statusInfo = info;
+    });
+
+    // print(statusInfo);
+  }
+
   @override
   void initState() {
     _tabController = new TabController(length: 5, vsync: this);
+    getStatusInfo();
     super.initState();
   }
 
@@ -75,26 +90,29 @@ class _AppointmentState extends State<Appointment>
                 children: [
                   Expanded(
                     child: Container(
-                      color: Color.fromARGB(255, 240, 242, 245),
-                      child: isEmpty
-                          ? _buildEmptyClinic()
-                          : ListView(
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              children: [
-                                chatStatus(
-                                    statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-                                chatStatus(
-                                  statusCode: 2,
-                                  clinicName: '湘南美容クリニック 銀座院',
-                                  bookDate: '予約日時：2020/07/25 11：００〜',
-                                ),
-                                chatStatus(
-                                    statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                                chatStatus(
-                                    statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                              ],
-                            ),
-                    ),
+                        color: Color.fromARGB(255, 240, 242, 245),
+                        child: isEmpty
+                            ? _buildEmptyClinic()
+                            // : ListView.builder(
+                            //   itemCount: statusInfo.length,
+                            //   itemBuilder: itemBuilder)
+                        : ListView(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            children: [
+                              chatStatus(
+                                  statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                              chatStatus(
+                                statusCode: 2,
+                                clinicName: '湘南美容クリニック 銀座院',
+                                bookDate: '予約日時：2020/07/25 11：００〜',
+                              ),
+                              chatStatus(
+                                  statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                              chatStatus(
+                                  statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                            ],
+                          ),
+                        ),
                   ),
                 ],
               ),

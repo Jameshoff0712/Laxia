@@ -1,6 +1,7 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/diary_model.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -18,12 +19,19 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
   int index = -1;
   List mid = [];
   late ScrollController scrollController;
+  FavoriteController _con = FavoriteController();
+
+  Future<void> getFavDiary() async {
+    final listFavDiary = await _con.getFavDiary();
+    setState(() {
+      for(int i=0; i< listFavDiary.length; i++)
+        mid.add(listFavDiary[i]);
+    });
+    print(mid[0].photo);
+  }
   @override
-  void initState() {
-    for (int i = 0; i < diary_list.length; i++)
-      setState(() {
-        mid.add(diary_list[i]);
-      });
+  initState(){
+    getFavDiary();
     super.initState();
   }
 
@@ -42,21 +50,21 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   return Diary_Card(
-                    avator: mid[index]["avator"],
-                    check: mid[index]["check"],
-                    image2: mid[index]["image2"],
-                    image1: mid[index]["image1"],
-                    eyes: mid[index]["eyes"],
-                    hearts: mid[index]["hearts"],
-                    chats: mid[index]["chats"],
-                    clinic: mid[index]["clinic"],
-                    name: mid[index]["name"],
+                    avator: mid[index].patient_photo,
+                    name: mid[index].patient_nickname,
+                    image1: mid[index].before_image,
+                    image2: mid[index].after_image,
+                    sentence: mid[index].last_content,
+                    type: mid[index].patient_gender,
+                    clinic: mid[index].clinic_name,
+                    check: mid[index].doctor_name,
+                    price: mid[index].price.toString(),
+                    eyes: mid[index].views_count.toString(),
+                    hearts: mid[index].likes_count.toString(),
+                    chats: mid[index].comments_count.toString(),
                     onpress: () {
                       Navigator.of(context).pushNamed("/Diary_Detail");
                     },
-                    price: mid[index]["price"],
-                    sentence: mid[index]["sentence"],
-                    type: mid[index]["type"],
                   );
                 }),
           )),

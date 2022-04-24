@@ -92,14 +92,14 @@ class _Clinic_CardState extends State<Clinic_Card> {
                               Helper.titleColor, FontWeight.w700,
                               size: 16.0),
                         ),
-                        // SizedBox(
-                        //   width: 3,
-                        // ),
-                        // Text(
-                        //   widget.post,
-                        //   style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
-                        //       size: 10.0),
-                        // ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          widget.post,
+                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
+                              size: 10.0),
+                        ),
                       ],
                     ),
                     SizedBox(
