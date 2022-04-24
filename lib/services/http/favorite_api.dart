@@ -13,45 +13,45 @@ class FavoriteApi extends Api {
     final List<Menu> listsFavMenu = [];
     String? token = await preferenceUtil.getToken();
     final res = await Api.get(
-        "$apiUrl/menus?per_page=10&page=1&category_id=&clinic_id=&favorite=true&q=メニュー", token);
-    for(int i=0; i < res.data["menus"]["data"].length; i++)
-      listsFavMenu.add(Menu.fromJson(res.data["menus"]["data"][i]));
+        "$apiUrl/me", token);
+    for(int i=0; i < res.data["favorite_menus"].length; i++)
+      listsFavMenu.add(Menu.fromJson(res.data["favorite_menus"][i]));
     return listsFavMenu;
   }
   Future<List<Clinic>> getFavClinic() async {
     final List<Clinic> listsFavClinic = [];
     String? token = await preferenceUtil.getToken();
     final res = await Api.get(
-        "$apiUrl/clinics?per_page=10&page=1&q=&favorite=&city_id=&pref_id=", token);
-    for(int i=0; i < res.data["clinics"]["data"].length; i++)
-      listsFavClinic.add(Clinic.fromJson(res.data["clinics"]["data"][i]));
+        "$apiUrl/me", token);
+    for(int i=0; i < res.data["favorite_clinics"].length; i++)
+      listsFavClinic.add(Clinic.fromJson(res.data["favorite_clinics"][i]));
     return listsFavClinic;
   }
   Future<List<Doctor>> getFavDoctor() async {
     final List<Doctor> listsFavDoctor = [];
     String? token = await preferenceUtil.getToken();
     final res = await Api.get(
-        "$apiUrl/doctors?per_page=100&page=1&clinic_id=1&favorite=true&q=", token);
-    for(int i=0; i < res.data["doctors"]["data"].length; i++)
-      listsFavDoctor.add(Doctor.fromJson(res.data["doctors"]["data"][i]));
+        "$apiUrl/me", token);
+    for(int i=0; i < res.data["favorite_doctors"].length; i++)
+      listsFavDoctor.add(Doctor.fromJson(res.data["favorite_doctors"][i]));
     return listsFavDoctor;
   }
   Future<List<Diary>> getFavDiary() async {
     final List<Diary> listsFavDiary = [];
     String? token = await preferenceUtil.getToken();
     final res = await Api.get(
-        "$apiUrl/diaries?per_page=10&page=1&category_id=&patient_id=&favorite=&orderby=comments_count&menu_id=&price_min=&price_max=306001&rate=3", token);
-    for(int i=0; i < res.data["data"]["diaries"]["data"].length; i++)
-      listsFavDiary.add(Diary.fromJson(res.data["data"]["diaries"]["data"][i]));
+        "$apiUrl/me", token);
+    for(int i=0; i < res.data["favorite_diaries"].length; i++)
+      listsFavDiary.add(Diary.fromJson(res.data["favorite_diaries"][i]));
     return listsFavDiary;
   }
   Future<List<Counseling>> getFavCounseling() async {
     final List<Counseling> listsFavCounseling = [];
     String? token = await preferenceUtil.getToken();
     final res = await Api.get(
-        "$apiUrl/counselings?per_page=10&page=1&category_id=&patient_id=&favorite=&pref_id=&city&orderby=comments_count", token);
-    for(int i=0; i < res.data["data"]["counselings"]["data"].length; i++)
-      listsFavCounseling.add(Counseling.fromJson(res.data["data"]["counselings"]["data"][i]));
+        "$apiUrl/me", token);
+    for(int i=0; i < res.data["favorite_counseling_reports"].length; i++)
+      listsFavCounseling.add(Counseling.fromJson(res.data["favorite_counseling_reports"][i]));
     return listsFavCounseling;
   }
 }
