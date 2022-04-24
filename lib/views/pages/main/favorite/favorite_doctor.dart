@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/doctor_model.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -17,13 +18,19 @@ class Favorite_Doctor extends StatefulWidget {
 class _Favorite_DoctorState extends State<Favorite_Doctor> {
   List mid = [];
   late ScrollController scrollController;
-  @override
-  void initState() {
-    for (int i = 0; i < doctor_list.length; i++)
-      setState(() {
-        mid.add(doctor_list[i]);
-      });
+  FavoriteController _con = FavoriteController();
 
+  Future<void> getFavDoctor() async {
+    final listFavDoctor = await _con.getFavDoctor();
+    setState(() {
+      for(int i=0; i< listFavDoctor.length; i++)
+        mid.add(listFavDoctor[i]);
+    });
+    print(mid[0].photo);
+  }
+  @override
+  initState(){
+    getFavDoctor();
     super.initState();
   }
 
@@ -45,12 +52,12 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
                       onpress: () {
                         Navigator.of(context).pushNamed("/Doctor_Detail");
                       },
-                      image: mid[index]["image"],
-                      post: mid[index]["post"],
-                      name: mid[index]["name"],
-                      mark: mid[index]["mark"],
-                      day: mid[index]["day"],
-                      clinic: mid[index]["clinic"]);
+                      image: mid[index].photo,
+                      post: mid[index].job_name,
+                      name: mid[index].name,
+                      mark: mid[index].likes_count.toString(),
+                      day: mid[index].experience_year.toString(),
+                      clinic: mid[index].kata_name);
                 }),
           )),
         ],
