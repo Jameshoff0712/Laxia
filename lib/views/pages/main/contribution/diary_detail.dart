@@ -14,7 +14,7 @@ import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
 
 class Diary_Detail extends StatefulWidget {
-  final bool isMyDiary;
+  final bool? isMyDiary;
   const Diary_Detail({ Key? key, this.isMyDiary = false }) : super(key: key);
 
   @override
@@ -113,7 +113,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
             ),
             Row(
               children: [
-                !widget.isMyDiary?
+                !widget.isMyDiary! ?
                 ElevatedButton(
                   onPressed: () {
                     

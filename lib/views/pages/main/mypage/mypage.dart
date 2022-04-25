@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/generated/L10n.dart';
+import 'package:laxia/models/counseling_api_model.dart';
+import 'package:laxia/models/diary_api_model.dart';
 import 'package:laxia/models/m_user.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/pages/main/contribution/question.dart';
 import 'package:laxia/views/pages/main/contribution/question_detail.dart';
 import 'package:laxia/views/pages/main/mypage/counseling_fix_page.dart';
@@ -16,6 +21,7 @@ import 'package:laxia/views/pages/main/mypage/invite_page.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
+import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/question_card.dart';
 import 'package:provider/provider.dart';
 
@@ -33,19 +39,27 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   List mid = [];
   List nid = [];
+
+  late UserProvider userProperties;
+
   @override
-  void initState() {
-    super.initState();
+  initState() {
     _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
-    for (int i = 0; i < counseling_list.length; i++)
-      setState(() {
-        mid.add(counseling_list[i]);
-      });
-    for (int i = 0; i < question_list.length; i++)
-      setState(() {
-        nid.add(question_list[i]);
-      });
+    super.initState();
   }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+  //   for (int i = 0; i < counseling_list.length; i++)
+  //     setState(() {
+  //       mid.add(counseling_list[i]);
+  //     });
+  //   for (int i = 0; i < question_list.length; i++)
+  //     setState(() {
+  //       nid.add(question_list[i]);
+  //     });
+  // }
 
   @override
   void dispose() {
@@ -55,14 +69,13 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProperties =
-        Provider.of<UserProvider>(context, listen: true);
+    userProperties = Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
         title: Text(
-          'Ayaka11',
+          userProperties.getMe.nickname!,
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
@@ -147,33 +160,76 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
       child: TabBarView(
         controller: _tabController,
         children: [
-          buildDiaryPage(),
-          buildCounselingPage(),
+          buildDiaryPage(userProperties.getMe.diaries),
+          buildCounselingPage(userProperties.getMe.counselings),
           buildQuestionPage()
         ],
       ),
     );
   }
 
-  Widget buildDiaryPage() {
+  Widget buildDiaryPage(List<Diary> mid) {
     return Container(
       color: Helper.bodyBgColor,
       height: 640,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            DiaryCardWidget(isMe: true,),
-            SizedBox(
-              height: 8,
-            ),
-            DiaryCardWidget(isMe: true,)
-          ],
-        ),
+      // child: SingleChildScrollView(
+      //   child: Column(
+      //     children: [
+      //       DiaryCardWidget(
+      //         isMe: true,
+      //       ),
+      //       SizedBox(
+      //         height: 8,
+      //       ),
+      //       DiaryCardWidget(
+      //         isMe: true,
+      //       )
+      //     ],
+      //   ),
+      // ),
+      child: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+                builder: (context, BoxConstraints viewportConstraints) {
+              return ListView.builder(
+                  padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                  itemCount: mid.length,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Diary_Card(
+                      avator: mid[index].patient_photo!,
+                      name: mid[index].patient_nickname!,
+                      image1: mid[index].before_image!,
+                      image2: mid[index].after_image!,
+                      sentence: mid[index].last_content!,
+                      type: mid[index].patient_gender!,
+                      clinic: mid[index].clinic_name,
+                      check: mid[index].doctor_name!,
+                      price: mid[index].price.toString(),
+                      eyes: mid[index].views_count.toString(),
+                      hearts: mid[index].likes_count.toString(),
+                      chats: mid[index].comments_count.toString(),
+                      onpress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Diary_Detail(
+                                      isMyDiary: true,
+                                    ))
+                        );
+                      },
+                      isMe: true,
+                    );
+                  });
+            }),
+          ),
+        ],
       ),
     );
   }
 
-  Widget buildCounselingPage() {
+  Widget buildCounselingPage(List<Counseling> mid) {
     return Container(
       height: 640,
       color: Helper.bodyBgColor,
@@ -188,16 +244,19 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Counseling_Card(
-                      hearts: mid[index]["hearts"],
-                      chats: mid[index]["chats"],
-                      avator: mid[index]["avator"],
-                      check: mid[index]["check"],
-                      image2: mid[index]["image2"],
-                      image1: mid[index]["image1"],
-                      image3: mid[index]["image3"],
-                      image4: mid[index]["image4"],
-                      eyes: mid[index]["eyes"],
-                      name: mid[index]["name"],
+                      avator: mid[index].patient_photo!,
+                      name: mid[index].patient_nickname!,
+                      sentence: mid[index].content!,
+                      image1: mid[index].patient_photo!,
+                      image2: mid[index].patient_photo!,
+                      image3: mid[index].patient_photo!,
+                      image4: mid[index].patient_photo!,
+                      type: mid[index].counseling_date!,
+                      clinic: mid[index].clinic_name!,
+                      check: mid[index].doctor_name!,
+                      eyes: mid[index].views_count.toString(),
+                      hearts: mid[index].likes_count.toString(),
+                      chats: mid[index].comments_count.toString(),
                       onpress: () {
                         Navigator.push(
                             context,
@@ -206,9 +265,6 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                       isMyDiary: true,
                                     )));
                       },
-                      sentence: mid[index]["sentence"],
-                      type: mid[index]["type"],
-                      clinic: mid[index]["clinic"],
                     );
                   });
             }),
@@ -244,9 +300,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         name: mid[index]["name"],
                         onpress: () {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => QuestionDetail(isMyDiary: true,)));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => QuestionDetail(
+                                        isMyDiary: true,
+                                      )));
                         },
                         sentence: mid[index]["sentence"],
                         type: mid[index]["type"],
@@ -287,8 +345,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         width: 60,
                         child: CircleAvatar(
                           radius: 30,
-                          backgroundImage: AssetImage(
-                            "${currentUser.imageUrl}",
+                          backgroundImage: NetworkImage(
+                            userProperties.getMe.photo!,
                           ),
                         ),
                       ),
@@ -305,7 +363,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 flex: 1,
                                 fit: FlexFit.tight,
                                 child: Text(
-                                  "あやか",
+                                  userProperties.getMe.name,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 18,
@@ -361,7 +419,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 height: 24,
                                 width: 24,
                                 child: Text(
-                                  "26",
+                                  userProperties.getMe.followsCount.toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
@@ -401,7 +459,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 height: 24,
                                 width: 24,
                                 child: Text(
-                                  "26",
+                                  userProperties.getMe.followersCount
+                                      .toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
@@ -436,7 +495,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            "こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。",
+                            userProperties.getMe.intro,
                             overflow: TextOverflow.clip,
                             textAlign: TextAlign.justify,
                             maxLines: 4,
@@ -477,7 +536,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "1000 p",
+                              "${userProperties.getMe.point} p",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16,
