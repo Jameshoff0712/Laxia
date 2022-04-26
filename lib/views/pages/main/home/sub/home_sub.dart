@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
-import 'package:laxia/models/home_modell.dart';
+import 'package:laxia/models/home/home_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
@@ -41,9 +41,20 @@ class _Home_SubState extends State<Home_Sub>
       setState(() {
         flag = true;
       });
-      final mid = await _con.getHomeDate(id);
+      Home mid = await _con.getHomeDate(id);
+      if(id==""){
+          setState(() {
+            home_data = mid;
+          });
+        }else{
+           setState(() {
+              home_data.data.clear();
+              home_data.data.addAll(mid.data);
+              print(home_data.data.length);
+           });
+           
+        }
       setState(() {
-        home_data = mid;
         flag = false;
       });
     } catch (e) {
@@ -187,26 +198,26 @@ class _Home_SubState extends State<Home_Sub>
                   itemBuilder: (BuildContext context, int index) {
                     return Home_Card(
                       onpress: () {},
-                      title: home_data.data[index]["first_content"] == null
+                      title: home_data.data[index].first_content == null
                           ? ""
-                          : home_data.data[index]["first_content"],
-                      type: home_data.data[index]["type"] == null
+                          : home_data.data[index].first_content!,
+                      type: home_data.data[index].type == null
                           ? ""
-                          : home_data.data[index]["type"],
-                      clinic: home_data.data[index]["clinic"] == null
+                          : home_data.data[index].type!,
+                      clinic: home_data.data[index].clinic == null
                           ? ""
-                          : home_data.data[index]["clinic"],
-                      recommend: home_data.data[index]["comments_count"] == null
+                          : home_data.data[index].clinic!,
+                      recommend: home_data.data[index].comments_count == null
                           ? " "
-                          : home_data.data[index]["comments_count"].toString(),
-                      source: home_data.data[index]["photo"],
-                      name: home_data.data[index]["nickname"] == null
+                          : home_data.data[index].comments_count.toString(),
+                      source: home_data.data[index].photo!,
+                      name: home_data.data[index].nickname == null
                           ? ""
-                          : home_data.data[index]["nickname"],
-                      doctorimage: home_data.data[index]["photo"],
-                      chat: home_data.data[index]["views_count"] == null
+                          : home_data.data[index].nickname!,
+                      doctorimage: home_data.data[index].photo!,
+                      chat: home_data.data[index].views_count == null
                           ? " "
-                          : home_data.data[index]["views_count"].toString(),
+                          : home_data.data[index].views_count.toString(),
                     );
                   }),
             ),
