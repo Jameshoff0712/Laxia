@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
-import 'package:laxia/models/clinic_model.dart';
-import 'package:laxia/models/home_modell.dart';
+import 'package:laxia/models/clinic/clinic_model.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -30,8 +29,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
   late int pref_id;
   late int city_id;
   List mid = [];
-  late ScrollController scrollController;
-  late Home clinic_data;
+  late Clinic clinic_data;
   final _con = HomeController();
   Future<void> getData(
       {required String page,
@@ -40,7 +38,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
     try {
       final mid = await _con.getclinicData(
           page: page, pref_id: pref_id!, city_id: city_id!);
-      setState(() {
+
         if (isLoading) {
           setState(() {
             clinic_data = mid;
@@ -52,27 +50,16 @@ class _Home_ClinicState extends State<Home_Clinic> {
             isupdate=false;
           });
         }
-      });
     } catch (e) {
       setState(() {
-        print("error occured");
+        print(e.toString());
       });
     }
   }
 
   @override
   void initState() {
-    getData(page: page.toString());
-    scrollController = ScrollController();
-    scrollController.addListener(() {
-      if (scrollController.offset <=
-              scrollController.position.minScrollExtent &&
-          !scrollController.position.outOfRange) {
-        setState(() {
-          widget.scrollTop!();
-        });
-      }
-    });
+    getData(page: "1");
     super.initState();
   }
 
@@ -130,7 +117,6 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 child: ListView.builder(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     itemCount: clinic_data.data.length,
-                    controller: scrollController,
                     physics: widget.isScrollable!
                         ? AlwaysScrollableScrollPhysics()
                         : NeverScrollableScrollPhysics(),
@@ -141,25 +127,22 @@ class _Home_ClinicState extends State<Home_Clinic> {
                             // print("object");
                             Navigator.of(context).pushNamed("/Clinic_Detail");
                           },
-                          image: clinic_data.data[index]["photo"] == null
-                              ? ""
-                              : clinic_data.data[index]["photo"],
+                          image: clinic_data.data[index].photo==null?"http://error.png": clinic_data.data[index].photo!,
+
                           post:"",
-                          name: clinic_data.data[index]["name"] == null
+                          name:clinic_data.data[index].name,
+                          mark: clinic_data.data[index].diaries_count == null
                               ? ""
-                              : clinic_data.data[index]["name"],
-                          mark: clinic_data.data[index]["diaries_count"] == null
+                              : clinic_data.data[index].diaries_count.toString(),
+                          day: clinic_data.data[index].diaries_count == null
                               ? ""
-                              : clinic_data.data[index]["diaries_count"].toString(),
-                          day: clinic_data.data[index]["diaries_count"] == null
-                              ? ""
-                              : clinic_data.data[index]["diaries_count"].toString(),
-                          location: (clinic_data.data[index]["addr01"] == null
+                              : clinic_data.data[index].diaries_count.toString(),
+                          location: (clinic_data.data[index].addr01 == null
                                   ? ""
-                                  : clinic_data.data[index]["addr01"]) +" "+
-                              (clinic_data.data[index]["addr02"] == null
+                                  : clinic_data.data[index].addr01!) +" "+
+                              (clinic_data.data[index].addr02 == null
                                   ? ""
-                                  : clinic_data.data[index]["addr02"]));
+                                  : clinic_data.data[index].addr02!));
                     }),
               );
             }),

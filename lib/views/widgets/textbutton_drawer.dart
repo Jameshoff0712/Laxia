@@ -22,28 +22,31 @@ class _TextButton_DrawerState extends State<TextButton_Drawer> {
     return SizedBox(
       width: widget.width,
       height: 36,
-      child: TextButton(
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                widget.textname,
-                style: TextStyle(
-                    color: Helper.unSelectSmallTabColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12),
-              ),
-              SizedBox(
-                width: 8.41,
-              ),
-              Icon(
-                Icons.arrow_drop_down,
-                size: 24,
-                color: Helper.unSelectSmallTabColor,
-              ),
-            ]),
-        onPressed: widget.onpress,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.0),
+        child: TextButton(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  widget.textname,
+                  style: TextStyle(
+                      color: Helper.unSelectSmallTabColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12),
+                ),
+                SizedBox(
+                  width: 8.41,
+                ),
+                Icon(
+                  Icons.arrow_drop_down,
+                  size: 24,
+                  color: Helper.unSelectSmallTabColor,
+                ),
+              ]),
+          onPressed: widget.onpress,
+        ),
       ),
     );
   }
