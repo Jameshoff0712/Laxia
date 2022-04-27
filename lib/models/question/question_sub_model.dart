@@ -8,8 +8,8 @@ class Question_Sub_Model extends Equatable {
   final int? patient_id;
   final String? title;
   final String? content;
-  final int? created_at;
-  final int? updated_at;
+  final String? created_at;
+  final String? updated_at;
   final int? comments_count;
   final int? views_count;
   final int? likes_count;
@@ -17,7 +17,7 @@ class Question_Sub_Model extends Equatable {
   final String? is_favorite;
   final List<Answer>? answers;
   final Owner? owner;
-  final List<String>? medias;
+  final List? medias;
   final List<Category>? categories;
 
   const Question_Sub_Model(

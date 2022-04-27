@@ -1,67 +1,84 @@
 import 'package:equatable/equatable.dart';
-import 'package:laxia/models/case/Owner_model.dart';
+import 'package:laxia/models/case/menu_sub_model.dart';
+import 'package:laxia/models/clinic/clinic_sub_model.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/home/category_model.dart';
 
 class Case_Sub_Model extends Equatable {
   final int id;
-  final int? patient_id;
-  final String? title;
-  final String? content;
+  final int? clinic_id;
+  final int? doctor_id;
+  final int? patient_age;
+  final String? name;
+  final String? patient_gender;
+  final String? case_description;
+  final String? treat_risk;
+  final String? doctor_option;
   final String? created_at;
   final String? updated_at;
   final int? comments_count;
   final int? views_count;
   final int? likes_count;
   final bool? is_like;
-  final bool? is_favorite;
-  final List<String>? answers;
-  final Owner? owner;
-  final List<String>? medias;
+  final Clinic_Sub_Model? clinic;
   final List<Category>? categories;
+  final List<Menu_Sub_Model>? menus;
+  final String? doctor;
 
   const Case_Sub_Model(
       {required this.id,
-      this.patient_id,
-      this.title,
-      this.content,
+      this.clinic_id,
+      this.name,
+      this.patient_age,
+      this.doctor_id,
+      this.patient_gender,
+      this.case_description,
+      this.treat_risk,
+      this.doctor_option,
       this.created_at,
       this.updated_at,
       this.comments_count,
       this.views_count,
       this.likes_count,
       this.is_like,
-      this.is_favorite,
-      this.answers,
-      this.owner,
-      this.medias,
-      this.categories});
+      this.clinic,
+      this.categories,
+      this.menus,
+      this.doctor});
 
   factory Case_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Case_Sub_Model(
         id: json["id"],
-        patient_id: json["patient_id"],
-        title: json["title"],
-        content: json["content"],
+        clinic_id: json["clinic_id"],
+        name: json["name"],
+        patient_age: json["patient_age"],
         created_at: json["created_at"],
         updated_at: json["updated_at"],
         comments_count: json["comments_count"],
         views_count: json["views_count"],
         likes_count: json["likes_count"],
         is_like: json["is_like"],
-        is_favorite: json["is_favorite"],
-        answers:json["answer"],
-        owner:Owner.fromJson(json["owner"]),
-        medias:json["meidas"],
-        categories: List<Category>.from(json["question_id"]
+        doctor_id: json["doctor_id"],
+        patient_gender: json["patient_gender"],
+        case_description: json["case_description"],
+        treat_risk: json["treat_risk"],
+        doctor_option: json["doctor_option"],
+        clinic: Clinic_Sub_Model.fromJson(json["clinic"]),
+        categories: List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>));
+            as Iterable<dynamic>),
+        menus: List<Menu_Sub_Model>.from(json["menus"]
+                .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>),
+        doctor:json["doctor"]// Doctor_Sub_Model.fromJson(json["doctor"])
+        );
   }
   @override
   List<Object?> get props => [
         id,
-        patient_id,
-        title,
-        content,
+        clinic_id,
+        name,
+        patient_age,
         created_at,
         updated_at,
         comments_count,
@@ -69,10 +86,14 @@ class Case_Sub_Model extends Equatable {
         created_at,
         updated_at,
         likes_count,
-        is_favorite,
-        answers,
-        owner,
-        medias,
-        categories
+        clinic,
+        categories,
+        menus,
+        doctor,
+        doctor_id,
+        patient_gender,
+        case_description,
+        treat_risk,
+        doctor_option,
       ];
 }

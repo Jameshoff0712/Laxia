@@ -48,7 +48,6 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
                 itemBuilder: (BuildContext context, int index) {
                   return Clinic_Card(
                       onpress: () {
-                        // print("object");
                         Navigator.of(context).pushNamed("/Clinic_Detail");
                       },
                       image: mid[index].photo,

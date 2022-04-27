@@ -70,7 +70,7 @@ class _Question_CardState extends State<Question_Card> {
                             fit: BoxFit.cover,
                           ),
                           errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/ProDoctor.png',
+                            'assets/images/profile.png',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -141,7 +141,7 @@ class _Question_CardState extends State<Question_Card> {
                               fit: BoxFit.cover,
                             ),
                             errorWidget: (context, url, error) => Image.asset(
-                              'assets/images/ProDoctor.png',
+                              'assets/images/profile.png',
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -160,7 +160,7 @@ class _Question_CardState extends State<Question_Card> {
                               fit: BoxFit.cover,
                             ),
                             errorWidget: (context, url, error) => Image.asset(
-                              'assets/images/ProDoctor.png',
+                              'assets/images/profile.png',
                               fit: BoxFit.cover,
                             ),
                           ),

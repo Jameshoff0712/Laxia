@@ -11,8 +11,8 @@ class Counceling_Sub_Model extends Equatable {
   final String? before_counseling;
   final String? after_ccounseling;
   final int? rate;
-  final int? created_at;
-  final int? updated_at;
+  final String? created_at;
+  final String? updated_at;
   final int? comments_count;
   final int? views_count;
   final int? likes_count;
@@ -22,7 +22,7 @@ class Counceling_Sub_Model extends Equatable {
   final String? patient_photo;
   final String? doctor_name;
   final bool? is_favorite;
-  final List<String>? medias;
+  final List? medias;
   final List<Category>? categories;
 
   const Counceling_Sub_Model(
@@ -72,7 +72,7 @@ class Counceling_Sub_Model extends Equatable {
         doctor_name: json["doctor_name"],
         is_favorite: json["is_favorite"],
         medias: json["medias"],
-        categories: List<Category>.from(json["question_id"]
+        categories: List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>));
   }

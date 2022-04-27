@@ -339,7 +339,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) => Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -393,7 +393,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) => Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -815,7 +815,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               ),
                               errorWidget: (context, url, error) =>
                                   Image.asset(
-                                'assets/images/ProDoctor.png',
+                                'assets/images/profile.png',
                                 fit: BoxFit.cover,
                               ),
                             ),

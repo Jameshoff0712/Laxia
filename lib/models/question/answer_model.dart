@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
 
 class Answer extends Equatable {
   final int id;
@@ -6,8 +7,8 @@ class Answer extends Equatable {
   final int? question_id;
   final String? answer;
   final String? created_at;
-  final String? doctor;
-  final List<String>? photos;
+  final Doctor_Sub_Model? doctor;
+  final List<Photo>? photos;
 
   const Answer(
       {required this.id,
@@ -25,10 +26,30 @@ class Answer extends Equatable {
       question_id: json["question_id"],
       answer: json["answer"],
       created_at: json["created_at"],
-      doctor: json["doctor"],
-      photos: json["photos"],
+      doctor:json["doctor"]==null?null: Doctor_Sub_Model.fromJson(json["doctor"]),
+      photos: List<Photo>.from(json["photos"]
+                .map((x) => Photo.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>),
     );
   }
   @override
   List<Object?> get props => [id, doctor_id, question_id, answer,created_at,doctor,photos];
+}
+
+class Photo extends Equatable {
+  final int id;
+  final String? photo;
+  const Photo({required this.id, this.photo});
+
+  factory Photo.fromJson(Map<String, dynamic> json) {
+    print("photo");
+    return Photo(
+        id: json["id"],
+        photo: json["photo"]);
+  }
+  @override
+  List<Object?> get props => [
+         id,
+        photo
+      ];
 }
