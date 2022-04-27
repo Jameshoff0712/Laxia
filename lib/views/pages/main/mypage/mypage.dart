@@ -3,10 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/generated/L10n.dart';
-import 'package:laxia/models/counseling_api_model.dart';
-import 'package:laxia/models/diary_api_model.dart';
+import 'package:laxia/models/counseling/counceling_sub_model.dart';
+import 'package:laxia/models/diary/diary_sub_model.dart';
 import 'package:laxia/models/m_user.dart';
 import 'package:laxia/models/me_model.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
@@ -70,6 +71,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     userProperties = Provider.of<UserProvider>(context, listen: true);
+    // print(userProperties.getMe.diaries);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
@@ -162,31 +164,17 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         children: [
           buildDiaryPage(userProperties.getMe.diaries),
           buildCounselingPage(userProperties.getMe.counselings),
-          buildQuestionPage()
+          buildQuestionPage(userProperties.getMe.favorite_questions)
         ],
       ),
     );
   }
 
-  Widget buildDiaryPage(List<Diary> mid) {
+  Widget buildDiaryPage(List<Diary_Sub_Model> mid) {
+    print(mid);
     return Container(
       color: Helper.bodyBgColor,
       height: 640,
-      // child: SingleChildScrollView(
-      //   child: Column(
-      //     children: [
-      //       DiaryCardWidget(
-      //         isMe: true,
-      //       ),
-      //       SizedBox(
-      //         height: 8,
-      //       ),
-      //       DiaryCardWidget(
-      //         isMe: true,
-      //       )
-      //     ],
-      //   ),
-      // ),
       child: Column(
         children: [
           Expanded(
@@ -202,7 +190,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                       name: mid[index].patient_nickname!,
                       image1: mid[index].before_image!,
                       image2: mid[index].after_image!,
-                      sentence: mid[index].last_content!,
+                      sentence: mid[index].last_content!.toString(),
                       type: mid[index].patient_gender!,
                       clinic: mid[index].clinic_name,
                       check: mid[index].doctor_name!,
@@ -229,7 +217,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget buildCounselingPage(List<Counseling> mid) {
+  Widget buildCounselingPage(List<Counceling_Sub_Model> mid) {
     return Container(
       height: 640,
       color: Helper.bodyBgColor,
@@ -274,7 +262,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget buildQuestionPage() {
+  Widget buildQuestionPage(List<Question_Sub_Model> mid) {
     return Container(
       height: 640,
       color: Helper.bodyBgColor,
@@ -291,13 +279,15 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                       return Question_Card(
                         buttoncolor: Helper.allowStateButtonColor,
                         buttontext: "回答あり",
-                        hearts: mid[index]["hearts"],
-                        chats: mid[index]["chats"],
-                        avator: mid[index]["avator"],
-                        image2: mid[index]["image2"],
-                        image1: mid[index]["image1"],
-                        eyes: mid[index]["eyes"],
-                        name: mid[index]["name"],
+                        avator: "",
+                        name: "",
+                        sentence: mid[index].content!,
+                        image1: "",
+                        image2: "",
+                        type: "",
+                        eyes: mid[index].views_count.toString(),
+                        hearts: mid[index].likes_count.toString(),
+                        chats: mid[index].comments_count.toString(),
                         onpress: () {
                           Navigator.push(
                               context,
@@ -306,8 +296,6 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                         isMyDiary: true,
                                       )));
                         },
-                        sentence: mid[index]["sentence"],
-                        type: mid[index]["type"],
                       );
                     });
               },

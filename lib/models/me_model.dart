@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
-import 'package:laxia/models/clinic_api_model.dart';
-import 'package:laxia/models/counseling_api_model.dart';
-import 'package:laxia/models/diary_api_model.dart';
-import 'package:laxia/models/doctor_api_model.dart';
-import 'package:laxia/models/menu_api_model.dart';
+import 'package:laxia/models/clinic/clinic_sub_model.dart';
+import 'package:laxia/models/counseling/counceling_sub_model.dart';
+import 'package:laxia/models/diary/diary_sub_model.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
+
 
 class Me extends Equatable {
   int id;
@@ -28,14 +30,14 @@ class Me extends Equatable {
   int? followersCount;
   bool? isFollow;
   String? phoneOnlyNumber;
-  List<Diary>? diaries;
-  List<Counseling>? counselings;
-  List<Diary>? favorite_diaries;
-  // //  List<Question>? favorite_questions;
-  List<Doctor>? favorite_doctors;
-  List<Counseling>? favorite_counseling_reports;
-  List<Menu>? favorite_menus;
-  List<Clinic>? favorite_clinics;
+  List<Diary_Sub_Model>? diaries;
+  List<Counceling_Sub_Model>? counselings;
+  List<Diary_Sub_Model>? favorite_diaries;
+  List<Question_Sub_Model>? favorite_questions;
+  List<Doctor_Sub_Model>? favorite_doctors;
+  List<Counceling_Sub_Model>? favorite_counseling_reports;
+  List<Menu_Sub_Model>? favorite_menus;
+  List<Clinic_Sub_Model>? favorite_clinics;
 
   Me({
     required this.id,
@@ -63,7 +65,7 @@ class Me extends Equatable {
     this.diaries,
     this.counselings,
     this.favorite_diaries,
-    // this.favorite_questions,
+    this.favorite_questions,
     this.favorite_doctors,
     this.favorite_counseling_reports,
     this.favorite_menus,
@@ -94,28 +96,30 @@ class Me extends Equatable {
       followersCount: json["followers_count"],
       isFollow: json["is_follow"],
       phoneOnlyNumber: json["phone_only_number"],
-      diaries: List<Diary>.from(
-          json["diaries"].map((x) => Diary.fromJson(x as Map<String, dynamic>))
+      diaries: List<Diary_Sub_Model>.from(
+          json["diaries"].map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
               as Iterable<dynamic>),
-      counselings: List<Counseling>.from(json["counselings"]
-              .map((x) => Counseling.fromJson(x as Map<String, dynamic>))
+      counselings: List<Counceling_Sub_Model>.from(json["counselings"]
+              .map((x) => Counceling_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_diaries: List<Diary>.from(json["favorite_diaries"]
-              .map((x) => Diary.fromJson(x as Map<String, dynamic>))
+      favorite_diaries: List<Diary_Sub_Model>.from(json["favorite_diaries"]
+              .map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      // // favorite_questions: json["favorite_questions"],
-      favorite_doctors: List<Doctor>.from(json["favorite_doctors"]
-              .map((x) => Doctor.fromJson(x as Map<String, dynamic>))
+      favorite_questions: List<Question_Sub_Model>.from(json["favorite_questions"]
+              .map((x) => Question_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_counseling_reports: List<Counseling>.from(
+      favorite_doctors: List<Doctor_Sub_Model>.from(json["favorite_doctors"]
+              .map((x) => Doctor_Sub_Model.fromJson(x as Map<String, dynamic>))
+          as Iterable<dynamic>),
+      favorite_counseling_reports: List<Counceling_Sub_Model>.from(
           json["favorite_counseling_reports"]
-                  .map((x) => Counseling.fromJson(x as Map<String, dynamic>))
+                  .map((x) => Counceling_Sub_Model.fromJson(x as Map<String, dynamic>))
               as Iterable<dynamic>),
-      favorite_menus: List<Menu>.from(json["favorite_menus"]
-              .map((x) => Menu.fromJson(x as Map<String, dynamic>))
+      favorite_menus: List<Menu_Sub_Model>.from(json["favorite_menus"]
+              .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_clinics: List<Clinic>.from(json["favorite_clinics"]
-              .map((x) => Clinic.fromJson(x as Map<String, dynamic>))
+      favorite_clinics: List<Clinic_Sub_Model>.from(json["favorite_clinics"]
+              .map((x) => Clinic_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
     );
   }
@@ -145,7 +149,7 @@ class Me extends Equatable {
         diaries,
         counselings,
         favorite_diaries,
-        // favorite_questions,
+        // // favorite_questions,
         favorite_doctors,
         favorite_counseling_reports,
         favorite_menus,
