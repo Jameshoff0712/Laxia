@@ -24,7 +24,7 @@ class Home_Clinic extends StatefulWidget {
 }
 
 class _Home_ClinicState extends State<Home_Clinic> {
-  bool isLoading=true,isupdate=false;
+  bool isLoading = true, isupdate = false;
   int page = 1;
   late int pref_id;
   late int city_id;
@@ -39,17 +39,17 @@ class _Home_ClinicState extends State<Home_Clinic> {
       final mid = await _con.getclinicData(
           page: page, pref_id: pref_id!, city_id: city_id!);
 
-        if (isLoading) {
-          setState(() {
-            clinic_data = mid;
-            isLoading=false;
-          });
-        } else {
-          setState(() {
-            clinic_data.data.addAll(mid.data);
-            isupdate=false;
-          });
-        }
+      if (isLoading) {
+        setState(() {
+          clinic_data = mid;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          clinic_data.data.addAll(mid.data);
+          isupdate = false;
+        });
+      }
     } catch (e) {
       setState(() {
         print(e.toString());
@@ -65,14 +65,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading?Container(
-      child: Container(
-            height: MediaQuery.of(context).size.width*0.5,
-            color: Colors.transparent,
-            child: Center(
-              child: new CircularProgressIndicator(),
-            ),),
-    ): Container(
+    return Container(
       color: Helper.homeBgColor,
       child: Column(
         children: [
@@ -99,53 +92,79 @@ class _Home_ClinicState extends State<Home_Clinic> {
             ),
           ),
           Expanded(
-            child: LayoutBuilder(
-                builder: (context, BoxConstraints viewportConstraints) {
-              return isLoading ?Container(): NotificationListener<ScrollNotification>(
-                  onNotification: (ScrollNotification scrollInfo) {
-                  if (scrollInfo.metrics.pixels ==scrollInfo.metrics.maxScrollExtent) {
-                    if(!isupdate){
-                      getData(page: (page+1).toString());
-                      setState(() {
-                        isupdate=true;
-                        page+=1;
-                      }); 
-                    }
-                  }
-                  return true;
-                },
-                child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    itemCount: clinic_data.data.length,
-                    physics: widget.isScrollable!
-                        ? AlwaysScrollableScrollPhysics()
-                        : NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Clinic_Card(
-                          onpress: () {
-                            // print("object");
-                            Navigator.of(context).pushNamed("/Clinic_Detail");
-                          },
-                          image: clinic_data.data[index].photo==null?"http://error.png": clinic_data.data[index].photo!,
-
-                          post:"",
-                          name:clinic_data.data[index].name,
-                          mark: clinic_data.data[index].diaries_count == null
-                              ? ""
-                              : clinic_data.data[index].diaries_count.toString(),
-                          day: clinic_data.data[index].diaries_count == null
-                              ? ""
-                              : clinic_data.data[index].diaries_count.toString(),
-                          location: (clinic_data.data[index].addr01 == null
-                                  ? ""
-                                  : clinic_data.data[index].addr01!) +" "+
-                              (clinic_data.data[index].addr02 == null
-                                  ? ""
-                                  : clinic_data.data[index].addr02!));
-                    }),
-              );
-            }),
+            child: isLoading
+                ? Container(
+                    child: Container(
+                      height: MediaQuery.of(context).size.width * 0.5,
+                      color: Colors.transparent,
+                      child: Center(
+                        child: new CircularProgressIndicator(),
+                      ),
+                    ),
+                  )
+                : LayoutBuilder(
+                    builder: (context, BoxConstraints viewportConstraints) {
+                    return isLoading
+                        ? Container()
+                        : NotificationListener<ScrollNotification>(
+                            onNotification: (ScrollNotification scrollInfo) {
+                              if (scrollInfo.metrics.pixels ==
+                                  scrollInfo.metrics.maxScrollExtent) {
+                                if (!isupdate) {
+                                  getData(page: (page + 1).toString());
+                                  setState(() {
+                                    isupdate = true;
+                                    page += 1;
+                                  });
+                                }
+                              }
+                              return true;
+                            },
+                            child: ListView.builder(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4),
+                                itemCount: clinic_data.data.length,
+                                physics: widget.isScrollable!
+                                    ? AlwaysScrollableScrollPhysics()
+                                    : NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Clinic_Card(
+                                      onpress: () {
+                                        // print("object");
+                                        Navigator.of(context)
+                                            .pushNamed("/Clinic_Detail");
+                                      },
+                                      image:
+                                          clinic_data.data[index].photo == null
+                                              ? "http://error.png"
+                                              : clinic_data.data[index].photo!,
+                                      post: "",
+                                      name: clinic_data.data[index].name!,
+                                      mark: clinic_data
+                                                  .data[index].diaries_count ==
+                                              null
+                                          ? ""
+                                          : clinic_data.data[index].diaries_count
+                                              .toString(),
+                                      day: clinic_data
+                                                  .data[index].diaries_count ==
+                                              null
+                                          ? ""
+                                          : clinic_data.data[index].diaries_count
+                                              .toString(),
+                                      location: (clinic_data.data[index].addr01 ==
+                                                  null
+                                              ? ""
+                                              : clinic_data
+                                                  .data[index].addr01!) +
+                                          " " +
+                                          (clinic_data.data[index].addr02 == null
+                                              ? ""
+                                              : clinic_data.data[index].addr02!));
+                                }),
+                          );
+                  }),
           ),
         ],
       ),

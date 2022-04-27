@@ -108,7 +108,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                                 fit: BoxFit.fill,
                               ),
                               errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/ProDoctor.png',
+                                'assets/images/profile.png',
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -165,7 +165,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                                 fit: BoxFit.fill,
                               ),
                               errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/ProDoctor.png',
+                                'assets/images/profile.png',
                                 fit: BoxFit.fill,
                               ),
                             ),
