@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
 
-class Home extends Equatable {
+class Menu extends Equatable {
   final int current_page;
-  final List data;
+  final List<Menu_Sub_Model> data;
   final String first_page_url;
   final int from;
   final int last_page;
@@ -14,7 +15,7 @@ class Home extends Equatable {
   final int to;
   final int total;
 
-  const Home({
+  const Menu({
       required this.current_page,
       required this.data,
       required this.first_page_url,
@@ -28,10 +29,10 @@ class Home extends Equatable {
       required this.to,
       required this.total});
 
-  factory Home.fromJson(Map<String, dynamic> json) {
-    return Home(
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    return Menu(
         current_page: json["current_page"],
-        data: json["data"],
+        data:(json["data"] as List).isEmpty?[]:List<Menu_Sub_Model>.from(json["data"].map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
         first_page_url: json["first_page_url"],
         from: json["from"],
         last_page: json["last_page"],
