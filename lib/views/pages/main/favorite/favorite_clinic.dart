@@ -53,7 +53,7 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
                       },
                       image: mid[index].photo!,
                       post: mid[index].user_name!,
-                      name: mid[index].name,
+                      name: mid[index].name!,
                       mark: "0",
                       day: "0",
                       location: mid[index].address!);
