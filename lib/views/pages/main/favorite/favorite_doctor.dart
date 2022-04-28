@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/doctor_model.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -16,7 +17,7 @@ class Favorite_Doctor extends StatefulWidget {
 }
 
 class _Favorite_DoctorState extends State<Favorite_Doctor> {
-  List mid = [];
+  List<Doctor_Sub_Model> mid = [];
   late ScrollController scrollController;
   FavoriteController _con = FavoriteController();
 
@@ -52,9 +53,9 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
                       onpress: () {
                         Navigator.of(context).pushNamed("/Doctor_Detail");
                       },
-                      image: mid[index].photo,
-                      post: mid[index].job_name,
-                      name: mid[index].name,
+                      image: mid[index].photo!,
+                      post: mid[index].job_name!,
+                      name: mid[index].name!,
                       mark: mid[index].likes_count.toString(),
                       day: mid[index].experience_year.toString(),
                       clinic: mid[index].kata_name);

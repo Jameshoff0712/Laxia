@@ -1,6 +1,8 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/favorite_controller.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/models/question_model.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
@@ -15,13 +17,19 @@ class Favorite_Question extends StatefulWidget {
 }
 
 class _Favorite_QuestionState extends State<Favorite_Question> {
-  List mid = [];
+  List<Question_Sub_Model> mid = [];
+  FavoriteController _con = FavoriteController();
+  Future<void> getFavQuestion() async {
+    final listFavQuestion = await _con.getFavQuestion();
+    setState(() {
+      for(int i=0; i< listFavQuestion.length; i++)
+        mid.add(listFavQuestion[i]);
+    });
+    print(mid);
+  }
   @override
-  void initState() {
-    for (int i = 0; i < question_list.length; i++)
-      setState(() {
-        mid.add(question_list[i]);
-      });
+  initState(){
+    getFavQuestion();
     super.initState();
   }
 
@@ -42,18 +50,18 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
                   return Question_Card(
                     buttoncolor: Helper.allowStateButtonColor,
                     buttontext: "回答あり",
-                    hearts: mid[index]["hearts"],
-                    chats: mid[index]["chats"],
-                    avator: mid[index]["avator"],
-                    image2: mid[index]["image2"],
-                    image1: mid[index]["image1"],
-                    eyes: mid[index]["eyes"],
-                    name: mid[index]["name"],
+                    avator: "",
+                    name: "",
+                    sentence: mid[index].content!,
+                    image1: "",
+                    image2: "",
+                    type: "",
+                    eyes: mid[index].views_count.toString(),
+                    hearts: mid[index].likes_count.toString(),
+                    chats: mid[index].comments_count.toString(),
                     onpress: () {
                       Navigator.of(context).pushNamed("/QuestionDetail");
                     },
-                    sentence: mid[index]["sentence"],
-                    type: mid[index]["type"],
                   );
                 }),
           )),
