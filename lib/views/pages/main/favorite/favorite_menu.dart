@@ -2,6 +2,7 @@ import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -17,7 +18,7 @@ class Favorite_Menu extends StatefulWidget {
 }
 
 class _Favorite_MenuState extends State<Favorite_Menu> {
-  List mid = [];
+  List<Menu_Sub_Model> mid = [];
   FavoriteController _con = FavoriteController();
 
   Future<void> getFavMenu() async {
@@ -26,7 +27,6 @@ class _Favorite_MenuState extends State<Favorite_Menu> {
       for(int i=0; i< listFavMenu.length; i++)
         mid.add(listFavMenu[i]);
     });
-    print(mid[0].photo);
   }
   @override
   initState(){
@@ -52,11 +52,11 @@ class _Favorite_MenuState extends State<Favorite_Menu> {
                         onpress: () {
                           Navigator.of(context).pushNamed("/Menu_Detail");
                         },
-                        image: mid[index].photo,
+                        image: mid[index].photo!,
                         heading: mid[index].name,
                         price: mid[index].price.toString(),
                         tax: mid[index].risk,
-                        clinic: mid[index].description);
+                        clinic: mid[index].description!);
                   }),
             ),
           ),

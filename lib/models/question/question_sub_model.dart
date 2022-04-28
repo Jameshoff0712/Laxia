@@ -8,13 +8,13 @@ class Question_Sub_Model extends Equatable {
   final int? patient_id;
   final String? title;
   final String? content;
-  final int? created_at;
-  final int? updated_at;
+  final String? created_at;
+  final String? updated_at;
   final int? comments_count;
   final int? views_count;
   final int? likes_count;
   final bool? is_like;
-  final String? is_favorite;
+  final bool? is_favorite;
   final List<Answer>? answers;
   final Owner? owner;
   final List<String>? medias;
@@ -35,7 +35,8 @@ class Question_Sub_Model extends Equatable {
       this.is_like,
       this.is_favorite,
       this.medias,
-      this.categories});
+      this.categories
+      });
 
   factory Question_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Question_Sub_Model(
@@ -51,13 +52,14 @@ class Question_Sub_Model extends Equatable {
         is_like: json["is_like"],
         is_favorite: json["is_favorite"],
         medias: json["medias"],
-        owner:Owner.fromJson(json["owner"]),
-        answers: List<Answer>.from(json["answers"]
+        owner:json["owner"] == null ? null : Owner.fromJson(json["owner"]),
+        answers: json["answers"] == null ? null : List<Answer>.from(json["answers"]
                 .map((x) => Answer.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
-        categories: List<Category>.from(json["categories"]
+        categories: json["categories"] == null ? null : List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>));
+            as Iterable<dynamic>)
+            );
   }
   @override
   List<Object?> get props => [

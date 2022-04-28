@@ -7,7 +7,7 @@ class Answer extends Equatable {
   final String? answer;
   final String? created_at;
   final String? doctor;
-  final List<String>? photos;
+  final List<dynamic>? photos;
 
   const Answer(
       {required this.id,
@@ -26,7 +26,7 @@ class Answer extends Equatable {
       answer: json["answer"],
       created_at: json["created_at"],
       doctor: json["doctor"],
-      photos: json["photos"],
+      photos: json["photos"] == null ? null : json["photos"],
     );
   }
   @override
