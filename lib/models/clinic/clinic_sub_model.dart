@@ -4,7 +4,7 @@ import 'package:laxia/models/clinic/worktime_model.dart';
 class Clinic_Sub_Model extends Equatable {
   final int id;
   final int? user_id;
-  final String name;
+  final String? name;
   final String? pref_id;
   final String? city_id;
   final int? town_id;

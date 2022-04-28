@@ -103,7 +103,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                               fit: BoxFit.cover,
                             ),
                             errorWidget: (context, url, error) => Image.asset(
-                              'assets/images/ProDoctor.png',
+                              'assets/images/profile.png',
                               fit: BoxFit.cover,
                             ),
                           ),

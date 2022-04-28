@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
-import 'package:laxia/models/doctor_model.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -34,6 +33,12 @@ class _Home_DoctorState extends State<Home_Doctor> {
             });
         final mid = await _con.getDoctorData(
             page: page);
+            if (mid.data.isEmpty) {
+          setState(() {
+            isexpanding = true;
+            isend = true;
+          });
+        }
           setState(() {
           if (isloading) {
             doctor_data=mid;
@@ -84,14 +89,10 @@ class _Home_DoctorState extends State<Home_Doctor> {
             ),
           ):SizedBox(height: 0,),
           Expanded(
-            child: LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: NotificationListener<ScrollNotification>(
+            child: NotificationListener<ScrollNotification>(
                         onNotification: (ScrollNotification scrollInfo) {
                             if (scrollInfo.metrics.pixels ==scrollInfo.metrics.maxScrollExtent) {
-                              if(isexpanding){
+                              if(isexpanding&&!isend){
                                 getData(page: (page+1).toString());
                                 setState(() {
                                   page+=1;
@@ -102,7 +103,12 @@ class _Home_DoctorState extends State<Home_Doctor> {
                             }
                             return true;
                           },
-                          child:isloading?Container(
+                          child:
+            LayoutBuilder(builder: (context, BoxConstraints viewportConstraints) {
+              return Column(
+                children: [
+                  Expanded(
+                    child: isloading?Container(
                             child: Container(
                             height: MediaQuery.of(context).size.width,
                             color: Colors.transparent,
@@ -128,7 +134,6 @@ class _Home_DoctorState extends State<Home_Doctor> {
                               );
                           }),
                     ),
-                  ),
                   Container(
                     height:isexpanding?0: 100,
                     color: Colors.transparent,
@@ -139,6 +144,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                 ],
               );
             }),
+          ),
           ),
         ],
       ),

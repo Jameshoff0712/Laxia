@@ -15,9 +15,12 @@ class Owner extends Equatable {
   final String? intro;
   final String? photo;
   final int? point;
-  final String? area_id;
+  final int? area_id;
+  final String? firebase_key;
+  final int? age;
   final int? follows_count;
   final int? followers_counts;
+  final bool? is_follow;
   final String? phone_only_number;
 
   const Owner(
@@ -37,9 +40,11 @@ class Owner extends Equatable {
       this.point,
       this.area_id,
       this.follows_count,
+      this.firebase_key,
+      this.age,
+      this.is_follow,
       this.followers_counts,
-      this.phone_only_number}
-    );
+      this.phone_only_number});
 
   factory Owner.fromJson(Map<String, dynamic> json) {
     return Owner(
@@ -61,11 +66,13 @@ class Owner extends Equatable {
       follows_count: json["follows_count"],
       followers_counts: json["followers_counts"],
       phone_only_number: json["phone_only_number"],
-      );
+      firebase_key: json["firebase_key"],
+      age: json["age"],
+      is_follow: json["is_follow"],
+    );
   }
   @override
-  List<Object?> get props =>
-      [
+  List<Object?> get props => [
         id,
         user_id,
         name,

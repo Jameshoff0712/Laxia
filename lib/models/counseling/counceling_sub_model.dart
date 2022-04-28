@@ -22,7 +22,7 @@ class Counceling_Sub_Model extends Equatable {
   final String? patient_photo;
   final String? doctor_name;
   final bool? is_favorite;
-  final List<String>? medias;
+  final List? medias;
   final List<Category>? categories;
 
   const Counceling_Sub_Model(

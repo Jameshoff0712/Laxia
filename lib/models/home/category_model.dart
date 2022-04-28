@@ -2,11 +2,11 @@ import 'package:equatable/equatable.dart';
 
 class Category extends Equatable {
   final int id;
-  final int parent_id;
+  final int? parent_id;
   final String name;
   final Pivot pivot;
 
-  const Category({required this.id, required this.parent_id, required this.name, required this.pivot});
+  const Category({required this.id,  this.parent_id, required this.name, required this.pivot});
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
