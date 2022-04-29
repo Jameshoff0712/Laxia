@@ -8,7 +8,7 @@ class Answer extends Equatable {
   final String? answer;
   final String? created_at;
   final Doctor_Sub_Model? doctor;
-  final List<Photo>? photos;
+  final List? photos;
 
   const Answer(
       {required this.id,

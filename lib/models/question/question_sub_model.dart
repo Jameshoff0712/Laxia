@@ -35,7 +35,8 @@ class Question_Sub_Model extends Equatable {
       this.is_like,
       this.is_favorite,
       this.medias,
-      this.categories});
+      this.categories
+      });
 
   factory Question_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Question_Sub_Model(
@@ -57,7 +58,8 @@ class Question_Sub_Model extends Equatable {
             as Iterable<dynamic>),
         categories: json["categories"] == null ? null : List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>));
+            as Iterable<dynamic>)
+            );
   }
   @override
   List<Object?> get props => [

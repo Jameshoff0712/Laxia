@@ -2,6 +2,7 @@ import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
+import 'package:laxia/models/diary/diary_sub_model.dart';
 import 'package:laxia/models/diary_model.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -17,7 +18,7 @@ class Favorite_Diary extends StatefulWidget {
 class _Favorite_DiaryState extends State<Favorite_Diary> {
   bool expanded = true;
   int index = -1;
-  List mid = [];
+  List<Diary_Sub_Model> mid = [];
   late ScrollController scrollController;
   FavoriteController _con = FavoriteController();
 
@@ -27,7 +28,7 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
       for(int i=0; i< listFavDiary.length; i++)
         mid.add(listFavDiary[i]);
     });
-    print(mid[0].photo);
+    print(mid);
   }
   @override
   initState(){
@@ -50,14 +51,14 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   return Diary_Card(
-                    avator: mid[index].patient_photo,
-                    name: mid[index].patient_nickname,
-                    image1: mid[index].before_image,
-                    image2: mid[index].after_image,
-                    sentence: mid[index].last_content,
-                    type: mid[index].patient_gender,
+                    avator: mid[index].patient_photo!,
+                    name: mid[index].patient_nickname!,
+                    image1: mid[index].before_image!,
+                    image2: mid[index].after_image!,
+                    sentence: "",
+                    type: "",
                     clinic: mid[index].clinic_name,
-                    check: mid[index].doctor_name,
+                    check: mid[index].doctor_name!,
                     price: mid[index].price.toString(),
                     eyes: mid[index].views_count.toString(),
                     hearts: mid[index].likes_count.toString(),

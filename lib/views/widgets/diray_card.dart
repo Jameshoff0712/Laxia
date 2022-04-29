@@ -70,7 +70,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                 fit: BoxFit.cover,
                               ),
                               errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/ProDoctor.png',
+                                'assets/images/profile.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -158,7 +158,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -203,7 +203,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
