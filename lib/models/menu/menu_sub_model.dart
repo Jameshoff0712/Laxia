@@ -15,14 +15,14 @@ class Menu_Sub_Model extends Equatable {
   final int? basshi;
   final String? hospital_visit;
   final int? hare;
-  final String? pain;
-  final String? bleeding;
-  final String? hospital_need;
-  final String? masui;
-  final String? makeup;
-  final String? shower;
-  final String? massage;
-  final String? sport_impossible;
+  final int? pain;
+  final int? bleeding;
+  final int? hospital_need;
+  final int? masui;
+  final int? makeup;
+  final int? shower;
+  final int? massage;
+  final int? sport_impossible;
   final String? photo;
   final int? status;
   final String? created_at;
@@ -87,9 +87,9 @@ class Menu_Sub_Model extends Equatable {
           created_at:json["created_at"],
           updated_at:json["updated_at"],
           is_favorite:json["is_favorite"],
-          categories:List<Category>.from(json["categories"].map((x) => Category.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
-          clinic:Clinic_Sub_Model.fromJson(json["clinic"]),
-          images: List<Image_model>.from(json["images"].map((x) => Image_model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
+          categories:json["categories"] == null ? null : List<Category>.from(json["categories"].map((x) => Category.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
+          clinic:json["clinic"] == null ? null : Clinic_Sub_Model.fromJson(json["clinic"]),
+          images: json["images"] == null ? null : List<Image_model>.from(json["images"].map((x) => Image_model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
         );
   }
   @override
