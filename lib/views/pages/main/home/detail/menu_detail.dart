@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_one.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_three.dart';
@@ -16,7 +17,8 @@ import 'package:laxia/views/widgets/home_card.dart';
 
 
 class Menu_Detail extends StatefulWidget {
-  const Menu_Detail({Key? key}) : super(key: key);
+  final Menu_Sub_Model Menu_Datails;
+  const Menu_Detail({Key? key, required this.Menu_Datails}) : super(key: key);
 
   @override
   State<Menu_Detail> createState() => _Menu_DetailState();

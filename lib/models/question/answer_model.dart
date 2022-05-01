@@ -42,7 +42,6 @@ class Photo extends Equatable {
   const Photo({required this.id, this.photo});
 
   factory Photo.fromJson(Map<String, dynamic> json) {
-    print("photo");
     return Photo(
         id: json["id"],
         photo: json["photo"]);

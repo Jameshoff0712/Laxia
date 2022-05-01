@@ -35,7 +35,7 @@ class Diary_Sub_Model extends Equatable {
   final int? patient_age;
   final String? clinic_name;
   final String? doctor_name;
-  final int? last_content;
+  final String? last_content;
   final bool? is_favorite;
   final List<Category>? categories;
 
@@ -112,7 +112,7 @@ class Diary_Sub_Model extends Equatable {
         patient_age: json["patient_age"],
         clinic_name: json["clinic_name"],
         doctor_name: json["doctor_name"],
-        last_content: int.parse(json["last_content"].toString()),
+        last_content:json["last_content"],
         is_favorite: json["is_favorite"],
         categories:json["categories"]==null?null: List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))

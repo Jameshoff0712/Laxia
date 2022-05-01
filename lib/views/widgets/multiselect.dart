@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/static/master_model.dart';
 import 'package:provider/provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 
 class MultiSelectDart extends StatefulWidget {
   final String buttontxt, title;
-  final List menu_list;
+  final List<Master_Model> treatments;
   final double width;
   const MultiSelectDart(
       {Key? key,
-      required this.menu_list,
+      required this.treatments,
       required this.width,
       required this.buttontxt,
       required this.title})
@@ -25,18 +26,20 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
   List<bool> willSelect = [];
   PageController page = PageController();
   @override
-  void didUpdateWidget(Widget oldWidget) {
-    for (int i = 0; i < widget.menu_list.length; i++) {
+  void initState() {
+    for (int i = 0; i < widget.treatments.length; i++) {
+      print("object"+i.toString());
       setState(() {
         willSelect.add(false);
         selected.add([]);
       });
-      for (int j = 0; j < widget.menu_list[i]["children"].length; j++) {
+      for (int j = 0; j < widget.treatments[i].all_childrens!.length; j++) {
         setState(() {
           selected[i].add(false);
         });
       }
     }
+    super.initState();
   }
 
   @override
@@ -68,9 +71,9 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                         TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
                 InkWell(
                   onTap: () {
-                    for (int i = 0; i < widget.menu_list.length; i++) {
+                    for (int i = 0; i < widget.treatments.length; i++) {
                       for (int j = 0;
-                          j < widget.menu_list[i]["children"].length;
+                          j < widget.treatments[i].all_childrens!.length;
                           j++) {
                         setState(() {
                           selected[i][j] = false;
@@ -101,7 +104,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                           child: LayoutBuilder(builder:
                               (context, BoxConstraints viewportConstraints) {
                             return ListView.builder(
-                                itemCount: widget.menu_list.length,
+                                itemCount: widget.treatments.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Center(
                                       child: InkWell(
@@ -143,7 +146,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 8),
                                           child: Text(
-                                            widget.menu_list[index]["label"],
+                                            widget.treatments[index].name!,
                                             softWrap: true,
                                           ),
                                         ),
@@ -164,7 +167,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                         physics: NeverScrollableScrollPhysics(),
                         controller: page,
                         children: [
-                          for (int i = 0; i < widget.menu_list.length; i++)
+                          for (int i = 0; i < widget.treatments.length; i++)
                             Container(
                               color: Helper.whiteColor,
                               child: Column(
@@ -175,8 +178,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                       for (int j = 0;
                                           j <
                                               widget
-                                                  .menu_list[currentpage]
-                                                      ["children"]
+                                                  .treatments[currentpage]
+                                                      .all_childrens!
                                                   .length;
                                           j++)
                                         setState(() {
@@ -230,8 +233,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                             for (int j = 0;
                                                 j <
                                                     widget
-                                                        .menu_list[currentpage]
-                                                            ["children"]
+                                                        .treatments[currentpage]
+                                                            .all_childrens!
                                                         .length;
                                                 j++)
                                               InkWell(
@@ -263,10 +266,9 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                             horizontal: 8,
                                                             vertical: 3),
                                                     child: Text(
-                                                      widget.menu_list[
+                                                      widget.treatments[
                                                                   currentpage]
-                                                              ["children"][j]
-                                                          ["label"],
+                                                              .all_childrens![j].name!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w400,
@@ -301,14 +303,14 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
           InkWell(
             onTap: () {
               surgeryProvider.initSelected();
-              for (int i = 0; i < widget.menu_list.length; i++) {
+              for (int i = 0; i < widget.treatments.length; i++) {
                 for (int j = 0;
-                    j < widget.menu_list[i]["children"].length;
+                    j < widget.treatments[i].all_childrens!.length;
                     j++) {
                   if (selected[i][j]) {
                     surgeryProvider.setSelectedCurePos(
-                        widget.menu_list[i]["children"][j]["value"],
-                        widget.menu_list[i]["children"][j]["label"]);
+                        widget.treatments[i].all_childrens![j].id,
+                        widget.treatments[i].all_childrens![j].name!);
                   }
                 }
               }

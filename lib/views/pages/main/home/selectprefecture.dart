@@ -35,7 +35,7 @@ class _SelectPrefectureState extends State<SelectPrefecture> {
         body: Column(
       children: [
         MultiSelectDart(
-          menu_list: countys,
+          treatments:[],
           width: 110, buttontxt: '結果を表示', title: 'エリア選択',
         ),
       ],

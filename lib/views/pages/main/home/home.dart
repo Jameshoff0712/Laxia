@@ -38,8 +38,9 @@ class _HomeScreenState extends State<HomeScreen>
     '質問',
   ];
   late TabController _tabController;
-  bool isvisible=true;
+  bool isvisible=true,searchbarstate=true;
   List searchResult = [];
+  TextEditingController filter = new TextEditingController();
   Future<void> initSettings() async {
     String countyText =
         await rootBundle.loadString("assets/cfg/searchresult.json");
@@ -51,6 +52,21 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     _tabController = new TabController(length: 8, vsync: this);
+        _tabController.addListener(() {
+      if(_tabController.indexIsChanging){
+        // print(_tabController.index.toString());
+        if(_tabController.index!=0){
+          setState(() {
+            searchbarstate=false;
+          });
+        }else{
+          setState(() {
+            searchbarstate=true;
+            //print("object");
+          });
+        }
+      }
+    });
     super.initState();
   }
 
@@ -64,7 +80,10 @@ class _HomeScreenState extends State<HomeScreen>
       tabMenus[0]="総合";
       initSettings();
     }
-    TextEditingController filter = new TextEditingController(text: userProperties.searchtext);
+    if(_tabController.index==0){
+      filter.value=TextEditingValue(text: userProperties.searchtext);
+    }
+    //TextEditingController filter = new TextEditingController(text: userProperties.searchtext);
     return SafeArea(
       child: Container(
           child: Column(
@@ -72,7 +91,15 @@ class _HomeScreenState extends State<HomeScreen>
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: SearchbarWidget(
-              state: true,
+              onchange: ()=>{
+                //print(filter.value.text)
+                if(filter.text==null){
+                  userProperties.setSearchtext("")
+                }else{
+                  userProperties.setSearchtext(filter.text.toString())
+                }
+              },
+              state: searchbarstate,
               filter: filter,
             ),
           ),
