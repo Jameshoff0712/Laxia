@@ -78,7 +78,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               fit: BoxFit.cover,
                             ),
                             errorWidget: (context, url, error) => Image.asset(
-                              'assets/images/ProDoctor.png',
+                              'assets/images/profile.png',
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -128,7 +128,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -152,7 +152,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -176,7 +176,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -200,7 +200,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),

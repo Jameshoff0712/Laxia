@@ -1,6 +1,8 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/question/question_model.dart';
 import 'package:laxia/models/question_model.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
@@ -18,21 +20,46 @@ class Home_Question extends StatefulWidget {
 
 class _Home_QuestionState extends State<Home_Question> {
   bool expanded=true;
-  int index=-1;
-  List mid = [];
+  int index=-1,page=0;
+  bool isend = false, isloading = true, isexpanding = true;
+  late Question question_data;
+  final _con = HomeController();
+  Future<void> getData({required String page}) async {
+    try {
+      if (!isend) {
+        if (!isloading)
+          setState(() {
+            isexpanding = false;
+          });
+        final mid = await _con.getQuestionData(page: page);
+        if (mid.data.isEmpty) {
+          setState(() {
+            isexpanding = true;
+            isend = true;
+          });
+        }
+        setState(() {
+          if (isloading) {
+            question_data = mid;
+            isloading = false;
+          } else {
+            question_data.data.addAll(mid.data);
+            isexpanding = true;
+          }
+        });
+      }
+    } catch (e) {
+      setState(() {
+        isexpanding = true;
+        isend = true;
+        print(e.toString());
+      });
+    }
+  }
+
   @override
   void initState() {
-    if (!widget.issearch) {
-      for (int i = 0; i < question_list.length; i++)
-        setState(() {
-          mid.add(question_list[i]);
-        });
-    } else {
-      for (int i = 0; i < widget.model!.length; i++)
-        setState(() {
-          mid.add(widget.model![i]);
-        });
-    }
+    getData(page: page.toString());
     super.initState();
   }
 
@@ -143,33 +170,49 @@ class _Home_QuestionState extends State<Home_Question> {
             ),
           ),
           Expanded(
-            child: LayoutBuilder(
+            
+            child: isloading
+                      ? Container(
+                          child: Container(
+                          height: MediaQuery.of(context).size.width,
+                          color: Colors.transparent,
+                          child: Center(
+                            child: new CircularProgressIndicator(),
+                          ),
+                        )):LayoutBuilder(
               builder: (context, BoxConstraints viewportConstraints) {
                 return ListView.builder(
                     padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                    itemCount: mid.length,
+                    itemCount: question_data.data.length,
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Question_Card(
                         buttoncolor: Helper.allowStateButtonColor,
                         buttontext: "回答あり",
-                        hearts: mid[index]["hearts"],
-                        chats: mid[index]["chats"],
-                        avator: mid[index]["avator"],
-                        image2: mid[index]["image2"],
-                        image1: mid[index]["image1"],
-                        eyes: mid[index]["eyes"],
-                        name: mid[index]["name"],
+                        hearts: question_data.data[index].likes_count==null?"":question_data.data[index].likes_count!.toString(),
+                        chats: question_data.data[index].comments_count==null?"":question_data.data[index].comments_count.toString(),
+                        avator:question_data.data[index].owner!.photo==null?"http://error.png": question_data.data[index].owner!.photo!,
+                        image2:"http://error.png", //question_data.data[index]["image2"],
+                        image1:"http://error.png", //question_data.data[index]["image1"],
+                        eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
+                        name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
                         onpress: () {
                           Navigator.of(context).pushNamed("/QuestionDetail");
                         },
-                        sentence: mid[index]["sentence"],
-                        type: mid[index]["type"],
+                        sentence:question_data.data[index].content==null?"": question_data.data[index].content!,
+                        type:"二重切開" //question_data.data[index]["type"],
                       );
                     });
               },
             ),
-          )
+          ),
+          Container(
+                    height: isexpanding ? 0 : 100,
+                    color: Colors.transparent,
+                    child: Center(
+                      child: new CircularProgressIndicator(),
+                    ),
+                  )
         ],
       ),
     );

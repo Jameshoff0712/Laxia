@@ -1,6 +1,8 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/favorite_controller.dart';
+import 'package:laxia/models/counseling/counceling_sub_model.dart';
 import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -18,13 +20,19 @@ class Favorite_Counseling extends StatefulWidget {
 class _Favorite_CounselingState extends State<Favorite_Counseling> {
   bool expanded = true;
   int index = -1;
-  List mid = [];
+  List<Counceling_Sub_Model> mid = [];
+  FavoriteController _con = FavoriteController();
+
+  Future<void> getFavCounseling() async {
+    final listFavCounseling = await _con.getFavCounseling();
+    setState(() {
+      for(int i=0; i< listFavCounseling.length; i++)
+        mid.add(listFavCounseling[i]);
+    });
+  }
   @override
-  void initState() {
-    for (int i = 0; i < counseling_list.length; i++)
-      setState(() {
-        mid.add(counseling_list[i]);
-      });
+  initState(){
+    getFavCounseling();
     super.initState();
   }
 
@@ -43,22 +51,22 @@ class _Favorite_CounselingState extends State<Favorite_Counseling> {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return Counseling_Card(
-                    hearts: mid[index]["hearts"],
-                    chats: mid[index]["chats"],
-                    avator: mid[index]["avator"],
-                    check: mid[index]["check"],
-                    image2: mid[index]["image2"],
-                    image1: mid[index]["image1"],
-                    image3: mid[index]["image3"],
-                    image4: mid[index]["image4"],
-                    eyes: mid[index]["eyes"],
-                    name: mid[index]["name"],
+                    avator: mid[index].patient_photo!,
+                    name: mid[index].patient_nickname!,
+                    sentence: mid[index].content!,
+                    image1: "",
+                    image2: "",
+                    image3: "",
+                    image4: "",
+                    type: "",
+                    clinic: mid[index].clinic_name!,
+                    check: mid[index].doctor_name!,
+                    eyes: mid[index].views_count.toString(),
+                    hearts: mid[index].likes_count.toString(),
+                    chats: mid[index].comments_count.toString(),
                     onpress: () {
                       Navigator.of(context).pushNamed("/CounselDetail");
                     },
-                    sentence: mid[index]["sentence"],
-                    type: mid[index]["type"],
-                    clinic: mid[index]["clinic"],
                   );
                 }),
           )),

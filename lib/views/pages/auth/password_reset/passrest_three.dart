@@ -14,12 +14,9 @@ class PassRest_Three extends StatefulWidget {
   _PassRest_ThreeState createState() => _PassRest_ThreeState();
 }
 
-class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
-  late AuthController _con;
-  _PassRest_ThreeState() : super(AuthController()) {
-    _con = controller as AuthController;
-  }
-
+class _PassRest_ThreeState extends State<PassRest_Three> {
+  final _con = AuthController();
+  final _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +35,8 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                           child: IconButton(
                             onPressed: () => SystemNavigator.pop(),
                             padding: EdgeInsets.only(left: 7),
-                            icon: const Icon(Icons.clear, color: Helper.blackColor),
+                            icon: const Icon(Icons.clear,
+                                color: Helper.blackColor),
                             iconSize: 16,
                           ))),
                   Expanded(
@@ -69,35 +67,39 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                 height: 45,
               ),
               TextFormField(
+                controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
-                onSaved: (input) => _con.user.password = input,
+                // onSaved: (input) => _con.user.password = input,
                 validator: (input) => input!.length < 3 ? null : null,
-                obscureText: _con.hidePassword,
+                // obscureText: _con.hidePassword,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Helper.whiteColor.withOpacity(0.2),
-                  labelText: Trans.of(context).password,
-                  labelStyle: TextStyle(
-                      color: Helper.authHintColor, fontSize: 14),
+                  hintText: Trans.of(context).password,
+                  hintStyle:
+                      TextStyle(color: Helper.authHintColor, fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: '••••••••••••',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                   // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // prefixIcon: Icon(Icons.lock_outline, color: Helper.whiteColor),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _con.hidePassword = !_con.hidePassword;
-                      });
-                    },
-                    color: Helper.authHintColor,
-                    icon: Icon(_con.hidePassword
-                        ? Icons.visibility
-                        : Icons.visibility_off),
-                  ),
+                  // suffixIcon: IconButton(
+                  //   onPressed: () {
+                  //     setState(() {
+                  //       _con.hidePassword = !_con.hidePassword;
+                  //     });
+                  //   },
+                  //   color: Helper.authHintColor,
+                  //   icon: Icon(_con.hidePassword
+                  //       ? Icons.visibility
+                  //       : Icons.visibility_off),
+                  // ),
                   border: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
@@ -125,7 +127,7 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                 padding: const EdgeInsets.only(left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary:Helper.btnBgMainColor,
+                    primary: Helper.btnBgMainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -139,14 +141,15 @@ class _PassRest_ThreeState extends StateMVC<PassRest_Three> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).update_password,
-                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
+                            style: TextStyle(
+                                color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),
                     ],
                   ),
                   onPressed: () {
-                     Navigator.of(context).pushNamed("/PassRest_Four");
+                    Navigator.of(context).pushNamed("/PassRest_Four");
                   },
                 ),
               ),

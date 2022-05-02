@@ -170,7 +170,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -215,7 +215,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                                   ),
                                   errorWidget: (context, url, error) =>
                                       Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),

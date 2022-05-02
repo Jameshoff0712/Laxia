@@ -132,7 +132,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddCounselStep1Page()));
+                            builder: (context) => AddCounselStep1Page(isMyDiary: widget.isMyDiary)));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
