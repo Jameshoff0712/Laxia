@@ -171,7 +171,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   }
 
   Widget buildDiaryPage(List<Diary_Sub_Model> mid) {
-    print(mid);
+    // print(mid);
     return Container(
       color: Helper.bodyBgColor,
       height: 640,

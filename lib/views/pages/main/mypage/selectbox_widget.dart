@@ -42,25 +42,30 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
             height: 10,
           ),
           DropdownButtonFormField<String>(
-              items: widget.items
-                  .map((item) => DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(
-                          item,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            height: 1.5,
-                            color: Color.fromARGB(255, 18, 18, 18),
-                          ),
+            items: widget.items
+                .map((item) => DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          height: 1.5,
+                          color: Color.fromARGB(255, 18, 18, 18),
                         ),
-                      ))
-                  .toList(),
-              onChanged: (String? value) {
-                setState(() {
-                  _chosenValue = value!;
-                });
-              }),
+                      ),
+                    ))
+                .toList(),
+            onChanged: (String? value) {
+              setState(() {
+                _chosenValue = value!;
+              });
+            },
+            validator: (v) {
+              if (v!.isEmpty) return '選んでください';
+              return null;
+            },
+          ),
         ],
       ),
     );
