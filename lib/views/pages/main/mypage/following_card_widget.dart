@@ -1,9 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_user.dart';
 
 class FollowingCardWidget extends StatefulWidget {
-  const FollowingCardWidget({Key? key}) : super(key: key);
+  final String photo, name, nickname;
+  const FollowingCardWidget(
+      {Key? key,
+      required this.photo,
+      required this.name,
+      required this.nickname})
+      : super(key: key);
 
   @override
   State<FollowingCardWidget> createState() => _FollowingCardWidgetState();
@@ -19,10 +26,19 @@ class _FollowingCardWidgetState extends State<FollowingCardWidget> {
           SizedBox(
             height: 36,
             width: 36,
-            child: CircleAvatar(
-              radius: 36,
-              backgroundImage: AssetImage(
-                "${currentUser.imageUrl}",
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: widget.photo,
+                placeholder: (context, url) => Image.asset(
+                  'assets/images/loading.gif',
+                  fit: BoxFit.cover,
+                ),
+                errorWidget: (context, url, error) => Image.asset(
+                  'assets/images/profile.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -40,7 +56,7 @@ class _FollowingCardWidgetState extends State<FollowingCardWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "りりこ",
+                      widget.name,
                       style: TextStyle(
                           color: Color.fromARGB(255, 18, 18, 18),
                           fontWeight: FontWeight.w700,
@@ -48,7 +64,7 @@ class _FollowingCardWidgetState extends State<FollowingCardWidget> {
                           height: 1.5),
                     ),
                     Text(
-                      "@tanaka_kei",
+                      widget.nickname,
                       style: TextStyle(
                           color: Color.fromARGB(255, 102, 110, 110),
                           fontWeight: FontWeight.w400,

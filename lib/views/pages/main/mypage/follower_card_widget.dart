@@ -3,7 +3,13 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_user.dart';
 
 class FollowerCardWidget extends StatefulWidget {
-  const FollowerCardWidget({Key? key}) : super(key: key);
+  final String photo, name, nickname;
+  const FollowerCardWidget(
+      {Key? key,
+      required this.photo,
+      required this.name,
+      required this.nickname})
+      : super(key: key);
 
   @override
   State<FollowerCardWidget> createState() => _FollowerCardWidgetState();
