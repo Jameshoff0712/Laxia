@@ -99,8 +99,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Part());
       case '/Clinic_Detail':
         return MaterialPageRoute(builder: (_) => Clinic_Detail());
-      case '/Menu_Detail':
-        return MaterialPageRoute(builder: (_) => Menu_Detail());
+      // case '/Menu_Detail':
+      //   return MaterialPageRoute(builder: (_) => Menu_Detail());
       case '/Doctor_Detail':
         return MaterialPageRoute(builder: (_) => Doctor_Detail());
       case '/Diary_Detail':

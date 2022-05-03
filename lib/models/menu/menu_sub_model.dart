@@ -87,9 +87,9 @@ class Menu_Sub_Model extends Equatable {
           created_at:json["created_at"],
           updated_at:json["updated_at"],
           is_favorite:json["is_favorite"],
-          categories:json["categories"] == null ? null : List<Category>.from(json["categories"].map((x) => Category.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
-          clinic:json["clinic"] == null ? null : Clinic_Sub_Model.fromJson(json["clinic"]),
-          images: json["images"] == null ? null : List<Image_model>.from(json["images"].map((x) => Image_model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
+          categories:List<Category>.from(json["categories"].map((x) => Category.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
+          clinic:json["clinic"]==null?null:Clinic_Sub_Model.fromJson(json["clinic"]),
+          images: List<Image_model>.from(json["images"].map((x) => Image_model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
         );
   }
   @override

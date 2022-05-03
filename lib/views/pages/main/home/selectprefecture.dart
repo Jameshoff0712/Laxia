@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
-import 'dart:convert';
-import 'package:laxia/views/widgets/multiselect.dart';
+import 'package:laxia/controllers/static_controller.dart';
+import 'package:laxia/models/static/areas_model.dart';
+import 'package:laxia/views/widgets/multiselect_preference.dart';
 
 class SelectPrefecture extends StatefulWidget {
   const SelectPrefecture({Key? key}) : super(key: key);
@@ -13,32 +13,47 @@ class SelectPrefecture extends StatefulWidget {
 }
 
 class _SelectPrefectureState extends State<SelectPrefecture> {
-  List countys = [];
-  Future<void> initSettings() async {
-    String countyText =
-        await rootBundle.loadString("assets/cfg/japanese-city-data.json");
-    setState(() {
-      countys.addAll(json.decode(countyText));
-    });
+   final _con = StaticController();
+  bool isloading = true;
+  late List<Area_Model> areas;
+  Future<void> getData() async {
+    try {
+      areas = await _con.getAreas();
+      setState(() {
+        isloading = false;
+      });
+    } catch (e) {
+      setState(() {
+        print(e.toString());
+      });
+    }
   }
-
   @override
   void initState() {
-    initSettings();
+    getData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Helper.whiteColor,
-        body: Column(
-      children: [
-        MultiSelectDart(
-          menu_list: countys,
-          width: 110, buttontxt: '結果を表示', title: 'エリア選択',
-        ),
-      ],
-    ));
+    return isloading
+        ? Container(
+            child: Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ))
+        : Scaffold(
+            backgroundColor: Helper.whiteColor,
+            body: Column(
+              children: [
+                MultiSelectDart(
+                  areas: areas,
+                 width: 110, buttontxt: '結果を表示', title: 'エリア選択',
+                ),
+              ],
+            ));
   }
 }
