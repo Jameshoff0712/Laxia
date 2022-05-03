@@ -149,7 +149,7 @@ class Me extends Equatable {
         diaries,
         counselings,
         favorite_diaries,
-        // // favorite_questions,
+        favorite_questions,
         favorite_doctors,
         favorite_counseling_reports,
         favorite_menus,
