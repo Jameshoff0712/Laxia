@@ -76,7 +76,9 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       height: 200,
                                       imageList: clinic_Details[0]["images"],
                                       onPressUpRight: () {},
-                                      onPressBack: () {},
+                                      onPressBack: () {
+                                        Navigator.of(context).pop();
+                                      },
                                     ),
                                   ),
                                   Clinic_Card(

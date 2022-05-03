@@ -14,7 +14,7 @@ import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
 
 class Diary_Detail extends StatefulWidget {
-  final bool isMyDiary;
+  final bool? isMyDiary;
   const Diary_Detail({ Key? key, this.isMyDiary = false }) : super(key: key);
 
   @override
@@ -113,7 +113,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
             ),
             Row(
               children: [
-                !widget.isMyDiary?
+                !widget.isMyDiary! ?
                 ElevatedButton(
                   onPressed: () {
                     
@@ -151,7 +151,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddDiaryStep1Page()));
+                            builder: (context) => AddDiaryStep1Page(isMyDiary: widget.isMyDiary)));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -339,7 +339,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) => Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -393,7 +393,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) => Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -815,7 +815,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               ),
                               errorWidget: (context, url, error) =>
                                   Image.asset(
-                                'assets/images/ProDoctor.png',
+                                'assets/images/profile.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
