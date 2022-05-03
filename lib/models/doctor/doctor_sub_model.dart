@@ -83,7 +83,7 @@ class Doctor_Sub_Model extends Equatable {
         spec2: json["spec2"],
         profile: json["profile"],
         career: json["career"],
-        photo: json["photo"],
+        photo: json["photo"] == null ? "" : json["photo"],
         firebase_key: json["firebase_key"],
         job_name: json["job_name"],
         spec0_name: json["spec0_name"],

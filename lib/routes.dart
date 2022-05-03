@@ -112,8 +112,8 @@ class RouteGenerator {
             builder: (_) => ChatScreen(user: favorites[0]));
       case '/Reservation':
         return MaterialPageRoute(builder: (_) => Reservation());
-      case '/Confirmation':
-        return MaterialPageRoute(builder: (_) => Confirmation());
+      // case '/Confirmation':
+      //   return MaterialPageRoute(builder: (_) => Confirmation());
       case '/Completion':
         return MaterialPageRoute(builder: (_) => Completion());
       case '/Favorite':

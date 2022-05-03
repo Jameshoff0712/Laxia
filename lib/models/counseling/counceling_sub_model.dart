@@ -72,7 +72,7 @@ class Counceling_Sub_Model extends Equatable {
         doctor_name: json["doctor_name"],
         is_favorite: json["is_favorite"],
         medias: json["medias"],
-        categories: List<Category>.from(json["categories"]
+        categories: json["categories"] == null ? null : List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>));
   }
