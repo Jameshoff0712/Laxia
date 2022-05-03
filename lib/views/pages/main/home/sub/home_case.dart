@@ -7,7 +7,8 @@ import 'package:laxia/models/case_model.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
-
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 class Home_Case extends StatefulWidget {
   final bool issearch;
   final bool? isdrawer;
@@ -25,19 +26,20 @@ class Home_Case extends StatefulWidget {
 }
 
 class _Home_CaseState extends State<Home_Case> {
+  String searchdata="";
   bool expanded = true;
   int page = 0, index = -1;
   bool isend = false, isloading = true, isexpanding = true;
   late Case case_data;
   final _con = HomeController();
-  Future<void> getData({required String page}) async {
+  Future<void> getData({required String page, String? q=""}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCaseData(page: page);
+        final mid = await _con.getCaseData(page: page,q:q);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -62,7 +64,16 @@ class _Home_CaseState extends State<Home_Case> {
       });
     }
   }
-
+  void init(){
+    setState(() {
+       isloading = true;
+       isexpanding=true;
+       isend=false;
+       page = 1;
+       expanded=false;
+       index=-1;
+    });
+  }
   @override
   void initState() {
     getData(page: page.toString());
@@ -71,6 +82,15 @@ class _Home_CaseState extends State<Home_Case> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if(searchdata!=userProperties.searchtext){
+      init();
+      setState(() {
+        searchdata=userProperties.searchtext;
+        getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
     return Container(
       color: Helper.homeBgColor,
       child: Column(
@@ -117,7 +137,7 @@ class _Home_CaseState extends State<Home_Case> {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
                 if (isexpanding && !isend) {
-                  getData(page: (page + 1).toString());
+                  getData(page: (page + 1).toString(),q:searchdata);
                   setState(() {
                     page += 1;
                   });

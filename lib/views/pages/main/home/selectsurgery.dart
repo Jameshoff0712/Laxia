@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/static_controller.dart';
+import 'package:laxia/models/static/master_model.dart';
 import 'dart:convert';
 import 'package:laxia/views/widgets/multiselect.dart';
 
@@ -13,34 +15,50 @@ class SelectSurgery extends StatefulWidget {
 }
 
 class _SelectSurgeryState extends State<SelectSurgery> {
-  List countys = [];
-  Future<void> initSettings() async {
-    String countyText =
-        await rootBundle.loadString("assets/cfg/treatment_location.json");
-    setState(() {
-      countys.addAll(json.decode(countyText));
-    });
+  final _con = StaticController();
+  bool isloading = true;
+  late List<Master_Model> treatments;
+  Future<void> getData() async {
+    try {
+      treatments = await _con.getTreatCategories();
+      setState(() {
+        isloading = false;
+      });
+    } catch (e) {
+      setState(() {
+        print(e.toString());
+      });
+    }
   }
 
   @override
   void initState() {
-    initSettings();
+    getData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Helper.whiteColor,
-        body: Column(
-      children: [
-        MultiSelectDart(
-          menu_list: countys,
-          width: 110,
-         buttontxt: '結果を表示', title: 'エリア選択',
-        ),
-        
-      ],
-    ));
+    return isloading
+        ? Container(
+            child: Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ))
+        : Scaffold(
+            backgroundColor: Helper.whiteColor,
+            body: Column(
+              children: [
+                MultiSelectDart(
+                  treatments: treatments,
+                  width: 110,
+                  buttontxt: '結果を表示',
+                  title: 'エリア選択',
+                ),
+              ],
+            ));
   }
 }

@@ -4,6 +4,7 @@ import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
 import 'package:laxia/models/home/home_model.dart';
+import 'package:laxia/models/home/home_search_model.dart';
 import 'package:laxia/models/menu/menu_model.dart';
 import 'package:laxia/models/question/question_model.dart';
 import 'package:laxia/models/token_model.dart';
@@ -16,6 +17,11 @@ class HomeApi extends Api {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/tops?category_id="+id, token);
     return Home.fromJson(res.data["contents"]);
+  }
+  Future<Home_Search_Model> homeSearchData(String q, String perpage) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/search?q="+q+"?perpage="+perpage, token);
+    return Home_Search_Model.fromJson(res.data);
   }
   Future<Clinic> getclinicData(String per_page, String page, String q, String favorite, String pref_id, String city_id) async {
     String? token = await preferenceUtil.getToken();
