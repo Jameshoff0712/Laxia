@@ -1,4 +1,5 @@
 import 'package:laxia/models/follow/follow_model.dart';
+import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/services/http/api.dart';
 
 class MyApi extends Api {
@@ -13,5 +14,10 @@ class MyApi extends Api {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/followers?per_page="+per_page+"&page="+page, token);
     return Follow.fromJson(res.data["data"]["followers"]);
+  }
+  Future<Point> getPointInfo() async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/points/history", token);
+    return Point.fromJson(res.data);
   }
 }
