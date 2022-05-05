@@ -5,15 +5,16 @@ import 'package:laxia/common/helper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class Menu_Card extends StatefulWidget {
-  final VoidCallback? onpress;
-  final String image, heading, price, tax, clinic;
+  final VoidCallback?onpress;
+  final String image, heading, price, clinic;
+  final String? tax;
   final BoxShadow? shadow;
   const Menu_Card(
       {Key? key,
       required this.image,
       required this.heading,
       required this.price,
-      required this.tax,
+      this.tax,
       required this.clinic, this.shadow=null, this.onpress=null})
       : super(key: key);
 
@@ -26,7 +27,7 @@ class _Menu_CardState extends State<Menu_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onpress,
+      onTap:widget.onpress,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Container(
@@ -107,7 +108,7 @@ class _Menu_CardState extends State<Menu_Card> {
                               width: 6,
                             ),
                             Text(
-                              widget.tax,
+                              "(税込)",
                               style: defaultTextStyle(
                                   Helper.titleColor, FontWeight.w500,
                                   size: 10.0),
@@ -119,18 +120,22 @@ class _Menu_CardState extends State<Menu_Card> {
                           child: Row(
                             children: [
                               SvgPicture.asset(
-                                "icons/menubar/clinic.svg",
+                                "assets/icons/menubar/clinic.svg",
                                 width: 12,
                                 height: 12,
                               ),
                               SizedBox(
                                 width: 4,
                               ),
-                              Text(
-                                widget.clinic,
-                                style: defaultTextStyle(
-                                    Helper.appTxtColor, FontWeight.w500,
-                                    size: 12.0),
+                              Expanded(
+                                child: Text(
+                                  widget.clinic,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.visible,
+                                  style: defaultTextStyle(
+                                      Helper.appTxtColor, FontWeight.w500,
+                                      size: 12.0),
+                                ),
                               ),
                             ],
                           ),

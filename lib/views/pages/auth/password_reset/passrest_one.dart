@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
+import 'package:laxia/generated/l10n.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../../generated/l10n.dart';
-import '../../../../controllers/auth_controller.dart';
-import '../../../../common/helper.dart';
 // import '../common/app_config.dart' as config;
 import './passrest_three.dart';
 
@@ -14,11 +14,9 @@ class PassRest_One extends StatefulWidget {
   _PassRest_OneState createState() => _PassRest_OneState();
 }
 
-class _PassRest_OneState extends StateMVC<PassRest_One> {
-  late AuthController _con;
-  _PassRest_OneState() : super(AuthController()) {
-    _con = controller as AuthController;
-  }
+class _PassRest_OneState extends State<PassRest_One> {
+  final _emailController = TextEditingController();
+  final _con = AuthController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +34,7 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () => Navigator.of(context).pop(),
                             padding: EdgeInsets.only(left: 7),
                             icon: const Icon(Icons.arrow_back_ios,
                                 color: Helper.blackColor),
@@ -75,7 +73,8 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
               ),
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
-                onSaved: (input) => _con.user.email = input,
+                controller: _emailController,
+                // onSaved: (input) => _con.user.email = input,
                 validator: (input) {
                   if (input!.contains(new RegExp(r'^[0-9]+$'))) {
                     if (input.length < 10) {
@@ -90,13 +89,16 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  labelText: Trans.of(context).input_email,
-                  labelStyle: TextStyle(
-                      color: Helper.authHintColor, fontSize: 14),
+                  hintText: Trans.of(context).input_email,
+                  hintStyle:
+                      TextStyle(color: Helper.authHintColor, fontSize: 14),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // hintText: 'john@doe.com',
                   // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                   // errorBorder: OutlineInputBorder(
@@ -134,17 +136,15 @@ class _PassRest_OneState extends StateMVC<PassRest_One> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).send_url_for_reset,
-                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
+                            style: TextStyle(
+                                color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PassRest_Three()));
+                    Navigator.of(context).pushNamed("/PassRest_Three");
                   },
                 ),
               ),

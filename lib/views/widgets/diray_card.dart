@@ -7,35 +7,29 @@ import 'package:nb_utils/nb_utils.dart';
 class Diary_Card extends StatefulWidget {
   final VoidCallback onpress;
   final Color? buttoncolor, fontcolor;
-  final String avator,
-      name,
-      image1,
-      image2,
-      sentence,
-      type,
-      check,
-      price,
-      eyes;
-  final String? buttontext, hearts, chats,clinic;
-  const Diary_Card(
-      {Key? key,
-      required this.onpress,
-      required this.avator,
-      required this.name,
-      this.buttontext="",
-      required this.image1,
-      required this.image2,
-      required this.sentence,
-      required this.type,
-      this.clinic="",
-      required this.check,
-      required this.price,
-      this.buttoncolor,
-      this.fontcolor,
-      this.hearts="",
-      this.chats="",
-      required this.eyes})
-      : super(key: key);
+  final String avator, name, image1, image2, sentence, type, check, price, eyes;
+  final String? buttontext, hearts, chats, clinic;
+  final bool? isMe;
+  const Diary_Card({
+    Key? key,
+    required this.onpress,
+    required this.avator,
+    required this.name,
+    this.buttontext = "",
+    required this.image1,
+    required this.image2,
+    required this.sentence,
+    required this.type,
+    this.clinic = "",
+    required this.check,
+    required this.price,
+    this.buttoncolor,
+    this.fontcolor,
+    this.hearts = "",
+    this.chats = "",
+    required this.eyes,
+    this.isMe = false,
+  }) : super(key: key);
 
   @override
   State<Diary_Card> createState() => _Diary_CardState();
@@ -59,33 +53,37 @@ class _Diary_CardState extends State<Diary_Card> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 29,
-                      width: 29,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: widget.avator,
-                          placeholder: (context, url) => Image.asset(
-                            'assets/images/loading.gif',
-                            fit: BoxFit.cover,
-                          ),
-                          errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/ProDoctor.png',
-                            fit: BoxFit.cover,
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 29,
+                          width: 29,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: widget.avator,
+                              placeholder: (context, url) => Image.asset(
+                                'assets/images/loading.gif',
+                                fit: BoxFit.cover,
+                              ),
+                              errorWidget: (context, url, error) => Image.asset(
+                                'assets/images/profile.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    Text(
-                      widget.name,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: Helper.titleColor),
+                        Text(
+                          widget.name,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: Helper.titleColor),
+                        ),
+                      ],
                     ),
                     widget.buttontext!.isEmpty
                         ? SizedBox(
@@ -95,7 +93,10 @@ class _Diary_CardState extends State<Diary_Card> {
                             child: Align(
                             alignment: Alignment.topRight,
                             child: Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3),color: widget.buttoncolor,),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                color: widget.buttoncolor,
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 6),
@@ -108,7 +109,23 @@ class _Diary_CardState extends State<Diary_Card> {
                                 ),
                               ),
                             ),
-                          ))
+                          )),
+                    widget.isMe!
+                        ? InkWell(
+                            onTap: () {},
+                            child: Container(
+                              padding: EdgeInsets.all(5.0),
+                              color: Color.fromARGB(51, 240, 154, 55),
+                              child: Text(
+                                "未公開",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 249, 161, 56),
+                                ),
+                              ),
+                            ))
+                        : Container(),
                   ],
                 ),
                 Container(
@@ -125,21 +142,25 @@ class _Diary_CardState extends State<Diary_Card> {
                       FittedBox(
                         fit: BoxFit.fill,
                         child: Stack(
-                          alignment : AlignmentDirectional.bottomStart,
+                          alignment: AlignmentDirectional.bottomStart,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: widget.image1,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: widget.image1,
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    'assets/images/profile.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
@@ -154,7 +175,10 @@ class _Diary_CardState extends State<Diary_Card> {
                                 child: Center(
                                   child: Text(
                                     "Before",
-                                    style: TextStyle(color: white,fontSize: 20,fontWeight: FontWeight.w600),
+                                    style: TextStyle(
+                                        color: white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
                                   ),
                                 ))
                           ],
@@ -163,21 +187,25 @@ class _Diary_CardState extends State<Diary_Card> {
                       FittedBox(
                         fit: BoxFit.fill,
                         child: Stack(
-                          alignment : AlignmentDirectional.bottomStart,
+                          alignment: AlignmentDirectional.bottomStart,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: widget.image2,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
+                            Container(
+                              width: 426,
+                              height: 426,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/ProDoctor.png',
-                                  fit: BoxFit.fill,
+                                  imageUrl: widget.image2,
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    'assets/images/profile.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ),
                             ),
@@ -192,7 +220,10 @@ class _Diary_CardState extends State<Diary_Card> {
                                 child: Center(
                                   child: Text(
                                     "After",
-                                    style: TextStyle(color: white,fontSize: 20,fontWeight: FontWeight.w600),
+                                    style: TextStyle(
+                                        color: white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
                                   ),
                                 ))
                           ],
@@ -222,7 +253,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/ping.svg",
+                        "assets/icons/menubar/ping.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -253,7 +284,7 @@ class _Diary_CardState extends State<Diary_Card> {
                             child: Row(
                               children: [
                                 SvgPicture.asset(
-                                  "icons/menubar/clinic.svg",
+                                  "assets/icons/menubar/clinic.svg",
                                   width: 12,
                                   height: 12,
                                 ),
@@ -265,8 +296,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,
-                                      color:
-                                          Helper.maintxtColor),
+                                      color: Helper.maintxtColor),
                                 ),
                               ],
                             ),
@@ -281,7 +311,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/part.svg",
+                        "assets/icons/menubar/part.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -298,7 +328,6 @@ class _Diary_CardState extends State<Diary_Card> {
                     ],
                   ),
                 ),
-                
                 SizedBox(
                   height: 8,
                 ),
@@ -307,7 +336,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/money.svg",
+                        "assets/icons/menubar/money.svg",
                         width: 10,
                         height: 9,
                       ),
@@ -336,7 +365,7 @@ class _Diary_CardState extends State<Diary_Card> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SvgPicture.asset(
-                              "icons/menubar/eye.svg",
+                              "assets/icons/menubar/eye.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -360,7 +389,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         width: 10,
                                       ),
                                       SvgPicture.asset(
-                                        "icons/menubar/heart.svg",
+                                        "assets/icons/menubar/heart.svg",
                                         width: 13,
                                         height: 13,
                                       ),
@@ -378,7 +407,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         width: 10,
                                       ),
                                       SvgPicture.asset(
-                                        "icons/menubar/comment.svg",
+                                        "assets/icons/menubar/comment.svg",
                                         width: 13,
                                         height: 13,
                                       ),

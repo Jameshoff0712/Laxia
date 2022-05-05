@@ -75,7 +75,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                                   child: Row(
                                     children: [
                                       SvgPicture.asset(
-                                        "icons/menubar/clinic.svg",
+                                        "assets/icons/menubar/clinic.svg",
                                         width: 12,
                                         height: 12,
                                       ),
@@ -103,7 +103,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                               child: Row(
                                 children: [
                                   SvgPicture.asset(
-                                    "icons/menubar/part.svg",
+                                    "assets/icons/menubar/part.svg",
                                     width: 12,
                                     height: 12,
                                   ),
@@ -134,7 +134,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                     padding: EdgeInsets.only(top: 20),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed("/AddCounselProgress");
+                        Navigator.of(context).pushNamed("/AddCounselStep1");
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 1,

@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/generated/L10n.dart';
+import 'package:laxia/models/counseling/counceling_sub_model.dart';
+import 'package:laxia/models/diary/diary_sub_model.dart';
 import 'package:laxia/models/m_user.dart';
+import 'package:laxia/models/me_model.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
+import 'package:laxia/views/pages/main/contribution/question.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
+import 'package:laxia/views/pages/main/mypage/counseling_fix_page.dart';
 import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
+import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
+import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
+import 'package:laxia/views/pages/main/mypage/invite_page.dart';
+import 'package:laxia/views/pages/main/mypage/point_page.dart';
+import 'package:laxia/views/pages/main/mypage/setting_page.dart';
+import 'package:laxia/views/widgets/counseling_card%20.dart';
+import 'package:laxia/views/widgets/diray_card.dart';
+import 'package:laxia/views/widgets/question_card.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../models/counseling_model.dart';
+import '../../../../models/question_model.dart';
 
 class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);
@@ -15,11 +38,29 @@ class Mypage extends StatefulWidget {
 
 class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  List mid = [];
+  List nid = [];
+
+  late UserProvider userProperties;
+
   @override
-  void initState() {
-    super.initState();
+  initState() {
     _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+    super.initState();
   }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
+  //   for (int i = 0; i < counseling_list.length; i++)
+  //     setState(() {
+  //       mid.add(counseling_list[i]);
+  //     });
+  //   for (int i = 0; i < question_list.length; i++)
+  //     setState(() {
+  //       nid.add(question_list[i]);
+  //     });
+  // }
 
   @override
   void dispose() {
@@ -29,16 +70,33 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    userProperties = Provider.of<UserProvider>(context, listen: true);
+    // print(userProperties.getMe.diaries);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
-        title: Center(
-          child: Text(
-            'Ayaka11',
-            style: Theme.of(context).textTheme.headline5,
+        title: Text(
+          userProperties.getMe.nickname!,
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            height: 1.5,
+            color: Helper.titleColor,
           ),
         ),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              userProperties.setCurrentPageIndex(0);
+              Navigator.of(context).pushNamed('/Pages');
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Helper.titleColor,
+              size: 30,
+            )),
+        elevation: 0,
       ),
       body: Container(
         margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
@@ -59,25 +117,40 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return TabBar(
         controller: _tabController,
         indicatorColor: Helper.mainColor,
-        indicatorSize: TabBarIndicatorSize.tab,
+        indicatorSize: TabBarIndicatorSize.label,
         indicatorWeight: 3.8,
+        labelColor: Helper.titleColor,
+        unselectedLabelColor: Helper.unSelectTabColor,
         tabs: [
           Tab(
             child: Text(
               "日記",
-              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 12,
+                height: 1.5,
+                color: Helper.titleColor,
+              ),
             ),
           ),
           Tab(
             child: Text(
               "カウセレポ",
-              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 12,
+                height: 1.5,
+              ),
             ),
           ),
           Tab(
             child: Text(
               "質問",
-              style: defaultTextStyle(Helper.blackColor, FontWeight.bold, size: 16),
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 12,
+                height: 1.5,
+              ),
             ),
           )
         ]);
@@ -89,64 +162,146 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
       child: TabBarView(
         controller: _tabController,
         children: [
-          buildDiaryPage(),
-          buildCounselingPage(),
-          buildQuestionPage()
+          buildDiaryPage(userProperties.getMe.diaries),
+          buildCounselingPage(userProperties.getMe.counselings),
+          buildQuestionPage(userProperties.getMe.favorite_questions)
         ],
       ),
     );
   }
 
-  Widget buildDiaryPage() {
+  Widget buildDiaryPage(List<Diary_Sub_Model> mid) {
+    // print(mid);
     return Container(
       color: Helper.bodyBgColor,
       height: 640,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            DiaryCardWidget(),
-            SizedBox(
-              height: 8,
-            ),
-            DiaryCardWidget()
-          ],
-        ),
+      child: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+                builder: (context, BoxConstraints viewportConstraints) {
+              return ListView.builder(
+                  padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                  itemCount: mid.length,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Diary_Card(
+                      avator: mid[index].patient_photo!,
+                      name: mid[index].patient_nickname!,
+                      image1: mid[index].before_image!,
+                      image2: mid[index].after_image!,
+                      sentence: mid[index].last_content!.toString(),
+                      type: mid[index].patient_gender!,
+                      clinic: mid[index].clinic_name,
+                      check: mid[index].doctor_name!,
+                      price: mid[index].price.toString(),
+                      eyes: mid[index].views_count.toString(),
+                      hearts: mid[index].likes_count.toString(),
+                      chats: mid[index].comments_count.toString(),
+                      onpress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Diary_Detail(
+                                      isMyDiary: true,
+                                    ))
+                        );
+                      },
+                      isMe: true,
+                    );
+                  });
+            }),
+          ),
+        ],
       ),
     );
   }
 
-  Widget buildCounselingPage() {
+  Widget buildCounselingPage(List<Counceling_Sub_Model> mid) {
     return Container(
       height: 640,
       color: Helper.bodyBgColor,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            DiaryCardWidget(),
-            SizedBox(
-              height: 8,
-            ),
-            DiaryCardWidget()
-          ],
-        ),
+      child: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+                builder: (context, BoxConstraints viewportConstraints) {
+              return ListView.builder(
+                  padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                  itemCount: mid.length,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Counseling_Card(
+                      avator: mid[index].patient_photo!,
+                      name: mid[index].patient_nickname!,
+                      sentence: mid[index].content!,
+                      image1: mid[index].patient_photo!,
+                      image2: mid[index].patient_photo!,
+                      image3: mid[index].patient_photo!,
+                      image4: mid[index].patient_photo!,
+                      type: mid[index].counseling_date!,
+                      clinic: mid[index].clinic_name!,
+                      check: mid[index].doctor_name!,
+                      eyes: mid[index].views_count.toString(),
+                      hearts: mid[index].likes_count.toString(),
+                      chats: mid[index].comments_count.toString(),
+                      onpress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CounselDetail(
+                                      isMyDiary: true,
+                                    )));
+                      },
+                    );
+                  });
+            }),
+          ),
+        ],
       ),
     );
   }
 
-  Widget buildQuestionPage() {
+  Widget buildQuestionPage(List<Question_Sub_Model> mid) {
     return Container(
       height: 640,
       color: Helper.bodyBgColor,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            DiaryCardWidget(),
-            SizedBox(
-              height: 8,
+      child: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+              builder: (context, BoxConstraints viewportConstraints) {
+                return ListView.builder(
+                    padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                    itemCount: mid.length,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Question_Card(
+                        buttoncolor: Helper.allowStateButtonColor,
+                        buttontext: "回答あり",
+                        avator: "",
+                        name: "",
+                        sentence: mid[index].content!,
+                        image1: "",
+                        image2: "",
+                        type: "",
+                        eyes: mid[index].views_count.toString(),
+                        hearts: mid[index].likes_count.toString(),
+                        chats: mid[index].comments_count.toString(),
+                        onpress: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => QuestionDetail(
+                                        isMyDiary: true,
+                                      )));
+                        },
+                      );
+                    });
+              },
             ),
-            DiaryCardWidget()
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
@@ -155,9 +310,10 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return <Widget>[
       SliverAppBar(
         elevation: 0,
-        expandedHeight: 400,
+        expandedHeight: 350,
         floating: true,
         pinned: false,
+        automaticallyImplyLeading: false,
         backgroundColor: Helper.whiteColor,
         flexibleSpace: FlexibleSpaceBar(
           background: Container(
@@ -177,13 +333,13 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         width: 60,
                         child: CircleAvatar(
                           radius: 30,
-                          backgroundImage: AssetImage(
-                            "${currentUser.imageUrl}",
+                          backgroundImage: NetworkImage(
+                            userProperties.getMe.photo!,
                           ),
                         ),
                       ),
                       SizedBox(
-                        width: 9,
+                        width: 14,
                       ),
                       Expanded(
                           child: Row(
@@ -195,15 +351,18 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 flex: 1,
                                 fit: FlexFit.tight,
                                 child: Text(
-                                  "あやか",
-                                  style: defaultTextStyle(
-                                      Helper.appTxtColor, FontWeight.w700,
-                                      size: 20),
+                                  userProperties.getMe.name,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                    height: 1.5,
+                                    color: Helper.titleColor,
+                                  ),
                                 )),
                           ),
                           OutlinedButton(
                               onPressed: () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
@@ -217,9 +376,12 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                       width: 1, color: Helper.mainColor)),
                               child: Text(
                                 "変更",
-                                style: defaultTextStyle(
-                                    Helper.mainColor, FontWeight.w100,
-                                    size: 16),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12,
+                                  height: 1.5,
+                                  color: Helper.mainColor,
+                                ),
                               )),
                         ],
                       ))
@@ -232,47 +394,88 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Text(
-                            "26",
-                            style: TextStyle(
-                              color: Helper.appTxtColor,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FollowingListPage()));
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: Text(
+                                  userProperties.getMe.followsCount.toString(),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    height: 1.5,
+                                    color: Helper.titleColor,
+                                  ),
+                                )),
+                            SizedBox(
+                              width: 5,
                             ),
-                          )),
-                      SizedBox(
-                        width: 5,
+                            SizedBox(
+                                child: Text(
+                              "フォロー",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                height: 1.5,
+                                color: Color.fromARGB(255, 194, 194, 194),
+                              ),
+                            )),
+                          ],
+                        ),
                       ),
                       SizedBox(
-                          child: Text(
-                        "フォロー",
-                        style: TextStyle(color: Helper.extraGrey, fontSize: 14),
-                      )),
-                      SizedBox(
-                        width: 25,
+                        width: 20,
                       ),
-                      SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Text(
-                            "26",
-                            style: TextStyle(
-                              color: Helper.appTxtColor,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FollowerListPage()));
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: Text(
+                                  userProperties.getMe.followersCount
+                                      .toString(),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    height: 1.5,
+                                    color: Helper.titleColor,
+                                  ),
+                                )),
+                            SizedBox(
+                              width: 5,
                             ),
-                          )),
-                      SizedBox(
-                        width: 5,
+                            SizedBox(
+                                child: Text(
+                              "フォロワー",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                height: 1.5,
+                                color: Color.fromARGB(255, 194, 194, 194),
+                              ),
+                            )),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                          child: Text(
-                        "フォロワー",
-                        style: TextStyle(color: Helper.extraGrey, fontSize: 14),
-                      )),
                     ],
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 12,
                   ),
                   Row(children: [
                     Expanded(
@@ -280,21 +483,26 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                              "こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。",
-                              overflow: TextOverflow.clip,
-                              textAlign: TextAlign.justify,
-                              maxLines: 4),
+                            userProperties.getMe.intro,
+                            overflow: TextOverflow.clip,
+                            textAlign: TextAlign.justify,
+                            maxLines: 4,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              height: 1.3,
+                              color: Helper.titleColor,
+                            ),
+                          ),
                         ],
                       ),
                     )
                   ]),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Container(
-                    margin: const EdgeInsets.all(0.0),
-                    padding: const EdgeInsets.only(
-                        top: 2.0, left: 5.0, right: 5.0, bottom: 2.0),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration:
                         BoxDecoration(border: Border.all(color: Colors.grey)),
                     child: Row(
@@ -303,19 +511,36 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                       children: [
                         Text(
                           "保有ポイント",
-                          style:
-                              TextStyle(color: Helper.extraGrey, fontSize: 18),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                            height: 1.5,
+                            color: Color.fromARGB(255, 18, 18, 18),
+                          ),
                         ),
                         Expanded(
                             child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text("1000p"),
+                            Text(
+                              "${userProperties.getMe.point} p",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
+                                height: 1.5,
+                                color: Color.fromARGB(255, 18, 18, 18),
+                              ),
+                            ),
                             IconButton(
                               icon: const Icon(Icons.chevron_right_sharp),
-                              color: Helper.appTxtColor,
-                              onPressed: () {},
+                              color: Helper.titleColor,
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => PointPage()));
+                              },
                             )
                           ],
                         ))
@@ -323,10 +548,9 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Container(
-                    margin: const EdgeInsets.all(0.0),
                     padding: const EdgeInsets.only(
                         top: 2.0, left: 5.0, right: 5.0, bottom: 2.0),
                     decoration:
@@ -337,17 +561,39 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.supervisor_account),
-                                Text(
-                                  "友達招待",
-                                  style: TextStyle(
-                                      color: Helper.appTxtColor, fontSize: 14),
-                                )
-                              ],
+                            child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10.0),
+                                        topRight: Radius.circular(10.0)),
+                                  ),
+                                  context: context,
+                                  builder: (context) {
+                                    return InvitePage();
+                                  },
+                                  isScrollControlled: true,
+                                );
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.supervisor_account,
+                                    color: Helper.titleColor,
+                                  ),
+                                  Text(
+                                    "友達招待",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                      color: Helper.titleColor,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           const VerticalDivider(
@@ -358,17 +604,31 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             width: 20,
                           ),
                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.settings),
-                                Text(
-                                  "設定",
-                                  style: TextStyle(
-                                      color: Helper.appTxtColor, fontSize: 14),
-                                )
-                              ],
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SettingPage()));
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.settings,
+                                    color: Helper.titleColor,
+                                  ),
+                                  Text(
+                                    "設定",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                      color: Helper.titleColor,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           )
                         ],

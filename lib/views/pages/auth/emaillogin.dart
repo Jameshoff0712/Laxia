@@ -1,29 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_one.dart';
 import 'package:laxia/views/dashboard.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../generated/l10n.dart';
-import '../../../controllers/auth_controller.dart';
-import '../../../common/helper.dart';
-// import '../common/app_config.dart' as config;
+import 'package:laxia/generated/l10n.dart';
+import 'package:laxia/controllers/auth_controller.dart';
+import 'package:laxia/common/helper.dart';
+import 'package:provider/provider.dart';
 
 class EMLoginScreen extends StatefulWidget {
   const EMLoginScreen({Key? key}) : super(key: key);
 
   @override
-  _EMLoginScreenState createState() => _EMLoginScreenState();
+  State<EMLoginScreen> createState() => _EMLoginScreenState();
 }
 
-class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
-  late AuthController _con;
-  _EMLoginScreenState() : super(AuthController()) {
-    _con = controller as AuthController;
+class _EMLoginScreenState extends State<EMLoginScreen> {
+  final _con = AuthController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  String _errorMsg = "";
+  bool _isLoading = false;
+
+  late UserProvider provider;
+
+  Future<void> login(BuildContext context) async {
+    try {
+      var email = _emailController.text.trim();
+      var password = _passwordController.text;
+      await _con.authorize(email, password);
+      final me = await _con.getMe();
+      if (me.id != 0) {
+        provider.setMe(me);
+        provider.setIsAuthorized(true);
+        Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+      }
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+        _errorMsg = "メールアドレスもしくはパスワードが間違っています。";
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: Helper.whiteColor,
       body: Padding(
@@ -38,9 +62,10 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
-                            onPressed: () => SystemNavigator.pop(),
+                            onPressed: () => Navigator.of(context).pop(),
                             padding: EdgeInsets.only(left: 7),
-                            icon: const Icon(Icons.clear, color: Helper.blackColor),
+                            icon: const Icon(Icons.clear,
+                                color: Helper.blackColor),
                             iconSize: 16,
                           ))),
                   Expanded(
@@ -61,8 +86,9 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 height: 11,
               ),
               TextFormField(
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                onSaved: (input) => _con.user.email = input,
+                // onSaved: (input) => _con.user.email = input,
                 validator: (input) {
                   if (input!.contains(new RegExp(r'^[0-9]+$'))) {
                     if (input.length < 10) {
@@ -77,8 +103,8 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  labelText: Trans.of(context).input_email,
-                  labelStyle: TextStyle(
+                  hintText: Trans.of(context).input_email,
+                  hintStyle: TextStyle(
                       color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
@@ -94,8 +120,9 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   //   // borderRadius: BorderRadius.all(Radius.circular(100)),
                   //   borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212)),
                   // ),
-                  // focusedBorder: UnderlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   border: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
@@ -104,15 +131,16 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
               ),
               SizedBox(height: 20),
               TextFormField(
+                controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
-                onSaved: (input) => _con.user.password = input,
+                // onSaved: (input) => _con.user.password = input,
                 validator: (input) => input!.length < 3 ? null : null,
                 obscureText: _con.hidePassword,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Helper.whiteColor.withOpacity(0.2),
-                  labelText: Trans.of(context).password,
-                  labelStyle: TextStyle(
+                  hintText: Trans.of(context).password,
+                  hintStyle: TextStyle(
                       color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
@@ -139,8 +167,9 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                   ),
                   // border: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
-                  // focusedBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   // enabledBorder: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                 ),
@@ -148,14 +177,19 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
               SizedBox(
                 height: 10,
               ),
+              _errorMsg != ""
+                  ? SizedBox(
+                      height: 40,
+                      child: Text(
+                        _errorMsg,
+                        style: const TextStyle(color: Colors.red),
+                      ))
+                  : Container(),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PassRest_One()));
+                      Navigator.of(context).pushNamed("/passwordResetone");
                     },
                     child: Text(
                       Trans.of(context).i_forgot_password,
@@ -169,7 +203,7 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Helper.loginButtonColor,
+                    primary: Helper.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
@@ -183,17 +217,15 @@ class _EMLoginScreenState extends StateMVC<EMLoginScreen> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).go_login,
-                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
+                            style: TextStyle(
+                                color: Helper.whiteColor, fontSize: 12),
                           ),
                         ),
                       ),
                     ],
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DashboardScreen()));
+                    login(context);
                   },
                 ),
               ),

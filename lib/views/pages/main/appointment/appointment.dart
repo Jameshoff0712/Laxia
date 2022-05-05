@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/reserve_controller.dart';
+import 'package:laxia/controllers/status_controller.dart';
+import 'package:laxia/models/status_model.dart';
+import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/chatStatus.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
+import 'package:provider/provider.dart';
 
 class Appointment extends StatefulWidget {
-  const Appointment({Key? key}) : super(key: key);
+  // final PageController pageController;
+  const Appointment({
+    Key? key,
+    // required this.pageController,
+  }) : super(key: key);
 
   State<Appointment> createState() => _AppointmentState();
 }
 
 class _AppointmentState extends State<Appointment>
     with SingleTickerProviderStateMixin {
+  final _con = ReserveController();
   final List<String> tabMenus = [
     'すべて',
     '調整中',
@@ -20,52 +30,54 @@ class _AppointmentState extends State<Appointment>
   ];
   late TabController _tabController;
   bool isEmpty = true;
+  StatusInfo? statusInfo;
+  Future<void> getStatusInfo() async {
+    final info = await _con.getAllStatus() as StatusInfo;
+    setState(() {
+      statusInfo = info;
+    });
+
+    // print(statusInfo);
+  }
+
   @override
   void initState() {
     _tabController = new TabController(length: 5, vsync: this);
+    getStatusInfo();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Stack(
-          children: [
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 10, right: 32, bottom: 12, left: 32),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      '予約',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 51, 51, 51),
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 25),
-              child: IconButton(
-                icon: Icon(Icons.chevron_left),
-                color: Color.fromARGB(255, 51, 51, 51),
-                // iconSize: 16,
-                onPressed: () {},
-              ),
-            )
-          ],
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Helper.whiteColor,
+        shadowColor: Helper.whiteColor,
+        title: Text(
+          '予約',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            height: 1.5,
+            color: Helper.titleColor,
+          ),
         ),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              userProperties.setCurrentPageIndex(0);
+              Navigator.of(context).pushNamed('/Pages');
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: Helper.titleColor,
+              size: 30,
+            )),
+        elevation: 0,
+      ),
+      body: Column(children: [
         TabBarWidget(
           tabMenus: tabMenus,
           tabController: _tabController,
@@ -78,10 +90,13 @@ class _AppointmentState extends State<Appointment>
                 children: [
                   Expanded(
                     child: Container(
-                      color: Color.fromARGB(255, 240, 242, 245),
-                      child: isEmpty
-                          ? _buildEmptyClinic()
-                          : ListView(
+                        color: Color.fromARGB(255, 240, 242, 245),
+                        child: isEmpty
+                            ? _buildEmptyClinic()
+                            // : ListView.builder(
+                            //   itemCount: statusInfo.length,
+                            //   itemBuilder: itemBuilder)
+                        : ListView(
                             physics: const AlwaysScrollableScrollPhysics(),
                             children: [
                               chatStatus(
@@ -97,7 +112,7 @@ class _AppointmentState extends State<Appointment>
                                   statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
                             ],
                           ),
-                    ),
+                        ),
                   ),
                 ],
               ),
@@ -109,7 +124,8 @@ class _AppointmentState extends State<Appointment>
                       child: ListView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
-                          chatStatus(statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(
+                              statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
                           chatStatus(
                             statusCode: 1,
                             clinicName: '湘南美容クリニック 銀座院',
@@ -148,7 +164,8 @@ class _AppointmentState extends State<Appointment>
                       child: ListView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
-                          chatStatus(statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(
+                              statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
                         ],
                       ),
                     ),
@@ -163,7 +180,8 @@ class _AppointmentState extends State<Appointment>
                       child: ListView(
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
-                          chatStatus(statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                          chatStatus(
+                              statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
                         ],
                       ),
                     ),
@@ -174,8 +192,161 @@ class _AppointmentState extends State<Appointment>
             controller: _tabController,
           ),
         ),
-      ],
+      ]),
     );
+    // return Column(
+    //   children: <Widget>[
+    //     SizedBox(
+    //       height: 44,
+    //     ),
+    //     Stack(
+    //       children: [
+    //         Padding(
+    //           padding:
+    //               EdgeInsets.only(top: 10, right: 32, bottom: 12, left: 32),
+    //           child: Center(
+    //             child: Column(
+    //               mainAxisAlignment: MainAxisAlignment.center,
+    //               crossAxisAlignment: CrossAxisAlignment.center,
+    //               children: [
+    //                 Text(
+    //                   '予約',
+    //                   textAlign: TextAlign.center,
+    //                   style: TextStyle(
+    //                     fontWeight: FontWeight.w700,
+    //                     fontSize: 16,
+    //                     color: Color.fromARGB(255, 51, 51, 51),
+    //                     decoration: TextDecoration.none,
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //         Padding(
+    //           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 25),
+    //           child: IconButton(
+    //             icon: Icon(Icons.chevron_left),
+    //             color: Color.fromARGB(255, 51, 51, 51),
+    //             // iconSize: 16,
+    //             onPressed: () {},
+    //           ),
+    //         )
+    //       ],
+    //     ),
+    //     TabBarWidget(
+    //       tabMenus: tabMenus,
+    //       tabController: _tabController,
+    //     ),
+    //     Expanded(
+    //       child: TabBarView(
+    //         physics: NeverScrollableScrollPhysics(),
+    //         children: [
+    //           Column(
+    //             children: [
+    //               Expanded(
+    //                 child: Container(
+    //                   color: Color.fromARGB(255, 240, 242, 245),
+    //                   child: isEmpty
+    //                       ? _buildEmptyClinic()
+    //                       : ListView(
+    //                           physics: const AlwaysScrollableScrollPhysics(),
+    //                           children: [
+    //                             chatStatus(
+    //                                 statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+    //                             chatStatus(
+    //                               statusCode: 2,
+    //                               clinicName: '湘南美容クリニック 銀座院',
+    //                               bookDate: '予約日時：2020/07/25 11：００〜',
+    //                             ),
+    //                             chatStatus(
+    //                                 statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+    //                             chatStatus(
+    //                                 statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+    //                           ],
+    //                         ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //           Column(
+    //             children: [
+    //               Expanded(
+    //                 child: Container(
+    //                   color: Color.fromARGB(255, 240, 242, 245),
+    //                   child: ListView(
+    //                     physics: const AlwaysScrollableScrollPhysics(),
+    //                     children: [
+    //                       chatStatus(
+    //                           statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+    //                       chatStatus(
+    //                         statusCode: 1,
+    //                         clinicName: '湘南美容クリニック 銀座院',
+    //                         notificCount: 1,
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //           Column(
+    //             children: [
+    //               Expanded(
+    //                 child: Container(
+    //                   color: Color.fromARGB(255, 240, 242, 245),
+    //                   child: ListView(
+    //                     physics: const AlwaysScrollableScrollPhysics(),
+    //                     children: [
+    //                       chatStatus(
+    //                         statusCode: 2,
+    //                         clinicName: '湘南美容クリニック 銀座院',
+    //                         bookDate: '予約日時：2020/07/25 11：００〜',
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //           Column(
+    //             children: [
+    //               Expanded(
+    //                 child: Container(
+    //                   color: Color.fromARGB(255, 240, 242, 245),
+    //                   child: ListView(
+    //                     physics: const AlwaysScrollableScrollPhysics(),
+    //                     children: [
+    //                       chatStatus(
+    //                           statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //           Column(
+    //             children: [
+    //               Expanded(
+    //                 child: Container(
+    //                   color: Color.fromARGB(255, 240, 242, 245),
+    //                   child: ListView(
+    //                     physics: const AlwaysScrollableScrollPhysics(),
+    //                     children: [
+    //                       chatStatus(
+    //                           statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ],
+    //         controller: _tabController,
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 
   Widget _buildEmptyClinic() {
@@ -209,7 +380,6 @@ class _AppointmentState extends State<Appointment>
                     'クリニックを探す',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
                       color: Helper.whiteColor,

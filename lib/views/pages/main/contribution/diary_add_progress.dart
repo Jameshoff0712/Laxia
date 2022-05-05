@@ -1,8 +1,11 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:laxia/views/widgets/state_slider_widget.dart';
 
 class AddDiaryProgressPage extends StatefulWidget {
   @override
@@ -11,7 +14,18 @@ class AddDiaryProgressPage extends StatefulWidget {
 
 class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
   bool isAddEnabled = true;
-
+  int index=0;
+  List images=[];
+ final _picker = ImagePicker();
+    Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        images.add(File(pickedImage.path));
+      });
+    }
+  }
   AddDiaryPage() {
     Navigator.of(context).pushNamed("/AddDiaryList");
   }
@@ -135,9 +149,9 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 ),
               ),
             ),
-            stateSlider(context, '痛み'),
-            stateSlider(context, '腫れ'),
-            stateSlider(context, '傷あと'),
+            StateSliderWidget(state_str: "痛み", state_val: 0, ),
+            StateSliderWidget(state_str: "腫れ", state_val: 0, ),
+            StateSliderWidget(state_str: "傷あと", state_val: 0, ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ListTile(
@@ -209,15 +223,16 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
       ),
     );
   }
-
-  Widget imagePicker(BuildContext context) {
+ Widget imagePicker(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 12.0, top: 0, right: 12, bottom: 12),
       child: GestureDetector(
         child: Row(
           children: <Widget>[
             InkWell(
-              //onTap: () => context.getImageFromGallery(),
+              onTap: (){
+                _openImagePicker();
+              },
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(top: 15),
@@ -230,14 +245,13 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 child: Column(
                   children: [
                     SvgPicture.asset(
-                      "icons/photo.svg",
+                      "assets/icons/photo.svg",
                       width: 36,
                       height: 36,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child:
-                          Text('写真を追加', style: TextStyle(color: Colors.white)),
+                      child: Text('写真を追加', style: TextStyle(color: Colors.white)),
                     ),
                   ],
                 ),
@@ -250,105 +264,11 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //PhotoCarouselWidget(offerList: _con.offers, heroTag: 'offer_trending_carousel'),
-                    PhotoCarouselWidget(),
-                    PhotoCarouselWidget(),
-                    PhotoCarouselWidget(),
-                    PhotoCarouselWidget(),
+                     PhotoCarouselWidget(ImageList: images, onRemove: (int ) { setState(() {
+                       images.removeAt(int);
+                     }); },),
                   ],
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget stateSlider(BuildContext context, String posStr) {
-    return Container(
-      height: 70,
-      color: Colors.white,
-      padding: const EdgeInsets.only(left: 20.0, top: 10, right: 0, bottom: 10),
-      child: Container(
-        padding: const EdgeInsets.only(right: 25),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            bottom: BorderSide(color: Colors.grey),
-          ),
-        ),
-        child: Row(
-          children: <Widget>[
-            Container(padding: EdgeInsets.only(right: 10), child: Text(posStr)),
-            Expanded(
-              //height: 80,
-              //padding: EdgeInsets.symmetric(horizontal: 10),
-              child: FlutterSlider(
-                jump: true,
-                values: [0],
-                min: 0,
-                max: 100,
-                fixedValues: [
-                  FlutterSliderFixedValue(percent: 0, value: ""),
-                  FlutterSliderFixedValue(percent: 33, value: ""),
-                  FlutterSliderFixedValue(percent: 66, value: ""),
-                  FlutterSliderFixedValue(percent: 100, value: ""),
-                ],
-                // ignoreSteps: [
-                //   FlutterSliderIgnoreSteps(from: 1, to: 32),
-                //   FlutterSliderIgnoreSteps(from: 33, to: 65),
-                //   FlutterSliderIgnoreSteps(from: 67, to: 99),
-                // ],
-                step: FlutterSliderStep(step: 33),
-                handlerWidth: 25,
-                hatchMark: FlutterSliderHatchMark(
-                  linesDistanceFromTrackBar: -12,
-                  labelsDistanceFromTrackBar: -50,
-                  density: 0.15,
-                  displayLines: true,
-                  bigLine: FlutterSliderSizedBox(
-                      height: 15,
-                      width: 15,
-                      decoration: BoxDecoration(
-                          color: Colors.black45,
-                          borderRadius: BorderRadius.circular(20))),
-                  smallLine: FlutterSliderSizedBox(height: 1, width: 1),
-                  labels: [
-                    FlutterSliderHatchMarkLabel(
-                        percent: 0,
-                        label: Text('なし', style: TextStyle(fontSize: 10))),
-                    FlutterSliderHatchMarkLabel(
-                        percent: 33,
-                        label: Text('少しある', style: TextStyle(fontSize: 10))),
-                    FlutterSliderHatchMarkLabel(
-                        percent: 66,
-                        label: Text('ある', style: TextStyle(fontSize: 10))),
-                    FlutterSliderHatchMarkLabel(
-                        percent: 100,
-                        label: Text('かなりある', style: TextStyle(fontSize: 10))),
-                  ],
-                ),
-                //rangeSlider: true,
-                //visibleTouchArea: true,
-                trackBar: FlutterSliderTrackBar(
-                  inactiveTrackBarHeight: 5,
-                  activeTrackBarHeight: 5,
-                  activeTrackBarDraggable: true,
-                  inactiveTrackBar: BoxDecoration(color: Colors.black12),
-                  activeTrackBar: BoxDecoration(color: Colors.black12),
-                ),
-                handler: FlutterSliderHandler(
-                  decoration: BoxDecoration(),
-                  child: Container(
-                    decoration: new BoxDecoration(
-                      color: Color.fromARGB(255, 0, 184, 169),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
-                selectByTap: true,
-                onDragging: (handlerIndex, lowerValue, upperValue) {},
               ),
             ),
           ],

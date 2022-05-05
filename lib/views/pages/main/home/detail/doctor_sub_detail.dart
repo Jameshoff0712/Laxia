@@ -10,6 +10,7 @@ import 'package:laxia/views/pages/main/home/sub/home_counseling.dart';
 import 'package:laxia/views/pages/main/home/sub/home_diary.dart';
 import 'package:laxia/views/pages/main/home/sub/home_question.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Doctor_Sub_Detail extends StatefulWidget {
   final int index;
@@ -41,6 +42,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
   }
   @override
   void initState() {
+    print(widget.doctor_detail["avator"]);
     initSettings();
     _tabController = new TabController(initialIndex: widget.index,length: 5, vsync: this);
     super.initState();
@@ -48,7 +50,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return treatment.isNotEmpty? Scaffold(
       body: SafeArea(
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -60,26 +62,75 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        iconSize:30,
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: Icon(FontAwesomeIcons.chevronCircleLeft,
-                              size: 30, color: Colors.black.withOpacity(0.7))
+                      
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushNamed("/Mypage");
+                            },
+                            child: SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(25),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl:
+                                      widget.doctor_detail["avatar"],
+                                  placeholder: (context, url) =>
+                                      Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.cover,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                    'assets/images/profile.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  widget.doctor_detail["name"],
+                                  style: TextStyle(
+                                      color:
+                                          Helper.blackColor,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.star,color: Colors.yellow,size: 10,),
+                                    Text(
+                                      widget.doctor_detail["mark"],
+                                      style: TextStyle(
+                                          color:
+                                              Helper.blackColor,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                )
+                            ],
+                          ),
+                        ],
                       ),
-                      Text(
-                          widget.doctor_detail["name"],
-                          style: TextStyle(
-                              color:
-                                  Helper.blackColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700),
-                        ),
+                      
                       SvgPicture.asset(
-                        "icons/upright.svg",
-                        width: 30,
-                        height: 30,
+                        "assets/icons/upright_nobg.svg",
+                        width: 20,
+                        height: 20,
                       ),
                     ],
                   ),
@@ -157,6 +208,6 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
               ),
         ],),
       ),
-    );
+    ):Scaffold();
   }
 }

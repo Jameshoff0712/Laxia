@@ -20,37 +20,32 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     int? prevUserId;
     return Scaffold(
-      backgroundColor: Helper.lightGrey,
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: Helper.whiteColor,
-            height: 44,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.close,
-                    size: 22,
-                    color: Color.fromARGB(255, 51, 51, 51),
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                Text('湘南美容クリニック　銀座院',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    )),
-                SizedBox(
-                  width: 40,
-                )
-              ],
-            ),
+      appBar: AppBar(
+        backgroundColor: Helper.whiteColor,
+        shadowColor: Helper.whiteColor,
+        title: Text(
+          '湘南美容クリニック　銀座院',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            height: 1.5,
+            color: Helper.titleColor,
           ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.close,
+              color: Helper.titleColor,
+              size: 30,
+            )),
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
           Expanded(
               child: ListView.builder(
                   reverse: true,
@@ -98,7 +93,6 @@ class _ChatScreenState extends State<ChatScreen> {
                 hintText: 'Name of pill',
                 hintStyle: TextStyle(
                   color: Color.fromARGB(255, 156, 161, 161),
-                  
                   fontSize: 12,
                   height: 1.5,
                   fontWeight: FontWeight.w400,
@@ -106,7 +100,6 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               style: TextStyle(
                 color: Color.fromARGB(255, 51, 51, 51),
-                
                 fontSize: 12,
                 height: 1.5,
                 fontWeight: FontWeight.w400,

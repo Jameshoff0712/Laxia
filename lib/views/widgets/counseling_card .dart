@@ -58,36 +58,41 @@ class _Counseling_CardState extends State<Counseling_Card> {
             onTap: widget.onpress,
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 29,
-                      width: 29,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: widget.avator,
-                          placeholder: (context, url) => Image.asset(
-                            'assets/images/loading.gif',
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushNamed('/Userpage');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 29,
+                        width: 29,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                          ),
-                          errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/ProDoctor.png',
-                            fit: BoxFit.cover,
+                            imageUrl: widget.avator,
+                            placeholder: (context, url) => Image.asset(
+                              'assets/images/loading.gif',
+                              fit: BoxFit.cover,
+                            ),
+                            errorWidget: (context, url, error) => Image.asset(
+                              'assets/images/profile.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Text(
-                      widget.name,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: Helper.titleColor),
-                    ),
-                  ],
+                      Text(
+                        widget.name,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: Helper.titleColor),
+                      ),
+                    ],
+                  ),
                 ),
                 Text(
                       widget.sentence,
@@ -123,7 +128,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -147,7 +152,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -171,7 +176,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -195,7 +200,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Image.asset(
-                                  'assets/images/ProDoctor.png',
+                                  'assets/images/profile.png',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -211,7 +216,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/ping.svg",
+                        "assets/icons/menubar/ping.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -236,7 +241,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/clinic.svg",
+                        "assets/icons/menubar/clinic.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -261,7 +266,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        "icons/menubar/part.svg",
+                        "assets/icons/menubar/part.svg",
                         width: 12,
                         height: 12,
                       ),
@@ -290,7 +295,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SvgPicture.asset(
-                              "icons/menubar/eye.svg",
+                              "assets/icons/menubar/eye.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -308,7 +313,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               width: 10,
                             ),
                             SvgPicture.asset(
-                              "icons/menubar/heart.svg",
+                              "assets/icons/menubar/heart.svg",
                               width: 13,
                               height: 13,
                             ),
@@ -326,7 +331,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               width: 10,
                             ),
                             SvgPicture.asset(
-                              "icons/menubar/comment.svg",
+                              "assets/icons/menubar/comment.svg",
                               width: 13,
                               height: 13,
                             ),

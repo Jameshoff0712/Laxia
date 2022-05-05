@@ -6,25 +6,25 @@ class OnBoardingInstructions {
 
 List<OnBoardingInstructions> onBoardingInstructions = [
   OnBoardingInstructions(
-    "images/home/Home1.png",
+    "assets/images/home/Home1.png",
     "あなたの悩みやしたい施術から",
     "日記を探してみよう",
     "",
   ),
   OnBoardingInstructions(
-    "images/home/Home2.png",
+    "assets/images/home/Home2.png",
     "もう失敗しない！簡単にあなたにぴったりな",
     "クリニックやドクターが見つかる",
     "",
   ),
   OnBoardingInstructions(
-    "images/home/Home3.png",
+    "assets/images/home/Home3.png",
     "たった1分で予約完了！",
     "チャットで簡単にクリニックの予約が可能",
     "",
   ),
   OnBoardingInstructions(
-    "images/home/Home4.png",
+    "assets/images/home/Home4.png",
     "施術が終わったら日記を書いて、",
     "友達に共有しよう",
     "",

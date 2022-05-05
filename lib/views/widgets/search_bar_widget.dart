@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 
 class SearchbarWidget extends StatefulWidget {
+  final String? hinttext;
   final bool state;
   final bool? issuffixicon;
   final VoidCallback? onchange, oncompleted, onpress;
@@ -14,7 +15,7 @@ class SearchbarWidget extends StatefulWidget {
       this.onchange,
       this.oncompleted,
       this.issuffixicon = false,
-      this.onpress})
+      this.onpress, this.hinttext="施術名やクリニック名で検索"})
       : super(key: key);
 
   @override
@@ -32,8 +33,10 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly:widget.state?true:false,
       autofocus: false,
       onTap: () {
+        FocusScope.of(context).unfocus();
         if (widget.state) {
           Navigator.of(context).pushNamed("/SearchView");
         }
@@ -59,18 +62,18 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
       decoration: InputDecoration(
         suffixIcon: widget.issuffixicon!
             ? Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(14.0),
               child: InkWell(
                   onTap: () {
                     widget.onpress!();
                   },
                   child: Container(
-                    width:10,
-                    height:10,
+                    width:13,
+                    height:13,
                     child: SvgPicture.asset(
-                      "icons/close.svg",
-                      width: 5,
-                      height: 5,
+                      "assets/icons/close.svg",
+                      width: 3,
+                      height: 3,
                     ),
                   ),
                 ),
@@ -83,7 +86,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
         prefixIcon: Icon(
           Icons.search,
           color: Helper.searchBartxtColor,
-          size: 16,
+          size: 23,
         ),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Helper.whiteColor),
@@ -92,7 +95,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
             borderSide: BorderSide(color: Helper.whiteColor),
             borderRadius: BorderRadius.all(Radius.circular(5.0))),
         contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-        hintText: '施術名やクリニック名で検索',
+        hintText: widget.hinttext!,
         hintStyle: TextStyle(
           color: Helper.searchBartxtColor,
           fontSize: 14,

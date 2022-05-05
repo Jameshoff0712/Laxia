@@ -51,7 +51,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>   with SingleTick
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return treatment.isNotEmpty? Scaffold(
       body: SafeArea(
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -64,12 +64,8 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>   with SingleTick
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        iconSize:30,
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: Icon(FontAwesomeIcons.chevronCircleLeft,
-                              size: 30, color: Colors.black.withOpacity(0.7))
+                        icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
+                        onPressed: () => Navigator.pop(context),
                       ),
                       Text(
                           widget.clinic_Detail["name"],
@@ -80,9 +76,9 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>   with SingleTick
                               fontWeight: FontWeight.w700),
                         ),
                       SvgPicture.asset(
-                        "icons/upright.svg",
-                        width: 30,
-                        height: 30,
+                        "assets/icons/upright_nobg.svg",
+                        width: 20,
+                        height: 20,
                       ),
                     ],
                   ),
@@ -148,7 +144,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>   with SingleTick
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "さあ, はじめよう！",
+                      "クリニックを予約",
                       style: defaultTextStyle(
                           Helper.whiteColor, FontWeight.w700,
                           size: 14),
@@ -156,11 +152,11 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>   with SingleTick
                   ],
                 ),
                 onPressed: () {
-                  
+                  Navigator.of(context).pushNamed("/Reservation");
                 },
               ),
         ],),
       ),
-    );
+    ):Scaffold();
   }
 }

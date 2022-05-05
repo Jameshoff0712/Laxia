@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +16,7 @@ import 'services/settings_service.dart' as settingRepo;
 import 'package:global_configuration/global_configuration.dart';
 
 Future<void> main() async {
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized(); //async program
   await GlobalConfiguration().loadFromAsset("configurations");
   SystemChrome.setPreferredOrientations(
@@ -35,6 +37,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     settingRepo.initSettings();
     super.initState();
   }
@@ -63,7 +66,7 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W6'),
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
-            initialRoute: '/Pages',
+            initialRoute: '/Splash',
             onGenerateRoute: RouteGenerator.generateRoute,
             locale: _setting.mobileLanguage.value,
             localizationsDelegates: const [

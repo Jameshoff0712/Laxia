@@ -3,14 +3,21 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_user.dart';
 
 class FollowerCardWidget extends StatefulWidget {
+  final String photo, name, nickname;
+  const FollowerCardWidget(
+      {Key? key,
+      required this.photo,
+      required this.name,
+      required this.nickname})
+      : super(key: key);
+
   @override
-  State<FollowerCardWidget> createState() => _FollowerCardWidget();
+  State<FollowerCardWidget> createState() => _FollowerCardWidgetState();
 }
 
-class _FollowerCardWidget extends State<FollowerCardWidget> {
+class _FollowerCardWidgetState extends State<FollowerCardWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       padding: EdgeInsets.all(8.0),
       child: Row(
@@ -31,46 +38,51 @@ class _FollowerCardWidget extends State<FollowerCardWidget> {
           Expanded(
               child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: Text(
-                          "りりこ",
-                          style: defaultTextStyle(
-                              Helper.appTxtColor, FontWeight.w700,
-                              size: 20),
-                        )),
-                    SizedBox(
-                      height: 2.0,
+                    Text(
+                      "りりこ",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 18, 18, 18),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          height: 1.5),
                     ),
-                    Flexible(
-                        flex: 1,
-                        fit: FlexFit.tight,
-                        child: Text(
-                          "@tanaka_kei",
-                          style: defaultTextStyle(
-                              Helper.lightGrey, FontWeight.w700,
-                              size: 20),
-                        )),
+                    Text(
+                      "@tanaka_kei",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 102, 110, 110),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          height: 1.5),
+                    ),
                   ],
                 ),
               ),
-              OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      shape: StadiumBorder(),
-                      side: BorderSide(width: 1, color: Helper.mainColor)),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Helper.mainColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Text(
-                    "フォロー中",
-                    style: defaultTextStyle(Helper.mainColor, FontWeight.w100,
-                        size: 16),
-                  )),
+                    "フォローする",
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                        color: Helper.whiteColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 10,
+                        height: 1.5),
+                  ),
+                ),
+              )
             ],
           ))
         ],

@@ -4,7 +4,7 @@ import 'package:laxia/common/helper.dart';
 class SelectBoxWidget extends StatefulWidget {
   String name = '';
   List<String> items = [];
-  String chosenValue = '';
+  String? chosenValue;
   SelectBoxWidget(
       {required this.name, required this.items, required this.chosenValue});
   @override
@@ -16,9 +16,9 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
   @override
   void initState() {
     super.initState();
-    _chosenValue = widget.chosenValue;
+    _chosenValue = widget.chosenValue!;
     setState(() {
-      _chosenValue = widget.chosenValue;
+      _chosenValue = widget.chosenValue!;
     });
   }
 
@@ -31,27 +31,41 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
         children: [
           Text(
             widget.name,
-            style: TextStyle(color: Helper.appTxtColor),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 14,
+              height: 1.5,
+              color: Color.fromARGB(255, 18, 18, 18),
+            ),
           ),
           SizedBox(
             height: 10,
           ),
           DropdownButtonFormField<String>(
-              value: _chosenValue,
-              items: widget.items
-                  .map((item) => DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(
-                          item,
-                          style: TextStyle(color: Helper.blackColor),
+            items: widget.items
+                .map((item) => DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          height: 1.5,
+                          color: Color.fromARGB(255, 18, 18, 18),
                         ),
-                      ))
-                  .toList(),
-              onChanged: (String? value) {
-                setState(() {
-                  _chosenValue = value!;
-                });
-              }),
+                      ),
+                    ))
+                .toList(),
+            onChanged: (String? value) {
+              setState(() {
+                _chosenValue = value!;
+              });
+            },
+            validator: (v) {
+              if (v!.isEmpty) return '選んでください';
+              return null;
+            },
+          ),
         ],
       ),
     );

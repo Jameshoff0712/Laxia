@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
+import 'package:video_player/video_player.dart';
 
 class Home_Card extends StatefulWidget {
   final VoidCallback onpress;
   final bool? isimage;
-  final String source, title, type, clinic, doctorimage, name, recommend, chat;
+  final String source, doctorimage, title, type, clinic, name, recommend, chat;
   const Home_Card(
       {Key? key,
       this.isimage = true,
@@ -26,6 +29,44 @@ class Home_Card extends StatefulWidget {
 }
 
 class _Home_CardState extends State<Home_Card> {
+  final apiUrl = dotenv.env["DEV_API_URL"];
+  late String source,doctorimage;
+  bool isvideo=false;
+  late  VideoPlayerController _controller;
+  @override 
+  void initState(){
+    if(!widget.source.contains(".jpg")&&!widget.source.contains(".png")){
+      setState(() {
+        isvideo=true;
+      });
+      _controller = VideoPlayerController.network(widget.source)
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
+    }
+    if(widget.source.contains("https://")){
+      setState(() {
+        source=widget.source;
+      });
+    }
+    else{
+      setState(() {
+        source=apiUrl!+"/"+widget.source;
+      });
+    }
+    if(widget.doctorimage.contains("https://")){
+      setState(() {
+        doctorimage=widget.doctorimage;
+      });
+    }
+    else{
+      setState(() {
+        doctorimage=apiUrl!+"/"+widget.doctorimage;
+      });
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return FittedBox(
@@ -44,17 +85,49 @@ class _Home_CardState extends State<Home_Card> {
               SizedBox(
                 height: 175,
                 width: double.infinity,
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: widget.source,
-                  placeholder: (context, url) => Image.asset(
-                    'assets/images/loading.gif',
-                    fit: BoxFit.cover,
-                  ),
-                  errorWidget: (context, url, error) => Image.asset(
-                    'assets/images/ProDoctor.png',
-                    fit: BoxFit.cover,
-                  ),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    isvideo? LayoutBuilder(
+                        builder: (context, constraints) => _controller.value.isInitialized
+                            ? AspectRatio(
+                                aspectRatio: 1,
+                                // _controller.value.aspectRatio,
+                                child: VideoPlayer(_controller),
+                              )
+                            : Container(),
+                      ): SizedBox(
+                        width: 175,
+                        height: 175,
+                        child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: source,
+                        placeholder: (context, url) => Image.asset(
+                          'assets/images/loading.gif',
+                          fit: BoxFit.cover,
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          'assets/images/Profile.png',
+                          fit: BoxFit.cover,
+                        ),
+                    ),
+                      ),
+                    isvideo? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: (){
+                                Navigator.of(context).push(
+                                   MaterialPageRoute(
+                            builder: (context) => PageViewWidget(onBoardingInstructions: ["1"],isimage:false)));   //
+                        },
+                        child: SvgPicture.asset(
+                                "assets/icons/menubar/video_play.svg",
+                                width: 24,
+                                height: 24,
+                              ),
+                      ),
+                    ):Container(),
+                  ],
                 ),
               ),
               Padding(
@@ -63,7 +136,9 @@ class _Home_CardState extends State<Home_Card> {
                   children: [
                     Center(
                       child: Text(
-                        widget.title,
+                        widget.title+"\n",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -75,7 +150,7 @@ class _Home_CardState extends State<Home_Card> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/menubar/ping.svg",
+                            "assets/icons/menubar/ping.svg",
                             width: 12,
                             height: 12,
                           ),
@@ -100,7 +175,7 @@ class _Home_CardState extends State<Home_Card> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/menubar/clinic.svg",
+                            "assets/icons/menubar/clinic.svg",
                             width: 12,
                             height: 12,
                           ),
@@ -109,6 +184,8 @@ class _Home_CardState extends State<Home_Card> {
                           ),
                           Text(
                             widget.clinic,
+                             maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
@@ -127,15 +204,15 @@ class _Home_CardState extends State<Home_Card> {
                           width: 13,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(7),
-                            child: CachedNetworkImage(
+                            child:CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl: widget.doctorimage,
+                              imageUrl: doctorimage,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,
                               ),
                               errorWidget: (context, url, error) => Image.asset(
-                                'assets/images/ProDoctor.png',
+                                'assets/images/Profile.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -148,36 +225,45 @@ class _Home_CardState extends State<Home_Card> {
                               fontWeight: FontWeight.w400,
                               color: Helper.txtColor),
                         ),
-                        SizedBox(
-                          width: 25,
+                        
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SvgPicture.asset(
+                                "assets/icons/menubar/heart.svg",
+                                width: 10,
+                                height: 9,
+                              ),
+                              Text(
+                                widget.recommend,
+                                style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w400,
+                                    color: Helper.txtColor),
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              SvgPicture.asset(
+                                "assets/icons/menubar/comment.svg",
+                                width: 10,
+                                height: 9,
+                              ),
+                              Text(
+                                widget.recommend,
+                                style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w400,
+                                    color: Helper.txtColor),
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                            ],
+                          ),
                         ),
-                        SvgPicture.asset(
-                          "icons/menubar/heart.svg",
-                          width: 10,
-                          height: 9,
-                        ),
-                        Text(
-                          widget.recommend,
-                          style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                              color: Helper.txtColor),
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        SvgPicture.asset(
-                          "icons/menubar/comment.svg",
-                          width: 10,
-                          height: 9,
-                        ),
-                        Text(
-                          widget.recommend,
-                          style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                              color: Helper.txtColor),
-                        ),
+                        
                       ],
                     ),
                   ],

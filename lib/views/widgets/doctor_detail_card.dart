@@ -31,8 +31,8 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => Doctor_Detail()));
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (_) => Doctor_Detail()));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
@@ -219,7 +219,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          "icons/doctor.svg",
+                          "assets/icons/doctor.svg",
                           width: 15,
                           height: 15,
                         ),
@@ -261,7 +261,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/history.svg",
+                            "assets/icons/history.svg",
                             width: 15,
                             height: 15,
                           ),
@@ -304,7 +304,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                       child: Row(
                         children: [
                           SvgPicture.asset(
-                            "icons/qualify.svg",
+                            "assets/icons/qualify.svg",
                             width: 15,
                             height: 15,
                           ),

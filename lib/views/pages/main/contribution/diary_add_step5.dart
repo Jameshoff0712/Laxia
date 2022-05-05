@@ -173,7 +173,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
             Container(
               padding: EdgeInsets.only(right: 10),
               child: SvgPicture.asset(
-                "icons/check_circle.svg",
+                "assets/icons/check_circle.svg",
                 width: 25,
                 height: 25,
                 color: (status)

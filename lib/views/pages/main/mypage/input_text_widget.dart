@@ -26,21 +26,32 @@ class _InputTextWidgetState extends State<InputTextWidget> {
     // TODO: implement build
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              widget.labelName,
-              style: TextStyle(color: Helper.appTxtColor),
-            ),
-            Text(
-              "${_enteredText.length}/${widget.maxLegnth}",
-              style: TextStyle(color: Helper.darkGrey),
-            )
-          ],
-        ),
-        SizedBox(
-          height: 10.0,
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.labelName,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  height: 1.5,
+                  color: Color.fromARGB(255, 18, 18, 18),
+                ),
+              ),
+              if (widget.maxLegnth != '')
+                Text(
+                  "${_enteredText.length}/${widget.maxLegnth}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                    height: 1.5,
+                    color: Helper.maintxtColor,
+                  ),
+                )
+            ],
+          ),
         ),
         TextFormField(
           onChanged: (value) {
@@ -48,12 +59,33 @@ class _InputTextWidgetState extends State<InputTextWidget> {
               _enteredText = value;
             });
           },
+          validator: (v) {
+            if (v!.isEmpty) return '入力してください';
+            // final regex = RegExp('^[1-9]+[0-9]*');
+            // if (!regex.hasMatch(v)) return 'Enter a valid point value';
+            return null;
+          },
+          maxLength: int.parse(widget.maxLegnth),
           decoration: InputDecoration(
             hintText: widget.placeHolder,
+            counterText: "",
+            hintStyle: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 14,
+                height: 1.5,
+                color: Helper.txtColor),
             focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Helper.darkGrey, width: 2.0)),
+                borderSide: BorderSide(
+                    color: Color.fromARGB(255, 240, 242, 245), width: 2.0)),
             border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Helper.darkGrey, width: 2.0)),
+                borderSide: BorderSide(
+                    color: Color.fromARGB(255, 240, 242, 245), width: 2.0)),
+          ),
+          style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+              height: 1.5,
+              color: Color.fromARGB(255, 18, 18, 18)
           ),
         ),
       ],

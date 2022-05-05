@@ -64,8 +64,9 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    return SafeArea(
+    return (partResult.isNotEmpty&&treatment.isNotEmpty)? SafeArea(
       child: Scaffold(
+        backgroundColor:Helper.whiteColor,
         body: Column(
           children: [
             Padding(
@@ -257,6 +258,6 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
           ],
         ),
       ),
-    );
+    ):Scaffold();
   }
 }
