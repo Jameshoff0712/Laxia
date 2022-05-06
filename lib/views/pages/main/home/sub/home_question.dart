@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/question/question_model.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
 import 'package:laxia/provider/user_provider.dart';
@@ -231,7 +232,11 @@ class _Home_QuestionState extends State<Home_Question> {
                           eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
                           name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
                           onpress: () {
-                            Navigator.of(context).pushNamed("/QuestionDetail");
+                             Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => QuestionDetail(index:  question_data.data[index].id)));
+                            //Navigator.of(context).pushNamed("/QuestionDetail");
                           },
                           sentence:question_data.data[index].content==null?"": question_data.data[index].content!,
                           type:"二重切開" //question_data.data[index]["type"],

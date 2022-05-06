@@ -172,10 +172,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => AddCounselStep2Page());
       case '/AddQuestion':
         return MaterialPageRoute(builder: (_) => AddQuestion());
-      case '/QuestionDetail':
-        return MaterialPageRoute(builder: (_) => QuestionDetail());
-      case '/CaseDetail':
-        return MaterialPageRoute(builder: (_) => CaseDetail());
+      // case '/QuestionDetail':
+      //   return MaterialPageRoute(builder: (_) => QuestionDetail());
+      // case '/CaseDetail':
+      //   return MaterialPageRoute(builder: (_) => CaseDetail());
       case '/CounselDetail':
         return MaterialPageRoute(builder: (_) => CounselDetail());
       case '/DiaryDetailDefault':

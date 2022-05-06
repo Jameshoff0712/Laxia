@@ -49,7 +49,7 @@ class _Detail_ImageState extends State<Detail_Image> {
                     width: MediaQuery.of(context).size.width,
                     child: CachedNetworkImage(
                       fit: BoxFit.fill,
-                      imageUrl: image.path,
+                      imageUrl: image,
                       placeholder: (context, url) => Image.asset(
                         'assets/images/loading.gif',
                         fit: BoxFit.cover,

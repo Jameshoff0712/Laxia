@@ -1,4 +1,5 @@
 import 'package:laxia/models/case/case_model.dart';
+import 'package:laxia/models/case/case_sub_model.dart';
 import 'package:laxia/models/clinic/clinic_model.dart';
 import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/diary/diary_model.dart';
@@ -7,7 +8,9 @@ import 'package:laxia/models/doctor/doctordetail_model.dart';
 import 'package:laxia/models/home/home_model.dart';
 import 'package:laxia/models/home/home_search_model.dart';
 import 'package:laxia/models/menu/menu_model.dart';
+import 'package:laxia/models/question/comment_model.dart';
 import 'package:laxia/models/question/question_model.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/models/token_model.dart';
 import 'package:laxia/services/http/api.dart';
 
@@ -50,11 +53,32 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/doctors/"+index.toString(), token);
     return DoctorDetail_Model.fromJson(res.data["doctor"]);
   }
+  Future<bool> postToogleFavorite(int index,String domain) async {
+    String? token = await preferenceUtil.getToken();
+    final res=await Api.post("$apiUrl/$domain/"+index.toString()+"/toggleFavorite",<String, String>{},token);
+    if(res!.data["status"]==1){
+      return true;
+    }
+    return false;
+  }
+  Future<bool> postToogleLike(int index,String domain) async {
+    String? token = await preferenceUtil.getToken();
+    final res=await Api.post("$apiUrl/$domain/"+index.toString()+"/toggleLike",<String, String>{},token);
+    if(res!.data["status"]==1){
+      return true;
+    }
+    return false;
+  }
   Future<Case> getCaseData(String per_page, String page, String clinic_id, String doctor_id, String q) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/cases?per_page="+per_page+"&page="+page+"&clinic_id="+clinic_id+"&doctor_id="+doctor_id+"&q="+q, token);
     // print(res.data["cases"]);
     return Case.fromJson(res.data["cases"]);
+  }
+  Future<Case_Sub_Model> getCaseDetail(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/cases/"+index.toString(), token);
+    return Case_Sub_Model.fromJson(res.data["case"]);
   }
    Future<Counceling> getCouncelingData(String per_page, String page, String category_id, String patient_id, String favorote, String pref_id, String city, String orderby) async {
     String? token = await preferenceUtil.getToken();
@@ -67,5 +91,25 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/questions?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&pref_id="+pref_id+"&city="+city+"&orderby="+orderby, token);
     //  print(res.data["data"]["questions"]);
     return Question.fromJson(res.data["data"]["questions"]);
+  }
+  Future<Question_Sub_Model> getQuestionDetail(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/questions/"+index.toString(), token);
+    return Question_Sub_Model.fromJson(res.data["data"]["question"]);
+  }
+  Future<Comment> getCommentList(int index,String domain,String page, String per_page) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/$domain/"+index.toString()+"/comments?per_page=$per_page&page=$page",token);
+    return Comment.fromJson(res.data["data"]);
+  }
+  Future<Comment_Sub_Model> postComment(int index,String domain,String comment, String? parent_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res;
+    if(parent_id==null){
+       res = await Api.post("$apiUrl/$domain/"+index.toString()+"/comments",<String, String>{"comments[comment]":comment},token);
+    }else{
+       res = await Api.post("$apiUrl/$domain/"+index.toString()+"/comments",<String, String>{"comments[comment]":comment,"comments[parent_id]":parent_id},token);
+    }
+    return Comment_Sub_Model.fromJson(res!.data["data"]["comment"]);
   }
 }

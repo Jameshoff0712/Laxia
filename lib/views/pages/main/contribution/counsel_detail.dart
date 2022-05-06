@@ -266,7 +266,7 @@ SvgPicture.asset(
                       ),
                       context: context,
                       builder: (context) {
-                        return CommentDialogSheet();
+                        return CommentDialogSheet(count: 0, index: 0, domain: 'counceling',);
                       });
                 },
                 child: Column(

@@ -293,7 +293,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => QuestionDetail(
-                                        isMyDiary: true,
+                                        isMyDiary: true, index: mid[index].id,
                                       )));
                         },
                       );

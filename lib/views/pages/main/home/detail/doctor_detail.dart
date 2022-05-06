@@ -30,13 +30,26 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
   Future<void> getData({required int index}) async {
     try {
       final mid = await _con.getDoctorDetail(index: index);
-      doctor_detail = mid;
-      isloading = false;
+      setState(() {
+        doctor_detail = mid;
+         isfavourite=doctor_detail.doctor.is_favorite==null?false:doctor_detail.doctor.is_favorite!;
+         isloading = false;
+      });
     } catch (e) {
       print(e.toString());
     }
   }
-
+  Future<void> postToogleFavorite(index) async {
+    try {
+      final res=await _con.postToogleFavorite(index:index, domain: 'doctors');
+      if(res==true){
+        setState(() {
+          isfavourite=!isfavourite;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   void initState() {
     getData(index: widget.index);
@@ -95,7 +108,12 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             isDoctor: true,
                             insidestar: true,
                             height: 375,
-                            imageList:[],// doctor_detail.["images"],
+                            imageList:[
+                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg"
+                            ],// doctor_detail.["images"],
                             onPressUpRight: () {},
                             onPressBack: () {
                               Navigator.of(context).pop();
@@ -125,14 +143,14 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                 child: Column(
                                   children: [
                                     Doctor_DetailCard(
-                                        image: doctor_detail.doctor.photo!,
-                                        clinic: doctor_detail.clinic.name!,
+                                        image: doctor_detail.doctor.photo==null?"http://error.png":doctor_detail.doctor.photo!,
+                                        clinic:doctor_detail.clinic==null?"": doctor_detail.clinic.name!,
                                         name: doctor_detail.doctor.name!,
                                         mark: 4.5.toString(),//doctor_detail.doctor.mark,
-                                        post: doctor_detail.doctor.job_name!,
+                                        post: doctor_detail.doctor.job_name==null?"":doctor_detail.doctor.job_name!,
                                         profile:[{"title":"専門領域","content": ""},
-                                                  {"title":"経歴","content": doctor_detail.doctor.career},
-                                                  {"title":"資格","content": doctor_detail.doctor.profile}
+                                                  {"title":"経歴","content": doctor_detail.doctor.career==null?"":doctor_detail.doctor.career},
+                                                  {"title":"資格","content": doctor_detail.doctor.profile==null?"":doctor_detail.doctor.profile}
                                                 ],
                                         items: [0,doctor_detail.counselings.length, doctor_detail.cases.length])
                                   ],
@@ -266,6 +284,143 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                       ? ""
                                       :doctor_detail.diaries[index].doctor_name!,
                                 );
+                            }), 
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {},
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "すべての日記",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 156, 161, 161),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Icon(
+                                      Icons.navigate_next,
+                                      size: 15,
+                                      color: Color.fromARGB(255, 156, 161, 161),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                   SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    color: Helper.whiteColor,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "症例",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 51, 51, 51),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    doctor_detail.cases
+                                            .length
+                                            .toString() +
+                                        "件",
+                                    style: TextStyle(
+                                        color: Helper.darkGrey,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                ],
+                              ),
+                              InkWell( 
+                                onTap: () {
+                                  // Navigator.of(context).push(MaterialPageRoute(
+                                  //     builder: (_) => Doctor_Sub_Detail(
+                                  //           doctor_detail: doctor_detail.,
+                                  //           index: 1,
+                                  //         )));
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "すべての日記",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 156, 161, 161),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Icon(
+                                      Icons.navigate_next,
+                                      size: 15,
+                                      color: Color.fromARGB(255, 156, 161, 161),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: doctor_detail.cases.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Diary_Card(
+                                onpress: () {
+                                  Navigator.of(context).pushNamed("/CaseDetail");
+                                },
+                                buttoncolor: Helper.btnBgMainColor,
+                                buttontext: "症例",
+                                avator:
+                                    doctor_detail.cases[index].clinic!.photo == null
+                                        ? "http://error.png"
+                                        : doctor_detail.cases[index].clinic!.photo!,
+                                check: doctor_detail.cases[index].doctor == null
+                                    ? ""
+                                    : doctor_detail.cases[index].doctor!,
+                                image2:
+                                    "http://error.png", // doctor_detail.cases[index]["image2"],
+                                image1:
+                                    "http://error.png", // doctor_detail.cases[index]["image1"],
+                                eyes: doctor_detail.cases[index].views_count == null
+                                    ? ""
+                                    : doctor_detail.cases[index].views_count
+                                        .toString(),
+                                name: doctor_detail.cases[index].clinic!.name == null
+                                    ? ""
+                                    : doctor_detail.cases[index].clinic!.name!,
+                                price:doctor_detail.cases[index].menus!.isEmpty?"":(doctor_detail.cases[index].menus![0].price==null?"": doctor_detail.cases[index].menus![0].price!.toString()),
+                                sentence: doctor_detail.cases[index].treat_risk == null
+                                    ? ""
+                                    : doctor_detail.cases[index].treat_risk!,
+                                type:
+                                    doctor_detail.cases[index].case_description == null
+                                        ? ""
+                                        : doctor_detail.cases[index].case_description!,
+                              );
                             }),
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -433,9 +588,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                   children: [
                     InkWell(
                       onTap: () {
-                        setState(() {
-                          isfavourite = !isfavourite;
-                        });
+                        postToogleFavorite( widget.index);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,

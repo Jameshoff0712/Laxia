@@ -244,7 +244,7 @@ class _UserPageState extends State<UserPage>
                               context,
                               MaterialPageRoute(
                                   builder: (context) => QuestionDetail(
-                                        isMyDiary: true,
+                                        isMyDiary: true, index: mid[index].id,
                                       )));
                         },
                         sentence: mid[index]["sentence"],
