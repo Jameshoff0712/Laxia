@@ -25,7 +25,6 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
       for(int i=0; i< listFavClinic.length; i++)
         mid.add(listFavClinic[i]);
     });
-    print(mid[0].photo);
   }
   @override
   initState(){
