@@ -1,0 +1,288 @@
+[
+   {
+      "value": "0",
+      "avator": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+      "name": "たっきー",
+      "image1": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
+      "image2": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+      "sentence": "2日目、起床直後の様子です。腫れは昨日とくくら...",
+      "type": "二重切開",
+      "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-6.jpg",
+      "heading": "クイックコスメティーク法",
+      "tax": "(税込)",
+      "clinic": "ラシア美容クリニック　DEF院",
+      "check": "田中圭 医師",
+      "price": "2万8000円",
+      "eyes": "11",
+      "buttontext": "症例",
+      "hearts": "88",
+      "mark": "4.5",
+      "chats": "4",
+      "start": "2020/03/1",
+      "end": "150",
+
+      "before_image": {
+         "images": [
+            "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+            "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+            "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+            "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg"
+         ],
+         "isvideo": false
+         },
+      "clinic_menu":[
+         {
+            "label":"施術費用",
+            "list":[
+               {
+                  "label":"施術前写真撮影",
+                  "value":24000
+               },
+               {
+                  "label":"施術前写真撮影",
+                  "value":24000
+               },
+               {
+                  "label":"施術前写真撮影",
+                  "value":24000
+               },
+               {
+                  "label":"施術前写真撮影",
+                  "value":24000
+               },
+               {
+                  "label":"施術前写真撮影",
+                  "value":24000
+               },
+               {
+                  "label":"施術前写真撮影",
+                  "value":24000
+               }
+            ]
+         },
+         {
+            "label":"どんなことで悩んでいたか？",
+            "description":"二重幅が狭くて吊り目になるのが気になっていた。コンプレックスである。"
+         },
+         {
+            "label":"このクリニック、ドクターを選んだ理由は？",
+            "list":[
+               "施術費用が安い",
+               "立地が良い",
+               "予約が取りやすい",
+               "受けたい施術に特化している",
+               "ドクターの対応が良い",
+               "カウンセリングが良い",
+               "カウンセラーや看護師の対応が良い"
+            ]
+         },
+         {
+            "label":"ドクターやスタッフの対応は？",
+            "description":"前回お腹周り担当してくれた方々なので信頼してました。/n手際いいし、他のお客様いないので、貸し切りの状態です。カウンセラーの方も凄く対応よく、手際いいし、気も利かせてくれます"
+         },
+         {
+            "label":"この施術をしたいと思っている人へアドバイス",
+            "description":"前回お腹周り担当してくれた方々なので信頼してました。/n手際いいし、他のお客様いないので、貸し切りの状態です。カウンセラーの方も凄く対応よく、手際いいし、気も利かせてくれます。"
+         }
+      ],
+      "treatment":[
+         {
+            "value": 0,
+            "label": "二重埋没法"
+        },
+        {
+            "value": 1,
+            "label": "二重切開法"
+        }      
+      ],
+      "post-treatment": [
+         {
+            "post_list": {
+               "label": "施術150日後",
+               "images": [
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg"
+               ],
+               "isvideo": false
+            },
+            "description": "術後150日目になります。/n目頭切開も迷ったが、元々目が近いタイプだったので鷲鼻で鼻先が下に向いていたので、鼻尖形成に...",
+            "chat": "4",
+            "favourite": "88"
+         },
+         {            
+            "post_list": {
+               "label": "施術150日後",
+               "isvideo": false,
+               "images": [
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg"
+               ]
+            },
+            "description": "術後150日目になります。/n目頭切開も迷ったが、元々目が近いタイプだったので鷲鼻で鼻先が下に向いていたので、鼻尖形成に...",
+            "chat": "4",
+            "favourite": "88"
+         },
+         {            
+            "post_list": {
+               "label": "施術150日後",
+               "isvideo": true,
+               "images": [
+                  "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"
+               ]
+            },
+            "description": "術後150日目になります。/n目頭切開も迷ったが、元々目が近いタイプだったので鷲鼻で鼻先が下に向いていたので、鼻尖形成に...",
+            "chat": "4",
+            "favourite": "88"
+         },
+         {       
+            "post_list": {
+               "label": "施術150日後",
+               "isvideo": false,
+               "images": [
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg"
+               ]
+            },
+            "description": "術後150日目になります。/n目頭切開も迷ったが、元々目が近いタイプだったので鷲鼻で鼻先が下に向いていたので、鼻尖形成に...",
+            "chat": "4",
+            "favourite": "88"
+         },
+         {
+            "post_list": {
+               "label": "施術150日後",
+               "isvideo": false,
+               "images": [
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg"
+               ]
+            },
+            "description": "術後150日目になります。/n目頭切開も迷ったが、元々目が近いタイプだったので鷲鼻で鼻先が下に向いていたので、鼻尖形成に...",
+            "chat": "4",
+            "favourite": "88"
+         },
+         {
+            
+            "post_list": {
+               "label": "施術150日後",
+               "isvideo": false,
+               "images": [
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg"
+               ]
+            },
+            "description": "術後150日目になります。/n目頭切開も迷ったが、元々目が近いタイプだったので鷲鼻で鼻先が下に向いていたので、鼻尖形成に...",
+            "chat": "4",
+            "favourite": "88"
+         },
+         {
+            
+            "post_list": {
+               "label": "施術150日後",
+               "isvideo": false,
+               "images": [
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                  "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg"
+               ]
+            },
+            "description": "術後150日目になります。/n目頭切開も迷ったが、元々目が近いタイプだったので鷲鼻で鼻先が下に向いていたので、鼻尖形成に...",
+            "chat": "4",
+            "favourite": "88"
+         }
+      ],
+      "menus": [
+         {
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "heading": "二重術1dayナチュラルプレミアム法2点留め両目",
+            "price": "220,000円",
+            "tax": "(税込)",
+            "clinic": "湘南美容クリニック 新宿院"
+         },
+         {
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "heading": "二重術1dayナチュラルプレミアム法2点留め両目",
+            "price": "220,000円",
+            "tax": "(税込)",
+            "clinic": "湘南美容クリニック 新宿院"
+         },
+         {
+            "image": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "heading": "二重術1dayナチュラルプレミアム法2点留め両目",
+            "price": "220,000円",
+            "tax": "(税込)",
+            "clinic": "湘南美容クリニック 新宿院"
+         }
+      ],
+      "home": [
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         },
+         {
+            "title": "まず前々から気になっていたのは目の下のクマでしたあああ...",
+            "type": "二重",
+            "clinic": "湘南美容クリニック新宿...",
+            "recommend": "999",
+            "chat": "444",
+            "source": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "doctorimage": "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+            "name": "Yuka111"
+         }
+      ]
+   }
+]

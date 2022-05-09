@@ -57,6 +57,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
     } catch (e) {
     }
   }
+
   @override
   void initState() {
     getData(index: widget.index);
