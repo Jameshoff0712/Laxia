@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/diary_model.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -269,8 +270,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                                   ? ""
                                   : diary_data.data[index].patient_nickname!,
                               onpress: () {
-                                Navigator.of(context)
-                                    .pushNamed("/Diary_Detail");
+                                Navigator.of(context).push( MaterialPageRoute(builder: (_) => Diary_Detail(index:diary_data.data[index].id)));
                               },
                               price: diary_data.data[index].price == null
                                   ? ""

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/question/question_model.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
 import 'package:laxia/provider/user_provider.dart';
@@ -226,12 +227,16 @@ class _Home_QuestionState extends State<Home_Question> {
                           hearts: question_data.data[index].likes_count==null?"":question_data.data[index].likes_count!.toString(),
                           chats: question_data.data[index].comments_count==null?"":question_data.data[index].comments_count.toString(),
                           avator:question_data.data[index].owner!.photo==null?"http://error.png": question_data.data[index].owner!.photo!,
-                          image2:"http://error.png", //question_data.data[index]["image2"],
-                          image1:"http://error.png", //question_data.data[index]["image1"],
+                          image2: question_data.data[index].medias!.isEmpty?"http://error.png":question_data.data[index].medias![1].path,
+                          image1:question_data.data[index].medias!.isEmpty?"http://error.png":question_data.data[index].medias![0].path,
                           eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
                           name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
                           onpress: () {
-                            Navigator.of(context).pushNamed("/QuestionDetail");
+                             Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => QuestionDetail(index:  question_data.data[index].id)));
+                            //Navigator.of(context).pushNamed("/QuestionDetail");
                           },
                           sentence:question_data.data[index].content==null?"": question_data.data[index].content!,
                           type:"二重切開" //question_data.data[index]["type"],

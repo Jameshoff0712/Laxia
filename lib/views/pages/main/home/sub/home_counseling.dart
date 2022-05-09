@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/counseling_model.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -227,7 +228,10 @@ class _Home_CounselingState extends State<Home_Counseling> {
                         eyes: counceling_data.data[index].views_count==null?"":counceling_data.data[index].views_count!.toString(),
                         name: counceling_data.data[index].patient_nickname==null?"":counceling_data.data[index].patient_nickname!,
                          onpress: (){
-                            Navigator.of(context).pushNamed("/CounselDetail");
+                             Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CounselDetail(index:  counceling_data.data[index].id)));
                           },
                         sentence:counceling_data.data[index].content==null?"": counceling_data.data[index].content!,
                         type:"回答あり",// counceling_data.data[index]["type"],

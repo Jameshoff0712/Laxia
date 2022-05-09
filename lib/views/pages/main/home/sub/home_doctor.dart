@@ -7,6 +7,7 @@ import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 
 class Home_Doctor extends StatefulWidget {
   final bool? isScrollable,isdrawer;
@@ -146,7 +147,11 @@ class _Home_DoctorState extends State<Home_Doctor> {
                           itemBuilder: (BuildContext context, int index) {
                             return Doctor_Card(
                                 onpress: (){
-                                  Navigator.of(context).pushNamed("/Doctor_Detail");
+                                   Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Doctor_Detail(index:  doctor_data.data[index].id)));
+                                  // Navigator.of(context).pushNamed("/Doctor_Detail");
                                 },
                                 image: doctor_data.data[index].photo==null?"http://error.png": doctor_data.data[index].photo!,
                                 post: "院長", //doctor_data.data[index]["post"],
