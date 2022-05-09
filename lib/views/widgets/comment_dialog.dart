@@ -50,7 +50,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
        print("success");
        sender.text="";
     }catch(e){
-
+      print(e.toString());
     }
     
   }

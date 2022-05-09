@@ -72,7 +72,7 @@ class _CaseDetailState extends State<CaseDetail> {
                       borderRadius: BorderRadius.circular(25),
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl:"http://error.png", //  case_detail.doctorimage,
+                        imageUrl:case_detail.doctor==null?"http://error.png": case_detail.doctor!.photo,
                         placeholder: (context, url) => Image.asset(
                           'assets/images/loading.gif',
                           fit: BoxFit.cover,

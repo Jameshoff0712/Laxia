@@ -8,8 +8,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class CounselShort_Card extends StatefulWidget {
   final String clinic, doctor;
+  final VoidCallback onclinic, ondoctor;
   const CounselShort_Card(
-      {Key? key, required this.clinic, required this.doctor})
+      {Key? key, required this.clinic, required this.doctor, required this.onclinic, required this.ondoctor})
       : super(key: key);
 
   @override
@@ -61,7 +62,7 @@ class _CounselShort_CardState extends State<CounselShort_Card> {
                           size: 15,
                           color: Helper.mainColor,
                         ),
-                        onPressed: () {},
+                        onPressed: widget.onclinic,
                       ),
                     ],
                   ),
@@ -105,7 +106,7 @@ class _CounselShort_CardState extends State<CounselShort_Card> {
                           size: 15,
                           color: Helper.mainColor,
                         ),
-                        onPressed: () {},
+                        onPressed:widget.ondoctor,
                       ),
                     ],
                   ),

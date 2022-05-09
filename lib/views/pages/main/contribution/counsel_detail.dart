@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/counseling/councelingdetail_model.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step2.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -14,31 +17,71 @@ import 'package:laxia/views/widgets/comment_dialog.dart';
 
 class CounselDetail extends StatefulWidget {
   final bool isMyDiary;
-  const CounselDetail({ Key? key, this.isMyDiary = false }) : super(key: key);
+   final int index;
+  const CounselDetail({ Key? key, this.isMyDiary = false, required this.index }) : super(key: key);
   @override
   _CounselDetailState createState() => _CounselDetailState();
 }
 
 class _CounselDetailState extends StateMVC<CounselDetail> {
-  List question_Details = [];
-  bool isfavourite = false,isStar=false;
-
-  Future<void> get_counsel_info() async {
-    String mid = await rootBundle.loadString("assets/cfg/detail_counsel.json");
-    setState(() {
-      question_Details.addAll(json.decode(mid));
-    });
+  final apiUrl = dotenv.env["DEV_API_URL"];
+  bool isloading = true,isfavorite=false, islike=false;
+  final _con = HomeController();
+  late CouncelingDetail_Model counceling_detail;
+  Future<void> getData({required int index}) async {
+    try {
+      final mid = await _con.getCouncelingDetail(index: index);
+      setState(() {
+         counceling_detail = mid;
+         print(counceling_detail);
+        isfavorite=counceling_detail.counceling.is_favorite!;
+        islike=counceling_detail.counceling.is_like!;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
-
+  Future<void> postToogleFavorite(index) async {
+    try {
+      final res=await _con.postToogleFavorite(index:index, domain: 'counselings');
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
+  Future<void> postToogleLike(index) async {
+    try {
+      final res=await _con.postToogleLike(index:index, domain: 'counselings');
+      if(res==true){
+        setState(() {
+          islike=!islike;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   void initState() {
-    get_counsel_info();
+    getData(index: widget.index);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return question_Details.isNotEmpty? Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    : Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -59,7 +102,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                       borderRadius: BorderRadius.circular(25),
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl: question_Details[0]["avator"],
+                        imageUrl: counceling_detail.counceling.patient_photo,
                         placeholder: (context, url) => Image.asset(
                           'assets/images/loading.gif',
                           fit: BoxFit.cover,
@@ -78,14 +121,14 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      question_Details[0]["name"],
+                      counceling_detail.counceling.clinic_name==null ?"":counceling_detail.counceling.clinic_name!,
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 13),
                     ),
                     Text(
-                      "カウンセリング日 " + question_Details[0]["date"],
+                      "カウンセリング日 " + (counceling_detail.counceling.counseling_date==null?"":counceling_detail.counceling.counseling_date!),
                       style: TextStyle(color: Helper.darkGrey, fontSize: 10),
                     ),
                   ],
@@ -188,14 +231,12 @@ SvgPicture.asset(
             children: [
               InkWell(
                 onTap: () {
-                  setState(() {
-                    isfavourite = !isfavourite;
-                  });
+                  postToogleFavorite(widget.index);
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    isfavourite
+                    isfavorite
                         ? Icon(
                             Icons.favorite,
                             color: Helper.btnBgYellowColor,
@@ -209,7 +250,7 @@ SvgPicture.asset(
                     Text(
                       "223",
                       style: TextStyle(
-                          color: isfavourite
+                          color: isfavorite
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
                           fontSize: 12,
@@ -220,14 +261,12 @@ SvgPicture.asset(
               ),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    isStar = !isStar;
-                  });
+                  postToogleLike(widget.index);
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    isStar
+                    islike
                         ? Icon(
                             Icons.star,
                             color: Helper.btnBgYellowColor,
@@ -241,7 +280,7 @@ SvgPicture.asset(
                     Text(
                       "お気に入り",
                       style: TextStyle(
-                          color: isStar
+                          color: islike
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
                           fontSize: 12,
@@ -252,10 +291,6 @@ SvgPicture.asset(
               ),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    isfavourite = !isfavourite;
-                  });
-      
                   showModalBottomSheet(
                       constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
                       isScrollControlled: true,
@@ -266,19 +301,13 @@ SvgPicture.asset(
                       ),
                       context: context,
                       builder: (context) {
-                        return CommentDialogSheet(count: 0, index: 0, domain: 'counceling',);
+                        return CommentDialogSheet(index: widget.index,count:counceling_detail.counceling.comments_count!, domain: 'counselings',);
                       });
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    isfavourite
-                        ? Icon(
-                            FontAwesomeIcons.commentDots,
-                            color: Helper.btnBgYellowColor,
-                            size: 30,
-                          )
-                        : Icon(
+                     Icon(
                             FontAwesomeIcons.commentDots,
                             color: Helper.txtColor,
                             size: 30,
@@ -286,7 +315,7 @@ SvgPicture.asset(
                     Text(
                       "20",
                       style: TextStyle(
-                          color: isfavourite
+                          color: isfavorite
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
                           fontSize: 12,
@@ -332,7 +361,7 @@ SvgPicture.asset(
               Container(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  question_Details[0]["title"],
+                  "title is missed",//counceling_detail.counceling.,
                   style: TextStyle(
                       color: Helper.titleColor,
                       fontSize: 18,
@@ -345,7 +374,7 @@ SvgPicture.asset(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     for (int i = 0;
-                        i < question_Details[0]["surgery"].length;
+                        i < counceling_detail.counceling.categories!.length;
                         i++)
                       Center(
                         child: Container(
@@ -359,7 +388,7 @@ SvgPicture.asset(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 3),
                             child: Text(
-                              question_Details[0]["surgery"][i],
+                              counceling_detail.counceling.categories![i].name,
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -371,14 +400,9 @@ SvgPicture.asset(
                   ],
                 ),
               ),
-              InkWell(
-                onTap: (){
-                  Navigator.of(context).pushNamed("/Clinic_Detail");
-                },
-                child: CounselShort_Card(
-                    clinic: question_Details[0]["clinic"],
-                    doctor: question_Details[0]["doctor"]),
-              ),
+              CounselShort_Card(
+                  clinic: counceling_detail.clinic.name!,
+                  doctor: counceling_detail.doctor.name!, onclinic: () {  }, ondoctor: () {  },),
               Container(
                 padding: const EdgeInsets.only(top: 15, bottom: 10),
                 child: Column(
@@ -387,12 +411,12 @@ SvgPicture.asset(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      question_Details[0]["question"][0]['question'],
+                       "どんなことで悩んでいたのか？", // counceling_detail.["question"][0]['question'],
                       style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      question_Details[0]["question"][0]['answer'],
+                      counceling_detail.counceling.content!,
                       style: TextStyle(color: Helper.extraGrey, fontSize: 14),
                     ),
                   ],
@@ -417,10 +441,9 @@ SvgPicture.asset(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                PhotoCarouselWidget(
-                                  bRemove:false,
-                                    ImageList: question_Details[0]
-                                        ["self_images"], onRemove: (int ) {  },)
+                                // PhotoCarouselWidget(
+                                //   bRemove:false,
+                                //     ImageList: counceling_detail.counceling.medias![0], onRemove: (int ) {  },)
                               ],
                             ),
                           ),
@@ -449,10 +472,9 @@ SvgPicture.asset(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                PhotoCarouselWidget(
-                                  bRemove: false,
-                                    ImageList: question_Details[0]
-                                        ["ideal_images"], onRemove: (int ) {  },)
+                                // PhotoCarouselWidget(
+                                //   bRemove: false,
+                                //     ImageList: counceling_detail.counceling.medias![1], onRemove: (int ) {  },)
                               ],
                             ),
                           ),
@@ -481,10 +503,9 @@ SvgPicture.asset(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                PhotoCarouselWidget(
-                                  bRemove: false,
-                                    ImageList: question_Details[0]
-                                        ["non_ideal_images"], onRemove: (int ) {  },)
+                                // PhotoCarouselWidget(
+                                //   bRemove: false,
+                                //     ImageList: counceling_detail.counceling.medias![2], onRemove: (int ) {  },)
                               ],
                             ),
                           ),
@@ -502,12 +523,12 @@ SvgPicture.asset(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      question_Details[0]["question"][1]['question'],
+                      counceling_detail.counceling.reason!,
                       style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      question_Details[0]["question"][1]['answer'],
+                       "このクリニック、ドクターを選んだ理由は？",//counceling_detail.counceling.reason!,
                       style: TextStyle(color: Helper.extraGrey, fontSize: 14),
                     ),
                   ],
@@ -526,13 +547,11 @@ SvgPicture.asset(
                     ),
                     SizedBox(height: 10),
                     for (int i = 0;
-                        i < question_Details[0]["custom_question"].length;
+                        i < counceling_detail.questions.length;
                         i++)
                       QA_Card(
-                          question: question_Details[0]["custom_question"][i]
-                              ["question"],
-                          answer: question_Details[0]["custom_question"][i]
-                              ["answer"])
+                          question: counceling_detail.questions[i].question!,
+                          answer: counceling_detail.questions[i].answer!)
                   ],
                 ),
               ),
@@ -544,12 +563,12 @@ SvgPicture.asset(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      question_Details[0]["question"][2]['question'],
+                       "カウンセリングの様子は？",//counceling_detail.["question"][2]['question'],
                       style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      question_Details[0]["question"][2]['answer'],
+                      counceling_detail.counceling.before_counseling!,
                       style: TextStyle(color: Helper.extraGrey, fontSize: 14),
                     ),
                   ],
@@ -563,20 +582,20 @@ SvgPicture.asset(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      question_Details[0]["question"][3]['question'],
+                      "カウンセリングの様子は？",// counceling_detail.counceling.before_counseling!,
                       style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      question_Details[0]["question"][3]['answer'],
+                       counceling_detail.counceling.after_ccounseling!,
                       style: TextStyle(color: Helper.extraGrey, fontSize: 14),
                     ),
                   ],
                 ),
               ),
               CounselShort_Card(
-                  clinic: question_Details[0]["clinic"],
-                  doctor: question_Details[0]["doctor"]),
+                  clinic: counceling_detail.clinic.name!,
+                  doctor: counceling_detail.doctor.name!, onclinic: () {  }, ondoctor: () {  },),
               Container(
                   padding: const EdgeInsets.only(top: 15, bottom: 10),
                   child: Column(
@@ -599,7 +618,7 @@ SvgPicture.asset(
                                   borderRadius: BorderRadius.circular(25),
                                   child: CachedNetworkImage(
                                     fit: BoxFit.cover,
-                                    imageUrl: question_Details[0]["avator"],
+                                    imageUrl: counceling_detail.counceling.patient_photo,
                                     placeholder: (context, url) => Image.asset(
                                       'assets/images/loading.gif',
                                       fit: BoxFit.cover,
@@ -639,6 +658,6 @@ SvgPicture.asset(
           ),
         ),
       ),
-    ):Scaffold();
+    );
   }
 }

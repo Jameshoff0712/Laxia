@@ -17,7 +17,7 @@ class _Clinic_MediaListState extends State<Clinic_MediaList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(    
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,

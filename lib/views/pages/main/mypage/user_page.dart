@@ -200,7 +200,7 @@ class _UserPageState extends State<UserPage>
                             context,
                             MaterialPageRoute(
                                 builder: (context) => CounselDetail(
-                                      isMyDiary: true,
+                                      isMyDiary: true, index: 1,
                                     )));
                       },
                       sentence: mid[index]["sentence"],

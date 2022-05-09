@@ -360,7 +360,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                   //           doctor_detail: doctor_detail.,
                                   //           index: 1,
                                   //         )));
-                                },
+                                }, 
                                 child: Row(
                                   children: [
                                     Text(
@@ -400,11 +400,11 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                         : doctor_detail.cases[index].clinic!.photo!,
                                 check: doctor_detail.cases[index].doctor == null
                                     ? ""
-                                    : doctor_detail.cases[index].doctor!,
-                                image2:
-                                    "http://error.png", // doctor_detail.cases[index]["image2"],
-                                image1:
-                                    "http://error.png", // doctor_detail.cases[index]["image1"],
+                                    : doctor_detail.cases[index].doctor!.name!,
+                                image2:doctor_detail.cases[index].images!.isEmpty?"http://error.png":
+                                    doctor_detail.cases[index].images![0].path,
+                                image1:doctor_detail.cases[index].images!.isEmpty?"http://error.png":
+                                    doctor_detail.cases[index].images![1].path,
                                 eyes: doctor_detail.cases[index].views_count == null
                                     ? ""
                                     : doctor_detail.cases[index].views_count
@@ -531,8 +531,8 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                 hearts: doctor_detail.questions[index].likes_count==null?"":doctor_detail.questions[index].likes_count!.toString(),
                                 chats: doctor_detail.questions[index].comments_count==null?"":doctor_detail.questions[index].comments_count.toString(),
                                 avator:doctor_detail.questions[index].owner!.photo==null?"http://error.png": doctor_detail.questions[index].owner!.photo!,
-                                image2:"http://error.png", //doctor_detail.questions[index]["image2"],
-                                image1:"http://error.png", //doctor_detail.questions[index]["image1"],
+                                image2:doctor_detail.questions[index].medias!.isEmpty?"http://error.png":doctor_detail.questions[index].medias![1].path,
+                                image1:doctor_detail.questions[index].medias!.isEmpty?"http://error.png":doctor_detail.questions[index].medias![0].path,
                                 eyes: doctor_detail.questions[index].views_count==null?"":doctor_detail.questions[index].views_count!.toString(),
                                 name:doctor_detail.questions[index].owner!.name==null?"": doctor_detail.questions[index].owner!.name!,
                                 onpress: () {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/clinic/clinic_model.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -161,8 +162,10 @@ class _Home_ClinicState extends State<Home_Clinic> {
                                       return Clinic_Card(
                                           onpress: () {
                                             // print("object");
-                                            Navigator.of(context)
-                                                .pushNamed("/Clinic_Detail");
+                                           Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Clinic_Detail(index:  clinic_data.data[index].id)));
                                           },
                                           image:
                                               clinic_data.data[index].photo == null

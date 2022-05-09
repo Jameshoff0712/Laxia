@@ -11,7 +11,7 @@ class Detail_Image extends StatefulWidget {
   final VoidCallback? onStar;
   final List imageList;
   final double height;
-  const Detail_Image(
+  const  Detail_Image(
       {Key? key,
       required this.height,
       required this.imageList,

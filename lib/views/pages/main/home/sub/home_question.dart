@@ -227,8 +227,8 @@ class _Home_QuestionState extends State<Home_Question> {
                           hearts: question_data.data[index].likes_count==null?"":question_data.data[index].likes_count!.toString(),
                           chats: question_data.data[index].comments_count==null?"":question_data.data[index].comments_count.toString(),
                           avator:question_data.data[index].owner!.photo==null?"http://error.png": question_data.data[index].owner!.photo!,
-                          image2:"http://error.png", //question_data.data[index]["image2"],
-                          image1:"http://error.png", //question_data.data[index]["image1"],
+                          image2: question_data.data[index].medias!.isEmpty?"http://error.png":question_data.data[index].medias![1].path,
+                          image1:question_data.data[index].medias!.isEmpty?"http://error.png":question_data.data[index].medias![0].path,
                           eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
                           name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
                           onpress: () {
