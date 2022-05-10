@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_one.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_three.dart';
@@ -16,7 +17,8 @@ import 'package:laxia/views/widgets/home_card.dart';
 
 
 class Menu_Detail extends StatefulWidget {
-  const Menu_Detail({Key? key}) : super(key: key);
+  final int index;
+  const Menu_Detail({Key? key, required this.index}) : super(key: key);
 
   @override
   State<Menu_Detail> createState() => _Menu_DetailState();
@@ -460,7 +462,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                             itemBuilder: (BuildContext context, int index) {
                                return  InkWell(
                                  onTap: (){
-                                   Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
+                                  //  Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
                                  },
                                  child: Container(
                                    child: Row(

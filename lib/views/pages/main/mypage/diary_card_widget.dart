@@ -27,7 +27,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
             context,
             MaterialPageRoute(
                 builder: (context) => Diary_Detail(
-                      isMyDiary: true,
+                      isMyDiary: true, index: 1,
                     )));
       },
       child: Card(

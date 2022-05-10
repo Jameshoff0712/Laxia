@@ -5,36 +5,53 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/case/case_sub_model.dart';
 import 'package:laxia/views/pages/main/contribution/case_media_list.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 
 class CaseDetail extends StatefulWidget {
+  final int index;
+   const CaseDetail({Key? key, required this.index}) : super(key: key);
   @override
-  _CaseDetailState createState() => _CaseDetailState();
+  State<CaseDetail> createState() => _CaseDetailState();
 }
 
-class _CaseDetailState extends StateMVC<CaseDetail> {
-  List disease_Details = [];
-  bool isfavourite = false;
-
-  Future<void> get_disease_info() async {
-    String mid = await rootBundle.loadString("assets/cfg/detail_disease.json");
-    setState(() {
-      disease_Details.addAll(json.decode(mid));
-    });
+class _CaseDetailState extends State<CaseDetail> {
+  bool isloading = true;
+  final _con = HomeController();
+  late Case_Sub_Model case_detail;
+  Future<void> getData({required int index}) async {
+    try {
+      final mid = await _con.getCaseDetail(index: index);
+      setState(() {
+         case_detail = mid;
+        //  print(case_detail);
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
-
   @override
   void initState() {
-    get_disease_info();
+    getData(index:widget.index);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return disease_Details.isNotEmpty? Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    : Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -55,7 +72,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                       borderRadius: BorderRadius.circular(25),
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl: disease_Details[0]["avator"],
+                        imageUrl:case_detail.doctor==null?"http://error.png": case_detail.doctor!.photo,
                         placeholder: (context, url) => Image.asset(
                           'assets/images/loading.gif',
                           fit: BoxFit.cover,
@@ -70,7 +87,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                 ),
                 SizedBox(width: 5),
                 Text(
-                  disease_Details[0]["name"],
+                  case_detail.name==null?"":case_detail.name!,
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
@@ -163,14 +180,14 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                  imageUrl: disease_Details[0]["image_before"][0],
+                                  imageUrl:"http://error.png", // case_data.data[index]["image1"],
                                   placeholder: (context, url) => Image.asset(
                                     'assets/images/loading.gif',
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) =>
                                       Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -208,14 +225,14 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                  imageUrl: disease_Details[0]["image_after"][0],
+                                  imageUrl: "http://error.png", // case_data.data[index]["image2"],
                                   placeholder: (context, url) => Image.asset(
                                     'assets/images/loading.gif',
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) =>
                                       Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -251,7 +268,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     for (int i = 0;
-                        i < disease_Details[0]["surgery"].length;
+                        i < case_detail.categories!.length;
                         i++)
                       Center(
                         child: Container(
@@ -265,7 +282,7 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 3),
                             child: Text(
-                              disease_Details[0]["surgery"][i],
+                              case_detail.categories![i].name,
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -280,25 +297,25 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
               Container(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
-                  disease_Details[0]["info"],
+                  case_detail.case_description==null?"":case_detail.case_description!,
                   style: TextStyle(color: Helper.appTxtColor, fontSize: 15),
                 ),
               ),
               Container(
                 child: Text(
-                  disease_Details[0]["age"].toString() +
+                  case_detail.patient_age.toString() +
                       "代/" +
-                      disease_Details[0]["gender"],
+                      case_detail.patient_gender!,
                   style: TextStyle(color: Helper.darkGrey, fontSize: 12),
                 ),
               ),
-              CureMethod_Card(
-                  image: disease_Details[0]["cure_method"][0]["image"],
-                  heading: disease_Details[0]["cure_method"][0]["heading"],
-                  price: disease_Details[0]["cure_method"][0]["price"],
-                  tax: disease_Details[0]["cure_method"][0]["tax"],
-                  clinic: disease_Details[0]["cure_method"][0]["clinic"],
-                  doctor: disease_Details[0]["cure_method"][0]["doctor"]),
+              // CureMethod_Card(
+              //     image: case_detail.["cure_method"][0]["image"],
+              //     heading: case_detail.["cure_method"][0]["heading"],
+              //     price: case_detail.["cure_method"][0]["price"],
+              //     tax: case_detail.["cure_method"][0]["tax"],
+              //     clinic: case_detail.["cure_method"][0]["clinic"],
+              //     doctor: case_detail.["cure_method"][0]["doctor"]),
               Container(
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(
@@ -306,67 +323,67 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                   style: TextStyle(color: Helper.appTxtColor, fontSize: 15),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 20,
-                ),
-                margin: EdgeInsets.only(
-                  bottom: 10,
-                ),
-                decoration: BoxDecoration(
-                    color: Helper.lightGrey,
-                    borderRadius: BorderRadius.circular(6.0)),
-                child: Column(
-                  children: [
-                    for (int i = 0;
-                        i < disease_Details[0]["menu_info"].length;
-                        i++)
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 15,
-                            ),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    "assets/icons/menubar/tag_fill.svg",
-                                    width: 12,
-                                    height: 12,
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    disease_Details[0]["menu_info"][i]["title"],
-                                    style: defaultTextStyle(
-                                        Helper.titleColor, FontWeight.w500,
-                                        size: 14.0),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 25, top: 10, right: 20, bottom: 20),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                disease_Details[0]["menu_info"][i]["content"],
-                                style: defaultTextStyle(
-                                    Helper.titleColor, FontWeight.w500,
-                                    size: 12.0),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   padding: const EdgeInsets.only(
+              //     top: 20,
+              //   ),
+              //   margin: EdgeInsets.only(
+              //     bottom: 10,
+              //   ),
+              //   decoration: BoxDecoration(
+              //       color: Helper.lightGrey,
+              //       borderRadius: BorderRadius.circular(6.0)),
+              //   child: Column(
+              //     children: [
+              //       for (int i = 0;
+              //           i < case_detail.["menu_info"].length;
+              //           i++)
+              //         Column(
+              //           children: [
+              //             Padding(
+              //               padding: const EdgeInsets.only(
+              //                 left: 15,
+              //               ),
+              //               child: Align(
+              //                 alignment: Alignment.centerLeft,
+              //                 child: Row(
+              //                   children: [
+              //                     SvgPicture.asset(
+              //                       "assets/icons/menubar/tag_fill.svg",
+              //                       width: 12,
+              //                       height: 12,
+              //                     ),
+              //                     SizedBox(
+              //                       width: 4,
+              //                     ),
+              //                     Text(
+              //                       case_detail.["menu_info"][i]["title"],
+              //                       style: defaultTextStyle(
+              //                           Helper.titleColor, FontWeight.w500,
+              //                           size: 14.0),
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ),
+              //             ),
+              //             Padding(
+              //               padding: const EdgeInsets.only(
+              //                   left: 25, top: 10, right: 20, bottom: 20),
+              //               child: Align(
+              //                 alignment: Alignment.centerLeft,
+              //                 child: Text(
+              //                   case_detail.["menu_info"][i]["content"],
+              //                   style: defaultTextStyle(
+              //                       Helper.titleColor, FontWeight.w500,
+              //                       size: 12.0),
+              //                 ),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 10,
               ),
@@ -377,43 +394,43 @@ class _CaseDetailState extends StateMVC<CaseDetail> {
                   style: TextStyle(color: Helper.appTxtColor, fontSize: 15),
                 ),
               ),
-              Container(
-                color: Helper.whiteColor,
-                child: Column(
-                  children: [
-                    ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: disease_Details[0]['diarys'].length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Diary_Card(
-                              avator: disease_Details[0]['diarys'][index]
-                                  ["avator"],
-                              check: disease_Details[0]['diarys'][index]
-                                  ["check"],
-                              image2: disease_Details[0]['diarys'][index]
-                                  ["image2"],
-                              image1: disease_Details[0]['diarys'][index]
-                                  ["image1"],
-                              eyes: disease_Details[0]['diarys'][index]["eyes"],
-                              clinic: disease_Details[0]['diarys'][index]
-                                  ["clinic"],
-                              name: disease_Details[0]['diarys'][index]["name"],
-                              onpress: () {},
-                              price: disease_Details[0]['diarys'][index]
-                                  ["price"],
-                              sentence: disease_Details[0]['diarys'][index]
-                                  ["sentence"],
-                              type: disease_Details[0]['diarys'][index]
-                                  ["type"]);
-                        }),
-                  ],
-                ),
-              ),
+              // Container(
+              //   color: Helper.whiteColor,
+              //   child: Column(
+              //     children: [
+              //       ListView.builder(
+              //           physics: NeverScrollableScrollPhysics(),
+              //           shrinkWrap: true,
+              //           itemCount: case_detail.['diarys'].length,
+              //           itemBuilder: (BuildContext context, int index) {
+              //             return Diary_Card(
+              //                 avator: case_detail.['diarys'][index]
+              //                     ["avator"],
+              //                 check: case_detail.['diarys'][index]
+              //                     ["check"],
+              //                 image2: case_detail.['diarys'][index]
+              //                     ["image2"],
+              //                 image1: case_detail.['diarys'][index]
+              //                     ["image1"],
+              //                 eyes: case_detail.['diarys'][index]["eyes"],
+              //                 clinic: case_detail.['diarys'][index]
+              //                     ["clinic"],
+              //                 name: case_detail.['diarys'][index]["name"],
+              //                 onpress: () {},
+              //                 price: case_detail.['diarys'][index]
+              //                     ["price"],
+              //                 sentence: case_detail.['diarys'][index]
+              //                     ["sentence"],
+              //                 type: case_detail.['diarys'][index]
+              //                     ["type"]);
+              //           }),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
       ),
-    ):Scaffold();
+    );
   }
 }

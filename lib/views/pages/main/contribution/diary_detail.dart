@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/diary/diary/diarydetail_model.dart';
 import 'package:laxia/models/instructions.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/diary_medialist.dart';
@@ -14,32 +16,72 @@ import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
 
 class Diary_Detail extends StatefulWidget {
-  final bool isMyDiary;
-  const Diary_Detail({ Key? key, this.isMyDiary = false }) : super(key: key);
+  final bool? isMyDiary;
+  final int index;
+  const Diary_Detail({ Key? key, this.isMyDiary = false, required this.index }) : super(key: key);
 
   @override
   State<Diary_Detail> createState() => _Diary_DetailState();
 }
 
 class _Diary_DetailState extends State<Diary_Detail> {
-   List diary_Details = [];
-  bool isfavourite = false,isVisible=false,isPostVisible=false,isStar = false;
-
-  Future<void> get_question_info() async {
-    String mid = await rootBundle.loadString("assets/cfg/detail_diary.json");
-    setState(() {
-      diary_Details.addAll(json.decode(mid));
-    });
+ bool isVisible=false,isPostVisible=false;
+ bool isloading = true,isfavorite=false, islike=false;
+  final _con = HomeController();
+  late DiaryDetail_Model diary_detail;
+  Future<void> getData({required int index}) async {
+    try {
+      final mid = await _con.getDiaryDetail(index: index);
+      setState(() {
+        diary_detail = mid;
+         isfavorite=diary_detail.diary.is_favorite==null?false:diary_detail.diary.is_favorite!;
+         islike=diary_detail.diary.is_like!;
+         isloading = false;
+      });
+      print(diary_detail.progresses!);
+    } catch (e) {
+      print(e.toString());
+    }
   }
-
+  Future<void> postToogleFavorite(index) async {
+    try {
+      final res=await _con.postToogleFavorite(index:index, domain: 'diaries');
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
+  Future<void> postToogleLike(index) async {
+    try {
+      final res=await _con.postToogleLike(index:index, domain: 'diaries');
+      if(res==true){
+        setState(() {
+          islike=!islike;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   void initState() {
-    get_question_info();
+    getData(index: widget.index);
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return diary_Details.isNotEmpty? Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
       
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -60,7 +102,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       borderRadius: BorderRadius.circular(25),
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl: diary_Details[0]["avator"],
+                        imageUrl: diary_detail.owner.photo==null?"http://error.png":diary_detail.owner.photo!,
                         placeholder: (context, url) => Image.asset(
                           'assets/images/loading.gif',
                           fit: BoxFit.cover,
@@ -78,7 +120,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      diary_Details[0]["name"],
+                      diary_detail.owner.name==null?"":diary_detail.owner.name!,
                       style: TextStyle(
                           color: Helper.titleColor, fontWeight: FontWeight.bold,fontSize: 12),
                     ),
@@ -90,7 +132,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               color: Helper.maintxtColor, fontWeight: FontWeight.bold,fontSize: 8),
                         ),
                         Text(
-                          diary_Details[0]["start"],
+                          diary_detail.diary.treat_date==null?"":diary_detail.diary.treat_date!,
                           style: TextStyle(
                               color: Helper.maintxtColor, fontWeight: FontWeight.w400,fontSize: 8),
                         ),
@@ -101,7 +143,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               color: Helper.maintxtColor, fontWeight: FontWeight.bold,fontSize: 8),
                         ),
                         Text(
-                          diary_Details[0]["end"]+"日",
+                          'diary_detail["end"]'+"日",
                           style: TextStyle(
                               color: Helper.maintxtColor, fontWeight: FontWeight.w400,fontSize: 8),
                         ),
@@ -113,10 +155,9 @@ class _Diary_DetailState extends State<Diary_Detail> {
             ),
             Row(
               children: [
-                !widget.isMyDiary?
+                !widget.isMyDiary! ?
                 ElevatedButton(
                   onPressed: () {
-                    
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
@@ -172,7 +213,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
                             height: 1.5,
-                            color: Helper.whiteColor,
+                            color: Color.fromARGB(255, 26, 16, 16),
                           ),
                         ),
                       ],
@@ -205,14 +246,12 @@ class _Diary_DetailState extends State<Diary_Detail> {
             children: [
               InkWell(
                 onTap: () {
-                  setState(() {
-                    isStar = !isStar;
-                  });
+                  postToogleLike(widget.index);
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    isStar
+                    islike
                         ? Icon(
                             Icons.star,
                             color: Helper.btnBgYellowColor,
@@ -226,7 +265,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     Text(
                       "お気に入り",
                       style: TextStyle(
-                          color: isStar
+                          color: islike
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
                           fontSize: 12,
@@ -238,13 +277,13 @@ class _Diary_DetailState extends State<Diary_Detail> {
               InkWell(
                 onTap: () {
                   setState(() {
-                    isfavourite = !isfavourite;
+                    postToogleFavorite(widget.index);
                   });
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    isfavourite
+                    isfavorite
                         ? Icon(
                             Icons.favorite,
                             color: Helper.btnBgYellowColor,
@@ -256,9 +295,9 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             size: 30,
                           ),
                     Text(
-                      "223",
+                      diary_detail.diary.likes_count==null?"":diary_detail.diary.likes_count.toString(),
                       style: TextStyle(
-                          color: isfavourite
+                          color: isfavorite
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
                           fontSize: 12,
@@ -317,7 +356,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         Navigator.of(context).push(
                                    MaterialPageRoute(
                             builder: (context) => PageViewWidget(onBoardingInstructions: [
-                              diary_Details[0]["image1"],
+                                  diary_detail.medias!.isEmpty?"http://": diary_detail.medias![0].path,
                             ],
                             startindex: 1,)));
                       },
@@ -333,13 +372,13 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                  imageUrl: diary_Details[0]["image1"],
+                                  imageUrl:diary_detail.medias!.isEmpty?"http://":  diary_detail.medias![0].path,
                                   placeholder: (context, url) => Image.asset(
                                     'assets/images/loading.gif',
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) => Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -371,7 +410,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         Navigator.of(context).push(
                                    MaterialPageRoute(
                             builder: (context) => PageViewWidget( onBoardingInstructions: [
-                              diary_Details[0]["image1"],
+                                  (diary_detail.medias!.length<=2)?"http://": diary_detail.medias![1].path,
                             ],
                             startindex: 1,)));
                       },
@@ -387,13 +426,13 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                  imageUrl: diary_Details[0]["image2"],
+                                  imageUrl:(diary_detail.medias!.length<=2)?"http://": diary_detail.medias![1].path,
                                   placeholder: (context, url) => Image.asset(
                                     'assets/images/loading.gif',
                                     fit: BoxFit.fill,
                                   ),
                                   errorWidget: (context, url, error) => Image.asset(
-                                    'assets/images/ProDoctor.png',
+                                    'assets/images/profile.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -428,7 +467,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 runSpacing: 10,
                 spacing: 10,
                 children: [
-                for(int i=0;i<diary_Details[0]["treatment"].length;i++)
+                for(int i=0;i<diary_detail.diary.categories!.length;i++)
                 InkWell(
                   onTap: () {
                     //
@@ -448,7 +487,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               horizontal: 8,
                               vertical: 3),
                       child: Text(
-                        diary_Details[0]["treatment"][i]["label"],
+                        diary_detail.diary.categories![i].name,
                         style: TextStyle(
                             fontWeight:
                                 FontWeight.w400,
@@ -475,19 +514,19 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     ),
                      SizedBox(width: 12,),
                   Text(
-                      diary_Details[0]["mark"],
+                     ' diary_detail["mark"]',
                     style: defaultTextStyle(
                         Helper.titleColor, FontWeight.w700,
                         size: 14.0),
                   ),
               ],),
               CureMethod_Card(
-                  image:  diary_Details[0]["image"],
-                  heading:  diary_Details[0]["heading"],
-                  price:  diary_Details[0]["price"],
-                  tax:  diary_Details[0]["tax"],
-                  clinic:  diary_Details[0]["clinic"],
-                  doctor:  diary_Details[0]["check"]),
+                  image:"http://error.png",//  diary_detail["image"],
+                  heading: ' diary_detail["heading"]',
+                  price: ' diary_detail["price"]',
+                  tax:  'diary_detail["tax"]',
+                  clinic: ' diary_detail["clinic"]',
+                  doctor:  diary_detail.diary.doctor_name==null?"":diary_detail.diary.doctor_name!),
               SizedBox(height: 24,),
               Text(
                  "クリニック・メニューについて",
@@ -512,7 +551,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                           width: 6,
                         ),
                         Text(
-                          diary_Details[0]["clinic_menu"][0]["label"],
+                         ' diary_detail["clinic_menu"][0]["label"]',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 16,
@@ -522,38 +561,38 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         )
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
-                      child: Container(
-                          child: Column(children: [
-                            for(int i=0;i<diary_Details[0]["clinic_menu"][0]["list"].length;i++)
-                              Container(
-                                child: Row(children: [
-                                  Text(
-                                    diary_Details[0]["clinic_menu"][0]["list"][i]["label"],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16,
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
+                    //   child: Container(
+                    //       child: Column(children: [
+                    //         for(int i=0;i<diary_detail["clinic_menu"][0]["list"].length;i++)
+                    //           Container(
+                    //             child: Row(children: [
+                    //               Text(
+                    //                 diary_detail["clinic_menu"][0]["list"][i]["label"],
+                    //                 style: TextStyle(
+                    //                   fontWeight: FontWeight.w700,
+                    //                   fontSize: 16,
                                       
-                                      color: Helper.maintxtColor,
-                                    ),
-                                  ),
-                                  Expanded(child: SizedBox(width: 0,)),
-                                  Text(
-                                    diary_Details[0]["clinic_menu"][0]["list"][i]["value"].toString()+"円",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16,
+                    //                   color: Helper.maintxtColor,
+                    //                 ),
+                    //               ),
+                    //               Expanded(child: SizedBox(width: 0,)),
+                    //               Text(
+                    //                 diary_detail["clinic_menu"][0]["list"][i][" "].toString()+"円",
+                    //                 style: TextStyle(
+                    //                   fontWeight: FontWeight.w700,
+                    //                   fontSize: 16,
                                       
-                                      color: Helper.maintxtColor,
-                                    ),
-                                  ),
-                                ],),
-                              ),
+                    //                   color: Helper.maintxtColor,
+                    //                 ),
+                    //               ),
+                    //             ],),
+                    //           ),
                             
-                          ],),
-                      ),
-                    ),                     
+                    //       ],),
+                    //   ),
+                    // ),                     
                   ],
                 ),
               ),
@@ -564,7 +603,8 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   child: Column(
                     children: [
                       SizedBox(height: 8,),
-                      Container(
+                      for(int i=0;i<diary_detail.text_questions.length;i++)
+                        Container(
                         width: double.infinity,
                         padding: EdgeInsets.only(top: 24, left: 8, right: 8),
                         child: Column(
@@ -582,20 +622,20 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                   width: 6,
                                 ),
                                 Text(
-                                  diary_Details[0]["clinic_menu"][1]["label"],
+                                 diary_detail.text_questions[i].name!,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 14,
                                     
                                     color: Helper.titleColor,
-                                  ),
+                                   ),
                                 )
                               ],
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
                               child:Text(
-                                diary_Details[0]["clinic_menu"][1]["description"],
+                                diary_detail.text_questions[i].pivot!.answer==null?"":diary_detail.text_questions[i].pivot!.answer!,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14,
@@ -603,145 +643,75 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                   color: Helper.maintxtColor,
                                 ),
                               ),
-                            ),                     
+                            ),         
+                             SizedBox(height: 8,),            
                           ],
                         ),
                       ),
-                      SizedBox(height: 8,),
-                      Container(
-                        padding: EdgeInsets.only(top: 24, left: 8, right: 8),
-                        child: Column( 
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/icons/tag_fill.svg",
-                                  width: 14,
-                                  height: 14,
-                                  color: Helper.mainColor,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  diary_Details[0]["clinic_menu"][2]["label"],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14,
+                     
+                      // Container(
+                      //   padding: EdgeInsets.only(top: 24, left: 8, right: 8),
+                      //   child: Column( 
+                      //     children: [
+                      //       Row(
+                      //         children: [
+                      //           SvgPicture.asset(
+                      //             "assets/icons/tag_fill.svg",
+                      //             width: 14,
+                      //             height: 14,
+                      //             color: Helper.mainColor,
+                      //           ),
+                      //           SizedBox(
+                      //             width: 6,
+                      //           ),
+                      //           Text(
+                      //            "このクリニック、ドクターを選んだ理由は？",
+                      //             style: TextStyle(
+                      //               fontWeight: FontWeight.w700,
+                      //               fontSize: 14,
                                     
-                                    color: Helper.titleColor,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
-                              child: Container(
-                                width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                    for(int i=0;i<diary_Details[0]["clinic_menu"][2]["list"].length;i++)
-                                      Container(
-                                        child: Text(
-                                          "・"+diary_Details[0]["clinic_menu"][2]["list"][i],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 14,
-                                            color: Helper.maintxtColor,
-                                          ),
-                                        ),
-                                      ),
-                                    
-                                  ],),
-                              ),
-                            ),                     
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 8,),
-                      Container(
-                        padding: EdgeInsets.only(top: 24, left: 8, right: 8),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/icons/tag_fill.svg",
-                                  width: 14,
-                                  height: 14,
-                                  color: Helper.mainColor,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  diary_Details[0]["clinic_menu"][3]["label"],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14,
-                                    
-                                    color: Helper.titleColor,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
-                              child:Text(
-                                diary_Details[0]["clinic_menu"][3]["description"],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
+                      //               color: Helper.titleColor,
+                      //             ),
+                      //           )
+                      //         ],
+                      //       ),
+                      //       Padding(
+                      //         padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
+                      //         child:Text(
+                      //           diary_detail.text_questions.isEmpty?"":diary_detail.text_questions[1].name!,
+                      //           style: TextStyle(
+                      //             fontWeight: FontWeight.w700,
+                      //             fontSize: 14,
                                   
-                                  color: Helper.maintxtColor,
-                                ),
-                              ),
-                            ),                     
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 8,),
-                      Container(
-                        padding: EdgeInsets.only(top: 24, left: 8, right: 8),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/icons/tag_fill.svg",
-                                  width: 14,
-                                  height: 14,
-                                  color: Helper.mainColor,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  diary_Details[0]["clinic_menu"][4]["label"],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14,
+                      //             color: Helper.maintxtColor,
+                      //           ),
+                      //         ),
+                      //       ), 
+                      //       // Padding(
+                      //       //   padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
+                      //       //   child: Container(
+                      //       //     width: double.infinity,
+                      //       //       child: Column(
+                      //       //         crossAxisAlignment: CrossAxisAlignment.start,
+                      //       //         children: [
+                      //       //         for(int i=0;i<diary_detail["clinic_menu"][2]["list"].length;i++)
+                      //       //           Container(
+                      //       //             child: Text(
+                      //       //               "・"+diary_detail["clinic_menu"][2]["list"][i],
+                      //       //               style: TextStyle(
+                      //       //                 fontWeight: FontWeight.w700,
+                      //       //                 fontSize: 14,
+                      //       //                 color: Helper.maintxtColor,
+                      //       //               ),
+                      //       //             ),
+                      //       //           ),
                                     
-                                    color: Helper.titleColor,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal:10.0,vertical:8),
-                              child:Text(
-                                diary_Details[0]["clinic_menu"][4]["description"],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                  color: Helper.maintxtColor,
-                                ),
-                              ),
-                            ),                     
-                          ],
-                        ),
-                      ),
+                      //       //       ],),
+                      //       //   ),
+                      //       // ),                     
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -782,48 +752,48 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 ),
               ),
               SizedBox(height: 4,),
-              Container(
-                alignment: Alignment.center,
-                height: 120,
-                child: GridView.builder(
-                  scrollDirection:Axis.horizontal,
-                  itemCount:3,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 5,
-                        crossAxisCount: 1,
-                        childAspectRatio: 1),
-                    itemBuilder:  (BuildContext context, int index){
-                      return InkWell(
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => Diary_MediaList(post_treatment:  diary_Details[0]["post-treatment"], before: {"label":"施術前","images":diary_Details[0]["before_image"]["images"]},)));
-                        },
-                        child: SizedBox(
-                          height: 78,
-                          width: 78,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl:  diary_Details[0]["before_image"]["images"][index],
-                              placeholder: (context, url) => Image.asset(
-                                'assets/images/loading.gif',
-                                fit: BoxFit.cover,
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  Image.asset(
-                                'assets/images/ProDoctor.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                  }),
-              ),
+              // Container(
+              //   alignment: Alignment.center,
+              //   height: 120,
+              //   child: GridView.builder(
+              //     scrollDirection:Axis.horizontal,
+              //     itemCount:3   ,
+              //     physics: AlwaysScrollableScrollPhysics(),
+              //     shrinkWrap: true,
+              //       padding: EdgeInsets.symmetric(vertical: 10),
+              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //           mainAxisSpacing: 10,
+              //           crossAxisSpacing: 5,
+              //           crossAxisCount: 1,
+              //           childAspectRatio: 1),
+              //       itemBuilder:  (BuildContext context, int index){
+              //         return InkWell(
+              //           onTap: (){
+              //             // Navigator.of(context).push(MaterialPageRoute(builder: (_) => Diary_MediaList(post_treatment:  diary_detail["post-treatment"], before: {"label":"施術前","images":diary_detail["before_image"]["images"]},)));
+              //           },
+              //           child: SizedBox(
+              //             height: 78,
+              //             width: 78,
+              //             child: ClipRRect(
+              //               borderRadius: BorderRadius.circular(8),
+              //               child: CachedNetworkImage(
+              //                 fit: BoxFit.cover,
+              //                 imageUrl:  diary_detail["before_image"]["images"][index],
+              //                 placeholder: (context, url) => Image.asset(
+              //                   'assets/images/loading.gif',
+              //                   fit: BoxFit.cover,
+              //                 ),
+              //                 errorWidget: (context, url, error) =>
+              //                     Image.asset(
+              //                   'assets/images/profile.png',
+              //                   fit: BoxFit.cover,
+              //                 ),
+              //               ),
+              //             ),
+              //           ),
+              //         );
+              //     }),
+              // ),
               SizedBox(height: 24,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -867,11 +837,11 @@ class _Diary_DetailState extends State<Diary_Detail> {
               ),
               Container(
                 child: ListView.builder(
-                  itemCount:!isPostVisible?3: diary_Details[0]["post-treatment"].length,
+                  itemCount:(!isPostVisible&&(diary_detail.progresses!.length>3))? 3: diary_detail.progresses!.length,
                   physics:NeverScrollableScrollPhysics(),
                   shrinkWrap:true,
                   itemBuilder: (BuildContext context, int index) {
-                    return Post_Treatment_Card(post_treatment:diary_Details[0]["post-treatment"][index]);
+                    return Post_Treatment_Card(post_treatment:diary_detail.progresses![index]);
                   }
                 ),
               ),
@@ -911,42 +881,42 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 ),
               ),
               SizedBox(height: 4,),
-              Container(
-                decoration: BoxDecoration(color: Helper.homeBgColor),
-                child: Column(children: [
-                  GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                    scrollDirection: Axis.vertical,
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio:175/291,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10),
-                    itemCount: diary_Details[0]["home"].length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Home_Card(
-                        onpress: () {
-                      },
-                        title: diary_Details[0]["home"][index]["title"],
-                        type: diary_Details[0]["home"][index]["type"],
-                        clinic: diary_Details[0]["home"][index]["clinic"],
-                        recommend: diary_Details[0]["home"][index]["recommend"],
-                        source: diary_Details[0]["home"][index]["source"],
-                        name: diary_Details[0]["home"][index]["name"],
-                        doctorimage: diary_Details[0]["home"][index]["doctorimage"],
-                        chat: diary_Details[0]["home"][index]["chat"],
-                      );
-                    }),
-                ],),
-              )
+              // Container(
+              //   decoration: BoxDecoration(color: Helper.homeBgColor),
+              //   child: Column(children: [
+              //     GridView.builder(
+              //       physics: NeverScrollableScrollPhysics(),
+              //       shrinkWrap: true,
+              //       padding:
+              //           EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              //       scrollDirection: Axis.vertical,
+              //       gridDelegate:
+              //       SliverGridDelegateWithFixedCrossAxisCount(
+              //           childAspectRatio:175/291,
+              //           crossAxisCount: 2,
+              //           crossAxisSpacing: 10,
+              //           mainAxisSpacing: 10),
+              //       itemCount: diary_detail["home"].length,
+              //       itemBuilder: (BuildContext context, int index) {
+              //         return Home_Card(
+              //           onpress: () {
+              //         },
+              //           title: diary_detail["home"][index]["title"],
+              //           type: diary_detail["home"][index]["type"],
+              //           clinic: diary_detail["home"][index]["clinic"],
+              //           recommend: diary_detail["home"][index]["recommend"],
+              //           source: diary_detail["home"][index]["source"],
+              //           name: diary_detail["home"][index]["name"],
+              //           doctorimage: diary_detail["home"][index]["doctorimage"],
+              //           chat: diary_detail["home"][index]["chat"],
+              //         );
+              //       }),
+              //   ],),
+              // )
             ],),
           ),
         ),
       ),
-    ):Scaffold();
+    );
   }
 }

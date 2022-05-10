@@ -38,6 +38,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
         Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
       }
     } catch (e) {
+      print(e.toString());
       setState(() {
         _errorMsg = "メールアドレスもしくはパスワードが間違っています。";
       });

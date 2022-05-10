@@ -11,7 +11,7 @@ class Detail_Image extends StatefulWidget {
   final VoidCallback? onStar;
   final List imageList;
   final double height;
-  const Detail_Image(
+  const  Detail_Image(
       {Key? key,
       required this.height,
       required this.imageList,
@@ -49,7 +49,7 @@ class _Detail_ImageState extends State<Detail_Image> {
                     width: MediaQuery.of(context).size.width,
                     child: CachedNetworkImage(
                       fit: BoxFit.fill,
-                      imageUrl: image,
+                      imageUrl: image.path,
                       placeholder: (context, url) => Image.asset(
                         'assets/images/loading.gif',
                         fit: BoxFit.cover,
