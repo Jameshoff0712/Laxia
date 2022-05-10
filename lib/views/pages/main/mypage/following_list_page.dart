@@ -59,7 +59,12 @@ class _FollowingListPageState extends State<FollowingListPage> {
         shadowColor: Helper.whiteColor,
         title: Text(
           'フォロー中',
-          style: Theme.of(context).textTheme.headline5,
+          style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              height: 1.5,
+              color: Helper.titleColor,
+            ),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -68,8 +73,8 @@ class _FollowingListPageState extends State<FollowingListPage> {
             },
             icon: Icon(
               Icons.keyboard_arrow_left,
-              color: Colors.black,
-              size: 40,
+              color: Helper.titleColor,
+              size: 30,
             )),
         elevation: 0,
       ),
@@ -156,7 +161,8 @@ class _FollowingListPageState extends State<FollowingListPage> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w700,
+                              height: 1.6,
+                              fontWeight: FontWeight.w400,
                               color: Helper.txtColor,
                             ),
                           )
