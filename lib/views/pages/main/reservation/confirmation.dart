@@ -85,7 +85,7 @@ class _ConfirmationState extends State<Confirmation> {
         title: Text(
           'ご予約内容の確認',
           style: TextStyle(
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,
@@ -146,7 +146,7 @@ class _ConfirmationState extends State<Confirmation> {
                             color: Color.fromARGB(255, 18, 18, 18),
                             fontSize: 12,
                             height: 1.5,
-                            fontWeight: FontWeight.w700),
+                            fontWeight: FontWeight.w400),
                       ),
                     ),
                   ),
@@ -164,24 +164,8 @@ class _ConfirmationState extends State<Confirmation> {
                                 i,
                                 widget.list_ReservedTime.length,
                                 widget.list_ReservedTime)
-                          //  _buildReservationItem()
-                          // _buildReservationItem(),
-                          // _buildReservationItem(),
-                          // _buildReservationItem(),
-                          // _buildReservationItem(),
                         ],
                       ),
-
-                      // child: ListView.separated(
-                      //   shrinkWrap: true,
-                      //   itemBuilder: (context, index) {
-                      //     return _buildReservationItem();
-                      //   },
-                      //   separatorBuilder: (context, index) => SizedBox(
-                      //     height: 10,
-                      //   ),
-                      //   itemCount: 4,
-                      // ),
                     ),
                   )
                 ],
@@ -209,13 +193,13 @@ class _ConfirmationState extends State<Confirmation> {
                 padding: EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color.fromARGB(255, 240, 154, 55)),
+                    color: Color.fromARGB(255, 249, 161, 56)),
                 child: Text('ご予約を申し込む',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w400,
                       height: 1.5,
                       decoration: TextDecoration.none,
                     )),
@@ -241,7 +225,7 @@ class _ConfirmationState extends State<Confirmation> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w400,
                       height: 1.5,
                       decoration: TextDecoration.none,
                     )),
@@ -280,7 +264,7 @@ class _ConfirmationState extends State<Confirmation> {
                       color: Color.fromARGB(255, 18, 18, 18),
                       fontSize: 12,
                       height: 1.5,
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w400),
                 ),
               ),
             ),
