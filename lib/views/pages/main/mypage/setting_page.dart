@@ -118,7 +118,7 @@ class _SettingPageState extends State<SettingPage> {
         title: Text(
           '設定',
           style: TextStyle(
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,

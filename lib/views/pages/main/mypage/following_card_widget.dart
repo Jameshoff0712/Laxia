@@ -77,7 +77,8 @@ class _FollowingCardWidgetState extends State<FollowingCardWidget> {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
+                  margin: EdgeInsets.only(right: 4),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
                   decoration: BoxDecoration(
                     border: Border.all(color: Helper.mainColor),
                     borderRadius: BorderRadius.circular(20),

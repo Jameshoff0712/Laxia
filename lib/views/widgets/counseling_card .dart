@@ -66,8 +66,8 @@ class _Counseling_CardState extends State<Counseling_Card> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                        height: 29,
-                        width: 29,
+                        height: 25,
+                        width: 25,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                           child: CachedNetworkImage(
@@ -84,11 +84,12 @@ class _Counseling_CardState extends State<Counseling_Card> {
                           ),
                         ),
                       ),
+                      SizedBox(width: 5,),
                       Text(
                         widget.name,
                         style: TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                             color: Helper.titleColor),
                       ),
                     ],
@@ -98,6 +99,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                       widget.sentence,
                       style: TextStyle(
                           fontSize: 14,
+                          height: 1.3,
                           fontWeight: FontWeight.w400,
                           color: Helper.titleColor),
                     ),
@@ -221,12 +223,13 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         height: 12,
                       ),
                       SizedBox(
-                        width: 6,
+                        width: 9,
                       ),
                       Text(
                         widget.type,
                         style: TextStyle(
                             fontSize: 12,
+                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -234,7 +237,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   ),
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 4,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -246,12 +249,13 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         height: 12,
                       ),
                       SizedBox(
-                        width: 6,
+                        width: 9,
                       ),
                       Text(
                         widget.clinic,
                         style: TextStyle(
                             fontSize: 12,
+                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -259,7 +263,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   ),
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 4,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -271,12 +275,13 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         height: 12,
                       ),
                       SizedBox(
-                        width: 6,
+                        width: 9,
                       ),
                       Text(
                         widget.check,
                         style: TextStyle(
                             fontSize: 12,
+                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -284,7 +289,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   ),
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 7,
                 ),
                 Row(
                   children: [
@@ -300,14 +305,15 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               height: 13,
                             ),
                             SizedBox(
-                              width: 6,
+                              width: 5,
                             ),
                             Text(
                               widget.eyes,
                               style: TextStyle(
                                   fontSize: 11,
+                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
-                                  color: Helper.txtColor),
+                                  color: Helper.maintxtColor),
                             ),
                             SizedBox(
                               width: 10,
@@ -318,32 +324,34 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               height: 13,
                             ),
                             SizedBox(
-                              width: 6,
+                              width: 5,
                             ),
                             Text(
                               widget.hearts,
                               style: TextStyle(
                                   fontSize: 11,
+                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
-                                  color: Helper.txtColor),
+                                  color: Helper.maintxtColor),
                             ),
                             SizedBox(
                               width: 10,
                             ),
                             SvgPicture.asset(
                               "assets/icons/menubar/comment.svg",
-                              width: 13,
+                              width: 16,
                               height: 13,
                             ),
                             SizedBox(
-                              width: 6,
+                              width: 5,
                             ),
                             Text(
                               widget.chats,
                               style: TextStyle(
                                   fontSize: 11,
+                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
-                                  color: Helper.txtColor),
+                                  color: Helper.maintxtColor),
                             )
                           ]),
                     ))
