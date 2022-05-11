@@ -95,6 +95,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                     ],
                   ),
                 ),
+                SizedBox(height: 10,),
                 Text(
                       widget.sentence,
                       style: TextStyle(
@@ -213,6 +214,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                     ],
                   ),
                 ),
+                // SizedBox(height: 10,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Row(
