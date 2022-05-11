@@ -37,7 +37,7 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                                    MaterialPageRoute(
                             builder: (context) => PageViewWidget( onBoardingInstructions: [
                               for (int j = 0; j < widget.ImageList.length; j++)
-                                widget.ImageList[j],
+                                widget.ImageList[j].path,
                             ],
                             startindex: 1,)));
                         },
@@ -56,7 +56,7 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                                         fit: BoxFit.cover):
                                         CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl: widget.ImageList[i]!,
+                              imageUrl: widget.ImageList[i].path,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nb_utils/nb_utils.dart';
+import 'package:uni_links/uni_links.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../common/helper.dart';
 // import '../common/app_config.dart' as config;
@@ -39,12 +42,70 @@ class _PassRest_TwoState extends State<PassRest_Two> {
                 height: 20,
               ),
               Center(
-                  child: Text(Trans.of(context).verify_email,
-                      style: defaultTextStyle(
-                          Helper.maintxtColor, FontWeight.w700,
-                          size: 14))),
+                  child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DeepLink()),
+                  );
+                },
+                child: Text(Trans.of(context).verify_email,
+                    style: defaultTextStyle(
+                        Helper.maintxtColor, FontWeight.w700,
+                        size: 14)),
+              )),
             ],
           )),
+    );
+  }
+}
+
+class DeepLink extends StatefulWidget {
+  DeepLink({Key? key}) : super(key: key);
+
+  @override
+  _DeepLinkState createState() => _DeepLinkState();
+}
+
+class _DeepLinkState extends State<DeepLink> {
+  String link = "";
+
+  @override
+  void initState() {
+    initUniLinks().then((value) => this.setState(() {
+          link = value!;
+        }));
+    super.initState();
+  }
+
+  Future<String?> initUniLinks() async {
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      final initialLink = await getInitialLink();
+      // Parse the link and warn the user, if it is not correct,
+      // but keep in mind it could be `null`.
+      return initialLink;
+    } on PlatformException {
+      // Handle exception by warning the user their action did not succeed
+      // return?
+      //log(e.message);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Deep Linking"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(link == null ? "" : link),
+          ],
+        ),
+      ),
     );
   }
 }

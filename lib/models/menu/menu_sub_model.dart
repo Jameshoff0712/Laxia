@@ -95,7 +95,7 @@ class Menu_Sub_Model extends Equatable {
       clinic: json["clinic"] == null
           ? null
           : Clinic_Sub_Model.fromJson(json["clinic"]),
-      images: List<Image_model>.from(json["images"]
+      images:json["images"]==null?[]: List<Image_model>.from(json["images"]
               .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
     );

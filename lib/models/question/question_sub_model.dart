@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:laxia/models/home/category_model.dart';
 import 'package:laxia/models/question/Owner_model.dart';
 import 'package:laxia/models/question/answer_model.dart';
+import 'package:laxia/models/question/media_model.dart';
 
 class Question_Sub_Model extends Equatable {
   final int id;
@@ -17,7 +18,7 @@ class Question_Sub_Model extends Equatable {
   final bool? is_favorite;
   final List<Answer>? answers;
   final Owner? owner;
-  final List? medias;
+  final List<Media_model>? medias;
   final List<Category>? categories;
 
   const Question_Sub_Model(
@@ -51,12 +52,14 @@ class Question_Sub_Model extends Equatable {
         likes_count: json["likes_count"],
         is_like: json["is_like"],
         is_favorite: json["is_favorite"],
-        medias: json["medias"],
+        medias:json["medias"]==null?[]:  List<Media_model>.from(json["medias"]
+                .map((x) => Media_model.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>),
         owner:json["owner"] == null ? null : Owner.fromJson(json["owner"]),
-        answers: json["answers"] == null ? null : List<Answer>.from(json["answers"]
+        answers: json["answers"] == null ? [] : List<Answer>.from(json["answers"]
                 .map((x) => Answer.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
-        categories: json["categories"] == null ? null : List<Category>.from(json["categories"]
+        categories: json["categories"] == null ? [] : List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>)
             );

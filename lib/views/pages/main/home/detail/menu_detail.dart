@@ -17,8 +17,8 @@ import 'package:laxia/views/widgets/home_card.dart';
 
 
 class Menu_Detail extends StatefulWidget {
-  final Menu_Sub_Model Menu_Datails;
-  const Menu_Detail({Key? key, required this.Menu_Datails}) : super(key: key);
+  final int index;
+  const Menu_Detail({Key? key, required this.index}) : super(key: key);
 
   @override
   State<Menu_Detail> createState() => _Menu_DetailState();
@@ -462,7 +462,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                             itemBuilder: (BuildContext context, int index) {
                                return  InkWell(
                                  onTap: (){
-                                   Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
+                                  //  Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
                                  },
                                  child: Container(
                                    child: Row(

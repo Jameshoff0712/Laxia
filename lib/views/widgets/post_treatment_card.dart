@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/diary/diary/progress.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail_default.dart';
 import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:video_player/video_player.dart';
 
 class Post_Treatment_Card extends StatefulWidget {
-  final dynamic post_treatment;
-  const Post_Treatment_Card({ Key? key, this.post_treatment}) : super(key: key);
+  final Progress post_treatment;
+  const Post_Treatment_Card({ Key? key, required this.post_treatment}) : super(key: key);
 
   @override
   State<Post_Treatment_Card> createState() => _Post_Treatment_CardState();
@@ -18,95 +19,95 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
   late  VideoPlayerController _controller;
   @override
   void initState(){
-    if(widget.post_treatment["post_list"]["isvideo"]!){
-      _controller = VideoPlayerController.network(
-        widget.post_treatment["post_list"]["images"][0])
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
-    }
+    // if(widget.post_treatment["post_list"]["isvideo"]!){
+    //   _controller = VideoPlayerController.network(
+    //     widget.post_treatment["post_list"]["images"][0])
+    //   ..initialize().then((_) {
+    //     // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+    //     setState(() {});
+    //   });
+    // }
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    if(widget.post_treatment["post_list"]["isvideo"]!){
-      return Container(
-        width: double.infinity,
-        child: Column(children: [
-           Row(children: [
-             Container(
-               width: 20,
-               height: 20,
-               decoration: BoxDecoration(color: Helper.mainColor,borderRadius: BorderRadius.circular(10)),
-             ),
-             SizedBox(width: 10,),
-             Text(
-                widget.post_treatment["post_list"]["label"],
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                  color: Helper.titleColor,
-                ),
-              ),
-           ],),
-           SizedBox(height: 5,),
-           Padding(
-             padding: EdgeInsets.only(left: 10),
-             child: Container(
-               decoration: BoxDecoration(border: Border(left:BorderSide(color:Helper.txtColor) ),),
-               child: Padding(
-                 padding: EdgeInsets.only(left: 10,top: 5),
-                 child: Column(
-                   children: [
-                     Stack(
-                       alignment: Alignment.center,
-                       children: [
-                         LayoutBuilder(
-                                builder: (context, constraints) => _controller.value.isInitialized
-                                    ? AspectRatio(
-                                        aspectRatio: _controller.value.aspectRatio,
-                                        // _controller.value.aspectRatio,
-                                        child: VideoPlayer(_controller),
-                                      )
-                                    : Container(),
-                          ),
-                          Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: (){
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                    builder: (context) => PageViewWidget(onBoardingInstructions: [widget.post_treatment["post_list"]["images"][0]],isimage:false)));   //
-                                },
-                                child: SvgPicture.asset(
-                                        "assets/icons/menubar/video_play.svg",
-                                        width: 24,
-                                        height: 24,
-                                      ),
-                              ),
-                            )
-                       ],
-                     ),
-                     Text(
-                        widget.post_treatment["description"],
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Helper.titleColor,
-                        ),
-                      ),
-                      Bottom_Widget()
-                   ],
-                 ),
-               ),
-              ),
-           ),
+    // if(widget.post_treatment["post_list"]["isvideo"]!){
+    //   return Container(
+    //     width: double.infinity,
+    //     child: Column(children: [
+    //        Row(children: [
+    //          Container(
+    //            width: 20,
+    //            height: 20,
+    //            decoration: BoxDecoration(color: Helper.mainColor,borderRadius: BorderRadius.circular(10)),
+    //          ),
+    //          SizedBox(width: 10,),
+    //          Text(
+    //             "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
+    //             style: TextStyle(
+    //               fontWeight: FontWeight.w700,
+    //               fontSize: 18,
+    //               color: Helper.titleColor,
+    //             ),
+    //           ),
+    //        ],),
+    //        SizedBox(height: 5,),
+    //        Padding(
+    //          padding: EdgeInsets.only(left: 10),
+    //          child: Container(
+    //            decoration: BoxDecoration(border: Border(left:BorderSide(color:Helper.txtColor) ),),
+    //            child: Padding(
+    //              padding: EdgeInsets.only(left: 10,top: 5),
+    //              child: Column(
+    //                children: [
+    //                  Stack(
+    //                    alignment: Alignment.center,
+    //                    children: [
+    //                      LayoutBuilder(
+    //                             builder: (context, constraints) => _controller.value.isInitialized
+    //                                 ? AspectRatio(
+    //                                     aspectRatio: _controller.value.aspectRatio,
+    //                                     // _controller.value.aspectRatio,
+    //                                     child: VideoPlayer(_controller),
+    //                                   )
+    //                                 : Container(),
+    //                       ),
+    //                       Padding(
+    //                           padding: const EdgeInsets.all(8.0),
+    //                           child: InkWell(
+    //                             onTap: (){
+    //                                     Navigator.of(context).push(
+    //                                       MaterialPageRoute(
+    //                                 builder: (context) => PageViewWidget(onBoardingInstructions: [widget.post_treatment["post_list"]["images"][0]],isimage:false)));   //
+    //                             },
+    //                             child: SvgPicture.asset(
+    //                                     "assets/icons/menubar/video_play.svg",
+    //                                     width: 24,
+    //                                     height: 24,
+    //                                   ),
+    //                           ),
+    //                         )
+    //                    ],
+    //                  ),
+    //                  Text(
+    //                    widget.post_treatment.content!,
+    //                     style: TextStyle(
+    //                       fontWeight: FontWeight.w400,
+    //                       fontSize: 14,
+    //                       color: Helper.titleColor,
+    //                     ),
+    //                   ),
+    //                   Bottom_Widget()
+    //                ],
+    //              ),
+    //            ),
+    //           ),
+    //        ),
            
-        ],),
-      );
-    }
-    switch (widget.post_treatment["post_list"]["images"].length) {
+    //     ],),
+    //   );
+    // }
+    switch (widget.post_treatment.medias!.length) {
       case 1 : return GestureDetector(
         onTap: (){
            Navigator.push(
@@ -123,7 +124,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["post_list"]["label"],
+                 "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -142,7 +143,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                      children: [
                        Image_Widget(context,0),
                        Text(
-                          widget.post_treatment["description"],
+                          widget.post_treatment.content!,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -175,7 +176,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["post_list"]["label"],
+                  "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -208,7 +209,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                         ],
                        ),
                         Text(
-                            widget.post_treatment["description"],
+                           widget.post_treatment.content!,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
@@ -241,7 +242,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["post_list"]["label"],
+                  "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -308,7 +309,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                          ],
                        ),
                       Text(
-                          widget.post_treatment["description"],
+                         widget.post_treatment.content!,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -341,7 +342,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["post_list"]["label"],
+                  "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -376,7 +377,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                         ],
                        ),
                       Text(
-                          widget.post_treatment["description"],
+                         widget.post_treatment.content!,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -409,7 +410,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["post_list"]["label"],
+                  "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -467,7 +468,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                         ],
                        ),
                         Text(
-                            widget.post_treatment["description"],
+                           widget.post_treatment.content!,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
@@ -500,7 +501,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                ),
                SizedBox(width: 10,),
                Text(
-                  widget.post_treatment["post_list"]["label"],
+                  "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -586,7 +587,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                         ],
                        ),
                       Text(
-                          widget.post_treatment["description"],
+                         widget.post_treatment.content!,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -603,7 +604,57 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
           ],),
         ),
       );
-      default: return Container();
+      default:  return GestureDetector(
+        onTap: (){
+           Navigator.push(
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+        },
+        child: Container(
+          width: double.infinity,
+          child: Column(children: [
+             Row(children: [
+               Container(
+                 width: 20,
+                 height: 20,
+                 decoration: BoxDecoration(color: Helper.mainColor,borderRadius: BorderRadius.circular(10)),
+               ),
+               SizedBox(width: 10,),
+               Text(
+                 "施術"+widget.post_treatment.from_treat_day.toString()+"日後",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                    color: Helper.titleColor,
+                  ),
+                ),
+             ],),
+             SizedBox(height: 5,),
+             Padding(
+               padding: EdgeInsets.only(left: 10),
+               child: Container(
+                 decoration: BoxDecoration(border: Border(left:BorderSide(color:Helper.txtColor) ),),
+                 child: Padding(
+                   padding: EdgeInsets.only(left: 10,top: 5),
+                   child: Column(
+                     children: [
+                       Text(
+                          widget.post_treatment.content!,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: Helper.titleColor,
+                          ),
+                        ),
+                        Bottom_Widget()
+                     ],
+                   ),
+                 ),
+                ),
+             ),
+             
+          ],),
+        ),
+      );
     }
   }
   Row Bottom_Widget() {
@@ -624,7 +675,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                   width: 6,
                 ),
                 Text(
-                  widget.post_treatment["favourite"],
+                  'widget.post_treatment["favourite"]',
                   style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w400,
@@ -644,7 +695,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                       width: 6,
                     ),
                     Text(
-                      widget.post_treatment["chat"],
+                      'widget.post_treatment["chat"]',
                       style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w400,
@@ -671,7 +722,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
             borderRadius: BorderRadius.circular(10),
             child: CachedNetworkImage(
               fit: BoxFit.fill,
-              imageUrl: widget.post_treatment["post_list"]["images"][index],
+              imageUrl: widget.post_treatment.medias![index].path,
               placeholder: (context, url) => Image.asset(
                 'assets/images/loading.gif',
                 fit: BoxFit.fill,

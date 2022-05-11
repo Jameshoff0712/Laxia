@@ -220,8 +220,8 @@ class _Home_MenuState extends State<Home_Menu> {
                     itemBuilder: (BuildContext context, int index) {
                       return Menu_Card(
                         onpress: (){
-                          Navigator.of(context).pushNamed("/Menu_Detail");
-                          Navigator.of(context).push( MaterialPageRoute(builder: (_) => Menu_Detail(Menu_Datails: menu_data.data[index])));
+                          //Navigator.of(context).pushNamed("/Menu_Detail");
+                          Navigator.of(context).push( MaterialPageRoute(builder: (_) => Menu_Detail(index:menu_data.data[index].id)));
                         },
                           image: menu_data.data[index].images!.isEmpty?"http://error.png": menu_data.data[index].images![0].path,
                           heading: menu_data.data[index].description==null?"":menu_data.data[index].description!,
