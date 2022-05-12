@@ -45,7 +45,7 @@ class _Question_CardState extends State<Question_Card> {
       padding: const EdgeInsets.only(bottom: 8),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
           color: Helper.whiteColor,
         ),
         child: Padding(
@@ -111,6 +111,7 @@ class _Question_CardState extends State<Question_Card> {
                           ))
                   ],
                 ),
+                SizedBox(height: 10,),
                 Text(
                   widget.sentence,
                   overflow: TextOverflow.ellipsis,

@@ -310,7 +310,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return <Widget>[
       SliverAppBar(
         elevation: 0,
-        expandedHeight: 350,
+        expandedHeight: 290,
         floating: true,
         pinned: false,
         automaticallyImplyLeading: false,
@@ -502,7 +502,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     height: 15,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    height: 44,
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                     decoration:
                         BoxDecoration(border: Border.all(color: Color.fromARGB(255, 210, 210, 212))),
                     child: Row(
@@ -551,8 +552,9 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     height: 15,
                   ),
                   Container(
+                    height: 44,
                     padding: const EdgeInsets.only(
-                        top: 5.0, left: 5.0, right: 5.0, bottom: 5.0),
+                        top: 3.0, left: 5.0, right: 5.0, bottom: 3.0),
                     decoration:
                         BoxDecoration(border: Border.all(color: Color.fromARGB(255, 210, 210, 212))),
                     child: IntrinsicHeight(
@@ -583,7 +585,9 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   Icon(
                                     Icons.supervisor_account,
                                     color: Helper.titleColor,
+                                    size: 15
                                   ),
+                                  SizedBox(height: 0),
                                   Text(
                                     "友達招待",
                                     style: TextStyle(
@@ -618,6 +622,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   Icon(
                                     Icons.settings,
                                     color: Helper.titleColor,
+                                    size: 15,
                                   ),
                                   Text(
                                     "設定",
