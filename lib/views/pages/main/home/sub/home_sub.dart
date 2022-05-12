@@ -50,7 +50,7 @@ class _Home_SubState extends State<Home_Sub>
            setState(() {
               home_data.data.clear();
               home_data.data.addAll(mid.data);
-              print(home_data.data.length);
+              // print(home_data.data.length);
            });
            
         }

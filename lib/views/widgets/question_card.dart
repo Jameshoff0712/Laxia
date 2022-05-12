@@ -80,6 +80,7 @@ class _Question_CardState extends State<Question_Card> {
           child: InkWell(
             onTap: widget.onpress,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +109,8 @@ class _Question_CardState extends State<Question_Card> {
                       widget.name,
                       style: TextStyle(
                           fontSize: 12,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: Helper.headFontFamily,
                           color: Helper.titleColor),
                     ),
                     widget.buttontext!.isEmpty
@@ -128,6 +130,8 @@ class _Question_CardState extends State<Question_Card> {
                                     horizontal: 5, vertical: 3),
                                 child: Text(
                                   widget.buttontext!,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: widget.fontcolor,
                                       fontSize: 10,
