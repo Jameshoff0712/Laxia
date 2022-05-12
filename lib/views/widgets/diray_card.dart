@@ -10,6 +10,7 @@ class Diary_Card extends StatefulWidget {
   final String avator, name, image1, image2, sentence, type, check, price, eyes;
   final String? buttontext, hearts, chats, clinic;
   final bool? isPublic;
+  final bool? isFavorite;
   const Diary_Card({
     Key? key,
     required this.onpress,
@@ -29,6 +30,7 @@ class Diary_Card extends StatefulWidget {
     this.chats = "",
     required this.eyes,
     this.isPublic = false,
+    this.isFavorite = false,
   }) : super(key: key);
 
   @override
@@ -114,6 +116,7 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                             ),
                           )),
+                    !widget.isFavorite! ?
                     widget.isPublic!
                         ? InkWell(
                             onTap: () {},
@@ -142,7 +145,8 @@ class _Diary_CardState extends State<Diary_Card> {
                                   color: Color.fromARGB(255, 249, 161, 56),
                                 ),
                               ),
-                            )),
+                            ))
+                    : SizedBox(width: 0),
                   ],
                 ),
                 Container(

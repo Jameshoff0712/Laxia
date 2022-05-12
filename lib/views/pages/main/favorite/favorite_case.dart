@@ -58,6 +58,7 @@ class _Favorite_CaseState extends State<Favorite_Case> {
                     price: mid[index]["price"],
                     sentence: mid[index]["sentence"],
                     type: mid[index]["type"],
+                    isFavorite: true,
                   );
                 }),
           )),
