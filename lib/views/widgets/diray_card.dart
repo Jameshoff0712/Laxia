@@ -10,6 +10,7 @@ class Diary_Card extends StatefulWidget {
   final String avator, name, image1, image2, sentence, type, check, price, eyes;
   final String? buttontext, hearts, chats, clinic;
   final bool? isPublic;
+  final bool? isFavorite;
   const Diary_Card({
     Key? key,
     required this.onpress,
@@ -29,6 +30,7 @@ class Diary_Card extends StatefulWidget {
     this.chats = "",
     required this.eyes,
     this.isPublic = false,
+    this.isFavorite = false,
   }) : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class _Diary_CardState extends State<Diary_Card> {
       padding: const EdgeInsets.only(bottom: 8),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
           color: Helper.whiteColor,
         ),
         width: double.infinity,
@@ -114,6 +116,7 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                             ),
                           )),
+                    !widget.isFavorite! ?
                     widget.isPublic!
                         ? InkWell(
                             onTap: () {},
@@ -142,7 +145,8 @@ class _Diary_CardState extends State<Diary_Card> {
                                   color: Color.fromARGB(255, 249, 161, 56),
                                 ),
                               ),
-                            )),
+                            ))
+                    : SizedBox(width: 0),
                   ],
                 ),
                 Container(
@@ -182,8 +186,8 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                             ),
                             Container(
-                                width: 100,
-                                height: 50,
+                                width: 130,
+                                height: 60,
                                 decoration: BoxDecoration(
                                     color: Helper.blackColor.withOpacity(0.5),
                                     borderRadius: BorderRadius.only(
@@ -194,8 +198,9 @@ class _Diary_CardState extends State<Diary_Card> {
                                     "Before",
                                     style: TextStyle(
                                         color: white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
+                                        fontSize: 25,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ))
                           ],
@@ -227,8 +232,8 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                             ),
                             Container(
-                                width: 100,
-                                height: 50,
+                                width: 130,
+                                height: 60,
                                 decoration: BoxDecoration(
                                     color: Helper.blackColor.withOpacity(0.5),
                                     borderRadius: BorderRadius.only(
@@ -239,8 +244,9 @@ class _Diary_CardState extends State<Diary_Card> {
                                     "After",
                                     style: TextStyle(
                                         color: white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
+                                        fontSize: 25,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ))
                           ],
@@ -256,6 +262,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     widget.sentence,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 14,
                         height: 1.3,
@@ -365,7 +372,7 @@ class _Diary_CardState extends State<Diary_Card> {
                         width: 9,
                       ),
                       Text(
-                        widget.price,
+                        widget.price + "円",
                         style: TextStyle(
                             fontSize: 12,
                             height: 1.5,

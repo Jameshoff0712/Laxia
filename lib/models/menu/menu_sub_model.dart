@@ -82,7 +82,7 @@ class Menu_Sub_Model extends Equatable {
       shower: json["shower"],
       massage: json["massage"],
       sport_impossible: json["sport_impossible"],
-      photo: json["photo"],
+      photo: json["photo"] == null ? "" : json["photo"],
       status: json["status"],
       created_at: json["created_at"],
       updated_at: json["updated_at"],
