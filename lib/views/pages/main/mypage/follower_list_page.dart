@@ -59,7 +59,12 @@ class _FollowerListPageState extends State<FollowerListPage> {
           shadowColor: Helper.whiteColor,
           title: Text(
             'フォロワー',
-            style: Theme.of(context).textTheme.headline5,
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              height: 1.5,
+              color: Helper.titleColor,
+            ),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -68,8 +73,8 @@ class _FollowerListPageState extends State<FollowerListPage> {
               },
               icon: Icon(
                 Icons.keyboard_arrow_left,
-                color: Colors.black,
-                size: 40,
+                color: Helper.titleColor,
+                size: 30,
               )),
           elevation: 0,
         ),
@@ -115,9 +120,10 @@ class _FollowerListPageState extends State<FollowerListPage> {
                                         padding: EdgeInsets.symmetric(
                                             vertical: 8, horizontal: 16),
                                         child: FollowerCardWidget(
-                                            photo:
-                                                follower_data.data[index].photo!,
-                                            name: follower_data.data[index].name!,
+                                            photo: follower_data
+                                                .data[index].photo!,
+                                            name:
+                                                follower_data.data[index].name!,
                                             nickname: follower_data
                                                 .data[index].nickname!),
                                       );
@@ -158,7 +164,8 @@ class _FollowerListPageState extends State<FollowerListPage> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.w700,
+                                height: 1.6,
+                                fontWeight: FontWeight.w400,
                                 color: Helper.txtColor,
                               ),
                             )

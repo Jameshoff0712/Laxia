@@ -83,7 +83,12 @@ class _PointPageState extends State<PointPage> {
         shadowColor: Helper.whiteColor,
         title: Text(
           'ポイント',
-          style: Theme.of(context).textTheme.headline5,
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            height: 1.5,
+            color: Helper.titleColor,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -93,7 +98,7 @@ class _PointPageState extends State<PointPage> {
             icon: Icon(
               Icons.keyboard_arrow_left,
               color: Colors.black,
-              size: 40,
+              size: 30,
             )),
         elevation: 0,
       ),
@@ -110,7 +115,7 @@ class _PointPageState extends State<PointPage> {
                 Text(
                   '保有ポイント',
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w400,
                     fontSize: 18,
                     height: 1.5,
                     color: Helper.titleColor,
@@ -119,7 +124,7 @@ class _PointPageState extends State<PointPage> {
                 Text(
                   '${userProperties.getMe.point} P',
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w400,
                     fontSize: 18,
                     height: 1.5,
                     color: Helper.titleColor,
@@ -129,7 +134,7 @@ class _PointPageState extends State<PointPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 18,
           ),
           InkWell(
             onTap: () {},
@@ -141,7 +146,7 @@ class _PointPageState extends State<PointPage> {
                   Text(
                     'ポイントの使い方についてはこちら',
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w400,
                       fontSize: 12,
                       height: 1.5,
                       color: Helper.mainColor,
@@ -166,7 +171,7 @@ class _PointPageState extends State<PointPage> {
             '履歴',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w400,
               fontSize: 16,
               height: 1.5,
               color: Helper.maintxtColor,
@@ -197,8 +202,8 @@ class _PointPageState extends State<PointPage> {
           child: Text(
             allPointsInfo[index].date!,
             style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              fontSize: 12,
               height: 1.5,
               color: Helper.titleColor,
             ),
@@ -235,7 +240,7 @@ class _PointPageState extends State<PointPage> {
           Text(
             '$price P',
             style: TextStyle(
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w400,
               fontSize: 14,
               height: 1.5,
               color: price > 0 ? Helper.mainColor : Helper.titleColor,

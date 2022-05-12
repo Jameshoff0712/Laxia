@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 
 class Clinic_Card extends StatefulWidget {
-  final VoidCallback? onpress,posPress;
+  final VoidCallback? onpress, posPress;
   final String image, post, name, mark, day, location;
   const Clinic_Card(
       {Key? key,
@@ -14,7 +14,9 @@ class Clinic_Card extends StatefulWidget {
       required this.name,
       required this.mark,
       required this.day,
-      required this.location, this.onpress=null, this.posPress=null})
+      required this.location,
+      this.onpress = null,
+      this.posPress = null})
       : super(key: key);
 
   @override
@@ -25,60 +27,63 @@ class _Clinic_CardState extends State<Clinic_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:widget.onpress!,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+      onTap: widget.onpress!,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            widget.image!="none"?Container(
-              decoration: BoxDecoration(color: Helper.whiteColor),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 15,
-                      width: 74,
-                    ),
-                    SizedBox(
-                      height: 52,
-                      width: 52,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: widget.image,
-                          placeholder: (context, url) => Image.asset(
-                            'assets/images/loading.gif',
-                            fit: BoxFit.cover,
+            widget.image != "none"
+                ? Container(
+                    decoration: BoxDecoration(color: Helper.whiteColor),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 9),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                            width: 57,
                           ),
-                          errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/profile.png',
-                            fit: BoxFit.cover,
+                          SizedBox(
+                            height: 57,
+                            width: 57,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                imageUrl: widget.image,
+                                placeholder: (context, url) => Image.asset(
+                                  'assets/images/loading.gif',
+                                  fit: BoxFit.cover,
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset(
+                                  'assets/images/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 42,
+                            width: 57,
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      height: 42,
-                      width: 74,
-                    ),
-                  ],
-                ),
-              ),
-            ):SizedBox(width: 0,),
+                  )
+                : SizedBox(
+                    width: 0,
+                  ),
             Container(
               decoration: BoxDecoration(color: Helper.whiteColor),
               child: SizedBox(
-                width: 12,
-                height: 109,
+                width: 10,
               ),
             ),
             Expanded(
               child: Container(
                 color: Helper.whiteColor,
-                height: 110,
                 child: Column(
                   children: [
                     SizedBox(
@@ -88,17 +93,22 @@ class _Clinic_CardState extends State<Clinic_Card> {
                       children: [
                         Text(
                           widget.name,
-                          style: defaultTextStyle(
-                              Helper.titleColor, FontWeight.w700,
-                              size: 16.0),
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14.0,
+                              height: 1.5),
                         ),
                         SizedBox(
                           width: 3,
                         ),
                         Text(
                           widget.post,
-                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
-                              size: 10.0),
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14.0,
+                              height: 1.5),
                         ),
                       ],
                     ),
@@ -111,31 +121,38 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         for (int i = 0; i < 5; i++)
                           Icon(
                             Icons.star,
-                            color: Colors.yellow,
+                            color: Color.fromARGB(255, 206, 176, 88),
                             size: 12,
                           ),
                         Text(
                           widget.mark,
-                          style: defaultTextStyle(
-                              Helper.titleColor, FontWeight.w700,
-                              size: 11.0),
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11.0,
+                              height: 1.5),
                         ),
                         SizedBox(
                           width: 8,
                         ),
                         Text(
                           widget.day,
-                          style: defaultTextStyle(
-                              Helper.titleColor, FontWeight.w700,
-                              size: 11.0),
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11.0,
+                              height: 1.5),
                         ),
                         SizedBox(
                           width: 1,
                         ),
                         Text(
                           "日記",
-                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
-                              size: 11.0),
+                          style: TextStyle(
+                              color: Helper.maintxtColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11.0,
+                              height: 1.5),
                         ),
                       ],
                     ),
@@ -143,28 +160,30 @@ class _Clinic_CardState extends State<Clinic_Card> {
                       height: 20,
                     ),
                     InkWell(
-                      onTap: (){
-                        if(widget.posPress!=null)
-                        {
+                      onTap: () {
+                        if (widget.posPress != null) {
                           widget.posPress!();
                         }
                       },
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             "assets/icons/menubar/pin.svg",
-                            width: 12,
-                            height: 12,
+                            width: 14,
+                            height: 14,
                           ),
                           SizedBox(
                             width: 4,
                           ),
                           Text(
                             widget.location,
-                            overflow:TextOverflow.ellipsis ,
-                            style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
-                                size: 12.0),
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Helper.maintxtColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.0,
+                              height: 1.5),
                           ),
                         ],
                       ),
