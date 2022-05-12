@@ -104,7 +104,7 @@ class _RegistrationState extends State<Registration> {
                   // focusedBorder: UnderlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
                   border: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Helper.authHintColor),
+                    borderSide: BorderSide( color: Color.fromARGB(255, 210, 210, 212), ),
                   ),
                 ),
               ),

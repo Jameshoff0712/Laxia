@@ -133,7 +133,7 @@ class _Home_SubState extends State<Home_Sub>
     return <Widget>[
       SliverAppBar(
           elevation: 0,
-          expandedHeight: 189,
+          expandedHeight: 214,
           floating: true,
           pinned: false,
           automaticallyImplyLeading: false,
@@ -192,8 +192,8 @@ class _Home_SubState extends State<Home_Sub>
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 175 / 291,
                       crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10),
+                      crossAxisSpacing: 9,
+                      mainAxisSpacing: 9),
                   itemCount: home_data.data.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Home_Card(
@@ -294,21 +294,21 @@ class Horizontal_Dockbar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Helper.whiteColor,
       ),
-      height: 150,
+      height: 178,
       child: PageView(
         controller: _pageController,
         children: [
           Center(
             child: Container(
-              height: 143,
+              height: 178,
               child: GridView(
                   shrinkWrap: true,
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                   scrollDirection: Axis.horizontal,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.9,
+                      childAspectRatio: 1.08,
                       crossAxisCount: 2,
-                      crossAxisSpacing: 0,
+                      crossAxisSpacing: 10,
                       mainAxisSpacing: 0),
                   children: [
                     Home_Sub_Horizonalbar(
@@ -416,15 +416,15 @@ class Horizontal_Dockbar extends StatelessWidget {
           ),
           Center(
             child: Container(
-              height: 143,
+              height: 178,
               child: GridView(
                   shrinkWrap: true,
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                   scrollDirection: Axis.horizontal,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.9,
+                     childAspectRatio: 1.1,
                       crossAxisCount: 2,
-                      crossAxisSpacing: 0,
+                      crossAxisSpacing: 10,
                       mainAxisSpacing: 0),
                   children: [
                     Home_Sub_Horizonalbar(

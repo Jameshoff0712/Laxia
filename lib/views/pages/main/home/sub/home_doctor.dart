@@ -99,7 +99,8 @@ class _Home_DoctorState extends State<Home_Doctor> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123, textname: "エリア選択", onpress: () {
+                       horizontal: 40,
+                        width: 186,textname: "エリア選択", onpress: () {
                           Navigator.of(context).pushNamed("/SelectPrefecture");
                         })),
                 Expanded(
@@ -107,7 +108,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                   child: Dropdownbutton(
                      items: <String>["評価が高い順", "日記の多い順"],
                       hintText: "並び替え",
-                      horizontal: 60),
+                      horizontal: 55),
                 ),
               ],
             ),

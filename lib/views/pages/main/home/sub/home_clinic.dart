@@ -107,7 +107,8 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123,
+                        horizontal: 40,
+                        width: 186,
                         textname: "エリア選択",
                         onpress: () {
                           Navigator.of(context).pushNamed("/SelectPrefecture");
@@ -115,9 +116,10 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
+                      width:123,
                       items: <String>["評価が高い順", "日記の多い順"],
                       hintText: "並び替え",
-                      horizontal: 60),
+                      horizontal: 55),
                 ),
               ],
             ),

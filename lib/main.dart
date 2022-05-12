@@ -63,10 +63,10 @@ class _MyAppState extends State<MyApp> {
         valueListenable: settingRepo.setting,
         builder: (context, Setting _setting, _) {
           return MaterialApp(
-            theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W6'),
+            theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W3'),
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
-            initialRoute: '/Splash',
+            initialRoute: '/EmailLogin',
             onGenerateRoute: RouteGenerator.generateRoute,
             locale: _setting.mobileLanguage.value,
             localizationsDelegates: const [
