@@ -34,7 +34,7 @@ class _InputTextWidgetState extends State<InputTextWidget> {
               Text(
                 widget.labelName,
                 style: TextStyle(
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w400,
                   fontSize: 14,
                   height: 1.5,
                   color: Color.fromARGB(255, 18, 18, 18),
@@ -67,6 +67,7 @@ class _InputTextWidgetState extends State<InputTextWidget> {
           },
           maxLength: int.parse(widget.maxLegnth),
           decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 12),
             hintText: widget.placeHolder,
             counterText: "",
             hintStyle: TextStyle(

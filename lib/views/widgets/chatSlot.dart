@@ -48,7 +48,7 @@ class _ChatSlotState extends State<ChatSlot> {
                               widget.message.text!,
                               style: TextStyle(
                                   fontFamily: 'Hiragino Kaku Gothic Pro',
-                                  color: Color.fromARGB(255, 51, 51, 51),
+                                  color: Helper.whiteColor,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
                                   height: 1.8),
@@ -61,7 +61,7 @@ class _ChatSlotState extends State<ChatSlot> {
                         widget.message.time!,
                         style: TextStyle(
                             fontFamily: 'Hiragino Kaku Gothic Pro',
-                            color: Color.fromARGB(255, 156, 161, 161),
+                            color: Color.fromARGB(128, 255, 255, 255),
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
                             height: 1.5),

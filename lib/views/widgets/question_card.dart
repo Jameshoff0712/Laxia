@@ -72,7 +72,7 @@ class _Question_CardState extends State<Question_Card> {
       padding: const EdgeInsets.only(bottom: 8),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
           color: Helper.whiteColor,
         ),
         child: Padding(
@@ -85,8 +85,8 @@ class _Question_CardState extends State<Question_Card> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(
-                      height: 29,
-                      width: 29,
+                      height: 25,
+                      width: 25,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: CachedNetworkImage(
@@ -103,11 +103,12 @@ class _Question_CardState extends State<Question_Card> {
                         ),
                       ),
                     ),
+                    SizedBox(width: 5),
                     Text(
                       widget.name,
                       style: TextStyle(
                           fontSize: 12,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w400,
                           color: Helper.titleColor),
                     ),
                     widget.buttontext!.isEmpty
@@ -124,7 +125,7 @@ class _Question_CardState extends State<Question_Card> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 6),
+                                    horizontal: 5, vertical: 3),
                                 child: Text(
                                   widget.buttontext!,
                                   style: TextStyle(
@@ -137,10 +138,14 @@ class _Question_CardState extends State<Question_Card> {
                           ))
                   ],
                 ),
+                SizedBox(height: 10,),
                 Text(
                   widget.sentence,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
                   style: TextStyle(
                       fontSize: 14,
+                      height: 1.3,
                       fontWeight: FontWeight.w400,
                       color: Helper.titleColor),
                 ),
@@ -214,12 +219,13 @@ class _Question_CardState extends State<Question_Card> {
                         height: 12,
                       ),
                       SizedBox(
-                        width: 6,
+                        width: 9,
                       ),
                       Text(
                         widget.type,
                         style: TextStyle(
                             fontSize: 12,
+                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -227,7 +233,7 @@ class _Question_CardState extends State<Question_Card> {
                   ),
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 7,
                 ),
                 Row(
                   children: [
@@ -243,14 +249,15 @@ class _Question_CardState extends State<Question_Card> {
                               height: 13,
                             ),
                             SizedBox(
-                              width: 6,
+                              width: 5,
                             ),
                             Text(
                               widget.eyes,
                               style: TextStyle(
                                   fontSize: 11,
+                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
-                                  color: Helper.txtColor),
+                                  color: Helper.maintxtColor),
                             ),
                             SizedBox(
                               width: 10,
@@ -261,32 +268,34 @@ class _Question_CardState extends State<Question_Card> {
                               height: 13,
                             ),
                             SizedBox(
-                              width: 6,
+                              width: 5,
                             ),
                             Text(
                               widget.hearts,
                               style: TextStyle(
                                   fontSize: 11,
+                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
-                                  color: Helper.txtColor),
+                                  color: Helper.maintxtColor),
                             ),
                             SizedBox(
                               width: 10,
                             ),
                             SvgPicture.asset(
                               "assets/icons/menubar/comment.svg",
-                              width: 13,
+                              width: 16,
                               height: 13,
                             ),
                             SizedBox(
-                              width: 6,
+                              width: 5,
                             ),
                             Text(
                               widget.chats,
                               style: TextStyle(
                                   fontSize: 11,
+                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
-                                  color: Helper.txtColor),
+                                  color: Helper.maintxtColor),
                             )
                           ]),
                     ))

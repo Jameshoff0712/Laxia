@@ -14,7 +14,8 @@ class Doctor_Card extends StatefulWidget {
       required this.name,
       required this.mark,
       required this.day,
-      required this.clinic, this.onpress=null})
+      required this.clinic,
+      this.onpress = null})
       : super(key: key);
 
   @override
@@ -26,9 +27,10 @@ class _Doctor_CardState extends State<Doctor_Card> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:widget.onpress!,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+      onTap: widget.onpress!,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+        color: Helper.whiteColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -40,13 +42,13 @@ class _Doctor_CardState extends State<Doctor_Card> {
                   children: [
                     SizedBox(
                       height: 15,
-                      width: 74,
+                      width: 52,
                     ),
                     SizedBox(
                       height: 52,
                       width: 52,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(30),
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
                           imageUrl: widget.image,
@@ -63,7 +65,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                     ),
                     SizedBox(
                       height: 42,
-                      width: 74,
+                      width: 52,
                     ),
                   ],
                 ),
@@ -73,13 +75,11 @@ class _Doctor_CardState extends State<Doctor_Card> {
               decoration: BoxDecoration(color: _whiteColor),
               child: SizedBox(
                 width: 12,
-                height: 109,
               ),
             ),
             Expanded(
               child: Container(
                 color: _whiteColor,
-                height: 110,
                 child: Column(
                   children: [
                     SizedBox(
@@ -89,17 +89,22 @@ class _Doctor_CardState extends State<Doctor_Card> {
                       children: [
                         Text(
                           widget.name,
-                          style: defaultTextStyle(
-                              Helper.titleColor, FontWeight.w700,
-                              size: 16.0),
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16.0,
+                              height: 1.5),
                         ),
                         SizedBox(
                           width: 3,
                         ),
                         Text(
                           widget.post,
-                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
-                              size: 10.0),
+                          style: TextStyle(
+                              color: Helper.maintxtColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10.0,
+                              height: 1.5),
                         ),
                       ],
                     ),
@@ -112,31 +117,38 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         for (int i = 0; i < 5; i++)
                           Icon(
                             Icons.star,
-                            color: Colors.yellow,
+                            color: Color.fromARGB(255, 206, 176, 88),
                             size: 12,
                           ),
                         Text(
                           widget.mark,
-                          style: defaultTextStyle(
-                              Helper.titleColor, FontWeight.w700,
-                              size: 11.0),
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11.0,
+                              height: 1.5),
                         ),
                         SizedBox(
                           width: 8,
                         ),
                         Text(
                           widget.day,
-                          style: defaultTextStyle(
-                              Helper.titleColor, FontWeight.w700,
-                              size: 11.0),
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11.0,
+                              height: 1.5),
                         ),
                         SizedBox(
                           width: 1,
                         ),
                         Text(
                           "日記",
-                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
-                              size: 11.0),
+                          style: TextStyle(
+                              color: Helper.maintxtColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11.0,
+                              height: 1.5),
                         ),
                       ],
                     ),
@@ -144,7 +156,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                       height: 20,
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
                           "assets/icons/menubar/clinic.svg",
@@ -156,8 +168,11 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         ),
                         Text(
                           widget.clinic,
-                          style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
-                              size: 12.0),
+                          style: TextStyle(
+                              color: Helper.maintxtColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.0,
+                              height: 1.5),
                         ),
                       ],
                     ),

@@ -18,7 +18,7 @@ class _CompletionState extends State<Completion> {
         title: Text(
           '予約完了',
           style: TextStyle(
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,
@@ -32,7 +32,7 @@ class _CompletionState extends State<Completion> {
             icon: Icon(
               Icons.close,
               color: Helper.titleColor,
-              size: 30,
+              size: 25,
             )),
         elevation: 0,
       ),
@@ -66,14 +66,13 @@ class _CompletionState extends State<Completion> {
                   style: TextStyle(
                     color: Helper.mainColor,
                     fontSize: 18,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w400,
                     height: 1.5,
                     decoration: TextDecoration.none,
                   )),
             ),
             SizedBox(height: 3),
             Container(
-              // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
               alignment: Alignment.center,
               child: Text(
                   '空き状況を確認中でございますので、\n予約が確定するまでお待ちください。\nチャットにてご連絡させていただきます。',
@@ -94,7 +93,6 @@ class _CompletionState extends State<Completion> {
                   Navigator.pop(context);
                   Navigator.pop(context);
                   Navigator.pop(context);
-                  // Navigator.pop(context);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
@@ -108,7 +106,7 @@ class _CompletionState extends State<Completion> {
                       style: TextStyle(
                         color: Color.fromARGB(255, 102, 110, 110),
                         fontSize: 12,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w400,
                         decoration: TextDecoration.none,
                       )),
                 ),

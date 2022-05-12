@@ -24,7 +24,7 @@ class _InvitePageState extends State<InvitePage> {
           title: Text(
             'お友達を招待',
             style: TextStyle(
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w400,
               fontSize: 16,
               height: 1.5,
               color: Helper.titleColor,
@@ -38,7 +38,7 @@ class _InvitePageState extends State<InvitePage> {
               icon: Icon(
                 Icons.close,
                 color: Helper.titleColor,
-                size: 30,
+                size: 25,
               )),
           elevation: 0,
         ),
@@ -55,9 +55,9 @@ class _InvitePageState extends State<InvitePage> {
                   'あなたにも友達にも\n3000円分のポイントをプレゼント',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w400,
                     fontSize: 20,
-                    height: 1.5,
+                    height: 1.4,
                     color: Helper.mainColor,
                   ),
                 ),
@@ -90,7 +90,7 @@ class _InvitePageState extends State<InvitePage> {
               child: Text(
                 'あなたの紹介コード',
                 style: TextStyle(
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w400,
                   fontSize: 16,
                   height: 1.5,
                   color: Helper.maintxtColor,
@@ -187,7 +187,7 @@ class _InvitePageState extends State<InvitePage> {
                         );
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 13),
+                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 48),
                         decoration: BoxDecoration(
                           color: Helper.mainColor,
                           borderRadius: BorderRadius.circular(40),
@@ -203,7 +203,7 @@ class _InvitePageState extends State<InvitePage> {
                             Text(
                               '招待コードを友達に送る',
                               style: TextStyle(
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w400,
                                 fontSize: 16,
                                 height: 1.5,
                                 color: Helper.whiteColor,

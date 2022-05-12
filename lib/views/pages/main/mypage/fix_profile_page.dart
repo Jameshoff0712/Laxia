@@ -76,7 +76,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                 child: Text(
                   'プロフィールを編集',
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w400,
                     fontSize: 16,
                     height: 1.5,
                     color: Helper.titleColor,
@@ -84,24 +84,18 @@ class _FixProfilePageState extends State<FixProfilePage> {
                 ),
               ),
               actions: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Mypage()));
-                  },
-                  child: Center(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushNamed("/Mypage");
-                      },
-                      child: Text(
-                        "保存",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14,
-                          height: 1.5,
-                          color: Helper.mainColor,
-                        ),
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed("/Mypage");
+                    },
+                    child: Text(
+                      "保存",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        height: 1.5,
+                        color: Helper.mainColor,
                       ),
                     ),
                   ),
@@ -160,7 +154,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                         child: Text(
                           "プロフィール写真を変更",
                           style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                             fontSize: 11,
                             height: 1.5,
                             color: Helper.mainColor,
@@ -175,16 +169,10 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                 labelName: "ニックネーム",
                                 placeHolder: "あやか",
                                 maxLegnth: "40"),
-                            SizedBox(
-                              height: 10,
-                            ),
                             InputTextWidget(
                                 labelName: "ユーザーID",
                                 placeHolder: "Ayaka",
                                 maxLegnth: "40"),
-                            SizedBox(
-                              height: 10,
-                            ),
                             Column(
                               children: [
                                 Container(
@@ -196,7 +184,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                       Text(
                                         "生年月日",
                                         style: TextStyle(
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w400,
                                           fontSize: 14,
                                           height: 1.5,
                                           color:
@@ -262,9 +250,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                               name: "性別",
                               items: ["女性", "男性"],
                               chosenValue: "女性",
-                            ),
-                            SizedBox(
-                              height: 10.0,
                             ),
                             InputTextWidget(
                                 labelName: "自己紹介",
