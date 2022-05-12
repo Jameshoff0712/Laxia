@@ -4,22 +4,15 @@ import 'package:laxia/common/helper.dart';
 
 class TabBarWidget extends StatefulWidget {
   final double? padding;
+  final bool? isScrollable;
   final TabController tabController;
   final List<String>  tabMenus;
-const TabBarWidget({ Key? key, required this.tabMenus,required this.tabController, this.padding=8 }) : super(key: key);
+const TabBarWidget({ Key? key, required this.tabMenus,required this.tabController, this.padding=8, this.isScrollable = true }) : super(key: key);
   @override
   _TabBarWidgetState createState() => _TabBarWidgetState();
 }
 
 class _TabBarWidgetState extends State<TabBarWidget> with SingleTickerProviderStateMixin {
-  // late TabController _tabController;
-  // @override
-  // void initState() {
-  //   setState(() {
-  //     _tabController = new TabController(length: 8, vsync: this);
-  //   });
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +27,9 @@ class _TabBarWidgetState extends State<TabBarWidget> with SingleTickerProviderSt
               unselectedLabelColor: Helper.searchBartxtColor,
               indicatorColor: Helper.mainColor,
               indicatorWeight: 2,
-              indicatorSize: TabBarIndicatorSize.label,
+              indicatorSize: widget.isScrollable! ? TabBarIndicatorSize.label : TabBarIndicatorSize.tab,
               indicatorPadding: EdgeInsets.only(bottom: -1, left: 4, right: 4),              
-              isScrollable: true,
+              isScrollable: widget.isScrollable!,
               onTap: (value){
               },
               tabs: [
@@ -58,7 +51,8 @@ Tab _buildTab(String tabMenu) {
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 12,
-        fontWeight: FontWeight.w700,
+        height: 1.5,
+        fontWeight: FontWeight.w400,
       ),
     ),
   );
