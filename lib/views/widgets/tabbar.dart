@@ -7,7 +7,7 @@ class TabBarWidget extends StatefulWidget {
   final bool? isScrollable;
   final TabController tabController;
   final List<String>  tabMenus;
-const TabBarWidget({ Key? key, required this.tabMenus,required this.tabController, this.padding=8, this.isScrollable = true }) : super(key: key);
+const TabBarWidget({ Key? key, required this.tabMenus,required this.tabController, this.padding=12, this.isScrollable = true }) : super(key: key);
   @override
   _TabBarWidgetState createState() => _TabBarWidgetState();
 }
@@ -50,9 +50,10 @@ Tab _buildTab(String tabMenu) {
       tabMenu,
       textAlign: TextAlign.center,
       style: TextStyle(
+        fontFamily: "Hiragino Kaku Gothic Pro w6",
         fontSize: 12,
-        height: 1.5,
-        fontWeight: FontWeight.w400,
+        letterSpacing: 0.3,
+        fontWeight: FontWeight.w700,
       ),
     ),
   );
