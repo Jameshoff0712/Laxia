@@ -3,6 +3,7 @@ import 'package:laxia/models/case/menu_sub_model.dart';
 import 'package:laxia/models/clinic/clinic_sub_model.dart';
 import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/home/category_model.dart';
+import 'package:laxia/models/menu/image_model.dart';
 
 class Case_Sub_Model extends Equatable {
   final int id;
@@ -23,10 +24,12 @@ class Case_Sub_Model extends Equatable {
   final Clinic_Sub_Model? clinic;
   final List<Category>? categories;
   final List<Menu_Sub_Model>? menus;
-  final String? doctor;
+  final Doctor_Sub_Model? doctor;
+  final List<Image_model>? images;
 
   const Case_Sub_Model(
       {required this.id,
+      this.images, 
       this.clinic_id,
       this.name,
       this.patient_age,
@@ -70,7 +73,10 @@ class Case_Sub_Model extends Equatable {
         menus: List<Menu_Sub_Model>.from(json["menus"]
                 .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
-        doctor:json["doctor"]// Doctor_Sub_Model.fromJson(json["doctor"])
+        images:json["images"]==null?[] :List<Image_model>.from(json["images"]
+                .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>),
+        doctor:json["doctor"]==null?null: Doctor_Sub_Model.fromJson(json["doctor"]),
         );
   }
   @override

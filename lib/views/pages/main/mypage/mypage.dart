@@ -79,7 +79,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         title: Text(
           userProperties.getMe.nickname!,
           style: TextStyle(
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,
@@ -118,18 +118,18 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         controller: _tabController,
         indicatorColor: Helper.mainColor,
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorWeight: 3.8,
+        indicatorWeight: 2.0,
         labelColor: Helper.titleColor,
         unselectedLabelColor: Helper.unSelectTabColor,
+        labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
         tabs: [
           Tab(
             child: Text(
               "日記",
               style: TextStyle(
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w400,
                 fontSize: 12,
                 height: 1.5,
-                color: Helper.titleColor,
               ),
             ),
           ),
@@ -137,7 +137,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
             child: Text(
               "カウセレポ",
               style: TextStyle(
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w400,
                 fontSize: 12,
                 height: 1.5,
               ),
@@ -147,7 +147,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
             child: Text(
               "質問",
               style: TextStyle(
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w400,
                 fontSize: 12,
                 height: 1.5,
               ),
@@ -203,11 +203,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Diary_Detail(
-                                      isMyDiary: true,
+                                      isMyDiary: true, index: 1,
                                     ))
                         );
                       },
-                      isMe: true,
+                      isPublic: true,
                     );
                   });
             }),
@@ -250,7 +250,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => CounselDetail(
-                                      isMyDiary: true,
+                                      isMyDiary: true, index: mid[index].id,
                                     )));
                       },
                     );
@@ -293,7 +293,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => QuestionDetail(
-                                        isMyDiary: true,
+                                        isMyDiary: true, index: mid[index].id,
                                       )));
                         },
                       );
@@ -310,7 +310,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return <Widget>[
       SliverAppBar(
         elevation: 0,
-        expandedHeight: 350,
+        expandedHeight: 290,
         floating: true,
         pinned: false,
         automaticallyImplyLeading: false,
@@ -353,7 +353,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                                   userProperties.getMe.name,
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w400,
                                     fontSize: 18,
                                     height: 1.5,
                                     color: Helper.titleColor,
@@ -370,7 +370,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                               },
                               style: OutlinedButton.styleFrom(
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
+                                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
                                   shape: StadiumBorder(),
                                   side: BorderSide(
                                       width: 1, color: Helper.mainColor)),
@@ -409,7 +409,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                                   userProperties.getMe.followsCount.toString(),
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w400,
                                     fontSize: 16,
                                     height: 1.5,
                                     color: Helper.titleColor,
@@ -422,7 +422,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                               "フォロー",
                               style: TextStyle(
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w400,
                                 fontSize: 12,
                                 height: 1.5,
                                 color: Color.fromARGB(255, 194, 194, 194),
@@ -450,7 +450,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   userProperties.getMe.followersCount
                                       .toString(),
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w400,
                                     fontSize: 16,
                                     height: 1.5,
                                     color: Helper.titleColor,
@@ -463,7 +463,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                               "フォロワー",
                               style: TextStyle(
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w400,
                                 fontSize: 12,
                                 height: 1.5,
                                 color: Color.fromARGB(255, 194, 194, 194),
@@ -502,9 +502,10 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     height: 15,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    height: 44,
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                     decoration:
-                        BoxDecoration(border: Border.all(color: Colors.grey)),
+                        BoxDecoration(border: Border.all(color: Color.fromARGB(255, 210, 210, 212))),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -512,7 +513,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         Text(
                           "保有ポイント",
                           style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                             fontSize: 16,
                             height: 1.5,
                             color: Color.fromARGB(255, 18, 18, 18),
@@ -526,7 +527,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             Text(
                               "${userProperties.getMe.point} p",
                               style: TextStyle(
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w400,
                                 fontSize: 16,
                                 height: 1.5,
                                 color: Color.fromARGB(255, 18, 18, 18),
@@ -551,10 +552,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     height: 15,
                   ),
                   Container(
+                    height: 44,
                     padding: const EdgeInsets.only(
-                        top: 2.0, left: 5.0, right: 5.0, bottom: 2.0),
+                        top: 3.0, left: 5.0, right: 5.0, bottom: 3.0),
                     decoration:
-                        BoxDecoration(border: Border.all(color: Colors.grey)),
+                        BoxDecoration(border: Border.all(color: Color.fromARGB(255, 210, 210, 212))),
                     child: IntrinsicHeight(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -583,11 +585,13 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   Icon(
                                     Icons.supervisor_account,
                                     color: Helper.titleColor,
+                                    size: 15
                                   ),
+                                  SizedBox(height: 0),
                                   Text(
                                     "友達招待",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       color: Helper.titleColor,
                                     ),
@@ -618,11 +622,12 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   Icon(
                                     Icons.settings,
                                     color: Helper.titleColor,
+                                    size: 15,
                                   ),
                                   Text(
                                     "設定",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       color: Helper.titleColor,
                                     ),

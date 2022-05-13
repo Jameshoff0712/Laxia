@@ -49,7 +49,7 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                       "りりこ",
                       style: TextStyle(
                           color: Color.fromARGB(255, 18, 18, 18),
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w400,
                           fontSize: 12,
                           height: 1.5),
                     ),
@@ -68,6 +68,7 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                 onTap: () {},
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
+                  margin: EdgeInsets.only(right: 12),
                   decoration: BoxDecoration(
                     color: Helper.mainColor,
                     borderRadius: BorderRadius.circular(20),
@@ -77,7 +78,7 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                         color: Helper.whiteColor,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w400,
                         fontSize: 10,
                         height: 1.5),
                   ),

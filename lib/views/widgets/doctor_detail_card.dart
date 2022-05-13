@@ -31,8 +31,8 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => Doctor_Detail()));
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (_) => Doctor_Detail()));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),

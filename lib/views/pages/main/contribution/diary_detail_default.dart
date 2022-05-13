@@ -260,7 +260,7 @@ SvgPicture.asset(
                     ),
                     context: context,
                     builder: (context) {
-                      return CommentDialogSheet();
+                      return CommentDialogSheet(count: 0, index: 0, domain: 'diaries',);
                     });
               },
               child: Column(
@@ -473,7 +473,7 @@ SvgPicture.asset(
                                     ),
                                     context: context,
                                     builder: (context) {
-                                      return CommentDialogSheet();
+                                      return CommentDialogSheet(count: 0, index: 0, domain: 'diaries',);
                                     });
                                   },
                                 decoration: InputDecoration(
