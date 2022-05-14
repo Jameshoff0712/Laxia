@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/common/helper.dart';
 
 class CounselQuestion_Card extends StatefulWidget {
   final VoidCallback onpress;
@@ -20,15 +21,15 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(4),
           color: Colors.white,
         ),
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
           child: InkWell(
             onTap: widget.onpress,
             child: Column(
@@ -40,17 +41,32 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
                     Text(
                       'Q' + widget.index.toString() + " ",
                       style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 110, 198, 210)),
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.w400,
+                          color: Helper.mainColor),
                     ),
-                    Text(widget.question),
+                    Text(
+                      widget.question,
+                      style: TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromARGB(255, 51, 51, 51)),
+                    ),
                   ],
                 ),
+                SizedBox(height: 4),
                 Container(
                   child: Text(
                     widget.answer,
-                    style: TextStyle(fontSize: 13, color: Colors.grey),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 14,
+                        height: 1.8,
+                        color: Helper.maintxtColor,
+                        fontWeight: FontWeight.w400),
                   ),
                 ),
               ],

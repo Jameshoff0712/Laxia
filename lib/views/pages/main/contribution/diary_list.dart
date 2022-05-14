@@ -100,7 +100,7 @@ class _DiaryPageState extends State<DiaryPage> {
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    padding: const EdgeInsets.only(top: 25, bottom: 16),
+                    padding: const EdgeInsets.only(top: 21, bottom: 21),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(6))),
                     primary: Helper.mainColor,

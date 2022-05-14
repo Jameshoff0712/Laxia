@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:laxia/views/pages/main/contribution/select_clinic.dart';
+import 'package:laxia/views/pages/main/contribution/select_doctor.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,27 +18,27 @@ import 'package:laxia/models/clinic_model.dart';
 import 'package:laxia/models/doctor_model.dart';
 import 'package:flutter_datetime_picker_forked/flutter_datetime_picker_forked.dart';
 
-
 class AddCounselStep1Page extends StatefulWidget {
   final bool? isMyDiary;
-  const AddCounselStep1Page({Key? key, this.isMyDiary = false}) : super(key: key);
+  const AddCounselStep1Page({Key? key, this.isMyDiary = false})
+      : super(key: key);
   @override
   _AddCounselStep1PageState createState() => _AddCounselStep1PageState();
 }
 
 class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
-    List<String> addList=[
+  List<String> addList = [
     "選択してください",
     "選択してください",
     "選択してください",
     "選択してください",
     "選択してください"
   ];
-  bool isAddEnabled = true,isUsed=false;
-  int index=0;
-  List images=[[]];
- final _picker = ImagePicker();
-    Future<void> _openImagePicker() async {
+  bool isAddEnabled = true, isUsed = false;
+  int index = 0;
+  List images = [[]];
+  final _picker = ImagePicker();
+  Future<void> _openImagePicker() async {
     final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
@@ -44,6 +47,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
       });
     }
   }
+
   enableAddButton() {
     setState(() {
       isAddEnabled = true;
@@ -105,10 +109,12 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     images.add([]);
     super.initState();
   }
+
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
   }
+
   Future getImageFromGallery() async {
     // var image = await AddCounselStep1Page.pickImage(source: ImageSource.gallery);
 
@@ -131,594 +137,473 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
         isAddEnabled = false;
       });
     }
-
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-          title: Text(
-            'カウセレポを入力',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text('カウセレポを入力',
+            style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              height: 1.5,
+            )),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Helper.titleColor,
           ),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
-            onPressed: () => Navigator.pop(context),
-          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  title: Text(
-                    '基本情報',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
-                        fontWeight: FontWeight.normal),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '基本情報',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    height: 1.5),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 14.0, 18.0, 14.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "相談した施術内容",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "施術箇所",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                           ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(
-                              surgeryProvider.selectedCurePos.isEmpty
-                                  ? "選択してください"
-                                  : surgeryProvider.getSelectedCurePosStr,
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () =>
-                                Navigator.of(context).pushNamed("/SelectSurgery"),
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 14.0, 18.0, 14.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "クリニック",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(
-                              addList[2],
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
-                                  isScrollControlled: true,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(15.0),
-                                        topRight: Radius.circular(15.0)),
-                                  ),
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      color: Helper.whiteColor,
-                                      height:  MediaQuery.of(context).size.height * 0.9,
-                                      child: Column(
-                                        children: [
-                                          SizedBox(height: 15,),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 16,),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                IconButton(onPressed: (){
-                                                  Navigator.of(context).pop();
-                                                }, icon: Icon(Icons.arrow_back_ios, size: 20,)),
-                                                Text(
-                                                  "クリニック名で検索",
-                                                  style: defaultTextStyle(
-                                                      Helper.titleColor, FontWeight.w700,
-                                                      size: 18),
-                                                ),
-                                                Icon(Icons.arrow_back_ios,size: 20,color: Helper.whiteColor,)
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
-                                            child: SearchbarWidget(state: false, filter: TextEditingController(),hinttext: "クリニックを検索",),
-                                          ),
-                                          SingleChildScrollView(
-                                            child: LayoutBuilder(
-                                              builder: (context, BoxConstraints viewportConstraints) {
-                                              return ListView.builder(
-                                                        padding: const EdgeInsets.symmetric(vertical: 4),
-                                                        itemCount: clinic_list.length,
-                                                        shrinkWrap:true,
-                                                        itemBuilder: (BuildContext context, int index) {
-                                                          return InkWell(
-                                                            onTap: (){
-                                                              setState(() {
-                                                                addList[2]= clinic_list[index]["name"];
-                                                              });
-                                                              Navigator.of(context).pop();
-                                                            },
-                                                            child: Container(
-                                                              decoration: BoxDecoration(
-                                                                color: Colors.white,
-                                                                border: Border(
-                                                                  bottom: BorderSide(color: Colors.grey),
-                                                                ),
-                                                              ),
-                                                              child: Row(
-                                                                children: [
-                                                                  Expanded(
-                                                                    child: Padding(
-                                                                      padding: const EdgeInsets.symmetric(horizontal: 19,vertical: 16),
-                                                                      child: Text(
-                                                                      clinic_list[index]["name"],
-                                                                      style: TextStyle(
-                                                                          color: Colors.black,
-                                                                          fontWeight: FontWeight.normal,
-                                                                          fontSize: 16),
-                                                                  ),
-                                                                    ),)
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          );
-                                                        });
-                                            }),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  });
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 14.0, 18.0, 14.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "担当ドクター",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(
-                              addList[3],
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
-                                  isScrollControlled: true,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(15.0),
-                                        topRight: Radius.circular(15.0)),
-                                  ),
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      color: Helper.homeBgColor,
-                                      height:  MediaQuery.of(context).size.height * 0.9,
-                                      child: Column(
-                                        children: [
-                                          SizedBox(height: 15,),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 16,),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                IconButton(onPressed: (){
-                                                  Navigator.of(context).pop();
-                                                }, icon: Icon(Icons.close,size: 20,)),
-                                                Text(
-                                                  "担当ドクターを選択",
-                                                  style: defaultTextStyle(
-                                                      Helper.titleColor, FontWeight.w700,
-                                                      size: 18),
-                                                ),
-                                                Icon(Icons.close,size: 20,color: Helper.whiteColor,)
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
-                                            child: SearchbarWidget(state: false, filter: TextEditingController(),hinttext: "ドクターを検索",),
-                                          ),
-                                          SingleChildScrollView(
-                                            child: LayoutBuilder(
-                                              builder: (context, BoxConstraints viewportConstraints) {
-                                              return ListView.builder(
-                                                        padding: const EdgeInsets.symmetric(vertical: 4),
-                                                        itemCount: doctor_list.length,
-                                                        shrinkWrap:true,
-                                                        itemBuilder: (BuildContext context, int index) {
-                                                          return InkWell(
-                                                            onTap: (){
-                                                              setState(() {
-                                                                addList[3]= doctor_list[index]["name"];
-                                                              });
-                                                              Navigator.of(context).pop();
-                                                            },
-                                                            child: Container(
-                                                              decoration: BoxDecoration(
-                                                                color: Helper.homeBgColor,
-                                                              ),
-                                                              child: Padding(
-                                                                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-                                                                child: Container(
-                                                                  width: double.infinity,
-                                                                  height: 65,
-                                                                 decoration: BoxDecoration(color: Helper.whiteColor),
-                                                                  child: Row(
-                                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                                    children: [
-                                                                      Container(
-                                                                        child: Padding(
-                                                                          padding: const EdgeInsets.only(left: 8),
-                                                                          child: SizedBox(
-                                                                            height: 35,
-                                                                            width: 35,
-                                                                            child: ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(17.5),
-                                                                              child: CachedNetworkImage(
-                                                                                fit: BoxFit.cover,
-                                                                                imageUrl: doctor_list[index]["image"],
-                                                                                placeholder: (context, url) => Image.asset(
-                                                                                  'assets/images/loading.gif',
-                                                                                  fit: BoxFit.cover,
-                                                                                ),
-                                                                                errorWidget: (context, url, error) => Image.asset(
-                                                                                  'assets/images/profile.png',
-                                                                                  fit: BoxFit.cover,
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Container(
-                                                                        child: SizedBox(
-                                                                          width: 12,
-                                                                        ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child: Container(
-                                                                          color: Helper.whiteColor,
-                                                                          child: Column(
-                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                            crossAxisAlignment:CrossAxisAlignment.start,
-                                                                            children: [
-                                                                              Row(
-                                                                                children: [
-                                                                                  Text(
-                                                                                     doctor_list[index]['name'],
-                                                                                    style: defaultTextStyle(
-                                                                                        Helper.titleColor, FontWeight.w700,
-                                                                                        size: 16.0),
-                                                                                  ),
-                                                                                  SizedBox(
-                                                                                    width: 3,
-                                                                                  ),
-                                                                                  Text(
-                                                                                     doctor_list[index]["post"],
-                                                                                    style: defaultTextStyle(Helper.maintxtColor, FontWeight.w700,
-                                                                                        size: 10.0),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              Text(
-                                                                                 doctor_list[index]["clinic"],
-                                                                                style: defaultTextStyle(Helper.maintxtColor, FontWeight.w400,
-                                                                                    size: 12.0),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        });
-                                            }),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  });
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 14.0, 18.0, 14.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "カウンセリング日",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(
-                               addList[0],
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: ()  {
-                                DatePicker.showDatePicker(context,
-                                    showTitleActions: true,
-                                    minTime: DateTime(2018, 3, 5),
-                                    maxTime: DateTime(2200, 6, 7), onChanged: (date) {
-                                }, onConfirm: (date) {
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                surgeryProvider.selectedCurePosStr.isNotEmpty
+                                    ? surgeryProvider.getSelectedCurePosStr
+                                    : "選択してください",
+                                overflow: TextOverflow.clip,
+                                softWrap: true,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: Helper.txtColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                    height: 1.5),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  surgeryProvider.selectedCurePosStr.clear();
+                                  surgeryProvider.setButtonText("次へ");
+                                  Navigator.of(context)
+                                      .pushNamed("/SelectSurgery");
                                   setState(() {
-                                    addList[0] = date.year.toString()+"-"+date.month.toString()+"-"+date.day.toString(); 
+                                    isUsed = true;
                                   });
-                                }, currentTime: DateTime.now(), locale: LocaleType.jp);
-    
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                            ),
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
                           ),
-                        ]),
-                  ),
+                        ),
+                      ]),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                child: ListTile(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  title: Text(
-                    'どんなことに悩んでいますか？',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
-                        fontWeight: FontWeight.normal),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: TextFormField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 4,
-                  onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
-                  },
-                  decoration: InputDecoration(
-                    hintText: '例)二重幅が狭いことに悩んでいました',
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                    border: InputBorder.none,
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "クリニック",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                userProperties.getSelectedClinic != ""
+                                    ? userProperties.getSelectedClinic
+                                    : "選択してください",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Helper.txtColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                    height: 1.5),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      constraints: BoxConstraints(
+                                        maxHeight:
+                                            MediaQuery.of(context).size.height *
+                                                0.9,
+                                      ),
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(15.0),
+                                            topRight: Radius.circular(15.0)),
+                                      ),
+                                      context: context,
+                                      builder: (context) {
+                                        return SelectClinic();
+                                      });
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  contentPadding: EdgeInsets.only(top: 20),
-                  title: Text(
-                    '自分の写真',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
-                        fontWeight: FontWeight.normal),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
-              ),
-              imagePicker(context,0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  contentPadding: EdgeInsets.only(top: 20),
-                  title: Text(
-                    '理想の写真',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
-                        fontWeight: FontWeight.normal),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "担当ドクター",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                userProperties.getSelectedDoctor != ""
+                                    ? userProperties.getSelectedDoctor
+                                    : "選択してください",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Helper.txtColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                    height: 1.5),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      constraints: BoxConstraints(
+                                        maxHeight:
+                                            MediaQuery.of(context).size.height *
+                                                0.9,
+                                      ),
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(15.0),
+                                            topRight: Radius.circular(15.0)),
+                                      ),
+                                      context: context,
+                                      builder: (context) {
+                                        return SelectDoctor();
+                                      });
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
                 ),
               ),
-              imagePicker(context,1),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  contentPadding: EdgeInsets.only(top: 20),
-                  title: Text(
-                    '理想じゃない写真',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
-                        fontWeight: FontWeight.normal),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "施術日",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                addList[0],
+                                style: TextStyle(
+                                    color: Helper.txtColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                    height: 1.5),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  DatePicker.showDatePicker(context,
+                                      showTitleActions: true,
+                                      minTime: DateTime(2018, 3, 5),
+                                      maxTime: DateTime(2200, 6, 7),
+                                      onChanged: (date) {}, onConfirm: (date) {
+                                    setState(() {
+                                      addList[0] = date.year.toString() +
+                                          "年" +
+                                          date.month.toString() +
+                                          "月" +
+                                          date.day.toString() +
+                                          "日";
+                                    });
+                                    // diaryProperties.setDate(
+                                    //     date.year.toString() +
+                                    //         "/" +
+                                    //         date.month.toString() +
+                                    //         "/" +
+                                    //         date.day.toString());
+                                  },
+                                      currentTime: DateTime.now(),
+                                      locale: LocaleType.jp);
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                'どんなことに悩んでいますか？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    height: 1.5),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: TextFormField(
+                keyboardType: TextInputType.multiline,
+                maxLines: 3,
+                onChanged: (text) {
+                  if (text.isNotEmpty) {
+                    setState(() {
+                      isAddEnabled = true;
+                    });
+                  } else {
+                    setState(() {
+                      isAddEnabled = false;
+                    });
+                  }
+                },
+                decoration: InputDecoration(
+                  hintText: '例)二重幅が狭いことに悩んでいました',
+                  hintStyle: TextStyle(
+                    color: Helper.txtColor,
+                    fontSize: 14,
+                    height: 1.8,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '自分の写真',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    height: 1.5),
+              ),
+            ),
+            imagePicker(context, 0),
+            Padding(
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '理想の写真',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    height: 1.5),
+              ),
+            ),
+            imagePicker(context, 1),
+            Padding(
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '理想じゃない写真',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    height: 1.5),
+              ),
+            ),
             imagePicker(context, 2),
+            SizedBox(height: 48,),
             !widget.isMyDiary!
-            ? Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  height: 76,
-                  padding: EdgeInsets.only(top: 20),
-                  child: ElevatedButton(
-                  onPressed: isAddEnabled ? () => _AddCounselStep2Page() : null,
-                    style: ElevatedButton.styleFrom(
-                      elevation: 1,
-                      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(6))),
-                      primary: Helper.mainColor,
-                      onPrimary: Colors.white,
-                      onSurface: Colors.grey,
-                    ),
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: Text(
-                        '次に進む',
-                        style: TextStyle(fontSize: 18),
+                ? Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 45,
+                      padding: EdgeInsets.only(left: 16, right: 16),
+                      child: ElevatedButton(
+                        onPressed:
+                            isAddEnabled ? () => _AddCounselStep2Page() : null,
+                        style: ElevatedButton.styleFrom(
+                          elevation: 1,
+                          padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6))),
+                          primary: Helper.mainColor,
+                          onPrimary: Colors.white,
+                          onSurface: Colors.grey,
+                        ),
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            '次に進む',
+                            style: TextStyle(
+                                fontSize: 14,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-            )
-            : Center(
+                  )
+                : Center(
                     child: Container(
                     padding: EdgeInsets.only(top: 50),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddCounselStep2Page(isMyDiary: widget.isMyDiary)));
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddCounselStep2Page(
+                                    isMyDiary: widget.isMyDiary)));
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 1,
@@ -746,59 +631,70 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                       ),
                     ),
                   )),
+            SizedBox(height: 48),  
           ],
         ),
       ),
-    )
-    );
+    ));
   }
-  Widget imagePicker(BuildContext context,int subindex) {
+
+  Widget imagePicker(BuildContext context, int subindex) {
     return Container(
-      padding: const EdgeInsets.only(left: 12.0, top: 0, right: 12, bottom: 12),
+      padding: const EdgeInsets.only(left: 16.0, top: 0, right: 12, bottom: 0),
       child: GestureDetector(
         child: Row(
           children: <Widget>[
             InkWell(
-              onTap: (){
+              onTap: () {
                 setState(() {
-                  index=subindex;
+                  index = subindex;
                 });
                 _openImagePicker();
               },
               child: Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.only(top: 15),
-                height: 100,
-                width: 100,
+                padding: EdgeInsets.only(top: 14),
+                height: 80,
+                width: 80,
                 decoration: BoxDecoration(
                   color: Colors.grey,
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Column(
                   children: [
                     SvgPicture.asset(
                       "assets/icons/photo.svg",
                       width: 36,
-                      height: 36,
+                      height: 29,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text('写真を追加', style: TextStyle(color: Colors.white)),
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text('写真を追加',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              height: 1.5)),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(width: 9),
+            SizedBox(width: 16),
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                      PhotoCarouselWidget(ImageList: images[subindex],onRemove: (int ) { setState(() {
-                        images[subindex].removeAt(int); 
-                      });},),
+                    PhotoCarouselWidget(
+                      ImageList: images[subindex],
+                      onRemove: (int) {
+                        setState(() {
+                          images[subindex].removeAt(int);
+                        });
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -809,5 +705,3 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     );
   }
 }
-
-
