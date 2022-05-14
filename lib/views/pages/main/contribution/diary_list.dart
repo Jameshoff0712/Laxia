@@ -73,10 +73,14 @@ class _DiaryPageState extends State<DiaryPage> {
         centerTitle: true,
         title: Text(
           '日記を投稿する',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              height: 1.5),
         ),
         leading: IconButton(
-          icon: Icon(Icons.close, size: 22, color: Colors.black),
+          icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -88,16 +92,15 @@ class _DiaryPageState extends State<DiaryPage> {
           children: <Widget>[
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 76,
-                padding: EdgeInsets.only(top: 20),
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(top: 30, left: 16, right: 16),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed("/AddDiaryStep1");
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                    padding: const EdgeInsets.only(top: 25, bottom: 16),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(6))),
                     primary: Helper.mainColor,
@@ -109,14 +112,17 @@ class _DiaryPageState extends State<DiaryPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '新しい日記を投稿',
-                          style: TextStyle(fontSize: 18),
-                        ),
+                        Text('新しい日記を投稿',
+                            style: TextStyle(
+                                fontSize: 18,
+                                height: 1.5,
+                                color: Helper.whiteColor,
+                                fontWeight: FontWeight.w400)),
                         SizedBox(width: 20),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
+                          size: 20,
                         )
                       ],
                     ),
@@ -137,14 +143,16 @@ class _DiaryPageState extends State<DiaryPage> {
                 : Column(children: [
                     categoryList.length > 0
                         ? Padding(
-                            padding: const EdgeInsets.only(top: 20, left: 10),
+                            padding: const EdgeInsets.only(top: 27, left: 16),
                             child: ListTile(
                               title: Text(
                                 '全ての日記',
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    height: 1.5),
                               ),
                             ),
                           )

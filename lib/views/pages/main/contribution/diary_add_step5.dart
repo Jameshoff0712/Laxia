@@ -42,13 +42,22 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          'ガイドラインの確認',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+        title: Text('ガイドラインの確認',
+            style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              height: 1.5,
+            )),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Helper.titleColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -60,82 +69,96 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                child: ListTile(
-                  contentPadding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                  title: Text(
-                    '投稿・画像削除ガイドライン',
+                padding: EdgeInsets.only(left: 16, top: 24, bottom: 24),
+                child: Text('投稿・画像削除ガイドライン',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.normal),
-                  ),
-                ),
+                      color: Color.fromARGB(255, 18, 18, 18),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      height: 1.5,
+                    )),
               ),
               Container(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                padding: EdgeInsets.only(left: 16, right: 16),
                 child: Text(
-                    'ここにガイドラインの文章を入れるここにガイドライ\nンの文章を入れるここにガイドラインの文章を入れる\nここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れるここにガイドライ\nンの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドライ\nンの文章を入れるここにガイドラインの文章を入れる\n'),
+                    'ここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\nここにガイドラインの文章を入れる',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 18, 18, 18),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                    )),
+              ),
+              SizedBox(
+                height: 40,
               ),
               checkCondition(chk_status[0], 0, 'このガイドラインに同意する'),
+              SizedBox(
+                height: 20,
+              ),
               checkCondition(chk_status[1], 1, '口コミ投稿に関してクリニック側から謝礼や割引を得ていない'),
+              SizedBox(
+                height: 30,
+              ),
               Container(
-                child: Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 76,
-                    padding: EdgeInsets.only(top: 20),
-                    child: ElevatedButton(
-                      onPressed:
-                          isNextEnabled ? () => AddDiaryPage() : null,
-                      style: ElevatedButton.styleFrom(
-                        elevation: 1,
-                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                        primary: Helper.mainColor,
-                        onPrimary: Colors.white,
-                        onSurface: Colors.grey,
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          '口コミを投稿する',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
+                width: MediaQuery.of(context).size.width,
+                height: 45,
+                padding: EdgeInsets.only(top: 0, left: 16, right: 16),
+                child: ElevatedButton(
+                  onPressed: isNextEnabled ? () => AddDiaryPage() : null,
+                  style: ElevatedButton.styleFrom(
+                    elevation: 1,
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(6))),
+                    primary: Helper.mainColor,
+                    onPrimary: Colors.white,
+                    onSurface: Colors.grey,
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      '口コミを投稿する',
+                      style: TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),
               ),
+              SizedBox(
+                height: 30,
+              ),
               Container(
-                child: Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 76,
-                    padding: EdgeInsets.only(top: 20),
-                    child: ElevatedButton(
-                      onPressed: () { DiaryDownloadPage(); },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 1,
-                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                        side: const BorderSide(
-                            color: Color.fromARGB(255, 110, 198, 210),
-                            width: 2,
-                            style: BorderStyle.solid),
-                        primary: Colors.white,
-                        onPrimary: Colors.white,
-                        onSurface: Color.fromARGB(255, 110, 198, 210),
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          'レポートを下書き保存する',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(255, 110, 198, 210)),
-                        ),
-                      ),
+                width: MediaQuery.of(context).size.width,
+                height: 45,
+                padding: EdgeInsets.only(top: 0, left: 16, right: 16),
+                child: ElevatedButton(
+                  onPressed: () {
+                    DiaryDownloadPage();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 1,
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(6))),
+                    side: const BorderSide(
+                        color: Helper.mainColor,
+                        width: 2,
+                        style: BorderStyle.solid),
+                    primary: Colors.white,
+                    onPrimary: Helper.mainColor,
+                    onSurface: Colors.grey,
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      'レポートを下書き保存する',
+                      style: TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),
@@ -165,23 +188,30 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
         }
       },
       child: Container(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+        padding: EdgeInsets.only(left: 16, right: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(right: 10),
+              padding: EdgeInsets.only(right: 12),
               child: SvgPicture.asset(
                 "assets/icons/check_circle.svg",
-                width: 25,
-                height: 25,
+                width: 15,
+                height: 15,
                 color: (status)
-                    ? Color.fromARGB(255, 110, 198, 210)
+                    ? Helper.mainColor
                     : Color.fromARGB(255, 156, 161, 161),
               ),
             ),
-            Expanded(child: Text(strCondition)),
+            Expanded(
+                child: Text(strCondition,
+                    style: TextStyle(
+                      color: Helper.titleColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      height: 1.5,
+                    ))),
           ],
         ),
       ),

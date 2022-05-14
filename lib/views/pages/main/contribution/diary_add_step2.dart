@@ -60,47 +60,54 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          '施術費用を入力',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+        title: Text('基本情報を入力',
+            style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              height: 1.5,
+            )),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Helper.titleColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  '施術費用',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '施術費用',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Colors.grey),
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 3.0, 18.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 16.0, 15.0),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -109,37 +116,52 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: Text(
                             "腫れづらいスクエア二施術",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16),
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                           ),
                         ),
                         Flexible(
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                             decoration: const InputDecoration(
                               border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(0),
                             ),
                           ),
                         ),
-                        Text('円')
+                        Text(
+                          '円',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              height: 1.5),
+                        )
                       ]),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Colors.grey),
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 3.0, 18.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 16.0, 15.0),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -148,37 +170,52 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: Text(
                             "麻酔費用",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16),
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                           ),
                         ),
                         Flexible(
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                             decoration: const InputDecoration(
                               border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(0),
                             ),
                           ),
                         ),
-                        Text('円')
+                        Text(
+                          '円',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              height: 1.5),
+                        )
                       ]),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Colors.grey),
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 3.0, 18.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 16.0, 15.0),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -187,37 +224,52 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: Text(
                             "処方薬の費用",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16),
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                           ),
                         ),
                         Flexible(
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                             decoration: const InputDecoration(
                               border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(0),
                             ),
                           ),
                         ),
-                        Text('円')
+                        Text(
+                          '円',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              height: 1.5),
+                        )
                       ]),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Colors.grey),
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 3.0, 18.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 16.0, 15.0),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -226,59 +278,77 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: Text(
                             "その他の費用",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16),
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                           ),
                         ),
                         Flexible(
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.5),
                             decoration: const InputDecoration(
                               border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.all(0),
                             ),
                           ),
                         ),
-                        Text('円')
+                        Text(
+                          '円',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              height: 1.5),
+                        )
                       ]),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Colors.grey),
+                    bottom: BorderSide(color: Helper.txtColor),
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 17.0, 18.0, 17.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 16.0, 15.0),
                   child:
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                     Text(
                       "合計金額: ",
                       style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              height: 1.5),
                     ),
                     Text(
                       "0",
                       style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              height: 1.5),
                     ),
                     Text(
                       "円",
                       style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              height: 1.5),
                     ),
                   ]),
                 ),
@@ -287,9 +357,9 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
             !widget.isMyDiary!
                 ? Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: 76,
-                      padding: EdgeInsets.only(top: 20),
+                      width: MediaQuery.of(context).size.width,
+                      height: 85,
+                      padding: EdgeInsets.only(top: 40, left: 16, right: 16),
                       child: ElevatedButton(
                         onPressed:
                             isAddEnabled ? () => AddDiaryStep3Page() : null,
@@ -307,7 +377,10 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           fit: BoxFit.fitWidth,
                           child: Text(
                             '次に進む',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(
+                                fontSize: 14,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
                       ),

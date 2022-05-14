@@ -27,7 +27,7 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       for (int i = 0; i < widget.ImageList.length; i++)
         Padding(
-          padding: const EdgeInsets.only(left: 5),
+          padding: const EdgeInsets.only(right: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -50,8 +50,8 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                                   )));
                         },
                         child: Container(
-                          width: 110,
-                          height: 100,
+                          width: 80,
+                          height: 80,
                           child: ClipRRect(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(5),
