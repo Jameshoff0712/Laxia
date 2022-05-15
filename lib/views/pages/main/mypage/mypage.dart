@@ -277,8 +277,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Question_Card(
-                        buttoncolor: Helper.allowStateButtonColor,
-                        buttontext: "回答あり",
+                        isanswer: mid[index].answers.isNotEmpty,
                         avator: "",
                         name: "",
                         sentence: mid[index].content!,

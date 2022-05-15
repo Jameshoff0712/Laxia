@@ -3,6 +3,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/clinic/clinic_sub_model.dart';
 import 'package:laxia/models/clinic_model.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -48,7 +49,7 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
                 itemBuilder: (BuildContext context, int index) {
                   return Clinic_Card(
                       onpress: () {
-                        Navigator.of(context).pushNamed("/Clinic_Detail");
+                        MaterialPageRoute(builder: (context) => Clinic_Detail(index:  mid[index].id));
                       },
                       image: mid[index].photo!,
                       post: mid[index].user_name!,

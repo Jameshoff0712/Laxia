@@ -327,11 +327,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               fontWeight: FontWeight.w400),
                                         ),
                                         Icon(
-                                          Icons.navigate_next,
-                                          size: 15,
-                                          color: Color.fromARGB(
-                                              255, 156, 161, 161),
-                                        )
+                                                  Icons.navigate_next,
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
+                                                )
                                       ],
                                     ),
                                   )
@@ -401,15 +400,11 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              // Navigator.of(context).push(
-                                              //     MaterialPageRoute(
-                                              //         builder: (_) =>
-                                              //             Clinic_Sub_Detail(
-                                              //               clinic_Detail:
-                                              //                   clinic_Details[
-                                              //                       0],
-                                              //               index: 2,
-                                              //             )));
+                                              Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (_) => Clinic_Sub_Detail(
+                                                        clinic_Detail: clinic_detail,
+                                                        index: 2,
+                                                      )));
                                             },
                                             child: Row(
                                               children: [
@@ -424,9 +419,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 ),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -474,21 +468,30 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             },
                                             child: Row(
                                               children: [
-                                                Text(
-                                                  "すべてのメニュー",
-                                                  style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 156, 161, 161),
-                                                      fontSize: 14,
-                                                      height: 1.5,
-                                                      fontWeight:
-                                                          FontWeight.w400),
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: (_) => Clinic_Sub_Detail(
+                                                            clinic_Detail: clinic_detail,
+                                                            index: 2,
+                                                          )));
+                                                  },
+                                                  child: Text(
+                                                    "すべてのメニュー",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 156, 161, 161),
+                                                        fontSize: 14,
+                                                        height: 1.5,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
                                                 ),
+                                                SizedBox(width: 19,),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -533,15 +536,11 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              // Navigator.of(context).push(
-                                              //     MaterialPageRoute(
-                                              //         builder: (_) =>
-                                              //             Clinic_Sub_Detail(
-                                              //               clinic_Detail:
-                                              //                   clinic_Details[
-                                              //                       0],
-                                              //               index: 3,
-                                              //             )));
+                                              Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (_) => Clinic_Sub_Detail(
+                                                        clinic_Detail: clinic_detail,
+                                                        index: 3,
+                                                      )));
                                             },
                                             child: Row(
                                               children: [
@@ -557,9 +556,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 ),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -666,29 +664,36 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
-                                                            clinic_Detail:
-                                                                 [
-                                                                    0],
+                                                            clinic_Detail:clinic_detail,
                                                             index: 3,
                                                           )));
                                             },
                                             child: Row(
                                               children: [
-                                                Text(
-                                                  "すべての日記",
-                                                  style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 156, 161, 161),
-                                                      fontSize: 14,
-                                                      height: 1.5,
-                                                      fontWeight:
-                                                          FontWeight.w400),
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: (_) => Clinic_Sub_Detail(
+                                                            clinic_Detail: clinic_detail,
+                                                            index: 3,
+                                                          )));
+                                                  },
+                                                  child: Text(
+                                                    "すべての日記",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 156, 161, 161),
+                                                        fontSize: 14,
+                                                        height: 1.5,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
                                                 ),
+                                                SizedBox(width: 19,),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -754,11 +759,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   fontWeight: FontWeight.w400),
                                             ),
                                             Icon(
-                                              Icons.navigate_next,
-                                              size: 15,
-                                              color: Color.fromARGB(
-                                                  255, 156, 161, 161),
-                                            )
+                                                  Icons.navigate_next,
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
+                                                )
                                           ],
                                         ),
                                       )
@@ -944,9 +948,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                   children: [
                     InkWell(
                       onTap: () {
-                        setState(() {
-                          isfavourite = !isfavourite;
-                        });
+                        postToogleFavorite(clinic_detail.clinic.id);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

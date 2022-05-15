@@ -47,7 +47,6 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
       setState(() {
         comment.data.add(mid);
       });
-       print("success");
        sender.text="";
     }catch(e){
       print(e.toString());
@@ -93,8 +92,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                   ),
                   Text(
                     widget.count.toString()+"件のコメント",
-                    style: defaultTextStyle(Colors.black, FontWeight.w700,
-                        size: 22),
+                    style: defaultTextStyle(Colors.black, FontWeight.w400,size: 16),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
@@ -119,6 +117,15 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
         ],
       ),
       bottomNavigationBar: Container(
+                  padding:EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                    color:Helper.whiteColor,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(.1),
+                          blurRadius: 5)
+                    ],
+                  ),
                   //height: 42,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -143,14 +150,13 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                             minLines: 1,
                             maxLines: 4,
                             decoration: InputDecoration(
+                              hintStyle: TextStyle(fontSize: 12),
                               fillColor: Helper.lightGrey,
                               filled: true,
                               hintText: "素敵なコメントを書く",
                               contentPadding: EdgeInsets.only(
                                   top: 3, left: 15, right: 15, bottom: 3),
                               border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0)),
                                 borderSide: BorderSide(color: Helper.lightGrey),
                               ),
                             ),

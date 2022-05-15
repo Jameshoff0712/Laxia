@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/doctor/doctordetail_model.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/Doctor_Sub_Detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
+import 'package:laxia/views/widgets/question_card.dart';
 
 class Doctor_Top extends StatefulWidget {
-  final dynamic doctor_detail;
-  const Doctor_Top({ Key? key, required this.doctor_detail }) : super(key: key);
+  final DoctorDetail_Model doctor_detail;
+  final void Function(int index) onpress;
+  const Doctor_Top({ Key? key, required this.doctor_detail, required this.onpress }) : super(key: key);
 
   @override
   State<Doctor_Top> createState() => _Doctor_TopState();
@@ -21,7 +26,6 @@ class _Doctor_TopState extends State<Doctor_Top> {
             Container(
               decoration: BoxDecoration(color: Helper.whiteColor),
               child: Column(
-               
                 children: [
                   Container(
                     decoration: BoxDecoration(color: Helper.whiteColor),
@@ -34,130 +38,30 @@ class _Doctor_TopState extends State<Doctor_Top> {
                             mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "メニュー",
-                                style: TextStyle(
-                                    color:
-                                        Color.fromARGB(255, 51, 51, 51),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700),
-                              ),
+                              Row(children: [
+                                  Text(
+                                  "日記",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 51, 51, 51),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  widget.doctor_detail.diaries
+                                          .length
+                                          .toString() +
+                                      "件",
+                                  style: TextStyle(
+                                      color: Helper.darkGrey,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ],),
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push( MaterialPageRoute(builder: (_) => Doctor_Sub_Detail(doctor_detail: widget.doctor_detail[0], index: 2,)));
-                                },
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "もっと見る",
-                                      style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 156, 161, 161),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Icon(
-                                      Icons.navigate_next,
-                                      size: 15,
-                                      color: Color.fromARGB(
-                                          255, 156, 161, 161),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: widget.doctor_detail["menus"].length,
-                            // physics: const AlwaysScrollableScrollPhysics(),
-                            // scrollDirection: Axis.horizontal,
-                            itemBuilder:
-                                (BuildContext context, int index) {
-                              return Menu_Card(
-                                shadow: BoxShadow(
-                                  color: Colors.grey.withOpacity(0.8),
-                                  spreadRadius: 1,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 1), // changes position of shadow
-                                ),
-                                  image: widget.doctor_detail["menus"][index]
-                                      ["image"],
-                                  heading: widget.doctor_detail["menus"][index]
-                                      ["heading"],
-                                  price: widget.doctor_detail["menus"][index]
-                                      ["price"],
-                                  tax: widget.doctor_detail["menus"][index]["tax"],
-                                  clinic: widget.doctor_detail["menus"][index]
-                                      ["clinic"]);
-                            }),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push( MaterialPageRoute(builder: (_) => Doctor_Sub_Detail(doctor_detail: widget.doctor_detail[0], index: 2,)));
-                                    },
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "もっと見る",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 156, 161, 161),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        Icon(
-                                          Icons.navigate_next,
-                                          size: 15,
-                                          color: Color.fromARGB(
-                                              255, 156, 161, 161),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 10,),
-            Container(
-              decoration: BoxDecoration(color: Helper.whiteColor),
-              child: Column(
-               
-                children: [
-                  Container(
-                    decoration: BoxDecoration(color: Helper.whiteColor),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
-                          child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "日記",
-                                style: TextStyle(
-                                    color:
-                                        Color.fromARGB(255, 51, 51, 51),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push( MaterialPageRoute(builder: (_) => Doctor_Sub_Detail(doctor_detail: widget.doctor_detail[0], index: 3,)));
+                                   widget.onpress(1);
                                 },
                                 child: Row(
                                   children: [
@@ -183,22 +87,49 @@ class _Doctor_TopState extends State<Doctor_Top> {
                         ),
                         ListView.builder(
                             padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                            itemCount: widget.doctor_detail["diarys"].length,
+                            itemCount: widget.doctor_detail.diaries.length,
                             physics:NeverScrollableScrollPhysics(),
                             shrinkWrap:true,
                             itemBuilder: (BuildContext context, int index) {
                               return Diary_Card(
-                                avator: widget.doctor_detail["diarys"][index]["avator"],
-                                check: widget.doctor_detail["diarys"][index]["check"],
-                                image2: widget.doctor_detail["diarys"][index]["image2"],
-                                image1: widget.doctor_detail["diarys"][index]["image1"],
-                                eyes: widget.doctor_detail["diarys"][index]["eyes"],
-                                clinic: widget.doctor_detail["diarys"][index]["clinic"],
-                                name: widget.doctor_detail["diarys"][index]["name"],
-                                onpress: () {},
-                                price: widget.doctor_detail["diarys"][index]["price"],
-                                sentence: widget.doctor_detail["diarys"][index]["sentence"],
-                                type: widget.doctor_detail["diarys"][index]["type"],
+                                avator:
+                                    widget.doctor_detail.diaries[index].patient_photo == null
+                                        ? "http://error.png"
+                                        : widget.doctor_detail.diaries[index].patient_photo!,
+                                check: widget.doctor_detail.diaries[index].doctor_name == null
+                                    ? ""
+                                    : widget.doctor_detail.diaries[index].doctor_name!,
+                                image2: widget.doctor_detail.diaries[index].after_image == null
+                                    ? "http://error.png"
+                                    : widget.doctor_detail.diaries[index].after_image!,
+                                image1:
+                                    widget.doctor_detail.diaries[index].before_image == null
+                                        ? "http://error.png"
+                                        : widget.doctor_detail.diaries[index].before_image!,
+                                eyes: widget.doctor_detail.diaries[index].views_count == null
+                                    ? ""
+                                    : widget.doctor_detail.diaries[index].views_count!
+                                        .toString(),
+                                clinic: widget.doctor_detail.diaries[index].clinic_name == null
+                                    ? ""
+                                    : widget.doctor_detail.diaries[index].clinic_name!,
+                                name: widget.doctor_detail.diaries[index].patient_nickname ==
+                                        null
+                                    ? ""
+                                    : widget.doctor_detail.diaries[index].patient_nickname!,
+                                onpress: () {
+                                  Navigator.of(context).push( MaterialPageRoute(builder: (_) => Diary_Detail(index:widget.doctor_detail.diaries[index].id)));
+                                },
+                                price: widget.doctor_detail.diaries[index].price == null
+                                    ? ""
+                                    : widget.doctor_detail.diaries[index].price.toString(),
+                                sentence:
+                                    widget.doctor_detail.diaries[index].doctor_name == null
+                                        ? ""
+                                        : widget.doctor_detail.diaries[index].doctor_name!,
+                                type: widget.doctor_detail.diaries[index].doctor_name == null
+                                    ? ""
+                                    : widget.doctor_detail.diaries[index].doctor_name!,
                               );
                             }),
                             Row(
@@ -208,7 +139,7 @@ class _Doctor_TopState extends State<Doctor_Top> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                     Navigator.of(context).push( MaterialPageRoute(builder: (_) => Doctor_Sub_Detail(doctor_detail: widget.doctor_detail[0], index: 3,)));
+                                      widget.onpress(1);
                                     },
                                     child: Row(
                                       children: [
@@ -238,6 +169,132 @@ class _Doctor_TopState extends State<Doctor_Top> {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
+            Container(
+              decoration: BoxDecoration(color: Helper.whiteColor),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(color: Helper.whiteColor),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(children: [
+                                  Text(
+                                  "質問",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 51, 51, 51),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  widget.doctor_detail.questions
+                                          .length
+                                          .toString() +
+                                      "件",
+                                  style: TextStyle(
+                                      color: Helper.darkGrey,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ],),
+                              InkWell(
+                                onTap: () {
+                                   widget.onpress(4);
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "すべての質問",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 156, 161, 161),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Icon(
+                                      Icons.navigate_next,
+                                      size: 15,
+                                      color: Color.fromARGB(
+                                          255, 156, 161, 161),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        ListView.builder(
+                            padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                            itemCount: widget.doctor_detail.questions.length,
+                            physics:NeverScrollableScrollPhysics(),
+                            shrinkWrap:true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Question_Card(
+                                isanswer: widget.doctor_detail.questions[index].answers.isNotEmpty,
+                                hearts: widget.doctor_detail.questions[index].likes_count==null?"":widget.doctor_detail.questions[index].likes_count!.toString(),
+                                chats: widget.doctor_detail.questions[index].comments_count==null?"":widget.doctor_detail.questions[index].comments_count.toString(),
+                                avator:widget.doctor_detail.questions[index].owner!.photo==null?"http://error.png": widget.doctor_detail.questions[index].owner!.photo!,
+                                image2: (widget.doctor_detail.questions[index].medias!.isEmpty||widget.doctor_detail.questions[index].medias!.length==1)?"http://error.png":widget.doctor_detail.questions[index].medias![1].path,
+                                image1:widget.doctor_detail.questions[index].medias!.isEmpty?"http://error.png":widget.doctor_detail.questions[index].medias![0].path,
+                                eyes: widget.doctor_detail.questions[index].views_count==null?"":widget.doctor_detail.questions[index].views_count!.toString(),
+                                name:widget.doctor_detail.questions[index].owner!.name==null?"": widget.doctor_detail.questions[index].owner!.name!,
+                                onpress: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => QuestionDetail(index:  widget.doctor_detail.questions[index].id)));
+                                  //Navigator.of(context).pushNamed("/QuestionDetail");
+                                },
+                                sentence:widget.doctor_detail.questions[index].content==null?"": widget.doctor_detail.questions[index].content!,
+                                type:"二重切開" //widget.doctor_detail.questions[index]["type"],
+                              );
+                            }),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      widget.onpress(4);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "すべての質問",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 156, 161, 161),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          size: 15,
+                                          color: Color.fromARGB(
+                                              255, 156, 161, 161),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ), 
       ],)),
     );
   }

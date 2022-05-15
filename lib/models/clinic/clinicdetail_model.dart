@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:laxia/models/case/case_sub_model.dart';
 import 'package:laxia/models/menu/menu_Sub_Model.dart';
 import 'package:laxia/models/clinic/clinic_sub_model.dart';
 import 'package:laxia/models/counseling/counceling_sub_model.dart';
@@ -15,7 +16,9 @@ class ClinicDetail_Model extends Equatable {
   final List<Menu_Sub_Model> menu;
   final List<Diary_Sub_Model> diaries;
   final List<Question_Sub_Model> questions;
-  const ClinicDetail_Model({
+    final List<Case_Sub_Model> cases;
+  const ClinicDetail_Model( {
+    required this.cases,
     required this.doctors,  
     required this.questions,
     required this.diaries,
@@ -27,6 +30,7 @@ class ClinicDetail_Model extends Equatable {
 
   factory ClinicDetail_Model.fromJson(Map<String, dynamic> json) {
     return ClinicDetail_Model(
+      cases: [],
       questions: [],
       diaries: [],
       images: List<Image_model>.from(json["images"].map(
@@ -35,7 +39,7 @@ class ClinicDetail_Model extends Equatable {
       counselings: List<Counceling_Sub_Model>.from(json["counselings"].map(
               (x) => Counceling_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      menu: List<Menu_Sub_Model>.from(json["menus"]
+      menu:json["menus"]==null?[]: List<Menu_Sub_Model>.from(json["menus"]
               .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
       clinic: Clinic_Sub_Model.fromJson(json), 

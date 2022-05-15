@@ -510,9 +510,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Question_Card(
-                                  buttoncolor:
-                                      Color.fromARGB(255, 110, 198, 210),
-                                  buttontext: "回答あり",
+                                  isanswer: true,
                                   hearts: widget.model[6][index]["hearts"],
                                   chats: widget.model[6][index]["chats"],
                                   avator: widget.model[6][index]["avator"],

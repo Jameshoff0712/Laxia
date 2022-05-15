@@ -7,7 +7,6 @@ import 'package:nb_utils/nb_utils.dart';
 
 class Question_Card extends StatefulWidget {
   final VoidCallback onpress;
-  final Color? buttoncolor, fontcolor;
   final String avator,
       name,
       image1,
@@ -17,7 +16,7 @@ class Question_Card extends StatefulWidget {
       eyes,
       hearts,
       chats;
-  final String? buttontext;
+  final bool isanswer;
   const Question_Card({
     Key? key,
     required this.onpress,
@@ -30,9 +29,7 @@ class Question_Card extends StatefulWidget {
     required this.hearts,
     required this.chats,
     required this.eyes,
-    this.buttoncolor,
-    this.fontcolor,
-    this.buttontext = "",
+    required this.isanswer,
   }) : super(key: key);
 
   @override
@@ -113,28 +110,45 @@ class _Question_CardState extends State<Question_Card> {
                           fontFamily: Helper.headFontFamily,
                           color: Helper.titleColor),
                     ),
-                    widget.buttontext!.isEmpty
-                        ? SizedBox(
-                            width: 1,
-                          )
-                        : Expanded(
+                    widget.isanswer?Expanded(
                             child: Align(
-                            alignment: Alignment.topRight,
+                            alignment: Alignment.centerRight,
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
-                                color: widget.buttoncolor,
+                                color: Helper.mainColor,
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 5, vertical: 3),
                                 child: Text(
-                                  widget.buttontext!,
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
+                                  "回答あり",
                                   style: TextStyle(
-                                      color: widget.fontcolor,
+                                      color: Helper.whiteColor,
                                       fontSize: 10,
+                                      height: 1.5,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                            ),
+                          )):
+                    Expanded(
+                            child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(3),
+                                color: Helper.searchBartxtColor,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 3),
+                                child: Text(
+                                  "回答なし",
+                                  style: TextStyle(
+                                      color: Helper.whiteColor,
+                                      fontSize: 10,
+                                      height: 1.5,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),

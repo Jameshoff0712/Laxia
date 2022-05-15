@@ -222,8 +222,7 @@ class _Home_QuestionState extends State<Home_Question> {
                       physics: const AlwaysScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         return Question_Card(
-                          buttoncolor: Helper.allowStateButtonColor,
-                          buttontext: "回答あり",
+                          isanswer: question_data.data[index].answers.isNotEmpty,
                           hearts: question_data.data[index].likes_count==null?"":question_data.data[index].likes_count!.toString(),
                           chats: question_data.data[index].comments_count==null?"":question_data.data[index].comments_count.toString(),
                           avator:question_data.data[index].owner!.photo==null?"http://error.png": question_data.data[index].owner!.photo!,

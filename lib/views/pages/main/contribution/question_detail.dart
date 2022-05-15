@@ -92,7 +92,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
               children: [
                 InkWell(
                   onTap: (){
-                    Navigator.of(context).pushNamed("/Mypage");
+                    // Navigator.of(context).pushNamed("/Mypage");
                   },
                   child: SizedBox(
                     height: 32,
@@ -118,6 +118,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                 Text(
                   question_detail.owner!.name!,
                   style: TextStyle(
+                      fontFamily:Helper.headFontFamily,
+                      fontSize: 13,
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -127,11 +129,11 @@ class _QuestionDetailState extends State<QuestionDetail> {
                 !widget.isMyDiary ?
                 ElevatedButton(
                   onPressed: () {
-                    // Navigator.of(context).pushNamed("/AddDiaryProgress");
+                    Navigator.of(context).pushNamed("/AddDiaryProgress");
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                    padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     side: const BorderSide(
@@ -150,7 +152,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         Text(
                           'フォロー',
                           style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 8,
+                              fontWeight: FontWeight.w400,
                               color: Color.fromARGB(255, 110, 198, 210)),
                         ),
                       ],
@@ -214,25 +217,26 @@ class _QuestionDetailState extends State<QuestionDetail> {
           decoration: BoxDecoration(color: Helper.whiteColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(width: 21,),
               InkWell(
                 onTap: () {
                   postToogleFavorite(widget.index);
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     isfavorite
                         ? Icon(
                             Icons.favorite,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.favorite_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
                       question_detail.likes_count!.toString(),
@@ -240,29 +244,31 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           color: isfavorite
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 15,),
               InkWell(
                 onTap: () {
                   postToogleLike(widget.index);
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     islike
                         ? Icon(
                             Icons.star,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.star_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
                       "お気に入り",
@@ -270,12 +276,14 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           color: islike
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 15,),
               InkWell(
                 onTap: () {
                   showModalBottomSheet(
@@ -292,41 +300,42 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       });
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                           Icon(
                             FontAwesomeIcons.commentDots,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
                       question_detail.comments_count.toString(),
                       style: TextStyle(
                           color:Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Helper.btnBgYellowColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
+              SizedBox(width: 21,),
+              InkWell(
+                onTap: (){
+                  
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color:Color.fromARGB(255,243, 243, 243),
+                     borderRadius: BorderRadius.circular(40.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left:12,top:7,bottom:7, right: 100),
+                    child: Text(
+                            "コメントする",
+                            style: TextStyle(color:Helper.txtColor, fontWeight:FontWeight.w700,height: 1.5,fontSize: 14),
+                          ),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "コメントする",
-                      style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                          size: 14),
-                    ),
-                  ],
-                ),
-                onPressed: () {},
               ),
             ],
           ),
@@ -346,7 +355,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  color: question_detail.answers!.isEmpty
+                  color: question_detail.answers.isEmpty
                       ? Helper.extraGrey
                       : Helper.whiteColor,
                 ),
@@ -354,9 +363,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                   child: Text(
-                    question_detail.answers!.isEmpty ? "未回答" : "回答あり",
+                    question_detail.answers.isEmpty ? "未回答" : "回答あり",
                     style: TextStyle(
-                        color: question_detail.answers!.isEmpty
+                        color: question_detail.answers.isEmpty
                             ? Helper.lightGrey
                             : Helper.mainColor,
                         fontSize: 10,
@@ -369,9 +378,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                 child: Text(
                   question_detail.title!,
                   style: TextStyle(
+                    fontFamily: Helper.headFontFamily,
                       color: Helper.titleColor,
                       fontSize: 18,
-                      fontWeight: FontWeight.w400),
+                      fontWeight: FontWeight.w700),
                 ),
               ),
               Container(
@@ -447,7 +457,12 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text("コメント"),
+                      Text("コメント",
+                       style: TextStyle(
+                              fontFamily: Helper.headFontFamily,
+                              color: Helper.titleColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700),),
                       Container(
                         height: 42,
                         padding: EdgeInsets.only(top: 10),
