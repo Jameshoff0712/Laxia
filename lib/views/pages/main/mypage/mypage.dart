@@ -79,7 +79,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         title: Text(
           userProperties.getMe.nickname!,
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,
@@ -127,7 +127,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
             child: Text(
               "日記",
               style: TextStyle(
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w700,
                 fontSize: 12,
                 height: 1.5,
               ),
@@ -137,7 +137,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
             child: Text(
               "カウセレポ",
               style: TextStyle(
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w700,
                 fontSize: 12,
                 height: 1.5,
               ),
@@ -147,7 +147,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
             child: Text(
               "質問",
               style: TextStyle(
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w700,
                 fontSize: 12,
                 height: 1.5,
               ),
@@ -353,7 +353,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                                   userProperties.getMe.name,
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w700,
                                     fontSize: 18,
                                     height: 1.5,
                                     color: Helper.titleColor,
@@ -409,7 +409,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                                   userProperties.getMe.followsCount.toString(),
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w700,
                                     fontSize: 16,
                                     height: 1.5,
                                     color: Helper.titleColor,
@@ -422,7 +422,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                               "フォロー",
                               style: TextStyle(
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5,
                                 color: Color.fromARGB(255, 194, 194, 194),
@@ -450,7 +450,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   userProperties.getMe.followersCount
                                       .toString(),
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w700,
                                     fontSize: 16,
                                     height: 1.5,
                                     color: Helper.titleColor,
@@ -463,7 +463,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 child: Text(
                               "フォロワー",
                               style: TextStyle(
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5,
                                 color: Color.fromARGB(255, 194, 194, 194),
@@ -513,7 +513,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         Text(
                           "保有ポイント",
                           style: TextStyle(
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             fontSize: 16,
                             height: 1.5,
                             color: Color.fromARGB(255, 18, 18, 18),
@@ -527,7 +527,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             Text(
                               "${userProperties.getMe.point} p",
                               style: TextStyle(
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 16,
                                 height: 1.5,
                                 color: Color.fromARGB(255, 18, 18, 18),
@@ -591,7 +591,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   Text(
                                     "友達招待",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 12,
                                       color: Helper.titleColor,
                                     ),
@@ -627,7 +627,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                   Text(
                                     "設定",
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 12,
                                       color: Helper.titleColor,
                                     ),

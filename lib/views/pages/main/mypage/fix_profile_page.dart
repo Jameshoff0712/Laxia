@@ -76,7 +76,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                 child: Text(
                   'プロフィールを編集',
                   style: TextStyle(
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 16,
                     height: 1.5,
                     color: Helper.titleColor,
@@ -92,7 +92,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     child: Text(
                       "保存",
                       style: TextStyle(
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                         fontSize: 14,
                         height: 1.5,
                         color: Helper.mainColor,
@@ -154,7 +154,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                         child: Text(
                           "プロフィール写真を変更",
                           style: TextStyle(
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             fontSize: 11,
                             height: 1.5,
                             color: Helper.mainColor,
@@ -184,7 +184,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                       Text(
                                         "生年月日",
                                         style: TextStyle(
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.w700,
                                           fontSize: 14,
                                           height: 1.5,
                                           color:

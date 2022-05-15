@@ -88,7 +88,7 @@ class _FollowingCardWidgetState extends State<FollowingCardWidget> {
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                         color: Helper.mainColor,
-                        fontWeight: FontWeight.w100,
+                        fontWeight: FontWeight.w700,
                         fontSize: 10,
                         height: 1.5),
                   ),
