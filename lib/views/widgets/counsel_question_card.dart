@@ -43,7 +43,7 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
                       style: TextStyle(
                           fontSize: 14,
                           height: 1.5,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
                           color: Helper.mainColor),
                     ),
                     Text(
@@ -51,7 +51,7 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
                       style: TextStyle(
                           fontSize: 14,
                           height: 1.5,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
                           color: Color.fromARGB(255, 51, 51, 51)),
                     ),
                   ],

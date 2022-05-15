@@ -148,7 +148,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
         title: Text('カウセレポを入力',
             style: TextStyle(
               color: Helper.titleColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
             )),
@@ -176,7 +176,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -202,7 +202,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                             "施術箇所",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -271,7 +271,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                             "クリニック",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -347,7 +347,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                             "担当ドクター",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -420,10 +420,10 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(
-                            "施術日",
+                            "カウンセリング日",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -488,7 +488,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -529,7 +529,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -542,7 +542,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -555,7 +555,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -596,7 +596,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                   )
                 : Center(
                     child: Container(
-                    padding: EdgeInsets.only(top: 50),
+                    height: 45,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
