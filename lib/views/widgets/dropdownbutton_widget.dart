@@ -6,11 +6,12 @@ class Dropdownbutton extends StatefulWidget {
   final List<String> items;
   final double horizontal;
   final String hintText;
+  final double? width;
   const Dropdownbutton(
       {Key? key,
       required this.items,
       required this.horizontal,
-      required this.hintText})
+      required this.hintText, this.width=123})
       : super(key: key);
 
   @override
@@ -26,6 +27,7 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton2(
+        buttonWidth: widget.width!,
         buttonPadding:
             EdgeInsets.symmetric(horizontal: widget.horizontal, vertical: 9),
         enableFeedback: true,
@@ -39,6 +41,7 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
             drop = !drop;
           });
         },
+        iconSize: 20,
         hint: drop
             ? Text(
                 widget.hintText,

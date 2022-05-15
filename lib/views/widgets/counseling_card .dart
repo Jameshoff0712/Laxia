@@ -57,6 +57,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
           child: InkWell(
             onTap: widget.onpress,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 InkWell(
                   onTap: (){
@@ -89,7 +90,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         widget.name,
                         style: TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             color: Helper.titleColor),
                       ),
                     ],
@@ -98,7 +99,10 @@ class _Counseling_CardState extends State<Counseling_Card> {
                 SizedBox(height: 10,),
                 Text(
                       widget.sentence,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
+                        fontFamily: Helper.headFontFamily,
                           fontSize: 14,
                           height: 1.3,
                           fontWeight: FontWeight.w400,
@@ -107,7 +111,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                 Container(
                   child: GridView(
                     physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
+                    shrinkWrap: true, 
                     padding: EdgeInsets.symmetric(vertical: 10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisSpacing: 10,

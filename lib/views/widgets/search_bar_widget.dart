@@ -33,6 +33,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      cursorColor:Helper.mainColor,
       readOnly:widget.state?true:false,
       autofocus: false,
       onTap: () {
@@ -53,13 +54,17 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
       },
       controller: widget.filter,
       //Display the keyboard when TextField is displayed
-      cursorColor: Helper.whiteColor,
       style: TextStyle(
         color: Helper.blackColor,
         fontSize: 14,
       ),
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
+        labelStyle:TextStyle(
+          height: 21/14,
+          fontSize: 14,
+        ),
+        focusColor:Helper.mainColor,
         suffixIcon: widget.issuffixicon!
             ? Padding(
               padding: const EdgeInsets.all(14.0),
@@ -97,6 +102,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
         contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
         hintText: widget.hinttext!,
         hintStyle: TextStyle(
+          height: 21/14,
           color: Helper.searchBartxtColor,
           fontSize: 14,
         ),

@@ -30,7 +30,7 @@ class Diary_Card extends StatefulWidget {
     this.chats = "",
     required this.eyes,
     this.isPublic = false,
-    this.isFavorite = false,
+    this.isFavorite = true,
   }) : super(key: key);
 
   @override
@@ -86,7 +86,8 @@ class _Diary_CardState extends State<Diary_Card> {
                           style: TextStyle(
                               fontSize: 12,
                               height: 1.5,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: Helper.headFontFamily,
                               color: Helper.titleColor),
                         ),
                       ],
@@ -107,9 +108,10 @@ class _Diary_CardState extends State<Diary_Card> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 6),
                                 child: Text(
-                                  widget.buttontext!,
+                                  widget.buttontext!,  
                                   style: TextStyle(
                                       color: widget.fontcolor,
+                                      height: 1.5,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400),
                                 ),
@@ -118,7 +120,7 @@ class _Diary_CardState extends State<Diary_Card> {
                           )),
                     !widget.isFavorite! ?
                     widget.isPublic!
-                        ? InkWell(
+                        ? InkWell( 
                             onTap: () {},
                             child: Container(
                               padding: EdgeInsets.all(5.0),
@@ -262,6 +264,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     widget.sentence,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 14,

@@ -82,12 +82,15 @@ class _Menu_CardState extends State<Menu_Card> {
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Text(
-                                  widget.heading,
+                                  widget.heading+"\n",
+                                  maxLines: 2,
+                                  overflow:TextOverflow.ellipsis,
                                   style: TextStyle(
+                                    fontFamily: "Hiragino Kaku Gothic Pro w6",
                                       color: Helper.titleColor,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 14.0,
-                                      height: 1.5),
+                                      height: 21/14),
                                 ),
                               ),
                             ),
@@ -107,7 +110,8 @@ class _Menu_CardState extends State<Menu_Card> {
                                   color: Helper.priceColor,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 16.0,
-                                  height: 1.5),
+                                  fontFamily: Helper.headFontFamily,
+                                  height: 24/16),
                             ),
                             SizedBox(
                               width: 6,
@@ -138,7 +142,7 @@ class _Menu_CardState extends State<Menu_Card> {
                                 child: Text(
                                   widget.clinic,
                                   maxLines: 1,
-                                  overflow: TextOverflow.visible,
+                                  overflow:TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: Helper.maintxtColor,
                                       fontWeight: FontWeight.w400,
