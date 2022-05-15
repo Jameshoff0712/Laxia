@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/diary/diary_sub_model.dart';
 import 'package:laxia/models/diary_model.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -25,13 +26,13 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
   Future<void> getFavDiary() async {
     final listFavDiary = await _con.getFavDiary();
     setState(() {
-      for(int i=0; i< listFavDiary.length; i++)
-        mid.add(listFavDiary[i]);
+      for (int i = 0; i < listFavDiary.length; i++) mid.add(listFavDiary[i]);
     });
     print(mid);
   }
+
   @override
-  initState(){
+  initState() {
     getFavDiary();
     super.initState();
   }
@@ -64,7 +65,9 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
                     hearts: mid[index].likes_count.toString(),
                     chats: mid[index].comments_count.toString(),
                     onpress: () {
-                      Navigator.of(context).pushNamed("/Diary_Detail");
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) =>
+                              Diary_Detail(index: mid[index].id)));
                     },
                   );
                 }),
