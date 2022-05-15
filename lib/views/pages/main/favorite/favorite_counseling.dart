@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/counseling/counceling_sub_model.dart';
 import 'package:laxia/models/counseling_model.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -26,12 +27,13 @@ class _Favorite_CounselingState extends State<Favorite_Counseling> {
   Future<void> getFavCounseling() async {
     final listFavCounseling = await _con.getFavCounseling();
     setState(() {
-      for(int i=0; i< listFavCounseling.length; i++)
+      for (int i = 0; i < listFavCounseling.length; i++)
         mid.add(listFavCounseling[i]);
     });
   }
+
   @override
-  initState(){
+  initState() {
     getFavCounseling();
     super.initState();
   }
@@ -65,7 +67,11 @@ class _Favorite_CounselingState extends State<Favorite_Counseling> {
                     hearts: mid[index].likes_count.toString(),
                     chats: mid[index].comments_count.toString(),
                     onpress: () {
-                      Navigator.of(context).pushNamed("/CounselDetail");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CounselDetail(
+                                  index: mid[index].id)));
                     },
                   );
                 }),

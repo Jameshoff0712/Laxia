@@ -3,6 +3,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/doctor_model.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -24,13 +25,13 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
   Future<void> getFavDoctor() async {
     final listFavDoctor = await _con.getFavDoctor();
     setState(() {
-      for(int i=0; i< listFavDoctor.length; i++)
-        mid.add(listFavDoctor[i]);
+      for (int i = 0; i < listFavDoctor.length; i++) mid.add(listFavDoctor[i]);
     });
     print(mid[0].photo);
   }
+
   @override
-  initState(){
+  initState() {
     getFavDoctor();
     super.initState();
   }
@@ -51,7 +52,11 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
                 itemBuilder: (BuildContext context, int index) {
                   return Doctor_Card(
                       onpress: () {
-                        Navigator.of(context).pushNamed("/Doctor_Detail");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Doctor_Detail(
+                                    index: mid[index].id)));
                       },
                       image: mid[index].photo!,
                       post: mid[index].job_name!,

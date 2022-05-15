@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/menu/menu_sub_model.dart';
+import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -24,12 +25,12 @@ class _Favorite_MenuState extends State<Favorite_Menu> {
   Future<void> getFavMenu() async {
     final listFavMenu = await _con.getFavMenu();
     setState(() {
-      for(int i=0; i< listFavMenu.length; i++)
-        mid.add(listFavMenu[i]);
+      for (int i = 0; i < listFavMenu.length; i++) mid.add(listFavMenu[i]);
     });
   }
+
   @override
-  initState(){
+  initState() {
     getFavMenu();
     super.initState();
   }
@@ -50,7 +51,9 @@ class _Favorite_MenuState extends State<Favorite_Menu> {
                   itemBuilder: (BuildContext context, int index) {
                     return Menu_Card(
                         onpress: () {
-                          Navigator.of(context).pushNamed("/Menu_Detail");
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) =>
+                                  Menu_Detail(index: mid[index].id)));
                         },
                         image: mid[index].photo!,
                         heading: mid[index].name,
