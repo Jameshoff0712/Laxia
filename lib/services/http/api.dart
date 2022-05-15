@@ -35,7 +35,10 @@ class Api {
         "Content-Type": "multipart/form-data"
       });
 
-      data.forEach((key, value) {
+      data.forEach((key, value) async {
+        if(key.contains("medias")){
+          request.files.add(await http.MultipartFile.fromPath("image", value));
+        }
         request.fields[key] = value;
       });
       var streamResponse = await request.send();

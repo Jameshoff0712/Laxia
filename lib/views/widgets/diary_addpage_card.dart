@@ -37,7 +37,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 14),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -45,7 +45,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
         ),
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           child: InkWell(
             onTap: widget.onpress,
             child: Column(
@@ -56,9 +56,10 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     Text(
                       widget.type,
                       style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 51, 51, 51)),
+                          fontSize: 16,
+                          height: 1.5,
+                          fontWeight: FontWeight.w400,
+                          color: Helper.maintxtColor),
                     ),
                     widget.buttontext!.isEmpty
                         ? SizedBox(
@@ -74,7 +75,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 6),
+                                    horizontal: 6, vertical: 4),
                                 child: Text(
                                   widget.buttontext!,
                                   style: TextStyle(
@@ -87,12 +88,13 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                           ))
                   ],
                 ),
+                SizedBox(height: 6,),
                 Container(
                   child: Row(
                     children: [
                       SizedBox(
-                        height: 100,
-                        width: 100,
+                        height: 80,
+                        width: 80,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: CachedNetworkImage(
@@ -124,21 +126,21 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       height: 12,
                                     ),
                                     SizedBox(
-                                      width: 6,
+                                      width: 5,
                                     ),
                                     Text(
                                       widget.type,
                                       style: TextStyle(
                                           fontSize: 12,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w400,
-                                          color: Color.fromARGB(
-                                              255, 102, 110, 110)),
+                                          color: Helper.txtColor),
                                     ),
                                   ],
                                 ),
                               ),
                               SizedBox(
-                                height: 8,
+                                height: 5,
                               ),
                               widget.clinic!.isEmpty
                                   ? SizedBox(
@@ -156,15 +158,15 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                                 height: 12,
                                               ),
                                               SizedBox(
-                                                width: 6,
+                                                width: 5,
                                               ),
                                               Text(
                                                 widget.clinic!,
                                                 style: TextStyle(
                                                     fontSize: 12,
+                                                    height: 1.5,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Color.fromARGB(
-                                                        255, 102, 110, 110)),
+                                                    color: Helper.txtColor),
                                               ),
                                             ],
                                           ),
@@ -172,7 +174,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       ],
                                     ),
                               SizedBox(
-                                height: 6,
+                                height: 5,
                               ),
                               Align(
                                 alignment: Alignment.centerLeft,
@@ -184,15 +186,15 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       height: 12,
                                     ),
                                     SizedBox(
-                                      width: 6,
+                                      width: 5,
                                     ),
                                     Text(
                                       widget.check,
                                       style: TextStyle(
                                           fontSize: 12,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w400,
-                                          color: Color.fromARGB(
-                                              255, 102, 110, 110)),
+                                          color: Helper.txtColor),
                                     ),
                                   ],
                                 ),
@@ -206,24 +208,24 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                 ),
                 Center(
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 76,
-                    padding: EdgeInsets.only(top: 20),
+                    height: 62,
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.only(top: 20, left: 28, right: 28),
                     child: ElevatedButton(
                       onPressed: () { Navigator.of(context).pushNamed("/AddDiaryProgress"); },
                       style: ElevatedButton.styleFrom(
                         elevation: 1,
-                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30))),
                         side: const BorderSide(
-                            color: Color.fromARGB(255, 110, 198, 210),
+                            color: Helper.mainColor,
                             width: 2,
                             style: BorderStyle.solid),
                         primary: Colors.white,
                         onPrimary: Colors.white,
-                        onSurface: Color.fromARGB(255, 110, 198, 210),
+                        onSurface: Helper.mainColor,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,
@@ -233,8 +235,10 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                             Text(
                               '経過を追加する',
                               style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(255, 110, 198, 210)),
+                                  fontSize: 12,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400,
+                                  color: Helper.mainColor,),
                             ),
                           ],
                         ),
@@ -244,24 +248,24 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                 ),
                 Center(
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 66,
-                    padding: EdgeInsets.only(top: 10),
+                    height: 52,
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.only(top: 10, left: 28, right: 28),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         elevation: 1,
-                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30))),
                         side: const BorderSide(
-                            color: Color.fromARGB(255, 110, 198, 210),
+                            color: Helper.mainColor,
                             width: 2,
                             style: BorderStyle.solid),
                         primary: Colors.white,
                         onPrimary: Colors.white,
-                        onSurface: Color.fromARGB(255, 110, 198, 210),
+                        onSurface: Helper.mainColor,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,
@@ -271,8 +275,10 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                             Text(
                               '日記を編集する',
                               style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(255, 110, 198, 210)),
+                                  fontSize: 12,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400,
+                                  color: Helper.mainColor),
                             ),
                           ],
                         ),

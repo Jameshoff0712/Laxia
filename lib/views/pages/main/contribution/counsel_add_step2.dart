@@ -2,12 +2,14 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/models/counsel_question_model.dart';
+import 'package:laxia/views/pages/main/contribution/question_answer.dart';
 import 'package:laxia/views/widgets/ToggleSwitchButton.dart';
 import 'package:laxia/views/widgets/counsel_question_card.dart';
 
 class AddCounselStep2Page extends StatefulWidget {
   final bool? isMyDiary;
-  const AddCounselStep2Page({Key? key, this.isMyDiary = false}) : super(key: key);
+  const AddCounselStep2Page({Key? key, this.isMyDiary = false})
+      : super(key: key);
   @override
   _AddCounselStep2PageState createState() => _AddCounselStep2PageState();
 }
@@ -66,41 +68,48 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          'カウセレポを入力',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+        title: Text('カウセレポを入力',
+            style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              height: 1.5,
+            )),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Helper.titleColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'このクリニックを選んだ理由は？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                'このクリニックを選んだ理由は？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -115,159 +124,64 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 decoration: InputDecoration(
                   hintText: '例)ラシアの他の口コミをみて、ここのクリニックの田中先生に相談してみようと思い選択しました。',
                   hintStyle: TextStyle(
-                    color: Colors.grey,
+                    color: Helper.txtColor,
                     fontSize: 14,
+                    height: 1.8,
+                    fontWeight: FontWeight.w400,
                   ),
                   border: InputBorder.none,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  '質問・相談した内容は？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '質問・相談した内容は？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: InkWell(
-                onTap: () {
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 45,
+              padding: EdgeInsets.only(top: 0, left: 16, right: 16),
+              child: ElevatedButton(
+                onPressed: () {
                   showModalBottomSheet(
-                    constraints:BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9, ),
                       isScrollControlled: true,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15.0),
-                            topRight: Radius.circular(15.0)),
+                            topLeft: Radius.circular(10.0),
+                            topRight: Radius.circular(10.0)),
                       ),
                       context: context,
                       builder: (context) {
-                        return Container(
-                          color: Helper.whiteColor,
-                          height:  MediaQuery.of(context).size.height * 0.9,
-                          child: Column(
-                            children: [
-                              SizedBox(height: 15,),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16,),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(onPressed: (){
-                                      Navigator.of(context).pop();
-                                    }, icon: Icon(Icons.arrow_back_ios, size: 20,)),
-                                    Text(
-                                      "質問と回答",
-                                      style: defaultTextStyle(
-                                          Helper.titleColor, FontWeight.w700,
-                                          size: 18),
-                                    ),
-                                    Icon(Icons.arrow_back_ios,size: 20,color: Helper.whiteColor,)
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(color: Colors.white),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 0.0),
-                                      child: TextFormField(
-                                        keyboardType: TextInputType.text,
-                                        maxLength: 60,
-                                        //onSaved: (input) => editTitle(input),
-                                        onChanged: (text) {
-                                        },
-                                        decoration: InputDecoration(
-                                          hintText: '質問（必須60文字）',
-                                          hintStyle: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                          ),
-                                          border: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Color.fromARGB(1, 210, 210, 212)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 8.0),
-                                      child: TextFormField(
-                                        keyboardType: TextInputType.multiline,
-                                        maxLength: 1000,
-                                        maxLines: 10,
-                                        onChanged: (text) {
-                                        },
-                                        decoration: InputDecoration(
-                                          hintText: '回答（必須1000文字以内）',
-                                          hintStyle: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                          ),
-                                          border: InputBorder.none,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child:  Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                   Center(
-                                      child: Container(
-                                        width: MediaQuery.of(context).size.width * 0.9,
-                                        height: 76,
-                                        padding: EdgeInsets.only(top: 20),
-                                        child: ElevatedButton(
-                                          onPressed: isAddEnabled ? () => Navigator.of(context).pop() : null,
-                                          style: ElevatedButton.styleFrom(
-                                            elevation: 1,
-                                            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                                            shape: const RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(Radius.circular(6))),
-                                            primary: Helper.mainColor,
-                                            onPrimary: Colors.white,
-                                            onSurface: Colors.grey,
-                                          ),
-                                          child: FittedBox(
-                                            fit: BoxFit.fitWidth,
-                                            child: Text(
-                                              '質問を投稿',
-                                              style: TextStyle(fontSize: 18),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 10,)
-                                ],)
-                              )
-                            ],
-                          ),
-                        );
+                        return QuestionAnswer();
                       });
                 },
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(color: Helper.authHintColor)),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6))),
+                  side: const BorderSide(
+                      color: Helper.mainColor,
+                      width: 2,
+                      style: BorderStyle.solid),
+                  primary: Colors.white,
+                  onPrimary: Helper.mainColor,
+                  onSurface: Colors.grey,
+                ),
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.add_circle_outline_sharp,
+                        Icons.add_circle_outline,
                         color: Helper.mainColor,
                       ),
                       SizedBox(
@@ -276,11 +190,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                       Text(
                         ' 質問・相談を追加',
                         style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14,
-                          height: 1.5,
-                          color: Helper.mainColor,
-                        ),
+                            fontSize: 14,
+                            height: 1.5,
+                            fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
@@ -304,24 +216,23 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'カウンセリングの様子はどうでしたか？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                'カウンセリングの様子はどうでしたか？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -337,32 +248,33 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   hintText:
                       '例)真摯に質問や相談に乗ってくれました。価格も相談に乗っていただき自分にあった施術を提案していただいた。',
                   hintStyle: TextStyle(
-                    color: Colors.grey,
+                    color: Helper.txtColor,
                     fontSize: 14,
+                    height: 1.8,
+                    fontWeight: FontWeight.w400,
                   ),
                   border: InputBorder.none,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'カウンセリング後の感想',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                'カウンセリング後の感想',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -377,29 +289,30 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 decoration: InputDecoration(
                   hintText: '例)自分にあった二重幅を知ることができた。料金も良心的であると思いました。',
                   hintStyle: TextStyle(
-                    color: Colors.grey,
+                    color: Helper.txtColor,
                     fontSize: 14,
+                    height: 1.8,
+                    fontWeight: FontWeight.w400,
                   ),
                   border: InputBorder.none,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'カウンセリングの満足度',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                'カウンセリングの満足度',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -434,136 +347,160 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  '公開設定',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
-              ),
-            ),
-            Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'レポートを公開',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14,
-                        height: 1.5,
-                        color: Helper.titleColor,
+            !widget.isMyDiary!
+                ? Column(
+                    children: [
+                      SizedBox(
+                        height: 60,
                       ),
-                    ),
-                    ToggleSwitchButton(
-                      value: _notificationStatus,
-                      activeColor: Helper.mainColor,
-                      onChanged: (value) => setState(() {
-                        _notificationStatus = value;
-                      }),
-                    ),
-                  ],
-                )),
-            SizedBox(
-              height: 48,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                onTap: (){
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 62),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Helper.mainColor,)
-                  ),
-                  child: Text(
-                    "編集を完了",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5,
-                      color: Helper.mainColor,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 76,
-                padding: EdgeInsets.only(top: 20),
-                child: ElevatedButton(
-                  onPressed: isAddEnabled ? () => AddCounselPage() : null,
-                  style: ElevatedButton.styleFrom(
-                    elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(6))),
-                    primary: Helper.mainColor,
-                    onPrimary: Colors.white,
-                    onSurface: Colors.grey,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      'レポートを投稿する',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 76,
-                padding: EdgeInsets.only(top: 20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    CounselDownloadPage();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(6))),
-                    side: const BorderSide(
-                        color: Color.fromARGB(255, 110, 198, 210),
-                        width: 2,
-                        style: BorderStyle.solid),
-                    primary: Colors.white,
-                    onPrimary: Colors.white,
-                    onSurface: Color.fromARGB(255, 110, 198, 210),
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'レポートを下書き保存する',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(255, 110, 198, 210)),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 45,
+                        padding: EdgeInsets.only(top: 0, left: 16, right: 16),
+                        child: ElevatedButton(
+                          onPressed:
+                              isAddEnabled ? () => AddCounselPage() : null,
+                          style: ElevatedButton.styleFrom(
+                            elevation: 1,
+                            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            primary: Helper.mainColor,
+                            onPrimary: Colors.white,
+                            onSurface: Colors.grey,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              'レポートを投稿する',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 45,
+                        padding: EdgeInsets.only(top: 0, left: 16, right: 16),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            CounselDownloadPage();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 1,
+                            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            side: const BorderSide(
+                                color: Helper.mainColor,
+                                width: 2,
+                                style: BorderStyle.solid),
+                            primary: Colors.white,
+                            onPrimary: Helper.mainColor,
+                            onSurface: Colors.grey,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              'レポートを下書き保存する',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Container(
+                        height: 6,
+                        color: Color.fromARGB(255, 222, 222, 222),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+                        child: Text(
+                          '公開設定',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 102, 110, 110),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14,
+                              height: 1.5),
+                        ),
+                      ),
+                      Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'レポートを公開',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                  height: 1.5,
+                                  color: Helper.titleColor,
+                                ),
+                              ),
+                              ToggleSwitchButton(
+                                value: _notificationStatus,
+                                activeColor: Helper.mainColor,
+                                onChanged: (value) => setState(() {
+                                  _notificationStatus = value;
+                                }),
+                              ),
+                            ],
+                          )),
+                      SizedBox(
+                        height: 48,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 62),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border: Border.all(
+                                  color: Helper.mainColor,
+                                )),
+                            child: Text(
+                              "編集を完了",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                                height: 1.5,
+                                color: Helper.mainColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-            ),
+            
           ],
         ),
       ),
@@ -579,17 +516,19 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
       },
       child: Container(
         //decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
-        width: 50,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(
               "assets/icons/star.svg",
-              width: 42,
-              height: 42,
+              width: 30,
+              height: 30,
               color: color,
             ),
+            SizedBox(
+              width: 5,
+            )
           ],
         ),
       ),
