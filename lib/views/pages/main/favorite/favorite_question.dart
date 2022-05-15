@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/models/question_model.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
 
@@ -22,13 +23,14 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
   Future<void> getFavQuestion() async {
     final listFavQuestion = await _con.getFavQuestion();
     setState(() {
-      for(int i=0; i< listFavQuestion.length; i++)
+      for (int i = 0; i < listFavQuestion.length; i++)
         mid.add(listFavQuestion[i]);
     });
     print(mid);
   }
+
   @override
-  initState(){
+  initState() {
     getFavQuestion();
     super.initState();
   }
@@ -59,7 +61,11 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
                     hearts: mid[index].likes_count.toString(),
                     chats: mid[index].comments_count.toString(),
                     onpress: () {
-                      Navigator.of(context).pushNamed("/QuestionDetail");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => QuestionDetail(
+                                  index: mid[index].id)));
                     },
                   );
                 }),

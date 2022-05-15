@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/static/master_model.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 
@@ -45,6 +46,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
   Widget build(BuildContext context) {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
 
     return Expanded(
       child: Column(
@@ -325,7 +328,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                   }
                 }
               }
-
+              diaryProperties.setOperatinTypes(surgeryProvider.getSelectedCurePos);
               Navigator.of(context).pop();
             },
             child: Container(

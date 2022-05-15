@@ -37,7 +37,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -45,7 +45,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
         ),
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           child: InkWell(
             onTap: widget.onpress,
             child: Column(
@@ -55,48 +55,45 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                 Text(
                   widget.type,
                   style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 51, 51, 51)),
+                      fontSize: 16,
+                      height: 1.5,
+                      fontWeight: FontWeight.w400,
+                      color: Helper.maintxtColor),
                 ),
                 Container(
                   child: Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 8),
+                        padding: const EdgeInsets.only(top: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Column(
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        "assets/icons/menubar/clinic.svg",
-                                        width: 12,
-                                        height: 12,
-                                      ),
-                                      SizedBox(
-                                        width: 6,
-                                      ),
-                                      Text(
-                                        widget.clinic!,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                            color: Color.fromARGB(
-                                                255, 110, 198, 210)),
-                                      ),
-                                    ],
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    "assets/icons/menubar/clinic.svg",
+                                    width: 12,
+                                    height: 12,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    widget.clinic!,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w400,
+                                        color: Helper.mainColor),
+                                  ),
+                                ],
+                              ),
                             ),
                             SizedBox(
-                              height: 6,
+                              height: 5,
                             ),
                             Align(
                               alignment: Alignment.centerLeft,
@@ -108,15 +105,15 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                                     height: 12,
                                   ),
                                   SizedBox(
-                                    width: 6,
+                                    width: 5,
                                   ),
                                   Text(
                                     widget.check,
                                     style: TextStyle(
                                         fontSize: 12,
+                                        height: 1.5,
                                         fontWeight: FontWeight.w400,
-                                        color:
-                                            Color.fromARGB(255, 110, 198, 210)),
+                                        color: Helper.mainColor),
                                   ),
                                 ],
                               ),
@@ -127,11 +124,12 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                     ],
                   ),
                 ),
+                SizedBox(height: 20,),
                 Center(
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 76,
-                    padding: EdgeInsets.only(top: 20),
+                    width: MediaQuery.of(context).size.width,
+                    height: 42,
+                    padding: EdgeInsets.symmetric(horizontal: 32),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pushNamed("/AddCounselStep1");
@@ -143,12 +141,12 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30))),
                         side: const BorderSide(
-                            color: Color.fromARGB(255, 110, 198, 210),
+                            color: Helper.mainColor,
                             width: 2,
                             style: BorderStyle.solid),
                         primary: Colors.white,
                         onPrimary: Colors.white,
-                        onSurface: Color.fromARGB(255, 110, 198, 210),
+                        onSurface: Helper.mainColor,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,
@@ -158,8 +156,10 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                             Text(
                               'レポートを編集',
                               style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(255, 110, 198, 210)),
+                                  fontSize: 12,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400,
+                                  color: Helper.mainColor),
                             ),
                           ],
                         ),

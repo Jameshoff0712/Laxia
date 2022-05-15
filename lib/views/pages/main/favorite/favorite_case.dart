@@ -2,6 +2,7 @@ import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/case_model.dart';
+import 'package:laxia/views/pages/main/contribution/case_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -45,7 +46,11 @@ class _Favorite_CaseState extends State<Favorite_Case> {
                 itemBuilder: (BuildContext context, int index) {
                   return Diary_Card(
                     onpress: () {
-                      Navigator.of(context).pushNamed("/CaseDetail");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  CaseDetail(index: mid[index].id)));
                     },
                     buttoncolor: Helper.btnBgMainColor,
                     buttontext: mid[index]["buttontext"],

@@ -23,12 +23,12 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
   Future<void> getFavClinic() async {
     final listFavClinic = await _con.getFavClinic();
     setState(() {
-      for(int i=0; i< listFavClinic.length; i++)
-        mid.add(listFavClinic[i]);
+      for (int i = 0; i < listFavClinic.length; i++) mid.add(listFavClinic[i]);
     });
   }
+
   @override
-  initState(){
+  initState() {
     getFavClinic();
     super.initState();
   }
@@ -49,7 +49,11 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
                 itemBuilder: (BuildContext context, int index) {
                   return Clinic_Card(
                       onpress: () {
-                        MaterialPageRoute(builder: (context) => Clinic_Detail(index:  mid[index].id));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Clinic_Detail(
+                                    index: mid[index].id)));
                       },
                       image: mid[index].photo!,
                       post: mid[index].user_name!,

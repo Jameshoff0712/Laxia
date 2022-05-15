@@ -59,43 +59,48 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          '施術について',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+        title: Text('施術について',
+            style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              height: 1.5,
+            )),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Helper.titleColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'どんなことで悩んでいましたか？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5),
-                ),
+              padding: const EdgeInsets.only(top: 24, left: 16, bottom: 8),
+              child: Text(
+                'どんなことで悩んでいましたか？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 51, 51, 51),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -115,30 +120,29 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                       height: 1.8,
                       fontWeight: FontWeight.w400),
                   border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'クリニック、ドクターを選択した理由は？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5),
-                ),
+              padding: const EdgeInsets.only(top: 24, left: 16, bottom: 8),
+              child: Text(
+                'クリニック、ドクターを選択した理由は？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 51, 51, 51),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -158,30 +162,29 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                       height: 1.8,
                       fontWeight: FontWeight.w400),
                   border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'このメニューを選んだ理由は？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5),
-                ),
+              padding: const EdgeInsets.only(top: 24, left: 16, bottom: 8),
+              child: Text(
+                'このメニューを選んだ理由は？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 51, 51, 51),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -201,30 +204,29 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                       height: 1.8,
                       fontWeight: FontWeight.w400),
                   border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  '施術の流れや施術中の痛みは？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5),
-                ),
+              padding: const EdgeInsets.only(top: 24, left: 16, bottom: 8),
+              child: Text(
+                '施術の流れや施術中の痛みは？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 51, 51, 51),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -244,30 +246,29 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                       height: 1.8,
                       fontWeight: FontWeight.w400),
                   border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'ドクターやスタッフの対応はどうでしたか？',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5),
-                ),
+              padding: const EdgeInsets.only(top: 24, left: 16, bottom: 8),
+              child: Text(
+                'ドクターやスタッフの対応はどうでしたか？',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 51, 51, 51),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -287,30 +288,29 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                       height: 1.8,
                       fontWeight: FontWeight.w400),
                   border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  'この施術をしたいと思ってる人へアドバイスを',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 51, 51, 51),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      height: 1.5),
-                ),
+              padding: const EdgeInsets.only(top: 24, left: 16, bottom: 8),
+              child: Text(
+                'この施術をしたいと思ってる人へアドバイスを',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 51, 51, 51),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 4,
+                maxLines: 3,
                 onChanged: (text) {
                   if (text.isNotEmpty) {
                     setState(() {
@@ -323,22 +323,24 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   }
                 },
                 decoration: InputDecoration(
-                  hintText: '例)毎日自分の顔が見るのが楽しみになりました。\nもし迷っているなら、是非オススメします。',
+                  hintText: '例)毎日自分の顔が見るのが楽しみになりました。もし迷っているなら、是非オススメします。',
                   hintStyle: TextStyle(
                       color: Color.fromARGB(255, 156, 161, 161),
                       fontSize: 14,
                       height: 1.8,
                       fontWeight: FontWeight.w400),
                   border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
                 ),
               ),
             ),
             !widget.isMyDiary!
                 ? Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: 76,
-                      padding: EdgeInsets.only(top: 20),
+                      width: MediaQuery.of(context).size.width,
+                      height: 67,
+                      padding: EdgeInsets.only(top: 22, left: 16, right: 16),
                       child: ElevatedButton(
                         onPressed:
                             isAddEnabled ? () => AddDiaryStep5Page() : null,
@@ -356,7 +358,10 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                           fit: BoxFit.fitWidth,
                           child: Text(
                             '次に進む',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(
+                                fontSize: 14,
+                                height: 1.5,
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -364,7 +369,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   )
                 : Center(
                     child: Container(
-                    padding: EdgeInsets.only(top: 50),
+                      height: 45,
+                    margin: EdgeInsets.only(top: 22),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop();
