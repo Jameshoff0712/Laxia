@@ -19,18 +19,18 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
   bool isAddEnabled = false;
   //File imageURI;
   late QuestionController _con;
-    int index=0;
-    List images=[];
+  int index = 0;
+  List images = [];
   final _picker = ImagePicker();
-      Future<void> _openImagePicker() async {
-      final XFile? pickedImage =
-          await _picker.pickImage(source: ImageSource.gallery);
-      if (pickedImage != null) {
-        setState(() {
-          images.add(File(pickedImage.path));
-        });
-      }
+  Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        images.add(File(pickedImage.path));
+      });
     }
+  }
 
   _AddQuestionState() : super(QuestionController()) {
     _con = controller as QuestionController;
@@ -48,40 +48,131 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
     });
   }
 
-  AddQuestion() {
+  _AddQuestion() {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text("投稿を途中でやめますか？"),
-          content: Text("まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
-              style: TextStyle(fontSize: 14)),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                new FlatButton(
-                  textColor: Color.fromARGB(255, 110, 198, 210),
-                  child: new Text('いいえ'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                new FlatButton(
-                  color: Color.fromARGB(255, 110, 198, 210),
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: new Text('はい'),
-                  onPressed: () {
-                    //Navigator.of(context).pop();
-                    Navigator.of(context).pushNamed("/Pages");
-                  },
-                )
-              ],
-            )
-          ],
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Stack(children: [
+            Container(
+              width: 300,
+              height: 180,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(50, 20, 50, 14),
+                    child: Text(
+                      "投稿を途中でやめますか？",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        height: 1.5,
+                        fontWeight: FontWeight.w400,
+                        color: Helper.titleColor,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 30),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
+                        style: TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.w400,
+                          color: Helper.titleColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(40, 0, 40, 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        new FlatButton(
+                          textColor: Helper.mainColor,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 3, horizontal: 15),
+                            child: Text(
+                              'いいえ',
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        new FlatButton(
+                          color: Helper.mainColor,
+                          textColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 3, horizontal: 19),
+                              child: Text(
+                                'はい',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )),
+                          onPressed: () {
+                            // diaryProperties.setMedias(images);
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pushNamed("/Pages");
+                          },
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ]),
         );
+        // return AlertDialog(
+        //   title: Text("投稿を途中でやめますか？"),
+        //   content: Text("まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
+        //       style: TextStyle(fontSize: 14)),
+        //   actions: <Widget>[
+        //     Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //       children: [
+        //         new FlatButton(
+        //           textColor: Color.fromARGB(255, 110, 198, 210),
+        //           child: new Text('いいえ'),
+        //           onPressed: () {
+        //             Navigator.of(context).pop();
+        //           },
+        //         ),
+        //         new FlatButton(
+        //           color: Color.fromARGB(255, 110, 198, 210),
+        //           textColor: Colors.white,
+        //           shape: RoundedRectangleBorder(
+        //               borderRadius: BorderRadius.circular(15)),
+        //           child: new Text('はい'),
+        //           onPressed: () {
+        //             //Navigator.of(context).pop();
+        //             Navigator.of(context).pushNamed("/Pages");
+        //           },
+        //         )
+        //       ],
+        //     )
+        //   ],
+        // );
       },
     );
   }
@@ -127,68 +218,89 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
         centerTitle: true,
         title: Text(
           '質問内容を入力',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              height: 1.5),
         ),
         leading: IconButton(
-          icon: Icon(Icons.close, size: 22, color: Colors.black),
+          icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  '質問の詳細',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '質問の詳細',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               decoration: BoxDecoration(color: Colors.white),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(18.0, 14.0, 18.0, 14.0),
+                padding: const EdgeInsets.fromLTRB(16.0, 15.0, 16.0, 12.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "質問したい施術内容",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
+                      Flexible(
+                        flex: 1,
                         child: Text(
-                          surgeryProvider.selectedCurePos.isEmpty
-                              ? "選択してください"
-                              : surgeryProvider.getSelectedCurePosStr,
+                          "質問したい施術内容",
                           style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
+                              color: Color.fromARGB(255, 18, 18, 18),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              height: 1.5),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          surgeryProvider.setButtonText("次へ");
-                          Navigator.of(context).pushNamed("/SelectSurgery");
-                        },
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.grey,
+                      Flexible(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                surgeryProvider.selectedCurePos.isEmpty
+                                    ? "選択してください"
+                                    : surgeryProvider.getSelectedCurePosStr,
+                                style: TextStyle(
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    height: 1.3),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 25,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                surgeryProvider.setButtonText("次へ");
+                                Navigator.of(context)
+                                    .pushNamed("/SelectSurgery");
+                                setState(() {isAddEnabled = true;});
+                              },
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.grey,
+                                size: 20,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                          ],
                         ),
                       ),
                     ]),
@@ -203,7 +315,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 0.0),
+                    padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                     child: TextFormField(
                       controller: _con.question_titleCtrl,
                       keyboardType: TextInputType.text,
@@ -225,18 +337,26 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                       decoration: InputDecoration(
                         hintText: '質問タイトルを入力(40文字以内)',
                         hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
+                            color: Helper.txtColor,
+                            fontSize: 14,
+                            height: 1.5,
+                            fontWeight: FontWeight.w400),
                         border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(1, 210, 210, 212)),
+                            borderSide: BorderSide(color: Helper.txtColor)),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Helper.txtColor),
                         ),
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(vertical: 12),
+                        counterText: ""
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 7,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 8.0),
+                    padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                     child: TextFormField(
                       controller: _con.question_contentCtrl,
                       keyboardType: TextInputType.multiline,
@@ -258,10 +378,12 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                       decoration: InputDecoration(
                         hintText: '質問の詳細を入力(1000文字以内)',
                         hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
+                            color: Helper.txtColor,
+                            fontSize: 14,
+                            height: 1.5,
+                            fontWeight: FontWeight.w400),
                         border: InputBorder.none,
+                        counterText: "",
                       ),
                     ),
                   ),
@@ -269,16 +391,16 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 16,
             ),
             imagePicker(context),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 76,
-                padding: EdgeInsets.only(top: 20),
+                width: MediaQuery.of(context).size.width,
+                height: 85,
+                padding: EdgeInsets.only(top: 40, left: 16, right: 16),
                 child: ElevatedButton(
-                  onPressed: isAddEnabled ? () => AddQuestion() : null,
+                  onPressed: isAddEnabled ? () => _AddQuestion() : null,
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -291,60 +413,76 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Text(
-                      '質問を投稿',
-                      style: TextStyle(fontSize: 18),
+                      '次に進む',
+                      style: TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
     );
   }
+
   Widget imagePicker(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 12.0, top: 0, right: 12, bottom: 12),
+      padding: const EdgeInsets.only(left: 16.0, top: 0, right: 16, bottom: 0),
       child: GestureDetector(
         child: Row(
           children: <Widget>[
             InkWell(
-              onTap: (){
+              onTap: () {
                 _openImagePicker();
               },
               child: Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.only(top: 15),
-                height: 100,
-                width: 100,
+                padding: EdgeInsets.only(top: 14),
+                height: 80,
+                width: 80,
                 decoration: BoxDecoration(
                   color: Colors.grey,
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Column(
                   children: [
                     SvgPicture.asset(
                       "assets/icons/photo.svg",
                       width: 36,
-                      height: 36,
+                      height: 29,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text('写真を追加', style: TextStyle(color: Colors.white)),
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text('写真を追加',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              height: 1.5)),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(width: 9),
+            SizedBox(width: 16),
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                      PhotoCarouselWidget(ImageList: images, onRemove: (int ) { setState(() {images.removeAt(int);}); },),
+                    PhotoCarouselWidget(
+                      ImageList: images,
+                      onRemove: (int) {
+                        setState(() {
+                          images.removeAt(int);
+                        });
+                      },
+                    ),
                   ],
                 ),
               ),
