@@ -52,7 +52,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
       backgroundColor: Helper.whiteColor,
       body: Padding(
           padding:
-              const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
+              const EdgeInsets.only(top: 44.0, left: 16, right: 16),
           child: Column(
             children: <Widget>[
               Row(
@@ -72,9 +72,12 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                       flex: 6,
                       child: Center(
                           child: Text(Trans.of(context).login,
-                              style: defaultTextStyle(
-                                  Helper.blackColor, FontWeight.w500,
-                                  size: 20)))),
+                              style: TextStyle(
+                                  color:Helper.blackColor, 
+                                  fontFamily: "Hiragino Kaku Gothic Pro W6",
+                                  fontWeight:FontWeight.w400,
+                                  height: 22/20,
+                                  fontSize: 20)))),
                   Expanded(
                       flex: 2,
                       child: SizedBox(
@@ -105,7 +108,10 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                 decoration: InputDecoration(
                   hintText: Trans.of(context).input_email,
                   hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
+                      color: Color.fromARGB(255, 210, 210, 212), 
+                      fontSize: 14
+                      
+                      ),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
@@ -125,7 +131,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                           BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   border: UnderlineInputBorder(
                     borderSide:
-                        BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
+                        BorderSide(color: Color.fromARGB(255, 210, 210, 212), ),
                   ),
                 ),
               ),
@@ -163,7 +169,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                   ),
                   border: UnderlineInputBorder(
                     borderSide:
-                        BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
+                        BorderSide( color: Color.fromARGB(255, 210, 210, 212), ),
                   ),
                   // border: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
@@ -188,14 +194,20 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      alignment: Alignment.centerRight
+                  ),
                     onPressed: () {
                       Navigator.of(context).pushNamed("/passwordResetone");
                     },
                     child: Text(
                       Trans.of(context).i_forgot_password,
                       style: TextStyle(
-                          color: Helper.titleColor,
-                          fontWeight: FontWeight.bold,
+                          color: Helper.maintxtColor,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.1,
                           fontSize: 12),
                     )),
               ),

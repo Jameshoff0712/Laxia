@@ -102,8 +102,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Text(
                   Trans.of(context).signup_contents,
                   style: TextStyle(
+                      fontFamily: 'Hiragino Kaku Gothic Pro W6',
                       color: Helper.titleColor,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w400,
+                      height: 18 / 20,
+                      letterSpacing: -0.34,
                       fontSize: 20),
                 ),
                 SizedBox(
@@ -114,8 +117,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   softWrap: true,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Helper.titleColor,
+                      color: Helper.blackColor,
                       fontWeight: FontWeight.w400,
+                      height: 25 / 16,
+                      letterSpacing: -1.2,
                       fontSize: 16),
                 ),
                 const SizedBox(
@@ -156,51 +161,59 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(children: [
-                          TextSpan(
-                            text: Trans.of(context).by_continue,
-                            style: TextStyle(
-                                color: Helper.blackColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12),
-                          ),
-                          TextSpan(
-                              recognizer: new TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.of(context)
-                                      .pushNamed("/TermsOfService");
-                                },
-                              text: Trans.of(context).service_term,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 41),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(children: [
+                            TextSpan(
+                              text: Trans.of(context).by_continue,
                               style: TextStyle(
-                                  color: Helper.mainColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12)),
-                          TextSpan(
-                              text: Trans.of(context).agree_to,
-                              style: TextStyle(
+                                  height: 16.5/11,
                                   color: Helper.blackColor,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 12)),
-                          TextSpan(
-                              recognizer: new TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.of(context)
-                                      .pushNamed("/TermsOfService");
-                                },
-                              text: Trans.of(context).privacy + "\n",
-                              style: TextStyle(
-                                  color: Helper.mainColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12)),
-                          TextSpan(
-                              text: Trans.of(context).agree_policy,
-                              style: TextStyle(
-                                  color: Helper.blackColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12)),
-                        ]),
+                                  fontSize: 11),
+                            ),
+                            TextSpan(
+                                recognizer: new TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.of(context)
+                                        .pushNamed("/TermsOfService");
+                                  },
+                                text: Trans.of(context).service_term,
+                                style: TextStyle(
+                                    height: 16.5/11,
+                                    color: Helper.mainColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11)),
+                            TextSpan(
+                                text: Trans.of(context).agree_to,
+                                style: TextStyle(
+                                    height: 16.5/11,
+                                    color: Helper.blackColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11)),
+                            TextSpan(
+                                recognizer: new TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.of(context)
+                                        .pushNamed("/TermsOfService");
+                                  },
+                                text: Trans.of(context).privacy + "\n",
+                                style: TextStyle(
+                                    color: Helper.mainColor,
+                                    fontWeight: FontWeight.w400,
+                                    height: 16.5/11,
+                                    fontSize: 11)),
+                            TextSpan(
+                                text: Trans.of(context).agree_policy,
+                                style: TextStyle(
+                                    color: Helper.blackColor,
+                                    fontWeight: FontWeight.w400,
+                                    height: 16.5/11,
+                                    fontSize: 11)),
+                          ]),
+                        ),
                       ),
                       Align(
                         alignment: Alignment.bottomLeft,
@@ -248,14 +261,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: 12, bottom: 11),
+        padding: EdgeInsets.only(top: 10, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
               color: event == "facebook" ? Colors.blue : Helper.blackColor,
-              size: 30,
+              size: 26,
             ),
             Text(
               "   " + name,
@@ -372,7 +385,7 @@ class TwitterButton extends StatelessWidget {
             ),
             Text(
               "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w700,
+              style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
                   size: 14),
             ),
           ],

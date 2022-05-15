@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -39,6 +40,32 @@ class Question_Card extends StatefulWidget {
 }
 
 class _Question_CardState extends State<Question_Card> {
+  final apiUrl = dotenv.env["DEV_API_URL"];
+  late String image1,image2;
+  @override 
+  void initState(){
+    if(widget.image1.contains("https://")){
+      setState(() {
+        image1=widget.image1;
+      });
+    }
+    else{
+      setState(() {
+        image1=apiUrl!+"/"+widget.image1;
+      });
+    }
+    if(widget.image2.contains("https://")){
+      setState(() {
+        image2=widget.image2;
+      });
+    }
+    else{
+      setState(() {
+        image2=apiUrl!+"/"+widget.image2;
+      });
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,6 +80,7 @@ class _Question_CardState extends State<Question_Card> {
           child: InkWell(
             onTap: widget.onpress,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -81,7 +109,8 @@ class _Question_CardState extends State<Question_Card> {
                       widget.name,
                       style: TextStyle(
                           fontSize: 12,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: Helper.headFontFamily,
                           color: Helper.titleColor),
                     ),
                     widget.buttontext!.isEmpty
@@ -101,6 +130,8 @@ class _Question_CardState extends State<Question_Card> {
                                     horizontal: 5, vertical: 3),
                                 child: Text(
                                   widget.buttontext!,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: widget.fontcolor,
                                       fontSize: 10,
@@ -140,7 +171,7 @@ class _Question_CardState extends State<Question_Card> {
                           borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            imageUrl: widget.image1,
+                            imageUrl: image1,
                             placeholder: (context, url) => Image.asset(
                               'assets/images/loading.gif',
                               fit: BoxFit.cover,
@@ -159,7 +190,7 @@ class _Question_CardState extends State<Question_Card> {
                           borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            imageUrl: widget.image2,
+                            imageUrl: image2,
                             placeholder: (context, url) => Image.asset(
                               'assets/images/loading.gif',
                               fit: BoxFit.cover,

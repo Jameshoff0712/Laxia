@@ -99,7 +99,8 @@ class _Home_CounselingState extends State<Home_Counseling> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123,
+                       horizontal: 40,
+                        width: 186,
                         textname: "エリア選択",
                         onpress: () {
                           Navigator.of(context).pushNamed("/SelectPrefecture");
@@ -109,7 +110,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                   child: Dropdownbutton(
                       items: <String>["人気投稿順", "新着順"],
                       hintText: "並び替え",
-                      horizontal: 60),
+                      horizontal: 55),
                 ),
               ],
             ),

@@ -29,7 +29,6 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
   @override
   void initState() {
     for (int i = 0; i < widget.treatments.length; i++) {
-      print("object"+i.toString());
       setState(() {
         willSelect.add(false);
         selected.add([]);
@@ -71,7 +70,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                     )),
                 Text(widget.title,
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                        TextStyle(fontFamily: "Hiragino Kaku Gothic Pro w6",fontSize: 16, fontWeight: FontWeight.w400)),
                 InkWell(
                   onTap: () {
                     for (int i = 0; i < widget.treatments.length; i++) {
@@ -127,7 +126,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                               ? Border(
                                                   left: BorderSide(
                                                       width: 5,
-                                                      color: Colors.blue),
+                                                      color: Helper.mainColor),
                                                 )
                                               : Border(
                                                   top: BorderSide(
@@ -144,13 +143,25 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                       width: 0.5,
                                                       color: Colors.grey))),
                                       width: double.infinity,
-                                      child: Center(
+                                      child: SizedBox(
+                                        height: 44,
                                         child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 8),
-                                          child: Text(
-                                            widget.treatments[index].name!,
-                                            softWrap: true,
+                                          padding: const EdgeInsets.only(
+                                              left: 16),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                widget.treatments[index].name!,
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                  color:(currentpage == index)?Helper.mainColor:Helper.maintxtColor,
+                                                  fontSize:14,
+                                                  fontWeight: FontWeight.w400
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
@@ -229,7 +240,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Wrap(
-                                          alignment: WrapAlignment.spaceBetween,
+                                          // alignment: WrapAlignment.spaceBetween,
                                           runSpacing: 10,
                                           spacing: 10,
                                           children: [
@@ -331,6 +342,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                 child: Text(
                   surgeryProvider.btnText.isEmpty ? widget.buttontxt : surgeryProvider.btnText,
                   style: TextStyle(
+                    fontFamily: "Hiragino Kaku Gothic Pro w6",
                       color: Helper.whiteColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w700),

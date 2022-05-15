@@ -99,18 +99,21 @@ class _Home_CardState extends State<Home_Card> {
                       ): SizedBox(
                         width: 175,
                         height: 175,
-                        child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: source,
-                        placeholder: (context, url) => Image.asset(
-                          'assets/images/loading.gif',
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: CachedNetworkImage(
                           fit: BoxFit.cover,
+                          imageUrl: source,
+                          placeholder: (context, url) => Image.asset(
+                            'assets/images/loading.gif',
+                            fit: BoxFit.cover,
+                          ),
+                          errorWidget: (context, url, error) => Image.asset(
+                            'assets/images/Profile.png',
+                            fit: BoxFit.cover,
+                          ),
+                                            ),
                         ),
-                        errorWidget: (context, url, error) => Image.asset(
-                          'assets/images/Profile.png',
-                          fit: BoxFit.cover,
-                        ),
-                    ),
                       ),
                     isvideo? Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -134,7 +137,8 @@ class _Home_CardState extends State<Home_Card> {
                 padding: EdgeInsets.all(2),
                 child: Column(
                   children: [
-                    Center(
+                    Align(
+                      alignment: Alignment.centerLeft,
                       child: Text(
                         widget.title+"\n",
                         maxLines: 2,
@@ -147,7 +151,7 @@ class _Home_CardState extends State<Home_Card> {
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Row(
+                      child: Row(   
                         children: [
                           SvgPicture.asset(
                             "assets/icons/menubar/ping.svg",
@@ -162,6 +166,7 @@ class _Home_CardState extends State<Home_Card> {
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
+                                height: 18/12,
                                 color: Helper.maintxtColor),
                           ),
                         ],
@@ -189,6 +194,7 @@ class _Home_CardState extends State<Home_Card> {
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
+                                height: 18/12,
                                 color: Helper.maintxtColor),
                           ),
                         ],
@@ -218,6 +224,7 @@ class _Home_CardState extends State<Home_Card> {
                             ),
                           ),
                         ),
+                        SizedBox(width: 2,),
                         Text(
                           widget.name,
                           style: TextStyle(

@@ -38,13 +38,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         currentPageValue = _pageController.page;
       });
     });
-    if (currentPageValue!.floor() != 3) {
+    // if (currentPageValue!.floor() != 3) {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: Helper.mainColor,
+          backgroundColor: Helper.whiteColor,
           body: Padding(
             padding:
-                const EdgeInsets.only(top: 0, right: 0, bottom: 0, left: 0),
+                const EdgeInsets.all(16),
             child: Column(
               children: <Widget>[
                 Expanded(
@@ -52,192 +52,107 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     controller: _pageController,
                     itemCount: onBoardingInstructions.length,
                     itemBuilder: (context, i) => Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(top: 142, bottom: 32),
-                          alignment: Alignment.topCenter,
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(children: [
-                              TextSpan(
-                                text: "${onBoardingInstructions[i].heading} \n",
-                                style: TextStyle(
-                                    color: Helper.whiteColor,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.5,
-                                    fontSize: 16),
-                              ),
-                              TextSpan(
-                                text: "${onBoardingInstructions[i].title}",
-                                style: TextStyle(
-                                    color: Helper.whiteColor,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.5,
-                                    fontSize: 16),
-                              ),
-                            ]),
-                          ),
-                        ),
                         Flexible(
                           child: Image.asset(
                             "${onBoardingInstructions[i].image}",
                             fit: BoxFit.cover,
                           ),
                         ),
+                        SizedBox(height: 80),
+                        Text(
+                          "${onBoardingInstructions[i].heading}",
+                          textAlign: TextAlign.center,
+                          style:TextStyle(fontSize:18, fontWeight: FontWeight.w400,height: 27/18,letterSpacing: -0.54)
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "${onBoardingInstructions[i].title}",
+                          textAlign: TextAlign.center,
+                          style:TextStyle(fontSize:16, fontWeight: FontWeight.w400,height: 24/16,letterSpacing: -0.54,color: Helper.maintxtColor)
+                        ),
                       ],
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 25, top: 75),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          onBoardingInstructions.length,
-                          (f) => Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: f == currentPageValue!.floor()
-                                  ? Color.fromARGB(255, 255, 255, 255)
-                                  : Helper.whiteColor.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(7.0),
-                            ),
-                            width: f == currentPageValue!.floor() ? 7 : 7,
-                            height: 7,
+                  padding: const EdgeInsets.only(bottom: 58, top: 0),
+                  child: Column(children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        onBoardingInstructions.length,
+                        (f) => Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: f == currentPageValue!.floor()
+                                ? Helper.blackColor.withOpacity(0.98)
+                                : Helper.blackColor.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(7.0),
                           ),
+                          width: f == currentPageValue!.floor() ? 7 : 7,
+                          height: 7,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 18),
-                  alignment: Alignment.center,
-                  child: TextButton(
-                    child: Text(
-                      "すぐに始める",
-                      style: TextStyle(
-                          color: Helper.whiteColor,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5,
-                          fontSize: 14,
-                          decoration: TextDecoration.underline),
                     ),
-                    onPressed: () => Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen())),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    } else {
-      return SafeArea(
-        child: Scaffold(
-          backgroundColor: Helper.mainColor,
-          body: Padding(
-            padding:
-                const EdgeInsets.only(top: 0, right: 0, bottom: 0, left: 0),
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: PageView.builder(
-                    controller: _pageController,
-                    itemCount: onBoardingInstructions.length,
-                    itemBuilder: (context, i) => Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(top: 142, bottom: 32),
-                          alignment: Alignment.topCenter,
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(children: [
-                              TextSpan(
-                                text: "${onBoardingInstructions[i].heading} \n",
-                                style: TextStyle(
-                                    color: Helper.whiteColor,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.5,
-                                    fontSize: 16),
-                              ),
-                              TextSpan(
-                                text: "${onBoardingInstructions[i].title}",
-                                style: TextStyle(
-                                    color: Helper.whiteColor,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.5,
-                                    fontSize: 16),
-                              ),
-                            ]),
-                          ),
-                        ),
-                        Flexible(
-                          child: Image.asset(
-                            "${onBoardingInstructions[i].image}",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 32.0, left: 0.0, right: 0.0, bottom: 76.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 219,
-                        height: 44,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Helper.btnBgYellowColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
+                    SizedBox(height: 30),
+                    (currentPageValue!.floor() != 3)?
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            child: Text(
+                              "スキップ",
+                              style:TextStyle(fontSize:16, fontWeight: FontWeight.w400,height: 24/16,letterSpacing: -0.54,color: Helper.maintxtColor)
                             ),
+                            onPressed: () => Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) => LoginScreen())),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "さあ, はじめよう！",
-                                style: defaultTextStyle(
-                                    Helper.whiteColor, FontWeight.w700,
-                                    size: 14),
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 2,horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Helper.mainColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: TextButton(
+                              child: Text(
+                                "次へ",
+                                style:TextStyle(fontSize:18, fontWeight: FontWeight.w400,height: 27/18,letterSpacing: -0.54,color: Helper.whiteColor)
                               ),
-                            ],
+                              onPressed: () =>_pageController.nextPage(duration: const Duration(microseconds: 300),curve: Curves.easeIn),
+                            ),
+                          )
+                      ],),
+                    ):
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Helper.mainColor,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Center(
+                        child: TextButton(
+                          child: Text(
+                            "ラシアを始める",
+                            style:TextStyle(fontSize:18, fontWeight: FontWeight.w400,height: 27/18,letterSpacing: -0.54,color: Helper.whiteColor)
                           ),
-                          onPressed: () {
-                            if (onBoardingInstructions.length - 1 ==
-                                _pageController.page) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const LoginScreen()));
-                            } else
-                              _pageController.nextPage(
-                                  duration: Duration(milliseconds: 250),
-                                  curve: Curves.easeIn);
-                          },
+                           onPressed: () => Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) => LoginScreen())),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],)
                 ),
               ],
             ),
           ),
         ),
       );
-    }
   }
 }

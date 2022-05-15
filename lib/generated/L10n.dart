@@ -71,7 +71,7 @@ class Trans {
 
   String get login_content {
     return Intl.message(
-      'LAXIAEログイン',
+      'LAXIAにログイン',
       name: 'login_content',
       desc: '',
       args: [],
@@ -341,7 +341,7 @@ class Trans {
 
   String get privacy {
     return Intl.message(
-      'プライバシー',
+      'プライバシーポリシー',
       name: 'privacy',
       desc: '',
       args: [],
@@ -350,7 +350,7 @@ class Trans {
 
   String get agree_policy {
     return Intl.message(
-      'ポリシーに同意したことになります。',
+      'に同意したことになります。',
       name: 'agree_policy',
       desc: '',
       args: [],
