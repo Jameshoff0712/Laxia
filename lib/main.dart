@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W3'),
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
-            initialRoute: '/Splash',
+            initialRoute: '/EmailLogin',
             onGenerateRoute: RouteGenerator.generateRoute,
             locale: _setting.mobileLanguage.value,
             localizationsDelegates: const [

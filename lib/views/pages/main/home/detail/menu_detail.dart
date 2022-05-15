@@ -62,14 +62,13 @@ class _Menu_DetailState extends State<Menu_Detail> {
             child: Detail_Image(
                     insidestar: true,
                     height: 375,
-                    imageList: Menu_Datails[0]["images"], onPressUpRight: () {  }, onPressBack: () {
+                    imageList: [], onPressUpRight: () {  }, onPressBack: () {
                       Navigator.of(context).pop();
                       },
                     onStar: (){
                       setState(() {
                         isfavourite=!isfavourite;
                       });
-                      print("add favorite");
                     },
                   ),
           ),
@@ -92,9 +91,11 @@ class _Menu_DetailState extends State<Menu_Detail> {
                       ),
                       Text(
                         Menu_Datails[0]["tax"],
-                        style: defaultTextStyle(
-                            Helper.titleColor, FontWeight.w500,
-                            size: 12.0),
+                        style: TextStyle(
+                          height: 1.5,
+                          color:Helper.titleColor, 
+                           fontWeight :FontWeight.w500,
+                             fontSize:12.0),
                       ),
                       SizedBox(
                       height: 2.5,
@@ -105,8 +106,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                   SizedBox(height: 9,),
                   Text(
                       Menu_Datails[0]["heading"],
-                      style: defaultTextStyle(Helper.titleColor, FontWeight.w700,
-                          size: 16.0),
+                      style: TextStyle(color:Helper.titleColor, fontWeight: FontWeight.w700, height: 1.5,
+                          fontSize: 16.0),
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,8 +146,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                       Menu_Datails[0]["description"]["label"],
                       overflow: TextOverflow.ellipsis,
                       maxLines:3,
-                      style: defaultTextStyle(Helper.titleColor, FontWeight.w400,
-                          size: 14.0),
+                      style: TextStyle(color:Helper.titleColor, fontWeight: FontWeight.w400,height: 1.5,
+                          fontSize: 14.0),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 25),
@@ -219,25 +220,25 @@ class _Menu_DetailState extends State<Menu_Detail> {
                         columns: [
                         DataColumn(label: Text(  
                             '施術時間',  
-                            style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)  
+                            style: TextStyle(fontFamily: Helper.headFontFamily,height: 1.5,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)  
                         )),  
                         DataColumn(label: Text(  
                             Menu_Datails[0]["description"]["children"][0],  
-                            style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  
+                            style: TextStyle(fontFamily:Helper.headFontFamily,height: 1.5, fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  
                         )),  
                       ], 
                       rows: [
                         DataRow(cells: [
-                          DataCell(Text('抜糸',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
-                        DataCell(Text(Menu_Datails[0]["description"]["children"][1], style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  )),  
+                          DataCell(Text('抜糸',style: TextStyle(fontFamily: Helper.headFontFamily,height: 1.5,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
+                        DataCell(Text(Menu_Datails[0]["description"]["children"][1], style: TextStyle(height: 1.5, fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  )),  
                         ]),
                         DataRow(cells: [
-                          DataCell(Text('施術後の通院',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
-                        DataCell(Text(Menu_Datails[0]["description"]["children"][2], style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  )),  
+                          DataCell(Text('施術後の通院',style: TextStyle(fontFamily: Helper.headFontFamily,height: 1.5, fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                        DataCell(Text(Menu_Datails[0]["description"]["children"][2], style: TextStyle(height: 1.5, fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  )),  
                         ]),
                         DataRow(cells: [
-                          DataCell(Text('腫れ',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
-                        DataCell(Text(Menu_Datails[0]["description"]["children"][3], style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  )),  
+                          DataCell(Text('腫れ',style: TextStyle(fontFamily: Helper.headFontFamily,height: 1.5, fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                        DataCell(Text(Menu_Datails[0]["description"]["children"][3], style: TextStyle(height: 1.5, fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)  )),  
                         ])
                       ]),
                     ),
@@ -314,6 +315,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 249, 161, 56),
                                       fontSize: 10,
+                                      height: 1.5,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -343,11 +345,11 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                    ),
                                    SizedBox(width: 12,),
                                    Text(
-                                      Menu_Datails[0]["follow"][index]["label"],style:TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)
+                                      Menu_Datails[0]["follow"][index]["label"],style:TextStyle(height: 1.5, fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w400)
                                    ),
                                  ],),
                                  Text(
-                                      Menu_Datails[0]["follow"][index]["value"].toString()+"分",style:TextStyle(fontSize: 12,color: Helper.titleColor, fontWeight: FontWeight.w400)
+                                      Menu_Datails[0]["follow"][index]["value"].toString()+"分",style:TextStyle(height: 1.5, fontSize: 12,color: Helper.titleColor, fontWeight: FontWeight.w400)
                                    ),
                              ],),
                            ),
@@ -376,8 +378,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                       Menu_Datails[0]["cert"]["label"],
                       overflow: TextOverflow.ellipsis,
                       maxLines:3,
-                      style: defaultTextStyle(Helper.titleColor, FontWeight.w400,
-                          size: 14.0),
+                      style: TextStyle(color:Helper.titleColor, fontWeight:FontWeight.w400,height: 1.5,
+                          fontSize: 14.0),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 25),
@@ -445,6 +447,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                               Text(
                                 "クリニック・ドクター",
                                 style: TextStyle(
+                                  fontFamily: Helper.headFontFamily,height: 1.5,
                                     color:
                                         Color.fromARGB(255, 51, 51, 51),
                                     fontSize: 18,
@@ -510,11 +513,15 @@ class _Menu_DetailState extends State<Menu_Detail> {
                               Text(
                                 "この施術の日記",
                                 style: TextStyle(
+                                  fontFamily: Helper.headFontFamily,height: 1.5,
                                     color:
                                         Color.fromARGB(255, 51, 51, 51),
                                     fontSize: 18,
                                     fontWeight: FontWeight.w700),
                               ),
+
+
+                              
                               SizedBox(width: 0,),
                             ],
                           ),
@@ -578,7 +585,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
       ):Container(),
       bottomNavigationBar: SafeArea(
         child: Container(
-          height: 90,
+          height: 66,
           padding: EdgeInsets.all(10),
            decoration: BoxDecoration(color: Helper.whiteColor),
           child: Row(
@@ -595,16 +602,14 @@ class _Menu_DetailState extends State<Menu_Detail> {
                         Text(
                           Menu_Datails[0]["price"],
                           style: defaultTextStyle(Helper.priceColor, FontWeight.w700,
-                              size: 24.0),
+                              size: 18.0),
                         ),
                         SizedBox(
                           width: 6,
                         ),
                         Text(
                           Menu_Datails[0]["tax"],
-                          style: defaultTextStyle(
-                              Helper.titleColor, FontWeight.w500,
-                              size: 12.0),
+                          style: TextStyle(color:Helper.titleColor, fontWeight:FontWeight.w500,height:1.5,fontSize: 12.0),
                         ),
                         SizedBox(
                         width: 2.5,
@@ -614,11 +619,12 @@ class _Menu_DetailState extends State<Menu_Detail> {
                     ),
                     Row(
                       children: [
-                      isfavourite?Icon(Icons.star,color: Helper.btnBgYellowColor,size: 25,)
-                      : Icon(Icons.star_border,color: Helper.txtColor,size: 25,),
+                      isfavourite?Icon(Icons.star,color: Helper.btnBgYellowColor,size: 16,)
+                      : Icon(Icons.star_border,color: Helper.txtColor,size: 16,),
                       Text(
                         "4.23(102)",
-                        style: TextStyle(
+                          style: TextStyle(
+                          height: 1.5,
                             color: Helper.titleColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
@@ -633,17 +639,17 @@ class _Menu_DetailState extends State<Menu_Detail> {
                     style: ElevatedButton.styleFrom(
                       primary: Helper.btnBgYellowColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
+                        borderRadius: BorderRadius.circular(70.0),
                       ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "さあ, はじめよう！",
+                          "クリニックを予約",
                           style: defaultTextStyle(
                               Helper.whiteColor, FontWeight.w700,
-                              size: 14),
+                              size: 16),
                         ),
                       ],
                     ),

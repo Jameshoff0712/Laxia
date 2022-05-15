@@ -109,10 +109,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             insidestar: true,
                             height: 375,
                             imageList:[
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg"
+                            
                             ],// doctor_detail.["images"],
                             onPressUpRight: () {},
                             onPressBack: () {
