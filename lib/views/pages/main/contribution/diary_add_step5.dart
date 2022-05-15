@@ -45,7 +45,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
         title: Text('ガイドラインの確認',
             style: TextStyle(
               color: Helper.titleColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
             )),
@@ -74,12 +74,13 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Color.fromARGB(255, 18, 18, 18),
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w700,
                       fontSize: 18,
                       height: 1.5,
                     )),
               ),
               Container(
+                height: 500,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: Text(
                     'ここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\n\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\nここにガイドラインの文章を入れる\nここにガイドラインの文章を入れるここにガイドラインの文章を入れるここにガイドラインの文章を入れる\nここにガイドラインの文章を入れる',
@@ -122,7 +123,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       style: TextStyle(
                           fontSize: 14,
                           height: 1.5,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -158,7 +159,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       style: TextStyle(
                           fontSize: 14,
                           height: 1.5,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -208,7 +209,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                 child: Text(strCondition,
                     style: TextStyle(
                       color: Helper.titleColor,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w700,
                       fontSize: 14,
                       height: 1.5,
                     ))),

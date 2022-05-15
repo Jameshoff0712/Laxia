@@ -62,7 +62,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
         title: Text('施術について',
             style: TextStyle(
               color: Helper.titleColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
             )),
@@ -90,7 +90,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 51, 51, 51),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -132,7 +132,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 51, 51, 51),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -174,7 +174,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 51, 51, 51),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -216,7 +216,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 51, 51, 51),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -258,7 +258,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 51, 51, 51),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -300,7 +300,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 51, 51, 51),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -343,7 +343,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                       padding: EdgeInsets.only(top: 22, left: 16, right: 16),
                       child: ElevatedButton(
                         onPressed:
-                            isAddEnabled ? () => AddDiaryStep4Page() : null,
+                            isAddEnabled ? () => AddDiaryStep5Page() : null,
                         style: ElevatedButton.styleFrom(
                           elevation: 1,
                           padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -361,7 +361,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                             style: TextStyle(
                                 fontSize: 14,
                                 height: 1.5,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -369,7 +369,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   )
                 : Center(
                     child: Container(
-                    padding: EdgeInsets.only(top: 50),
+                      height: 45,
+                    margin: EdgeInsets.only(top: 22),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop();

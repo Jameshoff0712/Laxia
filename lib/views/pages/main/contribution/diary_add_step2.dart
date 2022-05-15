@@ -63,7 +63,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
         title: Text('基本情報を入力',
             style: TextStyle(
               color: Helper.titleColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
             )),
@@ -91,7 +91,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -117,7 +117,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             "腫れづらいスクエア二施術",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -171,7 +171,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             "麻酔費用",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -225,7 +225,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             "処方薬の費用",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -279,7 +279,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             "その他の費用",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -330,7 +330,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                       "合計金額: ",
                       style: TextStyle(
                               color: Color.fromARGB(255, 18, 18, 18),
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               fontSize: 14,
                               height: 1.5),
                     ),
@@ -338,7 +338,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                       "0",
                       style: TextStyle(
                               color: Color.fromARGB(255, 18, 18, 18),
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               fontSize: 14,
                               height: 1.5),
                     ),
@@ -346,7 +346,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                       "円",
                       style: TextStyle(
                               color: Color.fromARGB(255, 18, 18, 18),
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               fontSize: 14,
                               height: 1.5),
                     ),
@@ -380,7 +380,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             style: TextStyle(
                                 fontSize: 14,
                                 height: 1.5,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -388,7 +388,8 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                   )
                 : Center(
                     child: Container(
-                    padding: EdgeInsets.only(top: 50),
+                      height: 45,
+                    margin: EdgeInsets.only(top: 40),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(

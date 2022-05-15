@@ -88,7 +88,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                       style: TextStyle(
                         fontSize: 16,
                         height: 1.5,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                         color: Helper.titleColor,
                       ),
                     ),
@@ -163,7 +163,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
               top: 14,
               right: 15,
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Icon(
@@ -286,7 +286,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
         title: Text('基本情報を入力',
             style: TextStyle(
               color: Helper.titleColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
             )),
@@ -319,7 +319,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -345,7 +345,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             "施術日",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -424,7 +424,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             "施術箇所",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -493,7 +493,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             "クリニック",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -569,7 +569,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             "担当ドクター",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -645,7 +645,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             "施術内容",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 height: 1.5),
                           ),
@@ -701,7 +701,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -733,7 +733,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             style: TextStyle(
                                 fontSize: 14,
                                 height: 1.5,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -741,7 +741,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                   )
                 : Center(
                     child: Container(
-                    padding: EdgeInsets.only(top: 50),
+                    height: 45,
+                    margin: EdgeInsets.only(top: 40),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -814,7 +815,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5)),
                     ),
                   ],

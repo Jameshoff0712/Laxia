@@ -66,7 +66,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
         title: Text('総合評価',
             style: TextStyle(
               color: Helper.titleColor,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
             )),
@@ -95,7 +95,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -222,7 +222,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -349,7 +349,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Color.fromARGB(255, 102, 110, 110),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5),
               ),
@@ -492,7 +492,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                       style: TextStyle(
                           fontSize: 14,
                           height: 1.5,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
