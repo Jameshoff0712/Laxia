@@ -50,7 +50,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
         title: Text(
           'お気に入り',
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,

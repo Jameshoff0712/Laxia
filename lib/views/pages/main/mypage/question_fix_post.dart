@@ -17,12 +17,12 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
         title: Text(
-          'お友達を招待',
+          '質問内容を入力',
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
-            color: Helper.blackColor,
+            color: Helper.titleColor,
           ),
         ),
         centerTitle: true,
@@ -33,7 +33,7 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
             icon: Icon(
               Icons.close,
               color: Helper.titleColor,
-              size: 30,
+              size: 25,
             )),
         elevation: 0,
       ),

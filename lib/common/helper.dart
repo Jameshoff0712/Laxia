@@ -8,6 +8,7 @@ export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /* APP VARIABLES or CONSTANTS */
 class Helper {
+  static const headFontFamily="Hiragino Kaku Gothic Pro w6";
   static const whiteColor = Colors.white;
   static const blackColor = Colors.black;
   static const appTitle = 'Laxia project';

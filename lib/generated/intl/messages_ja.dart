@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agree_policy":
-            MessageLookupByLibrary.simpleMessage("ポリシーに同意したことになります。"),
+            MessageLookupByLibrary.simpleMessage("に同意したことになります。"),
         "agree_to": MessageLookupByLibrary.simpleMessage("に同意し、"),
         "by_continue": MessageLookupByLibrary.simpleMessage("続行することで、LAXIAの"),
         "cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
@@ -49,13 +49,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "lets_start_with_signup": MessageLookupByLibrary.simpleMessage(
             "プロフィールを作って、ほかのユーザーを\nフォローしたり自分の体験日記を作ってみよう!"),
         "login": MessageLookupByLibrary.simpleMessage("ログイン"),
-        "login_content": MessageLookupByLibrary.simpleMessage("LAXIAEログイン"),
+        "login_content": MessageLookupByLibrary.simpleMessage("LAXIAにログイン"),
         "mailbox": MessageLookupByLibrary.simpleMessage("メールボックス"),
         "member_regirtration": MessageLookupByLibrary.simpleMessage("会員登録"),
         "next": MessageLookupByLibrary.simpleMessage("次へ進む"),
         "offer_off": MessageLookupByLibrary.simpleMessage("オフ"),
         "password": MessageLookupByLibrary.simpleMessage("パスワード"),
-        "privacy": MessageLookupByLibrary.simpleMessage("プライバシー"),
+        "privacy": MessageLookupByLibrary.simpleMessage("プライバシーポリシー"),
         "register": MessageLookupByLibrary.simpleMessage("登録"),
         "required_password":
             MessageLookupByLibrary.simpleMessage("パスワードは、英数字/記号で8文字以上必要です"),

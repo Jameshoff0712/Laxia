@@ -60,7 +60,7 @@ class _FollowingListPageState extends State<FollowingListPage> {
         title: Text(
           'フォロー中',
           style: TextStyle(
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
               color: Helper.titleColor,
@@ -162,7 +162,7 @@ class _FollowingListPageState extends State<FollowingListPage> {
                             style: TextStyle(
                               fontSize: 16,
                               height: 1.6,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               color: Helper.txtColor,
                             ),
                           )

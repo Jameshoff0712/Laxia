@@ -34,7 +34,7 @@ class _InputTextWidgetState extends State<InputTextWidget> {
               Text(
                 widget.labelName,
                 style: TextStyle(
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w700,
                   fontSize: 14,
                   height: 1.5,
                   color: Color.fromARGB(255, 18, 18, 18),

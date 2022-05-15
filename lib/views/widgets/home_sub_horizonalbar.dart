@@ -39,9 +39,12 @@ class _Home_Sub_HorizonalbarState extends State<Home_Sub_Horizonalbar> {
                 ),
               ),
             ),
+            SizedBox(height: 7,),
             Center(
                 child: Text(
               widget.text,
+              overflow: TextOverflow.visible,
+              maxLines: 1,
               style: TextStyle(
                   color: Helper.unSelectSmallTabColor,
                   fontSize: 10,

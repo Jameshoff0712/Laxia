@@ -23,7 +23,7 @@ class _InputCodePageState extends State<InputCodePage> {
           title: Text(
             '招待コードを入力',
             style: TextStyle(
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 16,
               height: 1.5,
               color: Helper.titleColor,
@@ -78,6 +78,8 @@ class _InputCodePageState extends State<InputCodePage> {
                     height: 1.8,
                     color: Color.fromARGB(255, 194, 194, 194),
                   ),
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(0),
                 ),
                 onChanged: (text) {
                   setState(() {
@@ -120,7 +122,7 @@ class _InputCodePageState extends State<InputCodePage> {
                   '登録',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height: 1.5,
                     color: Helper.whiteColor,

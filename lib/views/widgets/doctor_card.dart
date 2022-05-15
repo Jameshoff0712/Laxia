@@ -33,6 +33,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
         color: Helper.whiteColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               decoration: BoxDecoration(color: _whiteColor),
@@ -90,8 +91,9 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         Text(
                           widget.name,
                           style: TextStyle(
-                              color: Helper.titleColor,
-                              fontWeight: FontWeight.w400,
+                            fontFamily: Helper.headFontFamily,
+                              color: Helper.titleColor, 
+                              fontWeight: FontWeight.w700,
                               fontSize: 16.0,
                               height: 1.5),
                         ),
@@ -170,7 +172,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                           widget.clinic,
                           style: TextStyle(
                               color: Helper.maintxtColor,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w400, 
                               fontSize: 12.0,
                               height: 1.5),
                         ),
@@ -186,3 +188,4 @@ class _Doctor_CardState extends State<Doctor_Card> {
     );
   }
 }
+   

@@ -39,8 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   Trans.of(context).login_content,
                   style: TextStyle(
+                      fontFamily: 'Hiragino Kaku Gothic Pro W6',
                       color: Helper.titleColor,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w400,
+                      height: 18 / 20,
+                      letterSpacing: -0.34,
                       fontSize: 20),
                 ),
                 SizedBox(
@@ -51,8 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   softWrap: true,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Helper.titleColor,
+                      color: Helper.blackColor,
                       fontWeight: FontWeight.w400,
+                      height: 25 / 16,
+                      letterSpacing: -1.2,
                       fontSize: 16),
                 ),
                 const SizedBox(
@@ -97,7 +102,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(Trans.of(context).i_forgot_password),
+                        Text(
+                          "まだアカウントをお持ちでないですか？",
+                          style: TextStyle(
+                              color: Helper.blackColor,
+                              fontWeight: FontWeight.w400,
+                              height: 25 / 16,
+                              letterSpacing: -1.2,
+                              fontSize: 16),
+                        ),
                         SizedBox(
                           width: 8,
                         ),
@@ -107,8 +120,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             child: Text(
                               Trans.of(context).register,
-                              style: defaultTextStyle(
-                                  Colors.blue, FontWeight.bold),
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontFamily: 'Hiragino Kaku Gothic Pro W6',
+                                  fontWeight: FontWeight.w400,
+                                  height: 18 / 20,
+                                  letterSpacing: -0.34,
+                                  fontSize: 20),
                             ))
                       ],
                     ),
@@ -146,18 +164,18 @@ class LoginButton extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: 12, bottom: 11),
+        padding: EdgeInsets.only(top: 10, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
               color: color ?? Helper.blackColor,
-              size: 30,
+              size: 26,
             ),
             Text(
-              "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w700,
+              "   " + name,    
+              style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
                   size: 14),
             ),
           ],
@@ -200,7 +218,7 @@ class TwitterButton extends StatelessWidget {
             ),
             Text(
               "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w700,
+              style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
                   size: 14),
             ),
           ],
