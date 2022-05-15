@@ -32,7 +32,7 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
           Text(
             widget.name,
             style: TextStyle(
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 14,
               height: 1.5,
               color: Color.fromARGB(255, 18, 18, 18),

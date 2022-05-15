@@ -18,7 +18,7 @@ class _ContactPageState extends State<ContactPage> {
         title: Text(
           'お問い合わせ',
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,
@@ -46,7 +46,7 @@ class _ContactPageState extends State<ContactPage> {
                 child: Text(
                   'お問い合わせ',
                   style: TextStyle(
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     fontSize: 18,
                     color: Helper.titleColor,
                   ),
@@ -62,7 +62,7 @@ class _ContactPageState extends State<ContactPage> {
                     Text(
                       'ユーザーID',
                       style: TextStyle(
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                         fontSize: 14,
                         height: 1.5,
                         color: Helper.titleColor,
@@ -168,7 +168,7 @@ class _ContactPageState extends State<ContactPage> {
                           child: Text(
                             'お問い合わせ内容を送信する',
                             style: TextStyle(
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               fontSize: 14,
                               height: 1.5,
                               color: Helper.whiteColor,
