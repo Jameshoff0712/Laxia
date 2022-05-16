@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/doctor/doctordetail_model.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_top.dart';
-import 'package:laxia/views/pages/main/home/sub/home_case.dart';
-import 'package:laxia/views/pages/main/home/sub/home_counseling.dart';
-import 'package:laxia/views/pages/main/home/sub/home_diary.dart';
-import 'package:laxia/views/pages/main/home/sub/home_question.dart';
+import 'package:laxia/views/pages/main/home/detail/staticsub/home_case.dart';
+import 'package:laxia/views/pages/main/home/detail/staticsub/home_counseling.dart';
+import 'package:laxia/views/pages/main/home/detail/staticsub/home_diary.dart';
+import 'package:laxia/views/pages/main/home/detail/staticsub/home_question.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class Doctor_Sub_Detail extends StatefulWidget {
   final int index;
-  final dynamic doctor_detail;
+  final DoctorDetail_Model doctor_detail;
   const Doctor_Sub_Detail({ Key? key, required this.doctor_detail, required this.index }) : super(key: key);
 
   @override
@@ -31,26 +33,36 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
   ];
   late TabController _tabController;
   bool isfavourite=false;
-  List treatment = [];
   late ScrollController scrollController;
-  Future<void> initSettings() async {
-    String mid =
-        await rootBundle.loadString("assets/cfg/treatment_location.json");
-    setState(() {
-      treatment.addAll(json.decode(mid));
-    });
-  }
   @override
   void initState() {
-    print(widget.doctor_detail["avator"]);
-    initSettings();
+    setState(() {
+      isfavourite=widget.doctor_detail.doctor.is_favorite==null?false:widget.doctor_detail.doctor.is_favorite!;
+    });
     _tabController = new TabController(initialIndex: widget.index,length: 5, vsync: this);
     super.initState();
   
   }
+  void changeTabIndex(int index){
+    _tabController.animateTo(index,
+              duration: const Duration(microseconds: 300),
+              curve: Curves.easeIn);
+  }
+  final _con = HomeController();
+  Future<void> postToogleFavorite(index) async {
+    try {
+      final res=await _con.postToogleFavorite(index:index, domain: 'doctors');
+      if(res==true){
+        setState(() {
+          isfavourite=!isfavourite;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    return treatment.isNotEmpty? Scaffold(
+    return  Scaffold(
       body: SafeArea(
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -71,8 +83,6 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed("/Mypage");
                             },
                             child: SizedBox(
                               height: 40,
@@ -82,7 +92,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
                                 child: CachedNetworkImage(
                                   fit: BoxFit.cover,
                                   imageUrl:
-                                      widget.doctor_detail["avatar"],
+                                      widget.doctor_detail.doctor.photo==null?"https://error.png":widget.doctor_detail.doctor.photo!,
                                   placeholder: (context, url) =>
                                       Image.asset(
                                     'assets/images/loading.gif',
@@ -102,7 +112,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                  widget.doctor_detail["name"],
+                                  widget.doctor_detail.doctor.name==null?"":widget.doctor_detail.doctor.name!,
                                   style: TextStyle(
                                       color:
                                           Helper.blackColor,
@@ -113,7 +123,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
                                   children: [
                                     Icon(Icons.star,color: Colors.yellow,size: 10,),
                                     Text(
-                                      widget.doctor_detail["mark"],
+                                      "mark",// widget.doctor_detail["mark"],
                                       style: TextStyle(
                                           color:
                                               Helper.blackColor,
@@ -143,11 +153,11 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
                   child: TabBarView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      Doctor_Top(doctor_detail: widget.doctor_detail,),
-                      Home_Diary(issearch: true,model: widget.doctor_detail["diarys"],last:treatment[0]["children"],isdrawer:false),
-                      Home_Case(issearch: true,model: widget.doctor_detail["case"],last:treatment[0]["children"],isdrawer:false),
-                      Home_Counseling(issearch: true,model: widget.doctor_detail["counceling"],last:treatment[0]["children"],isdrawer:false),
-                      Home_Question(issearch: true,model: widget.doctor_detail["questions"],last:treatment[0]["children"],isdrawer:false),
+                      Doctor_Top(doctor_detail: widget.doctor_detail,onpress:changeTabIndex),
+                      Home_Diary(diaries: widget.doctor_detail.diaries),
+                      Home_Case(cases: widget.doctor_detail.cases),
+                      Home_Counseling(councelings: widget.doctor_detail.counselings),
+                      Home_Question(questions: widget.doctor_detail.questions),
                     ],
                     controller: _tabController,
                   ),
@@ -166,9 +176,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
           children: [
               InkWell(
                 onTap: (){
-                  setState(() {
-                    isfavourite=!isfavourite;
-                  });
+                  postToogleFavorite(widget.doctor_detail.doctor.id);
                 },
                 child: Column(
                    mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -208,6 +216,6 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>   with SingleTick
               ),
         ],),
       ),
-    ):Scaffold();
+    );
   }
 }

@@ -636,7 +636,30 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                  child: Padding(
                    padding: EdgeInsets.only(left: 10,top: 5),
                    child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
+                       FittedBox(
+                          fit: BoxFit.fill,
+                          child: SizedBox(
+                              height: MediaQuery.of(context).size.width,
+                              width: MediaQuery.of(context).size.width,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.fill,
+                                  imageUrl: "https://error.png",
+                                  placeholder: (context, url) => Image.asset(
+                                    'assets/images/loading.gif',
+                                    fit: BoxFit.fill,
+                                  ),
+                                  errorWidget: (context, url, error) => Image.asset(
+                                    'assets/images/profile.png',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ),
                        Text(
                           widget.post_treatment.content!,
                           style: TextStyle(
@@ -675,7 +698,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                   width: 6,
                 ),
                 Text(
-                  'widget.post_treatment["favourite"]',
+                  '88',
                   style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w400,
@@ -695,7 +718,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                       width: 6,
                     ),
                     Text(
-                      'widget.post_treatment["chat"]',
+                      '4',
                       style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w400,

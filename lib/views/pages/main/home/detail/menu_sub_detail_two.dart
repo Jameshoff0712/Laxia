@@ -35,9 +35,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
             ]),
             Text(
               widget.detailList[0],
-              style: defaultTextStyle(
-                  Helper.maintxtColor, FontWeight.w400,
-                  size: 14,),
+              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -50,9 +48,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
             ),
             Text(
               widget.detailList[1],
-              style: defaultTextStyle(
-                  Helper.maintxtColor, FontWeight.w400,
-                  size: 14),
+              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
             ),
             Expanded(
               child: Align(

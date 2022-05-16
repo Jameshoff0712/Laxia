@@ -106,15 +106,12 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     },
                                     child: Detail_Image(
                                       height: 200,
-                                      imageList:[
-                                                  for (int j = 0; j < clinic_detail.images.length; j++)
-                                                  clinic_detail.images[j].path
-                                                ],
+                                      imageList:clinic_detail.images,
                                       onPressUpRight: () {},
                                       onPressBack: () {
                                         Navigator.of(context).pop();
                                       },
-                                    ),
+                                    ), 
                                   ),
                                   Clinic_Card(
                                       posPress: () {
@@ -174,13 +171,15 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             index: 2,
                                           )));
                                 },
-                                child: Column(
+                                child: Column( 
                                   children: [
                                     Text(
                                       clinic_detail.menu.length.toString(),
                                       style: TextStyle(
+                                        fontFamily: Helper.headFontFamily,
                                           color: Helper.blackColor,
                                           fontSize: 14,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
@@ -188,6 +187,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       style: TextStyle(
                                           color: Helper.titleColor,
                                           fontSize: 12,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ],
@@ -207,6 +207,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       clinic_detail.diaries.length.toString(),
                                       style: TextStyle(
                                           color: Helper.blackColor,
+                                          height: 1.5,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w700),
                                     ),
@@ -215,6 +216,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       style: TextStyle(
                                           color: Helper.titleColor,
                                           fontSize: 12,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ],
@@ -235,6 +237,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       style: TextStyle(
                                           color: Helper.blackColor,
                                           fontSize: 14,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
@@ -242,6 +245,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       style: TextStyle(
                                           color: Helper.titleColor,
                                           fontSize: 12,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ],
@@ -262,6 +266,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       style: TextStyle(
                                           color: Helper.blackColor,
                                           fontSize: 14,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
@@ -269,6 +274,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       style: TextStyle(
                                           color: Helper.titleColor,
                                           fontSize: 12,
+                                          height: 1.5,
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ],
@@ -293,6 +299,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   Text(
                                     "ドクター",
                                     style: TextStyle(
+                                      fontFamily: Helper.headFontFamily,
+                                      height: 1.5,
                                         color: Color.fromARGB(255, 51, 51, 51),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w700),
@@ -310,19 +318,19 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          "14名のドクター",
+                                          clinic_detail.doctors.length.toString()+"名のドクター",
                                           style: TextStyle(
                                               color: Color.fromARGB(
                                                   255, 156, 161, 161),
                                               fontSize: 14,
+                                              height: 1.5,
                                               fontWeight: FontWeight.w400),
                                         ),
                                         Icon(
-                                          Icons.navigate_next,
-                                          size: 15,
-                                          color: Color.fromARGB(
-                                              255, 156, 161, 161),
-                                        )
+                                                  Icons.navigate_next,
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
+                                                )
                                       ],
                                     ),
                                   )
@@ -383,22 +391,20 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           Text(
                                             "メニュー",
                                             style: TextStyle(
+                                              fontFamily: Helper.headFontFamily,
                                                 color: Color.fromARGB(
                                                     255, 51, 51, 51),
                                                 fontSize: 18,
+                                                height: 1.5,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              // Navigator.of(context).push(
-                                              //     MaterialPageRoute(
-                                              //         builder: (_) =>
-                                              //             Clinic_Sub_Detail(
-                                              //               clinic_Detail:
-                                              //                   clinic_Details[
-                                              //                       0],
-                                              //               index: 2,
-                                              //             )));
+                                              Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (_) => Clinic_Sub_Detail(
+                                                        clinic_Detail: clinic_detail,
+                                                        index: 2,
+                                                      )));
                                             },
                                             child: Row(
                                               children: [
@@ -413,9 +419,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 ),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -463,20 +468,30 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             },
                                             child: Row(
                                               children: [
-                                                Text(
-                                                  "すべてのメニュー",
-                                                  style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 156, 161, 161),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w400),
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: (_) => Clinic_Sub_Detail(
+                                                            clinic_Detail: clinic_detail,
+                                                            index: 2,
+                                                          )));
+                                                  },
+                                                  child: Text(
+                                                    "すべてのメニュー",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 156, 161, 161),
+                                                        fontSize: 14,
+                                                        height: 1.5,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
                                                 ),
+                                                SizedBox(width: 19,),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -512,22 +527,20 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           Text(
                                             "日記",
                                             style: TextStyle(
+                                              fontFamily: Helper.headFontFamily,
                                                 color: Color.fromARGB(
                                                     255, 51, 51, 51),
                                                 fontSize: 18,
+                                                height: 1.5,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           InkWell(
                                             onTap: () {
-                                              // Navigator.of(context).push(
-                                              //     MaterialPageRoute(
-                                              //         builder: (_) =>
-                                              //             Clinic_Sub_Detail(
-                                              //               clinic_Detail:
-                                              //                   clinic_Details[
-                                              //                       0],
-                                              //               index: 3,
-                                              //             )));
+                                              Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (_) => Clinic_Sub_Detail(
+                                                        clinic_Detail: clinic_detail,
+                                                        index: 3,
+                                                      )));
                                             },
                                             child: Row(
                                               children: [
@@ -537,14 +550,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                       color: Color.fromARGB(
                                                           255, 156, 161, 161),
                                                       fontSize: 14,
+                                                      height: 1.5,
                                                       fontWeight:
                                                           FontWeight.w400),
                                                 ),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -651,28 +664,36 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
-                                                            clinic_Detail:
-                                                                 [
-                                                                    0],
+                                                            clinic_Detail:clinic_detail,
                                                             index: 3,
                                                           )));
                                             },
                                             child: Row(
                                               children: [
-                                                Text(
-                                                  "すべての日記",
-                                                  style: TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 156, 161, 161),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w400),
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: (_) => Clinic_Sub_Detail(
+                                                            clinic_Detail: clinic_detail,
+                                                            index: 3,
+                                                          )));
+                                                  },
+                                                  child: Text(
+                                                    "すべての日記",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 156, 161, 161),
+                                                        fontSize: 14,
+                                                        height: 1.5,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
                                                 ),
+                                                SizedBox(width: 19,),
                                                 Icon(
                                                   Icons.navigate_next,
-                                                  size: 15,
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
                                                 )
                                               ],
                                             ),
@@ -699,8 +720,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   child: Text(
                                     "クリニック基本情報",
                                     style: TextStyle(
+                                      fontFamily: Helper.headFontFamily,
                                         color: Helper.blackColor,
                                         fontSize: 18,
+                                        height: 1.5,
                                         fontWeight: FontWeight.w700),
                                   ),
                                 ),
@@ -717,6 +740,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             color:
                                                 Color.fromARGB(255, 51, 51, 51),
                                             fontSize: 18,
+                                            height: 1.5,
                                             fontWeight: FontWeight.w700),
                                       ),
                                       InkWell(
@@ -731,14 +755,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   color: Color.fromARGB(
                                                       255, 156, 161, 161),
                                                   fontSize: 14,
+                                                  height: 1.5,
                                                   fontWeight: FontWeight.w400),
                                             ),
                                             Icon(
-                                              Icons.navigate_next,
-                                              size: 15,
-                                              color: Color.fromARGB(
-                                                  255, 156, 161, 161),
-                                            )
+                                                  Icons.navigate_next,
+                                                  size: 17,
+                                                  color: Helper.maintxtColor,
+                                                )
                                           ],
                                         ),
                                       )
@@ -778,14 +802,17 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           DataColumn(
                                               label: Text('最寄駅',
                                                   style: TextStyle(
+                                                      fontFamily: Helper.headFontFamily,
                                                       fontSize: 14,
                                                       color: Helper.titleColor,
+                                                      height: 1.5,
                                                       fontWeight:
                                                           FontWeight.w700))),
                                           DataColumn(
                                               label: Text(
                                                   'clinic_detail["clinicname"]',
                                                   style: TextStyle(
+                                                    height: 1.5,
                                                       fontSize: 14,
                                                       color:
                                                           Helper.maintxtColor,
@@ -797,7 +824,9 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             DataCell(
                                               Text('アクセス',
                                                   style: TextStyle(
+                                                     fontFamily: Helper.headFontFamily,
                                                       fontSize: 14,
+                                                      height: 1.5,
                                                       color: Helper.titleColor,
                                                       fontWeight:
                                                           FontWeight.w700)),
@@ -806,6 +835,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 'clinic_detail["access"]',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    height: 1.5,
                                                     color: Helper.maintxtColor,
                                                     fontWeight:
                                                         FontWeight.w400))),
@@ -814,6 +844,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             DataCell(Text(
                                               '営業時間',
                                               style: TextStyle(
+                                                height: 1.5,
                                                   fontSize: 14,
                                                   color: Helper.titleColor,
                                                   fontWeight: FontWeight.w700),
@@ -822,6 +853,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 'clinic_detail["times"]',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    height: 1.5,
                                                     color: Helper.maintxtColor,
                                                     fontWeight:
                                                         FontWeight.w400))),
@@ -830,6 +862,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             DataCell(Text('営業日',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    fontFamily: Helper.headFontFamily,
+                                                    height: 1.5,
                                                     color: Helper.titleColor,
                                                     fontWeight:
                                                         FontWeight.w700))),
@@ -837,6 +871,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                ' clinic_detail["workday"]',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    height: 1.5,
                                                     color: Helper.maintxtColor,
                                                     fontWeight:
                                                         FontWeight.w400))),
@@ -845,6 +880,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             DataCell(Text('電話番号',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    fontFamily: Helper.headFontFamily,
+                                                    height: 1.5,
                                                     color: Helper.titleColor,
                                                     fontWeight:
                                                         FontWeight.w700))),
@@ -852,6 +889,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 'clinic_detail["phonenumber"]',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    height: 1.5,
                                                     color: Helper.maintxtColor,
                                                     fontWeight:
                                                         FontWeight.w400))),
@@ -860,6 +898,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             DataCell(Text('クレジットカード',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    height: 1.5,
+                                                    fontFamily: Helper.headFontFamily,
                                                     color: Helper.titleColor,
                                                     fontWeight:
                                                         FontWeight.w700))),
@@ -867,6 +907,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 'clinic_detail["card"]',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    height: 1.5,
                                                     color: Helper.maintxtColor,
                                                     fontWeight:
                                                         FontWeight.w400))),
@@ -875,6 +916,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             DataCell(Text('駐車場',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    fontFamily: Helper.headFontFamily,
+                                                    height: 1.5,
                                                     color: Helper.titleColor,
                                                     fontWeight:
                                                         FontWeight.w700))),
@@ -882,6 +925,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 'clinic_detail["park"]',
                                                 style: TextStyle(
                                                     fontSize: 14,
+                                                    height: 1.5,
                                                     color: Helper.maintxtColor,
                                                     fontWeight:
                                                         FontWeight.w400))),
@@ -904,23 +948,21 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                   children: [
                     InkWell(
                       onTap: () {
-                        setState(() {
-                          isfavourite = !isfavourite;
-                        });
+                        postToogleFavorite(clinic_detail.clinic.id);
                       },
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           isfavourite
                               ? Icon(
                                   Icons.star,
                                   color: Helper.btnBgYellowColor,
-                                  size: 30,
+                                  size: 22,
                                 )
                               : Icon(
                                   Icons.star_border,
                                   color: Helper.txtColor,
-                                  size: 30,
+                                  size: 22,
                                 ),
                           Text(
                             "お気に入り",
@@ -928,7 +970,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 color: isfavourite
                                     ? Helper.btnBgYellowColor
                                     : Helper.txtColor,
-                                fontSize: 12,
+                                fontSize: 10,
+                                height: 1.5,
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -936,9 +979,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 14),
                         primary: Helper.btnBgYellowColor,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(70.0),
                         ),
                       ),
                       child: Row(
@@ -948,7 +992,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             "クリニックを予約",
                             style: defaultTextStyle(
                                 Helper.whiteColor, FontWeight.w700,
-                                size: 14),
+                                size: 16),
                           ),
                         ],
                       ),

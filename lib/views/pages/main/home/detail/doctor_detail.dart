@@ -39,7 +39,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
       print(e.toString());
     }
   }
-  Future<void> postToogleFavorite(index) async {
+  Future<void> postToogleFavorite(int index) async {
     try {
       final res=await _con.postToogleFavorite(index:index, domain: 'doctors');
       if(res==true){
@@ -55,7 +55,6 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
     getData(index: widget.index);
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return isloading
@@ -109,20 +108,14 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             insidestar: true,
                             height: 375,
                             imageList:[
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-                              "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg"
+                            
                             ],// doctor_detail.["images"],
                             onPressUpRight: () {},
                             onPressBack: () {
                               Navigator.of(context).pop();
                             },
                             onStar: () {
-                              setState(() {
-                                isfavourite = !isfavourite;
-                              });
-                              print("add favorite");
+                              postToogleFavorite(doctor_detail.doctor.id);
                             },
                           ),
                         ),
@@ -152,7 +145,8 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                                   {"title":"経歴","content": doctor_detail.doctor.career==null?"":doctor_detail.doctor.career},
                                                   {"title":"資格","content": doctor_detail.doctor.profile==null?"":doctor_detail.doctor.profile}
                                                 ],
-                                        items: [0,doctor_detail.counselings.length, doctor_detail.cases.length])
+                                        items: [0,doctor_detail.counselings.length, doctor_detail.cases.length],
+                                        experience_year: doctor_detail.doctor.experience_year.toString(),)
                                   ],
                                 ),
                               ),
@@ -160,6 +154,17 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 1,
+                    color: Helper.whiteColor,
+                    child: Container(
+                      width: double.infinity,
+                      height: 1,
+                      color: Helper.bodyBgColor,
+                      margin: EdgeInsets.symmetric(horizontal: 20),
                     ),
                   ),
                   Container(
@@ -210,11 +215,11 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                               ),
                               InkWell( 
                                 onTap: () {
-                                  // Navigator.of(context).push(MaterialPageRoute(
-                                  //     builder: (_) => Doctor_Sub_Detail(
-                                  //           doctor_detail: doctor_detail.,
-                                  //           index: 1,
-                                  //         )));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => Doctor_Sub_Detail(
+                                            doctor_detail: doctor_detail,
+                                            index: 1,
+                                          )));
                                 },
                                 child: Row(
                                   children: [
@@ -292,7 +297,13 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => Doctor_Sub_Detail(
+                                            doctor_detail: doctor_detail,
+                                            index: 1,
+                                          )));
+                                },
                                 child: Row(
                                   children: [
                                     Text(
@@ -355,16 +366,16 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                               ),
                               InkWell( 
                                 onTap: () {
-                                  // Navigator.of(context).push(MaterialPageRoute(
-                                  //     builder: (_) => Doctor_Sub_Detail(
-                                  //           doctor_detail: doctor_detail.,
-                                  //           index: 1,
-                                  //         )));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => Doctor_Sub_Detail(
+                                            doctor_detail: doctor_detail,
+                                            index: 2,
+                                          )));
                                 }, 
                                 child: Row(
                                   children: [
                                     Text(
-                                      "すべての日記",
+                                      "すべての症例",
                                       style: TextStyle(
                                           color: Color.fromARGB(
                                               255, 156, 161, 161),
@@ -429,11 +440,17 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => Doctor_Sub_Detail(
+                                            doctor_detail: doctor_detail,
+                                            index: 2,
+                                          )));
+                                },
                                 child: Row(
                                   children: [
                                     Text(
-                                      "すべての日記",
+                                      "すべての症例",
                                       style: TextStyle(
                                           color: Color.fromARGB(
                                               255, 156, 161, 161),
@@ -492,11 +509,11 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  // Navigator.of(context).push(MaterialPageRoute(
-                                  //     builder: (_) => Doctor_Sub_Detail(
-                                  //           doctor_detail: doctor_detail.,
-                                  //           index: 2,
-                                  //         )));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => Doctor_Sub_Detail(
+                                            doctor_detail: doctor_detail,
+                                            index: 4,
+                                          )));
                                 },
                                 child: Row(
                                   children: [
@@ -526,8 +543,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             itemCount: doctor_detail.questions.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Question_Card(
-                                buttoncolor: Helper.allowStateButtonColor,
-                                buttontext: "回答あり",
+                                isanswer: doctor_detail.questions[index].answers.isNotEmpty,
                                 hearts: doctor_detail.questions[index].likes_count==null?"":doctor_detail.questions[index].likes_count!.toString(),
                                 chats: doctor_detail.questions[index].comments_count==null?"":doctor_detail.questions[index].comments_count.toString(),
                                 avator:doctor_detail.questions[index].owner!.photo==null?"http://error.png": doctor_detail.questions[index].owner!.photo!,
@@ -549,7 +565,13 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => Doctor_Sub_Detail(
+                                            doctor_detail: doctor_detail,
+                                            index: 4,
+                                          )));
+                                },
                                 child: Row(
                                   children: [
                                     Text(

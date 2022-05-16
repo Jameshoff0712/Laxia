@@ -38,7 +38,6 @@ class _Diary_DetailState extends State<Diary_Detail> {
          islike=diary_detail.diary.is_like!;
          isloading = false;
       });
-      print(diary_detail.progresses!);
     } catch (e) {
       print(e.toString());
     }
@@ -82,8 +81,8 @@ class _Diary_DetailState extends State<Diary_Detail> {
         ),
       ))
     :Scaffold(
-      
       appBar: AppBar(
+        titleSpacing: 0,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
@@ -143,7 +142,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               color: Helper.maintxtColor, fontWeight: FontWeight.bold,fontSize: 8),
                         ),
                         Text(
-                          'diary_detail["end"]'+"日",
+                          '150'+"日", //diary_detail["end"]
                           style: TextStyle(
                               color: Helper.maintxtColor, fontWeight: FontWeight.w400,fontSize: 8),
                         ),
@@ -242,25 +241,26 @@ class _Diary_DetailState extends State<Diary_Detail> {
           decoration: BoxDecoration(color: Helper.whiteColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(width: 16.5,),
               InkWell(
                 onTap: () {
                   postToogleLike(widget.index);
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     islike
                         ? Icon(
                             Icons.star,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.star_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
                       "お気に入り",
@@ -268,12 +268,14 @@ class _Diary_DetailState extends State<Diary_Detail> {
                           color: islike
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 26.5,),
               InkWell(
                 onTap: () {
                   setState(() {
@@ -281,18 +283,18 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   });
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     isfavorite
                         ? Icon(
                             Icons.favorite,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.favorite_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
                       diary_detail.diary.likes_count==null?"":diary_detail.diary.likes_count.toString(),
@@ -300,12 +302,14 @@ class _Diary_DetailState extends State<Diary_Detail> {
                           color: isfavorite
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 29,),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Helper.btnBgYellowColor,
@@ -316,10 +320,13 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "同じクリニックを予約",
-                      style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                          size: 14),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      child: Text(
+                        "同じクリニックを予約",
+                        style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
+                            size: 16),
+                      ),
                     ),
                   ],
                 ),
@@ -514,7 +521,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     ),
                      SizedBox(width: 12,),
                   Text(
-                     ' diary_detail["mark"]',
+                      "4.8",// ' diary_detail["mark"]',
                     style: defaultTextStyle(
                         Helper.titleColor, FontWeight.w700,
                         size: 14.0),
@@ -522,10 +529,10 @@ class _Diary_DetailState extends State<Diary_Detail> {
               ],),
               CureMethod_Card(
                   image:"http://error.png",//  diary_detail["image"],
-                  heading: ' diary_detail["heading"]',
-                  price: ' diary_detail["price"]',
-                  tax:  'diary_detail["tax"]',
-                  clinic: ' diary_detail["clinic"]',
+                  heading:"クイックコスメティーク法",// ' diary_detail["heading"]',
+                  price:"240,000",// ' diary_detail["price"]',
+                  tax: "（税込）",//  'diary_detail["tax"]',
+                  clinic:"湘南美容クリニック 新宿院" ,//' diary_detail["clinic"]',
                   doctor:  diary_detail.diary.doctor_name==null?"":diary_detail.diary.doctor_name!),
               SizedBox(height: 24,),
               Text(
@@ -551,7 +558,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                           width: 6,
                         ),
                         Text(
-                         ' diary_detail["clinic_menu"][0]["label"]',
+                         ' 施術費用',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 16,
@@ -639,7 +646,6 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14,
-                                  
                                   color: Helper.maintxtColor,
                                 ),
                               ),

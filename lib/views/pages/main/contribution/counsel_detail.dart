@@ -33,7 +33,6 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
       final mid = await _con.getCouncelingDetail(index: index);
       setState(() {
          counceling_detail = mid;
-         print(counceling_detail);
         isfavorite=counceling_detail.counceling.is_favorite!;
         islike=counceling_detail.counceling.is_like!;
          isloading = false;
@@ -123,13 +122,22 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     Text(
                       counceling_detail.counceling.clinic_name==null ?"":counceling_detail.counceling.clinic_name!,
                       style: TextStyle(
+                        fontFamily:Helper.headFontFamily,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 13),
+                          fontSize: 12),
                     ),
-                    Text(
-                      "カウンセリング日 " + (counceling_detail.counceling.counseling_date==null?"":counceling_detail.counceling.counseling_date!),
-                      style: TextStyle(color: Helper.darkGrey, fontSize: 10),
+                    Row(
+                      children: [
+                        Text(
+                          "カウンセリング日 ",
+                          style: TextStyle( fontFamily: Helper.headFontFamily,color: Helper.darkGrey, fontSize: 10),
+                        ),
+                        SizedBox(width: 5,),
+                        Text((counceling_detail.counceling.counseling_date==null?"":counceling_detail.counceling.counseling_date!),
+                          style: TextStyle(color: Helper.darkGrey, fontSize: 10),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -144,7 +152,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                    padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     side: const BorderSide(
@@ -163,7 +171,8 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                         Text(
                           'フォロー',
                           style: TextStyle(
-                              fontSize: 10,
+                            height: 1.5,
+                              fontSize: 8,
                               color: Color.fromARGB(255, 110, 198, 210)),
                         ),
                       ],
@@ -204,7 +213,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                   ),
                 ),
                 SizedBox(width: 10,),
-SvgPicture.asset(
+                SvgPicture.asset(
                   "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
@@ -227,55 +236,58 @@ SvgPicture.asset(
           decoration: BoxDecoration(color: Helper.whiteColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(width: 21,),
               InkWell(
                 onTap: () {
                   postToogleFavorite(widget.index);
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     isfavorite
                         ? Icon(
                             Icons.favorite,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.favorite_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
-                      "223",
+                      counceling_detail.counceling.likes_count!.toString(),
                       style: TextStyle(
                           color: isfavorite
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 15,),
               InkWell(
                 onTap: () {
                   postToogleLike(widget.index);
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     islike
                         ? Icon(
                             Icons.star,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.star_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
                       "お気に入り",
@@ -283,12 +295,14 @@ SvgPicture.asset(
                           color: islike
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 15,),
               InkWell(
                 onTap: () {
                   showModalBottomSheet(
@@ -305,43 +319,42 @@ SvgPicture.asset(
                       });
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     Icon(
+                          Icon(
                             FontAwesomeIcons.commentDots,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
-                      "20",
+                      counceling_detail.counceling.comments_count.toString(),
                       style: TextStyle(
-                          color: isfavorite
-                              ? Helper.btnBgYellowColor
-                              : Helper.txtColor,
-                          fontSize: 12,
+                          color:Helper.txtColor,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Helper.btnBgYellowColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
+              SizedBox(width: 21,),
+              InkWell(
+                onTap: (){
+                  
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color:Color.fromARGB(255,243, 243, 243),
+                     borderRadius: BorderRadius.circular(40.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left:12,top:7,bottom:7, right: 100),
+                    child: Text(
+                            "コメントする",
+                            style: TextStyle(color:Helper.txtColor, fontWeight:FontWeight.w700,height: 1.5,fontSize: 14),
+                          ),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "コメントする",
-                      style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                          size: 14),
-                    ),
-                  ],
-                ),
-                onPressed: () {},
               ),
             ],
           ),

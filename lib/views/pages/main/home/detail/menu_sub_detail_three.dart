@@ -34,9 +34,7 @@ class _Menu_Sub_Detail_ThreeState extends State<Menu_Sub_Detail_Three> {
             ]),
             Text(
                   widget.detailList,
-                  style: defaultTextStyle(
-                      Helper.maintxtColor, FontWeight.w700,
-                      size: 14),
+                  style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,height: 2.1,fontSize: 14),
                 ),
             Expanded(
               child: Align(

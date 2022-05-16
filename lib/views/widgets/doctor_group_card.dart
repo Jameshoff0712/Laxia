@@ -55,6 +55,8 @@ class _Doctor_Group_CardState extends State<Doctor_Group_Card> {
           ),
           Text(
             widget.doctor.name==null?"":widget.doctor.name!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 color:
                     Helper.titleColor,

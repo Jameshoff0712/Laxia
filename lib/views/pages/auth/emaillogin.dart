@@ -18,8 +18,8 @@ class EMLoginScreen extends StatefulWidget {
 
 class _EMLoginScreenState extends State<EMLoginScreen> {
   final _con = AuthController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text:"");
+  final _passwordController = TextEditingController(text:"");
 
   String _errorMsg = "";
   bool _isLoading = false;

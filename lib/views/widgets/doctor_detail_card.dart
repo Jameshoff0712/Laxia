@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 
 class Doctor_DetailCard extends StatefulWidget {
-  final String image, post, name, mark, clinic;
+  final String image, post, name, mark, clinic,experience_year;
   final List items, profile;
 
   const Doctor_DetailCard(
@@ -16,7 +16,7 @@ class Doctor_DetailCard extends StatefulWidget {
       required this.mark,
       required this.items,
       required this.profile,
-      required this.clinic})
+      required this.clinic, required this.experience_year})
       : super(key: key);
 
   @override
@@ -94,27 +94,31 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                         SizedBox(
                           height: 15,
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            widget.name,
-                            style: defaultTextStyle(
-                                Helper.titleColor, FontWeight.w700,
-                                size: 16.0),
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                               widget.name.length>5?widget.name.substring(0,5)+"...":widget.name,
+                              style: defaultTextStyle(
+                                  Helper.titleColor, FontWeight.w700,
+                                  size: 18.0),
+                            ),
+                            SizedBox(
+                              width:10,
+                            ),
+                            Text(
+                              widget.post,
+                              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,height: 1.5,fontSize: 12.0),
+                            ),
+                            SizedBox(
+                              width:17,
+                            ),
+                            Text(
+                              "医師歴"+widget.experience_year+"年",
+                              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,height: 1.5,fontSize: 12.0),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            widget.post,
-                            style: defaultTextStyle(
-                                Helper.maintxtColor, FontWeight.w700,
-                                size: 10.0),
-                          ),
-                        ),
+                        
                         SizedBox(
                           height: 8,
                         ),

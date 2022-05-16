@@ -34,7 +34,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
             SizedBox(
               width: double.infinity,
               child: DataTable(
-                dataRowHeight:30,
+                dataRowHeight:38,
                 horizontalMargin: 0,
                 dataTextStyle:TextStyle(),
                 showBottomBorder: true,
@@ -43,7 +43,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                 columns: [
                 DataColumn(label: Text(  
                     '施術時間',  
-                    style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)  
+                    style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)  
                 )),  
                 DataColumn(label: Text(  
                     widget.detailList[0],  
@@ -52,43 +52,43 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
               ], 
               rows: [
                 DataRow(cells: [
-                  DataCell(Text('抜糸',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
+                  DataCell(Text('抜糸',style: TextStyle( fontFamily:Helper.headFontFamily , fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
                 DataCell(Text(widget.detailList[1], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('施術後の通院',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                  DataCell(Text('施術後の通院',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
                 DataCell(Text(widget.detailList[2], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('腫れ',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                  DataCell(Text('腫れ',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
                 DataCell(Text(widget.detailList[3], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('痛み',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
+                  DataCell(Text('痛み',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
                 DataCell(Text(widget.detailList[4], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('内出血',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                  DataCell(Text('内出血',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
                 DataCell(Text(widget.detailList[5], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('入院の必要性',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                  DataCell(Text('入院の必要性',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
                 DataCell(Text(widget.detailList[6], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('麻酔',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
+                  DataCell(Text('麻酔',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700)),),  
                 DataCell(Text(widget.detailList[7], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('メイク/洗顔',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                  DataCell(Text('メイク/洗顔',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
                 DataCell(Text(widget.detailList[8], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('シャワー/洗髪/入浴',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                  DataCell(Text('シャワー/洗髪/入浴',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
                 DataCell(Text(widget.detailList[9], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('強いマッサージ',style: TextStyle(fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
+                  DataCell(Text('強いマッサージ',style: TextStyle( fontFamily:Helper.headFontFamily ,fontSize: 14,color: Helper.titleColor, fontWeight: FontWeight.w700))),  
                 DataCell(Text(widget.detailList[10], style: TextStyle(fontSize: 14,color: Helper.maintxtColor, fontWeight: FontWeight.w400)  )),  
                 ]),
                 DataRow(cells: [
