@@ -26,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Text(
           '湘南美容クリニック　銀座院',
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,

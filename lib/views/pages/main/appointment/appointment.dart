@@ -58,7 +58,7 @@ class _AppointmentState extends State<Appointment>
         title: Text(
           '予約',
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,

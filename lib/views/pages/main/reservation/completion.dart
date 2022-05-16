@@ -18,7 +18,7 @@ class _CompletionState extends State<Completion> {
         title: Text(
           '予約完了',
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,
@@ -66,7 +66,7 @@ class _CompletionState extends State<Completion> {
                   style: TextStyle(
                     color: Helper.mainColor,
                     fontSize: 18,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w700,
                     height: 1.5,
                     decoration: TextDecoration.none,
                   )),
@@ -95,7 +95,7 @@ class _CompletionState extends State<Completion> {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                  padding: EdgeInsets.symmetric(vertical: 14, horizontal: 43),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
@@ -106,7 +106,7 @@ class _CompletionState extends State<Completion> {
                       style: TextStyle(
                         color: Color.fromARGB(255, 102, 110, 110),
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                         decoration: TextDecoration.none,
                       )),
                 ),
