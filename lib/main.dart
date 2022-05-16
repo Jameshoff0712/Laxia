@@ -26,7 +26,7 @@ Future<void> main() async {
       ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
       ChangeNotifierProvider<SurGeryProvider>.value(value: SurGeryProvider()),
       ChangeNotifierProvider<QuestionProvider>.value(value: QuestionProvider()),
-       ChangeNotifierProvider<PostDiaryProvider>.value(value: PostDiaryProvider()),
+      ChangeNotifierProvider<PostDiaryProvider>.value(value: PostDiaryProvider()),
     ], child: MyApp()));
   }); //lotation stop
 }
