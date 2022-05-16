@@ -74,7 +74,7 @@ class _ReservationState extends State<Reservation> {
           child: Text(
             '来院のご予約',
             style: TextStyle(
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
               fontSize: 18,
               height: 1.5,
               color: Helper.titleColor,
@@ -232,7 +232,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -260,7 +260,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -289,7 +289,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -353,7 +353,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -442,7 +442,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -476,7 +476,7 @@ class _ReservationState extends State<Reservation> {
                                         style: const TextStyle(
                                           fontSize: 16,
                                           height: 1.5,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w400,
                                           color:
                                               Color.fromARGB(255, 51, 51, 51),
                                         ),
@@ -521,7 +521,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -544,7 +544,13 @@ class _ReservationState extends State<Reservation> {
                                   color: Helper.whiteColor)),
                           headerStyle: HeaderStyle(
                               centerHeaderTitle: true,
-                              formatButtonVisible: false),
+                              formatButtonVisible: false,
+                              titleTextStyle: TextStyle(
+                                fontSize: 14,
+                                height: 1.5,
+                                fontWeight: FontWeight.w700,
+                                color: Color.fromARGB(255, 51, 51, 51),
+                              )),
                           daysOfWeekStyle: DaysOfWeekStyle(
                             weekendStyle:
                                 TextStyle(color: const Color(0xFF616161)),
@@ -599,7 +605,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -629,7 +635,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -678,7 +684,7 @@ class _ReservationState extends State<Reservation> {
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 51, 51, 51),
                                   fontSize: 18,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w700,
                                   height: 1.5,
                                   decoration: TextDecoration.none,
                                 )),
@@ -833,7 +839,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -906,7 +912,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -1009,7 +1015,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -1078,7 +1084,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -1091,7 +1097,7 @@ class _ReservationState extends State<Reservation> {
                               style: TextStyle(
                                 color: Color.fromARGB(255, 51, 51, 51),
                                 fontSize: 14,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w700,
                                 height: 1.5,
                                 decoration: TextDecoration.none,
                               ),
@@ -1101,7 +1107,7 @@ class _ReservationState extends State<Reservation> {
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 0, 184, 169),
                                       fontSize: 14,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w700,
                                       height: 1.5,
                                       decoration: TextDecoration.none,
                                     ),
@@ -1246,7 +1252,7 @@ class _ReservationState extends State<Reservation> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w700,
                               height: 1.5,
                               decoration: TextDecoration.none,
                             )),
@@ -1315,7 +1321,7 @@ class _ReservationState extends State<Reservation> {
               style: TextStyle(
                 color: Color.fromARGB(255, 51, 51, 51),
                 fontSize: 16,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w700,
                 height: 1.5,
                 decoration: TextDecoration.none,
               )),

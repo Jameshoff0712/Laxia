@@ -85,7 +85,7 @@ class _ConfirmationState extends State<Confirmation> {
         title: Text(
           'ご予約内容の確認',
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.5,
             color: Helper.titleColor,
@@ -146,7 +146,7 @@ class _ConfirmationState extends State<Confirmation> {
                             color: Color.fromARGB(255, 18, 18, 18),
                             fontSize: 12,
                             height: 1.5,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
@@ -199,7 +199,7 @@ class _ConfirmationState extends State<Confirmation> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w700,
                       height: 1.5,
                       decoration: TextDecoration.none,
                     )),
@@ -225,7 +225,7 @@ class _ConfirmationState extends State<Confirmation> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w700,
                       height: 1.5,
                       decoration: TextDecoration.none,
                     )),
@@ -264,7 +264,7 @@ class _ConfirmationState extends State<Confirmation> {
                       color: Color.fromARGB(255, 18, 18, 18),
                       fontSize: 12,
                       height: 1.5,
-                      fontWeight: FontWeight.w400),
+                      fontWeight: FontWeight.w700),
                 ),
               ),
             ),
