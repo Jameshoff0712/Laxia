@@ -77,7 +77,7 @@ class Doctor_Sub_Model extends Equatable {
         birthday: json["birthday"],
         area_id: json["area_id"],
         job_id: json["job_id"],
-        experience_year: json["experience_year"],
+        experience_year: json["experience_year"]==null?0:json["experience_year"],
         spec0: json["spec0"],
         spec1: json["spec1"],
         spec2: json["spec2"],

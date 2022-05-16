@@ -16,14 +16,14 @@ class Question_Sub_Model extends Equatable {
   final int? likes_count;
   final bool? is_like;
   final bool? is_favorite;
-  final List<Answer>? answers;
+  final List<Answer> answers;
   final Owner? owner;
   final List<Media_model>? medias;
   final List<Category>? categories;
 
   const Question_Sub_Model(
       {required this.id,
-      this.answers,
+      required this.answers,
       this.owner, 
       this.patient_id,
       this.title,

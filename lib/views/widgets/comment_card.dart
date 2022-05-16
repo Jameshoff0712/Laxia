@@ -28,7 +28,7 @@ class _Comment_CardState extends State<Comment_Card> {
             children: [
               InkWell(
                 onTap: (){
-                  Navigator.of(context).pushNamed("/Mypage");
+                  // Navigator.of(context).pushNamed("/Mypage");
                 },
                 child: SizedBox(
                   height: 32,
@@ -53,15 +53,35 @@ class _Comment_CardState extends State<Comment_Card> {
               SizedBox(width: 5),
               Text(
                 widget.name,
-                style: TextStyle(color: Helper.titleColor),
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  height:1.5,
+                  color: Helper.titleColor),
               ),
             ],
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              widget.ename + '  ' + widget.comment,
-              style: TextStyle(color: Helper.titleColor),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "@"+widget.ename,
+                  style: TextStyle(
+                    fontSize: 14,
+                    height:1.5,
+                    fontWeight: FontWeight.w400,
+                    color: Helper.mainColor),
+                ),
+                Text(
+                  '  ' + widget.comment,
+                  style: TextStyle(
+                    fontSize: 14,
+                    height:1.5,
+                    fontWeight: FontWeight.w400,
+                    color: Helper.titleColor),
+                ),
+              ],
             ),
           ),
           Padding(
@@ -71,12 +91,12 @@ class _Comment_CardState extends State<Comment_Card> {
               children: [
                 Text(
                   widget.date,
-                  style: TextStyle(fontSize: 12, color: Helper.darkGrey),
+                  style: TextStyle( fontWeight: FontWeight.w400,height: 1.5,fontSize: 12, color: Helper.darkGrey),
                 ),
                 InkWell(
                   child: Text(
                     '返信',
-                    style: TextStyle(fontSize: 13, color: Helper.mainColor),
+                    style: TextStyle(fontWeight: FontWeight.w400,height: 1.5,fontSize: 13, color: Helper.mainColor),
                   ),
                 )
               ],

@@ -230,8 +230,7 @@ class _UserPageState extends State<UserPage>
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Question_Card(
-                        buttoncolor: Helper.allowStateButtonColor,
-                        buttontext: "回答あり",
+                        isanswer: mid[index].answers.isNotEmpty,
                         hearts: mid[index]["hearts"],
                         chats: mid[index]["chats"],
                         avator: mid[index]["avator"],

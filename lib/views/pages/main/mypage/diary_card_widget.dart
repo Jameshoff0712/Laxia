@@ -124,7 +124,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                                 bottomLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
                                 bottomRight: Radius.zero),
-                            color: Color.fromARGB(128, 0, 0, 0),
+                            color: Color.fromARGB(128, 0, 0, 0).withOpacity(0.8),
                           ),
                           alignment: AlignmentDirectional.bottomStart,
                           child: Align(
@@ -167,7 +167,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                                 bottomLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
                                 bottomRight: Radius.zero),
-                            color: Color.fromARGB(128, 0, 0, 0),
+                            color: Color.fromARGB(128, 0, 0, 0).withOpacity(0.8),
                           ),
                           alignment: AlignmentDirectional.bottomStart,
                           child: Align(

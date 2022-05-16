@@ -63,7 +63,7 @@ class _CaseDetailState extends State<CaseDetail> {
               children: [
                 InkWell(
                 onTap: (){
-                  Navigator.of(context).pushNamed("/Mypage");
+                  // Navigator.of(context).pushNamed("/Mypage");
                 },
                   child: SizedBox(
                     height: 32,
@@ -76,7 +76,7 @@ class _CaseDetailState extends State<CaseDetail> {
                         placeholder: (context, url) => Image.asset(
                           'assets/images/loading.gif',
                           fit: BoxFit.cover,
-                        ),
+                        ),    
                         errorWidget: (context, url, error) => Image.asset(
                           'assets/images/profile.png',
                           fit: BoxFit.cover,
@@ -89,11 +89,13 @@ class _CaseDetailState extends State<CaseDetail> {
                 Text(
                   case_detail.name==null?"":case_detail.name!,
                   style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: Helper.headFontFamily,
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            Row(
+            Row( 
               children: [
                 SizedBox(width: 10,),
                 SvgPicture.asset(
@@ -298,7 +300,7 @@ class _CaseDetailState extends State<CaseDetail> {
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
                   case_detail.case_description==null?"":case_detail.case_description!,
-                  style: TextStyle(color: Helper.appTxtColor, fontSize: 15),
+                  style: TextStyle(color: Helper.appTxtColor, fontSize: 18,fontFamily: Helper.headFontFamily),
                 ),
               ),
               Container(
@@ -306,7 +308,7 @@ class _CaseDetailState extends State<CaseDetail> {
                   case_detail.patient_age.toString() +
                       "代/" +
                       case_detail.patient_gender!,
-                  style: TextStyle(color: Helper.darkGrey, fontSize: 12),
+                  style: TextStyle(color: Helper.darkGrey, fontSize: 14),
                 ),
               ),
               // CureMethod_Card(
@@ -320,7 +322,7 @@ class _CaseDetailState extends State<CaseDetail> {
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(
                   "メニューについて",
-                  style: TextStyle(color: Helper.appTxtColor, fontSize: 15),
+                  style: TextStyle(color: Helper.appTxtColor, fontSize: 18,fontFamily: Helper.headFontFamily),
                 ),
               ),
               // Container(
@@ -391,7 +393,7 @@ class _CaseDetailState extends State<CaseDetail> {
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
                   "同じ施術の日記",
-                  style: TextStyle(color: Helper.appTxtColor, fontSize: 15),
+                  style: TextStyle(color: Helper.appTxtColor, fontSize: 18,fontFamily: Helper.headFontFamily),
                 ),
               ),
               // Container(
