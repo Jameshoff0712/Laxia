@@ -146,7 +146,7 @@ class _Home_SubState extends State<Home_Sub>
                   decoration: BoxDecoration(color: Helper.whiteColor),
                   child: Column(children: [
                     SizedBox(
-                      height: 13,
+                      height: 11,
                     ),
                     DockBar_Bottom(
                         pageController: _pageController,
@@ -253,7 +253,7 @@ class DockBar_Bottom extends StatelessWidget {
               width: 31,
               height: 6,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 111, 82, 82),
+                color: Color.fromARGB(255, 239, 239, 239,),
                 borderRadius: BorderRadius.circular(20),
               ),
             ),

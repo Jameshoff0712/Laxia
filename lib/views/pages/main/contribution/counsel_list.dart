@@ -70,13 +70,14 @@ class _AddCounselPageState extends State<AddCounselPage> {
                             style: TextStyle(
                                 fontSize: 18,
                                 height: 1.5,
+                                fontFamily: Helper.headFontFamily,
                                 color: Helper.whiteColor,
                                 fontWeight: FontWeight.w400)),
-                        SizedBox(width: 20),
+                        SizedBox(width: 41.8),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
-                          size: 20,
+                          size: 12,
                         )
                       ],
                     ),
