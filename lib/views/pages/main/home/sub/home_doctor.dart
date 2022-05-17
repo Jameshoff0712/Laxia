@@ -5,7 +5,9 @@ import 'package:laxia/models/doctor/doctor_model.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
-
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 
 class Home_Doctor extends StatefulWidget {
   final bool? isScrollable,isdrawer;
@@ -19,12 +21,15 @@ class Home_Doctor extends StatefulWidget {
 }
 
 class _Home_DoctorState extends State<Home_Doctor> {
-  int page=0;
-  bool isend=false,isloading=true,isexpanding=true;
+  String searchdata="";
+  bool isloading = true,isexpanding=true,isend=false;
+  int page = 1;
+  bool expanded=false;
+  int index=-1;
   late Doctor doctor_data;
   final _con = HomeController();
   Future<void> getData(
-      {required String page}) async {
+      {required String page,String? q=""}) async {
     try {
       if(!isend){
         if(!isloading)
@@ -32,7 +37,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
               isexpanding=false;
             });
         final mid = await _con.getDoctorData(
-            page: page);
+            page: page,q: q!);
             if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -57,6 +62,16 @@ class _Home_DoctorState extends State<Home_Doctor> {
       });
     }
   }
+  void init(){
+    setState(() {
+       isloading = true;
+       isexpanding=true;
+       isend=false;
+       page = 1;
+       expanded=false;
+       index=-1;
+    });
+  }
   @override
   void initState(){
     getData(page: page.toString());
@@ -64,6 +79,15 @@ class _Home_DoctorState extends State<Home_Doctor> {
   }
   @override
   Widget build(BuildContext context) {
+     UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if(searchdata!=userProperties.searchtext){
+      init();
+      setState(() {
+        searchdata=userProperties.searchtext;
+        getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
     return Container(
       color: Helper.homeBgColor,
       child: Column(
@@ -75,7 +99,8 @@ class _Home_DoctorState extends State<Home_Doctor> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123, textname: "エリア選択", onpress: () {
+                       horizontal: 40,
+                        width: 186,textname: "エリア選択", onpress: () {
                           Navigator.of(context).pushNamed("/SelectPrefecture");
                         })),
                 Expanded(
@@ -83,7 +108,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                   child: Dropdownbutton(
                      items: <String>["評価が高い順", "日記の多い順"],
                       hintText: "並び替え",
-                      horizontal: 60),
+                      horizontal: 55),
                 ),
               ],
             ),
@@ -93,7 +118,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                         onNotification: (ScrollNotification scrollInfo) {
                             if (scrollInfo.metrics.pixels ==scrollInfo.metrics.maxScrollExtent) {
                               if(isexpanding&&!isend){
-                                getData(page: (page+1).toString());
+                                getData(page: (page+1).toString(),q:searchdata);
                                 setState(() {
                                   page+=1;
                                 }); 
@@ -123,7 +148,11 @@ class _Home_DoctorState extends State<Home_Doctor> {
                           itemBuilder: (BuildContext context, int index) {
                             return Doctor_Card(
                                 onpress: (){
-                                  Navigator.of(context).pushNamed("/Doctor_Detail");
+                                   Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Doctor_Detail(index:  doctor_data.data[index].id)));
+                                  // Navigator.of(context).pushNamed("/Doctor_Detail");
                                 },
                                 image: doctor_data.data[index].photo==null?"http://error.png": doctor_data.data[index].photo!,
                                 post: "院長", //doctor_data.data[index]["post"],

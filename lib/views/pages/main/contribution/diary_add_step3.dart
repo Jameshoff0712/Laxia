@@ -42,7 +42,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
   void initState() {
     for (int qindex = 0; qindex < 9; qindex++) {
       setState(() {
-          selectstar.add(0);
+        selectstar.add(0);
       });
     }
     super.initState();
@@ -63,13 +63,22 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          '総合評価',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+        title: Text('総合評価',
+            style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              height: 1.5,
+            )),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Helper.titleColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -80,47 +89,48 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 0),
-                title: Text(
-                  '施術について',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '施術について',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
                   child: Text(
                     "施術前の説明は十分でしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 0,
+                        i,
+                        0,
                         selectstar[0] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
@@ -130,32 +140,34 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 8.0),
                   child: Text(
                     "施術前の説明は十分でしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 1,
+                        i,
+                        1,
                         selectstar[1] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
@@ -165,81 +177,88 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 8.0),
                   child: Text(
                     "施術前の説明は十分でしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 2,
+                        i,
+                        2,
                         selectstar[2] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
               ),
             ),
+            Container(
+              color: Colors.white,
+              height: 8,
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.only(top: 10),
-                title: Text(
-                  'クリニックについて',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 15, left: 16, bottom: 6),
+              child: Text(
+                'クリニックについて',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
                   child: Text(
                     "院内の雰囲気、設備、清潔感はいかがでしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 3,
-                        selectstar[3] > i
+                        i,
+                        0,
+                        selectstar[0] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -248,33 +267,35 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 8.0),
                   child: Text(
                     "スタッフの対応はいかがでしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 4,
-                        selectstar[4] > i
+                        i,
+                        1,
+                        selectstar[1] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -283,81 +304,88 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 8.0),
                   child: Text(
                     "プライバシーへの配慮はいかがでしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 5,
-                        selectstar[5] > i
+                        i,
+                        2,
+                        selectstar[2] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
               ),
             ),
+            Container(
+              color: Colors.white,
+              height: 8,
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListTile(
-                contentPadding: EdgeInsets.only(top: 10),
-                title: Text(
-                  'ドクターについて',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.normal),
-                ),
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                'ドクターについて',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height: 1.5),
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
                   child: Text(
                     "治療前の説明は十分でしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 6,
-                        selectstar[6] > i
+                        i,
+                        0,
+                        selectstar[0] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -366,33 +394,35 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 8.0),
                   child: Text(
                     "ご自分の要望・意見を考慮してもらえましたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 7,
-                        selectstar[7] > i
+                        i,
+                        1,
+                        selectstar[1] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -401,43 +431,49 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
             Container(
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 3.0),
+                  padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 8.0),
                   child: Text(
                     "術前、術中、術後の対応はいかがでしたか？",
                     style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                        color: Color.fromARGB(255, 18, 18, 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 1.5),
                   ),
                 ),
               ),
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   for (int i = 0; i < 5; i++)
                     Star(
-                        i, 8,
-                        selectstar[8] > i
+                        i,
+                        2,
+                        selectstar[2] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
               ),
             ),
+            Container(
+              color: Colors.white,
+              height: 8,
+            ),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 76,
-                padding: EdgeInsets.only(top: 20),
+                width: MediaQuery.of(context).size.width,
+                height: 85,
+                padding: EdgeInsets.only(top: 40, left: 16, right: 16),
                 child: ElevatedButton(
                   onPressed: isAddEnabled ? () => AddDiaryStep4Page() : null,
                   style: ElevatedButton.styleFrom(
@@ -453,12 +489,15 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                     fit: BoxFit.fitWidth,
                     child: Text(
                       '次に進む',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -474,17 +513,19 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
       },
       child: Container(
         //decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
-        width: 50,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(
               "assets/icons/star.svg",
-              width: 42,
-              height: 42,
+              width: 30,
+              height: 30,
               color: color,
             ),
+            SizedBox(
+              width: 5,
+            )
           ],
         ),
       ),

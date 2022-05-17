@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/provider/question_provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
       ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
       ChangeNotifierProvider<SurGeryProvider>.value(value: SurGeryProvider()),
       ChangeNotifierProvider<QuestionProvider>.value(value: QuestionProvider()),
+      ChangeNotifierProvider<PostDiaryProvider>.value(value: PostDiaryProvider()),
     ], child: MyApp()));
   }); //lotation stop
 }
@@ -63,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         valueListenable: settingRepo.setting,
         builder: (context, Setting _setting, _) {
           return MaterialApp(
-            theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W6'),
+            theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W3'),
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
             initialRoute: '/Splash',

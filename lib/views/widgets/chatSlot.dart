@@ -6,7 +6,8 @@ import 'package:laxia/models/m_message.dart';
 class ChatSlot extends StatefulWidget {
   final Message message;
   final bool isMe;
-  const ChatSlot({ Key? key, required this.message, required this.isMe }) : super(key: key);
+  const ChatSlot({Key? key, required this.message, required this.isMe})
+      : super(key: key);
 
   @override
   State<ChatSlot> createState() => _ChatSlotState();
@@ -15,7 +16,6 @@ class ChatSlot extends StatefulWidget {
 class _ChatSlotState extends State<ChatSlot> {
   @override
   Widget build(BuildContext context) {
-    
     if (widget.isMe) {
       return Container(
         margin: EdgeInsets.only(top: 24, left: 16, right: 16),
@@ -24,50 +24,47 @@ class _ChatSlotState extends State<ChatSlot> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
-                alignment: Alignment.topRight,
                 constraints: BoxConstraints(
                     maxWidth: MediaQuery.of(context).size.width * 0.8),
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 0, 184, 169),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(5.0),
-                      bottomRight: Radius.circular(5.0),
-                      bottomLeft: Radius.circular(5.0),
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                            child: Text(
-                              widget.message.text!,
-                              style: TextStyle(
-                                  fontFamily: 'Hiragino Kaku Gothic Pro',
-                                  color: Color.fromARGB(255, 51, 51, 51),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  height: 1.8),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Helper.mainColor,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5.0),
+                              bottomRight: Radius.circular(5.0),
+                              bottomLeft: Radius.circular(5.0),
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        widget.message.time!,
-                        style: TextStyle(
-                            fontFamily: 'Hiragino Kaku Gothic Pro',
-                            color: Color.fromARGB(255, 156, 161, 161),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                            height: 1.5),
-                      )
-                    ],
-                  ),
+                          child: Text(
+                            widget.message.text!,
+                            style: TextStyle(
+                                fontFamily: 'Hiragino Kaku Gothic Pro',
+                                color: Helper.whiteColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                height: 1.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      widget.message.time!,
+                      style: TextStyle(
+                          fontFamily: 'Hiragino Kaku Gothic Pro',
+                          color: Helper.txtColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          height: 1.5),
+                    )
+                  ],
                 ),
               ),
             ]),
@@ -106,50 +103,47 @@ class _ChatSlotState extends State<ChatSlot> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    alignment: Alignment.topLeft,
                     constraints: BoxConstraints(
                         maxWidth: MediaQuery.of(context).size.width * 0.8),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Helper.whiteColor,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(5.0),
-                          bottomRight: Radius.circular(5.0),
-                          bottomLeft: Radius.circular(5.0),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Stack(
-                            children: [
-                              Container(
-                                child: Text(
-                                  widget.message.text!,
-                                  style: TextStyle(
-                                      fontFamily: 'Hiragino Kaku Gothic Pro',
-                                      color: Color.fromARGB(255, 51, 51, 51),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      height: 1.8),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Helper.whiteColor,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(5.0),
+                                  bottomRight: Radius.circular(5.0),
+                                  bottomLeft: Radius.circular(5.0),
                                 ),
                               ),
-                            ],
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            widget.message.time!,
-                            style: TextStyle(
-                                fontFamily: 'Hiragino Kaku Gothic Pro',
-                                color: Color.fromARGB(255, 156, 161, 161),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                height: 1.5),
-                          )
-                        ],
-                      ),
+                              child: Text(
+                                widget.message.text!,
+                                style: TextStyle(
+                                    fontFamily: 'Hiragino Kaku Gothic Pro',
+                                    color: Color.fromARGB(255, 51, 51, 51),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    height: 1.8),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          widget.message.time!,
+                          style: TextStyle(
+                              fontFamily: 'Hiragino Kaku Gothic Pro',
+                              color: Color.fromARGB(255, 156, 161, 161),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              height: 1.5),
+                        )
+                      ],
                     ),
                   ),
                 ]),
@@ -157,6 +151,5 @@ class _ChatSlotState extends State<ChatSlot> {
         ),
       );
     }
-    
   }
 }

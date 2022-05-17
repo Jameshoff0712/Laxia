@@ -51,7 +51,7 @@ class _chatStatusState extends State<chatStatus> {
       onTap: widget.statusCode == 4 ? toChatScreen: null,
       child: Container(
         padding: EdgeInsets.all(10),
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -62,7 +62,6 @@ class _chatStatusState extends State<chatStatus> {
           children: [
             Container(
               width: 64,
-              height: 17,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: statusColor,
@@ -71,8 +70,8 @@ class _chatStatusState extends State<chatStatus> {
                 child: Text(
                   statusText,
                   style: TextStyle(
-                    
                     fontSize: 12,
+                    height: 1.5,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                     decoration: TextDecoration.none,
@@ -86,12 +85,11 @@ class _chatStatusState extends State<chatStatus> {
             Row(
               children: <Widget>[
                 Container(
-                  height: 24,
                   child: Text(
-                    '湘南美容クリニック 銀座院',
+                    widget.clinicName,
                     style: TextStyle(
-                      
                       fontSize: 16,
+                      height: 1.5,
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 51, 51, 51),
                       decoration: TextDecoration.none,
@@ -108,15 +106,15 @@ class _chatStatusState extends State<chatStatus> {
                         height: 18,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(36),
-                          color: Color.fromARGB(255, 240, 154, 55),
+                          color: Color.fromARGB(255, 249, 161, 56),
                         ),
                         child: Center(
                           child: Text(
                             widget.notificCount.toString(),
                             style: TextStyle(
-                              
                               fontWeight: FontWeight.w700,
                               fontSize: 12,
+                              height: 1.5,
                               color: Colors.white,
                               decoration: TextDecoration.none,
                             ),
@@ -128,12 +126,11 @@ class _chatStatusState extends State<chatStatus> {
               ],
             ),
             widget.bookDate == null ? Container() : Container(
-              height: 18,
               child: Text(
                 '予約日時：2020/07/25 11：００〜',
                 style: TextStyle(
-                  
                   fontSize: 12,
+                  height: 1.5,
                   fontWeight: FontWeight.w400,
                   color: Color.fromARGB(255, 156, 161, 161),
                   decoration: TextDecoration.none,

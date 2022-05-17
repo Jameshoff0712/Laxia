@@ -4,9 +4,12 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/counseling_model.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class Home_Counseling extends StatefulWidget {
   final bool issearch;
@@ -20,19 +23,20 @@ class Home_Counseling extends StatefulWidget {
 }
 
 class _Home_CounselingState extends State<Home_Counseling> {
+  String searchdata="";
   bool expanded=true;
   int index=-1,page=0;
   bool isend = false, isloading = true, isexpanding = true;
   late Counceling counceling_data;
   final _con = HomeController();
-  Future<void> getData({required String page}) async {
+  Future<void> getData({required String page, String? q=""}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCouncelingData(page: page);
+        final mid = await _con.getCouncelingData(page: page,q:q);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -57,7 +61,16 @@ class _Home_CounselingState extends State<Home_Counseling> {
       });
     }
   }
-
+  void init(){
+    setState(() {;
+       isloading = true;
+       isexpanding=true;
+       isend=false;
+       page = 1;
+       expanded=false;
+       index=-1;
+    });
+  }
   @override
   void initState() {
     getData(page: page.toString());
@@ -66,6 +79,15 @@ class _Home_CounselingState extends State<Home_Counseling> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if(searchdata!=userProperties.searchtext){
+      init();
+      setState(() {
+        searchdata=userProperties.searchtext;
+        getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
     return Container(
       color: Helper.homeBgColor,
       child: Column(
@@ -77,7 +99,8 @@ class _Home_CounselingState extends State<Home_Counseling> {
                 Expanded(
                     flex: 3,
                     child: TextButton_Drawer(
-                        width: 123,
+                       horizontal: 40,
+                        width: 186,
                         textname: "エリア選択",
                         onpress: () {
                           Navigator.of(context).pushNamed("/SelectPrefecture");
@@ -87,7 +110,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                   child: Dropdownbutton(
                       items: <String>["人気投稿順", "新着順"],
                       hintText: "並び替え",
-                      horizontal: 60),
+                      horizontal: 55),
                 ),
               ],
             ),
@@ -99,7 +122,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
                 if (isexpanding && !isend) {
-                  getData(page: (page + 1).toString());
+                  getData(page: (page + 1).toString(),q:searchdata);
                   setState(() {
                     page += 1;
                   });
@@ -206,7 +229,10 @@ class _Home_CounselingState extends State<Home_Counseling> {
                         eyes: counceling_data.data[index].views_count==null?"":counceling_data.data[index].views_count!.toString(),
                         name: counceling_data.data[index].patient_nickname==null?"":counceling_data.data[index].patient_nickname!,
                          onpress: (){
-                            Navigator.of(context).pushNamed("/CounselDetail");
+                             Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CounselDetail(index:  counceling_data.data[index].id)));
                           },
                         sentence:counceling_data.data[index].content==null?"": counceling_data.data[index].content!,
                         type:"回答あり",// counceling_data.data[index]["type"],

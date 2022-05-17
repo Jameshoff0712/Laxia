@@ -4,10 +4,12 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/case/case_model.dart';
 import 'package:laxia/models/case_model.dart';
+import 'package:laxia/views/pages/main/contribution/case_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
-
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 class Home_Case extends StatefulWidget {
   final bool issearch;
   final bool? isdrawer;
@@ -25,19 +27,20 @@ class Home_Case extends StatefulWidget {
 }
 
 class _Home_CaseState extends State<Home_Case> {
+  String searchdata="";
   bool expanded = true;
   int page = 0, index = -1;
   bool isend = false, isloading = true, isexpanding = true;
   late Case case_data;
   final _con = HomeController();
-  Future<void> getData({required String page}) async {
+  Future<void> getData({required String page, String? q=""}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCaseData(page: page);
+        final mid = await _con.getCaseData(page: page,q:q);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -62,7 +65,16 @@ class _Home_CaseState extends State<Home_Case> {
       });
     }
   }
-
+  void init(){
+    setState(() {
+       isloading = true;
+       isexpanding=true;
+       isend=false;
+       page = 1;
+       expanded=false;
+       index=-1;
+    });
+  }
   @override
   void initState() {
     getData(page: page.toString());
@@ -71,6 +83,15 @@ class _Home_CaseState extends State<Home_Case> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if(searchdata!=userProperties.searchtext){
+      init();
+      setState(() {
+        searchdata=userProperties.searchtext;
+        getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
     return Container(
       color: Helper.homeBgColor,
       child: Column(
@@ -117,7 +138,7 @@ class _Home_CaseState extends State<Home_Case> {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
                 if (isexpanding && !isend) {
-                  getData(page: (page + 1).toString());
+                  getData(page: (page + 1).toString(),q:searchdata);
                   setState(() {
                     page += 1;
                   });
@@ -217,7 +238,11 @@ class _Home_CaseState extends State<Home_Case> {
                           itemBuilder: (BuildContext context, int index) {
                             return Diary_Card(
                               onpress: () {
-                                Navigator.of(context).pushNamed("/CaseDetail");
+                                Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CaseDetail(index:  case_data.data[index].id)));
+                                // Navigator.of(context).pushNamed("/CaseDetail");
                               },
                               buttoncolor: Helper.btnBgMainColor,
                               buttontext: "症例",
@@ -227,11 +252,11 @@ class _Home_CaseState extends State<Home_Case> {
                                       : case_data.data[index].clinic!.photo!,
                               check: case_data.data[index].doctor == null
                                   ? ""
-                                  : case_data.data[index].doctor!,
-                              image2:
-                                  "http://error.png", // case_data.data[index]["image2"],
-                              image1:
-                                  "http://error.png", // case_data.data[index]["image1"],
+                                  : case_data.data[index].doctor!.name!,
+                              image2:case_data.data[index].images!.isEmpty?"http://error.png":
+                                  case_data.data[index].images![1].path,
+                              image1:case_data.data[index].images!.isEmpty?"http://error.png":
+                                  case_data.data[index].images![0].path,
                               eyes: case_data.data[index].views_count == null
                                   ? ""
                                   : case_data.data[index].views_count

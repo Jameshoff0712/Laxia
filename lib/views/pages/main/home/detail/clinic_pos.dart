@@ -34,8 +34,10 @@ class _Clinic_PosState extends State<Clinic_Pos> {
               ),
         title: Text('湘南美容クリニック 新宿院',
           style: TextStyle(
+            fontFamily: Helper.headFontFamily,
+            height: 1.5,
           fontWeight: FontWeight.w400,
-          fontSize: 16,
+          fontSize: 18,
           color: Helper.titleColor)
         ),
       ),
@@ -79,7 +81,8 @@ class _Clinic_PosState extends State<Clinic_Pos> {
                           child: Text(
                             "地図アプリで見る",
                             style: TextStyle(
-                                color: Helper.whiteColor, fontSize: 12),
+                                height: 1.5,
+                                color: Helper.whiteColor, fontSize: 13),
                           ),
                         ),
                       ),
@@ -101,6 +104,7 @@ class _Clinic_PosState extends State<Clinic_Pos> {
                           "東京都新宿区西新宿６丁目５−１ 新宿アイランドタワ 24F",
                           softWrap: true,
                           style: TextStyle(
+                            height: 1.5,
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
                               color: Helper.maintxtColor),

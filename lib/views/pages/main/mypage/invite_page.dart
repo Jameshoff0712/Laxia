@@ -38,7 +38,7 @@ class _InvitePageState extends State<InvitePage> {
               icon: Icon(
                 Icons.close,
                 color: Helper.titleColor,
-                size: 30,
+                size: 25,
               )),
           elevation: 0,
         ),
@@ -57,7 +57,7 @@ class _InvitePageState extends State<InvitePage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 20,
-                    height: 1.5,
+                    height: 1.4,
                     color: Helper.mainColor,
                   ),
                 ),
@@ -187,7 +187,7 @@ class _InvitePageState extends State<InvitePage> {
                         );
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 13),
+                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 40),
                         decoration: BoxDecoration(
                           color: Helper.mainColor,
                           borderRadius: BorderRadius.circular(40),

@@ -6,6 +6,9 @@ import 'package:laxia/models/menu/menu_model.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
+import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class Home_Menu extends StatefulWidget {
   final bool? isScrollable,isdrawer;
@@ -19,14 +22,15 @@ class Home_Menu extends StatefulWidget {
 }
 
 class _Home_MenuState extends State<Home_Menu> {
-   bool isloading = true,isexpanding=true,isend=false;
-   int page = 1;
+  String searchdata="";
+  bool isloading = true,isexpanding=true,isend=false;
+  int page = 1;
   bool expanded=false;
   int index=-1;
   late Menu menu_data;
   final _con = HomeController();
   Future<void> getData(
-        {required String page}) async {
+        {required String page, required q}) async {
       try {
         if(!isend){
           if(!isloading)
@@ -34,7 +38,7 @@ class _Home_MenuState extends State<Home_Menu> {
                 isexpanding=false;
               });
           final mid = await _con.getMenuData(
-              page: page);
+              page: page,q:q);
             setState(() {
             if (isloading) {
               menu_data=mid;
@@ -53,15 +57,33 @@ class _Home_MenuState extends State<Home_Menu> {
         });
       }
     }
-
+  void init(){
+    setState(() {
+       isloading = true;
+       isexpanding=true;
+       isend=false;
+       page = 1;
+       expanded=false;
+       index=-1;
+    });
+  }
   @override
   void initState() {
-    getData(page: page.toString());
+    getData(page: page.toString(),q:"");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+   UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if(searchdata!=userProperties.searchtext){
+      init();
+      setState(() {
+        searchdata=userProperties.searchtext;
+        getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
     return Container(
       color: Helper.homeBgColor,
       child: Column(
@@ -103,7 +125,7 @@ class _Home_MenuState extends State<Home_Menu> {
                 onNotification: (ScrollNotification scrollInfo) {
                 if (scrollInfo.metrics.pixels ==scrollInfo.metrics.maxScrollExtent) {
                   if(isexpanding){
-                    getData(page: (page+1).toString());
+                    getData(page: (page+1).toString(),q:searchdata);
                     setState(() {
                       page+=1;
                     }); 
@@ -198,7 +220,8 @@ class _Home_MenuState extends State<Home_Menu> {
                     itemBuilder: (BuildContext context, int index) {
                       return Menu_Card(
                         onpress: (){
-                          Navigator.of(context).pushNamed("/Menu_Detail");
+                          //Navigator.of(context).pushNamed("/Menu_Detail");
+                          Navigator.of(context).push( MaterialPageRoute(builder: (_) => Menu_Detail(index:menu_data.data[index].id)));
                         },
                           image: menu_data.data[index].images!.isEmpty?"http://error.png": menu_data.data[index].images![0].path,
                           heading: menu_data.data[index].description==null?"":menu_data.data[index].description!,

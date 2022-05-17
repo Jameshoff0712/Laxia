@@ -40,7 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
             icon: Icon(
               Icons.close,
               color: Helper.titleColor,
-              size: 30,
+              size: 25,
             )),
         elevation: 0,
       ),
@@ -68,9 +68,9 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget _buildSendMessageBox() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 7),
-      // height: 50,
       color: Helper.whiteColor,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(
             child: TextField(
@@ -90,7 +90,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 fillColor: Color.fromARGB(255, 245, 245, 245),
                 filled: true,
-                hintText: 'Name of pill',
+                hintText: 'メッセージを入力',
                 hintStyle: TextStyle(
                   color: Color.fromARGB(255, 156, 161, 161),
                   fontSize: 12,

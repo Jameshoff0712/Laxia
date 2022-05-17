@@ -39,4 +39,18 @@ class UserProvider extends ChangeNotifier {
   void setIsAuthorized(bool newAuthorized) {
     isAuthorized = newAuthorized;
   }
+
+  String selectedClinic = "";
+  get getSelectedClinic => selectedClinic;
+  void setSelectedClinic(String newSelectedClinic) {
+    selectedClinic = newSelectedClinic;
+    notifyListeners();
+  }
+
+  String selectedDoctor = "";
+  get getSelectedDoctor => selectedDoctor;
+  void setSelectedDoctor(String newSelectedDoctor) {
+    selectedDoctor = newSelectedDoctor;
+    notifyListeners();
+  }
 }

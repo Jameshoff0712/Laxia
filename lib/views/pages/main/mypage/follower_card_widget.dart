@@ -3,7 +3,13 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/m_user.dart';
 
 class FollowerCardWidget extends StatefulWidget {
-  const FollowerCardWidget({Key? key}) : super(key: key);
+  final String photo, name, nickname;
+  const FollowerCardWidget(
+      {Key? key,
+      required this.photo,
+      required this.name,
+      required this.nickname})
+      : super(key: key);
 
   @override
   State<FollowerCardWidget> createState() => _FollowerCardWidgetState();
@@ -62,6 +68,7 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                 onTap: () {},
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),
+                  margin: EdgeInsets.only(right: 12),
                   decoration: BoxDecoration(
                     color: Helper.mainColor,
                     borderRadius: BorderRadius.circular(20),

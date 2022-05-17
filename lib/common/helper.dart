@@ -8,6 +8,7 @@ export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /* APP VARIABLES or CONSTANTS */
 class Helper {
+  static const headFontFamily="Hiragino Kaku Gothic Pro w6";
   static const whiteColor = Colors.white;
   static const blackColor = Colors.black;
   static const appTitle = 'Laxia project';
@@ -166,7 +167,7 @@ class Helper {
 
 TextStyle defaultTextStyle(Color color, FontWeight fontWeight,
     {double size = 18, FontStyle fontStyle = FontStyle.normal, String fontFamily = 'Hiragino Kaku Gothic Pro W6'}) {
-  return TextStyle(color: color, fontWeight: fontWeight, fontSize: size, fontFamily: fontFamily, fontStyle: fontStyle);
+  return TextStyle(color: color, fontWeight: fontWeight, fontSize: size, fontFamily: fontFamily, fontStyle: fontStyle,height: 1.5);
 }
 
 // function to check whether the screen is Portrait or Landscape

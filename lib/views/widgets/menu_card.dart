@@ -5,7 +5,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class Menu_Card extends StatefulWidget {
-  final VoidCallback?onpress;
+  final VoidCallback? onpress;
   final String image, heading, price, clinic;
   final String? tax;
   final BoxShadow? shadow;
@@ -15,7 +15,9 @@ class Menu_Card extends StatefulWidget {
       required this.heading,
       required this.price,
       this.tax,
-      required this.clinic, this.shadow=null, this.onpress=null})
+      required this.clinic,
+      this.shadow = null,
+      this.onpress = null})
       : super(key: key);
 
   @override
@@ -23,16 +25,15 @@ class Menu_Card extends StatefulWidget {
 }
 
 class _Menu_CardState extends State<Menu_Card> {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:widget.onpress,
+      onTap: widget.onpress,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Container(
           decoration: BoxDecoration(
-            boxShadow:widget.shadow==null?[]: [widget.shadow!]),
+              boxShadow: widget.shadow == null ? [] : [widget.shadow!]),
           child: Row(
             children: [
               Container(
@@ -80,12 +81,16 @@ class _Menu_CardState extends State<Menu_Card> {
                             Expanded(
                               child: SizedBox(
                                 width: double.infinity,
-                                height: 41,
                                 child: Text(
-                                  widget.heading,
-                                  style: defaultTextStyle(
-                                      Helper.titleColor, FontWeight.w700,
-                                      size: 14.0),
+                                  widget.heading+"\n",
+                                  maxLines: 2,
+                                  overflow:TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontFamily: "Hiragino Kaku Gothic Pro w6",
+                                      color: Helper.titleColor,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14.0,
+                                      height: 21/14),
                                 ),
                               ),
                             ),
@@ -100,18 +105,24 @@ class _Menu_CardState extends State<Menu_Card> {
                         Row(
                           children: [
                             Text(
-                              widget.price,
-                              style: defaultTextStyle(Helper.priceColor, FontWeight.w700,
-                                  size: 16.0),
+                              widget.price + "円",
+                              style: TextStyle(
+                                  color: Helper.priceColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16.0,
+                                  fontFamily: Helper.headFontFamily,
+                                  height: 24/16),
                             ),
                             SizedBox(
                               width: 6,
                             ),
                             Text(
                               "(税込)",
-                              style: defaultTextStyle(
-                                  Helper.titleColor, FontWeight.w500,
-                                  size: 10.0),
+                              style: TextStyle(
+                                  color: Helper.titleColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10.0,
+                                  height: 1.5),
                             ),
                           ],
                         ),
@@ -131,10 +142,12 @@ class _Menu_CardState extends State<Menu_Card> {
                                 child: Text(
                                   widget.clinic,
                                   maxLines: 1,
-                                  overflow: TextOverflow.visible,
-                                  style: defaultTextStyle(
-                                      Helper.appTxtColor, FontWeight.w500,
-                                      size: 12.0),
+                                  overflow:TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      color: Helper.maintxtColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.0,
+                                      height: 1.5),
                                 ),
                               ),
                             ],

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/question/question_model.dart';
-import 'package:laxia/models/question_model.dart';
+import 'package:laxia/views/pages/main/contribution/question_detail.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/question_card.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class Home_Question extends StatefulWidget {
   final bool issearch;
@@ -19,19 +21,21 @@ class Home_Question extends StatefulWidget {
 }
 
 class _Home_QuestionState extends State<Home_Question> {
-  bool expanded=true;
-  int index=-1,page=0;
-  bool isend = false, isloading = true, isexpanding = true;
+  String searchdata="";
+  bool isloading = true,isexpanding=true,isend=false;
+  int page = 1;
+  bool expanded=false;
+  int index=-1;
   late Question question_data;
   final _con = HomeController();
-  Future<void> getData({required String page}) async {
+  Future<void> getData({required String page,String?q=""}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getQuestionData(page: page);
+        final mid = await _con.getQuestionData(page: page,q: q);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -52,11 +56,20 @@ class _Home_QuestionState extends State<Home_Question> {
       setState(() {
         isexpanding = true;
         isend = true;
-        print(e.toString());
+        // print(e.toString());
       });
     }
   }
-
+  void init(){
+    setState(() {
+       isloading = true;
+       isexpanding=true;
+       isend=false;
+       page = 1;
+       expanded=false;
+       index=-1;
+    });
+  }
   @override
   void initState() {
     getData(page: page.toString());
@@ -65,6 +78,15 @@ class _Home_QuestionState extends State<Home_Question> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if(searchdata!=userProperties.searchtext){
+      init();
+      setState(() {
+        searchdata=userProperties.searchtext;
+        getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
     return Container(
       color: Helper.homeBgColor,
       child: Column(
@@ -170,41 +192,58 @@ class _Home_QuestionState extends State<Home_Question> {
             ),
           ),
           Expanded(
-            
             child: isloading
-                      ? Container(
-                          child: Container(
-                          height: MediaQuery.of(context).size.width,
-                          color: Colors.transparent,
-                          child: Center(
-                            child: new CircularProgressIndicator(),
-                          ),
-                        )):LayoutBuilder(
-              builder: (context, BoxConstraints viewportConstraints) {
-                return ListView.builder(
-                    padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                    itemCount: question_data.data.length,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      return Question_Card(
-                        buttoncolor: Helper.allowStateButtonColor,
-                        buttontext: "回答あり",
-                        hearts: question_data.data[index].likes_count==null?"":question_data.data[index].likes_count!.toString(),
-                        chats: question_data.data[index].comments_count==null?"":question_data.data[index].comments_count.toString(),
-                        avator:question_data.data[index].owner!.photo==null?"http://error.png": question_data.data[index].owner!.photo!,
-                        image2:"http://error.png", //question_data.data[index]["image2"],
-                        image1:"http://error.png", //question_data.data[index]["image1"],
-                        eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
-                        name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
-                        onpress: () {
-                          Navigator.of(context).pushNamed("/QuestionDetail");
-                        },
-                        sentence:question_data.data[index].content==null?"": question_data.data[index].content!,
-                        type:"二重切開" //question_data.data[index]["type"],
-                      );
-                    });
-              },
-            ),
+              ? Container(
+                  child: Container(
+                  height: MediaQuery.of(context).size.width,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: new CircularProgressIndicator(),
+                  ),
+                )):NotificationListener<ScrollNotification>(
+                  onNotification: (ScrollNotification scrollInfo) {
+                      if (scrollInfo.metrics.pixels ==scrollInfo.metrics.maxScrollExtent) {
+                        if(isexpanding&&!isend){
+                          getData(page: (page+1).toString(),q:searchdata);
+                          setState(() {
+                            page+=1;
+                          }); 
+                        }
+                      }else  if (scrollInfo.metrics.pixels ==scrollInfo.metrics.minScrollExtent) {
+                        //widget.scrollTop!();
+                      }
+                      return true;
+                    },
+                  child: LayoutBuilder(
+                              builder: (context, BoxConstraints viewportConstraints) {
+                  return ListView.builder(
+                      padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                      itemCount: question_data.data.length,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Question_Card(
+                          isanswer: question_data.data[index].answers.isNotEmpty,
+                          hearts: question_data.data[index].likes_count==null?"":question_data.data[index].likes_count!.toString(),
+                          chats: question_data.data[index].comments_count==null?"":question_data.data[index].comments_count.toString(),
+                          avator:question_data.data[index].owner!.photo==null?"http://error.png": question_data.data[index].owner!.photo!,
+                          image2: (question_data.data[index].medias!.isEmpty||question_data.data[index].medias!.length==1)?"http://error.png":question_data.data[index].medias![1].path,
+                          image1:question_data.data[index].medias!.isEmpty?"http://error.png":question_data.data[index].medias![0].path,
+                          eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
+                          name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
+                          onpress: () {
+                             Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => QuestionDetail(index:  question_data.data[index].id)));
+                            //Navigator.of(context).pushNamed("/QuestionDetail");
+                          },
+                          sentence:question_data.data[index].content==null?"": question_data.data[index].content!,
+                          type:"二重切開" //question_data.data[index]["type"],
+                        );
+                      });
+                              },
+                            ),
+                ),
           ),
           Container(
                     height: isexpanding ? 0 : 100,

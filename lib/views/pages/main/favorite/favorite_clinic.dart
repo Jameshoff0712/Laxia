@@ -3,6 +3,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/clinic/clinic_sub_model.dart';
 import 'package:laxia/models/clinic_model.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -22,13 +23,12 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
   Future<void> getFavClinic() async {
     final listFavClinic = await _con.getFavClinic();
     setState(() {
-      for(int i=0; i< listFavClinic.length; i++)
-        mid.add(listFavClinic[i]);
+      for (int i = 0; i < listFavClinic.length; i++) mid.add(listFavClinic[i]);
     });
-    print(mid[0].photo);
   }
+
   @override
-  initState(){
+  initState() {
     getFavClinic();
     super.initState();
   }
@@ -49,7 +49,11 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
                 itemBuilder: (BuildContext context, int index) {
                   return Clinic_Card(
                       onpress: () {
-                        Navigator.of(context).pushNamed("/Clinic_Detail");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Clinic_Detail(
+                                    index: mid[index].id)));
                       },
                       image: mid[index].photo!,
                       post: mid[index].user_name!,

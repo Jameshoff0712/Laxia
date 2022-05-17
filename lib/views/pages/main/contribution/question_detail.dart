@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/views/pages/main/contribution/question.dart';
 import 'package:laxia/views/pages/main/mypage/question_fix_post.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -12,31 +15,71 @@ import 'package:laxia/views/widgets/comment_dialog.dart';
 
 class QuestionDetail extends StatefulWidget {
   final bool isMyDiary;
-  const QuestionDetail({ Key? key, this.isMyDiary = false }) : super(key: key);
+  final int index;
+  const QuestionDetail({ Key? key, this.isMyDiary = false, required this.index }) : super(key: key);
   @override
-  _QuestionDetailState createState() => _QuestionDetailState();
+  State<QuestionDetail> createState() => _QuestionDetailState();
 }
 
-class _QuestionDetailState extends StateMVC<QuestionDetail> {
-  List question_Details = [];
-  bool isfavourite = false,isStar=false;
-
-  Future<void> get_question_info() async {
-    String mid = await rootBundle.loadString("assets/cfg/detail_question.json");
-    setState(() {
-      question_Details.addAll(json.decode(mid));
-    });
+class _QuestionDetailState extends State<QuestionDetail> {
+  final apiUrl = dotenv.env["DEV_API_URL"];
+  bool isloading = true,isfavorite=false, islike=false;
+  final _con = HomeController();
+  late Question_Sub_Model question_detail;
+  Future<void> getData({required int index}) async {
+    try {
+      final mid = await _con.getQuestionDetail(index: index);
+      setState(() {
+         question_detail = mid;
+        //  print(question_detail);
+        isfavorite=question_detail.is_favorite!;
+        islike=question_detail.is_like!;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
-
+  Future<void> postToogleFavorite(index) async {
+    try {
+      final res=await _con.postToogleFavorite(index:index, domain: 'questions');
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
+  Future<void> postToogleLike(index) async {
+    try {
+      final res=await _con.postToogleLike(index:index, domain: 'questions');
+      if(res==true){
+        setState(() {
+          islike=!islike;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   void initState() {
-    get_question_info();
+    getData(index:widget.index);
     super.initState();
   }
-
+  
   @override
   Widget build(BuildContext context) {
-    return question_Details.isNotEmpty? Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -49,7 +92,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
               children: [
                 InkWell(
                   onTap: (){
-                    Navigator.of(context).pushNamed("/Mypage");
+                    // Navigator.of(context).pushNamed("/Mypage");
                   },
                   child: SizedBox(
                     height: 32,
@@ -58,7 +101,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                       borderRadius: BorderRadius.circular(25),
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl: question_Details[0]["avator"],
+                        imageUrl: question_detail.owner!.photo==null?"http://error.png":(question_detail.owner!.photo!.contains("http")?question_detail.owner!.photo:apiUrl!+question_detail.owner!.photo!),
                         placeholder: (context, url) => Image.asset(
                           'assets/images/loading.gif',
                           fit: BoxFit.cover,
@@ -73,8 +116,10 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                 ),
                 SizedBox(width: 5),
                 Text(
-                  question_Details[0]["name"],
+                  question_detail.owner!.name!,
                   style: TextStyle(
+                      fontFamily:Helper.headFontFamily,
+                      fontSize: 13,
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -88,7 +133,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                    padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     side: const BorderSide(
@@ -107,7 +152,8 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                         Text(
                           'フォロー',
                           style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 8,
+                              fontWeight: FontWeight.w400,
                               color: Color.fromARGB(255, 110, 198, 210)),
                         ),
                       ],
@@ -171,72 +217,73 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
           decoration: BoxDecoration(color: Helper.whiteColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(width: 21,),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    isfavourite = !isfavourite;
-                  });
+                  postToogleFavorite(widget.index);
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    isfavourite
+                    isfavorite
                         ? Icon(
                             Icons.favorite,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.favorite_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
-                      "223",
+                      question_detail.likes_count!.toString(),
                       style: TextStyle(
-                          color: isfavourite
+                          color: isfavorite
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 15,),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    isStar = !isStar;
-                  });
+                  postToogleLike(widget.index);
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    isStar
+                    islike
                         ? Icon(
                             Icons.star,
                             color: Helper.btnBgYellowColor,
-                            size: 30,
+                            size: 22,
                           )
                         : Icon(
                             Icons.star_border,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
                       "お気に入り",
                       style: TextStyle(
-                          color: isStar
+                          color: islike
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
+              SizedBox(width: 15,),
               InkWell(
                 onTap: () {
                   showModalBottomSheet(
@@ -249,45 +296,46 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                       ),
                       context: context,
                       builder: (context) {
-                        return CommentDialogSheet();
+                        return CommentDialogSheet(index: widget.index,count:question_detail.comments_count!, domain: 'questions',);
                       });
                 },
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                           Icon(
                             FontAwesomeIcons.commentDots,
                             color: Helper.txtColor,
-                            size: 30,
+                            size: 22,
                           ),
                     Text(
-                      "20",
+                      question_detail.comments_count.toString(),
                       style: TextStyle(
                           color:Helper.txtColor,
-                          fontSize: 12,
+                          fontSize: 10,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Helper.btnBgYellowColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
+              SizedBox(width: 21,),
+              InkWell(
+                onTap: (){
+                  
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color:Color.fromARGB(255,243, 243, 243),
+                     borderRadius: BorderRadius.circular(40.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left:12,top:7,bottom:7, right: 100),
+                    child: Text(
+                            "コメントする",
+                            style: TextStyle(color:Helper.txtColor, fontWeight:FontWeight.w700,height: 1.5,fontSize: 14),
+                          ),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "コメントする",
-                      style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                          size: 14),
-                    ),
-                  ],
-                ),
-                onPressed: () {},
               ),
             ],
           ),
@@ -307,7 +355,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  color: question_Details[0]["status"] == 0
+                  color: question_detail.answers.isEmpty
                       ? Helper.extraGrey
                       : Helper.whiteColor,
                 ),
@@ -315,9 +363,9 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                   child: Text(
-                    question_Details[0]["status"] == 0 ? "未回答" : "回答あり",
+                    question_detail.answers.isEmpty ? "未回答" : "回答あり",
                     style: TextStyle(
-                        color: question_Details[0]["status"] == 0
+                        color: question_detail.answers.isEmpty
                             ? Helper.lightGrey
                             : Helper.mainColor,
                         fontSize: 10,
@@ -328,16 +376,17 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
               Container(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  question_Details[0]["title"],
+                  question_detail.title!,
                   style: TextStyle(
+                    fontFamily: Helper.headFontFamily,
                       color: Helper.titleColor,
                       fontSize: 18,
-                      fontWeight: FontWeight.w400),
+                      fontWeight: FontWeight.w700),
                 ),
               ),
               Container(
                 child: Text(
-                  question_Details[0]["date"],
+                  question_detail.created_at!,
                   style: TextStyle(color: Helper.darkGrey, fontSize: 10),
                 ),
               ),
@@ -347,7 +396,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     for (int i = 0;
-                        i < question_Details[0]["surgery"].length;
+                        i < question_detail.categories!.length;
                         i++)
                       Center(
                         child: Container(
@@ -361,7 +410,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 3),
                             child: Text(
-                              question_Details[0]["surgery"][i],
+                              question_detail.categories![i].name,
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -376,7 +425,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
               Container(
                 padding: const EdgeInsets.only(top: 15),
                 child: Text(
-                  question_Details[0]["content"],
+                  question_detail.content!,
                   style: TextStyle(color: Helper.extraGrey, fontSize: 14),
                 ),
               ),
@@ -392,7 +441,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               PhotoCarouselWidget(
-                                  ImageList: question_Details[0]["images"],bRemove: false, onRemove: (int ) {  },)
+                                  ImageList: question_detail.medias!,bRemove: false, onRemove: (int ) {  },)
                             ],
                           ),
                         ),
@@ -408,7 +457,12 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text("コメント"),
+                      Text("コメント",
+                       style: TextStyle(
+                              fontFamily: Helper.headFontFamily,
+                              color: Helper.titleColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700),),
                       Container(
                         height: 42,
                         padding: EdgeInsets.only(top: 10),
@@ -423,7 +477,7 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
                                   borderRadius: BorderRadius.circular(25),
                                   child: CachedNetworkImage(
                                     fit: BoxFit.cover,
-                                    imageUrl: question_Details[0]["avator"],
+                                    imageUrl: question_detail.owner!.photo,
                                     placeholder: (context, url) => Image.asset(
                                       'assets/images/loading.gif',
                                       fit: BoxFit.cover,
@@ -463,6 +517,6 @@ class _QuestionDetailState extends StateMVC<QuestionDetail> {
           ),
         ),
       ),
-    ):Scaffold();
+    );
   }
 }

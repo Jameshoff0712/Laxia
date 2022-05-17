@@ -38,9 +38,6 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
               color: Color.fromARGB(255, 18, 18, 18),
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
           DropdownButtonFormField<String>(
               items: widget.items
                   .map((item) => DropdownMenuItem<String>(
@@ -60,7 +57,15 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
                 setState(() {
                   _chosenValue = value!;
                 });
-              }),
+              },
+              validator: (v) {
+                if (v!.isEmpty) return '選んでください';
+                return null;
+              },
+              icon: Icon(
+                Icons.keyboard_arrow_down,
+                color: Helper.titleColor,
+              )),
         ],
       ),
     );

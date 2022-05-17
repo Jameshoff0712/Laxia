@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/point/point_model.dart';
+import 'package:laxia/models/point/point_sub_model.dart';
 import 'package:laxia/models/point_model.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class PointPage extends StatefulWidget {
   const PointPage({Key? key}) : super(key: key);
@@ -10,15 +15,80 @@ class PointPage extends StatefulWidget {
 }
 
 class _PointPageState extends State<PointPage> {
+  List<Point_Sub_Model> mid = [];
+  late Point pointInfo;
+  final MyController _con = MyController();
+  late UserProvider userProperties;
+
+  List<PointForDay> allPointsInfo = [];
+  String tmpDate = "";
+  String dateForDay = "";
+  Future<void> getPointInfo() async {
+    try {
+      final res = await _con.getPointInfo();
+      setState(() {
+        mid.addAll(res.data!);
+      });
+
+      PointForDay pointForDay = new PointForDay();
+      for (int i = mid.length - 1; i >= 0; i--) {
+        if (tmpDate != mid[i].create_at!.substring(0, 10)) {
+          setState(() {
+            if (pointForDay.items != null){ 
+              allPointsInfo.add(pointForDay);
+              // print(pointForDay.items![0].title);
+            }
+          });
+          tmpDate = mid[i].create_at!.substring(0, 10);
+          final splitted = tmpDate.split("-");
+          dateForDay = "";
+          dateForDay += int.parse(splitted[0]).toString() +
+              "年" +
+              int.parse(splitted[1]).toString() +
+              "月" +
+              int.parse(splitted[2]).toString() +
+              "日";
+          pointForDay = new PointForDay();
+          pointForDay.date = dateForDay;
+          pointForDay.items = [];
+        }
+        PointItem pointItem = new PointItem();
+        pointItem.title = mid[i].title;
+        pointItem.use_point = mid[i].use_point;
+        setState(() {
+          pointForDay.items?.add(pointItem);
+        });
+      }
+      setState(() {
+        allPointsInfo.add(pointForDay);
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    getPointInfo();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    userProperties = Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
         title: Text(
           'ポイント',
-          style: Theme.of(context).textTheme.headline5,
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            height: 1.5,
+            color: Helper.titleColor,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -28,7 +98,7 @@ class _PointPageState extends State<PointPage> {
             icon: Icon(
               Icons.keyboard_arrow_left,
               color: Colors.black,
-              size: 40,
+              size: 30,
             )),
         elevation: 0,
       ),
@@ -52,7 +122,7 @@ class _PointPageState extends State<PointPage> {
                   ),
                 ),
                 Text(
-                  '2500 P',
+                  '${userProperties.getMe.point} P',
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -64,7 +134,7 @@ class _PointPageState extends State<PointPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 18,
           ),
           InkWell(
             onTap: () {},
@@ -113,7 +183,7 @@ class _PointPageState extends State<PointPage> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                   children: List.generate(
-                point_info.length,
+                allPointsInfo.length,
                 (index) => _buildPointHistoryInfo(index),
               )),
             ),
@@ -130,10 +200,10 @@ class _PointPageState extends State<PointPage> {
           padding: EdgeInsets.symmetric(vertical: 20),
           alignment: Alignment.centerLeft,
           child: Text(
-            point_info[index]["date"],
+            allPointsInfo[index].date!,
             style: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: 14,
+              fontSize: 12,
               height: 1.5,
               color: Helper.titleColor,
             ),
@@ -141,11 +211,11 @@ class _PointPageState extends State<PointPage> {
         ),
         ListView.builder(
           shrinkWrap: true,
-          itemCount: point_info[index]["items"].length,
+          itemCount: allPointsInfo[index].items!.length,
           itemBuilder: (BuildContext context, int subIndex) {
             return _buildPointHistoryRow(
-                point_info[index]["items"][subIndex]["type"],
-                point_info[index]["items"][subIndex]["price"]);
+                allPointsInfo[index].items![subIndex].title!,
+                allPointsInfo[index].items![subIndex].use_point!);
           },
         ),
       ],
@@ -180,4 +250,16 @@ class _PointPageState extends State<PointPage> {
       ),
     );
   }
+}
+
+class PointForDay {
+  String? date;
+  List<PointItem>? items;
+  PointForDay();
+}
+
+class PointItem {
+  String? title;
+  int? use_point;
+  PointItem();
 }

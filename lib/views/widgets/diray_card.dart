@@ -9,7 +9,8 @@ class Diary_Card extends StatefulWidget {
   final Color? buttoncolor, fontcolor;
   final String avator, name, image1, image2, sentence, type, check, price, eyes;
   final String? buttontext, hearts, chats, clinic;
-  final bool? isMe;
+  final bool? isPublic;
+  final bool? isFavorite;
   const Diary_Card({
     Key? key,
     required this.onpress,
@@ -28,7 +29,8 @@ class Diary_Card extends StatefulWidget {
     this.hearts = "",
     this.chats = "",
     required this.eyes,
-    this.isMe = false,
+    this.isPublic = false,
+    this.isFavorite = true,
   }) : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class _Diary_CardState extends State<Diary_Card> {
       padding: const EdgeInsets.only(bottom: 8),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
           color: Helper.whiteColor,
         ),
         width: double.infinity,
@@ -58,8 +60,8 @@ class _Diary_CardState extends State<Diary_Card> {
                     Row(
                       children: [
                         SizedBox(
-                          height: 29,
-                          width: 29,
+                          height: 25,
+                          width: 25,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
                             child: CachedNetworkImage(
@@ -76,11 +78,16 @@ class _Diary_CardState extends State<Diary_Card> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          width: 5,
+                        ),
                         Text(
                           widget.name,
                           style: TextStyle(
                               fontSize: 12,
+                              height: 1.5,
                               fontWeight: FontWeight.w700,
+                              fontFamily: Helper.headFontFamily,
                               color: Helper.titleColor),
                         ),
                       ],
@@ -101,21 +108,37 @@ class _Diary_CardState extends State<Diary_Card> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 6),
                                 child: Text(
-                                  widget.buttontext!,
+                                  widget.buttontext!,  
                                   style: TextStyle(
                                       color: widget.fontcolor,
+                                      height: 1.5,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
                             ),
                           )),
-                    widget.isMe!
-                        ? InkWell(
+                    !widget.isFavorite! ?
+                    widget.isPublic!
+                        ? InkWell( 
                             onTap: () {},
                             child: Container(
                               padding: EdgeInsets.all(5.0),
                               color: Color.fromARGB(51, 240, 154, 55),
+                              child: Text(
+                                "公開済",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 249, 161, 56),
+                                ),
+                              ),
+                            ))
+                        : InkWell(
+                            onTap: () {},
+                            child: Container(
+                              padding: EdgeInsets.all(5.0),
+                              color: Color.fromARGB(51, 102, 110, 110),
                               child: Text(
                                 "未公開",
                                 style: TextStyle(
@@ -125,7 +148,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                 ),
                               ),
                             ))
-                        : Container(),
+                    : SizedBox(width: 0),
                   ],
                 ),
                 Container(
@@ -165,8 +188,8 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                             ),
                             Container(
-                                width: 100,
-                                height: 50,
+                                width: 130,
+                                height: 60,
                                 decoration: BoxDecoration(
                                     color: Helper.blackColor.withOpacity(0.5),
                                     borderRadius: BorderRadius.only(
@@ -177,8 +200,9 @@ class _Diary_CardState extends State<Diary_Card> {
                                     "Before",
                                     style: TextStyle(
                                         color: white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
+                                        fontSize: 25,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ))
                           ],
@@ -210,8 +234,8 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                             ),
                             Container(
-                                width: 100,
-                                height: 50,
+                                width: 130,
+                                height: 60,
                                 decoration: BoxDecoration(
                                     color: Helper.blackColor.withOpacity(0.5),
                                     borderRadius: BorderRadius.only(
@@ -222,8 +246,9 @@ class _Diary_CardState extends State<Diary_Card> {
                                     "After",
                                     style: TextStyle(
                                         color: white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
+                                        fontSize: 25,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ))
                           ],
@@ -239,14 +264,17 @@ class _Diary_CardState extends State<Diary_Card> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     widget.sentence,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 14,
+                        height: 1.3,
                         fontWeight: FontWeight.w400,
                         color: Helper.titleColor),
                   ),
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 10,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -258,12 +286,13 @@ class _Diary_CardState extends State<Diary_Card> {
                         height: 12,
                       ),
                       SizedBox(
-                        width: 6,
+                        width: 9,
                       ),
                       Text(
                         widget.type,
                         style: TextStyle(
                             fontSize: 12,
+                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -277,7 +306,7 @@ class _Diary_CardState extends State<Diary_Card> {
                     : Column(
                         children: [
                           SizedBox(
-                            height: 8,
+                            height: 4,
                           ),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -289,12 +318,13 @@ class _Diary_CardState extends State<Diary_Card> {
                                   height: 12,
                                 ),
                                 SizedBox(
-                                  width: 6,
+                                  width: 9,
                                 ),
                                 Text(
                                   widget.clinic!,
                                   style: TextStyle(
                                       fontSize: 12,
+                                      height: 1.5,
                                       fontWeight: FontWeight.w400,
                                       color: Helper.maintxtColor),
                                 ),
@@ -304,7 +334,7 @@ class _Diary_CardState extends State<Diary_Card> {
                         ],
                       ),
                 SizedBox(
-                  height: 6,
+                  height: 4,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -316,12 +346,13 @@ class _Diary_CardState extends State<Diary_Card> {
                         height: 12,
                       ),
                       SizedBox(
-                        width: 6,
+                        width: 9,
                       ),
                       Text(
                         widget.check,
                         style: TextStyle(
                             fontSize: 12,
+                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -329,7 +360,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   ),
                 ),
                 SizedBox(
-                  height: 8,
+                  height: 4,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -337,16 +368,17 @@ class _Diary_CardState extends State<Diary_Card> {
                     children: [
                       SvgPicture.asset(
                         "assets/icons/menubar/money.svg",
-                        width: 10,
-                        height: 9,
+                        width: 12,
+                        height: 6,
                       ),
                       SizedBox(
-                        width: 6,
+                        width: 9,
                       ),
                       Text(
-                        widget.price,
+                        widget.price + "円",
                         style: TextStyle(
                             fontSize: 12,
+                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -354,7 +386,7 @@ class _Diary_CardState extends State<Diary_Card> {
                   ),
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 7,
                 ),
                 Row(
                   children: [
@@ -370,14 +402,15 @@ class _Diary_CardState extends State<Diary_Card> {
                               height: 13,
                             ),
                             SizedBox(
-                              width: 6,
+                              width: 5,
                             ),
                             Text(
                               widget.eyes,
                               style: TextStyle(
                                   fontSize: 11,
+                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
-                                  color: Helper.txtColor),
+                                  color: Helper.maintxtColor),
                             ),
                             widget.chats!.isEmpty
                                 ? SizedBox(
@@ -394,32 +427,34 @@ class _Diary_CardState extends State<Diary_Card> {
                                         height: 13,
                                       ),
                                       SizedBox(
-                                        width: 6,
+                                        width: 5,
                                       ),
                                       Text(
                                         widget.hearts!,
                                         style: TextStyle(
                                             fontSize: 11,
+                                            height: 1.5,
                                             fontWeight: FontWeight.w400,
-                                            color: Helper.txtColor),
+                                            color: Helper.maintxtColor),
                                       ),
                                       SizedBox(
                                         width: 10,
                                       ),
                                       SvgPicture.asset(
                                         "assets/icons/menubar/comment.svg",
-                                        width: 13,
+                                        width: 16,
                                         height: 13,
                                       ),
                                       SizedBox(
-                                        width: 6,
+                                        width: 5,
                                       ),
                                       Text(
                                         widget.chats!,
                                         style: TextStyle(
                                             fontSize: 11,
+                                            height: 1.5,
                                             fontWeight: FontWeight.w400,
-                                            color: Helper.txtColor),
+                                            color: Helper.maintxtColor),
                                       ),
                                     ],
                                   )

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/views/pages/main/home/detail/clinic_sub_detail.dart';
+import 'package:laxia/models/clinic/clinicdetail_model.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 
 class Clinic_Top extends StatefulWidget {
-  final dynamic clinic_detail;
-  const Clinic_Top({ Key? key, required this.clinic_detail }) : super(key: key);
+  final ClinicDetail_Model clinic_detail;
+  final void Function(int index) onpress;
+  const Clinic_Top({ Key? key, required this.clinic_detail, required this.onpress }) : super(key: key);
 
   @override
   State<Clinic_Top> createState() => _Clinic_TopState();
@@ -21,7 +24,6 @@ class _Clinic_TopState extends State<Clinic_Top> {
             Container(
               decoration: BoxDecoration(color: Helper.whiteColor),
               child: Column(
-               
                 children: [
                   Container(
                     decoration: BoxDecoration(color: Helper.whiteColor),
@@ -44,12 +46,12 @@ class _Clinic_TopState extends State<Clinic_Top> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push( MaterialPageRoute(builder: (_) => Clinic_Sub_Detail(clinic_Detail: widget.clinic_detail[0], index: 2,)));
+                                  widget.onpress(2);
                                 },
                                 child: Row(
                                   children: [
                                     Text(
-                                      "もっと見る",
+                                      "すべてのメニュー",
                                       style: TextStyle(
                                           color: Color.fromARGB(
                                               255, 156, 161, 161),
@@ -71,27 +73,21 @@ class _Clinic_TopState extends State<Clinic_Top> {
                         ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: widget.clinic_detail["menus"].length,
+                            itemCount: widget.clinic_detail.menu.length,
                             // physics: const AlwaysScrollableScrollPhysics(),
                             // scrollDirection: Axis.horizontal,
                             itemBuilder:
                                 (BuildContext context, int index) {
                               return Menu_Card(
-                                shadow: BoxShadow(
-                                  color: Colors.grey.withOpacity(0.8),
-                                  spreadRadius: 1,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 1), // changes position of shadow
-                                ),
-                                  image: widget.clinic_detail["menus"][index]
-                                      ["image"],
-                                  heading: widget.clinic_detail["menus"][index]
-                                      ["heading"],
-                                  price: widget.clinic_detail["menus"][index]
-                                      ["price"],
-                                  tax: widget.clinic_detail["menus"][index]["tax"],
-                                  clinic: widget.clinic_detail["menus"][index]
-                                      ["clinic"]);
+                                  onpress: (){
+                                    //Navigator.of(context).pushNamed("/Menu_Detail");
+                                    Navigator.of(context).push( MaterialPageRoute(builder: (_) => Menu_Detail(index:widget.clinic_detail.menu[index].id)));
+                                  },
+                                    image: widget.clinic_detail.menu[index].images!.isEmpty?"http://error.png": widget.clinic_detail.menu[index].images![0].path,
+                                    heading: widget.clinic_detail.menu[index].description==null?"":widget.clinic_detail.menu[index].description!,
+                                    price: widget.clinic_detail.menu[index].price==0?"":widget.clinic_detail.menu[index].price!.toString(),
+                                    clinic: widget.clinic_detail.menu[index].name
+                                  );
                             }),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -100,12 +96,12 @@ class _Clinic_TopState extends State<Clinic_Top> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                      Navigator.of(context).push( MaterialPageRoute(builder: (_) => Clinic_Sub_Detail(clinic_Detail: widget.clinic_detail[0], index: 2,)));
+                                       widget.onpress(2);
                                     },
                                     child: Row(
                                       children: [
                                         Text(
-                                          "もっと見る",
+                                          "すべてのメニュー",
                                           style: TextStyle(
                                               color: Color.fromARGB(
                                                   255, 156, 161, 161),
@@ -134,7 +130,6 @@ class _Clinic_TopState extends State<Clinic_Top> {
             Container(
               decoration: BoxDecoration(color: Helper.whiteColor),
               child: Column(
-               
                 children: [
                   Container(
                     decoration: BoxDecoration(color: Helper.whiteColor),
@@ -157,7 +152,7 @@ class _Clinic_TopState extends State<Clinic_Top> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push( MaterialPageRoute(builder: (_) => Clinic_Sub_Detail(clinic_Detail: widget.clinic_detail[0], index: 3,)));
+                                   widget.onpress(3);
                                 },
                                 child: Row(
                                   children: [
@@ -183,22 +178,49 @@ class _Clinic_TopState extends State<Clinic_Top> {
                         ),
                         ListView.builder(
                             padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                            itemCount: widget.clinic_detail["diarys"].length,
+                            itemCount: widget.clinic_detail.diaries.length,
                             physics:NeverScrollableScrollPhysics(),
                             shrinkWrap:true,
                             itemBuilder: (BuildContext context, int index) {
                               return Diary_Card(
-                                avator: widget.clinic_detail["diarys"][index]["avator"],
-                                check: widget.clinic_detail["diarys"][index]["check"],
-                                image2: widget.clinic_detail["diarys"][index]["image2"],
-                                image1: widget.clinic_detail["diarys"][index]["image1"],
-                                eyes: widget.clinic_detail["diarys"][index]["eyes"],
-                                clinic: widget.clinic_detail["diarys"][index]["clinic"],
-                                name: widget.clinic_detail["diarys"][index]["name"],
-                                onpress: () {},
-                                price: widget.clinic_detail["diarys"][index]["price"],
-                                sentence: widget.clinic_detail["diarys"][index]["sentence"],
-                                type: widget.clinic_detail["diarys"][index]["type"],
+                                avator:
+                                    widget.clinic_detail.diaries[index].patient_photo == null
+                                        ? "http://error.png"
+                                        : widget.clinic_detail.diaries[index].patient_photo!,
+                                check: widget.clinic_detail.diaries[index].doctor_name == null
+                                    ? ""
+                                    : widget.clinic_detail.diaries[index].doctor_name!,
+                                image2: widget.clinic_detail.diaries[index].after_image == null
+                                    ? "http://error.png"
+                                    : widget.clinic_detail.diaries[index].after_image!,
+                                image1:
+                                    widget.clinic_detail.diaries[index].before_image == null
+                                        ? "http://error.png"
+                                        : widget.clinic_detail.diaries[index].before_image!,
+                                eyes: widget.clinic_detail.diaries[index].views_count == null
+                                    ? ""
+                                    : widget.clinic_detail.diaries[index].views_count!
+                                        .toString(),
+                                clinic: widget.clinic_detail.diaries[index].clinic_name == null
+                                    ? ""
+                                    : widget.clinic_detail.diaries[index].clinic_name!,
+                                name: widget.clinic_detail.diaries[index].patient_nickname ==
+                                        null
+                                    ? ""
+                                    : widget.clinic_detail.diaries[index].patient_nickname!,
+                                onpress: () {
+                                  Navigator.of(context).push( MaterialPageRoute(builder: (_) => Diary_Detail(index:widget.clinic_detail.diaries[index].id)));
+                                },
+                                price: widget.clinic_detail.diaries[index].price == null
+                                    ? ""
+                                    : widget.clinic_detail.diaries[index].price.toString(),
+                                sentence:
+                                    widget.clinic_detail.diaries[index].doctor_name == null
+                                        ? ""
+                                        : widget.clinic_detail.diaries[index].doctor_name!,
+                                type: widget.clinic_detail.diaries[index].doctor_name == null
+                                    ? ""
+                                    : widget.clinic_detail.diaries[index].doctor_name!,
                               );
                             }),
                             Row(
@@ -208,7 +230,7 @@ class _Clinic_TopState extends State<Clinic_Top> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: InkWell(
                                     onTap: () {
-                                     Navigator.of(context).push( MaterialPageRoute(builder: (_) => Clinic_Sub_Detail(clinic_Detail: widget.clinic_detail[0], index: 3,)));
+                                      widget.onpress(3);
                                     },
                                     child: Row(
                                       children: [

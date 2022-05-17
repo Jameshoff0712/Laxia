@@ -23,10 +23,14 @@ class _AddCounselPageState extends State<AddCounselPage> {
         centerTitle: true,
         title: Text(
           'カウンセリングレポート',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Helper.titleColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              height: 1.5),
         ),
         leading: IconButton(
-          icon: Icon(Icons.close, size: 22, color: Colors.black),
+          icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -36,18 +40,21 @@ class _AddCounselPageState extends State<AddCounselPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
+            SizedBox(
+              height: 24,
+            ),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 76,
-                padding: EdgeInsets.only(top: 20),
+                width: MediaQuery.of(context).size.width,
+                // height: 69,
+                padding: EdgeInsets.only(top: 0, left: 16, right: 16),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed("/AddCounselStep1");
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                    padding: const EdgeInsets.fromLTRB(16, 21, 16, 21),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(6))),
                     primary: Helper.mainColor,
@@ -59,14 +66,18 @@ class _AddCounselPageState extends State<AddCounselPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '新しくレポートを作成',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        SizedBox(width: 20),
+                        Text('新しくレポートを作成',
+                            style: TextStyle(
+                                fontSize: 18,
+                                height: 1.5,
+                                fontFamily: Helper.headFontFamily,
+                                color: Helper.whiteColor,
+                                fontWeight: FontWeight.w400)),
+                        SizedBox(width: 41.8),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
+                          size: 12,
                         )
                       ],
                     ),
@@ -76,14 +87,15 @@ class _AddCounselPageState extends State<AddCounselPage> {
             ),
             counseling_list.length > 0
                 ? Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 10),
-                    child: ListTile(
-                      title: Text(
-                        '全てのカウンセリングレポート',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
+                    padding: const EdgeInsets.only(top: 27, left: 16, bottom: 17),
+                    child: Text(
+                      '全てのカウンセリングレポート',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: Helper.titleColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          height: 1.5),
                     ),
                   )
                 : SizedBox(),

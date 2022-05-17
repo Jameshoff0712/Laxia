@@ -164,24 +164,8 @@ class _ConfirmationState extends State<Confirmation> {
                                 i,
                                 widget.list_ReservedTime.length,
                                 widget.list_ReservedTime)
-                          //  _buildReservationItem()
-                          // _buildReservationItem(),
-                          // _buildReservationItem(),
-                          // _buildReservationItem(),
-                          // _buildReservationItem(),
                         ],
                       ),
-
-                      // child: ListView.separated(
-                      //   shrinkWrap: true,
-                      //   itemBuilder: (context, index) {
-                      //     return _buildReservationItem();
-                      //   },
-                      //   separatorBuilder: (context, index) => SizedBox(
-                      //     height: 10,
-                      //   ),
-                      //   itemCount: 4,
-                      // ),
                     ),
                   )
                 ],
@@ -209,7 +193,7 @@ class _ConfirmationState extends State<Confirmation> {
                 padding: EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color.fromARGB(255, 240, 154, 55)),
+                    color: Color.fromARGB(255, 249, 161, 56)),
                 child: Text('ご予約を申し込む',
                     textAlign: TextAlign.center,
                     style: TextStyle(

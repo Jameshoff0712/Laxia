@@ -4,21 +4,58 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/question/comment_model.dart';
 import 'package:laxia/views/widgets/comment_card.dart';
 
 class CommentDialogSheet extends StatefulWidget {
+  final String domain;
+  final int index;
+  final int count;
+  const CommentDialogSheet({ Key? key, required this.index, required this.count, required this.domain }) : super(key: key);
   @override
-  _CommentDialogSheetState createState() => _CommentDialogSheetState();
+  State<CommentDialogSheet> createState() => _CommentDialogSheetState();
 }
 
 class _CommentDialogSheetState extends State<CommentDialogSheet>
     with SingleTickerProviderStateMixin {
-  List comment_list = [];
-  bool bSend = false;
-
+      TextEditingController sender=new TextEditingController();
+  int page=1;
+  bool bSend = false,isloading=true,isexpanding=true,isend=false;
+  final _con = HomeController();
+  late Comment comment;
+  Future<void> getData() async {
+    try {
+      final mid = await _con.getCommentList(index: widget.index, domain: widget.domain, page: page.toString());
+      if(isloading){
+        setState(() {
+          comment = mid;
+          isloading = false;
+        });
+      }else{
+        setState(() {
+          comment.data.addAll(mid.data);
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+  Future<void> postComment(String addcomment) async{
+    try{
+      final mid=await _con.postComment(index: widget.index, domain: widget.domain, comment: addcomment);
+      setState(() {
+        comment.data.add(mid);
+      });
+       sender.text="";
+    }catch(e){
+      print(e.toString());
+    }
+    
+  }
   @override
   void initState() {
-    get_comment_info();
+    getData();
     super.initState();
   }
 
@@ -27,15 +64,17 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
     super.dispose();
   }
 
-  Future<void> get_comment_info() async {
-    String mid = await rootBundle.loadString("assets/cfg/comment_info.json");
-    setState(() {
-      comment_list.addAll(json.decode(mid));
-    });
-  }
-
   Widget build(BuildContext context) {
-    return comment_list.isNotEmpty? Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,9 +91,8 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                         size: 22),
                   ),
                   Text(
-                    "14件のコメント",
-                    style: defaultTextStyle(Colors.black, FontWeight.w700,
-                        size: 22),
+                    widget.count.toString()+"件のコメント",
+                    style: defaultTextStyle(Colors.black, FontWeight.w400,size: 16),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
@@ -65,15 +103,29 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
           Expanded(
             child: SingleChildScrollView(
               child: Column(children: [
-                for (int i = 0; i < comment_list.length; i++)
+                for (int i = 0; i < comment.data.length; i++)
                   Comment_Card(
-                      name: comment_list[i]['name'],
-                      ename: comment_list[i]['ename'],
-                      avatar: comment_list[i]["avatar"],
-                      comment: comment_list[i]["comment"],
-                      date: comment_list[i]["date"]),
+                      name: comment.data[i].patient_nickname!,
+                      ename: comment.data[i].patient_nickname!,
+                      avatar: comment.data[i].patient_photo!,
+                      comment: comment.data[i].comment!,
+                      date: comment.data[i].created_at!.split('T')[0]),
                 Divider(color: Helper.lightGrey),
-                Container(
+              ]),
+            ),
+          )
+        ],
+      ),
+      bottomNavigationBar: Container(
+                  padding:EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                    color:Helper.whiteColor,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(.1),
+                          blurRadius: 5)
+                    ],
+                  ),
                   //height: 42,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,6 +134,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                         Container(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: TextField(
+                            controller: sender,
                             onChanged: (value) {
                               if (value.isNotEmpty) {
                                 setState(() {
@@ -97,30 +150,27 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                             minLines: 1,
                             maxLines: 4,
                             decoration: InputDecoration(
+                              hintStyle: TextStyle(fontSize: 12),
                               fillColor: Helper.lightGrey,
                               filled: true,
                               hintText: "素敵なコメントを書く",
                               contentPadding: EdgeInsets.only(
                                   top: 3, left: 15, right: 15, bottom: 3),
                               border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0)),
                                 borderSide: BorderSide(color: Helper.lightGrey),
                               ),
                             ),
                           ),
                         ),
-                        SvgPicture.asset("assets/icons/send.svg",
-                            width: 30,
-                            height: 30,
-                            color: bSend ? Helper.mainColor : Helper.extraGrey),
+                        InkWell(
+                          onTap:(){postComment(sender.text);},
+                          child: SvgPicture.asset("assets/icons/send.svg",
+                              width: 30,
+                              height: 30,
+                              color: bSend ? Helper.mainColor : Helper.extraGrey),
+                        ),
                       ]),
                 ),
-              ]),
-            ),
-          )
-        ],
-      ),
-    ):Container();
+    );
   }
 }

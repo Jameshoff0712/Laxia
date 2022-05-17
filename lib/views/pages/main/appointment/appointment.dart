@@ -81,6 +81,7 @@ class _AppointmentState extends State<Appointment>
         TabBarWidget(
           tabMenus: tabMenus,
           tabController: _tabController,
+          isScrollable: false,
         ),
         Expanded(
           child: TabBarView(
@@ -93,9 +94,6 @@ class _AppointmentState extends State<Appointment>
                         color: Color.fromARGB(255, 240, 242, 245),
                         child: isEmpty
                             ? _buildEmptyClinic()
-                            // : ListView.builder(
-                            //   itemCount: statusInfo.length,
-                            //   itemBuilder: itemBuilder)
                         : ListView(
                             physics: const AlwaysScrollableScrollPhysics(),
                             children: [
@@ -194,159 +192,6 @@ class _AppointmentState extends State<Appointment>
         ),
       ]),
     );
-    // return Column(
-    //   children: <Widget>[
-    //     SizedBox(
-    //       height: 44,
-    //     ),
-    //     Stack(
-    //       children: [
-    //         Padding(
-    //           padding:
-    //               EdgeInsets.only(top: 10, right: 32, bottom: 12, left: 32),
-    //           child: Center(
-    //             child: Column(
-    //               mainAxisAlignment: MainAxisAlignment.center,
-    //               crossAxisAlignment: CrossAxisAlignment.center,
-    //               children: [
-    //                 Text(
-    //                   '予約',
-    //                   textAlign: TextAlign.center,
-    //                   style: TextStyle(
-    //                     fontWeight: FontWeight.w700,
-    //                     fontSize: 16,
-    //                     color: Color.fromARGB(255, 51, 51, 51),
-    //                     decoration: TextDecoration.none,
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //         ),
-    //         Padding(
-    //           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 25),
-    //           child: IconButton(
-    //             icon: Icon(Icons.chevron_left),
-    //             color: Color.fromARGB(255, 51, 51, 51),
-    //             // iconSize: 16,
-    //             onPressed: () {},
-    //           ),
-    //         )
-    //       ],
-    //     ),
-    //     TabBarWidget(
-    //       tabMenus: tabMenus,
-    //       tabController: _tabController,
-    //     ),
-    //     Expanded(
-    //       child: TabBarView(
-    //         physics: NeverScrollableScrollPhysics(),
-    //         children: [
-    //           Column(
-    //             children: [
-    //               Expanded(
-    //                 child: Container(
-    //                   color: Color.fromARGB(255, 240, 242, 245),
-    //                   child: isEmpty
-    //                       ? _buildEmptyClinic()
-    //                       : ListView(
-    //                           physics: const AlwaysScrollableScrollPhysics(),
-    //                           children: [
-    //                             chatStatus(
-    //                                 statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-    //                             chatStatus(
-    //                               statusCode: 2,
-    //                               clinicName: '湘南美容クリニック 銀座院',
-    //                               bookDate: '予約日時：2020/07/25 11：００〜',
-    //                             ),
-    //                             chatStatus(
-    //                                 statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-    //                             chatStatus(
-    //                                 statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-    //                           ],
-    //                         ),
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //           Column(
-    //             children: [
-    //               Expanded(
-    //                 child: Container(
-    //                   color: Color.fromARGB(255, 240, 242, 245),
-    //                   child: ListView(
-    //                     physics: const AlwaysScrollableScrollPhysics(),
-    //                     children: [
-    //                       chatStatus(
-    //                           statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-    //                       chatStatus(
-    //                         statusCode: 1,
-    //                         clinicName: '湘南美容クリニック 銀座院',
-    //                         notificCount: 1,
-    //                       ),
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //           Column(
-    //             children: [
-    //               Expanded(
-    //                 child: Container(
-    //                   color: Color.fromARGB(255, 240, 242, 245),
-    //                   child: ListView(
-    //                     physics: const AlwaysScrollableScrollPhysics(),
-    //                     children: [
-    //                       chatStatus(
-    //                         statusCode: 2,
-    //                         clinicName: '湘南美容クリニック 銀座院',
-    //                         bookDate: '予約日時：2020/07/25 11：００〜',
-    //                       ),
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //           Column(
-    //             children: [
-    //               Expanded(
-    //                 child: Container(
-    //                   color: Color.fromARGB(255, 240, 242, 245),
-    //                   child: ListView(
-    //                     physics: const AlwaysScrollableScrollPhysics(),
-    //                     children: [
-    //                       chatStatus(
-    //                           statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //           Column(
-    //             children: [
-    //               Expanded(
-    //                 child: Container(
-    //                   color: Color.fromARGB(255, 240, 242, 245),
-    //                   child: ListView(
-    //                     physics: const AlwaysScrollableScrollPhysics(),
-    //                     children: [
-    //                       chatStatus(
-    //                           statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ],
-    //         controller: _tabController,
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 
   Widget _buildEmptyClinic() {
@@ -358,6 +203,7 @@ class _AppointmentState extends State<Appointment>
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,
+            height: 1.5,
             color: Color.fromARGB(255, 102, 110, 110),
           ),
         ),
@@ -369,18 +215,17 @@ class _AppointmentState extends State<Appointment>
               onPressed: () {},
               child: Container(
                 padding: EdgeInsets.only(left: 62, right: 62),
-                height: 44,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 0, 184, 169),
-                  borderRadius: BorderRadius.circular(22),
+                  borderRadius: BorderRadius.circular(40),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 12, bottom: 15),
+                  padding: const EdgeInsets.only(top: 15, bottom: 15),
                   child: Text(
                     'クリニックを探す',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w400,
                       fontSize: 14,
                       color: Helper.whiteColor,
                     ),

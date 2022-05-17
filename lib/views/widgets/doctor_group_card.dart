@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
 
 class Doctor_Group_Card extends StatefulWidget {
   final VoidCallback onpress;
-  final dynamic doctor;
+  final Doctor_Sub_Model doctor;
   const Doctor_Group_Card({ Key? key, required this.doctor, required this.onpress }) : super(key: key);
 
   @override
@@ -38,7 +39,7 @@ class _Doctor_Group_CardState extends State<Doctor_Group_Card> {
                   borderRadius: BorderRadius.circular(25),
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl:  widget.doctor["image"],
+                    imageUrl:widget.doctor.photo==null?"https://error.png":widget.doctor.photo!,
                     placeholder: (context, url) => Image.asset(
                       'assets/images/loading.gif',
                       fit: BoxFit.cover,
@@ -53,7 +54,9 @@ class _Doctor_Group_CardState extends State<Doctor_Group_Card> {
             ),
           ),
           Text(
-            widget.doctor["name"],
+            widget.doctor.name==null?"":widget.doctor.name!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 color:
                     Helper.titleColor,
@@ -61,7 +64,7 @@ class _Doctor_Group_CardState extends State<Doctor_Group_Card> {
                 fontWeight: FontWeight.w400),
           ),
           Text(
-             widget.doctor["post"],
+             widget.doctor.job_name==null?"":widget.doctor.job_name!,
             style: TextStyle(
                 color:
                     Helper.maintxtColor,

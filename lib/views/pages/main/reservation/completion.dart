@@ -32,7 +32,7 @@ class _CompletionState extends State<Completion> {
             icon: Icon(
               Icons.close,
               color: Helper.titleColor,
-              size: 30,
+              size: 25,
             )),
         elevation: 0,
       ),
@@ -73,7 +73,6 @@ class _CompletionState extends State<Completion> {
             ),
             SizedBox(height: 3),
             Container(
-              // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
               alignment: Alignment.center,
               child: Text(
                   '空き状況を確認中でございますので、\n予約が確定するまでお待ちください。\nチャットにてご連絡させていただきます。',
@@ -94,10 +93,9 @@ class _CompletionState extends State<Completion> {
                   Navigator.pop(context);
                   Navigator.pop(context);
                   Navigator.pop(context);
-                  // Navigator.pop(context);
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                  padding: EdgeInsets.symmetric(vertical: 14, horizontal: 43),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
