@@ -134,7 +134,7 @@ class _Home_CardState extends State<Home_Card> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(2),
+                padding: EdgeInsets.only(top:7,left:6, right:6,bottom:6),
                 child: Column(
                   children: [
                     Align(

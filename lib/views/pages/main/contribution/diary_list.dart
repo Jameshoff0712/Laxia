@@ -46,8 +46,6 @@ class _DiaryPageState extends State<DiaryPage> {
             isexpanding = true;
           }
         });
-
-        print(mid);
       }
     } catch (e) {
       setState(() {
@@ -93,14 +91,14 @@ class _DiaryPageState extends State<DiaryPage> {
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(top: 30, left: 16, right: 16),
+                padding: EdgeInsets.only(top: 31, left: 16, right: 16),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed("/AddDiaryStep1");
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    padding: const EdgeInsets.only(top: 21, bottom: 21),
+                    padding: const EdgeInsets.only(top: 21, bottom: 22),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(6))),
                     primary: Helper.mainColor,
@@ -115,14 +113,15 @@ class _DiaryPageState extends State<DiaryPage> {
                         Text('新しい日記を投稿',
                             style: TextStyle(
                                 fontSize: 18,
+                                fontFamily: Helper.headFontFamily,
                                 height: 1.5,
                                 color: Helper.whiteColor,
                                 fontWeight: FontWeight.w400)),
-                        SizedBox(width: 20),
+                        SizedBox(width: 41.8),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
-                          size: 20,
+                          size: 12,
                         )
                       ],
                     ),

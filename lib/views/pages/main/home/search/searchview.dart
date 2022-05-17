@@ -162,6 +162,7 @@ class _SearchViewState extends State<SearchView> {
                               child: Text(
                                 "直近の検索",
                                 style: TextStyle(
+                                    fontFamily: Helper.headFontFamily,
                                     color: Color.fromARGB(255, 51, 51, 51),
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700),
@@ -239,47 +240,51 @@ class _SearchViewState extends State<SearchView> {
                                       child: Text(
                                         "人気検索ワード",
                                         style: TextStyle(
+                                           fontFamily: Helper.headFontFamily,
                                             color: Color.fromARGB(255, 51, 51, 51),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w700),
                                       ),
                                     ),
-                                    Wrap(
-                                      runSpacing: 10,
-                                      spacing: 10,
-                                      children: [
-                                        for (int j = 0; j < 20; j++)
-                                          InkWell(
-                                            onTap: () {
-                                              filter.text = menu_list[j]["label"];
-                                              setState(() {
-                                                unchange = false;
-                                                flag = true;
-                                              });
-                                              userProperties.setSearchtext(filter.text);
-                                              Navigator.of(context).pushNamed("/Pages");
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color:
-                                                      Color.fromARGB(255, 245, 245, 245),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20)),
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 15, vertical: 6),
-                                                child: Text(
-                                                  menu_list[j]["label"],
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 11,
-                                                      color: Color.fromARGB(
-                                                          255, 102, 110, 110)),
+                                    Padding(
+                                     padding: const EdgeInsets.all(20),
+                                      child: Wrap(
+                                        runSpacing: 10,
+                                        spacing: 10,
+                                        children: [
+                                          for (int j = 0; j < 20; j++)
+                                            InkWell(
+                                              onTap: () {
+                                                filter.text = menu_list[j]["label"];
+                                                setState(() {
+                                                  unchange = false;
+                                                  flag = true;
+                                                });
+                                                userProperties.setSearchtext(filter.text);
+                                                Navigator.of(context).pushNamed("/Pages");
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color:
+                                                        Color.fromARGB(255, 245, 245, 245),
+                                                    borderRadius:
+                                                        BorderRadius.circular(20)),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 15, vertical: 6),
+                                                  child: Text(
+                                                    menu_list[j]["label"],
+                                                    style: TextStyle(
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 11,
+                                                        color: Color.fromARGB(
+                                                            255, 102, 110, 110)),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          )
-                                      ],
+                                            )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
