@@ -30,7 +30,10 @@ class _Clinic_CardState extends State<Clinic_Card> {
       onTap: widget.onpress!,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-        color: Helper.whiteColor,
+        decoration: BoxDecoration(
+                    color: Helper.whiteColor,
+                    borderRadius: BorderRadius.circular(5)
+                  ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 15),
           child: Row(
@@ -39,7 +42,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
             children: [
               widget.image != "none"
                   ? Container(
-                      decoration: BoxDecoration(color: Helper.whiteColor),
+                      decoration: BoxDecoration(color: Helper.whiteColor,borderRadius: BorderRadius.circular(5)),
                       child: Column(
                         children: [
                           SizedBox(
@@ -75,7 +78,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
               SizedBox(width: 10),
               Expanded(
                 child: Container(
-                  color: Helper.whiteColor,
+                  
                   child: Column(
                     children: [
                       Row(

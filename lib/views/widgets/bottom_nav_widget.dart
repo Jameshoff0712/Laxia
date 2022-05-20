@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/generated/l10n.dart';
 import 'package:laxia/models/m_settings.dart';
@@ -127,6 +128,8 @@ class _BottomNavState extends State<BottomNav> {
       type: BottomNavigationBarType.fixed,
       iconSize: 24.0,
       currentIndex: userProperties.currentPageIndex,
+      selectedLabelStyle: TextStyle(color: Helper.mainColor),
+      selectedItemColor:Helper.mainColor,
       items: [
         BottomNavigationBarItem(
             icon: _buildIcon(context, FontAwesomeIcons.home, 0),
@@ -135,7 +138,15 @@ class _BottomNavState extends State<BottomNav> {
             icon: _buildIcon(context, FontAwesomeIcons.calendar, 1),
             label: Trans.of(context).appointment_page),
         BottomNavigationBarItem(
-            icon: _buildIcon(context, FontAwesomeIcons.plusSquare, 5),
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: SvgPicture.asset(
+                    "assets/icons/navbar/midnavbar.svg",
+                    fit: BoxFit.cover,
+                    width: 24,
+                    height: 24,
+                  ),
+            ),
             label: "作成"),
         BottomNavigationBarItem(
             icon: _buildIcon(context, FontAwesomeIcons.heart, 3),

@@ -1,5 +1,6 @@
 import 'package:laxia/views/pages/auth/login.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/models/instructions.dart';
@@ -30,7 +31,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
       statusBarColor: Helper.whiteColor,
     ));
     _pageController.addListener(() {
@@ -54,10 +55,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     itemBuilder: (context, i) => Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Flexible(
-                          child: Image.asset(
+                        Padding(
+                          padding: const EdgeInsets.only(left:21.5,right:21.5,top:56.72),
+                          child: SvgPicture.asset(
                             "${onBoardingInstructions[i].image}",
-                            fit: BoxFit.cover,
                           ),
                         ),
                         SizedBox(height: 80),
@@ -79,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 58, top: 0),
+                  padding: const EdgeInsets.only(bottom: 32, top: 0),
                   child: Column(children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

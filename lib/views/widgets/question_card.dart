@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:nb_utils/nb_utils.dart';
-
 class Question_Card extends StatefulWidget {
   final VoidCallback onpress;
   final String avator,

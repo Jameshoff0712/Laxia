@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Helper.whiteColor,
       body: SafeArea(
         child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+            padding: const EdgeInsets.symmetric(vertical: 30),
             child: Column(
               children: <Widget>[
                 SizedBox(
@@ -49,22 +49,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 19,
                 ),
-                Text(
-                  Trans.of(context).lets_start_with_login,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Helper.blackColor,
-                      fontWeight: FontWeight.w400,
-                      height: 25 / 16,
-                      letterSpacing: -1.2,
-                      fontSize: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    Trans.of(context).lets_start_with_login,
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Helper.blackColor,
+                        fontWeight: FontWeight.w400,
+                        height: 25 / 16,
+                        letterSpacing: -1.2,
+                        fontSize: 16),
+                  ),
                 ),
                 const SizedBox(
                   height: 64,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 16, right: 16),
+                  padding: EdgeInsets.only(left: 32, right: 32),
                   child: Column(
                     children: [
                       LoginButton(
@@ -99,36 +102,44 @@ class _LoginScreenState extends State<LoginScreen> {
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomLeft,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "まだアカウントをお持ちでないですか？",
-                          style: TextStyle(
-                              color: Helper.blackColor,
-                              fontWeight: FontWeight.w400,
-                              height: 25 / 16,
-                              letterSpacing: -1.2,
-                              fontSize: 16),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed("/Signup");
-                            },
-                            child: Text(
-                              Trans.of(context).register,
+                    child: Container(
+                      color: Color.fromARGB(255,248, 250, 249,),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top:20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "まだアカウントをお持ちでないですか？",
                               style: TextStyle(
-                                  color: Colors.blue,
-                                  fontFamily: 'Hiragino Kaku Gothic Pro W6',
+                                  color: Helper.blackColor,
                                   fontWeight: FontWeight.w400,
-                                  height: 18 / 20,
-                                  letterSpacing: -0.34,
-                                  fontSize: 20),
-                            ))
-                      ],
+                                  height: 25 / 16,
+                                  letterSpacing: -1.2,
+                                  fontSize: 16),
+                            ),
+                            TextButton(
+                                style: TextButton.styleFrom(
+                                  padding:EdgeInsets.zero,
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  alignment: Alignment.center
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pushNamed("/Signup");
+                                },
+                                child: Text(
+                                  Trans.of(context).register,
+                                  style: TextStyle(
+                                      color: Helper.mainColor,
+                                      fontFamily: Helper.headFontFamily,
+                                      fontWeight: FontWeight.w700,
+                                      height: 25 / 16,
+                                      letterSpacing: -0.34,
+                                      fontSize: 16),
+                                ))
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 )

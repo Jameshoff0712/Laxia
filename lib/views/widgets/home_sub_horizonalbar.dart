@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class Home_Sub_Horizonalbar extends StatefulWidget {
@@ -33,7 +34,7 @@ class _Home_Sub_HorizonalbarState extends State<Home_Sub_Horizonalbar> {
               height: widget.width,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(widget.width / 2),
-                child: Image.asset(
+                child: SvgPicture.asset(
                   widget.image,
                   fit: BoxFit.cover,
                 ),

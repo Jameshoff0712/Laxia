@@ -66,7 +66,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                     },
                     child: Icon(
                       Icons.close,
-                      size: 15,
+                      size: 25,
                     )),
                 Text(widget.title,
                     style:
@@ -132,16 +132,16 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                   top: BorderSide(
                                                       width:
                                                           index == 0 ? 1 : 0.5,
-                                                      color: Colors.grey),
+                                                      color: Color.fromARGB(255,239,239,239)),
                                                   left: BorderSide(
                                                       width: 1,
-                                                      color: Colors.grey),
+                                                      color: Color.fromARGB(255,239,239,239)),
                                                   right: BorderSide(
                                                       width: 1,
-                                                      color: Colors.grey),
+                                                      color: Color.fromARGB(255,239,239,239)),
                                                   bottom: BorderSide(
                                                       width: 0.5,
-                                                      color: Colors.grey))),
+                                                      color: Color.fromARGB(255,239,239,239)))),
                                       width: double.infinity,
                                       child: SizedBox(
                                         height: 44,
@@ -314,6 +314,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
               ),
             ),
           ),
+          SizedBox(height: 4,),
           InkWell(
             onTap: () {
               surgeryProvider.initSelected();
@@ -335,10 +336,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Helper.btnBgMainColor),
-              width: 300,
-              height: 45,
-              child: Center(
-                //padding: EdgeInsets.symmetric(horizontal: 114, vertical: 12),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 114,vertical: 12),
                 child: Text(
                   surgeryProvider.btnText.isEmpty ? widget.buttontxt : surgeryProvider.btnText,
                   style: TextStyle(
@@ -351,7 +350,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
             ),
           ),
           SizedBox(
-            height: 33,
+            height: 4,
           )
         ],
       ),

@@ -16,7 +16,6 @@ class Point extends Equatable {
     );
   }
   @override
-  // TODO: implement props
   List<Object?> get props => [data, links, meta];
 }
 
@@ -35,7 +34,6 @@ class Link extends Equatable {
         next: json["next"]);
   }
   @override
-  // TODO: implement props
   List<Object?> get props => [first, last, prev, next];
 }
 
@@ -68,7 +66,6 @@ class Meta extends Equatable {
     );
   }
   @override
-  // TODO: implement props
   List<Object?> get props => [
         current_page,
         from,
