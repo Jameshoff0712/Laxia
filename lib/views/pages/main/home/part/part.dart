@@ -71,28 +71,22 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  top: 10.0, left: 24, right: 16, bottom: 10),
+                  top: 10.0, left:16, right: 16, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Align(
-                      alignment: Alignment.topLeft,
-                      child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        padding: EdgeInsets.only(left: 7),
-                        icon: const Icon(Icons.arrow_back_ios,
-                            color: Helper.blackColor),
-                        iconSize: 16,
-                      )),
-                  Center(
-                      child: Text(
-                          treatment[userProperties.currentPartIndex]["label"],
-                          style: defaultTextStyle(
-                              Helper.blackColor, FontWeight.w700,
-                              size: 20))),
-                  SizedBox(
-                    width: 14,
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.arrow_back_ios,
+                        color: Helper.blackColor),
+                    iconSize: 16,
                   ),
+                  Text(
+                      treatment[userProperties.currentPartIndex]["label"],
+                      style: defaultTextStyle(
+                          Helper.blackColor, FontWeight.w700,
+                          size: 20)),
+                  Icon(Icons.arrow_back_ios,color: Colors.white,size: 16,)
                 ],
               ),
             ),

@@ -30,13 +30,16 @@ class _Doctor_CardState extends State<Doctor_Card> {
       onTap: widget.onpress!,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-        color: Helper.whiteColor,
+        decoration: BoxDecoration(
+          color: Helper.whiteColor,
+          borderRadius: BorderRadius.circular(5)
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration: BoxDecoration(color: _whiteColor),
+              decoration: BoxDecoration(color: _whiteColor,borderRadius: BorderRadius.circular(5)),
               child: Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Column(

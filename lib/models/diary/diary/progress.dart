@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:laxia/models/question/media_model.dart';
 
 class Progress extends Equatable {

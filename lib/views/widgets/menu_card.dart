@@ -33,11 +33,12 @@ class _Menu_CardState extends State<Menu_Card> {
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Container(
           decoration: BoxDecoration(
+             
               boxShadow: widget.shadow == null ? [] : [widget.shadow!]),
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(color: Helper.whiteColor),
+                decoration: BoxDecoration(color: Helper.whiteColor, borderRadius: BorderRadius.circular(5),),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 7, bottom: 10),
                   child: SizedBox(

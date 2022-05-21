@@ -45,7 +45,6 @@ class Follow extends Equatable {
         total: json["total"]);
   }
   @override
-  // TODO: implement props
   List<Object?> get props => [
     current_page,
         data,

@@ -75,7 +75,6 @@ class Follow_Sub_Model extends Equatable {
     );
   }
   @override
-  // TODO: implement props
   List<Object?> get props => [
         id,
         user_id,
