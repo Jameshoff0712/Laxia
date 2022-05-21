@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/widgets/indicator.dart';
 
 
 class TabBarWidget extends StatefulWidget {
@@ -21,6 +22,7 @@ class _TabBarWidgetState extends State<TabBarWidget> with SingleTickerProviderSt
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TabBar(
+              indicator: CircleTabIndicator(color: Helper.mainColor, radius: 15),
               padding: EdgeInsets.only(left: 9, top: 0, right: 1, bottom: 3),
               labelPadding: EdgeInsets.only(left: widget.padding!, top: 4, right: widget.padding!, bottom: 8),
               labelColor: Helper.selectTabColor,

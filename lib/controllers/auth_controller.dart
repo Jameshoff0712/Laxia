@@ -1,6 +1,5 @@
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/me_model.dart';
-import 'package:laxia/models/res_model.dart';
 import 'package:laxia/services/http/auth_api.dart';
 
 class AuthController extends BaseController {

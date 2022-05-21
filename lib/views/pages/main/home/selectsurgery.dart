@@ -56,7 +56,7 @@ class _SelectSurgeryState extends State<SelectSurgery> {
                   treatments: treatments,
                   width: 110,
                   buttontxt: '結果を表示',
-                  title: 'エリア選択',
+                  title: '施術箇所・内容',
                 ),
               ],
             ));
