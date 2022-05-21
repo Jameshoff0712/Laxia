@@ -122,7 +122,6 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
                     "assets/icons/question.svg",
                     width: 44,
                     height: 44,
-                    color: Helper.mainColor,
                   ),
                   SizedBox(width: 16,),
                   Padding(padding: EdgeInsets.only(top: 13, bottom: 7),
