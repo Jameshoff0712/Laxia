@@ -138,13 +138,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Center(
-                        child: TextButton(
+                        child: InkWell(
+                           onTap: () => Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) => LoginScreen())),
                           child: Text(
                             "ラシアを始める",
                             style:TextStyle(fontSize:18, fontWeight: FontWeight.w400,height: 27/18,letterSpacing: -0.54,color: Helper.whiteColor)
                           ),
-                           onPressed: () => Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) => LoginScreen())),
                         ),
                       ),
                     )
