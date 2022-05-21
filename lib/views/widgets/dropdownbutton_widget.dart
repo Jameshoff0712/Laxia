@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 
 class Dropdownbutton extends StatefulWidget {
@@ -54,14 +55,18 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
                 widget.hintText,
                 style: TextStyle(fontSize: 12, color: Helper.selectSmallTabColor),
               ),
-        icon: drop
-            ? Icon(
-                Icons.arrow_drop_down,
-                color: Helper.unSelectSmallTabColor,
-              )
-            : Icon(
-                Icons.arrow_drop_up,
-                color: Helper.selectSmallTabColor,
+        icon:drop? SvgPicture.asset(
+                "assets/icons/arrowdown.svg",
+                fit: BoxFit.cover,
+                width: 7.2,
+                height: 4.7,
+                color: Helper.maintxtColor,
+              ): SvgPicture.asset(
+                "assets/icons/arrowup.svg",
+                fit: BoxFit.cover,
+                width: 7.2,
+                height: 4.7,
+                color:Helper.mainColor,
               ),
         items: widget.items
             .map((item) => DropdownMenuItem<String>(
