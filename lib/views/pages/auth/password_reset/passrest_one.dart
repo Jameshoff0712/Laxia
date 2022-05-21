@@ -53,15 +53,15 @@ class _PassRest_OneState extends State<PassRest_One> {
                               padding: EdgeInsets.only(left: 7),
                               icon: const Icon(Icons.arrow_back_ios,
                                   color: Helper.blackColor),
-                              iconSize: 16,
+                              iconSize: 20,
                             ))),
                     Expanded(
                         flex: 6,
                         child: Center(
                             child: Text(Trans.of(context).reset_password,
-                                style: defaultTextStyle(
-                                    Helper.blackColor, FontWeight.w700,
-                                    size: 20)))),
+                                style: TextStyle(
+                                    color: Helper.titleColor, fontWeight: FontWeight.w700,
+                                    fontSize: 16, height: 1.5)))),
                     Expanded(
                         flex: 2,
                         child: SizedBox(
@@ -73,18 +73,18 @@ class _PassRest_OneState extends State<PassRest_One> {
                   height: 27,
                 ),
                 RichText(
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   text: TextSpan(children: [
                     TextSpan(
                         text: Trans.of(context).input_email_then_help,
                         style: TextStyle(
                             color: Helper.maintxtColor,
                             fontWeight: FontWeight.w400,
-                            fontSize: 14)),
+                            fontSize: 14, height: 1.5)),
                   ]),
                 ),
                 const SizedBox(
-                  height: 27,
+                  height: 45,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
@@ -120,6 +120,7 @@ class _PassRest_OneState extends State<PassRest_One> {
                         TextStyle(color: Helper.authHintColor, fontSize: 14),
                     // filled: true,
                     // fillColor: Helper.whiteColor.withOpacity(0.2),
+                    isDense: true,
                     contentPadding:
                         EdgeInsets.only(left: 16, top: 16, bottom: 16),
                     focusedBorder: UnderlineInputBorder(
@@ -139,7 +140,7 @@ class _PassRest_OneState extends State<PassRest_One> {
                     //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
                     border: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Color.fromARGB(255, 210, 210, 212)),
+                          BorderSide(color: Color.fromARGB(255, 200, 199, 204)),
                     ),
                   ),
                 ),
@@ -153,7 +154,7 @@ class _PassRest_OneState extends State<PassRest_One> {
                     : Container(),
                 SizedBox(height: 50),
                 Padding(
-                  padding: const EdgeInsets.only(left: 61, right: 61),
+                  padding: const EdgeInsets.only(left: 64, right: 64),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Helper.btnBgMainColor,
@@ -171,7 +172,7 @@ class _PassRest_OneState extends State<PassRest_One> {
                             child: Text(
                               Trans.of(context).send_url_for_reset,
                               style: TextStyle(
-                                  color: Helper.whiteColor, fontSize: 12),
+                                  color: Helper.whiteColor, fontSize: 12, fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),

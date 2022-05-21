@@ -29,6 +29,7 @@ class _PassRest_TwoState extends State<PassRest_Two> {
                 "assets/images/send_mail.svg",
                 width: 54.17,
                 height: 43.33,
+                color: Helper.mainColor,
               )),
               SizedBox(
                 height: 30.83,
@@ -51,7 +52,7 @@ class _PassRest_TwoState extends State<PassRest_Two> {
                 },
                 child: Text(Trans.of(context).verify_email,
                     style: defaultTextStyle(
-                        Helper.maintxtColor, FontWeight.w700,
+                        Helper.txtColor, FontWeight.w400,
                         size: 14)),
               )),
             ],

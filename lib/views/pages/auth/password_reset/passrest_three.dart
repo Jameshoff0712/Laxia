@@ -50,15 +50,15 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                               padding: EdgeInsets.only(left: 7),
                               icon: const Icon(Icons.clear,
                                   color: Helper.blackColor),
-                              iconSize: 16,
+                              iconSize: 25,
                             ))),
                     Expanded(
                         flex: 6,
                         child: Center(
                             child: Text(Trans.of(context).reset_password_res,
-                                style: defaultTextStyle(
-                                    Helper.blackColor, FontWeight.w700,
-                                    size: 16)))),
+                                style: TextStyle(
+                                    color: Helper.titleColor, fontWeight: FontWeight.w700,
+                                    fontSize: 16, height: 1.5)))),
                     Expanded(
                         flex: 2,
                         child: SizedBox(
@@ -75,13 +75,14 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                         style: TextStyle(
                             color: Color.fromARGB(250, 102, 110, 110),
                             fontWeight: FontWeight.w400,
-                            fontSize: 14))),
+                            fontSize: 14, height: 1.5))),
                 const SizedBox(
                   height: 45,
                 ),
                 TextFormField(
                   controller: _passwordController,
                   keyboardType: TextInputType.visiblePassword,
+                  obscureText: _con.hidePassword,
                   // onSaved: (input) => _con.user.password = input,
                   validator: (pwd) {
                       if(pwd!.isEmpty) {
@@ -99,6 +100,7 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                     hintText: Trans.of(context).password,
                     hintStyle:
                         TextStyle(color: Helper.authHintColor, fontSize: 14),
+                    isDense: true,
                     contentPadding:
                         EdgeInsets.only(left: 16, top: 16, bottom: 16),
                     focusedBorder: UnderlineInputBorder(
@@ -123,7 +125,18 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                     // ),
                     border: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Color.fromARGB(1, 210, 210, 212)),
+                          BorderSide(color: Color.fromARGB(255, 200, 199, 204)),
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _con.hidePassword = !_con.hidePassword;
+                        });
+                      },
+                      color: Helper.authHintColor,
+                      icon: Icon(_con.hidePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                     ),
                     // border: OutlineInputBorder(
                     //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
@@ -145,7 +158,7 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                 ),
                 SizedBox(height: 50),
                 Padding(
-                  padding: const EdgeInsets.only(left: 61, right: 61),
+                  padding: const EdgeInsets.only(left: 64, right: 64),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Helper.btnBgMainColor,
@@ -163,7 +176,7 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                             child: Text(
                               Trans.of(context).update_password,
                               style: TextStyle(
-                                  color: Helper.whiteColor, fontSize: 12),
+                                  color: Helper.whiteColor, fontSize: 12, fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),
