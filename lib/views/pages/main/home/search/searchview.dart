@@ -40,7 +40,8 @@ class _SearchViewState extends State<SearchView> {
     initSettings();
     super.initState();
   }
-  bool issuffixicon=false;
+
+  bool issuffixicon = false;
   String searchtext = "";
   TextEditingController filter = new TextEditingController();
   @override
@@ -50,290 +51,319 @@ class _SearchViewState extends State<SearchView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Helper.whiteColor,
-      body: Column(
-        crossAxisAlignment:CrossAxisAlignment.start,
-        children: [
-          Visibility(
-            child: TextField(
-              textInputAction: TextInputAction.search,
-              autofocus: true,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Visibility(
+              child: TextField(
+                textInputAction: TextInputAction.search,
+                autofocus: true,
+              ),
+              visible: false,
             ),
-            visible: false,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                SizedBox(height: 44),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Focus(
-                          child: SearchbarWidget(
-                            issuffixicon: issuffixicon,
-                            onpress: (){
-                              setState(() {
-                                flag = true;
-                                unchange = true;
-                                issuffixicon=false;
-                              });
-                              filter.clear();
-                            },
-                            state: false,
-                            filter: filter,
-                            onchange: () {
-                              searchCount();
-                              if (filter.text.isEmpty) {
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Focus(
+                            child: SearchbarWidget(
+                              issuffixicon: issuffixicon,
+                              onpress: () {
                                 setState(() {
-                                  issuffixicon=false;
                                   flag = true;
                                   unchange = true;
+                                  issuffixicon = false;
                                 });
-                              } else {
+                                filter.clear();
+                              },
+                              state: false,
+                              filter: filter,
+                              onchange: () {
+                                searchCount();
+                                if (filter.text.isEmpty) {
+                                  setState(() {
+                                    issuffixicon = false;
+                                    flag = true;
+                                    unchange = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    issuffixicon = true;
+                                    unchange = false;
+                                  });
+                                }
+                              },
+                              oncompleted: () {
+                                userProperties.setSearchtext(filter.text);
+                                Navigator.pop(context);
+                              },
+                            ),
+                            onFocusChange: (hasfocus) {
+                              if (hasfocus) {
                                 setState(() {
-                                  issuffixicon=true;
-                                  unchange = false;
+                                  flag = true;
                                 });
                               }
-                            },
-                            oncompleted: () {
-                              userProperties.setSearchtext(filter.text);
-                              Navigator.pop(context);
-                            },
-                          ),
-                          onFocusChange: (hasfocus) {
-                            if (hasfocus) {
-                              setState(() {
-                                flag = true;
-                              });
-                            }
-                          }),
-                    ),
-                    issuffixicon
-                        ? Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12),
-                              child: Center(
-                                  child: InkWell(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        "キャンセル",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                            color: Helper.mainColor),
-                                      ))),
-                            ))
-                        : SizedBox(width: 0),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          unchange
-              ? Container(
-                  child: Column(
-                    children: [
-                      flag
-                          ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                       vertical: 13),
-                                  child: Text(
-                                    "施術したい箇所やクリニック名で検索してみましょう",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 102, 110, 110),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                            ],
-                          )
-                          : Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 28, bottom: 20,left: 20),
-                              child: Text(
-                                "直近の検索",
-                                style: TextStyle(
-                                    fontFamily: Helper.headFontFamily,
-                                    color: Color.fromARGB(255, 51, 51, 51),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
+                            }),
+                      ),
+                      issuffixicon
+                          ? Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                child: Center(
+                                    child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          "キャンセル",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: Helper.mainColor),
+                                        ))),
+                              ))
+                          : SizedBox(width: 0),
                     ],
                   ),
-                )
-              : SizedBox(
-                  width: 0,
-                ),
-          unchange
-              ? Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      FocusScope.of(context).unfocus();
-                      flag = false;
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color:Helper.whiteColor),
-                      child: AbsorbPointer(
-                        absorbing: flag ? true : false,
-                        child: Column(
-                          children: [
-                            Stack(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                                      child: Wrap(
-                                        runSpacing: 10,
-                                        spacing: 10,
-                                        children: [
-                                          for (int j = 0; j < 20; j++)
-                                            InkWell(
-                                              onTap: () {
-                                                filter.text = menu_list[j]["label"];
-                                                setState(() {
-                                                  unchange = false;
-                                                  flag = true;
-                                                });
-                                                userProperties.setSearchtext(filter.text);
-                                                Navigator.of(context).pushNamed("/Pages");
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color:
-                                                        Color.fromARGB(255, 245, 245, 245),
-                                                    borderRadius:
-                                                        BorderRadius.circular(20)),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 15, vertical: 6),
-                                                  child: Text(
-                                                    menu_list[j]["label"],
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 11,
-                                                        color: Color.fromARGB(
-                                                            255, 102, 110, 110)),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            
-                                        ],
-                                      ),
+                ],
+              ),
+            ),
+            unchange
+                ? Container(
+                    child: Column(
+                      children: [
+                        flag
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 13),
+                                    child: Text(
+                                      "施術したい箇所やクリニック名で検索してみましょう",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 102, 110, 110),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(20),
-                                      child: Text(
-                                        "人気検索ワード",
-                                        style: TextStyle(
-                                           fontFamily: Helper.headFontFamily,
-                                            color: Color.fromARGB(255, 51, 51, 51),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                    Padding(
-                                     padding: const EdgeInsets.all(20),
-                                      child: Wrap(
-                                        runSpacing: 10,
-                                        spacing: 10,
-                                        children: [
-                                          for (int j = 0; j < 20; j++)
-                                            InkWell(
-                                              onTap: () {
-                                                filter.text = menu_list[j]["label"];
-                                                setState(() {
-                                                  unchange = false;
-                                                  flag = true;
-                                                });
-                                                userProperties.setSearchtext(filter.text);
-                                                Navigator.of(context).pushNamed("/Pages");
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color:
-                                                        Color.fromARGB(255, 245, 245, 245),
-                                                    borderRadius:
-                                                        BorderRadius.circular(20)),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 15, vertical: 6),
-                                                  child: Text(
-                                                    menu_list[j]["label"],
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 11,
-                                                        color: Color.fromARGB(
-                                                            255, 102, 110, 110)),
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                  ),
+                                ],
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20, bottom: 20, left: 20),
+                                child: Text(
+                                  "直近の検索",
+                                  style: TextStyle(
+                                      fontFamily: Helper.headFontFamily,
+                                      color: Color.fromARGB(255, 51, 51, 51),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700),
                                 ),
-                                Container(
-                                  decoration:  flag?BoxDecoration(
-                                    boxShadow: [
-                                       BoxShadow(
-                                            offset:  Offset(1000,1000),
-                                            color: Colors.black.withOpacity(.7),
-                                            spreadRadius: 1000)
-                                        ],
-                                  ):BoxDecoration(),
-                                )
-                              ],
-                            ),
-                          ],
+                              ),
+                      ],
+                    ),
+                  )
+                : SizedBox(
+                    width: 0,
+                  ),
+            unchange
+                ? Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                        flag = false;
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(color: Helper.whiteColor),
+                        child: AbsorbPointer(
+                          absorbing: flag ? true : false,
+                          child: Column(
+                            children: [
+                              Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        child: Wrap(
+                                          runSpacing: 10,
+                                          spacing: 10,
+                                          children: [
+                                            for (int j = 0; j < 20; j++)
+                                              InkWell(
+                                                onTap: () {
+                                                  filter.text =
+                                                      menu_list[j]["label"];
+                                                  setState(() {
+                                                    unchange = false;
+                                                    flag = true;
+                                                  });
+                                                  userProperties.setSearchtext(
+                                                      filter.text);
+                                                  Navigator.of(context)
+                                                      .pushNamed("/Pages");
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Color.fromARGB(
+                                                          255, 245, 245, 245),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 15,
+                                                            vertical: 6),
+                                                    child: Text(
+                                                      menu_list[j]["label"],
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 11,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              102,
+                                                              110,
+                                                              110)),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 20, top: 20),
+                                        child: Text(
+                                          "人気検索ワード",
+                                          style: TextStyle(
+                                              fontFamily: Helper.headFontFamily,
+                                              color: Color.fromARGB(
+                                                  255, 51, 51, 51),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Wrap(
+                                          runSpacing: 10,
+                                          spacing: 10,
+                                          children: [
+                                            for (int j = 0; j < 20; j++)
+                                              InkWell(
+                                                onTap: () {
+                                                  filter.text =
+                                                      menu_list[j]["label"];
+                                                  setState(() {
+                                                    unchange = false;
+                                                    flag = true;
+                                                  });
+                                                  userProperties.setSearchtext(
+                                                      filter.text);
+                                                  Navigator.of(context)
+                                                      .pushNamed("/Pages");
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Color.fromARGB(
+                                                          255, 245, 245, 245),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 15,
+                                                            vertical: 6),
+                                                    child: Text(
+                                                      menu_list[j]["label"],
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 11,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              102,
+                                                              110,
+                                                              110)),
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    decoration: flag
+                                        ? BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  offset: Offset(1000, 1000),
+                                                  color: Colors.black
+                                                      .withOpacity(.7),
+                                                  spreadRadius: 1000)
+                                            ],
+                                          )
+                                        : BoxDecoration(),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                  )
+                : Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(250, 240, 242, 245),
+                      ), //
+                      child: LayoutBuilder(builder:
+                          (context, BoxConstraints viewportConstraints) {
+                        return Column(
+                          children: [
+                            // menuAppBar(context),
+                            Expanded(
+                              child: ListView.builder(
+                                  itemCount: counts.length,
+                                  physics:
+                                      const AlwaysScrollableScrollPhysics(),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return SearchResult(
+                                      count: counts[index]["count"],
+                                      index: index,
+                                      onpress: () {},
+                                    );
+                                  }),
+                            ),
+                          ],
+                        );
+                      }),
+                    ),
                   ),
-                )
-              : Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(250, 240, 242, 245),
-                    ), //
-                    child: LayoutBuilder(
-                        builder: (context, BoxConstraints viewportConstraints) {
-                      return Column(
-                        children: [
-                          // menuAppBar(context),
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: counts.length,
-                                physics: const AlwaysScrollableScrollPhysics(),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return SearchResult(
-                                    count: counts[index]["count"],
-                                    index: index,
-                                    onpress: () {},
-                                  );
-                                }),
-                          ),
-                        ],
-                      );
-                    }),
-                  ),
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -13,7 +13,7 @@ class SelectPrefecture extends StatefulWidget {
 }
 
 class _SelectPrefectureState extends State<SelectPrefecture> {
-   final _con = StaticController();
+  final _con = StaticController();
   bool isloading = true;
   late List<Area_Model> areas;
   Future<void> getData() async {
@@ -28,6 +28,7 @@ class _SelectPrefectureState extends State<SelectPrefecture> {
       });
     }
   }
+
   @override
   void initState() {
     getData();
@@ -47,13 +48,17 @@ class _SelectPrefectureState extends State<SelectPrefecture> {
           ))
         : Scaffold(
             backgroundColor: Helper.whiteColor,
-            body: Column(
-              children: [
-                MultiSelectDart(
-                  areas: areas,
-                 width: 110, buttontxt: '結果を表示', title: 'エリア選択',
-                ),
-              ],
+            body: SafeArea(
+              child: Column(
+                children: [
+                  MultiSelectDart(
+                    areas: areas,
+                    width: 110,
+                    buttontxt: '結果を表示',
+                    title: 'エリア選択',
+                  ),
+                ],
+              ),
             ));
   }
 }

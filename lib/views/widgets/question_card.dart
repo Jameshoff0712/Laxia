@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+
 class Question_Card extends StatefulWidget {
   final VoidCallback onpress;
   final String avator,
@@ -36,31 +37,30 @@ class Question_Card extends StatefulWidget {
 
 class _Question_CardState extends State<Question_Card> {
   final apiUrl = dotenv.env["DEV_API_URL"];
-  late String image1,image2;
-  @override 
-  void initState(){
-    if(widget.image1.contains("https://")){
+  late String image1, image2;
+  @override
+  void initState() {
+    if (widget.image1.contains("https://")) {
       setState(() {
-        image1=widget.image1;
+        image1 = widget.image1;
+      });
+    } else {
+      setState(() {
+        image1 = apiUrl! + "/" + widget.image1;
       });
     }
-    else{
+    if (widget.image2.contains("https://")) {
       setState(() {
-        image1=apiUrl!+"/"+widget.image1;
+        image2 = widget.image2;
       });
-    }
-    if(widget.image2.contains("https://")){
+    } else {
       setState(() {
-        image2=widget.image2;
-      });
-    }
-    else{
-      setState(() {
-        image2=apiUrl!+"/"+widget.image2;
+        image2 = apiUrl! + "/" + widget.image2;
       });
     }
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -108,7 +108,8 @@ class _Question_CardState extends State<Question_Card> {
                           fontFamily: Helper.headFontFamily,
                           color: Helper.titleColor),
                     ),
-                    widget.isanswer?Expanded(
+                    widget.isanswer
+                        ? Expanded(
                             child: Align(
                             alignment: Alignment.centerRight,
                             child: Container(
@@ -129,8 +130,8 @@ class _Question_CardState extends State<Question_Card> {
                                 ),
                               ),
                             ),
-                          )):
-                    Expanded(
+                          ))
+                        : Expanded(
                             child: Align(
                             alignment: Alignment.centerRight,
                             child: Container(
@@ -154,7 +155,9 @@ class _Question_CardState extends State<Question_Card> {
                           ))
                   ],
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Text(
                   widget.sentence,
                   overflow: TextOverflow.ellipsis,
@@ -229,10 +232,13 @@ class _Question_CardState extends State<Question_Card> {
                   alignment: Alignment.centerLeft,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/icons/menubar/ping.svg",
-                        width: 12,
-                        height: 12,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: SvgPicture.asset(
+                          "assets/icons/menubar/ping.svg",
+                          width: 12,
+                          height: 12,
+                        ),
                       ),
                       SizedBox(
                         width: 9,
@@ -259,10 +265,13 @@ class _Question_CardState extends State<Question_Card> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            SvgPicture.asset(
-                              "assets/icons/menubar/eye.svg",
-                              width: 13,
-                              height: 13,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: SvgPicture.asset(
+                                "assets/icons/menubar/eye.svg",
+                                width: 13,
+                                height: 13,
+                              ),
                             ),
                             SizedBox(
                               width: 5,

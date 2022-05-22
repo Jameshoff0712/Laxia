@@ -116,6 +116,7 @@ flutter:
     - assets/map_marker_pin.png
     - assets/icons/
     - assets/icons/menubar/
+    - assets/icons/navbar/
     - assets/mock-data/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

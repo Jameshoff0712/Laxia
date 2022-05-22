@@ -73,10 +73,13 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                               alignment: Alignment.centerLeft,
                               child: Row(
                                 children: [
-                                  SvgPicture.asset(
-                                    "assets/icons/menubar/clinic.svg",
-                                    width: 12,
-                                    height: 12,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 2.0),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/menubar/clinic.svg",
+                                      width: 12,
+                                      height: 12,
+                                    ),
                                   ),
                                   SizedBox(
                                     width: 5,
@@ -99,10 +102,13 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                               alignment: Alignment.centerLeft,
                               child: Row(
                                 children: [
-                                  SvgPicture.asset(
-                                    "assets/icons/menubar/part.svg",
-                                    width: 12,
-                                    height: 12,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 2.0),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/menubar/part.svg",
+                                      width: 12,
+                                      height: 12,
+                                    ),
                                   ),
                                   SizedBox(
                                     width: 5,
@@ -124,7 +130,9 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width,

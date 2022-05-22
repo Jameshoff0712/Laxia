@@ -129,7 +129,7 @@ class _BottomNavState extends State<BottomNav> {
       iconSize: 24.0,
       currentIndex: userProperties.currentPageIndex,
       selectedLabelStyle: TextStyle(color: Helper.mainColor),
-      selectedItemColor:Helper.mainColor,
+      selectedItemColor: Helper.mainColor,
       items: [
         BottomNavigationBarItem(
             icon: _buildIcon(context, FontAwesomeIcons.home, 0),
@@ -139,13 +139,13 @@ class _BottomNavState extends State<BottomNav> {
             label: Trans.of(context).appointment_page),
         BottomNavigationBarItem(
             icon: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
+              padding: const EdgeInsets.only(bottom: 6, top: 6),
               child: SvgPicture.asset(
-                    "assets/icons/navbar/midnavbar.svg",
-                    fit: BoxFit.cover,
-                    width: 24,
-                    height: 24,
-                  ),
+                "assets/icons/navbar/midnavbar.svg",
+                fit: BoxFit.cover,
+                width: 24,
+                height: 24,
+              ),
             ),
             label: "作成"),
         BottomNavigationBarItem(

@@ -18,8 +18,10 @@ class EMLoginScreen extends StatefulWidget {
 
 class _EMLoginScreenState extends State<EMLoginScreen> {
   final _con = AuthController();
-  final _emailController = TextEditingController(text:"patient_1@test.com");//text:"patient_1@test.com"
-  final _passwordController = TextEditingController(text:"123123123");//text:"123123123"
+  final _emailController = TextEditingController(
+      text: "patient_1@test.com"); //text:"patient_1@test.com"
+  final _passwordController =
+      TextEditingController(text: "123123123"); //text:"123123123"
 
   String _errorMsg = "";
   bool _isLoading = false;
@@ -51,8 +53,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
     return Scaffold(
       backgroundColor: Helper.whiteColor,
       body: Padding(
-          padding:
-              const EdgeInsets.only(top: 44.0, left: 16, right: 16),
+          padding: const EdgeInsets.only(top: 44.0, left: 16, right: 16),
           child: Column(
             children: <Widget>[
               Row(
@@ -65,18 +66,18 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                             onPressed: () => Navigator.of(context).pop(),
                             padding: EdgeInsets.only(left: 7),
                             icon: const Icon(Icons.clear,
-                                color: Helper.blackColor),
-                            iconSize: 16,
+                                color: Helper.titleColor),
+                            iconSize: 28,
                           ))),
                   Expanded(
                       flex: 6,
                       child: Center(
                           child: Text(Trans.of(context).login,
                               style: TextStyle(
-                                  color:Helper.blackColor, 
+                                  color: Helper.titleColor,
                                   fontFamily: "Hiragino Kaku Gothic Pro W6",
-                                  fontWeight:FontWeight.w400,
-                                  height: 22/20,
+                                  fontWeight: FontWeight.w400,
+                                  height: 22 / 20,
                                   fontSize: 20)))),
                   Expanded(
                       flex: 2,
@@ -108,10 +109,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                 decoration: InputDecoration(
                   hintText: Trans.of(context).input_email,
                   hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 210, 210, 212), 
-                      fontSize: 14
-                      
-                      ),
+                      color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
                   // filled: true,
                   // fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
@@ -130,12 +128,12 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                       borderSide:
                           BorderSide(color: Helper.mainColor.withOpacity(0.5))),
                   border: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 210, 210, 212), ),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 210, 210, 212),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
               TextFormField(
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
@@ -168,8 +166,9 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                         : Icons.visibility_off),
                   ),
                   border: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide( color: Color.fromARGB(255, 210, 210, 212), ),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 210, 210, 212),
+                    ),
                   ),
                   // border: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
@@ -193,23 +192,19 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                   : Container(),
               Align(
                 alignment: Alignment.centerRight,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                      padding: EdgeInsets.all(0),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      alignment: Alignment.centerRight
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed("/passwordResetone");
+                  },
+                  child: Text(
+                    Trans.of(context).i_forgot_password,
+                    style: TextStyle(
+                        color: Helper.maintxtColor,
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 0.1,
+                        fontSize: 12),
                   ),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed("/passwordResetone");
-                    },
-                    child: Text(
-                      Trans.of(context).i_forgot_password,
-                      style: TextStyle(
-                          color: Helper.maintxtColor,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 0.1,
-                          fontSize: 12),
-                    )),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
@@ -230,7 +225,10 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                           child: Text(
                             Trans.of(context).go_login,
                             style: TextStyle(
-                                color: Helper.whiteColor, fontSize: 12),
+                                fontFamily: Helper.headFontFamily,
+                                fontWeight: FontWeight.w700,
+                                color: Helper.whiteColor,
+                                fontSize: 12),
                           ),
                         ),
                       ),
