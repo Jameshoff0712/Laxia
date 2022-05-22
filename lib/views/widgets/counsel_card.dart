@@ -57,7 +57,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                   style: TextStyle(
                       fontSize: 16,
                       height: 1.5,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w700,
                       color: Helper.maintxtColor),
                 ),
                 Container(
@@ -166,7 +166,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                               style: TextStyle(
                                   fontSize: 12,
                                   height: 1.5,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w700,
                                   color: Helper.mainColor),
                             ),
                           ],
