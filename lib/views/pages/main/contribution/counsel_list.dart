@@ -72,12 +72,12 @@ class _AddCounselPageState extends State<AddCounselPage> {
                                 height: 1.5,
                                 fontFamily: Helper.headFontFamily,
                                 color: Helper.whiteColor,
-                                fontWeight: FontWeight.w400)),
-                        SizedBox(width: 41.8),
+                                fontWeight: FontWeight.w700)),
+                        SizedBox(width: 16.8),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
-                          size: 12,
+                          size: 18,
                         )
                       ],
                     ),
@@ -92,8 +92,8 @@ class _AddCounselPageState extends State<AddCounselPage> {
                       '全てのカウンセリングレポート',
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          color: Helper.titleColor,
-                          fontWeight: FontWeight.w400,
+                          color: Helper.maintxtColor,
+                          fontWeight: FontWeight.w700,
                           fontSize: 16,
                           height: 1.5),
                     ),

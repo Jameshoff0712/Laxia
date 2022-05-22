@@ -225,7 +225,7 @@ class _AppointmentState extends State<Appointment>
                     'クリニックを探す',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w700,
                       fontSize: 14,
                       color: Helper.whiteColor,
                     ),

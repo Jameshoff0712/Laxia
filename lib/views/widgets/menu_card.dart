@@ -33,12 +33,11 @@ class _Menu_CardState extends State<Menu_Card> {
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Container(
           decoration: BoxDecoration(
-             
               boxShadow: widget.shadow == null ? [] : [widget.shadow!]),
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(color: Helper.whiteColor, borderRadius: BorderRadius.circular(5),),
+                decoration: BoxDecoration(color: Helper.whiteColor),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 7, bottom: 10),
                   child: SizedBox(
@@ -83,15 +82,15 @@ class _Menu_CardState extends State<Menu_Card> {
                               child: SizedBox(
                                 width: double.infinity,
                                 child: Text(
-                                  widget.heading+"\n",
+                                  widget.heading + "\n",
                                   maxLines: 2,
-                                  overflow:TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                    fontFamily: "Hiragino Kaku Gothic Pro w6",
+                                      fontFamily: "Hiragino Kaku Gothic Pro w6",
                                       color: Helper.titleColor,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 14.0,
-                                      height: 21/14),
+                                      height: 21 / 14),
                                 ),
                               ),
                             ),
@@ -112,7 +111,7 @@ class _Menu_CardState extends State<Menu_Card> {
                                   fontWeight: FontWeight.w400,
                                   fontSize: 16.0,
                                   fontFamily: Helper.headFontFamily,
-                                  height: 24/16),
+                                  height: 24 / 16),
                             ),
                             SizedBox(
                               width: 6,
@@ -131,10 +130,13 @@ class _Menu_CardState extends State<Menu_Card> {
                           alignment: Alignment.centerLeft,
                           child: Row(
                             children: [
-                              SvgPicture.asset(
-                                "assets/icons/menubar/clinic.svg",
-                                width: 12,
-                                height: 12,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 2.0),
+                                child: SvgPicture.asset(
+                                  "assets/icons/menubar/clinic.svg",
+                                  width: 12,
+                                  height: 12,
+                                ),
                               ),
                               SizedBox(
                                 width: 4,
@@ -143,12 +145,12 @@ class _Menu_CardState extends State<Menu_Card> {
                                 child: Text(
                                   widget.clinic,
                                   maxLines: 1,
-                                  overflow:TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      color: Helper.maintxtColor,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12.0,
-                                      height: 1.5),
+                                    color: Helper.maintxtColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               ),
                             ],

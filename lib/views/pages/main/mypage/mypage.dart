@@ -361,11 +361,25 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                           ),
                           OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            FixProfilePage()));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             FixProfilePage()));
+
+
+                                showModalBottomSheet(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10.0),
+                                        topRight: Radius.circular(10.0)),
+                                  ),
+                                  context: context,
+                                  builder: (context) {
+                                    return FixProfilePage();
+                                  },
+                                  isScrollControlled: true,
+                                );
                               },
                               style: OutlinedButton.styleFrom(
                                   padding:

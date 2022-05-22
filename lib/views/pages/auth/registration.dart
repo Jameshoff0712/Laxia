@@ -55,15 +55,15 @@ class _RegistrationState extends State<Registration> {
                               padding: EdgeInsets.only(left: 7),
                               icon: const Icon(Icons.clear,
                                   color: Helper.blackColor),
-                              iconSize: 16,
+                              iconSize: 25,
                             ))),
                     Expanded(
                         flex: 6,
                         child: Center(
-                            child: Text(Trans.of(context).member_regirtration,
-                                style: defaultTextStyle(
-                                    Helper.blackColor, FontWeight.w500,
-                                    size: 20)))),
+                            child: Text('会員登録',
+                                style: TextStyle(
+                                    color: Helper.titleColor, fontWeight: FontWeight.w700,
+                                    fontSize: 16, height: 1.5)))),
                     Expanded(
                         flex: 2,
                         child: SizedBox(
@@ -97,7 +97,7 @@ class _RegistrationState extends State<Registration> {
                   decoration: InputDecoration(
                     hintText: Trans.of(context).input_email,
                     hintStyle:
-                        TextStyle(color: Helper.authHintColor, fontSize: 14),
+                        TextStyle(color: Helper.authHintColor, fontSize: 14,),
                     // filled: true,
                     // fillColor: Helper.whiteColor.withOpacity(0.2),
                     contentPadding:
@@ -130,7 +130,7 @@ class _RegistrationState extends State<Registration> {
                         style: const TextStyle(color: Colors.red),
                       ))
                   : Container(),
-                SizedBox(height: 20),
+                // SizedBox(height: 20),
                 TextFormField(
                   controller: _passwordController,
                   keyboardType: TextInputType.visiblePassword,
@@ -203,7 +203,7 @@ class _RegistrationState extends State<Registration> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
+                  padding: const EdgeInsets.only(top: 20, left: 61, right: 61),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(color: Helper.txtColor, width: 1),
@@ -226,7 +226,8 @@ class _RegistrationState extends State<Registration> {
                                   color: isBtnColor
                                       ? Helper.txtColor
                                       : Helper.whiteColor,
-                                  fontSize: 12),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),
@@ -252,8 +253,9 @@ class _RegistrationState extends State<Registration> {
                             "すでにアカウントを持っている方はこちら",
                             style: TextStyle(
                                 color: Helper.mainColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                                height: 1.5),
                           )),
                       SizedBox(
                         height: 12,

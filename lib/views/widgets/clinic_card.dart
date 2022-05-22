@@ -31,18 +31,18 @@ class _Clinic_CardState extends State<Clinic_Card> {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         decoration: BoxDecoration(
-                    color: Helper.whiteColor,
-                    borderRadius: BorderRadius.circular(5)
-                  ),
+            color: Helper.whiteColor, borderRadius: BorderRadius.circular(5)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               widget.image != "none"
                   ? Container(
-                      decoration: BoxDecoration(color: Helper.whiteColor,borderRadius: BorderRadius.circular(5)),
+                      decoration: BoxDecoration(
+                          color: Helper.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
                       child: Column(
                         children: [
                           SizedBox(
@@ -78,7 +78,6 @@ class _Clinic_CardState extends State<Clinic_Card> {
               SizedBox(width: 10),
               Expanded(
                 child: Container(
-                  
                   child: Column(
                     children: [
                       Row(
@@ -86,7 +85,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                           Text(
                             widget.name,
                             style: TextStyle(
-                               fontFamily: Helper.headFontFamily,
+                                fontFamily: Helper.headFontFamily,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14.0,
@@ -174,10 +173,10 @@ class _Clinic_CardState extends State<Clinic_Card> {
                               widget.location,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color: Helper.maintxtColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12.0,
-                                height: 1.5),
+                                  color: Helper.maintxtColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.0,
+                                  height: 1.5),
                             ),
                           ],
                         ),

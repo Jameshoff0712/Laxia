@@ -15,6 +15,7 @@ class PointPage extends StatefulWidget {
 }
 
 class _PointPageState extends State<PointPage> {
+  bool isLoading = true;
   List<Point_Sub_Model> mid = [];
   late Point pointInfo;
   final MyController _con = MyController();
@@ -34,7 +35,7 @@ class _PointPageState extends State<PointPage> {
       for (int i = mid.length - 1; i >= 0; i--) {
         if (tmpDate != mid[i].create_at!.substring(0, 10)) {
           setState(() {
-            if (pointForDay.items != null){ 
+            if (pointForDay.items != null) {
               allPointsInfo.add(pointForDay);
               // print(pointForDay.items![0].title);
             }
@@ -61,6 +62,7 @@ class _PointPageState extends State<PointPage> {
       }
       setState(() {
         allPointsInfo.add(pointForDay);
+        isLoading = false;
       });
     } catch (e) {
       print(e.toString());
@@ -177,17 +179,26 @@ class _PointPageState extends State<PointPage> {
               color: Helper.maintxtColor,
             ),
           ),
-          Expanded(
-              child: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                  children: List.generate(
-                allPointsInfo.length,
-                (index) => _buildPointHistoryInfo(index),
-              )),
-            ),
-          )),
+          !isLoading
+              ? Expanded(
+                  child: SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                        children: List.generate(
+                      allPointsInfo.length,
+                      (index) => _buildPointHistoryInfo(index),
+                    )),
+                  ),
+                ))
+              : Container(
+                  child: Container(
+                  height: MediaQuery.of(context).size.width,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: new CircularProgressIndicator(),
+                  ),
+                )),
         ],
       ),
     );

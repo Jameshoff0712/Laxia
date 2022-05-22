@@ -26,9 +26,10 @@ class _PassRest_FourState extends State<PassRest_Four> {
                 "assets/images/check_mail.svg",
                 width: 54.17,
                 height: 54.17,
+                color: Helper.mainColor,
               )),
               SizedBox(
-                height: 30.83,
+                height: 25.42,
               ),
               Center(
                   child: Text(Trans.of(context).complete_reset,
@@ -40,11 +41,11 @@ class _PassRest_FourState extends State<PassRest_Four> {
               ),
               Center(
                   child: Text(Trans.of(context).reset_password_end,
-                      style: defaultTextStyle(
-                          Helper.maintxtColor, FontWeight.w700,
-                          size: 14))),
+                      style: TextStyle(
+                          color: Helper.maintxtColor, fontWeight: FontWeight.w400,
+                          fontSize: 14, height: 1.5))),
               Padding(
-                padding: const EdgeInsets.only(top: 40, left: 61, right: 61),
+                padding: const EdgeInsets.only(top: 40, left: 77, right: 77),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Helper.mainColor,
@@ -61,7 +62,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).login,
-                            style: TextStyle(color: Helper.whiteColor, fontSize: 12),
+                            style: TextStyle(color: Helper.whiteColor, fontSize: 12, fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),

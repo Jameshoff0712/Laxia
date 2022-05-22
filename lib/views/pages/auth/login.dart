@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
           onPressed: () => SystemNavigator.pop(),
           padding: EdgeInsets.only(left: 7),
           icon: const Icon(Icons.clear, color: Helper.titleColor),
-          iconSize: 16,
+          iconSize: 28,
         ),
         shadowColor: Helper.whiteColor,
       ),
@@ -103,9 +103,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Container(
-                      color: Color.fromARGB(255,248, 250, 249,),
+                      color: Color.fromARGB(
+                        255,
+                        248,
+                        250,
+                        249,
+                      ),
                       child: Padding(
-                        padding: const EdgeInsets.only(top:20),
+                        padding: const EdgeInsets.only(bottom: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -118,25 +123,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                   letterSpacing: -1.2,
                                   fontSize: 16),
                             ),
-                            TextButton(
-                                style: TextButton.styleFrom(
-                                  padding:EdgeInsets.zero,
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  alignment: Alignment.center
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pushNamed("/Signup");
-                                },
-                                child: Text(
-                                  Trans.of(context).register,
-                                  style: TextStyle(
-                                      color: Helper.mainColor,
-                                      fontFamily: Helper.headFontFamily,
-                                      fontWeight: FontWeight.w700,
-                                      height: 25 / 16,
-                                      letterSpacing: -0.34,
-                                      fontSize: 16),
-                                ))
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed("/Signup");
+                              },
+                              child: Text(
+                                Trans.of(context).register,
+                                style: TextStyle(
+                                    color: Helper.mainColor,
+                                    fontFamily: Helper.headFontFamily,
+                                    fontWeight: FontWeight.w700,
+                                    height: 25 / 16,
+                                    letterSpacing: -0.34,
+                                    fontSize: 16),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -185,7 +186,7 @@ class LoginButton extends StatelessWidget {
               size: 26,
             ),
             Text(
-              "   " + name,    
+              "   " + name,
               style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
                   size: 14),
             ),

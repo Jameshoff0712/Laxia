@@ -134,7 +134,7 @@ class _BottomNavState extends State<BottomNav> {
       iconSize: 24.0,
       currentIndex: userProperties.currentPageIndex,
       selectedLabelStyle: TextStyle(color: Helper.mainColor),
-      selectedItemColor:Helper.mainColor,
+      selectedItemColor: Helper.mainColor,
       items: [
         BottomNavigationBarItem(
             icon: _buildIcon(context, "home.svg", 0),

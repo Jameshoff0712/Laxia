@@ -31,15 +31,14 @@ class _Doctor_CardState extends State<Doctor_Card> {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         decoration: BoxDecoration(
-          color: Helper.whiteColor,
-          borderRadius: BorderRadius.circular(5)
-        ),
+            color: Helper.whiteColor, borderRadius: BorderRadius.circular(5)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration: BoxDecoration(color: _whiteColor,borderRadius: BorderRadius.circular(5)),
+              decoration: BoxDecoration(
+                  color: _whiteColor, borderRadius: BorderRadius.circular(5)),
               child: Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: Column(
@@ -94,8 +93,8 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         Text(
                           widget.name,
                           style: TextStyle(
-                            fontFamily: Helper.headFontFamily,
-                              color: Helper.titleColor, 
+                              fontFamily: Helper.headFontFamily,
+                              color: Helper.titleColor,
                               fontWeight: FontWeight.w700,
                               fontSize: 16.0,
                               height: 1.5),
@@ -163,10 +162,13 @@ class _Doctor_CardState extends State<Doctor_Card> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(
-                          "assets/icons/menubar/clinic.svg",
-                          width: 12,
-                          height: 12,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0),
+                          child: SvgPicture.asset(
+                            "assets/icons/menubar/clinic.svg",
+                            width: 12,
+                            height: 12,
+                          ),
                         ),
                         SizedBox(
                           width: 4,
@@ -175,7 +177,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                           widget.clinic,
                           style: TextStyle(
                               color: Helper.maintxtColor,
-                              fontWeight: FontWeight.w400, 
+                              fontWeight: FontWeight.w400,
                               fontSize: 12.0,
                               height: 1.5),
                         ),
@@ -191,4 +193,3 @@ class _Doctor_CardState extends State<Doctor_Card> {
     );
   }
 }
-   
