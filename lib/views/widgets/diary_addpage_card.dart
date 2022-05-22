@@ -58,7 +58,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                       style: TextStyle(
                           fontSize: 16,
                           height: 1.5,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w700,
                           color: Helper.maintxtColor),
                     ),
                     widget.buttontext!.isEmpty
@@ -208,9 +208,9 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                 ),
                 Center(
                   child: Container(
-                    height: 62,
+                    height: 42,
                     width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.only(top: 20, left: 28, right: 28),
+                    padding: EdgeInsets.only(top: 20, left: 32, right: 32),
                     child: ElevatedButton(
                       onPressed: () { Navigator.of(context).pushNamed("/AddDiaryProgress"); },
                       style: ElevatedButton.styleFrom(
@@ -237,7 +237,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                               style: TextStyle(
                                   fontSize: 12,
                                   height: 1.5,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w700,
                                   color: Helper.mainColor,),
                             ),
                           ],
@@ -246,11 +246,12 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     ),
                   ),
                 ),
+                SizedBox(height: 10,),
                 Center(
                   child: Container(
-                    height: 52,
+                    height: 42,
                     width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.only(top: 10, left: 28, right: 28),
+                    padding: EdgeInsets.only(top: 10, left: 32, right: 32),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -277,7 +278,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                               style: TextStyle(
                                   fontSize: 12,
                                   height: 1.5,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w700,
                                   color: Helper.mainColor),
                             ),
                           ],

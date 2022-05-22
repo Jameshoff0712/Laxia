@@ -117,11 +117,11 @@ class _DiaryPageState extends State<DiaryPage> {
                                 height: 1.5,
                                 color: Helper.whiteColor,
                                 fontWeight: FontWeight.w400)),
-                        SizedBox(width: 41.8),
+                        SizedBox(width: 26.8),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
-                          size: 12,
+                          size: 18,
                         )
                       ],
                     ),
@@ -149,7 +149,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     color: Helper.titleColor,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w700,
                                     fontSize: 16,
                                     height: 1.5),
                               ),
