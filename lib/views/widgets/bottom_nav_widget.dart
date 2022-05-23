@@ -53,7 +53,7 @@ class _BottomNavState extends State<BottomNav> {
     }
   }
 
-  Widget _buildIcon(BuildContext context, IconData iconData, int index,
+  Widget _buildIcon(BuildContext context, String iconData, int index,
           {int badge = 0}) =>
       Container(
         width: MediaQuery.of(context).size.width,
@@ -71,10 +71,15 @@ class _BottomNavState extends State<BottomNav> {
                   child: Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      FaIcon(
-                        iconData,
-                        color: _getItemColor(index),
-                        size: 24,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: SvgPicture.asset(
+                              "assets/icons/bottombar/"+iconData,
+                              fit: BoxFit.cover,
+                              width: 24,
+                              height: 24,
+                              color:_getItemColor(index),
+                            ),
                       ),
                       badge != 0
                           ? Positioned(
@@ -132,27 +137,19 @@ class _BottomNavState extends State<BottomNav> {
       selectedItemColor: Helper.mainColor,
       items: [
         BottomNavigationBarItem(
-            icon: _buildIcon(context, FontAwesomeIcons.home, 0),
+            icon: _buildIcon(context, "home.svg", 0),
             label: Trans.of(context).home_page),
         BottomNavigationBarItem(
-            icon: _buildIcon(context, FontAwesomeIcons.calendar, 1),
+            icon: _buildIcon(context, "reserve.svg", 1),
             label: Trans.of(context).appointment_page),
         BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 6, top: 6),
-              child: SvgPicture.asset(
-                "assets/icons/navbar/midnavbar.svg",
-                fit: BoxFit.cover,
-                width: 24,
-                height: 24,
-              ),
-            ),
+            icon: _buildIcon(context, "post.svg", 7),
             label: "作成"),
         BottomNavigationBarItem(
-            icon: _buildIcon(context, FontAwesomeIcons.heart, 3),
+            icon: _buildIcon(context, "heart.svg", 3),
             label: Trans.of(context).favorite_page),
         BottomNavigationBarItem(
-            icon: _buildIcon(context, FontAwesomeIcons.userCircle, 4),
+            icon: _buildIcon(context, "user.svg", 4),
             label: Trans.of(context).my_page)
       ],
       onTap: (value) {
