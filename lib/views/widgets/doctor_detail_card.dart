@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 
 class Doctor_DetailCard extends StatefulWidget {
-  final String image, post, name, mark, clinic,experience_year;
+  final String image, post, name, mark, clinic, experience_year;
   final List items, profile;
 
   const Doctor_DetailCard(
@@ -16,7 +16,8 @@ class Doctor_DetailCard extends StatefulWidget {
       required this.mark,
       required this.items,
       required this.profile,
-      required this.clinic, required this.experience_year})
+      required this.clinic,
+      required this.experience_year})
       : super(key: key);
 
   @override
@@ -97,28 +98,37 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                         Row(
                           children: [
                             Text(
-                               widget.name.length>5?widget.name.substring(0,5)+"...":widget.name,
+                              widget.name.length > 5
+                                  ? widget.name.substring(0, 5) + "..."
+                                  : widget.name,
                               style: defaultTextStyle(
                                   Helper.titleColor, FontWeight.w700,
                                   size: 18.0),
                             ),
                             SizedBox(
-                              width:10,
+                              width: 10,
                             ),
                             Text(
                               widget.post,
-                              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,height: 1.5,fontSize: 12.0),
+                              style: TextStyle(
+                                  color: Helper.maintxtColor,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.5,
+                                  fontSize: 12.0),
                             ),
                             SizedBox(
-                              width:17,
+                              width: 17,
                             ),
                             Text(
-                              "医師歴"+widget.experience_year+"年",
-                              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,height: 1.5,fontSize: 12.0),
+                              "医師歴" + widget.experience_year + "年",
+                              style: TextStyle(
+                                  color: Helper.maintxtColor,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.5,
+                                  fontSize: 12.0),
                             ),
                           ],
                         ),
-                        
                         SizedBox(
                           height: 8,
                         ),
@@ -127,9 +137,9 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                           children: [
                             for (int i = 0; i < 5; i++)
                               Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 12,
+                                Icons.star_rounded,
+                                color: Color.fromARGB(255, 206, 176, 88),
+                                size: 18,
                               ),
                             SizedBox(
                               width: 8,
@@ -138,7 +148,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                               widget.mark,
                               style: defaultTextStyle(
                                   Helper.titleColor, FontWeight.w700,
-                                  size: 11.0),
+                                  size: 12.0),
                             ),
                           ],
                         ),
@@ -162,6 +172,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                             fontSize: 14,
                             fontWeight: FontWeight.w700),
                       ),
+                      SizedBox(height: 5),
                       Text(
                         "日記",
                         style: TextStyle(
@@ -180,6 +191,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                             fontSize: 14,
                             fontWeight: FontWeight.w700),
                       ),
+                      SizedBox(height: 5),
                       Text(
                         "カウセレポ",
                         style: TextStyle(
@@ -198,6 +210,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                             fontSize: 14,
                             fontWeight: FontWeight.w700),
                       ),
+                      SizedBox(height: 5),
                       Text(
                         "症例",
                         style: TextStyle(
@@ -215,7 +228,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
             ),
             Container(
               padding:
-                  EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 20),
+                  EdgeInsets.only(left: 10, top: 25, right: 10, bottom: 20),
               child: Column(
                 children: [
                   Align(
@@ -224,29 +237,30 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                       children: [
                         SvgPicture.asset(
                           "assets/icons/doctor.svg",
-                          width: 15,
-                          height: 15,
+                          width: 10,
+                          height: 12,
                         ),
                         SizedBox(width: 5),
                         Text(
                           widget.profile[0]['title'],
                           style: defaultTextStyle(
                               Helper.titleColor, FontWeight.w700,
-                              size: 13.0),
+                              size: 12.0),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 6,
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       widget.profile[0]['content'],
-                      style: defaultTextStyle(
-                          Helper.titleColor, FontWeight.normal,
-                          size: 11.0),
+                      style: TextStyle(
+                          color: Helper.titleColor,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12.0),
                     ),
                   ),
                 ],
@@ -369,7 +383,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                       }),
                       child: Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.only(top: 10, bottom: 10),
+                        padding: EdgeInsets.only(top: 8, bottom: 10),
                         decoration: BoxDecoration(
                           //color: Colors.grey,
                           borderRadius: BorderRadius.circular(8.0),
@@ -378,7 +392,10 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('さらに詳しい情報',
-                                style: TextStyle(color: Helper.mainColor)),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: Helper.mainColor,
+                                    fontSize: 14)),
                             SizedBox(width: 10),
                             Icon(Icons.keyboard_arrow_down,
                                 color: Helper.mainColor),

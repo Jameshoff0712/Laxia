@@ -120,7 +120,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                       children: [
                         for (int i = 0; i < 5; i++)
                           Icon(
-                            Icons.star,
+                            Icons.star_rounded,
                             color: Color.fromARGB(255, 206, 176, 88),
                             size: 16,
                           ),
