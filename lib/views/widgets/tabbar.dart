@@ -18,6 +18,7 @@ class _TabBarWidgetState extends State<TabBarWidget> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Helper.whiteColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
