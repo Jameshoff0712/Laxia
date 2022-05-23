@@ -10,7 +10,9 @@ import 'package:laxia/views/widgets/question_card.dart';
 class SearchResultAll extends StatefulWidget {
   final TabController tabController;
   final List model;
-  const SearchResultAll({Key? key, required this.model, required this.tabController}) : super(key: key);
+  const SearchResultAll(
+      {Key? key, required this.model, required this.tabController})
+      : super(key: key);
 
   @override
   State<SearchResultAll> createState() => _SearchResultAllState();
@@ -39,7 +41,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
             child: LayoutBuilder(
                 builder: (context, BoxConstraints viewportConstraints) {
               return SingleChildScrollView(
-                physics:AlwaysScrollableScrollPhysics(),
+                physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Container(
@@ -92,7 +94,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                   ),
                                 ),
                                 ListView.builder(
-                                   physics: NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: widget.model[0].length,
                                     // physics: const AlwaysScrollableScrollPhysics(),
@@ -100,7 +102,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return Menu_Card(
-                                          onpress:(){},
+                                          onpress: () {},
                                           image: widget.model[0][index]
                                               ["image"],
                                           heading: widget.model[0][index]
@@ -117,7 +119,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
@@ -136,9 +140,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                 onTap: () {
-                                          widget.tabController.animateTo(2);
-                                        },
+                                  onTap: () {
+                                    widget.tabController.animateTo(2);
+                                  },
                                   child: Row(
                                     children: [
                                       Text(
@@ -162,28 +166,32 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                              physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[1].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Clinic_Card(
-                                    onpress: (){
+                                    onpress: () {
                                       // print("object");
-                                      Navigator.of(context).pushNamed("/Clinic_Datail");
+                                      Navigator.of(context)
+                                          .pushNamed("/Clinic_Datail");
                                     },
                                     image: widget.model[1][index]["image"],
                                     post: widget.model[1][index]["post"],
                                     name: widget.model[1][index]["name"],
                                     mark: widget.model[1][index]["mark"],
                                     day: widget.model[1][index]["day"],
-                                    location: widget.model[1][index]["location"]);
+                                    location: widget.model[1][index]
+                                        ["location"]);
                               }),
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
@@ -202,9 +210,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                 onTap: () {
-                                          widget.tabController.animateTo(3);
-                                        },
+                                  onTap: () {
+                                    widget.tabController.animateTo(3);
+                                  },
                                   child: Row(
                                     children: [
                                       Text(
@@ -228,14 +236,14 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                              physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[2].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Doctor_Card(
-                                    onpress:(){},
+                                    onpress: () {},
                                     image: widget.model[2][index]["image"],
                                     post: widget.model[2][index]["post"],
                                     name: widget.model[2][index]["name"],
@@ -246,7 +254,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
@@ -265,9 +275,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                 onTap: () {
-                                          widget.tabController.animateTo(4);
-                                        },
+                                  onTap: () {
+                                    widget.tabController.animateTo(4);
+                                  },
                                   child: Row(
                                     children: [
                                       Text(
@@ -291,7 +301,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                              physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[3].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -314,7 +324,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
@@ -333,9 +345,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                 onTap: () {
-                                          widget.tabController.animateTo(5);
-                                        },
+                                  onTap: () {
+                                    widget.tabController.animateTo(5);
+                                  },
                                   child: Row(
                                     children: [
                                       Text(
@@ -359,7 +371,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                              physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[4].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -387,7 +399,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
@@ -406,9 +420,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                 onTap: () {
-                                          widget.tabController.animateTo(6);
-                                        },
+                                  onTap: () {
+                                    widget.tabController.animateTo(6);
+                                  },
                                   child: Row(
                                     children: [
                                       Text(
@@ -432,7 +446,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                              physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[5].length,
                               // physics: const AlwaysScrollableScrollPhysics(),
@@ -458,7 +472,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
@@ -477,9 +493,9 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
-                                 onTap: () {
-                                          widget.tabController.animateTo(7);
-                                        },
+                                  onTap: () {
+                                    widget.tabController.animateTo(7);
+                                  },
                                   child: Row(
                                     children: [
                                       Text(
@@ -503,7 +519,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                              physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: widget.model[6].length,
                               // physics: const AlwaysScrollableScrollPhysics(),

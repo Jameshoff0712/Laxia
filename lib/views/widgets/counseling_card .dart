@@ -51,7 +51,6 @@ class _Counseling_CardState extends State<Counseling_Card> {
           borderRadius: BorderRadius.circular(10),
           color: Helper.whiteColor,
         ),
-        
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: InkWell(
@@ -60,7 +59,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Navigator.of(context).pushNamed('/Userpage');
                   },
                   child: Row(
@@ -85,7 +84,9 @@ class _Counseling_CardState extends State<Counseling_Card> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
                         widget.name,
                         style: TextStyle(
@@ -96,22 +97,24 @@ class _Counseling_CardState extends State<Counseling_Card> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Text(
-                      widget.sentence,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: Helper.headFontFamily,
-                          fontSize: 14,
-                          height: 1.3,
-                          fontWeight: FontWeight.w400,
-                          color: Helper.titleColor),
-                    ),
+                  widget.sentence,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontFamily: Helper.headFontFamily,
+                      fontSize: 14,
+                      height: 1.3,
+                      fontWeight: FontWeight.w400,
+                      color: Helper.titleColor),
+                ),
                 Container(
                   child: GridView(
                     physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true, 
+                    shrinkWrap: true,
                     padding: EdgeInsets.symmetric(vertical: 10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisSpacing: 10,
@@ -223,10 +226,13 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   alignment: Alignment.centerLeft,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/icons/menubar/ping.svg",
-                        width: 12,
-                        height: 12,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: SvgPicture.asset(
+                          "assets/icons/menubar/ping.svg",
+                          width: 12,
+                          height: 12,
+                        ),
                       ),
                       SizedBox(
                         width: 9,
@@ -249,10 +255,13 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   alignment: Alignment.centerLeft,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/icons/menubar/clinic.svg",
-                        width: 12,
-                        height: 12,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: SvgPicture.asset(
+                          "assets/icons/menubar/clinic.svg",
+                          width: 12,
+                          height: 12,
+                        ),
                       ),
                       SizedBox(
                         width: 9,
@@ -275,10 +284,13 @@ class _Counseling_CardState extends State<Counseling_Card> {
                   alignment: Alignment.centerLeft,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/icons/menubar/part.svg",
-                        width: 12,
-                        height: 12,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2.0),
+                        child: SvgPicture.asset(
+                          "assets/icons/menubar/part.svg",
+                          width: 12,
+                          height: 12,
+                        ),
                       ),
                       SizedBox(
                         width: 9,

@@ -50,15 +50,17 @@ class _SelectSurgeryState extends State<SelectSurgery> {
           ))
         : Scaffold(
             backgroundColor: Helper.whiteColor,
-            body: Column(
-              children: [
-                MultiSelectDart(
-                  treatments: treatments,
-                  width: 110,
-                  buttontxt: '結果を表示',
-                  title: 'エリア選択',
-                ),
-              ],
+            body: SafeArea(
+              child: Column(
+                children: [
+                  MultiSelectDart(
+                    treatments: treatments,
+                    width: 110,
+                    buttontxt: '結果を表示',
+                    title: '施術箇所・内容',
+                  ),
+                ],
+              ),
             ));
   }
 }

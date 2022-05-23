@@ -37,6 +37,8 @@ class _SearchResultState extends State<SearchResult> {
             child: Text(
               tabMenus[widget.index],
               style: TextStyle(
+                  fontFamily: Helper.headFontFamily,
+                  height: 1.5,
                   color: Helper.titleColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w700),
@@ -55,11 +57,12 @@ class _SearchResultState extends State<SearchResult> {
                       style: TextStyle(
                           color: Helper.selectTabColor,
                           fontSize: 12,
+                          height: 1.5,
                           fontWeight: FontWeight.w400),
                     ),
                     Icon(
                       Icons.navigate_next,
-                      size: 15,
+                      size: 28,
                       color: Helper.maintxtColor,
                     )
                   ],

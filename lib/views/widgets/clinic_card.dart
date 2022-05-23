@@ -30,16 +30,19 @@ class _Clinic_CardState extends State<Clinic_Card> {
       onTap: widget.onpress!,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-        color: Helper.whiteColor,
+        decoration: BoxDecoration(
+            color: Helper.whiteColor, borderRadius: BorderRadius.circular(5)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               widget.image != "none"
                   ? Container(
-                      decoration: BoxDecoration(color: Helper.whiteColor),
+                      decoration: BoxDecoration(
+                          color: Helper.whiteColor,
+                          borderRadius: BorderRadius.circular(5)),
                       child: Column(
                         children: [
                           SizedBox(
@@ -75,7 +78,6 @@ class _Clinic_CardState extends State<Clinic_Card> {
               SizedBox(width: 10),
               Expanded(
                 child: Container(
-                  color: Helper.whiteColor,
                   child: Column(
                     children: [
                       Row(
@@ -83,7 +85,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                           Text(
                             widget.name,
                             style: TextStyle(
-                               fontFamily: Helper.headFontFamily,
+                                fontFamily: Helper.headFontFamily,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14.0,
@@ -113,7 +115,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                             Icon(
                               Icons.star,
                               color: Color.fromARGB(255, 206, 176, 88),
-                              size: 12,
+                              size: 16,
                             ),
                           Text(
                             widget.mark,
@@ -137,14 +139,16 @@ class _Clinic_CardState extends State<Clinic_Card> {
                           SizedBox(
                             width: 1,
                           ),
-                          Text(
-                            "日記",
-                            style: TextStyle(
-                                color: Helper.maintxtColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 11.0,
-                                height: 1.5),
-                          ),
+                          widget.image != "none"
+                              ? Text(
+                                  "日記",
+                                  style: TextStyle(
+                                      color: Helper.maintxtColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 11.0,
+                                      height: 1.5),
+                                )
+                              : Container(),
                         ],
                       ),
                       SizedBox(
@@ -159,11 +163,17 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(
-                              "assets/icons/menubar/pin.svg",
-                              width: 14,
-                              height: 14,
-                            ),
+                            widget.image != "none"
+                                ? SvgPicture.asset(
+                                    "assets/icons/menubar/pin.svg",
+                                    width: 14,
+                                    height: 14,
+                                  )
+                                : SvgPicture.asset(
+                                    "assets/icons/fullpin.svg",
+                                    width: 12,
+                                    height: 16,
+                                  ),
                             SizedBox(
                               width: 4,
                             ),
@@ -171,10 +181,10 @@ class _Clinic_CardState extends State<Clinic_Card> {
                               widget.location,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color: Helper.maintxtColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12.0,
-                                height: 1.5),
+                                  color: Helper.maintxtColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.0,
+                                  height: 1.5),
                             ),
                           ],
                         ),

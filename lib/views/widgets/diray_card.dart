@@ -108,7 +108,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 6),
                                 child: Text(
-                                  widget.buttontext!,  
+                                  widget.buttontext!,
                                   style: TextStyle(
                                       color: widget.fontcolor,
                                       height: 1.5,
@@ -118,37 +118,37 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                             ),
                           )),
-                    !widget.isFavorite! ?
-                    widget.isPublic!
-                        ? InkWell( 
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.all(5.0),
-                              color: Color.fromARGB(51, 240, 154, 55),
-                              child: Text(
-                                "公開済",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 10,
-                                  color: Color.fromARGB(255, 249, 161, 56),
-                                ),
-                              ),
-                            ))
-                        : InkWell(
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.all(5.0),
-                              color: Color.fromARGB(51, 102, 110, 110),
-                              child: Text(
-                                "未公開",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 10,
-                                  color: Color.fromARGB(255, 249, 161, 56),
-                                ),
-                              ),
-                            ))
-                    : SizedBox(width: 0),
+                    !widget.isFavorite!
+                        ? widget.isPublic!
+                            ? InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.all(5.0),
+                                  color: Color.fromARGB(51, 240, 154, 55),
+                                  child: Text(
+                                    "公開済",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 10,
+                                      color: Color.fromARGB(255, 249, 161, 56),
+                                    ),
+                                  ),
+                                ))
+                            : InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  padding: EdgeInsets.all(5.0),
+                                  color: Color.fromARGB(51, 102, 110, 110),
+                                  child: Text(
+                                    "未公開",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 10,
+                                      color: Color.fromARGB(255, 249, 161, 56),
+                                    ),
+                                  ),
+                                ))
+                        : SizedBox(width: 0),
                   ],
                 ),
                 Container(
@@ -288,13 +288,16 @@ class _Diary_CardState extends State<Diary_Card> {
                       SizedBox(
                         width: 9,
                       ),
-                      Text(
-                        widget.type,
-                        style: TextStyle(
-                            fontSize: 12,
-                            height: 1.5,
-                            fontWeight: FontWeight.w400,
-                            color: Helper.maintxtColor),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          widget.type,
+                          style: TextStyle(
+                              fontSize: 12,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400,
+                              color: Helper.maintxtColor),
+                        ),
                       ),
                     ],
                   ),
@@ -320,13 +323,16 @@ class _Diary_CardState extends State<Diary_Card> {
                                 SizedBox(
                                   width: 9,
                                 ),
-                                Text(
-                                  widget.clinic!,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      height: 1.5,
-                                      fontWeight: FontWeight.w400,
-                                      color: Helper.maintxtColor),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 5),
+                                  child: Text(
+                                    widget.clinic!,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w400,
+                                        color: Helper.maintxtColor),
+                                  ),
                                 ),
                               ],
                             ),
@@ -348,13 +354,16 @@ class _Diary_CardState extends State<Diary_Card> {
                       SizedBox(
                         width: 9,
                       ),
-                      Text(
-                        widget.check,
-                        style: TextStyle(
-                            fontSize: 12,
-                            height: 1.5,
-                            fontWeight: FontWeight.w400,
-                            color: Helper.maintxtColor),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          widget.check,
+                          style: TextStyle(
+                              fontSize: 12,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400,
+                              color: Helper.maintxtColor),
+                        ),
                       ),
                     ],
                   ),
@@ -374,13 +383,16 @@ class _Diary_CardState extends State<Diary_Card> {
                       SizedBox(
                         width: 9,
                       ),
-                      Text(
-                        widget.price + "円",
-                        style: TextStyle(
-                            fontSize: 12,
-                            height: 1.5,
-                            fontWeight: FontWeight.w400,
-                            color: Helper.maintxtColor),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          widget.price + "円",
+                          style: TextStyle(
+                              fontSize: 12,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400,
+                              color: Helper.maintxtColor),
+                        ),
                       ),
                     ],
                   ),

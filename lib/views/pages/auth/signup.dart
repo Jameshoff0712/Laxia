@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/views/pages/auth/login.dart';
 import 'package:laxia/views/pages/auth/registration.dart';
@@ -86,137 +87,149 @@ class _SignUpScreenState extends State<SignUpScreen> {
           onPressed: () => Navigator.of(context).pop(),
           padding: EdgeInsets.only(left: 7),
           icon: const Icon(Icons.clear, color: Helper.titleColor),
-          iconSize: 16,
+          iconSize: 28,
         ),
         shadowColor: Helper.whiteColor,
       ),
       backgroundColor: Helper.whiteColor,
-      body: SafeArea(
-        child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+      body: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 80,
+          ),
+          Text(
+            Trans.of(context).signup_contents,
+            style: TextStyle(
+                fontFamily: 'Hiragino Kaku Gothic Pro W6',
+                color: Helper.titleColor,
+                fontWeight: FontWeight.w400,
+                height: 18 / 20,
+                letterSpacing: -0.34,
+                fontSize: 20),
+          ),
+          SizedBox(
+            height: 19,
+          ),
+          Text(
+            Trans.of(context).lets_start_with_signup,
+            softWrap: true,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Helper.blackColor,
+                fontWeight: FontWeight.w400,
+                height: 25 / 16,
+                letterSpacing: -1.2,
+                fontSize: 16),
+          ),
+          const SizedBox(
+            height: 64,
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 32, right: 32),
             child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 23,
+              children: [
+                LoginButton(
+                    Trans.of(context).email, Icons.email_outlined, 'email'),
+                const SizedBox(
+                  height: 11,
                 ),
-                Text(
-                  Trans.of(context).signup_contents,
-                  style: TextStyle(
-                      fontFamily: 'Hiragino Kaku Gothic Pro W6',
-                      color: Helper.titleColor,
-                      fontWeight: FontWeight.w400,
-                      height: 18 / 20,
-                      letterSpacing: -0.34,
-                      fontSize: 20),
-                ),
-                SizedBox(
-                  height: 19,
-                ),
-                Text(
-                  Trans.of(context).lets_start_with_signup,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Helper.blackColor,
-                      fontWeight: FontWeight.w400,
-                      height: 25 / 16,
-                      letterSpacing: -1.2,
-                      fontSize: 16),
+                LoginButton(
+                  "Apple" + Trans.of(context).continues,
+                  Icons.apple,
+                  "apple",
                 ),
                 const SizedBox(
-                  height: 64,
+                  height: 11,
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: 16, right: 16),
-                  child: Column(
-                    children: [
-                      LoginButton(Trans.of(context).email, Icons.email_outlined,
-                          'email'),
-                      const SizedBox(
-                        height: 15,
+                TwitterButton(
+                    name: "Twitter" + Trans.of(context).continues,
+                    icon: Icons.man),
+                const SizedBox(
+                  height: 11,
+                ),
+                LoginButton(
+                  "Facebook" + Trans.of(context).continues,
+                  Icons.facebook,
+                  "facebook",
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 64,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 41, bottom: 10),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: Trans.of(context).by_continue,
+                        style: TextStyle(
+                            height: 16.5 / 11,
+                            color: Helper.blackColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 11),
                       ),
-                      LoginButton(
-                        "Apple" + Trans.of(context).continues,
-                        Icons.apple,
-                        "apple",
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TwitterButton(
-                          name: "Twitter" + Trans.of(context).continues,
-                          icon: Icons.man),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      LoginButton(
-                        "Facebook" + Trans.of(context).continues,
-                        Icons.facebook,
-                        "facebook",
-                      ),
-                    ],
+                      TextSpan(
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.of(context)
+                                  .pushNamed("/TermsOfService");
+                            },
+                          text: Trans.of(context).service_term,
+                          style: TextStyle(
+                              height: 16.5 / 11,
+                              color: Helper.mainColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11)),
+                      TextSpan(
+                          text: Trans.of(context).agree_to,
+                          style: TextStyle(
+                              height: 16.5 / 11,
+                              color: Helper.blackColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11)),
+                      TextSpan(
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.of(context)
+                                  .pushNamed("/TermsOfService");
+                            },
+                          text: Trans.of(context).privacy + "\n",
+                          style: TextStyle(
+                              color: Helper.mainColor,
+                              fontWeight: FontWeight.w400,
+                              height: 16.5 / 11,
+                              fontSize: 11)),
+                      TextSpan(
+                          text: Trans.of(context).agree_policy,
+                          style: TextStyle(
+                              color: Helper.blackColor,
+                              fontWeight: FontWeight.w400,
+                              height: 16.5 / 11,
+                              fontSize: 11)),
+                    ]),
                   ),
                 ),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 41),
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(children: [
-                            TextSpan(
-                              text: Trans.of(context).by_continue,
-                              style: TextStyle(
-                                  height: 16.5/11,
-                                  color: Helper.blackColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 11),
-                            ),
-                            TextSpan(
-                                recognizer: new TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.of(context)
-                                        .pushNamed("/TermsOfService");
-                                  },
-                                text: Trans.of(context).service_term,
-                                style: TextStyle(
-                                    height: 16.5/11,
-                                    color: Helper.mainColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 11)),
-                            TextSpan(
-                                text: Trans.of(context).agree_to,
-                                style: TextStyle(
-                                    height: 16.5/11,
-                                    color: Helper.blackColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 11)),
-                            TextSpan(
-                                recognizer: new TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.of(context)
-                                        .pushNamed("/TermsOfService");
-                                  },
-                                text: Trans.of(context).privacy + "\n",
-                                style: TextStyle(
-                                    color: Helper.mainColor,
-                                    fontWeight: FontWeight.w400,
-                                    height: 16.5/11,
-                                    fontSize: 11)),
-                            TextSpan(
-                                text: Trans.of(context).agree_policy,
-                                style: TextStyle(
-                                    color: Helper.blackColor,
-                                    fontWeight: FontWeight.w400,
-                                    height: 16.5/11,
-                                    fontSize: 11)),
-                          ]),
+                      Container(
+                        padding: EdgeInsets.only(top: 14, bottom: 50),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(
+                            255,
+                            240,
+                            242,
+                            245,
+                          ),
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomLeft,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -240,12 +253,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ))
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
-                ),
+                )
               ],
-            )),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -261,7 +276,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
+        padding: EdgeInsets.only(top: 8, bottom: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -287,9 +302,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               context: context,
               builder: (context) {
                 return Container(
-                  height: MediaQuery.of(context).size.height * 4 / 9,
+                  height: 387,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
                     child: Column(
                       children: [
                         Row(
@@ -327,7 +343,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             width: 60,
                             height: 60,
                             decoration: BoxDecoration(
-                              color: Colors.grey,
+                              color: Color.fromARGB(255, 187, 187, 187),
                               borderRadius: BorderRadius.circular(10),
                             )),
                         SizedBox(
@@ -336,10 +352,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 30),
                           child: Text(
-                            "Apple ID “sample@gmail.com”を使用して”LAXIA”のアカウントを作成してください",
-                            style: defaultTextStyle(
-                                Helper.titleColor, FontWeight.w400,
-                                size: 14),
+                            "Apple ID “sample@gmail.com”を使用して\n”LAXIA”のアカウントを作成してください",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Helper.blackColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14),
                           ),
                         ),
                       ],

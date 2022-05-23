@@ -53,43 +53,50 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
       child: Column(
         children: [
           SizedBox(
-            height: 56,
+            height: 15,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Stack(
+              alignment: Alignment.center,
               children: [
-                InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.close,
-                      size: 15,
-                    )),
                 Text(widget.title,
-                    style:
-                        TextStyle(fontFamily: "Hiragino Kaku Gothic Pro w6",fontSize: 16, fontWeight: FontWeight.w400)),
-                InkWell(
-                  onTap: () {
-                    for (int i = 0; i < widget.treatments.length; i++) {
-                      for (int j = 0;
-                          j < widget.treatments[i].all_childrens!.length;
-                          j++) {
-                        setState(() {
-                          selected[i][j] = false;
-                          willSelect[i] = true;
-                        });
-                      }
-                    }
-                  },
-                  child: Text("クリア",
-                      style: TextStyle(
-                          color: Helper.unClickClearButtonColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400)),
-                )
+                    style: TextStyle(
+                        fontFamily: "Hiragino Kaku Gothic Pro w6",
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.close,
+                          size: 25,
+                        )),
+                    InkWell(
+                      onTap: () {
+                        for (int i = 0; i < widget.treatments.length; i++) {
+                          for (int j = 0;
+                              j < widget.treatments[i].all_childrens!.length;
+                              j++) {
+                            setState(() {
+                              selected[i][j] = false;
+                              willSelect[i] = true;
+                            });
+                          }
+                        }
+                      },
+                      child: Text("クリア",
+                          style: TextStyle(
+                              color: Helper.unClickClearButtonColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400)),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -132,34 +139,43 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                   top: BorderSide(
                                                       width:
                                                           index == 0 ? 1 : 0.5,
-                                                      color: Colors.grey),
+                                                      color: Color.fromARGB(
+                                                          255, 239, 239, 239)),
                                                   left: BorderSide(
                                                       width: 1,
-                                                      color: Colors.grey),
+                                                      color: Color.fromARGB(
+                                                          255, 239, 239, 239)),
                                                   right: BorderSide(
                                                       width: 1,
-                                                      color: Colors.grey),
+                                                      color: Color.fromARGB(
+                                                          255, 239, 239, 239)),
                                                   bottom: BorderSide(
                                                       width: 0.5,
-                                                      color: Colors.grey))),
+                                                      color: Color.fromARGB(255,
+                                                          239, 239, 239)))),
                                       width: double.infinity,
                                       child: SizedBox(
                                         height: 44,
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 16),
+                                          padding:
+                                              const EdgeInsets.only(left: 16),
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 widget.treatments[index].name!,
                                                 softWrap: true,
                                                 style: TextStyle(
-                                                  color:(currentpage == index)?Helper.mainColor:Helper.maintxtColor,
-                                                  fontSize:14,
-                                                  fontWeight: FontWeight.w400
-                                                ),
+                                                    color: (currentpage ==
+                                                            index)
+                                                        ? Helper.mainColor
+                                                        : Helper.maintxtColor,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                               ),
                                             ],
                                           ),
@@ -191,10 +207,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                     onTap: () {
                                       for (int j = 0;
                                           j <
-                                              widget
-                                                  .treatments[currentpage]
-                                                      .all_childrens!
-                                                  .length;
+                                              widget.treatments[currentpage]
+                                                  .all_childrens!.length;
                                           j++)
                                         setState(() {
                                           selected[currentpage][j] =
@@ -230,7 +244,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 16,
+                                    height: 4,
                                   ),
                                   Expanded(
                                     child: SingleChildScrollView(
@@ -248,7 +262,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                 j <
                                                     widget
                                                         .treatments[currentpage]
-                                                            .all_childrens!
+                                                        .all_childrens!
                                                         .length;
                                                 j++)
                                               InkWell(
@@ -280,9 +294,11 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                             horizontal: 8,
                                                             vertical: 3),
                                                     child: Text(
-                                                      widget.treatments[
-                                                                  currentpage]
-                                                              .all_childrens![j].name!,
+                                                      widget
+                                                          .treatments[
+                                                              currentpage]
+                                                          .all_childrens![j]
+                                                          .name!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w400,
@@ -314,6 +330,9 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
               ),
             ),
           ),
+          SizedBox(
+            height: 4,
+          ),
           InkWell(
             onTap: () {
               surgeryProvider.initSelected();
@@ -328,21 +347,23 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                   }
                 }
               }
-              diaryProperties.setOperatinTypes(surgeryProvider.getSelectedCurePos);
+              diaryProperties
+                  .setOperatinTypes(surgeryProvider.getSelectedCurePos);
               Navigator.of(context).pop();
             },
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Helper.btnBgMainColor),
-              width: 300,
-              height: 45,
-              child: Center(
-                //padding: EdgeInsets.symmetric(horizontal: 114, vertical: 12),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 114, vertical: 12),
                 child: Text(
-                  surgeryProvider.btnText.isEmpty ? widget.buttontxt : surgeryProvider.btnText,
+                  surgeryProvider.btnText.isEmpty
+                      ? widget.buttontxt
+                      : surgeryProvider.btnText,
                   style: TextStyle(
-                    fontFamily: "Hiragino Kaku Gothic Pro w6",
+                      fontFamily: "Hiragino Kaku Gothic Pro w6",
                       color: Helper.whiteColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w700),
@@ -351,7 +372,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
             ),
           ),
           SizedBox(
-            height: 33,
+            height: 4,
           )
         ],
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 

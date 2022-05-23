@@ -26,7 +26,8 @@ Future<void> main() async {
       ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
       ChangeNotifierProvider<SurGeryProvider>.value(value: SurGeryProvider()),
       ChangeNotifierProvider<QuestionProvider>.value(value: QuestionProvider()),
-      ChangeNotifierProvider<PostDiaryProvider>.value(value: PostDiaryProvider()),
+      ChangeNotifierProvider<PostDiaryProvider>.value(
+          value: PostDiaryProvider()),
     ], child: MyApp()));
   }); //lotation stop
 }
@@ -68,7 +69,7 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W3'),
             navigatorKey: settingRepo.navigatorKey,
             debugShowCheckedModeBanner: false,
-            initialRoute: '/Splash',
+            initialRoute: '/Splash', //EmailLogin
             onGenerateRoute: RouteGenerator.generateRoute,
             locale: _setting.mobileLanguage.value,
             localizationsDelegates: const [
