@@ -166,7 +166,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                   ),
                   Container(
                     color: Helper.whiteColor,
-                    padding: EdgeInsets.only(bottom: 25),
+                    padding: EdgeInsets.only(bottom: 25, top: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -189,6 +189,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     height: 1.5,
                                     fontWeight: FontWeight.w700),
                               ),
+                              SizedBox(height: 2),
                               Text(
                                 "メニュー",
                                 style: TextStyle(
@@ -218,6 +219,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700),
                               ),
+                              SizedBox(height: 2),
                               Text(
                                 "日記",
                                 style: TextStyle(
@@ -247,6 +249,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     height: 1.5,
                                     fontWeight: FontWeight.w700),
                               ),
+                              SizedBox(height: 2),
                               Text(
                                 "カウセレポ",
                                 style: TextStyle(
@@ -276,6 +279,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     height: 1.5,
                                     fontWeight: FontWeight.w700),
                               ),
+                              SizedBox(height: 2),
                               Text(
                                 "ドクター",
                                 style: TextStyle(
@@ -298,7 +302,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     child: Column(children: [
                       Padding(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 15),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -772,9 +776,11 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                   Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 18),
                             child: Text(
                               "クリニック基本情報",
                               style: TextStyle(
@@ -786,7 +792,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            padding: const EdgeInsets.only(
+                                left: 16, right: 16, bottom: 16),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -794,7 +801,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   "住所",
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 51, 51, 51),
-                                      fontSize: 18,
+                                      fontSize: 14,
+                                      fontFamily: Helper.headFontFamily,
                                       height: 1.5,
                                       fontWeight: FontWeight.w700),
                                 ),
@@ -806,7 +814,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     children: [
                                       Text(
                                         clinic_detail.clinic.addr01 == null
-                                            ? ""
+                                            ? "東京都港区赤坂4-3-2absビル4F"
                                             : clinic_detail.clinic.addr01!,
                                         style: TextStyle(
                                             color: Color.fromARGB(
@@ -817,7 +825,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       ),
                                       Icon(
                                         Icons.navigate_next,
-                                        size: 17,
+                                        size: 24,
                                         color: Helper.maintxtColor,
                                       )
                                     ],
@@ -828,7 +836,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           ),
                           Container(
                             decoration: BoxDecoration(color: Helper.whiteColor),
-                            height: 300,
+                            height: 200,
                             child: GoogleMap(
                               mapType: MapType.normal,
                               onMapCreated: _onMapCreated,
@@ -847,8 +855,16 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           SizedBox(
                             width: double.infinity,
                             child: Padding(
-                              padding: const EdgeInsets.all(14.0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
                               child: DataTable(
+                                  border: TableBorder(
+                                      bottom: BorderSide(
+                                          color:
+                                              Helper.txtColor.withOpacity(0.3),
+                                          width: 1)),
+                                  headingRowHeight: 38,
+                                  dataRowHeight: 38,
                                   horizontalMargin: 0,
                                   dataTextStyle: TextStyle(),
                                   showBottomBorder: true,
@@ -856,7 +872,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   columnSpacing: 0,
                                   columns: [
                                     DataColumn(
-                                        label: Text('最寄駅',
+                                        label: Text('クリニック名',
                                             style: TextStyle(
                                                 fontFamily:
                                                     Helper.headFontFamily,
@@ -874,6 +890,24 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 fontWeight: FontWeight.w400))),
                                   ],
                                   rows: [
+                                    DataRow(cells: [
+                                      DataCell(
+                                        Text('最寄駅',
+                                            style: TextStyle(
+                                                fontFamily:
+                                                    Helper.headFontFamily,
+                                                fontSize: 14,
+                                                height: 1.5,
+                                                color: Helper.titleColor,
+                                                fontWeight: FontWeight.w700)),
+                                      ),
+                                      DataCell(Text('clinic_detail["access"]',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              height: 1.5,
+                                              color: Helper.maintxtColor,
+                                              fontWeight: FontWeight.w400))),
+                                    ]),
                                     DataRow(cells: [
                                       DataCell(
                                         Text('アクセス',
@@ -994,14 +1028,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                         children: [
                           isfavourite
                               ? Icon(
-                                  Icons.star,
+                                  Icons.star_rounded,
                                   color: Helper.btnBgYellowColor,
-                                  size: 22,
+                                  size: 32,
                                 )
                               : Icon(
-                                  Icons.star_border,
+                                  Icons.star_border_rounded,
                                   color: Helper.txtColor,
-                                  size: 22,
+                                  size: 32,
                                 ),
                           Text(
                             "お気に入り",
@@ -1019,7 +1053,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 14),
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 6),
                         primary: Helper.btnBgYellowColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(70.0),

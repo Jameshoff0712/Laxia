@@ -33,7 +33,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
         decoration: BoxDecoration(
             color: Helper.whiteColor, borderRadius: BorderRadius.circular(5)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+          padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,12 +84,19 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         children: [
                           Text(
                             widget.name,
-                            style: TextStyle(
-                                fontFamily: Helper.headFontFamily,
-                                color: Helper.titleColor,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14.0,
-                                height: 1.5),
+                            style: widget.image != "none"
+                                ? TextStyle(
+                                    fontFamily: Helper.headFontFamily,
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14.0,
+                                    height: 1.5)
+                                : TextStyle(
+                                    fontFamily: Helper.headFontFamily,
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18.0,
+                                    height: 1.5),
                           ),
                           SizedBox(
                             width: 3,
@@ -106,35 +113,47 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         ],
                       ),
                       SizedBox(
-                        height: 2.5,
+                        height: widget.image != "none" ? 2.5 : 7,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           for (int i = 0; i < 5; i++)
-                            Icon(
-                              Icons.star,
-                              color: Color.fromARGB(255, 206, 176, 88),
-                              size: 16,
-                            ),
+                            Icon(Icons.star_rounded,
+                                color: Color.fromARGB(255, 206, 176, 88),
+                                size: widget.image != "none" ? 16 : 20),
                           Text(
                             widget.mark,
-                            style: TextStyle(
-                                color: Helper.titleColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 11.0,
-                                height: 1.5),
+                            style: widget.image != "none"
+                                ? TextStyle(
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11.0,
+                                    height: 1.5)
+                                : TextStyle(
+                                    fontFamily: Helper.headFontFamily,
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12.0,
+                                    height: 1.5),
                           ),
                           SizedBox(
                             width: 8,
                           ),
                           Text(
                             widget.day,
-                            style: TextStyle(
-                                color: Helper.titleColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 11.0,
-                                height: 1.5),
+                            style: widget.image != "none"
+                                ? TextStyle(
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11.0,
+                                    height: 1.5)
+                                : TextStyle(
+                                    fontFamily: Helper.headFontFamily,
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12.0,
+                                    height: 1.5),
                           ),
                           SizedBox(
                             width: 1,
@@ -152,7 +171,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: widget.image != "none" ? 20 : 10,
                       ),
                       InkWell(
                         onTap: () {
