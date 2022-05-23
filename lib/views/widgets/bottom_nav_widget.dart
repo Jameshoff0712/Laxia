@@ -72,14 +72,21 @@ class _BottomNavState extends State<BottomNav> {
                     clipBehavior: Clip.none,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 6),
-                        child: SvgPicture.asset(
-                              "assets/icons/bottombar/"+iconData,
-                              fit: BoxFit.cover,
-                              width: 24,
-                              height: 24,
-                              color:_getItemColor(index),
-                            ),
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: iconData == "post.svg"
+                            ? SvgPicture.asset(
+                                "assets/icons/bottombar/" + iconData,
+                                fit: BoxFit.cover,
+                                width: 24,
+                                height: 24,
+                              )
+                            : SvgPicture.asset(
+                                "assets/icons/bottombar/" + iconData,
+                                fit: BoxFit.cover,
+                                width: 24,
+                                height: 24,
+                                color: _getItemColor(index),
+                              ),
                       ),
                       badge != 0
                           ? Positioned(
@@ -143,8 +150,7 @@ class _BottomNavState extends State<BottomNav> {
             icon: _buildIcon(context, "reserve.svg", 1),
             label: Trans.of(context).appointment_page),
         BottomNavigationBarItem(
-            icon: _buildIcon(context, "post.svg", 7),
-            label: "作成"),
+            icon: _buildIcon(context, "post.svg", 7), label: "作成"),
         BottomNavigationBarItem(
             icon: _buildIcon(context, "heart.svg", 3),
             label: Trans.of(context).favorite_page),

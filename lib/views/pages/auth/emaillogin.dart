@@ -219,7 +219,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 14, bottom: 14),
+                        padding: const EdgeInsets.only(top: 12, bottom: 12),
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
