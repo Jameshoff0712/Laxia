@@ -122,7 +122,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                           Icon(
                             Icons.star,
                             color: Color.fromARGB(255, 206, 176, 88),
-                            size: 12,
+                            size: 16,
                           ),
                         Text(
                           widget.mark,

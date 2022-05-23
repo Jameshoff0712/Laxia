@@ -115,7 +115,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                             Icon(
                               Icons.star,
                               color: Color.fromARGB(255, 206, 176, 88),
-                              size: 12,
+                              size: 16,
                             ),
                           Text(
                             widget.mark,
@@ -139,14 +139,16 @@ class _Clinic_CardState extends State<Clinic_Card> {
                           SizedBox(
                             width: 1,
                           ),
-                          Text(
-                            "日記",
-                            style: TextStyle(
-                                color: Helper.maintxtColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 11.0,
-                                height: 1.5),
-                          ),
+                          widget.image != "none"
+                              ? Text(
+                                  "日記",
+                                  style: TextStyle(
+                                      color: Helper.maintxtColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 11.0,
+                                      height: 1.5),
+                                )
+                              : Container(),
                         ],
                       ),
                       SizedBox(
@@ -161,11 +163,17 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(
-                              "assets/icons/menubar/pin.svg",
-                              width: 14,
-                              height: 14,
-                            ),
+                            widget.image != "none"
+                                ? SvgPicture.asset(
+                                    "assets/icons/menubar/pin.svg",
+                                    width: 14,
+                                    height: 14,
+                                  )
+                                : SvgPicture.asset(
+                                    "assets/icons/fullpin.svg",
+                                    width: 12,
+                                    height: 16,
+                                  ),
                             SizedBox(
                               width: 4,
                             ),

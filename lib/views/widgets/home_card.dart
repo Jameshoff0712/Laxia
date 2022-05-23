@@ -168,7 +168,7 @@ class _Home_CardState extends State<Home_Card> {
                             width: 6,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
+                            padding: const EdgeInsets.only(bottom: 3),
                             child: Text(
                               widget.type,
                               style: TextStyle(
@@ -197,7 +197,7 @@ class _Home_CardState extends State<Home_Card> {
                             width: 6,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
+                            padding: const EdgeInsets.only(bottom: 2),
                             child: Text(
                               widget.clinic,
                               maxLines: 1,

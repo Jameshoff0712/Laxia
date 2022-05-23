@@ -178,8 +178,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         fontSize: 14.0),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 25),
+                                    padding: const EdgeInsets.only(
+                                        top: 24, bottom: 10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -247,7 +247,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                         Container(
                           decoration: BoxDecoration(color: Helper.whiteColor),
                           child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(16),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -260,6 +260,13 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                   SizedBox(
                                     width: double.infinity,
                                     child: DataTable(
+                                        border: TableBorder(
+                                            bottom: BorderSide(
+                                                color: Helper.txtColor
+                                                    .withOpacity(0.3),
+                                                width: 1)),
+                                        dataRowHeight: 38,
+                                        headingRowHeight: 38,
                                         horizontalMargin: 0,
                                         dataTextStyle: TextStyle(),
                                         showBottomBorder: true,
@@ -281,8 +288,6 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   Menu_Datails[0]["description"]
                                                       ["children"][0],
                                                   style: TextStyle(
-                                                      fontFamily:
-                                                          Helper.headFontFamily,
                                                       height: 1.5,
                                                       fontSize: 14,
                                                       color: Helper.titleColor,
@@ -355,15 +360,15 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         ]),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 25),
+                                    padding: const EdgeInsets.only(
+                                        top: 30, bottom: 14),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
                                         SizedBox(
-                                          width: 200,
-                                          height: 40,
+                                          width: 158,
+                                          height: 30,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               side: BorderSide(
@@ -425,7 +430,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                         Container(
                           decoration: BoxDecoration(color: Helper.whiteColor),
                           child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(16),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -449,14 +454,13 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 8, vertical: 6),
+                                              horizontal: 8, vertical: 3),
                                           child: Text(
                                             "施術時間 90分",
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 249, 161, 56),
                                                 fontSize: 10,
-                                                height: 1.5,
                                                 fontWeight: FontWeight.w400),
                                           ),
                                         ),
@@ -464,8 +468,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16.0),
+                                    padding: const EdgeInsets.only(top: 3.0),
                                     child: ListView.builder(
                                         physics: NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
@@ -491,13 +494,13 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   Row(
                                                     children: [
                                                       Container(
-                                                        width: 20,
-                                                        height: 20,
+                                                        width: 12,
+                                                        height: 12,
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        10),
+                                                                        6),
                                                             color: Helper
                                                                 .mainColor),
                                                         child: Center(
@@ -520,7 +523,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                               [index]["label"],
                                                           style: TextStyle(
                                                               height: 1.5,
-                                                              fontSize: 14,
+                                                              fontSize: 12,
                                                               color: Helper
                                                                   .titleColor,
                                                               fontWeight:
@@ -556,7 +559,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                         Container(
                           decoration: BoxDecoration(color: Helper.whiteColor),
                           child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(16),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -576,19 +579,19 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                     style: TextStyle(
                                         color: Helper.titleColor,
                                         fontWeight: FontWeight.w400,
-                                        height: 1.5,
+                                        height: 25 / 14,
                                         fontSize: 14.0),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 25),
+                                    padding: const EdgeInsets.only(
+                                        top: 30, bottom: 10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
                                         SizedBox(
-                                          width: 200,
-                                          height: 40,
+                                          width: 158,
+                                          height: 30,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               side: BorderSide(
@@ -740,32 +743,43 @@ class _Menu_DetailState extends State<Menu_Detail> {
                           child: Column(
                             children: [
                               Container(
-                                decoration:
-                                    BoxDecoration(color: Helper.whiteColor),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.center,
+                                    colors: [
+                                      Colors.white,
+                                      Helper.homeBgColor,
+                                    ],
+                                  ),
+                                ),
                                 child: Column(
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16, vertical: 12),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "この施術の日記",
-                                            style: TextStyle(
-                                                fontFamily:
-                                                    Helper.headFontFamily,
-                                                height: 1.5,
-                                                color: Color.fromARGB(
-                                                    255, 51, 51, 51),
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          SizedBox(
-                                            width: 0,
-                                          ),
-                                        ],
+                                    Container(
+                                      color: Helper.whiteColor,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 12),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "この施術の日記",
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                      Helper.headFontFamily,
+                                                  height: 1.5,
+                                                  color: Color.fromARGB(
+                                                      255, 51, 51, 51),
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                            SizedBox(
+                                              width: 0,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     // ListView.builder(
@@ -793,7 +807,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         physics: NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 8),
+                                            horizontal: 10, vertical: 0),
                                         scrollDirection: Axis.vertical,
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
