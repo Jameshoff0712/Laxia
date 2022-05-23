@@ -419,6 +419,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: 80,
+                      ),
                     ],
                   )
                 : Column(

@@ -433,18 +433,21 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text(
-                                surgeryProvider.selectedCurePosStr.isNotEmpty
-                                    ? surgeryProvider.getSelectedCurePosStr
-                                    : "選択してください",
-                                overflow: TextOverflow.clip,
-                                softWrap: true,
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: Helper.txtColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    height: 1.5),
+                              Expanded(
+                                child: Text(
+                                  surgeryProvider.selectedCurePosStr.isNotEmpty
+                                      ? surgeryProvider.getSelectedCurePosStr
+                                      : "選択してください",
+                                  textAlign: TextAlign.end,
+                                  overflow: TextOverflow.clip,
+                                  softWrap: true,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: Helper.txtColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12,
+                                      height: 1.5),
+                                ),
                               ),
                               SizedBox(
                                 width: 16,

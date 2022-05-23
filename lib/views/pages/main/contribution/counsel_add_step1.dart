@@ -181,6 +181,65 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                     height: 1.5),
               ),
             ),
+            // Container(
+            //   decoration: BoxDecoration(color: Colors.white),
+            //   child: Padding(
+            //     padding: const EdgeInsets.fromLTRB(16.0, 15.0, 16.0, 12.0),
+            //     child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Flexible(
+            //             flex: 1,
+            //             child: Text(
+            //               "質問したい施術内容",
+            //               style: TextStyle(
+            //                   color: Color.fromARGB(255, 18, 18, 18),
+            //                   fontWeight: FontWeight.w700,
+            //                   fontSize: 12,
+            //                   height: 1.5),
+            //             ),
+            //           ),
+            //           Flexible(
+            //             flex: 1,
+            //             child: Row(
+            //               children: [
+            //                 Expanded(
+            //                   child: Text(
+            //                     surgeryProvider.selectedCurePos.isEmpty
+            //                         ? "選択してください"
+            //                         : surgeryProvider.getSelectedCurePosStr,
+            //                     style: TextStyle(
+            //                         color: Helper.titleColor,
+            //                         fontWeight: FontWeight.w400,
+            //                         fontSize: 14,
+            //                         height: 1.3),
+            //                   ),
+            //                 ),
+            //                 SizedBox(
+            //                   width: 25,
+            //                 ),
+            //                 GestureDetector(
+            //                   onTap: () {
+            //                     surgeryProvider.setButtonText("次へ");
+            //                     Navigator.of(context)
+            //                         .pushNamed("/SelectSurgery");
+            //                     setState(() {isAddEnabled = true;});
+            //                   },
+            //                   child: Icon(
+            //                     Icons.arrow_forward_ios,
+            //                     color: Colors.grey,
+            //                     size: 20,
+            //                   ),
+            //                 ),
+            //                 SizedBox(
+            //                   width: 8,
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ]),
+            //   ),
+            // ),
             Container(
               color: Colors.white,
               padding: EdgeInsets.only(left: 16),
@@ -211,18 +270,21 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text(
-                                surgeryProvider.selectedCurePosStr.isNotEmpty
-                                    ? surgeryProvider.getSelectedCurePosStr
-                                    : "選択してください",
-                                overflow: TextOverflow.clip,
-                                softWrap: true,
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: Helper.txtColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    height: 1.5),
+                              Expanded(
+                                child: Text(
+                                  surgeryProvider.selectedCurePosStr.isNotEmpty
+                                      ? surgeryProvider.getSelectedCurePosStr
+                                      : "選択してください",
+                                  textAlign: TextAlign.end,
+                                  overflow: TextOverflow.clip,
+                                  softWrap: true,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: Helper.txtColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12,
+                                      height: 1.5),
+                                ),
                               ),
                               SizedBox(
                                 width: 16,

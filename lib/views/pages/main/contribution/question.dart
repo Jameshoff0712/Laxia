@@ -17,6 +17,7 @@ class AddQuestion extends StatefulWidget {
 
 class _AddQuestionState extends StateMVC<AddQuestion> {
   bool isAddEnabled = false;
+  bool isUsed = false;
   //File imageURI;
   late QuestionController _con;
   int index = 0;
@@ -70,7 +71,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                       style: TextStyle(
                         fontSize: 16,
                         height: 1.5,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                         color: Helper.titleColor,
                       ),
                     ),
@@ -226,7 +227,11 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
         ),
         leading: IconButton(
           icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            surgeryProvider.selectedCurePosStr.clear();
+            surgeryProvider.selectedCurePos.clear();
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -248,64 +253,136 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
               ),
             ),
             Container(
-              decoration: BoxDecoration(color: Colors.white),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 15.0, 16.0, 12.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Text(
-                          "質問したい施術内容",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 18, 18, 18),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                              height: 1.5),
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Helper.txtColor),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "質問したい施術内容",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 18, 18, 18),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                height: 1.5),
+                          ),
                         ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                surgeryProvider.selectedCurePos.isEmpty
-                                    ? "選択してください"
-                                    : surgeryProvider.getSelectedCurePosStr,
-                                style: TextStyle(
-                                    color: Helper.titleColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    height: 1.3),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  surgeryProvider.selectedCurePosStr.isNotEmpty
+                                      ? surgeryProvider.getSelectedCurePosStr
+                                      : "選択してください",
+                                  textAlign: TextAlign.end,
+                                  overflow: TextOverflow.clip,
+                                  softWrap: true,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: Helper.txtColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12,
+                                      height: 1.5),
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 25,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                surgeryProvider.setButtonText("次へ");
-                                Navigator.of(context)
-                                    .pushNamed("/SelectSurgery");
-                                setState(() {isAddEnabled = true;});
-                              },
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.grey,
-                                size: 20,
+                              SizedBox(
+                                width: 16,
                               ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  surgeryProvider.selectedCurePosStr.clear();
+                                  surgeryProvider.setButtonText("次へ");
+                                  Navigator.of(context)
+                                      .pushNamed("/SelectSurgery");
+                                  setState(() {
+                                    isUsed = true;
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ]),
+                      ]),
+                ),
               ),
             ),
+            // Container(
+            //   decoration: BoxDecoration(color: Colors.white),
+            //   child: Padding(
+            //     padding: const EdgeInsets.fromLTRB(16.0, 15.0, 16.0, 12.0),
+            //     child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Flexible(
+            //             flex: 1,
+            //             child: Text(
+            //               "質問したい施術内容",
+            //               style: TextStyle(
+            //                   color: Color.fromARGB(255, 18, 18, 18),
+            //                   fontWeight: FontWeight.w400,
+            //                   fontSize: 14,
+            //                   height: 1.5),
+            //             ),
+            //           ),
+            //           Flexible(
+            //             flex: 1,
+            //             child: Row(
+            //               children: [
+            //                 Expanded(
+            //                   child: Text(
+            //                     surgeryProvider.selectedCurePos.isEmpty
+            //                         ? "選択してください"
+            //                         : surgeryProvider.getSelectedCurePosStr,
+            //                     style: TextStyle(
+            //                         color: Helper.titleColor,
+            //                         fontWeight: FontWeight.w400,
+            //                         fontSize: 14,
+            //                         height: 1.3),
+            //                   ),
+            //                 ),
+            //                 SizedBox(
+            //                   width: 25,
+            //                 ),
+            //                 GestureDetector(
+            //                   onTap: () {
+            //                     surgeryProvider.setButtonText("次へ");
+            //                     Navigator.of(context)
+            //                         .pushNamed("/SelectSurgery");
+            //                     setState(() {isAddEnabled = true;});
+            //                   },
+            //                   child: Icon(
+            //                     Icons.arrow_forward_ios,
+            //                     color: Colors.grey,
+            //                     size: 20,
+            //                   ),
+            //                 ),
+            //                 SizedBox(
+            //                   width: 8,
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ]),
+            //   ),
+            // ),
             const SizedBox(
               height: 24,
             ),
