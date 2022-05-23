@@ -70,7 +70,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                       style: TextStyle(
                         fontSize: 16,
                         height: 1.5,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                         color: Helper.titleColor,
                       ),
                     ),
@@ -226,7 +226,11 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
         ),
         leading: IconButton(
           icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            surgeryProvider.selectedCurePosStr.clear();
+            surgeryProvider.selectedCurePos.clear();
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
