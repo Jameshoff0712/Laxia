@@ -196,7 +196,7 @@ class _ReservationState extends State<Reservation> {
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(30),
+          preferredSize: Size.fromHeight(15),
           child: Container(
             height: 25,
             padding: EdgeInsets.symmetric(vertical: 11, horizontal: 18),
@@ -298,8 +298,7 @@ class _ReservationState extends State<Reservation> {
                         ),
                         Container(
                           height: 46,
-                          padding: EdgeInsets.only(
-                              top: 14, left: 10, bottom: 8, right: 18),
+                          padding: EdgeInsets.only(left: 10, right: 7),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
@@ -311,10 +310,11 @@ class _ReservationState extends State<Reservation> {
                               icon: Icon(
                                 Icons.keyboard_arrow_down,
                                 color: Color.fromARGB(255, 0, 184, 169),
+                                size: 40,
                               ),
                               isExpanded: true,
                               underline: Container(),
-                              offset: const Offset(-10, -10),
+                              offset: const Offset(-10, 0),
                               items: doctors
                                   .map((item) => DropdownMenuItem(
                                       value: item,
@@ -451,8 +451,7 @@ class _ReservationState extends State<Reservation> {
                         ),
                         Container(
                           height: 46,
-                          padding: EdgeInsets.only(
-                              top: 14, left: 10, bottom: 8, right: 18),
+                          padding: EdgeInsets.only(left: 10, right: 7),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
@@ -464,10 +463,11 @@ class _ReservationState extends State<Reservation> {
                               icon: Icon(
                                 Icons.keyboard_arrow_down,
                                 color: Color.fromARGB(255, 0, 184, 169),
+                                size: 40,
                               ),
                               isExpanded: true,
                               underline: Container(),
-                              offset: const Offset(-10, -10),
+                              offset: const Offset(-10, 0),
                               items: options_Today
                                   .map((item) => DropdownMenuItem(
                                       value: item,
@@ -1213,10 +1213,10 @@ class _ReservationState extends State<Reservation> {
                                     this.checkBoxValue = value!;
                                   });
                                 },
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                                visualDensity: VisualDensity(horizontal: -4),
                               ),
-                            ),
-                            SizedBox(
-                              width: 6,
                             ),
                             Text('全てのポイントを利用する',
                                 style: TextStyle(

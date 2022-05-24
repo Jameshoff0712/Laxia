@@ -77,7 +77,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
           child: Stack(children: [
             Container(
               width: 300,
-              height: 180,
+              height: 200,
               child: Column(
                 children: [
                   Container(
@@ -117,7 +117,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           textColor: Helper.mainColor,
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                vertical: 3, horizontal: 15),
+                                vertical: 3, horizontal: 0),
                             child: Text(
                               '保存しない',
                               style: TextStyle(
@@ -135,10 +135,10 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           color: Helper.mainColor,
                           textColor: Colors.white,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(20)),
                           child: Container(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 3, horizontal: 19),
+                                  vertical: 3, horizontal: 10),
                               child: Text(
                                 '保存する',
                                 style: TextStyle(

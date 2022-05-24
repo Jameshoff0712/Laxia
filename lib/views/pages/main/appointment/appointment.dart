@@ -91,26 +91,26 @@ class _AppointmentState extends State<Appointment>
                 children: [
                   Expanded(
                     child: Container(
-                        color: Color.fromARGB(255, 240, 242, 245),
-                        child: isEmpty
-                            ? _buildEmptyClinic()
-                        : ListView(
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            children: [
-                              chatStatus(
-                                  statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-                              chatStatus(
-                                statusCode: 2,
-                                clinicName: '湘南美容クリニック 銀座院',
-                                bookDate: '予約日時：2020/07/25 11：００〜',
-                              ),
-                              chatStatus(
-                                  statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                              chatStatus(
-                                  statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                            ],
-                          ),
-                        ),
+                      color: Color.fromARGB(255, 240, 242, 245),
+                      child: isEmpty
+                          ? _buildEmptyClinic()
+                          : ListView(
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              children: [
+                                chatStatus(
+                                    statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
+                                chatStatus(
+                                  statusCode: 2,
+                                  clinicName: '湘南美容クリニック 銀座院',
+                                  bookDate: '予約日時：2020/07/25 11：００〜',
+                                ),
+                                chatStatus(
+                                    statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                                chatStatus(
+                                    statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                              ],
+                            ),
+                    ),
                   ),
                 ],
               ),
@@ -214,13 +214,15 @@ class _AppointmentState extends State<Appointment>
             TextButton(
               onPressed: () {},
               child: Container(
-                padding: EdgeInsets.only(left: 62, right: 62),
+                width: 250,
+                height: 44,
+                // padding: EdgeInsets.only(left: 62, right: 62),
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 0, 184, 169),
                   borderRadius: BorderRadius.circular(40),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  padding: const EdgeInsets.only(top: 10, bottom: 15),
                   child: Text(
                     'クリニックを探す',
                     textAlign: TextAlign.center,

@@ -2,7 +2,8 @@ import 'package:laxia/models/m_user.dart';
 
 class Message {
   final User? sender;
-  final String? time; // Would usually be type DateTime or Firebase Timestamp in production apps
+  final String?
+      time; // Would usually be type DateTime or Firebase Timestamp in production apps
   final String? text;
   final bool? isOnline;
   final bool? unread;
@@ -23,21 +24,21 @@ List<User> favorites = [sam, olivia, steven, john, greg];
 List<Message> chats = [
   Message(
     sender: james,
-    time: '5:30 PM',
+    time: '5:30 ',
     text: 'Hey, how\'s it going? What did you do today?',
     isOnline: false,
     unread: true,
   ),
   Message(
     sender: olivia,
-    time: '4:30 PM',
+    time: '4:30 ',
     text: 'Hey, how\'s it going? What did you do today?',
     isOnline: false,
     unread: true,
   ),
   Message(
     sender: john,
-    time: '3:30 PM',
+    time: '3:30 ',
     text:
         'Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?',
     isOnline: false,
@@ -45,28 +46,28 @@ List<Message> chats = [
   ),
   Message(
     sender: sophia,
-    time: '2:30 PM',
+    time: '2:30 ',
     text: 'Hey, how\'s it going? What did you do today?',
     isOnline: false,
     unread: true,
   ),
   Message(
     sender: steven,
-    time: '1:30 PM',
+    time: '1:30 ',
     text: 'Hey, how\'s it going? What did you do today?',
     isOnline: false,
     unread: false,
   ),
   Message(
     sender: sam,
-    time: '12:30 PM',
+    time: '12:30 ',
     text: 'Hey, how\'s it going? What did you do today?',
     isOnline: false,
     unread: false,
   ),
   Message(
     sender: greg,
-    time: '11:30 AM',
+    time: '11:30 ',
     text: 'Hey, how\'s it going? What did you do today?',
     isOnline: false,
     unread: false,
@@ -77,7 +78,7 @@ List<Message> chats = [
 List<Message> messages = [
   Message(
     sender: james,
-    time: '5:30 PM',
+    time: '5:30 ',
     text:
         'Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?Hey, how\'s it going? What did you do today?',
     isOnline: true,
@@ -85,35 +86,36 @@ List<Message> messages = [
   ),
   Message(
     sender: currentUser,
-    time: '4:30 PM',
+    time: '4:30 ',
     text: 'Just walked my doge. She was super duper cute. The best pupper!!',
     isOnline: false,
     unread: true,
   ),
   Message(
     sender: james,
-    time: '3:45 PM',
+    time: '3:45 ',
     text: 'How\'s the doggo?',
     isOnline: false,
     unread: true,
   ),
   Message(
     sender: james,
-    time: '3:15 PM',
-    text: 'All the food How\'s the doggo? All the food How\'s the doggo? Nice! What kind of food did you eat?',
+    time: '3:15 ',
+    text:
+        'All the food How\'s the doggo? All the food How\'s the doggo? Nice! What kind of food did you eat?',
     isOnline: true,
     unread: true,
   ),
   Message(
     sender: currentUser,
-    time: '2:30 PM',
+    time: '2:30 ',
     text: 'Nice! What kind of food did you eat?',
     isOnline: false,
     unread: true,
   ),
   Message(
     sender: james,
-    time: '2:00 PM',
+    time: '2:00 ',
     text: 'I ate so much food today.',
     isOnline: false,
     unread: true,

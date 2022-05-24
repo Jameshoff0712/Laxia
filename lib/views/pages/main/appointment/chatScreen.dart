@@ -66,62 +66,71 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _buildSendMessageBox() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 7),
-      color: Helper.whiteColor,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Expanded(
-            child: TextField(
-              controller: textController,
-              onChanged: (value) {
-                setState(() {
-                  contentChat = value;
-                });
-              },
-              decoration: InputDecoration(
-                isDense: true,
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 13, horizontal: 20),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  borderSide: BorderSide.none,
-                ),
-                fillColor: Color.fromARGB(255, 245, 245, 245),
-                filled: true,
-                hintText: 'メッセージを入力',
-                hintStyle: TextStyle(
-                  color: Color.fromARGB(255, 156, 161, 161),
-                  fontSize: 12,
-                  height: 1.5,
-                  fontWeight: FontWeight.w400,
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 7),
+          color: Helper.whiteColor,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: textController,
+                  onChanged: (value) {
+                    setState(() {
+                      contentChat = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 9, horizontal: 20),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderSide: BorderSide.none,
+                    ),
+                    fillColor: Color.fromARGB(255, 245, 245, 245),
+                    filled: true,
+                    hintText: 'メッセージを入力',
+                    hintStyle: TextStyle(
+                      color: Color.fromARGB(255, 156, 161, 161),
+                      fontSize: 12,
+                      height: 1.5,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 51, 51, 51),
+                    fontSize: 12,
+                    height: 1.5,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  keyboardType: TextInputType.multiline,
+                  minLines: 1,
+                  maxLines: 3,
                 ),
               ),
-              style: TextStyle(
-                color: Color.fromARGB(255, 51, 51, 51),
-                fontSize: 12,
-                height: 1.5,
-                fontWeight: FontWeight.w400,
-              ),
-              keyboardType: TextInputType.multiline,
-              minLines: 1,
-              maxLines: 3,
-            ),
+              SizedBox(width: 0),
+              IconButton(
+                icon: Icon(
+                  Icons.send,
+                  color: contentChat.isEmpty
+                      ? Color.fromARGB(255, 222, 222, 222)
+                      : Color.fromARGB(255, 0, 184, 169),
+                  size: 20,
+                ),
+                alignment: Alignment.bottomCenter,
+                onPressed: () {},
+              )
+            ],
           ),
-          SizedBox(width: 15),
-          IconButton(
-            icon: Icon(
-              Icons.send,
-              color: contentChat.isEmpty
-                  ? Color.fromARGB(255, 222, 222, 222)
-                  : Color.fromARGB(255, 0, 184, 169),
-              size: 20,
-            ),
-            onPressed: () {},
-          )
-        ],
-      ),
+        ),
+        Container(
+          height: 33,
+          color: Helper.whiteColor,
+        ),
+      ],
     );
   }
 }

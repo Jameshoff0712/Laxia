@@ -9,7 +9,13 @@ class chatStatus extends StatefulWidget {
   final String? bookDate;
   final int? notificCount;
 
-  const chatStatus({ Key? key, required this.statusCode, required this.clinicName, this.bookDate, this.notificCount }) : super(key: key);
+  const chatStatus(
+      {Key? key,
+      required this.statusCode,
+      required this.clinicName,
+      this.bookDate,
+      this.notificCount})
+      : super(key: key);
 
   @override
   State<chatStatus> createState() => _chatStatusState();
@@ -20,42 +26,47 @@ class _chatStatusState extends State<chatStatus> {
   late Color statusColor;
   void initState() {
     setState(() {
-      switch(widget.statusCode){
-        case 1: {
-          statusText = '調整中';
-          statusColor = Color.fromARGB(255, 102, 110, 110);
-        }
-        break;
-        case 2: {
-          statusText = '予約済';
-          statusColor = Color.fromARGB(255, 0, 184, 169);
-        }
-        break;
-        case 3: {
-          statusText = '来院済';
-          statusColor = Color.fromARGB(255, 245, 184, 91);
-        }
-        break;
-        case 4: {
-          statusText = '施術完';
-          statusColor = Color.fromARGB(255, 241, 85, 85);
-        }
-        break;
+      switch (widget.statusCode) {
+        case 1:
+          {
+            statusText = '調整中';
+            statusColor = Color.fromARGB(255, 102, 110, 110);
+          }
+          break;
+        case 2:
+          {
+            statusText = '予約済';
+            statusColor = Color.fromARGB(255, 0, 184, 169);
+          }
+          break;
+        case 3:
+          {
+            statusText = '来院済';
+            statusColor = Color.fromARGB(255, 245, 184, 91);
+          }
+          break;
+        case 4:
+          {
+            statusText = '施術完';
+            statusColor = Color.fromARGB(255, 241, 85, 85);
+          }
+          break;
       }
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.statusCode == 4 ? toChatScreen: null,
+      onTap: widget.statusCode == 4 ? toChatScreen : null,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.only(left: 10, top: 10, bottom: 15, right: 10),
         margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.white,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,9 +107,11 @@ class _chatStatusState extends State<chatStatus> {
                     ),
                   ),
                 ),
-                if (widget.notificCount == null) Container() else Expanded(
-                  child: 
-                    Align(
+                if (widget.notificCount == null)
+                  Container()
+                else
+                  Expanded(
+                    child: Align(
                       alignment: Alignment.centerRight,
                       child: Container(
                         margin: EdgeInsets.only(right: 20),
@@ -122,21 +135,23 @@ class _chatStatusState extends State<chatStatus> {
                         ),
                       ),
                     ),
-                )
+                  )
               ],
             ),
-            widget.bookDate == null ? Container() : Container(
-              child: Text(
-                '予約日時：2020/07/25 11：００〜',
-                style: TextStyle(
-                  fontSize: 12,
-                  height: 1.5,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 156, 161, 161),
-                  decoration: TextDecoration.none,
-                ),
-              ),
-            )
+            widget.bookDate == null
+                ? Container()
+                : Container(
+                    child: Text(
+                      '予約日時：2020/07/25 11：００〜',
+                      style: TextStyle(
+                        fontSize: 12,
+                        height: 1.5,
+                        fontWeight: FontWeight.w400,
+                        color: Color.fromARGB(255, 156, 161, 161),
+                        decoration: TextDecoration.none,
+                      ),
+                    ),
+                  )
           ],
         ),
       ),
@@ -145,8 +160,8 @@ class _chatStatusState extends State<chatStatus> {
 
   void toChatScreen() {
     Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ChatScreen(user: favorites[0]))
-    );
+        context,
+        MaterialPageRoute(
+            builder: (context) => ChatScreen(user: favorites[0])));
   }
 }

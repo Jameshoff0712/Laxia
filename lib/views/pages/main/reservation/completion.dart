@@ -104,7 +104,7 @@ class _CompletionState extends State<Completion> {
                   child: Text('ページトップに戻る',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Color.fromARGB(255, 102, 110, 110),
+                        color: Helper.mainColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                         decoration: TextDecoration.none,

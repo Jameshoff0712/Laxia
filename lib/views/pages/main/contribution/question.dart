@@ -60,7 +60,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
           child: Stack(children: [
             Container(
               width: 300,
-              height: 180,
+              height: 200,
               child: Column(
                 children: [
                   Container(
@@ -100,7 +100,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                           textColor: Helper.mainColor,
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                vertical: 3, horizontal: 15),
+                                vertical: 3, horizontal: 0),
                             child: Text(
                               'いいえ',
                               style: TextStyle(
@@ -118,10 +118,10 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                           color: Helper.mainColor,
                           textColor: Colors.white,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(20)),
                           child: Container(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 3, horizontal: 19),
+                                  vertical: 3, horizontal: 10),
                               child: Text(
                                 'はい',
                                 style: TextStyle(
@@ -412,21 +412,20 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                         }
                       },
                       decoration: InputDecoration(
-                        hintText: '質問タイトルを入力(40文字以内)',
-                        hintStyle: TextStyle(
-                            color: Helper.txtColor,
-                            fontSize: 14,
-                            height: 1.5,
-                            fontWeight: FontWeight.w400),
-                        border: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Helper.txtColor)),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Helper.txtColor),
-                        ),
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(vertical: 12),
-                        counterText: ""
-                      ),
+                          hintText: '質問タイトルを入力(40文字以内)',
+                          hintStyle: TextStyle(
+                              color: Helper.txtColor,
+                              fontSize: 14,
+                              height: 1.5,
+                              fontWeight: FontWeight.w400),
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Helper.txtColor)),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Helper.txtColor),
+                          ),
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(vertical: 12),
+                          counterText: ""),
                     ),
                   ),
                   SizedBox(
