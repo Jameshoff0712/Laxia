@@ -63,6 +63,27 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
         ),
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
+          suffixIcon: widget.issuffixicon!
+              ? Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: InkWell(
+                    onTap: () {
+                      widget.onpress!();
+                    },
+                    child: Container(
+                      width: 13,
+                      height: 13,
+                      child: SvgPicture.asset(
+                        "assets/icons/close.svg",
+                        width: 3,
+                        height: 3,
+                      ),
+                    ),
+                  ),
+                )
+              : SizedBox(
+                  width: 0,
+                ),
           fillColor: Helper.searchBarBgColor,
           filled: true,
           prefixIconConstraints: BoxConstraints(maxHeight: 30),

@@ -325,7 +325,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                     Home_Sub_Horizonalbar(
                       width: 45,
                       height: 65,
-                      image: "assets/icons/menubar/contour.svg",
+                      image: "assets/icons/menubar/Contour.svg",
                       onpress: () {
                         userProperties.setCurrentPartIndex(1);
                         Navigator.of(context).pushNamed("/Part");
