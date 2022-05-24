@@ -68,6 +68,7 @@ class _selectBoxWidgetState extends State<selectBoxWidget> {
               icon: Icon(
                 Icons.keyboard_arrow_down,
                 color: Helper.titleColor,
+                size: 35,
               )),
         ],
       ),

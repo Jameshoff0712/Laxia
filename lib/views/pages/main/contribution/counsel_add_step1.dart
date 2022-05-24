@@ -139,8 +139,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     }
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -623,7 +622,9 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
               ),
             ),
             imagePicker(context, 2),
-            SizedBox(height: 48,),
+            SizedBox(
+              height: 48,
+            ),
             !widget.isMyDiary!
                 ? Center(
                     child: Container(
@@ -693,11 +694,11 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                       ),
                     ),
                   )),
-            SizedBox(height: 48),  
+            SizedBox(height: 48),
           ],
         ),
       ),
-    ));
+    );
   }
 
   Widget imagePicker(BuildContext context, int subindex) {
