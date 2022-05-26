@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
@@ -305,12 +306,12 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             EdgeInsets.symmetric(horizontal: 16, vertical: 15),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               "ドクター",
                               style: TextStyle(
                                   fontFamily: Helper.headFontFamily,
-                                  height: 1.5,
                                   color: Color.fromARGB(255, 51, 51, 51),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700),
@@ -324,20 +325,20 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                         )));
                               },
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
                                     clinic_detail.doctors.length.toString() +
                                         "名のドクター",
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 156, 161, 161),
-                                        fontSize: 14,
-                                        height: 1.5,
+                                        color: Helper.maintxtColor,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.w400),
                                   ),
                                   Icon(
                                     Icons.navigate_next,
-                                    size: 17,
+                                    size: 20,
                                     color: Helper.maintxtColor,
                                   )
                                 ],
@@ -347,20 +348,20 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Container(
-                          height: 120,
+                          height: 110,
                           child: GridView.builder(
                               physics: AlwaysScrollableScrollPhysics(),
                               shrinkWrap: true,
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 8),
+                                  horizontal: 16, vertical: 0),
                               scrollDirection: Axis.horizontal,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: 110 / 87,
+                                      childAspectRatio: 110 / 80,
                                       crossAxisCount: 1,
-                                      mainAxisSpacing: 10,
+                                      mainAxisSpacing: 16,
                                       crossAxisSpacing: 0),
                               itemCount: clinic_detail.doctors.length,
                               itemBuilder: (BuildContext context, int index) {
@@ -374,6 +375,9 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                               }),
                         ),
                       ),
+                      SizedBox(
+                        height: 15,
+                      )
                     ]),
                   ),
                   SizedBox(
@@ -416,18 +420,19 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                     )));
                                       },
                                       child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             "すべてのメニュー",
                                             style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 156, 161, 161),
-                                                fontSize: 14,
+                                                color: Helper.maintxtColor,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           Icon(
                                             Icons.navigate_next,
-                                            size: 17,
+                                            size: 20,
                                             color: Helper.maintxtColor,
                                           )
                                         ],
@@ -446,10 +451,9 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       (BuildContext context, int index) {
                                     return Menu_Card(
                                         shadow: BoxShadow(
-                                          color: Colors.grey.withOpacity(
-                                              0.2), //color of shadow
+                                          color: Color.fromARGB(255, 238, 238,
+                                              238), //color of shadow
                                           spreadRadius: 1, //spread radius
-                                          blurRadius: 1, // blur radius
                                           offset: Offset(0,
                                               0), // changes position of shadow
                                           //first paramerter of offset is left-right
@@ -523,7 +527,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           ),
                                           Icon(
                                             Icons.navigate_next,
-                                            size: 17,
+                                            size: 20,
                                             color: Helper.maintxtColor,
                                           )
                                         ],
@@ -578,19 +582,20 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                     )));
                                       },
                                       child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             "すべての日記",
                                             style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 156, 161, 161),
-                                                fontSize: 14,
+                                                color: Helper.maintxtColor,
+                                                fontSize: 12,
                                                 height: 1.5,
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           Icon(
                                             Icons.navigate_next,
-                                            size: 17,
+                                            size: 20,
                                             color: Helper.maintxtColor,
                                           )
                                         ],
@@ -755,7 +760,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           ),
                                           Icon(
                                             Icons.navigate_next,
-                                            size: 17,
+                                            size: 20,
                                             color: Helper.maintxtColor,
                                           )
                                         ],
@@ -1027,15 +1032,16 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           isfavourite
-                              ? Icon(
-                                  Icons.star_rounded,
-                                  color: Helper.btnBgYellowColor,
-                                  size: 32,
+                              ? SvgPicture.asset(
+                                  "assets/icons/star.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Helper.starColor,
                                 )
-                              : Icon(
-                                  Icons.star_border_rounded,
-                                  color: Helper.txtColor,
-                                  size: 32,
+                              : SvgPicture.asset(
+                                  "assets/icons/borderstar.svg",
+                                  width: 22,
+                                  height: 22,
                                 ),
                           Text(
                             "お気に入り",
@@ -1052,6 +1058,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.transparent,
+                        elevation: 0,
                         padding:
                             EdgeInsets.symmetric(horizontal: 40, vertical: 6),
                         primary: Helper.btnBgYellowColor,

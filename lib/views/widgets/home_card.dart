@@ -159,24 +159,23 @@ class _Home_CardState extends State<Home_Card> {
                       alignment: Alignment.centerLeft,
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            "assets/icons/menubar/ping.svg",
-                            width: 12,
-                            height: 12,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: SvgPicture.asset(
+                              "assets/icons/menubar/ping.svg",
+                              width: 12,
+                              height: 12,
+                            ),
                           ),
                           SizedBox(
                             width: 6,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 3),
-                            child: Text(
-                              widget.type,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  height: 18 / 12,
-                                  color: Helper.maintxtColor),
-                            ),
+                          Text(
+                            widget.type,
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Helper.maintxtColor),
                           ),
                         ],
                       ),
@@ -250,10 +249,10 @@ class _Home_CardState extends State<Home_Card> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              SvgPicture.asset(
-                                "assets/icons/menubar/heart.svg",
-                                width: 10,
-                                height: 9,
+                              SvgPicture.asset("assets/icons/menubar/heart.svg",
+                                  width: 10, height: 9, color: Helper.txtColor),
+                              SizedBox(
+                                width: 1,
                               ),
                               Text(
                                 widget.recommend,
@@ -266,9 +265,12 @@ class _Home_CardState extends State<Home_Card> {
                                 width: 4,
                               ),
                               SvgPicture.asset(
-                                "assets/icons/menubar/comment.svg",
-                                width: 10,
-                                height: 9,
+                                  "assets/icons/menubar/comment.svg",
+                                  width: 10,
+                                  height: 9,
+                                  color: Helper.txtColor),
+                              SizedBox(
+                                width: 1,
                               ),
                               Text(
                                 widget.recommend,

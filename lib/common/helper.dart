@@ -8,37 +8,37 @@ export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /* APP VARIABLES or CONSTANTS */
 class Helper {
-  static const headFontFamily="Hiragino Kaku Gothic Pro w6";
+  static const headFontFamily = "Hiragino Kaku Gothic Pro w6";
   static const whiteColor = Colors.white;
   static const blackColor = Colors.black;
   static const appTitle = 'Laxia project';
-  static const mainColor = Color.fromARGB(255,0, 184, 169); 
-  static const btnBgMainColor = mainColor; 
-  static const btnBgYellowColor = Color.fromARGB(255,249, 161, 56); 
-  static const searchBarBgColor= Color.fromARGB(255,245, 245, 245);
-  static const searchBartxtColor= Color.fromARGB(255,156, 161, 161); 
-  static const selectTabColor= Color.fromARGB(255,18, 18, 18); 
-  static const unSelectTabColor=searchBartxtColor;
-  static const unSelectSmallTabColor= Color.fromARGB(255,102, 110, 110);
-  static const selectSmallTabColor=mainColor;
-  static const smallDrawerColor=selectSmallTabColor;
-  static const titleColor=Color.fromARGB(255,51, 51, 51);
-  static const maintxtColor=unSelectSmallTabColor;
-  static const txtColor= searchBartxtColor; 
-  static const selectBottomColor= mainColor;
-  static const unSelectBottomColor= searchBartxtColor;
-  static const priceColor= btnBgYellowColor;
-  static const starColor= Color.fromARGB(255,206, 176, 88);
-  static const unstarColor= titleColor;
-  static const allowStateButtonColor=mainColor;
-  static const unAllowStateButtonColor=searchBartxtColor;
-  static const appTitleColor=blackColor;
-  static const closeIconColor= selectSmallTabColor;
-  static const clickClearButtonColor= mainColor ;
-  static const unClickClearButtonColor=selectSmallTabColor ;
-  static const authHintColor= Color.fromARGB(255, 210, 210, 212);
-  static const loginButtonColor= searchBartxtColor;
-   static const homeBgColor= Color.fromARGB(250, 240, 242, 245);
+  static const mainColor = Color.fromARGB(255, 0, 184, 169);
+  static const btnBgMainColor = mainColor;
+  static const btnBgYellowColor = Color.fromARGB(255, 249, 161, 56);
+  static const searchBarBgColor = Color.fromARGB(255, 245, 245, 245);
+  static const searchBartxtColor = Color.fromARGB(255, 156, 161, 161);
+  static const selectTabColor = Color.fromARGB(255, 18, 18, 18);
+  static const unSelectTabColor = searchBartxtColor;
+  static const unSelectSmallTabColor = Color.fromARGB(255, 102, 110, 110);
+  static const selectSmallTabColor = mainColor;
+  static const smallDrawerColor = selectSmallTabColor;
+  static const titleColor = Color.fromARGB(255, 51, 51, 51);
+  static const maintxtColor = unSelectSmallTabColor;
+  static const txtColor = searchBartxtColor;
+  static const selectBottomColor = mainColor;
+  static const unSelectBottomColor = searchBartxtColor;
+  static const priceColor = btnBgYellowColor;
+  static const starColor = Color.fromARGB(255, 206, 176, 88);
+  static const unstarColor = titleColor;
+  static const allowStateButtonColor = mainColor;
+  static const unAllowStateButtonColor = searchBartxtColor;
+  static const appTitleColor = blackColor;
+  static const closeIconColor = selectSmallTabColor;
+  static const clickClearButtonColor = mainColor;
+  static const unClickClearButtonColor = selectSmallTabColor;
+  static const authHintColor = Color.fromARGB(255, 210, 210, 212);
+  static const loginButtonColor = searchBartxtColor;
+  static const homeBgColor = Color.fromARGB(250, 240, 242, 245);
 
   static const appTxtColor = Color(0xFF181a3c);
   static const green = Color(0xFF1ec760);
@@ -91,11 +91,13 @@ class Helper {
     }
   }
 
-  static String? getDiscountPercentage(dynamic offerPrice, dynamic originalPrice, BuildContext context) {
+  static String? getDiscountPercentage(
+      dynamic offerPrice, dynamic originalPrice, BuildContext context) {
     return "${((offerPrice.toDouble() / originalPrice.toDouble()) * 100).toStringAsFixed(0)} % ${Trans.of(context).offer_off}";
   }
 
-  static AlignmentDirectional getAlignmentDirectional(String? alignmentDirectional) {
+  static AlignmentDirectional getAlignmentDirectional(
+      String? alignmentDirectional) {
     switch (alignmentDirectional) {
       case 'top_start':
         return AlignmentDirectional.topStart;
@@ -122,7 +124,8 @@ class Helper {
 
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
-    if (currentBackPressTime == null || now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
       currentBackPressTime = now;
       Fluttertoast.showToast(msg: Trans.of(context).tapAgainToLeave);
       return Future.value(false);
@@ -166,8 +169,15 @@ class Helper {
 // Text Styles - please do not overwrite below code unless you know what you are doing
 
 TextStyle defaultTextStyle(Color color, FontWeight fontWeight,
-    {double size = 18, FontStyle fontStyle = FontStyle.normal, String fontFamily = 'Hiragino Kaku Gothic Pro W6'}) {
-  return TextStyle(color: color, fontWeight: fontWeight, fontSize: size, fontFamily: fontFamily, fontStyle: fontStyle,height: 1.5);
+    {double size = 18,
+    FontStyle fontStyle = FontStyle.normal,
+    String fontFamily = 'Hiragino Kaku Gothic Pro W6'}) {
+  return TextStyle(
+      color: color,
+      fontWeight: fontWeight,
+      fontSize: size,
+      fontFamily: fontFamily,
+      fontStyle: fontStyle);
 }
 
 // function to check whether the screen is Portrait or Landscape
@@ -194,7 +204,8 @@ class Drawhorizontalline extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     if (reverse) {
-      canvas.drawLine(const Offset(-80.0, 0.0), const Offset(-10.0, 0.0), _paint);
+      canvas.drawLine(
+          const Offset(-80.0, 0.0), const Offset(-10.0, 0.0), _paint);
     } else {
       canvas.drawLine(const Offset(10.0, 0.0), const Offset(80.0, 0.0), _paint);
     }

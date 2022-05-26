@@ -122,10 +122,11 @@ class _Question_CardState extends State<Question_Card> {
                                     horizontal: 5, vertical: 3),
                                 child: Text(
                                   "回答あり",
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Helper.whiteColor,
                                       fontSize: 10,
-                                      height: 1.5,
+                                      height: 1.2,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -147,7 +148,7 @@ class _Question_CardState extends State<Question_Card> {
                                   style: TextStyle(
                                       color: Helper.whiteColor,
                                       fontSize: 10,
-                                      height: 1.5,
+                                      height: 1.2,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -247,7 +248,6 @@ class _Question_CardState extends State<Question_Card> {
                         widget.type,
                         style: TextStyle(
                             fontSize: 12,
-                            height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -264,6 +264,7 @@ class _Question_CardState extends State<Question_Card> {
                       alignment: Alignment.centerRight,
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 2.0),
@@ -280,7 +281,6 @@ class _Question_CardState extends State<Question_Card> {
                               widget.eyes,
                               style: TextStyle(
                                   fontSize: 11,
-                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
                                   color: Helper.maintxtColor),
                             ),
@@ -299,7 +299,6 @@ class _Question_CardState extends State<Question_Card> {
                               widget.hearts,
                               style: TextStyle(
                                   fontSize: 11,
-                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
                                   color: Helper.maintxtColor),
                             ),
@@ -318,7 +317,6 @@ class _Question_CardState extends State<Question_Card> {
                               widget.chats,
                               style: TextStyle(
                                   fontSize: 11,
-                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
                                   color: Helper.maintxtColor),
                             )

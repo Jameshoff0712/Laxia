@@ -7,6 +7,7 @@ import 'package:laxia/views/pages/main/home/home.dart';
 import 'package:laxia/views/widgets/bottom_nav_widget.dart';
 import 'package:laxia/views/pages/main/mypage/mypage.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 class DashboardScreen extends StatefulWidget {
   dynamic currentTab;
@@ -33,11 +34,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Helper.whiteColor.withOpacity(0),
+      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Helper.whiteColor.withOpacity(0),
+    ));
     final _pageController = PageController(initialPage: 0);
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
     return Scaffold(
-      backgroundColor:Helper.whiteColor,
+      backgroundColor: Helper.whiteColor,
       key: scaffoldKey,
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
@@ -46,7 +52,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: const [
           HomeScreen(),
           Appointment(),
-          SizedBox(width: 20,),
+          SizedBox(
+            width: 20,
+          ),
           FavoriteScreen(),
           Mypage(),
         ],

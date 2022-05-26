@@ -27,11 +27,11 @@ class Home_Clinic extends StatefulWidget {
 }
 
 class _Home_ClinicState extends State<Home_Clinic> {
-  String searchdata="";
-  bool isloading = true,isexpanding=true,isend=false;
+  String searchdata = "";
+  bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
-  bool expanded=false;
-  int index=-1;
+  bool expanded = false;
+  int index = -1;
   late int pref_id;
   late int city_id;
   List mid = [];
@@ -40,45 +40,48 @@ class _Home_ClinicState extends State<Home_Clinic> {
   Future<void> getData(
       {required String page,
       String? pref_id = "",
-      String? city_id = "", String? q=""}) async {
+      String? city_id = "",
+      String? q = ""}) async {
     try {
-      if(!isend){
-        if(!isloading)
+      if (!isend) {
+        if (!isloading)
           setState(() {
-            isexpanding=false;
+            isexpanding = false;
           });
-          final mid = await _con.getclinicData(
-          page: page, pref_id: pref_id!, city_id: city_id!,q: q!);
-          setState(() {
-            if (isloading) {
-              clinic_data=mid;
-              isloading = false; 
-              // print("object");
-            } else {
-              clinic_data.data.addAll(mid.data);
-              isexpanding=true;
-            }
-          });
-
+        final mid = await _con.getclinicData(
+            page: page, pref_id: pref_id!, city_id: city_id!, q: q!);
+        setState(() {
+          if (isloading) {
+            clinic_data = mid;
+            isloading = false;
+            // print("object");
+          } else {
+            clinic_data.data.addAll(mid.data);
+            isexpanding = true;
+          }
+        });
       }
     } catch (e) {
-      isexpanding=true;
-      isend=true;
+      isexpanding = true;
+      isend = true;
       setState(() {
         print(e.toString());
       });
     }
   }
-  void init(){
-    setState(() {;
-       isloading = true;
-       isexpanding=true;
-       isend=false;
-       page = 1;
-       expanded=false;
-       index=-1;
+
+  void init() {
+    setState(() {
+      ;
+      isloading = true;
+      isexpanding = true;
+      isend = false;
+      page = 1;
+      expanded = false;
+      index = -1;
     });
   }
+
   @override
   void initState() {
     getData(page: page.toString());
@@ -89,10 +92,10 @@ class _Home_ClinicState extends State<Home_Clinic> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    if(searchdata!=userProperties.searchtext){
+    if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
-        searchdata=userProperties.searchtext;
+        searchdata = userProperties.searchtext;
         getData(page: page.toString(), q: userProperties.searchtext);
       });
     }
@@ -116,10 +119,10 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
-                      width:123,
+                      width: 123,
                       items: <String>["評価が高い順", "日記の多い順"],
                       hintText: "並び替え",
-                      horizontal: 55),
+                      horizontal: 62),
                 ),
               ],
             ),
@@ -138,75 +141,75 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 : LayoutBuilder(
                     builder: (context, BoxConstraints viewportConstraints) {
                     return NotificationListener<ScrollNotification>(
-                            onNotification: (ScrollNotification scrollInfo) {
-                              if (scrollInfo.metrics.pixels ==
-                                  scrollInfo.metrics.maxScrollExtent) {
-                                if(isexpanding){
-                                  getData(page: (page+1).toString(),q:searchdata);
-                                  setState(() {
-                                    page+=1;
-                                  }); 
-                                }
-                              }
-                              return true;
-                            },
-                            child: Column(
-                              children: [
-                                ListView.builder(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 4),
-                                    itemCount: clinic_data.data.length,
-                                    physics: widget.isScrollable!
-                                        ? AlwaysScrollableScrollPhysics()
-                                        : NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Clinic_Card(
-                                          onpress: () {
-                                            // print("object");
-                                           Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => Clinic_Detail(index:  clinic_data.data[index].id)));
-                                          },
-                                          image:
-                                              clinic_data.data[index].photo == null
-                                                  ? "http://error.png"
-                                                  : clinic_data.data[index].photo!,
-                                          post: "",
-                                          name: clinic_data.data[index].name!,
-                                          mark: clinic_data
-                                                      .data[index].diaries_count ==
-                                                  null
-                                              ? ""
-                                              : clinic_data.data[index].diaries_count
-                                                  .toString(),
-                                          day: clinic_data
-                                                      .data[index].diaries_count ==
-                                                  null
-                                              ? ""
-                                              : clinic_data.data[index].diaries_count
-                                                  .toString(),
-                                          location: (clinic_data.data[index].addr01 ==
-                                                      null
-                                                  ? ""
-                                                  : clinic_data
-                                                      .data[index].addr01!) +
-                                              " " +
-                                              (clinic_data.data[index].addr02 == null
-                                                  ? ""
-                                                  : clinic_data.data[index].addr02!));
-                                    }),
-                                    Container(
-                                      height:isexpanding?0: 100,
-                                      color: Colors.transparent,
-                                      child: Center(
-                                        child: new CircularProgressIndicator(),
-                                      ),
-                                    )
-                              ],
+                      onNotification: (ScrollNotification scrollInfo) {
+                        if (scrollInfo.metrics.pixels ==
+                            scrollInfo.metrics.maxScrollExtent) {
+                          if (isexpanding) {
+                            getData(page: (page + 1).toString(), q: searchdata);
+                            setState(() {
+                              page += 1;
+                            });
+                          }
+                        }
+                        return true;
+                      },
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              itemCount: clinic_data.data.length,
+                              physics: widget.isScrollable!
+                                  ? AlwaysScrollableScrollPhysics()
+                                  : NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Clinic_Card(
+                                    onpress: () {
+                                      // print("object");
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Clinic_Detail(
+                                                      index: clinic_data
+                                                          .data[index].id)));
+                                    },
+                                    image: clinic_data.data[index].photo == null
+                                        ? "http://error.png"
+                                        : clinic_data.data[index].photo!,
+                                    post: "",
+                                    name: clinic_data.data[index].name!,
+                                    mark: clinic_data
+                                                .data[index].diaries_count ==
+                                            null
+                                        ? ""
+                                        : clinic_data.data[index].diaries_count
+                                            .toString(),
+                                    day: clinic_data
+                                                .data[index].diaries_count ==
+                                            null
+                                        ? ""
+                                        : clinic_data.data[index].diaries_count
+                                            .toString(),
+                                    location: (clinic_data.data[index].addr01 ==
+                                                null
+                                            ? ""
+                                            : clinic_data.data[index].addr01!) +
+                                        " " +
+                                        (clinic_data.data[index].addr02 == null
+                                            ? ""
+                                            : clinic_data.data[index].addr02!));
+                              }),
+                          Container(
+                            height: isexpanding ? 0 : 100,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
                             ),
-                          );
+                          )
+                        ],
+                      ),
+                    );
                   }),
           ),
         ],

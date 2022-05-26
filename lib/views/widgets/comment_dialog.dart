@@ -83,6 +83,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
             ),
           ))
         : Scaffold(
+            resizeToAvoidBottomInset: true,
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,60 +132,71 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                 )
               ],
             ),
-            bottomNavigationBar: Container(
-              padding: EdgeInsets.symmetric(vertical: 5),
-              decoration: BoxDecoration(
-                color: Helper.whiteColor,
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(.1), blurRadius: 5)
-                ],
-              ),
-              //height: 42,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: TextField(
-                        controller: sender,
-                        onChanged: (value) {
-                          if (value.isNotEmpty) {
-                            setState(() {
-                              bSend = true;
-                            });
-                          } else {
-                            setState(() {
-                              bSend = false;
-                            });
-                          }
-                        },
-                        keyboardType: TextInputType.multiline,
-                        minLines: 1,
-                        maxLines: 4,
-                        decoration: InputDecoration(
-                          hintStyle: TextStyle(fontSize: 12),
-                          fillColor: Helper.lightGrey,
-                          filled: true,
-                          hintText: "素敵なコメントを書く",
-                          contentPadding: EdgeInsets.only(
-                              top: 3, left: 15, right: 15, bottom: 3),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Helper.lightGrey),
+            bottomNavigationBar: SafeArea(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                decoration: BoxDecoration(
+                  color: Helper.whiteColor,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(.1), blurRadius: 5)
+                  ],
+                ),
+                //height: 42,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        height: 30,
+                        child: TextField(
+                          controller: sender,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              setState(() {
+                                bSend = true;
+                              });
+                            } else {
+                              setState(() {
+                                bSend = false;
+                              });
+                            }
+                          },
+                          keyboardType: TextInputType.multiline,
+                          minLines: 1,
+                          maxLines: 4,
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(fontSize: 10),
+                            fillColor: Color.fromARGB(255, 243, 243, 243),
+                            filled: true,
+                            hintText: "",
+                            contentPadding: EdgeInsets.only(
+                                top: 3, left: 15, right: 15, bottom: 3),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 243, 243, 243),
+                                ),
+                                borderRadius: BorderRadius.circular(5)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 243, 243, 243),
+                                ),
+                                borderRadius: BorderRadius.circular(5)),
                           ),
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        postComment(sender.text);
-                      },
-                      child: SvgPicture.asset("assets/icons/send.svg",
-                          width: 30,
-                          height: 30,
-                          color: bSend ? Helper.mainColor : Helper.extraGrey),
-                    ),
-                  ]),
+                      InkWell(
+                        onTap: () {
+                          postComment(sender.text);
+                        },
+                        child: SvgPicture.asset("assets/icons/send.svg",
+                            width: 30,
+                            height: 30,
+                            color: bSend ? Helper.mainColor : Helper.extraGrey),
+                      ),
+                    ]),
+              ),
             ),
           );
   }

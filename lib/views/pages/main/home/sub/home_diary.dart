@@ -31,21 +31,21 @@ class Home_Diary extends StatefulWidget {
 }
 
 class _Home_DiaryState extends State<Home_Diary> {
-  String searchdata="";
+  String searchdata = "";
   int page = 0;
   bool isend = false, isloading = true, isexpanding = true;
   bool expanded = true;
   int index = -1;
   late Diary diary_data;
   final _con = HomeController();
-  Future<void> getData({required String page,String?q=""}) async {
+  Future<void> getData({required String page, String? q = ""}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDiaryData(page: page,q:q);
+        final mid = await _con.getDiaryData(page: page, q: q);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -70,16 +70,18 @@ class _Home_DiaryState extends State<Home_Diary> {
       });
     }
   }
-  void init(){
+
+  void init() {
     setState(() {
-       isloading = true;
-       isexpanding=true;
-       isend=false;
-       page = 1;
-       expanded=false;
-       index=-1;
+      isloading = true;
+      isexpanding = true;
+      isend = false;
+      page = 1;
+      expanded = false;
+      index = -1;
     });
   }
+
   @override
   void initState() {
     getData(page: page.toString());
@@ -90,10 +92,10 @@ class _Home_DiaryState extends State<Home_Diary> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    if(searchdata!=userProperties.searchtext){
+    if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
-        searchdata=userProperties.searchtext;
+        searchdata = userProperties.searchtext;
         getData(page: page.toString(), q: userProperties.searchtext);
       });
     }
@@ -129,7 +131,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                         child: Dropdownbutton(
                             items: <String>["人気投稿順", "満足度が高い順", "新着順"],
                             hintText: "並び替え",
-                            horizontal: 20),
+                            horizontal: 32),
                       ),
                     ],
                   ),
@@ -142,8 +144,8 @@ class _Home_DiaryState extends State<Home_Diary> {
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
-                if (isexpanding&&!isend) {
-                  getData(page: (page + 1).toString(),q: searchdata);
+                if (isexpanding && !isend) {
+                  getData(page: (page + 1).toString(), q: searchdata);
                   setState(() {
                     page += 1;
                   });
@@ -270,7 +272,9 @@ class _Home_DiaryState extends State<Home_Diary> {
                                   ? ""
                                   : diary_data.data[index].patient_nickname!,
                               onpress: () {
-                                Navigator.of(context).push( MaterialPageRoute(builder: (_) => Diary_Detail(index:diary_data.data[index].id)));
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Diary_Detail(
+                                        index: diary_data.data[index].id)));
                               },
                               price: diary_data.data[index].price == null
                                   ? ""

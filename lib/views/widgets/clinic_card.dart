@@ -128,14 +128,12 @@ class _Clinic_CardState extends State<Clinic_Card> {
                                 ? TextStyle(
                                     color: Helper.titleColor,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 11.0,
-                                    height: 1.5)
+                                    fontSize: 11.0)
                                 : TextStyle(
                                     fontFamily: Helper.headFontFamily,
                                     color: Helper.titleColor,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 12.0,
-                                    height: 1.5),
+                                    fontSize: 12.0),
                           ),
                           SizedBox(
                             width: 8,

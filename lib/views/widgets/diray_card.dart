@@ -25,7 +25,7 @@ class Diary_Card extends StatefulWidget {
     required this.check,
     required this.price,
     this.buttoncolor,
-    this.fontcolor,
+    this.fontcolor = Helper.whiteColor,
     this.hearts = "",
     this.chats = "",
     required this.eyes,

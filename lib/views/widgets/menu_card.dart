@@ -25,6 +25,8 @@ class Menu_Card extends StatefulWidget {
 }
 
 class _Menu_CardState extends State<Menu_Card> {
+  RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  String Function(Match) mathFunc = (Match match) => '${match[1]},';
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,6 +35,7 @@ class _Menu_CardState extends State<Menu_Card> {
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Container(
           decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
               boxShadow: widget.shadow == null ? [] : [widget.shadow!]),
           child: Row(
             children: [
@@ -105,7 +108,8 @@ class _Menu_CardState extends State<Menu_Card> {
                         Row(
                           children: [
                             Text(
-                              widget.price + "円",
+                              widget.price.replaceAllMapped(reg, mathFunc) +
+                                  "円",
                               style: TextStyle(
                                   color: Helper.priceColor,
                                   fontWeight: FontWeight.w400,
