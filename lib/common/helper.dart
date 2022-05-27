@@ -38,7 +38,7 @@ class Helper {
   static const unClickClearButtonColor = selectSmallTabColor;
   static const authHintColor = Color.fromARGB(255, 210, 210, 212);
   static const loginButtonColor = searchBartxtColor;
-  static const homeBgColor = Color.fromARGB(250, 240, 242, 245);
+  static const homeBgColor = Color.fromARGB(255, 240, 242, 245);
 
   static const appTxtColor = Color(0xFF181a3c);
   static const green = Color(0xFF1ec760);

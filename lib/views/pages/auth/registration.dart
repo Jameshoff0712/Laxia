@@ -62,8 +62,10 @@ class _RegistrationState extends State<Registration> {
                         child: Center(
                             child: Text('会員登録',
                                 style: TextStyle(
-                                    color: Helper.titleColor, fontWeight: FontWeight.w700,
-                                    fontSize: 16, height: 1.5)))),
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    height: 1.5)))),
                     Expanded(
                         flex: 2,
                         child: SizedBox(
@@ -84,62 +86,56 @@ class _RegistrationState extends State<Registration> {
                   keyboardType: TextInputType.emailAddress,
                   // onSaved: (input) => _con.user.email = input,
                   validator: (email) {
-                    if(email!.isEmpty) {
+                    if (email!.isEmpty) {
                       return "メールを入力してください";
                     }
                     final regex = RegExp('[^@]+@[^\.]+\..+');
-                    if(!regex.hasMatch(email)) {
+                    if (!regex.hasMatch(email)) {
                       return "メールアドレスに誤りがあります。";
                     }
-                    
+
                     return null;
                   },
                   decoration: InputDecoration(
                     hintText: Trans.of(context).input_email,
-                    hintStyle:
-                        TextStyle(color: Helper.authHintColor, fontSize: 14,),
+                    hintStyle: TextStyle(
+                      color: Helper.authHintColor,
+                      fontSize: 14,
+                    ),
                     // filled: true,
                     // fillColor: Helper.whiteColor.withOpacity(0.2),
                     contentPadding:
                         EdgeInsets.only(left: 16, top: 16, bottom: 16),
                     focusedBorder: UnderlineInputBorder(
                         borderSide:
-                            BorderSide(color: Helper.mainColor.withOpacity(0.5))),
-                    // hintText: 'john@doe.com',
-                    // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
-                    // errorBorder: OutlineInputBorder(
-                    //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
-                    // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
-                    // // prefixIcon: Icon(Icons.alternate_email, color: Helper.whiteColor),
-                    // border: OutlineInputBorder(
-                    //   // borderRadius: BorderRadius.all(Radius.circular(100)),
-                    //   borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212)),
-                    // ),
-                    // focusedBorder: UnderlineInputBorder(
-                    //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Color.fromARGB(1,210, 210, 212))),
+                            BorderSide(color: Helper.authHintColor, width: 1)),
                     border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Helper.authHintColor),
+                      borderSide:
+                          BorderSide(color: Helper.authHintColor, width: 1),
                     ),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Helper.authHintColor, width: 1)),
                   ),
                 ),
                 _errorMsg != ""
-                  ? SizedBox(
-                      height: 40,
-                      child: Text(
-                        _errorMsg,
-                        style: const TextStyle(color: Colors.red),
-                      ))
-                  : Container(),
+                    ? SizedBox(
+                        height: 40,
+                        child: Text(
+                          _errorMsg,
+                          style: const TextStyle(color: Colors.red),
+                        ))
+                    : Container(),
                 // SizedBox(height: 20),
                 TextFormField(
                   controller: _passwordController,
                   keyboardType: TextInputType.visiblePassword,
                   // onSaved: (input) => _con.user.password = input,
                   validator: (pwd) {
-                    if(pwd!.isEmpty) {
+                    if (pwd!.isEmpty) {
                       return "パスワードを入力してください";
                     }
-                    if(pwd.length < 8) {
+                    if (pwd.length < 8) {
                       return "パスワードは、英数字/記号で8文字以上必要です";
                     }
                     return null;
@@ -156,7 +152,14 @@ class _RegistrationState extends State<Registration> {
                         EdgeInsets.only(left: 16, top: 16, bottom: 16),
                     focusedBorder: UnderlineInputBorder(
                         borderSide:
-                            BorderSide(color: Helper.mainColor.withOpacity(0.5))),
+                            BorderSide(color: Helper.authHintColor, width: 1)),
+                    border: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Helper.authHintColor, width: 1),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Helper.authHintColor, width: 1)),
                     // hintText: '••••••••••••',
                     // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                     // errorBorder: OutlineInputBorder(
@@ -173,9 +176,6 @@ class _RegistrationState extends State<Registration> {
                       icon: Icon(_con.hidePassword
                           ? Icons.visibility
                           : Icons.visibility_off),
-                    ),
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Helper.authHintColor),
                     ),
                     // border: OutlineInputBorder(
                     //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
@@ -208,7 +208,8 @@ class _RegistrationState extends State<Registration> {
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(color: Helper.txtColor, width: 1),
                       elevation: 0,
-                      primary: isBtnColor ? Helper.whiteColor : Helper.mainColor,
+                      primary:
+                          isBtnColor ? Helper.whiteColor : Helper.mainColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
@@ -234,7 +235,7 @@ class _RegistrationState extends State<Registration> {
                       ],
                     ),
                     onPressed: () {
-                      if (!isBtnColor){
+                      if (!isBtnColor) {
                         _validate();
                       }
                     },
@@ -269,16 +270,16 @@ class _RegistrationState extends State<Registration> {
     );
   }
 
-  void _validate() async{
+  void _validate() async {
     setState(() {
       _errorMsg = "";
     });
     final form = _formKey.currentState;
-    if(!form!.validate()){
-        return;
+    if (!form!.validate()) {
+      return;
     }
     await registerEmail();
-    if(_errorMsg != "") return;
+    if (_errorMsg != "") return;
     Navigator.of(context).pushNamed("/SignupTwo");
   }
 }

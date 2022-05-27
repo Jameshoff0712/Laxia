@@ -106,12 +106,11 @@ class _Diary_CardState extends State<Diary_Card> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 6),
+                                    horizontal: 8, vertical: 4),
                                 child: Text(
                                   widget.buttontext!,
                                   style: TextStyle(
                                       color: widget.fontcolor,
-                                      height: 1.5,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400),
                                 ),
@@ -268,7 +267,6 @@ class _Diary_CardState extends State<Diary_Card> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 14,
-                        height: 1.3,
                         fontWeight: FontWeight.w400,
                         color: Helper.titleColor),
                   ),
@@ -294,7 +292,6 @@ class _Diary_CardState extends State<Diary_Card> {
                           widget.type,
                           style: TextStyle(
                               fontSize: 12,
-                              height: 1.5,
                               fontWeight: FontWeight.w400,
                               color: Helper.maintxtColor),
                         ),
@@ -329,7 +326,6 @@ class _Diary_CardState extends State<Diary_Card> {
                                     widget.clinic!,
                                     style: TextStyle(
                                         fontSize: 12,
-                                        height: 1.5,
                                         fontWeight: FontWeight.w400,
                                         color: Helper.maintxtColor),
                                   ),
@@ -360,7 +356,6 @@ class _Diary_CardState extends State<Diary_Card> {
                           widget.check,
                           style: TextStyle(
                               fontSize: 12,
-                              height: 1.5,
                               fontWeight: FontWeight.w400,
                               color: Helper.maintxtColor),
                         ),
@@ -378,7 +373,7 @@ class _Diary_CardState extends State<Diary_Card> {
                       SvgPicture.asset(
                         "assets/icons/menubar/money.svg",
                         width: 12,
-                        height: 6,
+                        height: 6.38,
                       ),
                       SizedBox(
                         width: 9,
@@ -389,7 +384,6 @@ class _Diary_CardState extends State<Diary_Card> {
                           widget.price + "円",
                           style: TextStyle(
                               fontSize: 12,
-                              height: 1.5,
                               fontWeight: FontWeight.w400,
                               color: Helper.maintxtColor),
                         ),
@@ -420,7 +414,6 @@ class _Diary_CardState extends State<Diary_Card> {
                               widget.eyes,
                               style: TextStyle(
                                   fontSize: 11,
-                                  height: 1.5,
                                   fontWeight: FontWeight.w400,
                                   color: Helper.maintxtColor),
                             ),

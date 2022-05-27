@@ -73,6 +73,11 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
   }
 
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Helper.whiteColor,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Helper.whiteColor.withOpacity(0),
+    ));
     return isloading
         ? Container(
             child: Container(
@@ -82,9 +87,8 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
               child: new CircularProgressIndicator(),
             ),
           ))
-        : Scaffold(
-            resizeToAvoidBottomInset: true,
-            body: Column(
+        : Container(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
@@ -129,74 +133,88 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                       Divider(color: Helper.lightGrey),
                     ]),
                   ),
-                )
-              ],
-            ),
-            bottomNavigationBar: SafeArea(
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                  color: Helper.whiteColor,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(.1), blurRadius: 5)
-                  ],
                 ),
-                //height: 42,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: 30,
-                        child: TextField(
-                          controller: sender,
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              setState(() {
-                                bSend = true;
-                              });
-                            } else {
-                              setState(() {
-                                bSend = false;
-                              });
-                            }
-                          },
-                          keyboardType: TextInputType.multiline,
-                          minLines: 1,
-                          maxLines: 4,
-                          decoration: InputDecoration(
-                            hintStyle: TextStyle(fontSize: 10),
-                            fillColor: Color.fromARGB(255, 243, 243, 243),
-                            filled: true,
-                            hintText: "",
-                            contentPadding: EdgeInsets.only(
-                                top: 3, left: 15, right: 15, bottom: 3),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 243, 243, 243),
-                                ),
-                                borderRadius: BorderRadius.circular(5)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 243, 243, 243),
-                                ),
-                                borderRadius: BorderRadius.circular(5)),
-                          ),
-                        ),
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Container(
+                      padding: MediaQuery.of(context).viewInsets,
+                      decoration: BoxDecoration(
+                        color: Helper.whiteColor,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(.1),
+                              blurRadius: 5)
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          postComment(sender.text);
-                        },
-                        child: SvgPicture.asset("assets/icons/send.svg",
-                            width: 30,
-                            height: 30,
-                            color: bSend ? Helper.mainColor : Helper.extraGrey),
-                      ),
-                    ]),
-              ),
+                      //height: 42,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: 30,
+                              child: TextField(
+                                controller: sender,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    setState(() {
+                                      bSend = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      bSend = false;
+                                    });
+                                  }
+                                },
+                                keyboardType: TextInputType.multiline,
+                                minLines: 1,
+                                maxLines: 4,
+                                decoration: InputDecoration(
+                                  hintStyle: TextStyle(fontSize: 10),
+                                  fillColor: Color.fromARGB(255, 243, 243, 243),
+                                  filled: true,
+                                  hintText: "",
+                                  contentPadding: EdgeInsets.only(
+                                      top: 3, left: 15, right: 15, bottom: 3),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 243, 243, 243),
+                                      ),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 243, 243, 243),
+                                      ),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 243, 243, 243),
+                                      ),
+                                      borderRadius: BorderRadius.circular(5)),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                postComment(sender.text);
+                              },
+                              child: SvgPicture.asset("assets/icons/send.svg",
+                                  width: 30,
+                                  height: 30,
+                                  color: bSend
+                                      ? Helper.mainColor
+                                      : Helper.extraGrey),
+                            ),
+                          ]),
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
   }

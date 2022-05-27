@@ -121,7 +121,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         for (int i = 0; i < 5; i++)
                           Icon(
                             Icons.star_rounded,
-                            color: Color.fromARGB(255, 206, 176, 88),
+                            color: Helper.starColor,
                             size: 16,
                           ),
                         Text(

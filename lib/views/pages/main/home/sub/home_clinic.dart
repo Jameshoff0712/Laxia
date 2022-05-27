@@ -155,51 +155,56 @@ class _Home_ClinicState extends State<Home_Clinic> {
                       },
                       child: Column(
                         children: [
-                          ListView.builder(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              itemCount: clinic_data.data.length,
-                              physics: widget.isScrollable!
-                                  ? AlwaysScrollableScrollPhysics()
-                                  : NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Clinic_Card(
-                                    onpress: () {
-                                      // print("object");
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Clinic_Detail(
-                                                      index: clinic_data
-                                                          .data[index].id)));
-                                    },
-                                    image: clinic_data.data[index].photo == null
-                                        ? "http://error.png"
-                                        : clinic_data.data[index].photo!,
-                                    post: "",
-                                    name: clinic_data.data[index].name!,
-                                    mark: clinic_data
-                                                .data[index].diaries_count ==
-                                            null
-                                        ? ""
-                                        : clinic_data.data[index].diaries_count
-                                            .toString(),
-                                    day: clinic_data
-                                                .data[index].diaries_count ==
-                                            null
-                                        ? ""
-                                        : clinic_data.data[index].diaries_count
-                                            .toString(),
-                                    location: (clinic_data.data[index].addr01 ==
-                                                null
-                                            ? ""
-                                            : clinic_data.data[index].addr01!) +
-                                        " " +
-                                        (clinic_data.data[index].addr02 == null
-                                            ? ""
-                                            : clinic_data.data[index].addr02!));
-                              }),
+                          Expanded(
+                            child: ListView.builder(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4),
+                                itemCount: clinic_data.data.length,
+                                physics: widget.isScrollable!
+                                    ? AlwaysScrollableScrollPhysics()
+                                    : NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Clinic_Card(
+                                      onpress: () {
+                                        // print("object");
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Clinic_Detail(
+                                                        index: clinic_data
+                                                            .data[index].id)));
+                                      },
+                                      image:
+                                          clinic_data.data[index].photo == null
+                                              ? "http://error.png"
+                                              : clinic_data.data[index].photo!,
+                                      post: "",
+                                      name: clinic_data.data[index].name!,
+                                      mark: clinic_data
+                                                  .data[index].diaries_count ==
+                                              null
+                                          ? ""
+                                          : clinic_data.data[index].diaries_count
+                                              .toString(),
+                                      day: clinic_data
+                                                  .data[index].diaries_count ==
+                                              null
+                                          ? ""
+                                          : clinic_data.data[index].diaries_count
+                                              .toString(),
+                                      location: (clinic_data.data[index].addr01 ==
+                                                  null
+                                              ? ""
+                                              : clinic_data
+                                                  .data[index].addr01!) +
+                                          " " +
+                                          (clinic_data.data[index].addr02 == null
+                                              ? ""
+                                              : clinic_data.data[index].addr02!));
+                                }),
+                          ),
                           Container(
                             height: isexpanding ? 0 : 100,
                             color: Colors.transparent,

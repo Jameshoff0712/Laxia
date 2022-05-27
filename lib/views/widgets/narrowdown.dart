@@ -190,6 +190,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                       Expanded(
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text("指定しない",
                               style: TextStyle(
@@ -199,7 +200,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                           Icon(
                             Icons.navigate_next,
                             color: Color.fromARGB(255, 156, 161, 161),
-                            size: 18,
+                            size: 25,
                           ),
                         ],
                       ))
@@ -228,14 +229,13 @@ class _NarrowDownnState extends State<NarrowDownn> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Helper.btnBgMainColor),
-                  width: 300,
-                  height: 45,
                   child: Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 114, vertical: 12),
                     child: Text(
                       "結果を表示",
                       style: TextStyle(
+                          fontFamily: Helper.headFontFamily,
                           color: Helper.whiteColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w700),

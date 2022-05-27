@@ -75,6 +75,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
           alignment: Alignment.bottomCenter,
           children: [
             Container(
+              color: Helper.whiteColor,
               child: Column(
                 children: [
                   Padding(
@@ -137,9 +138,12 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                                 Row(
                                   children: [
                                     Icon(
-                                      Icons.star,
+                                      Icons.star_rounded,
                                       color: Helper.starColor,
                                       size: 9,
+                                    ),
+                                    SizedBox(
+                                      width: 2.7,
                                     ),
                                     Text(
                                       "4.5", // widget.doctor_detail["mark"],
@@ -165,6 +169,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                   TabBarWidget(
                     tabMenus: tabMenus,
                     tabController: _tabController,
+                    padding: 15,
                   ),
                   Expanded(
                     child: TabBarView(
@@ -201,18 +206,19 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                 postToogleFavorite(widget.doctor_detail.doctor.id);
               },
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   isfavourite
-                      ? Icon(
-                          Icons.star,
-                          color: Helper.btnBgYellowColor,
-                          size: 30,
+                      ? SvgPicture.asset(
+                          "assets/icons/star.svg",
+                          width: 22,
+                          height: 22,
+                          color: Helper.starColor,
                         )
-                      : Icon(
-                          Icons.star_border,
-                          color: Helper.txtColor,
-                          size: 30,
+                      : SvgPicture.asset(
+                          "assets/icons/borderstar.svg",
+                          width: 22,
+                          height: 22,
                         ),
                   Text(
                     "お気に入り",

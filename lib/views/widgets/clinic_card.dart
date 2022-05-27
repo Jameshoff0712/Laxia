@@ -120,15 +120,16 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         children: [
                           for (int i = 0; i < 5; i++)
                             Icon(Icons.star_rounded,
-                                color: Color.fromARGB(255, 206, 176, 88),
+                                color: Helper.starColor,
                                 size: widget.image != "none" ? 16 : 20),
                           Text(
                             widget.mark,
                             style: widget.image != "none"
                                 ? TextStyle(
+                                    fontFamily: Helper.headFontFamily,
                                     color: Helper.titleColor,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 11.0)
+                                    fontSize: 12.0)
                                 : TextStyle(
                                     fontFamily: Helper.headFontFamily,
                                     color: Helper.titleColor,
@@ -142,16 +143,15 @@ class _Clinic_CardState extends State<Clinic_Card> {
                             widget.day,
                             style: widget.image != "none"
                                 ? TextStyle(
+                                    fontFamily: Helper.headFontFamily,
                                     color: Helper.titleColor,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 11.0,
-                                    height: 1.5)
+                                    fontSize: 12.0)
                                 : TextStyle(
                                     fontFamily: Helper.headFontFamily,
                                     color: Helper.titleColor,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 12.0,
-                                    height: 1.5),
+                                    fontSize: 12.0),
                           ),
                           SizedBox(
                             width: 1,
@@ -162,8 +162,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                                   style: TextStyle(
                                       color: Helper.maintxtColor,
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 11.0,
-                                      height: 1.5),
+                                      fontSize: 11.0),
                                 )
                               : Container(),
                         ],

@@ -363,7 +363,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                       ? widget.buttontxt
                       : surgeryProvider.btnText,
                   style: TextStyle(
-                      fontFamily: "Hiragino Kaku Gothic Pro w6",
+                      fontFamily: Helper.headFontFamily,
                       color: Helper.whiteColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w700),
