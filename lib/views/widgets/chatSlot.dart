@@ -45,7 +45,7 @@ class _ChatSlotState extends State<ChatSlot> {
                           child: Text(
                             widget.message.text!,
                             style: TextStyle(
-                                fontFamily: 'Hiragino Kaku Gothic Pro',
+                                // fontFamily: 'Hiragino Kaku Gothic Pro',
                                 color: Helper.whiteColor,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
@@ -58,7 +58,7 @@ class _ChatSlotState extends State<ChatSlot> {
                     Text(
                       widget.message.time!,
                       style: TextStyle(
-                          fontFamily: 'Hiragino Kaku Gothic Pro',
+                          // fontFamily: 'Hiragino Kaku Gothic Pro',
                           color: Helper.txtColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
@@ -124,7 +124,7 @@ class _ChatSlotState extends State<ChatSlot> {
                               child: Text(
                                 widget.message.text!,
                                 style: TextStyle(
-                                    fontFamily: 'Hiragino Kaku Gothic Pro',
+                                    // fontFamily: 'Hiragino Kaku Gothic Pro',
                                     color: Color.fromARGB(255, 51, 51, 51),
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
@@ -137,7 +137,6 @@ class _ChatSlotState extends State<ChatSlot> {
                         Text(
                           widget.message.time!,
                           style: TextStyle(
-                              fontFamily: 'Hiragino Kaku Gothic Pro',
                               color: Color.fromARGB(255, 156, 161, 161),
                               fontWeight: FontWeight.w400,
                               fontSize: 12,

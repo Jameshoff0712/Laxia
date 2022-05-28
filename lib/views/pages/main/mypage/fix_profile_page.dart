@@ -244,6 +244,15 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                               width: 2.0)),
                                     ),
                                   ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text('生年月日は非公開です。年代のみ公開されます。',
+                                    style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 11,
+                                          height: 1.5,
+                                          color: Color.fromARGB(255, 156, 161, 161)),),
+                                  )
                                 ],
                               ),
                               SizedBox(
@@ -256,8 +265,9 @@ class _FixProfilePageState extends State<FixProfilePage> {
                               ),
                               InputTextWidget(
                                   labelName: "自己紹介",
-                                  placeHolder: "プロフィールに自己紹介を追加する",
-                                  maxLegnth: "140"),
+                                  placeHolder: "",
+                                  maxLegnth: "140",
+                                  maxlines: 2,),
                               SizedBox(
                                 height: 10.0,
                               ),

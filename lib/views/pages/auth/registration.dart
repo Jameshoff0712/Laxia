@@ -185,9 +185,9 @@ class _RegistrationState extends State<Registration> {
                     //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                // SizedBox(
+                //   height: 10,
+                // ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TextButton(
@@ -203,9 +203,11 @@ class _RegistrationState extends State<Registration> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 61, right: 61),
+                  padding: const EdgeInsets.only(top: 0, left: 61, right: 61),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      minimumSize: Size.zero, // Set this
+                      padding: EdgeInsets.zero, // and this
                       side: BorderSide(color: Helper.txtColor, width: 1),
                       elevation: 0,
                       primary:

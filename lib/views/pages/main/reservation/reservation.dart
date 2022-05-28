@@ -1227,9 +1227,9 @@ class _ReservationState extends State<Reservation> {
                                     height: 1.5)),
                           ],
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
                       ],
                     )),
                     SizedBox(

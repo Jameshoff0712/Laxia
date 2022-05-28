@@ -122,6 +122,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         labelColor: Helper.titleColor,
         unselectedLabelColor: Helper.unSelectTabColor,
         labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
+        indicatorPadding: EdgeInsets.only(bottom: 10, right: -3, left: -3),
         tabs: [
           Tab(
             child: Text(
@@ -382,6 +383,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 );
                               },
                               style: OutlinedButton.styleFrom(
+                                minimumSize: Size.zero,
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
                                   shape: StadiumBorder(),
@@ -417,8 +419,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         child: Row(
                           children: [
                             SizedBox(
-                                height: 24,
-                                width: 24,
+                                // height: 24,
+                                // width: 24,
                                 child: Text(
                                   userProperties.getMe.followsCount.toString(),
                                   style: TextStyle(
@@ -457,8 +459,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         child: Row(
                           children: [
                             SizedBox(
-                                height: 24,
-                                width: 24,
+                                // height: 24,
+                                // width: 24,
                                 child: Text(
                                   userProperties.getMe.followersCount
                                       .toString(),

@@ -39,11 +39,12 @@ class _InputCodePageState extends State<InputCodePage> {
                 color: Helper.titleColor,
                 size: 30,
               )),
+          elevation: 0,
         ),
         body: Column(
           children: [
             SizedBox(
-              height: 100,
+              height: 90,
             ),
             Container(
               alignment: Alignment.center,

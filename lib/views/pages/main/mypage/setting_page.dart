@@ -21,7 +21,7 @@ class _SettingPageState extends State<SettingPage> {
       'item_right': Icon(
         Icons.keyboard_arrow_right,
         color: Helper.txtColor,
-        size: 20,
+        size: 25,
       ),
       'item_taped': (BuildContext context) {
         Navigator.push(context,
@@ -33,7 +33,7 @@ class _SettingPageState extends State<SettingPage> {
       'item_right': Icon(
         Icons.keyboard_arrow_right,
         color: Helper.txtColor,
-        size: 20,
+        size: 25,
       ),
       'item_taped': (BuildContext context) {
         Navigator.push(context,
@@ -45,7 +45,7 @@ class _SettingPageState extends State<SettingPage> {
       'item_right': Icon(
         Icons.keyboard_arrow_right,
         color: Helper.txtColor,
-        size: 20,
+        size: 25,
       ),
       'item_taped': (BuildContext context) {
         Navigator.push(context,
@@ -57,7 +57,7 @@ class _SettingPageState extends State<SettingPage> {
       'item_right': Icon(
         Icons.keyboard_arrow_right,
         color: Helper.txtColor,
-        size: 20,
+        size: 25,
       ),
       'item_taped': (BuildContext context) {}
     },
@@ -66,7 +66,7 @@ class _SettingPageState extends State<SettingPage> {
       'item_right': Icon(
         Icons.keyboard_arrow_right,
         color: Helper.txtColor,
-        size: 20,
+        size: 25,
       ),
       'item_taped': (BuildContext context) {
         Navigator.push(context,
@@ -78,7 +78,7 @@ class _SettingPageState extends State<SettingPage> {
       'item_right': Icon(
         Icons.keyboard_arrow_right,
         color: Helper.txtColor,
-        size: 20,
+        size: 25,
       ),
       'item_taped': (BuildContext context) {}
     },
@@ -87,7 +87,7 @@ class _SettingPageState extends State<SettingPage> {
       'item_right': Icon(
         Icons.keyboard_arrow_right,
         color: Helper.txtColor,
-        size: 20,
+        size: 25,
       ),
       'item_taped': (BuildContext context) {
         Navigator.push(
@@ -101,7 +101,7 @@ class _SettingPageState extends State<SettingPage> {
         style: TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 14,
-          height: 1.2,
+          height: 1.14,
           color: Color.fromARGB(255, 102, 110, 110),
         ),
       ),
@@ -144,6 +144,7 @@ class _SettingPageState extends State<SettingPage> {
             ),
             Container(
               padding: EdgeInsets.all(16),
+              height: 48,
               decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
@@ -158,15 +159,21 @@ class _SettingPageState extends State<SettingPage> {
                   Icon(
                     Icons.keyboard_arrow_right,
                     color: Helper.txtColor,
-                    size: 20,
-                  ), 
-                  (context) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FixProfilePage()));
-                  }
-              ),
+                    size: 25,
+                  ), (context) {
+                showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0)),
+                  ),
+                  context: context,
+                  builder: (context) {
+                    return FixProfilePage();
+                  },
+                  isScrollControlled: true,
+                );
+              }),
             ),
             SizedBox(
               height: 32,
@@ -181,11 +188,13 @@ class _SettingPageState extends State<SettingPage> {
                         color: Color.fromARGB(255, 200, 199, 204),
                       ))),
               child: ListView.separated(
+                  padding: EdgeInsets.zero,
                   itemCount: setting_itmes.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       padding: EdgeInsets.all(16),
+                      height: 48,
                       decoration: BoxDecoration(
                         color: Colors.white,
                       ),
@@ -274,7 +283,7 @@ class _SettingPageState extends State<SettingPage> {
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,
-              height: 1.2,
+              height: 1.14,
               color: Color.fromARGB(255, 18, 18, 18),
             ),
           ),
