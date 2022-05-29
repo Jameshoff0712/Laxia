@@ -127,7 +127,7 @@ class _Home_CaseState extends State<Home_Case> {
                         child: Dropdownbutton(
                             items: <String>["人気投稿順", "新着順"],
                             hintText: "並び替え",
-                            horizontal: 20),
+                            horizontal: 32),
                       ),
                     ],
                   ),

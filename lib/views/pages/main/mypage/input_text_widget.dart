@@ -5,11 +5,13 @@ class InputTextWidget extends StatefulWidget {
   String labelName = '';
   String placeHolder = '';
   String maxLegnth = '';
+  final int? maxlines;
 
   InputTextWidget(
       {required this.labelName,
       required this.placeHolder,
-      required this.maxLegnth});
+      required this.maxLegnth,
+      this.maxlines = 1});
   @override
   State<InputTextWidget> createState() => _InputTextWidgetState();
 }
@@ -66,6 +68,7 @@ class _InputTextWidgetState extends State<InputTextWidget> {
             return null;
           },
           maxLength: int.parse(widget.maxLegnth),
+          maxLines: widget.maxlines,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 12),
             hintText: widget.placeHolder,

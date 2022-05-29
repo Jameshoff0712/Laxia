@@ -13,9 +13,14 @@ import 'package:provider/provider.dart';
 
 class Home_Counseling extends StatefulWidget {
   final bool issearch;
-  final bool?isdrawer;
-  final List? model,last;
-  const Home_Counseling({Key? key, required this.issearch, this.model, this.isdrawer=true, this.last})
+  final bool? isdrawer;
+  final List? model, last;
+  const Home_Counseling(
+      {Key? key,
+      required this.issearch,
+      this.model,
+      this.isdrawer = true,
+      this.last})
       : super(key: key);
 
   @override
@@ -23,20 +28,20 @@ class Home_Counseling extends StatefulWidget {
 }
 
 class _Home_CounselingState extends State<Home_Counseling> {
-  String searchdata="";
-  bool expanded=true;
-  int index=-1,page=0;
+  String searchdata = "";
+  bool expanded = true;
+  int index = -1, page = 0;
   bool isend = false, isloading = true, isexpanding = true;
   late Counceling counceling_data;
   final _con = HomeController();
-  Future<void> getData({required String page, String? q=""}) async {
+  Future<void> getData({required String page, String? q = ""}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCouncelingData(page: page,q:q);
+        final mid = await _con.getCouncelingData(page: page, q: q);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -61,16 +66,19 @@ class _Home_CounselingState extends State<Home_Counseling> {
       });
     }
   }
-  void init(){
-    setState(() {;
-       isloading = true;
-       isexpanding=true;
-       isend=false;
-       page = 1;
-       expanded=false;
-       index=-1;
+
+  void init() {
+    setState(() {
+      ;
+      isloading = true;
+      isexpanding = true;
+      isend = false;
+      page = 1;
+      expanded = false;
+      index = -1;
     });
   }
+
   @override
   void initState() {
     getData(page: page.toString());
@@ -81,10 +89,10 @@ class _Home_CounselingState extends State<Home_Counseling> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    if(searchdata!=userProperties.searchtext){
+    if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
-        searchdata=userProperties.searchtext;
+        searchdata = userProperties.searchtext;
         getData(page: page.toString(), q: userProperties.searchtext);
       });
     }
@@ -92,37 +100,41 @@ class _Home_CounselingState extends State<Home_Counseling> {
       color: Helper.homeBgColor,
       child: Column(
         children: [
-           widget.isdrawer!?Container(
-            color: Helper.whiteColor,
-            child: Row(
-              children: [
-                Expanded(
-                    flex: 3,
-                    child: TextButton_Drawer(
-                       horizontal: 40,
-                        width: 186,
-                        textname: "エリア選択",
-                        onpress: () {
-                          Navigator.of(context).pushNamed("/SelectPrefecture");
-                        })),
-                Expanded(
-                  flex: 3,
-                  child: Dropdownbutton(
-                      items: <String>["人気投稿順", "新着順"],
-                      hintText: "並び替え",
-                      horizontal: 55),
+          widget.isdrawer!
+              ? Container(
+                  color: Helper.whiteColor,
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 3,
+                          child: TextButton_Drawer(
+                              horizontal: 40,
+                              width: 186,
+                              textname: "エリア選択",
+                              onpress: () {
+                                Navigator.of(context)
+                                    .pushNamed("/SelectPrefecture");
+                              })),
+                      Expanded(
+                        flex: 3,
+                        child: Dropdownbutton(
+                            items: <String>["人気投稿順", "新着順"],
+                            hintText: "並び替え",
+                            horizontal: 62),
+                      ),
+                    ],
+                  ),
+                )
+              : SizedBox(
+                  height: 0,
                 ),
-              ],
-            ),
-          ):
-          SizedBox(height: 0,),
           Expanded(
-            child:  NotificationListener<ScrollNotification>(
+              child: NotificationListener<ScrollNotification>(
             onNotification: (ScrollNotification scrollInfo) {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
                 if (isexpanding && !isend) {
-                  getData(page: (page + 1).toString(),q:searchdata);
+                  getData(page: (page + 1).toString(), q: searchdata);
                   setState(() {
                     page += 1;
                   });
@@ -133,76 +145,79 @@ class _Home_CounselingState extends State<Home_Counseling> {
               }
               return true;
             },
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    widget.isdrawer!?SizedBox(height: 0,):
-                    Container(
-                      color: Helper.whiteColor,
-                      child: Column(
-                        children: [
-                          ExtendedWrap(
-                            alignment: WrapAlignment.center,
-                            maxLines: expanded ? 2 : 100,
-                            clipBehavior: Clip.none,
-                            runSpacing: 10,
-                            spacing: 10,
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  widget.isdrawer!
+                      ? SizedBox(
+                          height: 0,
+                        )
+                      : Container(
+                          color: Helper.whiteColor,
+                          child: Column(
                             children: [
-                              for (int i = 0;
-                                  i <widget.last!.length;
-                                  i++)
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      if (index == i) {
-                                        index = -1;
-                                      } else {
-                                        index = i;
-                                      }
-                                    });
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(22),
-                                        color: index == i
-                                            ? Helper.mainColor
-                                            : Helper.homeBgColor),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 3),
-                                      child: Text(
-                                      widget.last![i]["label"],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12,
-                                            color: index == i
-                                                ? Helper.whiteColor
-                                                : Helper.titleColor),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                            ]),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  expanded = !expanded;
-                                });
-                              },
-                              child: Icon(
-                                      expanded
-                                          ? FontAwesomeIcons.angleDown
-                                          : FontAwesomeIcons.angleUp,
-                                      size: 24,
-                                      color: Helper.titleColor,
-                                    ),
-                            ),
-                        ],
-                      ),
-                    ),
-                    isloading
+                              ExtendedWrap(
+                                  alignment: WrapAlignment.center,
+                                  maxLines: expanded ? 2 : 100,
+                                  clipBehavior: Clip.none,
+                                  runSpacing: 10,
+                                  spacing: 10,
+                                  children: [
+                                    for (int i = 0;
+                                        i < widget.last!.length;
+                                        i++)
+                                      InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            if (index == i) {
+                                              index = -1;
+                                            } else {
+                                              index = i;
+                                            }
+                                          });
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(22),
+                                              color: index == i
+                                                  ? Helper.mainColor
+                                                  : Helper.homeBgColor),
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 8, vertical: 3),
+                                            child: Text(
+                                              widget.last![i]["label"],
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12,
+                                                  color: index == i
+                                                      ? Helper.whiteColor
+                                                      : Helper.titleColor),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                  ]),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    expanded = !expanded;
+                                  });
+                                },
+                                child: Icon(
+                                  expanded
+                                      ? FontAwesomeIcons.angleDown
+                                      : FontAwesomeIcons.angleUp,
+                                  size: 24,
+                                  color: Helper.titleColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                  isloading
                       ? Container(
                           child: Container(
                           height: MediaQuery.of(context).size.width,
@@ -210,36 +225,73 @@ class _Home_CounselingState extends State<Home_Counseling> {
                           child: Center(
                             child: new CircularProgressIndicator(),
                           ),
-                        )):
-                  ListView.builder(
-                    padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                    itemCount: counceling_data.data.length,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      return Counseling_Card(
-                        hearts: counceling_data.data[index].likes_count==null?"":counceling_data.data[index].likes_count!.toString(),
-                        chats: counceling_data.data[index].comments_count==null?"":counceling_data.data[index].comments_count.toString(),
-                        avator:counceling_data.data[index].patient_photo==null?"http://error.png": counceling_data.data[index].patient_photo!,
-                        check: counceling_data.data[index].doctor_name==null?"":counceling_data.data[index].doctor_name!,
-                        image2:"http://error.png", //counceling_data.data[index]["image2"],
-                        image1:"http://error.png", //counceling_data.data[index]["image1"],
-                        image3:"http://error.png", //counceling_data.data[index]["image3"],
-                        image4:"http://error.png", //counceling_data.data[index]["image4"],
-                        eyes: counceling_data.data[index].views_count==null?"":counceling_data.data[index].views_count!.toString(),
-                        name: counceling_data.data[index].patient_nickname==null?"":counceling_data.data[index].patient_nickname!,
-                         onpress: (){
-                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CounselDetail(index:  counceling_data.data[index].id)));
-                          },
-                        sentence:counceling_data.data[index].content==null?"": counceling_data.data[index].content!,
-                        type:"回答あり",// counceling_data.data[index]["type"],
-                        clinic:counceling_data.data[index].clinic_name==null?"": counceling_data.data[index].clinic_name!,
-                      );
-                    }
-                  ),
+                        ))
+                      : ListView.builder(
+                          padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                          itemCount: counceling_data.data.length,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return Counseling_Card(
+                              hearts: counceling_data.data[index].likes_count ==
+                                      null
+                                  ? ""
+                                  : counceling_data.data[index].likes_count!
+                                      .toString(),
+                              chats: counceling_data
+                                          .data[index].comments_count ==
+                                      null
+                                  ? ""
+                                  : counceling_data.data[index].comments_count
+                                      .toString(),
+                              avator: counceling_data
+                                          .data[index].patient_photo ==
+                                      null
+                                  ? "http://error.png"
+                                  : counceling_data.data[index].patient_photo!,
+                              check: counceling_data.data[index].doctor_name ==
+                                      null
+                                  ? ""
+                                  : counceling_data.data[index].doctor_name!,
+                              image2:
+                                  "http://error.png", //counceling_data.data[index]["image2"],
+                              image1:
+                                  "http://error.png", //counceling_data.data[index]["image1"],
+                              image3:
+                                  "http://error.png", //counceling_data.data[index]["image3"],
+                              image4:
+                                  "http://error.png", //counceling_data.data[index]["image4"],
+                              eyes: counceling_data.data[index].views_count ==
+                                      null
+                                  ? ""
+                                  : counceling_data.data[index].views_count!
+                                      .toString(),
+                              name: counceling_data
+                                          .data[index].patient_nickname ==
+                                      null
+                                  ? ""
+                                  : counceling_data
+                                      .data[index].patient_nickname!,
+                              onpress: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CounselDetail(
+                                            index: counceling_data
+                                                .data[index].id)));
+                              },
+                              sentence:
+                                  counceling_data.data[index].content == null
+                                      ? ""
+                                      : counceling_data.data[index].content!,
+                              type:
+                                  "回答あり", // counceling_data.data[index]["type"],
+                              clinic: counceling_data.data[index].clinic_name ==
+                                      null
+                                  ? ""
+                                  : counceling_data.data[index].clinic_name!,
+                            );
+                          }),
                   Container(
                     height: isexpanding ? 0 : 100,
                     color: Colors.transparent,
@@ -247,10 +299,10 @@ class _Home_CounselingState extends State<Home_Counseling> {
                       child: new CircularProgressIndicator(),
                     ),
                   )
-                ],),
-                ),
-            )
-          ),
+                ],
+              ),
+            ),
+          )),
         ],
       ),
     );

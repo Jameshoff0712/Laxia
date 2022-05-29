@@ -121,16 +121,16 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         for (int i = 0; i < 5; i++)
                           Icon(
                             Icons.star_rounded,
-                            color: Color.fromARGB(255, 206, 176, 88),
+                            color: Helper.starColor,
                             size: 16,
                           ),
                         Text(
                           widget.mark,
                           style: TextStyle(
+                              fontFamily: Helper.headFontFamily,
                               color: Helper.titleColor,
                               fontWeight: FontWeight.w400,
-                              fontSize: 11.0,
-                              height: 1.5),
+                              fontSize: 11.0),
                         ),
                         SizedBox(
                           width: 8,
@@ -138,10 +138,10 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         Text(
                           widget.day,
                           style: TextStyle(
+                              fontFamily: Helper.headFontFamily,
                               color: Helper.titleColor,
                               fontWeight: FontWeight.w400,
-                              fontSize: 11.0,
-                              height: 1.5),
+                              fontSize: 11.0),
                         ),
                         SizedBox(
                           width: 1,
@@ -151,8 +151,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                           style: TextStyle(
                               color: Helper.maintxtColor,
                               fontWeight: FontWeight.w400,
-                              fontSize: 11.0,
-                              height: 1.5),
+                              fontSize: 11.0),
                         ),
                       ],
                     ),
@@ -178,8 +177,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                           style: TextStyle(
                               color: Helper.maintxtColor,
                               fontWeight: FontWeight.w400,
-                              fontSize: 12.0,
-                              height: 1.5),
+                              fontSize: 12.0),
                         ),
                       ],
                     ),

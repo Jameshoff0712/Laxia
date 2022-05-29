@@ -45,7 +45,7 @@ class _InvitePageState extends State<InvitePage> {
         body: Column(
           children: [
             SizedBox(
-              height: 45,
+              height: 35,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 25),
@@ -75,7 +75,7 @@ class _InvitePageState extends State<InvitePage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
-                    height: 1.5,
+                    height: 1.4,
                     color: Helper.blackColor,
                   ),
                 ),

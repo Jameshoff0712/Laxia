@@ -23,7 +23,7 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   final _selectedItemColor = Helper.mainColor;
-  final _unselectedItemColor = Helper.darkGrey;
+  final _unselectedItemColor = Helper.searchBartxtColor;
   final _selectedBgColor = Helper.mainColor;
   final _unselectedBgColor = Colors.transparent;
   final _whiteColor = Helper.whiteColor;

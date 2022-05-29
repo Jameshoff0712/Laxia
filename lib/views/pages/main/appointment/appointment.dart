@@ -27,6 +27,7 @@ class _AppointmentState extends State<Appointment>
     '予約済',
     '来院済',
     '施術履歴',
+    // '1234567'
   ];
   late TabController _tabController;
   bool isEmpty = true;
@@ -81,6 +82,7 @@ class _AppointmentState extends State<Appointment>
         TabBarWidget(
           tabMenus: tabMenus,
           tabController: _tabController,
+          padding: 8,
           isScrollable: false,
         ),
         Expanded(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CircleTabIndicator extends Decoration {
@@ -24,7 +23,8 @@ class _CirclePainter extends BoxPainter {
   void paint(Canvas canvas, Offset offset, ImageConfiguration cfg) {
     final Offset circleOffset =
         offset + Offset(cfg.size!.width / 2, cfg.size!.height - 5);
-    final RRect rect=RRect.fromLTRBXY(circleOffset.dx-radius,circleOffset.dy-1,circleOffset.dx+radius,circleOffset.dy+1,0, 1);
+    final RRect rect = RRect.fromLTRBXY(circleOffset.dx - radius,
+        circleOffset.dy - 2, circleOffset.dx + radius, circleOffset.dy, 21, 21);
     canvas.drawRRect(rect, _paint);
   }
 }

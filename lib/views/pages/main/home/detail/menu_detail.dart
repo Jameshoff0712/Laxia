@@ -189,6 +189,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                           height: 30,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
+                                              shadowColor: Helper.whiteColor,
+                                              elevation: 0,
                                               side: BorderSide(
                                                   color: Helper.mainColor,
                                                   width: 1),
@@ -371,6 +373,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                           height: 30,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
+                                              shadowColor: Helper.whiteColor,
+                                              elevation: 0,
                                               side: BorderSide(
                                                   color: Helper.mainColor,
                                                   width: 1),
@@ -505,6 +509,9 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                                 .mainColor),
                                                         child: Center(
                                                             child: Text(index.toString(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         10,
@@ -594,6 +601,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                           height: 30,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
+                                              shadowColor: Helper.whiteColor,
+                                              elevation: 0,
                                               side: BorderSide(
                                                   color: Helper.mainColor,
                                                   width: 1),
@@ -891,12 +900,12 @@ class _Menu_DetailState extends State<Menu_Detail> {
                           children: [
                             isfavourite
                                 ? Icon(
-                                    Icons.star,
-                                    color: Helper.btnBgYellowColor,
+                                    Icons.star_rounded,
+                                    color: Helper.starColor,
                                     size: 16,
                                   )
                                 : Icon(
-                                    Icons.star_border,
+                                    Icons.star_border_rounded,
                                     color: Helper.txtColor,
                                     size: 16,
                                   ),
@@ -912,32 +921,26 @@ class _Menu_DetailState extends State<Menu_Detail> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: 170,
-                      height: 44,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Helper.btnBgYellowColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(70.0),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed("/Reservation");
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(70),
+                            color: Helper.btnBgYellowColor),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 10),
+                          child: Text(
+                            "クリニックを予約",
+                            style: defaultTextStyle(
+                                Helper.whiteColor, FontWeight.w700,
+                                size: 16),
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "クリニックを予約",
-                              style: defaultTextStyle(
-                                  Helper.whiteColor, FontWeight.w700,
-                                  size: 16),
-                            ),
-                          ],
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pushNamed("/Reservation");
-                        },
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

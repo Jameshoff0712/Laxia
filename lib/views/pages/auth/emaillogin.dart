@@ -110,8 +110,8 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                   hintText: Trans.of(context).input_email,
                   hintStyle: TextStyle(
                       color: Color.fromARGB(255, 210, 210, 212), fontSize: 14),
-                  // filled: true,
-                  // fillColor: Helper.whiteColor.withOpacity(0.2),
+                  filled: true,
+                  fillColor: Helper.whiteColor.withOpacity(0.2),
                   contentPadding:
                       EdgeInsets.only(left: 16, top: 16, bottom: 16),
                   // hintText: 'john@doe.com',
@@ -126,12 +126,14 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                   // ),
                   focusedBorder: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
+                          BorderSide(color: Helper.authHintColor, width: 1)),
                   border: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 210, 210, 212),
-                    ),
+                    borderSide:
+                        BorderSide(color: Helper.authHintColor, width: 1),
                   ),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Helper.authHintColor, width: 1)),
                 ),
               ),
               TextFormField(
@@ -167,14 +169,15 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                   ),
                   border: UnderlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 210, 210, 212),
+                      color: Helper.authHintColor,
                     ),
                   ),
                   // border: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                   focusedBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Helper.mainColor.withOpacity(0.5))),
+                      borderSide: BorderSide(color: Helper.authHintColor)),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Helper.authHintColor)),
                   // enabledBorder: OutlineInputBorder(
                   //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
                 ),
@@ -210,6 +213,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    elevation: 0,
                     primary: Helper.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),

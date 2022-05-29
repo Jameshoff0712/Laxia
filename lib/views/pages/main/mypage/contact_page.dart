@@ -73,6 +73,8 @@ class _ContactPageState extends State<ContactPage> {
                     ),
                     TextField(
                       decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(0),
@@ -101,6 +103,8 @@ class _ContactPageState extends State<ContactPage> {
                     ),
                     TextField(
                       decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(0),
@@ -128,8 +132,10 @@ class _ContactPageState extends State<ContactPage> {
                       height: 1,
                     ),
                     TextField(
-                      maxLines: 10,
+                      maxLines: 6,
                       decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 7),
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(0),
@@ -142,7 +148,7 @@ class _ContactPageState extends State<ContactPage> {
                       onChanged: (text) {},
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 12,
                     ),
                     Text(
                       '【カスタマーサポートについて】\n営業時間：平日10時〜17時\n※営業時間外のお問いあわせは返信に時間がかかる場合がございます\n※土日祝日にいただいたお問い合わせにつきまして、翌営業日以降のご返信となりますのであらかじめご了承ください。\n※弊社では電話対応を行っていないため、申し訳ございませんがメールでのサポートのみとさせていただきます。\n※お問い合わせいただきました内容によっては、お答えできない場合やお時間がかかる場合がございます。',

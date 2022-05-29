@@ -12,7 +12,8 @@ class Dropdownbutton extends StatefulWidget {
       {Key? key,
       required this.items,
       required this.horizontal,
-      required this.hintText, this.width=123})
+      required this.hintText,
+      this.width = 74})
       : super(key: key);
 
   @override
@@ -20,7 +21,6 @@ class Dropdownbutton extends StatefulWidget {
 }
 
 class _DropdownbuttonState extends State<Dropdownbutton> {
-
   String? selectedValue;
   String? mid;
   bool drop = true;
@@ -30,7 +30,7 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
       child: DropdownButton2(
         buttonWidth: widget.width!,
         buttonPadding:
-            EdgeInsets.symmetric(horizontal: widget.horizontal, vertical: 9),
+            EdgeInsets.symmetric(horizontal: widget.horizontal, vertical: 0),
         enableFeedback: true,
         onTap: () {
           setState(() {
@@ -44,37 +44,46 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
         },
         iconSize: 20,
         hint: drop
-            ? Text(
-                widget.hintText,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Helper.unSelectSmallTabColor,
+            ? Padding(
+                padding: const EdgeInsets.only(top: 0.0),
+                child: Text(
+                  widget.hintText,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Helper.unSelectSmallTabColor,
+                  ),
                 ),
               )
             : Text(
                 widget.hintText,
-                style: TextStyle(fontSize: 12, color: Helper.selectSmallTabColor),
+                style:
+                    TextStyle(fontSize: 12, color: Helper.selectSmallTabColor),
               ),
-        icon:drop? SvgPicture.asset(
-                "assets/icons/arrowdown.svg",
-                fit: BoxFit.cover,
-                width: 7.2,
-                height: 4.7,
-                color: Helper.maintxtColor,
-              ): SvgPicture.asset(
+        icon: drop
+            ? Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: SvgPicture.asset(
+                  "assets/icons/arrowdown.svg",
+                  fit: BoxFit.cover,
+                  width: 7.2,
+                  height: 4.7,
+                  color: Helper.maintxtColor,
+                ),
+              )
+            : SvgPicture.asset(
                 "assets/icons/arrowup.svg",
                 fit: BoxFit.cover,
                 width: 7.2,
                 height: 4.7,
-                color:Helper.mainColor,
+                color: Helper.mainColor,
               ),
         items: widget.items
             .map((item) => DropdownMenuItem<String>(
                   value: item,
                   child: selectedValue == item
                       ? Padding(
-                        padding: const EdgeInsets.only(right:8.0),
-                        child: Row(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Row(
                             children: [
                               Text(
                                 item,
@@ -87,12 +96,13 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
                                   child: Align(
                                       alignment: Alignment.centerRight,
                                       child: Icon(
-                                Icons.check,
-                                color: Color.fromARGB(255, 110, 198, 210),
-                              )))
+                                        Icons.check,
+                                        color:
+                                            Color.fromARGB(255, 110, 198, 210),
+                                      )))
                             ],
                           ),
-                      )
+                        )
                       : Text(
                           item,
                           style: const TextStyle(
@@ -115,11 +125,11 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
         dropdownWidth: MediaQuery.of(context).size.width,
         dropdownDecoration: BoxDecoration(
           boxShadow: [
-                        BoxShadow(
-                             offset:  Offset(1000,1000),
-                            color: Colors.black.withOpacity(.7),
-                            spreadRadius: 1000)
-                            ],
+            BoxShadow(
+                offset: Offset(1000, 1000),
+                color: Colors.black.withOpacity(.7),
+                spreadRadius: 1000)
+          ],
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),

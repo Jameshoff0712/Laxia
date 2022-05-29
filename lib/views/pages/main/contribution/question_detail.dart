@@ -154,11 +154,11 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                         const EdgeInsets.fromLTRB(12, 3, 12, 3),
                                     child: Text(
                                       'フォロー',
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 8,
                                           fontWeight: FontWeight.w400,
-                                          color: Color.fromARGB(
-                                              255, 110, 198, 210)),
+                                          color: Helper.mainColor),
                                     ),
                                   ),
                                 ),
@@ -243,12 +243,12 @@ class _QuestionDetailState extends State<QuestionDetail> {
                               ? Icon(
                                   Icons.favorite,
                                   color: Helper.btnBgYellowColor,
-                                  size: 22,
+                                  size: 23,
                                 )
-                              : Icon(
-                                  Icons.favorite_border,
-                                  color: Helper.txtColor,
-                                  size: 22,
+                              : SvgPicture.asset(
+                                  "assets/icons/bottombar/heart.svg",
+                                  width: 22,
+                                  height: 22,
                                 ),
                           Text(
                             question_detail.likes_count!.toString(),
@@ -274,15 +274,16 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           islike
-                              ? Icon(
-                                  Icons.star_rounded,
-                                  color: Helper.btnBgYellowColor,
-                                  size: 32,
+                              ? SvgPicture.asset(
+                                  "assets/icons/star.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Helper.starColor,
                                 )
-                              : Icon(
-                                  Icons.star_border_rounded,
-                                  color: Helper.txtColor,
-                                  size: 32,
+                              : SvgPicture.asset(
+                                  "assets/icons/borderstar.svg",
+                                  width: 22,
+                                  height: 22,
                                 ),
                           Text(
                             "お気に入り",
@@ -325,10 +326,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            FontAwesomeIcons.commentDots,
-                            color: Helper.txtColor,
-                            size: 22,
+                          SvgPicture.asset(
+                            "assets/icons/chart.svg",
+                            width: 22,
+                            height: 22,
                           ),
                           Text(
                             question_detail.comments_count.toString(),
@@ -357,10 +358,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           child: Text(
                             "コメントする",
                             style: TextStyle(
-                                color: Helper.txtColor,
+                                color: Color.fromARGB(255, 196, 196, 196),
                                 fontWeight: FontWeight.w700,
-                                height: 1.5,
-                                fontSize: 14),
+                                fontSize: 12),
                           ),
                         ),
                       ),
@@ -371,7 +371,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
             ),
             body: SingleChildScrollView(
               reverse: false,
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.symmetric(vertical: 30),
               child: Container(
                 color: Helper.whiteColor,
                 padding: EdgeInsets.symmetric(horizontal: 15),
@@ -416,7 +416,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(height: 5),
                     Container(
                       child: Text(
-                        question_detail.created_at!.split("T")[0],
+                        question_detail.created_at!
+                            .split("T")[0]
+                            .replaceAll('-', '/'),
                         style: TextStyle(color: Helper.darkGrey, fontSize: 10),
                       ),
                     ),
@@ -457,7 +459,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       child: Text(
                         question_detail.content!,
                         style: TextStyle(
-                            color: Helper.extraGrey, fontSize: 14, height: 1.5),
+                            color: Helper.titleColor,
+                            fontSize: 14,
+                            height: 25 / 14),
                       ),
                     ),
                     Container(
@@ -543,9 +547,15 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(15.0)),
                                             borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .focusColor
-                                                    .withOpacity(0.1)),
+                                                color: Color.fromARGB(
+                                                    255, 231, 231, 231)),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15.0)),
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 231, 231, 231)),
                                           ),
                                         ),
                                       ),

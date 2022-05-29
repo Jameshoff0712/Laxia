@@ -130,7 +130,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.symmetric(
-                                      vertical: 2, horizontal: 20),
+                                      vertical: 5, horizontal: 20),
                                   decoration: BoxDecoration(
                                     color: Helper.mainColor,
                                     borderRadius: BorderRadius.circular(20),
@@ -143,8 +143,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     child: Text("次へ",
                                         style: TextStyle(
                                             fontSize: 18,
+                                            height: 1.3,
                                             fontWeight: FontWeight.w400,
-                                            height: 27 / 18,
                                             letterSpacing: -0.54,
                                             color: Helper.whiteColor)),
                                   ),
