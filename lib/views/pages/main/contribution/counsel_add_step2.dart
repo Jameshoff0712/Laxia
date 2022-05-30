@@ -73,7 +73,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -191,7 +191,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                         ' 質問・相談を追加',
                         style: TextStyle(
                             fontSize: 14,
-                            height: 1.5,
+                            
                             fontWeight: FontWeight.w700),
                       ),
                     ],
@@ -376,7 +376,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                               'レポートを投稿する',
                               style: TextStyle(
                                   fontSize: 14,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400),
                             ),
                           ),
@@ -413,7 +413,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                               'レポートを下書き保存する',
                               style: TextStyle(
                                   fontSize: 14,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400),
                             ),
                           ),
@@ -458,7 +458,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14,
-                                  height: 1.5,
+                                  
                                   color: Helper.titleColor,
                                 ),
                               ),
@@ -494,7 +494,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14,
-                                height: 1.5,
+                                
                                 color: Helper.mainColor,
                               ),
                             ),

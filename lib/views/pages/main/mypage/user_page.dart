@@ -64,7 +64,7 @@ class _UserPageState extends State<UserPage>
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -110,7 +110,7 @@ class _UserPageState extends State<UserPage>
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
-                height: 1.5,
+                
                 color: Helper.titleColor,
               ),
             ),
@@ -121,7 +121,7 @@ class _UserPageState extends State<UserPage>
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
-                height: 1.5,
+                
               ),
             ),
           ),
@@ -131,7 +131,7 @@ class _UserPageState extends State<UserPage>
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 12,
-                height: 1.5,
+                
               ),
             ),
           )
@@ -307,7 +307,7 @@ class _UserPageState extends State<UserPage>
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 18,
-                                    height: 1.5,
+                                    
                                     color: Helper.titleColor,
                                   ),
                                 )),
@@ -331,7 +331,7 @@ class _UserPageState extends State<UserPage>
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
-                                        height: 1.5,
+                                        
                                         color: Helper.mainColor,
                                       ),
                                     )
@@ -340,7 +340,7 @@ class _UserPageState extends State<UserPage>
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
-                                        height: 1.5,
+                                        
                                         color: Helper.whiteColor,
                                       ),
                                     )),
@@ -372,7 +372,7 @@ class _UserPageState extends State<UserPage>
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
-                                    height: 1.5,
+                                    
                                     color: Helper.titleColor,
                                   ),
                                 )),
@@ -385,7 +385,7 @@ class _UserPageState extends State<UserPage>
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
-                                height: 1.5,
+                                
                                 color: Color.fromARGB(255, 194, 194, 194),
                               ),
                             )),
@@ -412,7 +412,7 @@ class _UserPageState extends State<UserPage>
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
-                                    height: 1.5,
+                                    
                                     color: Helper.titleColor,
                                   ),
                                 )),
@@ -425,7 +425,7 @@ class _UserPageState extends State<UserPage>
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
-                                height: 1.5,
+                                
                                 color: Color.fromARGB(255, 194, 194, 194),
                               ),
                             )),

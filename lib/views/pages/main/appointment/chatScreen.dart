@@ -28,7 +28,7 @@ class _ChatScreenState extends State<ChatScreen> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -96,14 +96,14 @@ class _ChatScreenState extends State<ChatScreen> {
                     hintStyle: TextStyle(
                       color: Color.fromARGB(255, 156, 161, 161),
                       fontSize: 12,
-                      height: 1.5,
+                      
                       fontWeight: FontWeight.w400,
                     ),
                   ),
                   style: TextStyle(
                     color: Color.fromARGB(255, 51, 51, 51),
                     fontSize: 12,
-                    height: 1.5,
+                    
                     fontWeight: FontWeight.w400,
                   ),
                   keyboardType: TextInputType.multiline,

@@ -91,12 +91,12 @@ class _Comment_CardState extends State<Comment_Card> {
               children: [
                 Text(
                   widget.date,
-                  style: TextStyle( fontWeight: FontWeight.w400,height: 1.5,fontSize: 12, color: Helper.darkGrey),
+                  style: TextStyle( fontWeight: FontWeight.w400,fontSize: 12, color: Helper.darkGrey),
                 ),
                 InkWell(
                   child: Text(
                     '返信',
-                    style: TextStyle(fontWeight: FontWeight.w400,height: 1.5,fontSize: 13, color: Helper.mainColor),
+                    style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13, color: Helper.mainColor),
                   ),
                 )
               ],

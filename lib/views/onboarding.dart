@@ -143,7 +143,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     child: Text("次へ",
                                         style: TextStyle(
                                             fontSize: 18,
-                                            height: 1.3,
                                             fontWeight: FontWeight.w400,
                                             letterSpacing: -0.54,
                                             color: Helper.whiteColor)),

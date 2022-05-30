@@ -76,7 +76,7 @@ class _ReservationState extends State<Reservation> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 18,
-              height: 1.5,
+              
               color: Helper.titleColor,
             ),
           ),
@@ -100,7 +100,7 @@ class _ReservationState extends State<Reservation> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 16,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -114,7 +114,7 @@ class _ReservationState extends State<Reservation> {
                                 style: TextStyle(
                                   fontFamily: 'Hiragino Kaku Gothic Pro',
                                   fontSize: 14,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -145,7 +145,7 @@ class _ReservationState extends State<Reservation> {
                                           fontFamily:
                                               'Hiragino Kaku Gothic Pro',
                                           fontSize: 16,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400,
                                           color:
                                               Color.fromARGB(255, 0, 184, 169),
@@ -171,7 +171,7 @@ class _ReservationState extends State<Reservation> {
                                           fontFamily:
                                               'Hiragino Kaku Gothic Pro',
                                           fontSize: 16,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
                                         ),
@@ -233,7 +233,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -244,7 +244,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                       ],
@@ -261,7 +261,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -272,7 +272,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                       ],
@@ -290,7 +290,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -322,7 +322,7 @@ class _ReservationState extends State<Reservation> {
                                         item,
                                         style: const TextStyle(
                                           fontSize: 16,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400,
                                           color:
                                               Color.fromARGB(255, 51, 51, 51),
@@ -354,7 +354,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -419,7 +419,7 @@ class _ReservationState extends State<Reservation> {
                               style: TextStyle(
                                   color: Color.fromARGB(255, 0, 184, 169),
                                   fontSize: 14,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400),
                             ),
                             Icon(
@@ -443,7 +443,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -475,7 +475,7 @@ class _ReservationState extends State<Reservation> {
                                         item,
                                         style: const TextStyle(
                                           fontSize: 16,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400,
                                           color:
                                               Color.fromARGB(255, 51, 51, 51),
@@ -522,7 +522,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -547,7 +547,7 @@ class _ReservationState extends State<Reservation> {
                               formatButtonVisible: false,
                               titleTextStyle: TextStyle(
                                 fontSize: 14,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w700,
                                 color: Color.fromARGB(255, 51, 51, 51),
                               )),
@@ -606,7 +606,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -636,7 +636,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -685,7 +685,7 @@ class _ReservationState extends State<Reservation> {
                                   color: Color.fromARGB(255, 51, 51, 51),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
-                                  height: 1.5,
+                                  
                                   decoration: TextDecoration.none,
                                 )),
                             SizedBox(
@@ -713,7 +713,7 @@ class _ReservationState extends State<Reservation> {
                                           color: Color.fromARGB(
                                               255, 210, 210, 212),
                                           fontSize: 16,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400),
                                       hintText: 'セイ',
                                       focusedBorder: OutlineInputBorder(
@@ -734,7 +734,7 @@ class _ReservationState extends State<Reservation> {
                                     style: TextStyle(
                                         color: Color.fromARGB(255, 51, 51, 51),
                                         fontSize: 16,
-                                        height: 1.5,
+                                        
                                         fontWeight: FontWeight.w400),
                                     validator: (v) {
                                       if (v!.isEmpty) return 'input please';
@@ -780,7 +780,7 @@ class _ReservationState extends State<Reservation> {
                                           color: Color.fromARGB(
                                               255, 210, 210, 212),
                                           fontSize: 16,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400),
                                       hintText: 'メイ',
                                       focusedBorder: OutlineInputBorder(
@@ -801,7 +801,7 @@ class _ReservationState extends State<Reservation> {
                                     style: TextStyle(
                                         color: Color.fromARGB(255, 51, 51, 51),
                                         fontSize: 16,
-                                        height: 1.5,
+                                        
                                         fontWeight: FontWeight.w400),
                                     validator: (v) {
                                       if (v!.isEmpty) return 'input please';
@@ -840,7 +840,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -873,7 +873,7 @@ class _ReservationState extends State<Reservation> {
                           style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w400),
                           validator: (v) {
                             if (v!.isEmpty) return 'input please';
@@ -913,7 +913,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -953,7 +953,7 @@ class _ReservationState extends State<Reservation> {
                                         color: Color.fromARGB(255, 51, 51, 51),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
-                                        height: 1.5,
+                                        
                                         decoration: TextDecoration.none,
                                       )),
                                 ),
@@ -994,7 +994,7 @@ class _ReservationState extends State<Reservation> {
                                         color: Color.fromARGB(255, 51, 51, 51),
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
-                                        height: 1.5,
+                                        
                                         decoration: TextDecoration.none,
                                       )),
                                 ),
@@ -1016,7 +1016,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -1048,7 +1048,7 @@ class _ReservationState extends State<Reservation> {
                           style: TextStyle(
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 16,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w400),
                           validator: (v) {
                             if (v!.isEmpty) return 'input please';
@@ -1085,7 +1085,7 @@ class _ReservationState extends State<Reservation> {
                               color: Color.fromARGB(255, 51, 51, 51),
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                         SizedBox(
@@ -1098,7 +1098,7 @@ class _ReservationState extends State<Reservation> {
                                 color: Color.fromARGB(255, 51, 51, 51),
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700,
-                                height: 1.5,
+                                
                                 decoration: TextDecoration.none,
                               ),
                               children: const <TextSpan>[
@@ -1108,7 +1108,7 @@ class _ReservationState extends State<Reservation> {
                                       color: Color.fromARGB(255, 0, 184, 169),
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700,
-                                      height: 1.5,
+                                      
                                       decoration: TextDecoration.none,
                                     ),
                                     children: const <TextSpan>[]),
@@ -1147,7 +1147,7 @@ class _ReservationState extends State<Reservation> {
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 51, 51, 51),
                                     fontSize: 16,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w400),
                                 validator: (v) {
                                   if (v!.isEmpty) return 'input please';
@@ -1180,7 +1180,7 @@ class _ReservationState extends State<Reservation> {
                                   color: Colors.black,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400,
-                                  height: 1.5,
+                                  
                                   decoration: TextDecoration.none,
                                 )),
                           ],
@@ -1253,7 +1253,7 @@ class _ReservationState extends State<Reservation> {
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
-                              height: 1.5,
+                              
                               decoration: TextDecoration.none,
                             )),
                       ),
@@ -1314,7 +1314,7 @@ class _ReservationState extends State<Reservation> {
                 color: Color.fromARGB(255, 102, 110, 110),
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
-                height: 1.5,
+                
                 decoration: TextDecoration.none,
               )),
           Text(list_ReservedTime[index],
@@ -1322,7 +1322,7 @@ class _ReservationState extends State<Reservation> {
                 color: Color.fromARGB(255, 51, 51, 51),
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                height: 1.5,
+                
                 decoration: TextDecoration.none,
               )),
           InkWell(
@@ -1400,7 +1400,7 @@ class _ReservationState extends State<Reservation> {
               color: Color.fromARGB(255, 51, 51, 51),
               fontSize: 16,
               fontWeight: FontWeight.w400,
-              height: 1.5,
+              
               decoration: TextDecoration.none,
             )),
       ),
@@ -1433,7 +1433,7 @@ class _ReservationState extends State<Reservation> {
   //                   item,
   //                   style: const TextStyle(
   //                     fontSize: 16,
-  //                     height: 1.5,
+  //                     
   //                     fontWeight: FontWeight.bold,
   //                     color: Color.fromARGB(255, 51, 51, 51),
   //                   ),

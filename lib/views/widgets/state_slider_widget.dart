@@ -67,7 +67,7 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
                   widget.state_str,
                   style: TextStyle(
                     fontSize: 14,
-                    height: 1.5,
+                    
                     fontWeight: FontWeight.w400,
                     color: Color.fromARGB(255, 18, 18, 18),
                   ),

@@ -36,7 +36,7 @@ class _inputTextWidgetState extends State<inputTextWidget> {
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
-                  height: 1.5,
+                  
                   color: Helper.mainColor,
                 ),
               ),
@@ -46,7 +46,7 @@ class _inputTextWidgetState extends State<inputTextWidget> {
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
-                    height: 1.5,
+                    
                     color: Helper.maintxtColor,
                   ),
                 )
@@ -73,7 +73,7 @@ class _inputTextWidgetState extends State<inputTextWidget> {
             hintStyle: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
-                height: 1.5,
+                
                 color: Color.fromARGB(255, 169, 169, 169)),
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
@@ -85,7 +85,7 @@ class _inputTextWidgetState extends State<inputTextWidget> {
           style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,
-              height: 1.5,
+              
               color: Color.fromARGB(255, 18, 18, 18)
           ),
         ),

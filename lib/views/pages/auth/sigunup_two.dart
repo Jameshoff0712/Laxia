@@ -104,7 +104,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 16,
-                                  height: 1.5,
+                                  
                                   color: Helper.mainColor,
                                 ),
                               ),
@@ -115,7 +115,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
-                              height: 1.5,
+                              
                               color: Color.fromARGB(255, 18, 18, 18)),
                           keyboardType: TextInputType.datetime,
                           onTap: () {
@@ -145,7 +145,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                             hintStyle: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
-                                height: 1.5,
+                                
                                 color: Helper.txtColor),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -186,7 +186,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
-                          height: 1.5,
+                          
                           color: Helper.mainColor,
                         ),
                       ),
@@ -196,7 +196,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                           "あなたが住んでいる都道府県を選びましょう",
                           style: TextStyle(
                               fontSize: 14,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w400,
                               color: Color.fromARGB(255, 169, 169, 169)),
                         ),
@@ -209,7 +209,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14,
-                                      height: 1.5,
+                                      
                                       color: Color.fromARGB(255, 18, 18, 18),
                                     ),
                                   ),
@@ -246,7 +246,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                     //         "あなたが住んでいる都道府県を選びましょう",
                     //         style: TextStyle(
                     //           fontSize: 14,
-                    //           height: 1.5,
+                    //           
                     //           fontWeight: FontWeight.w400,
                     //           color: Helper.unSelectSmallTabColor,
                     //         ),
@@ -254,7 +254,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                     //       value: selectedValue,
                     //       style: TextStyle(
                     //         fontSize: 14,
-                    //         height: 1.5,
+                    //         
                     //         fontWeight: FontWeight.w400,
                     //         color: Helper.titleColor,
                     //       ),
@@ -272,7 +272,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                     //                 item["label"],
                     //                 style: const TextStyle(
                     //                   fontSize: 16,
-                    //                   height: 1.5,
+                    //                   
                     //                   fontWeight: FontWeight.bold,
                     //                   color: Color.fromARGB(255, 51, 51, 51),
                     //                 ),
@@ -344,7 +344,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                                           ? Helper.txtColor
                                           : Helper.whiteColor,
                                       fontSize: 12,
-                                      height: 1.5,
+                                      
                                       fontWeight: FontWeight.w700),
                                 ),
                               ),

@@ -52,7 +52,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),

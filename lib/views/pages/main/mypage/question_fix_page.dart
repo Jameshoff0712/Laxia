@@ -65,7 +65,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 10,
-                        height: 1.5,
+                        
                         color: Helper.titleColor,
                       ),
                     ),
@@ -74,7 +74,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 8,
-                        height: 1.5,
+                        
                         color: Helper.txtColor,
                       ),
                     ),
@@ -106,7 +106,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Helper.whiteColor,
                           ),
                         ),
@@ -261,7 +261,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 14,
-                    height: 1.5,
+                    
                     color: Helper.titleColor,
                   ),
                 ),
@@ -315,7 +315,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                         ),
                         style: TextStyle(
                           fontSize: 12,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w400,
                         ),
                         onChanged: (text) {},
@@ -343,7 +343,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 10,
-                            height: 1.5,
+                            
                             color: Helper.txtColor,
                           ),
                         ),
@@ -364,7 +364,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 10,
-                            height: 1.5,
+                            
                             color: Helper.txtColor,
                           ),
                         ),
@@ -385,7 +385,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 10,
-                            height: 1.5,
+                            
                             color: Helper.txtColor,
                           ),
                         ),
@@ -414,7 +414,7 @@ class _QuestionFixPageState extends State<QuestionFixPage> {
                           ),
                           style: TextStyle(
                             fontSize: 12,
-                            height: 1.5,
+                            
                             fontWeight: FontWeight.w400,
                           ),
                           onChanged: (text) {},

@@ -74,7 +74,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                               fontFamily: Helper.headFontFamily,
                               color: Helper.titleColor,
                               fontSize: 16,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w700)),
                       SizedBox(height: 20),
                       Row(
@@ -101,7 +101,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                     fontFamily: Helper.headFontFamily,
                     color: Helper.titleColor,
                     fontSize: 16,
-                    height: 1.5,
+                    
                     fontWeight: FontWeight.w700)),
             SizedBox(
               height: 10,
@@ -167,7 +167,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
             Text("年代",
                 style: TextStyle(
                     fontFamily: Helper.headFontFamily,
-                    height: 1.5,
+                    
                     color: Helper.titleColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w700)),
@@ -185,7 +185,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                           style: TextStyle(
                               color: Color.fromARGB(255, 18, 18, 18),
                               fontSize: 16,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w400)),
                       Expanded(
                           child: Row(

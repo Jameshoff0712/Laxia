@@ -61,7 +61,6 @@ class _AppointmentState extends State<Appointment>
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
             color: Helper.titleColor,
           ),
         ),
@@ -205,7 +204,7 @@ class _AppointmentState extends State<Appointment>
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,
-            height: 1.5,
+            
             color: Color.fromARGB(255, 102, 110, 110),
           ),
         ),

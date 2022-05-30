@@ -24,7 +24,7 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
               color: Helper.titleColor,
             ),
           ),
@@ -64,7 +64,7 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                 hintStyle: TextStyle(
                   color: Helper.txtColor,
                   fontSize: 14,
-                  height: 1.5,
+                  
                   fontWeight: FontWeight.w400,
                 ),
                 border: UnderlineInputBorder(
@@ -103,7 +103,7 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                   hintStyle: TextStyle(
                     color: Helper.txtColor,
                     fontSize: 14,
-                    height: 1.5,
+                    
                     fontWeight: FontWeight.w400,
                   ),
                   border: InputBorder.none,
@@ -140,7 +140,7 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                       '次に進む',
                       style: TextStyle(
                           fontSize: 12,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700),
                     ),
                   ),

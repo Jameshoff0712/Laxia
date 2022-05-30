@@ -193,7 +193,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
-                                        height: 1.5,
+                                        
                                         color: Helper.whiteColor,
                                       ),
                                     ),
@@ -257,7 +257,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                     ? Helper.btnBgYellowColor
                                     : Helper.txtColor,
                                 fontSize: 10,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -292,7 +292,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                     ? Helper.btnBgYellowColor
                                     : Helper.txtColor,
                                 fontSize: 10,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -336,7 +336,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                             style: TextStyle(
                                 color: Helper.txtColor,
                                 fontSize: 10,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],

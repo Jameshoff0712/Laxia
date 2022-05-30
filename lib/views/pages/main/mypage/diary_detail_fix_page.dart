@@ -53,7 +53,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 10,
-                          height: 1.5,
+                          
                           color: Helper.titleColor,
                         ),
                       ),
@@ -62,7 +62,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 8,
-                          height: 1.5,
+                          
                           color: Helper.txtColor,
                         ),
                       ),
@@ -94,7 +94,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 12,
-                              height: 1.5,
+                              
                               color: Helper.whiteColor,
                             ),
                           ),
@@ -160,7 +160,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Helper.whiteColor),
                       ),
                     ),
@@ -178,7 +178,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 18,
-                            height: 1.5,
+                            
                             color: Color.fromARGB(255, 31, 31, 31)),
                       ),
                     ),
@@ -378,7 +378,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 10,
-                                  height: 1.5,
+                                  
                                   color: Helper.txtColor,
                                 ),
                               ),
@@ -399,7 +399,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 10,
-                                  height: 1.5,
+                                  
                                   color: Helper.txtColor,
                                 ),
                               ),
@@ -420,7 +420,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 10,
-                                  height: 1.5,
+                                  
                                   color: Helper.txtColor,
                                 ),
                               ),
@@ -447,7 +447,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                               ),
                               style: TextStyle(
                                 fontSize: 12,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400,
                               ),
                               onChanged: (text) {},

@@ -42,7 +42,7 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
                       'Q' + widget.index.toString() + " ",
                       style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700,
                           color: Helper.mainColor),
                     ),
@@ -50,7 +50,7 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
                       widget.question,
                       style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700,
                           color: Color.fromARGB(255, 51, 51, 51)),
                     ),

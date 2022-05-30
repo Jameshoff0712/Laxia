@@ -58,7 +58,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 16,
-              height: 1.5,
+              
               color: Helper.whiteColor,
             ),
           ),

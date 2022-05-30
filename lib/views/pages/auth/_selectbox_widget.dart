@@ -36,7 +36,7 @@ class _selectBoxWidgetState extends State<selectBoxWidget> {
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
-                height: 1.5,
+                
                 color: Helper.mainColor,
               ),
             ),
@@ -50,7 +50,7 @@ class _selectBoxWidgetState extends State<selectBoxWidget> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
-                            height: 1.5,
+                            
                             color: Color.fromARGB(255, 18, 18, 18),
                           ),
                         ),

@@ -70,7 +70,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
-                        height: 1.5,
+                        
                         fontWeight: FontWeight.w700,
                         color: Helper.titleColor,
                       ),
@@ -84,7 +84,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                         "まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
                         style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w400,
                           color: Helper.titleColor,
                         ),
@@ -105,7 +105,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                               'いいえ',
                               style: TextStyle(
                                 fontSize: 16,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -126,7 +126,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                                 'はい',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400,
                                 ),
                               )),
@@ -416,7 +416,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                           hintStyle: TextStyle(
                               color: Helper.txtColor,
                               fontSize: 14,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w400),
                           border: UnderlineInputBorder(
                               borderSide: BorderSide(color: Helper.txtColor)),
@@ -456,7 +456,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                         hintStyle: TextStyle(
                             color: Helper.txtColor,
                             fontSize: 14,
-                            height: 1.5,
+                            
                             fontWeight: FontWeight.w400),
                         border: InputBorder.none,
                         counterText: "",
@@ -492,7 +492,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                       '次に進む',
                       style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700),
                     ),
                   ),

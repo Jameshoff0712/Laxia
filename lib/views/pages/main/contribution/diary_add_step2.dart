@@ -65,7 +65,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -379,7 +379,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             '次に進む',
                             style: TextStyle(
                                 fontSize: 14,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
@@ -417,7 +417,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           '次へ進む',
                           style: TextStyle(
                               fontSize: 14,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w700,
                               color: Helper.mainColor),
                         ),

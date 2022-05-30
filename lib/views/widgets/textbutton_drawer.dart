@@ -37,7 +37,6 @@ class _TextButton_DrawerState extends State<TextButton_Drawer> {
                   style: TextStyle(
                       color: Helper.unSelectSmallTabColor,
                       fontWeight: FontWeight.w400,
-                      height: 18 / 12,
                       fontSize: 12),
                 ),
                 SizedBox(

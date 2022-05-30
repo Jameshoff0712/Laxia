@@ -70,7 +70,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
-                                height: 1.5,
+                                
                                 color: Helper.titleColor,
                               ),
                             )),
@@ -134,7 +134,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 10,
-                                  height: 1.5,
+                                  
                                   color: Helper.whiteColor),
                             ),
                           ),
@@ -177,7 +177,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 10,
-                                  height: 1.5,
+                                  
                                   color: Helper.whiteColor),
                             ),
                           ),
@@ -215,7 +215,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
-                          height: 1.5,
+                          
                           color: Helper.maintxtColor,
                         ),
                       ),
@@ -230,7 +230,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
-                          height: 1.5,
+                          
                           color: Helper.maintxtColor,
                         ),
                       ),
@@ -245,7 +245,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
-                          height: 1.5,
+                          
                           color: Helper.maintxtColor,
                         ),
                       ),
@@ -260,7 +260,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
-                          height: 1.5,
+                          
                           color: Helper.maintxtColor,
                         ),
                       ),
@@ -287,7 +287,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 11,
-                      height: 1.5,
+                      
                       color: Helper.maintxtColor,
                     ),
                   ),
@@ -307,7 +307,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 11,
-                      height: 1.5,
+                      
                       color: Helper.maintxtColor,
                     ),
                   ),
@@ -327,7 +327,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 11,
-                      height: 1.5,
+                      
                       color: Helper.maintxtColor,
                     ),
                   ),

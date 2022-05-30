@@ -87,7 +87,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
-                        height: 1.5,
+                        
                         fontWeight: FontWeight.w700,
                         color: Helper.titleColor,
                       ),
@@ -101,7 +101,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                         "まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
                         style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w400,
                           color: Helper.titleColor,
                         ),
@@ -122,7 +122,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                               '保存しない',
                               style: TextStyle(
                                 fontSize: 16,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -143,7 +143,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                 '保存する',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400,
                                 ),
                               )),
@@ -288,7 +288,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -735,7 +735,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             '次に進む',
                             style: TextStyle(
                                 fontSize: 14,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
@@ -773,7 +773,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           '次へ進む',
                           style: TextStyle(
                               fontSize: 14,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w700,
                               color: Helper.mainColor),
                         ),

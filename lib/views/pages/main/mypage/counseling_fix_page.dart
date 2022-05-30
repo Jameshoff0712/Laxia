@@ -65,7 +65,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 10,
-                        height: 1.5,
+                        
                         color: Helper.titleColor,
                       ),
                     ),
@@ -74,7 +74,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 8,
-                        height: 1.5,
+                        
                         color: Helper.txtColor,
                       ),
                     ),
@@ -106,7 +106,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Helper.whiteColor,
                           ),
                         ),
@@ -257,7 +257,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Helper.mainColor,
                           ),
                         ),
@@ -301,7 +301,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Helper.mainColor,
                           ),
                         ),
@@ -331,7 +331,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    height: 1.5,
+                    
                     color: Helper.titleColor,
                   ),
                 ),
@@ -360,7 +360,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
-                      height: 1.5,
+                      
                       color: Helper.titleColor,
                     ),
                   ),
@@ -397,7 +397,7 @@ class _CounselingFixPageState extends State<CounselingFixPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
-                      height: 1.5,
+                      
                       color: Helper.titleColor,
                     ),
                   ),

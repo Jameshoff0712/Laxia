@@ -20,7 +20,7 @@ class _ContactPageState extends State<ContactPage> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -64,7 +64,7 @@ class _ContactPageState extends State<ContactPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
-                        height: 1.5,
+                        
                         color: Helper.titleColor,
                       ),
                     ),
@@ -94,7 +94,7 @@ class _ContactPageState extends State<ContactPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
-                        height: 1.5,
+                        
                         color: Helper.titleColor,
                       ),
                     ),
@@ -124,7 +124,7 @@ class _ContactPageState extends State<ContactPage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
-                        height: 1.5,
+                        
                         color: Helper.titleColor,
                       ),
                     ),
@@ -176,7 +176,7 @@ class _ContactPageState extends State<ContactPage> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 14,
-                              height: 1.5,
+                              
                               color: Helper.whiteColor,
                             ),
                           ),

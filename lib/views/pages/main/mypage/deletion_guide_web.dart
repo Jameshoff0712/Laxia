@@ -24,7 +24,7 @@ class _DeletionGuideWebState extends State<DeletionGuideWeb> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),

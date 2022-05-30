@@ -35,7 +35,7 @@ class _InviteSharePageState extends State<InviteSharePage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
-                    height: 1.5,
+                    
                     color: Helper.titleColor,
                   ),
                 ),

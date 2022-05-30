@@ -60,16 +60,13 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
                     TextStyle(fontSize: 12, color: Helper.selectSmallTabColor),
               ),
         icon: drop
-            ? Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: SvgPicture.asset(
-                  "assets/icons/arrowdown.svg",
-                  fit: BoxFit.cover,
-                  width: 7.2,
-                  height: 4.7,
-                  color: Helper.maintxtColor,
-                ),
-              )
+            ? SvgPicture.asset(
+              "assets/icons/arrowdown.svg",
+              fit: BoxFit.cover,
+              width: 7.2,
+              height: 4.7,
+              color: Helper.maintxtColor,
+            )
             : SvgPicture.asset(
                 "assets/icons/arrowup.svg",
                 fit: BoxFit.cover,

@@ -26,7 +26,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -52,7 +52,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
-                height: 1.5,
+                
                 color: Helper.titleColor,
               ),
             ),
@@ -63,7 +63,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 12,
-                  height: 1.5,
+                  
                   color: Helper.txtColor,
                 ),
               ),
@@ -76,7 +76,7 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 12,
-                height: 1.5,
+                
                 color: Helper.titleColor,
               ),
             ),

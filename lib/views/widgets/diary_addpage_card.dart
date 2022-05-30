@@ -57,7 +57,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                       widget.type,
                       style: TextStyle(
                           fontSize: 16,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700,
                           color: Helper.maintxtColor),
                     ),
@@ -132,7 +132,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       widget.type,
                                       style: TextStyle(
                                           fontSize: 12,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400,
                                           color: Helper.txtColor),
                                     ),
@@ -164,7 +164,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                                 widget.clinic!,
                                                 style: TextStyle(
                                                     fontSize: 12,
-                                                    height: 1.5,
+                                                    
                                                     fontWeight: FontWeight.w400,
                                                     color: Helper.txtColor),
                                               ),
@@ -192,7 +192,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       widget.check,
                                       style: TextStyle(
                                           fontSize: 12,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w400,
                                           color: Helper.txtColor),
                                     ),
@@ -236,7 +236,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                               '経過を追加する',
                               style: TextStyle(
                                   fontSize: 12,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w700,
                                   color: Helper.mainColor,),
                             ),
@@ -277,7 +277,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                               '日記を編集する',
                               style: TextStyle(
                                   fontSize: 12,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w700,
                                   color: Helper.mainColor),
                             ),

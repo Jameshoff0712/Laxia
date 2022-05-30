@@ -87,7 +87,7 @@ class _ConfirmationState extends State<Confirmation> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -145,7 +145,7 @@ class _ConfirmationState extends State<Confirmation> {
                         style: TextStyle(
                             color: Color.fromARGB(255, 18, 18, 18),
                             fontSize: 12,
-                            height: 1.5,
+                            
                             fontWeight: FontWeight.w700),
                       ),
                     ),
@@ -200,7 +200,7 @@ class _ConfirmationState extends State<Confirmation> {
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      height: 1.5,
+                      
                       decoration: TextDecoration.none,
                     )),
               ),
@@ -226,7 +226,7 @@ class _ConfirmationState extends State<Confirmation> {
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      height: 1.5,
+                      
                       decoration: TextDecoration.none,
                     )),
               ),
@@ -263,7 +263,7 @@ class _ConfirmationState extends State<Confirmation> {
                   style: TextStyle(
                       color: Color.fromARGB(255, 18, 18, 18),
                       fontSize: 12,
-                      height: 1.5,
+                      
                       fontWeight: FontWeight.w700),
                 ),
               ),
@@ -277,7 +277,7 @@ class _ConfirmationState extends State<Confirmation> {
                   style: TextStyle(
                       color: Color.fromARGB(255, 18, 18, 18),
                       fontSize: 12,
-                      height: 1.5,
+                      
                       fontWeight: FontWeight.w400),
                 ),
               ),
@@ -299,7 +299,7 @@ Widget _buildReservationItem(int index, int length, List reservedTimes) {
           color: Color.fromARGB(255, 51, 51, 51),
           fontSize: 12,
           fontWeight: FontWeight.w400,
-          height: 1.5,
+          
           decoration: TextDecoration.none,
         )),
   );
