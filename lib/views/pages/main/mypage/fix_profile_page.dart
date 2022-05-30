@@ -81,7 +81,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 16,
-                      height: 1.5,
+                      
                       color: Helper.titleColor,
                     ),
                   ),
@@ -97,7 +97,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 14,
-                          height: 1.5,
+                          
                           color: Helper.mainColor,
                         ),
                       ),
@@ -159,7 +159,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 11,
-                              height: 1.5,
+                              
                               color: Helper.mainColor,
                             ),
                           ),
@@ -189,7 +189,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 14,
-                                            height: 1.5,
+                                            
                                             color:
                                                 Color.fromARGB(255, 18, 18, 18),
                                           ),
@@ -201,7 +201,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
-                                        height: 1.5,
+                                        
                                         color: Color.fromARGB(255, 18, 18, 18)),
                                     keyboardType: TextInputType.datetime,
                                     onTap: () {
@@ -230,7 +230,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                       hintStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14,
-                                          height: 1.5,
+                                          
                                           color: Helper.txtColor),
                                       focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -250,7 +250,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                     style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 11,
-                                          height: 1.5,
+                                          
                                           color: Color.fromARGB(255, 156, 161, 161)),),
                                   )
                                 ],
@@ -286,7 +286,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 14,
-                                    height: 1.5,
+                                    
                                     color: Color.fromARGB(255, 18, 18, 18),
                                   ),
                                 ),

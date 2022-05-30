@@ -114,7 +114,7 @@ class _DiaryPageState extends State<DiaryPage> {
                             style: TextStyle(
                                 fontSize: 18,
                                 fontFamily: Helper.headFontFamily,
-                                height: 1.5,
+                                
                                 color: Helper.whiteColor,
                                 fontWeight: FontWeight.w400)),
                         SizedBox(width: 26.8),

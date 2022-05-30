@@ -56,7 +56,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                   widget.type,
                   style: TextStyle(
                       fontSize: 16,
-                      height: 1.5,
+                      
                       fontWeight: FontWeight.w700,
                       color: Helper.maintxtColor),
                 ),
@@ -88,7 +88,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                                     widget.clinic!,
                                     style: TextStyle(
                                         fontSize: 12,
-                                        height: 1.5,
+                                        
                                         fontWeight: FontWeight.w400,
                                         color: Helper.mainColor),
                                   ),
@@ -117,7 +117,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                                     widget.check,
                                     style: TextStyle(
                                         fontSize: 12,
-                                        height: 1.5,
+                                        
                                         fontWeight: FontWeight.w400,
                                         color: Helper.mainColor),
                                   ),
@@ -165,7 +165,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                               'レポートを編集',
                               style: TextStyle(
                                   fontSize: 12,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w700,
                                   color: Helper.mainColor),
                             ),

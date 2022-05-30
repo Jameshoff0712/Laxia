@@ -68,7 +68,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -491,7 +491,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                       '次に進む',
                       style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700),
                     ),
                   ),

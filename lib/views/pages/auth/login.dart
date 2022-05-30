@@ -118,7 +118,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                                 color: Helper.blackColor,
                                 fontWeight: FontWeight.w400,
-                                height: 25 / 16,
                                 letterSpacing: -1.2,
                                 fontSize: 16),
                           ),
@@ -135,7 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: Helper.mainColor,
                                   fontFamily: Helper.headFontFamily,
                                   fontWeight: FontWeight.w700,
-                                  height: 16 / 16,
                                   letterSpacing: -0.34,
                                   fontSize: 16),
                             ),

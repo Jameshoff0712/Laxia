@@ -63,7 +63,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -273,7 +273,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                       '次に進む',
                       style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -311,7 +311,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                           '次へ進む',
                           style: TextStyle(
                               fontSize: 14,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w700,
                               color: Helper.mainColor),
                         ),

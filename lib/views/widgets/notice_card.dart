@@ -43,7 +43,7 @@ class _NoticeCardWidgetState extends State<NoticeCardWidget> {
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
-                height: 1.5,
+                
                 color: Helper.titleColor,
               ),
             ),
@@ -56,7 +56,7 @@ class _NoticeCardWidgetState extends State<NoticeCardWidget> {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 12,
-                height: 1.5,
+                
                 color: Helper.titleColor,
               ),
               maxLines: 2,
@@ -71,7 +71,7 @@ class _NoticeCardWidgetState extends State<NoticeCardWidget> {
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 12,
-                  height: 1.5,
+                  
                   color: Helper.txtColor,
                 ),
               ),

@@ -104,7 +104,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                       Text(
                                         Menu_Datails[0]["tax"],
                                         style: TextStyle(
-                                            height: 1.5,
+                                            
                                             color: Helper.titleColor,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 12.0),
@@ -123,7 +123,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         fontFamily: Helper.headFontFamily,
                                         color: Helper.titleColor,
                                         fontWeight: FontWeight.w700,
-                                        height: 1.5,
+                                        
                                         fontSize: 16.0),
                                   ),
                                   Row(
@@ -280,7 +280,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   style: TextStyle(
                                                       fontFamily:
                                                           Helper.headFontFamily,
-                                                      height: 1.5,
+                                                      
                                                       fontSize: 14,
                                                       color: Helper.titleColor,
                                                       fontWeight:
@@ -290,7 +290,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   Menu_Datails[0]["description"]
                                                       ["children"][0],
                                                   style: TextStyle(
-                                                      height: 1.5,
+                                                      
                                                       fontSize: 14,
                                                       color: Helper.titleColor,
                                                       fontWeight:
@@ -303,7 +303,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   style: TextStyle(
                                                       fontFamily:
                                                           Helper.headFontFamily,
-                                                      height: 1.5,
+                                                      
                                                       fontSize: 14,
                                                       color: Helper.titleColor,
                                                       fontWeight:
@@ -313,7 +313,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                 Menu_Datails[0]["description"]
                                                     ["children"][1],
                                                 style: TextStyle(
-                                                    height: 1.5,
+                                                    
                                                     fontSize: 14,
                                                     color: Helper.titleColor,
                                                     fontWeight:
@@ -324,7 +324,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                 style: TextStyle(
                                                     fontFamily:
                                                         Helper.headFontFamily,
-                                                    height: 1.5,
+                                                    
                                                     fontSize: 14,
                                                     color: Helper.titleColor,
                                                     fontWeight:
@@ -333,7 +333,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                 Menu_Datails[0]["description"]
                                                     ["children"][2],
                                                 style: TextStyle(
-                                                    height: 1.5,
+                                                    
                                                     fontSize: 14,
                                                     color: Helper.titleColor,
                                                     fontWeight:
@@ -344,7 +344,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                 style: TextStyle(
                                                     fontFamily:
                                                         Helper.headFontFamily,
-                                                    height: 1.5,
+                                                    
                                                     fontSize: 14,
                                                     color: Helper.titleColor,
                                                     fontWeight:
@@ -353,7 +353,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                 Menu_Datails[0]["description"]
                                                     ["children"][3],
                                                 style: TextStyle(
-                                                    height: 1.5,
+                                                    
                                                     fontSize: 14,
                                                     color: Helper.titleColor,
                                                     fontWeight:
@@ -529,7 +529,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                                   ["follow"]
                                                               [index]["label"],
                                                           style: TextStyle(
-                                                              height: 1.5,
+                                                              
                                                               fontSize: 12,
                                                               color: Helper
                                                                   .titleColor,
@@ -545,7 +545,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                               .toString() +
                                                           "分",
                                                       style: TextStyle(
-                                                          height: 1.5,
+                                                          
                                                           fontSize: 12,
                                                           color:
                                                               Helper.titleColor,
@@ -679,7 +679,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                             style: TextStyle(
                                                 fontFamily:
                                                     Helper.headFontFamily,
-                                                height: 1.5,
+                                                
                                                 color: Color.fromARGB(
                                                     255, 51, 51, 51),
                                                 fontSize: 18,
@@ -778,7 +778,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                               style: TextStyle(
                                                   fontFamily:
                                                       Helper.headFontFamily,
-                                                  height: 1.5,
+                                                  
                                                   color: Color.fromARGB(
                                                       255, 51, 51, 51),
                                                   fontSize: 18,
@@ -888,7 +888,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                               style: TextStyle(
                                   color: Helper.titleColor,
                                   fontWeight: FontWeight.w500,
-                                  height: 1.5,
+                                  
                                   fontSize: 12.0),
                             ),
                             SizedBox(
@@ -912,7 +912,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                             Text(
                               "4.23(102)",
                               style: TextStyle(
-                                  height: 1.5,
+                                  
                                   color: Helper.titleColor,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400),

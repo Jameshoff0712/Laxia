@@ -163,7 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 41, bottom: 10),
+                  padding: const EdgeInsets.only(top: 35, bottom: 10),
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(children: [

@@ -187,7 +187,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     fontFamily: Helper.headFontFamily,
                                     color: Helper.blackColor,
                                     fontSize: 14,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(height: 2),
@@ -196,7 +196,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -216,7 +216,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 clinic_detail.diaries.length.toString(),
                                 style: TextStyle(
                                     color: Helper.blackColor,
-                                    height: 1.5,
+                                    
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700),
                               ),
@@ -226,7 +226,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -247,7 +247,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.blackColor,
                                     fontSize: 14,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(height: 2),
@@ -256,7 +256,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -277,7 +277,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.blackColor,
                                     fontSize: 14,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(height: 2),
@@ -286,7 +286,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    height: 1.5,
+                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -350,7 +350,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Container(
-                          height: 110,
+                          height: 118,
                           child: GridView.builder(
                               physics: AlwaysScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -405,7 +405,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           color:
                                               Color.fromARGB(255, 51, 51, 51),
                                           fontSize: 18,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w700),
                                     ),
                                     InkWell(
@@ -518,7 +518,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   color: Color.fromARGB(
                                                       255, 156, 161, 161),
                                                   fontSize: 14,
-                                                  height: 1.5,
+                                                  
                                                   fontWeight: FontWeight.w400),
                                             ),
                                           ),
@@ -567,7 +567,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           color:
                                               Color.fromARGB(255, 51, 51, 51),
                                           fontSize: 18,
-                                          height: 1.5,
+                                          
                                           fontWeight: FontWeight.w700),
                                     ),
                                     InkWell(
@@ -590,7 +590,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             style: TextStyle(
                                                 color: Helper.maintxtColor,
                                                 fontSize: 12,
-                                                height: 1.5,
+                                                
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           Icon(
@@ -751,7 +751,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   color: Color.fromARGB(
                                                       255, 156, 161, 161),
                                                   fontSize: 14,
-                                                  height: 1.5,
+                                                  
                                                   fontWeight: FontWeight.w400),
                                             ),
                                           ),
@@ -792,7 +792,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   fontFamily: Helper.headFontFamily,
                                   color: Helper.blackColor,
                                   fontSize: 18,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w700),
                             ),
                           ),
@@ -808,7 +808,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       color: Color.fromARGB(255, 51, 51, 51),
                                       fontSize: 14,
                                       fontFamily: Helper.headFontFamily,
-                                      height: 1.5,
+                                      
                                       fontWeight: FontWeight.w700),
                                 ),
                                 InkWell(
@@ -825,7 +825,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             color: Color.fromARGB(
                                                 255, 156, 161, 161),
                                             fontSize: 14,
-                                            height: 1.5,
+                                            
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Icon(
@@ -883,13 +883,13 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                     Helper.headFontFamily,
                                                 fontSize: 14,
                                                 color: Helper.titleColor,
-                                                height: 1.5,
+                                                
                                                 fontWeight: FontWeight.w700))),
                                     DataColumn(
                                         label: Text(
                                             'clinic_detail["clinicname"]',
                                             style: TextStyle(
-                                                height: 1.5,
+                                                
                                                 fontSize: 14,
                                                 color: Helper.maintxtColor,
                                                 fontWeight: FontWeight.w400))),
@@ -902,14 +902,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 fontFamily:
                                                     Helper.headFontFamily,
                                                 fontSize: 14,
-                                                height: 1.5,
+                                                
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
                                       DataCell(Text('clinic_detail["access"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -920,14 +920,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 fontFamily:
                                                     Helper.headFontFamily,
                                                 fontSize: 14,
-                                                height: 1.5,
+                                                
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
                                       DataCell(Text('clinic_detail["access"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -935,7 +935,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       DataCell(Text(
                                         '営業時間',
                                         style: TextStyle(
-                                            height: 1.5,
+                                            
                                             fontSize: 14,
                                             color: Helper.titleColor,
                                             fontWeight: FontWeight.w700),
@@ -943,7 +943,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       DataCell(Text('clinic_detail["times"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -952,13 +952,13 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: Helper.headFontFamily,
-                                              height: 1.5,
+                                              
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text(' clinic_detail["workday"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -967,14 +967,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: Helper.headFontFamily,
-                                              height: 1.5,
+                                              
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text(
                                           'clinic_detail["phonenumber"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -982,14 +982,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       DataCell(Text('クレジットカード',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               fontFamily: Helper.headFontFamily,
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text('clinic_detail["card"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -998,13 +998,13 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: Helper.headFontFamily,
-                                              height: 1.5,
+                                              
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text('clinic_detail["park"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              height: 1.5,
+                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ])
@@ -1050,7 +1050,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     ? Helper.btnBgYellowColor
                                     : Helper.txtColor,
                                 fontSize: 10,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],

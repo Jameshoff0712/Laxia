@@ -141,11 +141,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                       padding: MediaQuery.of(context).viewInsets,
                       decoration: BoxDecoration(
                         color: Helper.whiteColor,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black.withOpacity(.1),
-                              blurRadius: 5)
-                        ],
+                      
                       ),
                       //height: 42,
                       child: Row(

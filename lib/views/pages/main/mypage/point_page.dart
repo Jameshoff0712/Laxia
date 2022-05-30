@@ -88,7 +88,7 @@ class _PointPageState extends State<PointPage> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -119,7 +119,7 @@ class _PointPageState extends State<PointPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    height: 1.5,
+                    
                     color: Helper.titleColor,
                   ),
                 ),
@@ -128,7 +128,7 @@ class _PointPageState extends State<PointPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    height: 1.5,
+                    
                     color: Helper.titleColor,
                   ),
                 )
@@ -150,7 +150,7 @@ class _PointPageState extends State<PointPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 12,
-                      height: 1.5,
+                      
                       color: Helper.mainColor,
                     ),
                   ),
@@ -175,7 +175,7 @@ class _PointPageState extends State<PointPage> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
               color: Helper.maintxtColor,
             ),
           ),
@@ -215,7 +215,7 @@ class _PointPageState extends State<PointPage> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 12,
-              height: 1.5,
+              
               color: Helper.titleColor,
             ),
           ),
@@ -244,7 +244,7 @@ class _PointPageState extends State<PointPage> {
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,
-              height: 1.5,
+              
               color: Helper.titleColor,
             ),
           ),
@@ -253,7 +253,7 @@ class _PointPageState extends State<PointPage> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 14,
-              height: 1.5,
+              
               color: price > 0 ? Helper.mainColor : Helper.titleColor,
             ),
           )

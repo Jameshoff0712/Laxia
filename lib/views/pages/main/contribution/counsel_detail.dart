@@ -193,7 +193,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     Text(
                                       'フォロー',
                                       style: TextStyle(
-                                          height: 1.5,
+                                          
                                           fontSize: 8,
                                           color: Color.fromARGB(
                                               255, 110, 198, 210)),
@@ -232,7 +232,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
-                                        height: 1.5,
+                                        
                                         color: Helper.whiteColor,
                                       ),
                                     ),
@@ -297,7 +297,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     ? Helper.btnBgYellowColor
                                     : Helper.txtColor,
                                 fontSize: 10,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -331,7 +331,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     ? Helper.btnBgYellowColor
                                     : Helper.txtColor,
                                 fontSize: 10,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -377,7 +377,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             style: TextStyle(
                                 color: Helper.txtColor,
                                 fontSize: 10,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -401,7 +401,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             style: TextStyle(
                                 color: Helper.txtColor,
                                 fontWeight: FontWeight.w700,
-                                height: 1.5,
+                                
                                 fontSize: 14),
                           ),
                         ),

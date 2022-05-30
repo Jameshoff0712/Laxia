@@ -82,7 +82,7 @@ class _chatStatusState extends State<chatStatus> {
                   statusText,
                   style: TextStyle(
                     fontSize: 12,
-                    height: 1.5,
+                    
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                     decoration: TextDecoration.none,
@@ -100,7 +100,7 @@ class _chatStatusState extends State<chatStatus> {
                     widget.clinicName,
                     style: TextStyle(
                       fontSize: 16,
-                      height: 1.5,
+                      
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 51, 51, 51),
                       decoration: TextDecoration.none,
@@ -127,7 +127,7 @@ class _chatStatusState extends State<chatStatus> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 12,
-                              height: 1.5,
+                              
                               color: Colors.white,
                               decoration: TextDecoration.none,
                             ),
@@ -145,7 +145,7 @@ class _chatStatusState extends State<chatStatus> {
                       '予約日時：2020/07/25 11：００〜',
                       style: TextStyle(
                         fontSize: 12,
-                        height: 1.5,
+                        
                         fontWeight: FontWeight.w400,
                         color: Color.fromARGB(255, 156, 161, 161),
                         decoration: TextDecoration.none,

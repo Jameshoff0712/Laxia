@@ -35,6 +35,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
               padding: const EdgeInsets.fromLTRB(18.0, 14.0, 18.0, 8.0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "",
@@ -65,22 +66,22 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
               },
               child: Container(
                 padding: EdgeInsets.all(15),
-                child: Row(children: [
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
                   SvgPicture.asset(
                     "assets/icons/diary.svg",
                     width: 44,
                     height: 44,
                   ),
                   SizedBox(width: 16,),
-                  Padding(padding: EdgeInsets.only(top: 13, bottom: 7),
-                    child: Text("日記を投稿する",
-                    style: TextStyle(
-                      color: Helper.titleColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      height: 1.5
-                    ),),
-                  )
+                  Text("日記を投稿する",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Helper.titleColor,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                  ),)
                 ]),
               ),
             ),
@@ -91,22 +92,22 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
               },
               child: Container(
                 padding: EdgeInsets.all(15),
-                child: Row(children: [
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
                   SvgPicture.asset(
                     "assets/icons/counsel.svg",
                     width: 44,
                     height: 44,
                   ),
                   SizedBox(width: 16,),
-                  Padding(padding: EdgeInsets.only(top: 13, bottom: 7),
-                    child: Text("カウセレポを投稿する",
-                    style: TextStyle(
-                      color: Helper.titleColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      height: 1.5
-                    ),),
-                  )
+                  Text("カウセレポを投稿する",
+                  style: TextStyle(
+                    color: Helper.titleColor,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    height: 1.5
+                  ),)
                 ]),
               ),
             ),
@@ -117,22 +118,21 @@ class _ModalBottomSheetState extends State<ModalBottomSheet>
               },
               child: Container(
                 padding: EdgeInsets.all(15),
-                child: Row(children: [
+                child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                   SvgPicture.asset(
                     "assets/icons/question.svg",
                     width: 44,
                     height: 44,
                   ),
                   SizedBox(width: 16,),
-                  Padding(padding: EdgeInsets.only(top: 13, bottom: 7),
-                    child: Text("質問を投稿する",
-                    style: TextStyle(
-                      color: Helper.titleColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      height: 1.5
-                    ),),
-                  )
+                  Text("質問を投稿する",
+                  style: TextStyle(
+                    color: Helper.titleColor,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    height: 1.5
+                  ),)
                 ]),
               ),
             ),

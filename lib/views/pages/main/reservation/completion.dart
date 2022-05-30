@@ -20,7 +20,7 @@ class _CompletionState extends State<Completion> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -67,7 +67,7 @@ class _CompletionState extends State<Completion> {
                     color: Helper.mainColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    height: 1.5,
+                    
                     decoration: TextDecoration.none,
                   )),
             ),

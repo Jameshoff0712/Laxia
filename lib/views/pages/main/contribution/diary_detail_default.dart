@@ -150,7 +150,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Helper.whiteColor,
                           ),
                         ),
@@ -358,7 +358,7 @@ SvgPicture.asset(
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Helper.whiteColor),
                       ),
                     ),

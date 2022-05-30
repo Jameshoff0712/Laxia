@@ -85,7 +85,7 @@ class _Diary_CardState extends State<Diary_Card> {
                           widget.name,
                           style: TextStyle(
                               fontSize: 12,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w700,
                               fontFamily: Helper.headFontFamily,
                               color: Helper.titleColor),
@@ -200,7 +200,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                     style: TextStyle(
                                         color: white,
                                         fontSize: 25,
-                                        height: 1.5,
+                                        
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ))
@@ -246,7 +246,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                     style: TextStyle(
                                         color: white,
                                         fontSize: 25,
-                                        height: 1.5,
+                                        
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ))
@@ -438,7 +438,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         widget.hearts!,
                                         style: TextStyle(
                                             fontSize: 11,
-                                            height: 1.5,
+                                            
                                             fontWeight: FontWeight.w400,
                                             color: Helper.maintxtColor),
                                       ),
@@ -457,7 +457,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                         widget.chats!,
                                         style: TextStyle(
                                             fontSize: 11,
-                                            height: 1.5,
+                                            
                                             fontWeight: FontWeight.w400,
                                             color: Helper.maintxtColor),
                                       ),

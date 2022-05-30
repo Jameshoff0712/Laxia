@@ -241,7 +241,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         widget.type,
                         style: TextStyle(
                             fontSize: 12,
-                            height: 1.5,
+                            
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -270,7 +270,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         widget.clinic,
                         style: TextStyle(
                             fontSize: 12,
-                            height: 1.5,
+                            
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -299,7 +299,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         widget.check,
                         style: TextStyle(
                             fontSize: 12,
-                            height: 1.5,
+                            
                             fontWeight: FontWeight.w400,
                             color: Helper.maintxtColor),
                       ),
@@ -329,7 +329,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               widget.eyes,
                               style: TextStyle(
                                   fontSize: 11,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400,
                                   color: Helper.maintxtColor),
                             ),
@@ -348,7 +348,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               widget.hearts,
                               style: TextStyle(
                                   fontSize: 11,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400,
                                   color: Helper.maintxtColor),
                             ),
@@ -367,7 +367,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               widget.chats,
                               style: TextStyle(
                                   fontSize: 11,
-                                  height: 1.5,
+                                  
                                   fontWeight: FontWeight.w400,
                                   color: Helper.maintxtColor),
                             )

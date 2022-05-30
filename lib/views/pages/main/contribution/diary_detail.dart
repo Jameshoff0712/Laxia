@@ -211,7 +211,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            height: 1.5,
+                            
                             color: Color.fromARGB(255, 26, 16, 16),
                           ),
                         ),
@@ -269,7 +269,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
                           fontSize: 10,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w400),
                     ),
                   ],
@@ -303,7 +303,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                               ? Helper.btnBgYellowColor
                               : Helper.txtColor,
                           fontSize: 10,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w400),
                     ),
                   ],

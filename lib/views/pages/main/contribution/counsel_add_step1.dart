@@ -149,7 +149,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -650,7 +650,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                             '次に進む',
                             style: TextStyle(
                                 fontSize: 14,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ),
@@ -687,7 +687,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                           '次へ進む',
                           style: TextStyle(
                               fontSize: 14,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w700,
                               color: Helper.mainColor),
                         ),

@@ -69,7 +69,7 @@ class _AddCounselPageState extends State<AddCounselPage> {
                         Text('新しくレポートを作成',
                             style: TextStyle(
                                 fontSize: 18,
-                                height: 1.5,
+                                
                                 fontFamily: Helper.headFontFamily,
                                 color: Helper.whiteColor,
                                 fontWeight: FontWeight.w700)),

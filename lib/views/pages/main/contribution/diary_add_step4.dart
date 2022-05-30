@@ -64,7 +64,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -360,7 +360,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                             '次に進む',
                             style: TextStyle(
                                 fontSize: 14,
-                                height: 1.5,
+                                
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
@@ -396,7 +396,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                           '修正を完了',
                           style: TextStyle(
                               fontSize: 14,
-                              height: 1.5,
+                              
                               fontWeight: FontWeight.w700,
                               color: Helper.mainColor),
                         ),

@@ -20,7 +20,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -64,7 +64,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      height: 1.5,
+                      
                       color: Helper.titleColor,
                     ),
                   ),
@@ -84,7 +84,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      height: 1.5,
+                      
                       color: Helper.blackColor,
                     ),
                   ),
@@ -106,7 +106,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 14,
-            height: 1.5,
+            
             color: Helper.blackColor,
           ),
         ),
@@ -115,7 +115,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,
-            height: 1.5,
+            
             color: Helper.titleColor,
           ),
         ),
@@ -134,7 +134,7 @@ class _TermsOfServicePageState extends State<TermsOfServicePage> {
         style: TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 16,
-          height: 1.5,
+          
           color: Helper.blackColor,
         ),
       ),

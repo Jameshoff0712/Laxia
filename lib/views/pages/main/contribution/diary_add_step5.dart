@@ -47,7 +47,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
               color: Helper.titleColor,
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              height: 1.5,
+              
             )),
         leading: IconButton(
           icon: Icon(
@@ -76,7 +76,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       color: Color.fromARGB(255, 18, 18, 18),
                       fontWeight: FontWeight.w700,
                       fontSize: 18,
-                      height: 1.5,
+                      
                     )),
               ),
               Container(
@@ -122,7 +122,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       '口コミを投稿する',
                       style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -158,7 +158,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       'レポートを下書き保存する',
                       style: TextStyle(
                           fontSize: 14,
-                          height: 1.5,
+                          
                           fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -211,7 +211,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       color: Helper.titleColor,
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
-                      height: 1.5,
+                      
                     ))),
           ],
         ),

@@ -113,7 +113,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                               style: TextStyle(
                                   color: Helper.maintxtColor,
                                   fontWeight: FontWeight.w400,
-                                  height: 1.5,
+                                  
                                   fontSize: 12.0),
                             ),
                             SizedBox(
@@ -124,7 +124,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                               style: TextStyle(
                                   color: Helper.maintxtColor,
                                   fontWeight: FontWeight.w400,
-                                  height: 1.5,
+                                  
                                   fontSize: 12.0),
                             ),
                           ],
