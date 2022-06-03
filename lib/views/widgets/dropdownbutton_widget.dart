@@ -85,12 +85,12 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
                               Text(
                                 item,
                                 style: const TextStyle(
-                                  color: Color.fromARGB(255, 110, 198, 210),
+                                  color: Helper.mainColor,
                                   fontSize: 14,
                                 ),
                               ),
                               Expanded(
-                                  child: Align(
+                                  child: Align( 
                                       alignment: Alignment.centerRight,
                                       child: Icon(
                                         Icons.check,

@@ -70,69 +70,77 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Helper.whiteColor,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Helper.whiteColor,
+    ));
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Container(
-              child: Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back_ios,
-                              size: 22, color: Colors.black),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        Text(
-                          widget.clinic_Detail.clinic.name == null
-                              ? ""
-                              : widget.clinic_Detail.clinic.name!,
-                          style: TextStyle(
-                              color: Helper.blackColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700),
-                        ),
-                        SvgPicture.asset(
-                          "assets/icons/upright_nobg.svg",
-                          width: 20,
-                          height: 20,
-                        ),
-                      ],
+        child: Container(
+          color: Helper.whiteColor,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Container(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back_ios,
+                                size: 22, color: Colors.black),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          Text(
+                            widget.clinic_Detail.clinic.name == null
+                                ? ""
+                                : widget.clinic_Detail.clinic.name!,
+                            style: TextStyle(
+                                color: Helper.blackColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          SvgPicture.asset(
+                            "assets/icons/upright_nobg.svg",
+                            width: 20,
+                            height: 20,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  TabBarWidget(
-                    tabMenus: tabMenus,
-                    tabController: _tabController,
-                  ),
-                  Expanded(
-                    child: TabBarView(
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                        Clinic_Top(
-                            clinic_detail: widget.clinic_Detail,
-                            onpress: changeTabIndex),
-                        Home_Doctor(
-                          doctors: widget.clinic_Detail.doctors,
-                        ),
-                        Home_Menu(menus: widget.clinic_Detail.menu),
-                        Home_Diary(diaries: widget.clinic_Detail.diaries),
-                        Home_Counseling(
-                            councelings: widget.clinic_Detail.counselings),
-                        Home_Case(cases: widget.clinic_Detail.cases),
-                      ],
-                      controller: _tabController,
+                    TabBarWidget(
+                      tabMenus: tabMenus,
+                      tabController: _tabController,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: TabBarView(
+                        physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          Clinic_Top(
+                              clinic_detail: widget.clinic_Detail,
+                              onpress: changeTabIndex),
+                          Home_Doctor(
+                            doctors: widget.clinic_Detail.doctors,
+                          ),
+                          Home_Menu(menus: widget.clinic_Detail.menu),
+                          Home_Diary(diaries: widget.clinic_Detail.diaries),
+                          Home_Counseling(
+                              councelings: widget.clinic_Detail.counselings),
+                          Home_Case(cases: widget.clinic_Detail.cases),
+                        ],
+                        controller: _tabController,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: SafeArea(
@@ -176,6 +184,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  fixedSize: Size(224, 36),
                   shadowColor: Colors.transparent,
                   elevation: 0,
                   primary: Helper.btnBgYellowColor,

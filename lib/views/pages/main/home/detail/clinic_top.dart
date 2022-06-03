@@ -79,6 +79,15 @@ class _Clinic_TopState extends State<Clinic_Top> {
                             itemBuilder:
                                 (BuildContext context, int index) {
                               return Menu_Card(
+                                shadow: BoxShadow(
+                                          color: Color.fromARGB(255, 238, 238,
+                                              238), //color of shadow
+                                          spreadRadius: 1, //spread radius
+                                          offset: Offset(0,
+                                              0), // changes position of shadow
+                                          //first paramerter of offset is left-right
+                                          //second parameter is top to down
+                                        ),
                                   onpress: (){
                                     //Navigator.of(context).pushNamed("/Menu_Detail");
                                     Navigator.of(context).push( MaterialPageRoute(builder: (_) => Menu_Detail(index:widget.clinic_detail.menu[index].id)));

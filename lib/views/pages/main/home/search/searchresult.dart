@@ -379,7 +379,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                               itemBuilder: (BuildContext context, int index) {
                                 return Diary_Card(
                                   buttoncolor:
-                                      Color.fromARGB(255, 110, 198, 210),
+                                      Helper.btnBgMainColor,
                                   buttontext: widget.model[4][index]
                                       ["buttontext"],
                                   hearts: widget.model[4][index]["hearts"],

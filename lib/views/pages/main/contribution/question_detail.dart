@@ -151,12 +151,12 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                       borderRadius: BorderRadius.circular(20)),
                                   child: Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(12, 3, 12, 3),
+                                        const EdgeInsets.fromLTRB(5, 3, 5, 3),
                                     child: Text(
                                       'フォロー',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 8,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                           color: Helper.mainColor),
                                     ),
@@ -202,7 +202,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                               ),
                             ),
                       SizedBox(
-                        width: 10,
+                        width: 16,
                       ),
                       SvgPicture.asset(
                         "assets/icons/upright_nobg.svg",
@@ -223,7 +223,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
             bottomNavigationBar: SafeArea(
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                height: 60,
+                height: 66,
                 decoration: BoxDecoration(color: Helper.whiteColor),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -343,7 +343,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       ),
                     ),
                     SizedBox(
-                      width: 21,
+                      width: 31,
                     ),
                     InkWell(
                       onTap: () {},
@@ -354,13 +354,13 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              left: 12, top: 7, bottom: 7, right: 100),
+                              left: 12, top: 10, bottom: 10, right: 80),
                           child: Text(
                             "コメントする",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 196, 196, 196),
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14),
                           ),
                         ),
                       ),
@@ -390,7 +390,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 6),
+                            horizontal: 6, vertical: 4),
                         child: Text(
                           question_detail.answers.isEmpty ? "未回答" : "回答あり",
                           style: TextStyle(
@@ -409,6 +409,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         style: TextStyle(
                             fontFamily: Helper.headFontFamily,
                             color: Helper.titleColor,
+                            height: 25/18,
                             fontSize: 18,
                             fontWeight: FontWeight.w700),
                       ),
@@ -419,7 +420,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         question_detail.created_at!
                             .split("T")[0]
                             .replaceAll('-', '/'),
-                        style: TextStyle(color: Helper.darkGrey, fontSize: 10),
+                        style: TextStyle(color: Helper.searchBartxtColor, fontSize: 10),
                       ),
                     ),
                     Container(

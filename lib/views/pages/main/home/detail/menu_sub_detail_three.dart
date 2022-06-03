@@ -36,42 +36,42 @@ class _Menu_Sub_Detail_ThreeState extends State<Menu_Sub_Detail_Three> {
                   widget.detailList,
                   style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,height: 2.1,fontSize: 14),
                 ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 219,
+           Expanded(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 219,
                         height: 44,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Helper.mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Helper.mainColor,
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "閉じる",
+                                  style: defaultTextStyle(
+                                      Helper.whiteColor, FontWeight.w700,
+                                      size: 13),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "閉じる",
-                              style: defaultTextStyle(
-                                  Helper.whiteColor, FontWeight.w700,
-                                  size: 13),
-                            ),
-                          ],
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
             SizedBox(height: 40,)
           ],),
         ),

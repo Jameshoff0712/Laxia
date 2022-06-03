@@ -82,7 +82,8 @@ class _Doctor_CardState extends State<Doctor_Card> {
             ),
             Expanded(
               child: Container(
-                color: _whiteColor,
+                 decoration: BoxDecoration(
+            color: Helper.whiteColor, borderRadius: BorderRadius.circular(5)),
                 child: Column(
                   children: [
                     SizedBox(

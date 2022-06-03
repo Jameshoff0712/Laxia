@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/home/sub/home_clinic.dart';
@@ -188,11 +189,11 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                   SizedBox(
                                     width: 8.41,
                                   ),
-                                  Icon(
-                                    expanded
-                                        ? Icons.arrow_drop_down
-                                        : Icons.arrow_drop_up,
-                                    size: 24,
+                                  SvgPicture.asset(
+                                    "assets/icons/arrowdownpart.svg",
+                                    fit: BoxFit.cover,
+                                    width: 10,
+                                    height: 5,
                                     color: Helper.mainColor,
                                   ),
                                 ]),
