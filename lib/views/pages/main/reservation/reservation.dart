@@ -100,8 +100,8 @@ class _ReservationState extends State<Reservation> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 16,
-                                
-                                fontWeight: FontWeight.w400,
+                                color: Helper.titleColor,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                             SizedBox(
@@ -210,1061 +210,1065 @@ class _ReservationState extends State<Reservation> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ご予約クリニック',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text('湘南美容クリニック 新宿院',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 34,
-                    ),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ご予約の施術',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text('クイックコスメティーク･ダブルNeo',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 34,
-                    ),
-                    // wanted doctor list
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ご希望のドクター',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Container(
-                          height: 46,
-                          padding: EdgeInsets.only(left: 10, right: 7),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: Color.fromARGB(255, 0, 184, 169),
-                            ),
+        child: Container(
+          color: Colors.white,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ご予約クリニック',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 7,
                           ),
-                          child: DropdownButton2(
-                              value: doctorValue,
-                              icon: Icon(
-                                Icons.keyboard_arrow_down,
+                          Text('湘南美容クリニック 新宿院',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 34,
+                      ),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ご予約の施術',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Text('クイックコスメティーク･ダブルNeo',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 34,
+                      ),
+                      // wanted doctor list
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ご希望のドクター',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Container(
+                            height: 46,
+                            padding: EdgeInsets.only(left: 10, right: 7),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
                                 color: Color.fromARGB(255, 0, 184, 169),
-                                size: 40,
                               ),
-                              isExpanded: true,
-                              underline: Container(),
-                              offset: const Offset(-10, 0),
-                              items: doctors
-                                  .map((item) => DropdownMenuItem(
-                                      value: item,
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          
-                                          fontWeight: FontWeight.w400,
-                                          color:
-                                              Color.fromARGB(255, 51, 51, 51),
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      )))
-                                  .toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  doctorValue = value as String?;
-                                  if (!selectedDoctor) progress += 0.1;
-                                  if (doctorValue != null)
-                                    selectedDoctor = true;
-                                });
-                              }),
-                        ),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    // what do you want?
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ご希望の施術やご相談したいことは？',
+                            ),
+                            child: DropdownButton2(
+                                value: doctorValue,
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Color.fromARGB(255, 0, 184, 169),
+                                  size: 40,
+                                ),
+                                isExpanded: true,
+                                underline: Container(),
+                                offset: const Offset(-10, 0),
+                                items: doctors
+                                    .map((item) => DropdownMenuItem(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            
+                                            fontWeight: FontWeight.w400,
+                                            color:
+                                                Color.fromARGB(255, 51, 51, 51),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        )))
+                                    .toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    doctorValue = value as String?;
+                                    if (!selectedDoctor) progress += 0.1;
+                                    if (doctorValue != null)
+                                      selectedDoctor = true;
+                                  });
+                                }),
+                          ),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      // what do you want?
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ご希望の施術やご相談したいことは？',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(10),
+                              errorStyle: TextStyle(color: Colors.red),
+                              errorBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: Helper.whiteColor.withOpacity(0.2))),
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 210, 210, 212),
+                                  fontSize: 14,
+                                  height: 1.8,
+                                  fontWeight: FontWeight.w400),
+                              hintText:
+                                  '例1)二重埋没\n例2)ニキビ跡や肌荒れで悩んでいます。どういった施術が適していますでしょうか？',
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 184, 169),
+                                  )),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 184, 169),
+                                  )),
+                            ),
+                            maxLines: 4,
                             style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            errorStyle: TextStyle(color: Colors.red),
-                            errorBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                borderSide: BorderSide(
-                                    color: Helper.whiteColor.withOpacity(0.2))),
-                            hintStyle: TextStyle(
-                                color: Color.fromARGB(255, 210, 210, 212),
+                                color: Color.fromARGB(255, 51, 51, 51),
                                 fontSize: 14,
                                 height: 1.8,
                                 fontWeight: FontWeight.w400),
-                            hintText:
-                                '例1)二重埋没\n例2)ニキビ跡や肌荒れで悩んでいます。どういった施術が適していますでしょうか？',
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 184, 169),
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 184, 169),
-                                )),
+                            onChanged: (value) {
+                              setState(() {
+                                wantedValue = value as String?;
+                                if (value.isNotEmpty && isWantedValue != true)
+                                  progress += 0.1;
+                                if (value.isEmpty && isWantedValue == true)
+                                  progress -= 0.1;
+                                if (value.isNotEmpty)
+                                  isWantedValue = true;
+                                else
+                                  isWantedValue = false;
+                              });
+                            },
                           ),
-                          maxLines: 4,
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 14,
-                              height: 1.8,
-                              fontWeight: FontWeight.w400),
-                          onChanged: (value) {
-                            setState(() {
-                              wantedValue = value as String?;
-                              if (value.isNotEmpty && isWantedValue != true)
-                                progress += 0.1;
-                              if (value.isEmpty && isWantedValue == true)
-                                progress -= 0.1;
-                              if (value.isNotEmpty)
-                                isWantedValue = true;
-                              else
-                                isWantedValue = false;
-                            });
-                          },
-                        ),
-                        SizedBox(
-                          height: 9,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              '施術一覧から選択する',
+                          SizedBox(
+                            height: 9,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '施術一覧から選択する',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 184, 169),
+                                    fontSize: 14,
+                                    
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Color.fromARGB(255, 0, 184, 169),
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                      SizedBox(
+                        height: 36,
+                      ),
+                      // what's for today?
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('当日は施術を希望しますか？',
                               style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Container(
+                            height: 46,
+                            padding: EdgeInsets.only(left: 10, right: 7),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 0, 184, 169),
+                              ),
+                            ),
+                            child: DropdownButton2(
+                                value: todayValue,
+                                icon: Icon(
+                                  Icons.keyboard_arrow_down,
                                   color: Color.fromARGB(255, 0, 184, 169),
+                                  size: 40,
+                                ),
+                                isExpanded: true,
+                                underline: Container(),
+                                offset: const Offset(-10, 0),
+                                items: options_Today
+                                    .map((item) => DropdownMenuItem(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            
+                                            fontWeight: FontWeight.w400,
+                                            color:
+                                                Color.fromARGB(255, 51, 51, 51),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        )))
+                                    .toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    todayValue = value as String?;
+                                    if (!selectedToday) progress += 0.1;
+                                    if (todayValue != null) selectedToday = true;
+                                  });
+                                }),
+                          ),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 40,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 242, 242, 242),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 40),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ご来院希望日の選択',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 21,
+                          ),
+                          TableCalendar(
+                            initialCalendarFormat: CalendarFormat.month,
+                            calendarStyle: CalendarStyle(
+                                weekendStyle: TextStyle(),
+                                unavailableStyle: const TextStyle(
+                                    color: Color.fromARGB(255, 210, 210, 212)),
+                                outsideDaysVisible: false,
+                                todayColor: Colors
+                                    .white, //Color.fromARGB(255, 0, 184, 169),
+                                selectedColor: Color.fromARGB(255, 0, 184, 169),
+                                todayStyle: TextStyle(
+                                    // fontWeight: FontWeight.bold,
+                                    // fontSize: 22.0,
+                                    color: Colors.black)
+                            ),
+                            headerStyle: HeaderStyle(
+                                centerHeaderTitle: true,
+                                formatButtonVisible: false,
+                                titleTextStyle: TextStyle(
                                   fontSize: 14,
                                   
-                                  fontWeight: FontWeight.w400),
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromARGB(255, 51, 51, 51),
+                                )),
+                            daysOfWeekStyle: DaysOfWeekStyle(
+                              weekendStyle:
+                                  TextStyle(color: const Color(0xFF616161)),
                             ),
-                            Icon(
-                              Icons.keyboard_arrow_right,
-                              color: Color.fromARGB(255, 0, 184, 169),
-                            ),
-                          ],
-                        )
-                      ],
-                    )),
-                    SizedBox(
-                      height: 36,
-                    ),
-                    // what's for today?
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('当日は施術を希望しますか？',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Container(
-                          height: 46,
-                          padding: EdgeInsets.only(left: 10, right: 7),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: Color.fromARGB(255, 0, 184, 169),
-                            ),
-                          ),
-                          child: DropdownButton2(
-                              value: todayValue,
-                              icon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Color.fromARGB(255, 0, 184, 169),
-                                size: 40,
-                              ),
-                              isExpanded: true,
-                              underline: Container(),
-                              offset: const Offset(-10, 0),
-                              items: options_Today
-                                  .map((item) => DropdownMenuItem(
-                                      value: item,
+                            startingDayOfWeek: StartingDayOfWeek.monday,
+                            onDaySelected: (date, events, e) {
+                              print(date.toUtc());
+                              setState(() {
+                                selectedTime = List<bool>.filled(4, false);
+                                year = date.year;
+                                month = date.month;
+                                day = date.day;
+                                index_weekday = date.weekday;
+                                weekday = stringWeekDay[index_weekday - 1];
+                              });
+                            },
+                            builders: CalendarBuilders(
+                              selectedDayBuilder: (context, date, events) =>
+                                  Container(
+                                      margin: const EdgeInsets.all(5.0),
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: Color.fromARGB(255, 0, 184, 169),
+                                          borderRadius:
+                                              BorderRadius.circular(80.0)),
                                       child: Text(
-                                        item,
-                                        style: const TextStyle(
+                                        date.day.toString(),
+                                        style:
+                                            TextStyle(color: Helper.whiteColor),
+                                      )),
+                              outsideWeekendDayBuilder: (context, date, events) =>
+                                  Container(
+                                      margin: const EdgeInsets.all(5.0),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        date.day.toString(),
+                                        style: TextStyle(color: Colors.grey),
+                                      )),
+                            ),
+                            calendarController: _controller,
+                          )
+                        ],
+                      )),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('来院時間帯を選択',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 14,
+                          ),
+                          SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  _buildTimeButton(0, '12:30'),
+                                  _buildTimeButton(1, '13:00'),
+                                  _buildTimeButton(2, '13:30'),
+                                  _buildTimeButton(3, '14:00'),
+                                ],
+                              )),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('選択した候補日',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          ListView.separated(
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return _buildReservationItem(index);
+                            },
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: 20,
+                            ),
+                            itemCount: list_ReservedTime.length,
+                          ),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 40,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 242, 242, 242),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('お名前(カタカナフルネーム)',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 51, 51, 51),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    
+                                    decoration: TextDecoration.none,
+                                  )),
+                              SizedBox(
+                                height: 7,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.only(
+                                            top: 14,
+                                            bottom: 8,
+                                            left: 10,
+                                            right: 10),
+                                        errorStyle: TextStyle(color: Colors.red),
+                                        errorBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            borderSide: BorderSide(
+                                                color: Helper.whiteColor
+                                                    .withOpacity(0.2))),
+                                        hintStyle: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 210, 210, 212),
+                                            fontSize: 16,
+                                            
+                                            fontWeight: FontWeight.w400),
+                                        hintText: 'セイ',
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            borderSide: BorderSide(
+                                              color: Color.fromARGB(
+                                                  255, 0, 184, 169),
+                                            )),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            borderSide: BorderSide(
+                                              color: Color.fromARGB(
+                                                  255, 0, 184, 169),
+                                            )),
+                                      ),
+                                      style: TextStyle(
+                                          color: Color.fromARGB(255, 51, 51, 51),
                                           fontSize: 16,
                                           
-                                          fontWeight: FontWeight.w400,
-                                          color:
-                                              Color.fromARGB(255, 51, 51, 51),
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      )))
-                                  .toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  todayValue = value as String?;
-                                  if (!selectedToday) progress += 0.1;
-                                  if (todayValue != null) selectedToday = true;
-                                });
-                              }),
-                        ),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 40,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 242, 242, 242),
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 40),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ご来院希望日の選択',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 21,
-                        ),
-                        TableCalendar(
-                          initialCalendarFormat: CalendarFormat.month,
-                          calendarStyle: CalendarStyle(
-                              weekendStyle: TextStyle(),
-                              unavailableStyle: const TextStyle(
-                                  color: Color.fromARGB(255, 210, 210, 212)),
-                              outsideDaysVisible: false,
-                              todayColor: Colors
-                                  .grey, //Color.fromARGB(255, 0, 184, 169),
-                              selectedColor: Color.fromARGB(255, 0, 184, 169),
-                              todayStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22.0,
-                                  color: Helper.whiteColor)),
-                          headerStyle: HeaderStyle(
-                              centerHeaderTitle: true,
-                              formatButtonVisible: false,
-                              titleTextStyle: TextStyle(
-                                fontSize: 14,
-                                
-                                fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w400),
+                                      validator: (v) {
+                                        if (v!.isEmpty) return 'input please';
+                                        return null;
+                                      },
+                                      onChanged: (value) {
+                                        setState(() {
+                                          firstName = value as String?;
+                                          if (value.isNotEmpty &&
+                                              isFirstName != true) {
+                                            progress += 0.05;
+                                            isFirstName = true;
+                                          }
+                                          if (value.isEmpty &&
+                                              isFirstName == true) {
+                                            progress -= 0.05;
+                                            isFirstName = false;
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.only(
+                                            top: 14,
+                                            bottom: 8,
+                                            left: 10,
+                                            right: 10),
+                                        errorStyle: TextStyle(color: Colors.red),
+                                        errorBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                            borderSide: BorderSide(
+                                                color: Helper.whiteColor
+                                                    .withOpacity(0.2))),
+                                        hintStyle: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 210, 210, 212),
+                                            fontSize: 16,
+                                            
+                                            fontWeight: FontWeight.w400),
+                                        hintText: 'メイ',
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            borderSide: BorderSide(
+                                              color: Color.fromARGB(
+                                                  255, 0, 184, 169),
+                                            )),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            borderSide: BorderSide(
+                                              color: Color.fromARGB(
+                                                  255, 0, 184, 169),
+                                            )),
+                                      ),
+                                      style: TextStyle(
+                                          color: Color.fromARGB(255, 51, 51, 51),
+                                          fontSize: 16,
+                                          
+                                          fontWeight: FontWeight.w400),
+                                      validator: (v) {
+                                        if (v!.isEmpty) return 'input please';
+                                        return null;
+                                      },
+                                      onChanged: (value) {
+                                        setState(() {
+                                          secondName = value as String?;
+                                          if (value.isNotEmpty &&
+                                              isSecondName != true) {
+                                            progress += 0.05;
+                                            isSecondName = true;
+                                          }
+                                          if (value.isEmpty &&
+                                              isSecondName == true) {
+                                            progress -= 0.05;
+                                            isSecondName = false;
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  )
+                                ],
+                              )
+                            ]),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('生年月日',
+                              style: TextStyle(
                                 color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
                               )),
-                          daysOfWeekStyle: DaysOfWeekStyle(
-                            weekendStyle:
-                                TextStyle(color: const Color(0xFF616161)),
+                          SizedBox(
+                            height: 7,
                           ),
-                          startingDayOfWeek: StartingDayOfWeek.monday,
-                          onDaySelected: (date, events, e) {
-                            print(date.toUtc());
-                            setState(() {
-                              selectedTime = List<bool>.filled(4, false);
-                              year = date.year;
-                              month = date.month;
-                              day = date.day;
-                              index_weekday = date.weekday;
-                              weekday = stringWeekDay[index_weekday - 1];
-                            });
-                          },
-                          builders: CalendarBuilders(
-                            selectedDayBuilder: (context, date, events) =>
-                                Container(
-                                    margin: const EdgeInsets.all(5.0),
-                                    alignment: Alignment.center,
+                          TextFormField(
+                            controller: _birthController,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.only(
+                                  top: 14, bottom: 8, left: 10, right: 10),
+                              errorStyle: TextStyle(color: Colors.red),
+                              errorBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: Helper.whiteColor.withOpacity(0.2))),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 184, 169),
+                                  )),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 184, 169),
+                                  )),
+                            ),
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 16,
+                                
+                                fontWeight: FontWeight.w400),
+                            validator: (v) {
+                              if (v!.isEmpty) return 'input please';
+                              return null;
+                            },
+                            onTap: () async {
+                              final DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime(2400),
+                              );
+                              if (pickedDate != null) {
+                                setState(() {
+                                  _birthController.text =
+                                      '${pickedDate.year}年${pickedDate.month}月${pickedDate.day}日';
+                                  birthYear = pickedDate.year;
+                                  birthMonth = pickedDate.month;
+                                  birthDay = pickedDate.day;
+                                  if (!isBirth) progress += 0.1;
+                                  isBirth = true;
+                                });
+                              }
+                            },
+                          ),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('性別',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      sexId = 0;
+                                      if (!selectedSex) {
+                                        progress += 0.1;
+                                        selectedSex = true;
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 46,
+                                    padding: EdgeInsets.only(top: 14, bottom: 8),
                                     decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 0, 184, 169),
-                                        borderRadius:
-                                            BorderRadius.circular(80.0)),
-                                    child: Text(
-                                      date.day.toString(),
-                                      style:
-                                          TextStyle(color: Helper.whiteColor),
-                                    )),
-                            outsideWeekendDayBuilder: (context, date, events) =>
-                                Container(
-                                    margin: const EdgeInsets.all(5.0),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      date.day.toString(),
-                                      style: TextStyle(color: Colors.grey),
-                                    )),
+                                      borderRadius: BorderRadius.circular(3),
+                                      border: Border.all(
+                                          color:
+                                              Color.fromARGB(255, 0, 184, 169)),
+                                      color: sexId == 0
+                                          ? Color.fromARGB(255, 240, 253, 255)
+                                          : Colors.white,
+                                    ),
+                                    child: Text('女性',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color.fromARGB(255, 51, 51, 51),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          
+                                          decoration: TextDecoration.none,
+                                        )),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      sexId = 1;
+                                      if (!selectedSex) {
+                                        progress += 0.1;
+                                        selectedSex = true;
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 46,
+                                    padding: EdgeInsets.only(top: 14, bottom: 8),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      border: Border.all(
+                                          color:
+                                              Color.fromARGB(255, 0, 184, 169)),
+                                      color: sexId == 1
+                                          ? Color.fromARGB(255, 240, 253, 255)
+                                          : Colors.white,
+                                    ),
+                                    child: Text('男性',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color.fromARGB(255, 51, 51, 51),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          
+                                          decoration: TextDecoration.none,
+                                        )),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ご連絡先の携帯番号',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 7,
                           ),
-                          calendarController: _controller,
-                        )
-                      ],
-                    )),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('来院時間帯を選択',
+                          TextFormField(
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.only(
+                                  top: 14, bottom: 8, left: 10, right: 10),
+                              errorStyle: TextStyle(color: Colors.red),
+                              errorBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: Helper.whiteColor.withOpacity(0.2))),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 184, 169),
+                                  )),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 0, 184, 169),
+                                  )),
+                            ),
                             style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 14,
-                        ),
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                _buildTimeButton(0, '12:30'),
-                                _buildTimeButton(1, '13:00'),
-                                _buildTimeButton(2, '13:30'),
-                                _buildTimeButton(3, '14:00'),
-                              ],
-                            )),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('選択した候補日',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return _buildReservationItem(index);
-                          },
-                          separatorBuilder: (context, index) => SizedBox(
-                            height: 20,
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 16,
+                                
+                                fontWeight: FontWeight.w400),
+                            validator: (v) {
+                              if (v!.isEmpty) return 'input please';
+                              final regex = RegExp('^[0-9]+');
+                              if (!regex.hasMatch(v))
+                                return 'Enter a valid mobile number';
+                              return null;
+                            },
+                            onChanged: (value) {
+                              setState(() {
+                                mobile = value;
+                                if (value.isNotEmpty && isMobile != true) {
+                                  progress += 0.1;
+                                  isMobile = true;
+                                }
+                                if (value.isEmpty && isMobile == true) {
+                                  progress -= 0.1;
+                                  isMobile = false;
+                                }
+                              });
+                            },
                           ),
-                          itemCount: list_ReservedTime.length,
-                        ),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 40,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 242, 242, 242),
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('お名前(カタカナフルネーム)',
+                        ],
+                      )),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ご利用ポイント',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                
+                                decoration: TextDecoration.none,
+                              )),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                                text: '保有ポイント：',
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 51, 51, 51),
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w700,
                                   
                                   decoration: TextDecoration.none,
-                                )),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.only(
-                                          top: 14,
-                                          bottom: 8,
-                                          left: 10,
-                                          right: 10),
-                                      errorStyle: TextStyle(color: Colors.red),
-                                      errorBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          borderSide: BorderSide(
-                                              color: Helper.whiteColor
-                                                  .withOpacity(0.2))),
-                                      hintStyle: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 210, 210, 212),
-                                          fontSize: 16,
-                                          
-                                          fontWeight: FontWeight.w400),
-                                      hintText: 'セイ',
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          borderSide: BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 0, 184, 169),
-                                          )),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          borderSide: BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 0, 184, 169),
-                                          )),
-                                    ),
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 51, 51, 51),
-                                        fontSize: 16,
-                                        
-                                        fontWeight: FontWeight.w400),
-                                    validator: (v) {
-                                      if (v!.isEmpty) return 'input please';
-                                      return null;
-                                    },
-                                    onChanged: (value) {
-                                      setState(() {
-                                        firstName = value as String?;
-                                        if (value.isNotEmpty &&
-                                            isFirstName != true) {
-                                          progress += 0.05;
-                                          isFirstName = true;
-                                        }
-                                        if (value.isEmpty &&
-                                            isFirstName == true) {
-                                          progress -= 0.05;
-                                          isFirstName = false;
-                                        }
-                                      });
-                                    },
-                                  ),
                                 ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.only(
-                                          top: 14,
-                                          bottom: 8,
-                                          left: 10,
-                                          right: 10),
-                                      errorStyle: TextStyle(color: Colors.red),
-                                      errorBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          borderSide: BorderSide(
-                                              color: Helper.whiteColor
-                                                  .withOpacity(0.2))),
-                                      hintStyle: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 210, 210, 212),
-                                          fontSize: 16,
-                                          
-                                          fontWeight: FontWeight.w400),
-                                      hintText: 'メイ',
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          borderSide: BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 0, 184, 169),
-                                          )),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          borderSide: BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 0, 184, 169),
-                                          )),
-                                    ),
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 51, 51, 51),
-                                        fontSize: 16,
-                                        
-                                        fontWeight: FontWeight.w400),
-                                    validator: (v) {
-                                      if (v!.isEmpty) return 'input please';
-                                      return null;
-                                    },
-                                    onChanged: (value) {
-                                      setState(() {
-                                        secondName = value as String?;
-                                        if (value.isNotEmpty &&
-                                            isSecondName != true) {
-                                          progress += 0.05;
-                                          isSecondName = true;
-                                        }
-                                        if (value.isEmpty &&
-                                            isSecondName == true) {
-                                          progress -= 0.05;
-                                          isSecondName = false;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                )
-                              ],
-                            )
-                          ]),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('生年月日',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        TextFormField(
-                          controller: _birthController,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(
-                                top: 14, bottom: 8, left: 10, right: 10),
-                            errorStyle: TextStyle(color: Colors.red),
-                            errorBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                borderSide: BorderSide(
-                                    color: Helper.whiteColor.withOpacity(0.2))),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 184, 169),
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 184, 169),
-                                )),
-                          ),
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 16,
-                              
-                              fontWeight: FontWeight.w400),
-                          validator: (v) {
-                            if (v!.isEmpty) return 'input please';
-                            return null;
-                          },
-                          onTap: () async {
-                            final DateTime? pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(1900),
-                              lastDate: DateTime(2400),
-                            );
-                            if (pickedDate != null) {
-                              setState(() {
-                                _birthController.text =
-                                    '${pickedDate.year}年${pickedDate.month}月${pickedDate.day}日';
-                                birthYear = pickedDate.year;
-                                birthMonth = pickedDate.month;
-                                birthDay = pickedDate.day;
-                                if (!isBirth) progress += 0.1;
-                                isBirth = true;
-                              });
-                            }
-                          },
-                        ),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('性別',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    sexId = 0;
-                                    if (!selectedSex) {
-                                      progress += 0.1;
-                                      selectedSex = true;
-                                    }
-                                  });
-                                },
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 46,
-                                  padding: EdgeInsets.only(top: 14, bottom: 8),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(3),
-                                    border: Border.all(
-                                        color:
-                                            Color.fromARGB(255, 0, 184, 169)),
-                                    color: sexId == 0
-                                        ? Color.fromARGB(255, 0, 184, 169)
-                                        : Colors.white,
-                                  ),
-                                  child: Text('女性',
-                                      textAlign: TextAlign.center,
+                                children: const <TextSpan>[
+                                  TextSpan(
+                                      text: '2400',
                                       style: TextStyle(
-                                        color: Color.fromARGB(255, 51, 51, 51),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromARGB(255, 0, 184, 169),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
                                         
                                         decoration: TextDecoration.none,
-                                      )),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    sexId = 1;
-                                    if (!selectedSex) {
-                                      progress += 0.1;
-                                      selectedSex = true;
-                                    }
-                                  });
-                                },
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height: 46,
-                                  padding: EdgeInsets.only(top: 14, bottom: 8),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(3),
-                                    border: Border.all(
-                                        color:
-                                            Color.fromARGB(255, 0, 184, 169)),
-                                    color: sexId == 1
-                                        ? Color.fromARGB(255, 0, 184, 169)
-                                        : Colors.white,
+                                      ),
+                                      children: const <TextSpan>[]),
+                                ]),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.only(
+                                        top: 14, bottom: 8, left: 10, right: 10),
+                                    errorStyle: TextStyle(color: Colors.red),
+                                    errorBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            color: Helper.whiteColor
+                                                .withOpacity(0.2))),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(5)),
+                                        borderSide: BorderSide(
+                                          color: Color.fromARGB(255, 0, 184, 169),
+                                        )),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(5)),
+                                        borderSide: BorderSide(
+                                          color: Color.fromARGB(255, 0, 184, 169),
+                                        )),
                                   ),
-                                  child: Text('男性',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color.fromARGB(255, 51, 51, 51),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        
-                                        decoration: TextDecoration.none,
-                                      )),
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 51, 51, 51),
+                                      fontSize: 16,
+                                      
+                                      fontWeight: FontWeight.w400),
+                                  validator: (v) {
+                                    if (v!.isEmpty) return 'input please';
+                                    final regex = RegExp('^[1-9]+[0-9]*');
+                                    if (!regex.hasMatch(v))
+                                      return 'Enter a valid point value';
+                                    return null;
+                                  },
+                                  onChanged: (value) {
+                                    setState(() {
+                                      usedPoints = value;
+                                      if (value.isNotEmpty &&
+                                          isUsedPoints != true) {
+                                        progress += 0.1;
+                                        isUsedPoints = true;
+                                      }
+                                      if (value.isEmpty && isUsedPoints == true) {
+                                        progress -= 0.1;
+                                        isUsedPoints = false;
+                                      }
+                                    });
+                                  },
                                 ),
                               ),
-                            ),
-                          ],
-                        )
-                      ],
-                    )),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ご連絡先の携帯番号',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(
-                                top: 14, bottom: 8, left: 10, right: 10),
-                            errorStyle: TextStyle(color: Colors.red),
-                            errorBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                borderSide: BorderSide(
-                                    color: Helper.whiteColor.withOpacity(0.2))),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 184, 169),
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 0, 184, 169),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text('ポイント',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    
+                                    decoration: TextDecoration.none,
+                                  )),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Text('1ポイント1円として利用できます',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 156, 161, 161),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  decoration: TextDecoration.none,
                                 )),
                           ),
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 16,
-                              
-                              fontWeight: FontWeight.w400),
-                          validator: (v) {
-                            if (v!.isEmpty) return 'input please';
-                            final regex = RegExp('^[0-9]+');
-                            if (!regex.hasMatch(v))
-                              return 'Enter a valid mobile number';
-                            return null;
-                          },
-                          onChanged: (value) {
-                            setState(() {
-                              mobile = value;
-                              if (value.isNotEmpty && isMobile != true) {
-                                progress += 0.1;
-                                isMobile = true;
-                              }
-                              if (value.isEmpty && isMobile == true) {
-                                progress -= 0.1;
-                                isMobile = false;
-                              }
-                            });
-                          },
-                        ),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ご利用ポイント',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 51, 51, 51),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        RichText(
-                          text: TextSpan(
-                              text: '保有ポイント：',
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Transform.scale(
+                                scale: 0.7,
+                                child: Checkbox(
+                                  value: this.checkBoxValue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      this.checkBoxValue = value!;
+                                    });
+                                  },
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  visualDensity: VisualDensity(horizontal: -4),
+                                ),
+                              ),
+                              Text('全てのポイントを利用する',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 51, 51, 51),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.none,
+                                      height: 1.5)),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   height: 20,
+                          // ),
+                        ],
+                      )),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      InkWell(
+                        onTap: progress == 1 ? _validate : null,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 58,
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: progress != 1
+                                ? Color.fromARGB(255, 210, 210, 212)
+                                : Color.fromARGB(255, 0, 184, 169),
+                          ),
+                          child: Text('ご予約の確認画面へ',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Color.fromARGB(255, 51, 51, 51),
-                                fontSize: 14,
+                                color: Colors.white,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w700,
                                 
                                 decoration: TextDecoration.none,
-                              ),
-                              children: const <TextSpan>[
-                                TextSpan(
-                                    text: '2400',
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 0, 184, 169),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      
-                                      decoration: TextDecoration.none,
-                                    ),
-                                    children: const <TextSpan>[]),
-                              ]),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.only(
-                                      top: 14, bottom: 8, left: 10, right: 10),
-                                  errorStyle: TextStyle(color: Colors.red),
-                                  errorBorder: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
-                                      borderSide: BorderSide(
-                                          color: Helper.whiteColor
-                                              .withOpacity(0.2))),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 0, 184, 169),
-                                      )),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 0, 184, 169),
-                                      )),
-                                ),
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 51, 51, 51),
-                                    fontSize: 16,
-                                    
-                                    fontWeight: FontWeight.w400),
-                                validator: (v) {
-                                  if (v!.isEmpty) return 'input please';
-                                  final regex = RegExp('^[1-9]+[0-9]*');
-                                  if (!regex.hasMatch(v))
-                                    return 'Enter a valid point value';
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  setState(() {
-                                    usedPoints = value;
-                                    if (value.isNotEmpty &&
-                                        isUsedPoints != true) {
-                                      progress += 0.1;
-                                      isUsedPoints = true;
-                                    }
-                                    if (value.isEmpty && isUsedPoints == true) {
-                                      progress -= 0.1;
-                                      isUsedPoints = false;
-                                    }
-                                  });
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text('ポイント',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  
-                                  decoration: TextDecoration.none,
-                                )),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text('1ポイント1円として利用できます',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 156, 161, 161),
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                decoration: TextDecoration.none,
                               )),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Transform.scale(
-                              scale: 0.7,
-                              child: Checkbox(
-                                value: this.checkBoxValue,
-                                onChanged: (value) {
-                                  setState(() {
-                                    this.checkBoxValue = value!;
-                                  });
-                                },
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                visualDensity: VisualDensity(horizontal: -4),
-                              ),
-                            ),
-                            Text('全てのポイントを利用する',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 51, 51, 51),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    decoration: TextDecoration.none,
-                                    height: 1.5)),
-                          ],
-                        ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                      ],
-                    )),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    InkWell(
-                      onTap: progress == 1 ? _validate : null,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 58,
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: progress != 1
-                              ? Color.fromARGB(255, 210, 210, 212)
-                              : Color.fromARGB(255, 0, 184, 169),
-                        ),
-                        child: Text('ご予約の確認画面へ',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              
-                              decoration: TextDecoration.none,
-                            )),
                       ),
-                    ),
-                    SizedBox(
-                      height: 60,
-                    ),
-                  ],
-                ),
-              )
-            ],
+                      SizedBox(
+                        height: 60,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -1301,7 +1305,7 @@ class _ReservationState extends State<Reservation> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 50,
-      padding: EdgeInsets.only(top: 16, left: 9, bottom: 10, right: 9),
+      padding: EdgeInsets.only(top: 13, left: 9, bottom: 13, right: 9),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         border: Border.all(color: Color.fromARGB(255, 102, 110, 110)),
@@ -1390,10 +1394,12 @@ class _ReservationState extends State<Reservation> {
         margin: EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
-          border: Border.all(color: Color.fromARGB(255, 210, 210, 212)),
+          border: selectedTime[index] 
+            ? Border.all(color: Helper.mainColor)
+            : Border.all(color: Color.fromARGB(255, 210, 210, 212)),
           color: selectedTime[index]
-              ? Color.fromARGB(255, 0, 184, 169)
-              : Color.fromARGB(255, 210, 210, 212),
+              ? Color.fromARGB(255, 240, 253, 255)
+              : Colors.white
         ),
         child: Text(time,
             style: TextStyle(

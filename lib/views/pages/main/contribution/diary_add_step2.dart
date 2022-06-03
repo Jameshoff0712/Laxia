@@ -103,7 +103,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -157,7 +157,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -211,7 +211,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -265,7 +265,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -319,7 +319,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(

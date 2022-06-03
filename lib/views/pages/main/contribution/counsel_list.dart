@@ -53,7 +53,8 @@ class _AddCounselPageState extends State<AddCounselPage> {
                     Navigator.of(context).pushNamed("/AddCounselStep1");
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: 1,
+                    elevation: 0,
+                    shadowColor: Colors.transparent,
                     padding: const EdgeInsets.fromLTRB(16, 21, 16, 21),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(6))),

@@ -143,7 +143,8 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                         Navigator.of(context).pushNamed("/AddCounselStep1");
                       },
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
+                        shadowColor: Colors.transparent,
                         padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                         shape: const RoundedRectangleBorder(
                             borderRadius:

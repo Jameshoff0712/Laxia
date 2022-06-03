@@ -118,7 +118,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   color: contentChat.isEmpty
                       ? Color.fromARGB(255, 222, 222, 222)
                       : Color.fromARGB(255, 0, 184, 169),
-                  size: 20,
+                  size: 22,
                 ),
                 alignment: Alignment.bottomCenter,
                 onPressed: () {},
