@@ -50,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               controller: _pageController,
               itemCount: onBoardingInstructions.length,
               itemBuilder: (context, i) => Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.only(top:16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -110,7 +110,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 22),
                     (currentPageValue!.floor() != 3)
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),

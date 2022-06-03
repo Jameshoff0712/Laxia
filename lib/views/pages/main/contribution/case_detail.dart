@@ -90,8 +90,9 @@ class _CaseDetailState extends State<CaseDetail> {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        case_detail.name == null ? "" : case_detail.name!,
+                        case_detail.name == null ? "" : case_detail.name!.length>15?case_detail.name!.substring(0,15)+"...":case_detail.name!,
                         style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
                             fontSize: 16,
                             fontFamily: Helper.headFontFamily,
                             color: Colors.black,

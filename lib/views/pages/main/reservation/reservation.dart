@@ -940,7 +940,6 @@ class _ReservationState extends State<Reservation> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.5,
                                     height: 46,
-                                    padding: EdgeInsets.only(top: 14, bottom: 8),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(3),
                                       border: Border.all(
@@ -950,15 +949,17 @@ class _ReservationState extends State<Reservation> {
                                           ? Color.fromARGB(255, 240, 253, 255)
                                           : Colors.white,
                                     ),
-                                    child: Text('女性',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color.fromARGB(255, 51, 51, 51),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          
-                                          decoration: TextDecoration.none,
-                                        )),
+                                    child: Center(
+                                      child: Text('女性',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color.fromARGB(255, 51, 51, 51),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            
+                                            decoration: TextDecoration.none,
+                                          )),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -981,7 +982,6 @@ class _ReservationState extends State<Reservation> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.5,
                                     height: 46,
-                                    padding: EdgeInsets.only(top: 14, bottom: 8),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(3),
                                       border: Border.all(
@@ -991,15 +991,17 @@ class _ReservationState extends State<Reservation> {
                                           ? Color.fromARGB(255, 240, 253, 255)
                                           : Colors.white,
                                     ),
-                                    child: Text('男性',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color.fromARGB(255, 51, 51, 51),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          
-                                          decoration: TextDecoration.none,
-                                        )),
+                                    child: Center(
+                                      child: Text('男性',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color.fromARGB(255, 51, 51, 51),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            
+                                            decoration: TextDecoration.none,
+                                          )),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1390,7 +1392,7 @@ class _ReservationState extends State<Reservation> {
       },
       child: Container(
         height: 34,
-        padding: EdgeInsets.only(top: 8, left: 28, right: 28, bottom: 2),
+        padding: EdgeInsets.only(top: 5, left: 28, right: 28, bottom: 5),
         margin: EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
