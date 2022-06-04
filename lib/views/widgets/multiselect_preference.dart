@@ -90,7 +90,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                       },
                       child: Text("クリア",
                           style: TextStyle(
-                              color: Helper.unClickClearButtonColor,
+                              color: Helper.maintxtColor,
                               fontSize: 16,
                               fontWeight: FontWeight.w400)),
                     )

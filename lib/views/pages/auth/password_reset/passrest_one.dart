@@ -157,6 +157,8 @@ class _PassRest_OneState extends State<PassRest_One> {
                   padding: const EdgeInsets.only(left: 64, right: 64),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
                       primary: Helper.btnBgMainColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),

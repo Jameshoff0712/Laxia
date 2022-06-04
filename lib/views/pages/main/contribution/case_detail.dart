@@ -132,6 +132,8 @@ class _CaseDetailState extends State<CaseDetail> {
                     //padding: EdgeInsets.symmetric(vertical: 10),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
                         primary: Helper.btnBgYellowColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40.0),
