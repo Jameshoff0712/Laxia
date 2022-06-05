@@ -151,7 +151,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                       borderRadius: BorderRadius.circular(20)),
                                   child: Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(5, 3, 5, 3),
+                                        const EdgeInsets.fromLTRB(12, 3, 12, 3),
                                     child: Text(
                                       'フォロー',
                                       textAlign: TextAlign.center,
@@ -345,36 +345,41 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(
                       width: 31,
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 243, 243, 243),
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 12, top: 10, bottom: 10, right: 80),
-                          child: Text(
-                            "コメントする",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 196, 196, 196),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 243, 243, 243),
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, top: 7, bottom: 7, right: 10),
+                            child: Text(
+                              "コメントする",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 196, 196, 196),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12),
+                            ),
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 16,
                     ),
                   ],
                 ),
               ),
             ),
+            backgroundColor: Helper.whiteColor,
             body: SingleChildScrollView(
               reverse: false,
-              padding: EdgeInsets.symmetric(vertical: 30),
               child: Container(
                 color: Helper.whiteColor,
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.only(left: 16, right: 16, top: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -384,7 +389,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: question_detail.answers.isEmpty
-                            ? Helper.extraGrey
+                            ? Color.fromARGB(255, 224, 226, 226)
                             : Color.fromARGB(255, 240, 154, 55)
                                 .withOpacity(0.2),
                       ),
@@ -395,7 +400,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           question_detail.answers.isEmpty ? "未回答" : "回答あり",
                           style: TextStyle(
                               color: question_detail.answers.isEmpty
-                                  ? Helper.lightGrey
+                                  ? Helper.maintxtColor
                                   : Color.fromARGB(255, 249, 161, 56),
                               fontSize: 10,
                               fontWeight: FontWeight.w400),
@@ -544,19 +549,26 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                               left: 15,
                                               right: 15,
                                               bottom: 0),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15.0)),
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    192, 231, 231, 231)),
+                                          ),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(15.0)),
                                             borderSide: BorderSide(
                                                 color: Color.fromARGB(
-                                                    255, 231, 231, 231)),
+                                                    192, 231, 231, 231)),
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(15.0)),
                                             borderSide: BorderSide(
                                                 color: Color.fromARGB(
-                                                    255, 231, 231, 231)),
+                                                    192, 231, 231, 231)),
                                           ),
                                         ),
                                       ),
