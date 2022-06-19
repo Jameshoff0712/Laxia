@@ -50,7 +50,7 @@ class _Diary_CardState extends State<Diary_Card> {
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               children: [
@@ -119,7 +119,7 @@ class _Diary_CardState extends State<Diary_Card> {
                           )),
                     !widget.isFavorite!
                         ? widget.isPublic!
-                            ? InkWell(
+                            ? GestureDetector(
                                 onTap: () {},
                                 child: Container(
                                   padding: EdgeInsets.all(5.0),
@@ -133,7 +133,7 @@ class _Diary_CardState extends State<Diary_Card> {
                                     ),
                                   ),
                                 ))
-                            : InkWell(
+                            : GestureDetector(
                                 onTap: () {},
                                 child: Container(
                                   padding: EdgeInsets.all(5.0),

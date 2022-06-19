@@ -58,7 +58,7 @@ class _Clinic_MediaListState extends State<Clinic_MediaList> {
   FittedBox Image_Widget(BuildContext context,int imageUrl) {
     return FittedBox(
       fit: BoxFit.fill,
-      child: InkWell(
+      child: GestureDetector(
         onTap: (){
           Navigator.of(context).push(
                     MaterialPageRoute(

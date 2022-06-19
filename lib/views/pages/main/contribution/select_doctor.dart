@@ -173,7 +173,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                             shrinkWrap: true,
                             physics: AlwaysScrollableScrollPhysics(),
                             itemBuilder: (BuildContext context, int index) {
-                              return InkWell(
+                              return GestureDetector(
                                 onTap: () {
                                   userProperties.setSelectedDoctor(
                                       doctor_data.data[index].hira_name);

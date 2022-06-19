@@ -36,7 +36,7 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                 children: <Widget>[
                   Column(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => PageViewWidget(
@@ -78,7 +78,7 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                     ],
                   ),
                   widget.bRemove == true
-                      ? InkWell(
+                      ? GestureDetector(
                           onTap: () {
                             widget.onRemove(i);
                           },

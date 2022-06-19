@@ -30,7 +30,7 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

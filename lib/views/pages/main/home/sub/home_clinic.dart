@@ -181,7 +181,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                                               ? "http://error.png"
                                               : clinic_data.data[index].photo!,
                                       post: "",
-                                      name: clinic_data.data[index].name!,
+                                      name: clinic_data.data[index].name==null?"":clinic_data.data[index].name!,
                                       mark: clinic_data
                                                   .data[index].diaries_count ==
                                               null

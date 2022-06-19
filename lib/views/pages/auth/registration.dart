@@ -208,7 +208,7 @@ class _RegistrationState extends State<Registration> {
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size.zero, // Set this
                       padding: EdgeInsets.zero, // and this
-                      side: BorderSide(color: Helper.txtColor, width: 1),
+                      side: BorderSide(color: isBtnColor ?Helper.txtColor:Helper.mainColor, width: 1),
                       elevation: 0,
                       primary:
                           isBtnColor ? Helper.whiteColor : Helper.mainColor,

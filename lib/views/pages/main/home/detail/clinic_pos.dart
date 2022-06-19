@@ -71,7 +71,7 @@ class _Clinic_PosState extends State<Clinic_Pos> {
                   child: SizedBox(
                     width: 160,
                     height: 36,
-                    child: InkWell(
+                    child: GestureDetector(
                       child: Container(
                         decoration: BoxDecoration(
                             color: Helper.mainColor,

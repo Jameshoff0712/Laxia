@@ -74,7 +74,7 @@ class _FollowingCardWidgetState extends State<FollowingCardWidget> {
                   ],
                 ),
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () {},
                 child: Container(
                   margin: EdgeInsets.only(right: 4),

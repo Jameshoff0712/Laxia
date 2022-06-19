@@ -72,7 +72,7 @@ class _Question_CardState extends State<Question_Card> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -126,7 +126,6 @@ class _Question_CardState extends State<Question_Card> {
                                   style: TextStyle(
                                       color: Helper.whiteColor,
                                       fontSize: 10,
-                                      height: 1.2,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -148,7 +147,6 @@ class _Question_CardState extends State<Question_Card> {
                                   style: TextStyle(
                                       color: Helper.whiteColor,
                                       fontSize: 10,
-                                      height: 1.2,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),

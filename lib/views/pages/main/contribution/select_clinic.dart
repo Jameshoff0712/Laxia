@@ -169,7 +169,7 @@ class _SelectClinicState extends State<SelectClinic> {
                               itemCount: clinic_data.data.length,
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
+                                return GestureDetector(
                                   onTap: () {
                                     userProperties.setSelectedClinic(
                                         clinic_data.data[index].name!);

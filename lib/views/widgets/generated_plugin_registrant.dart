@@ -145,7 +145,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
                     ),
                     // Row(
                     //   children: [
-                    //      InkWell(
+                    //      GestureDetector(
                     //         onTap: (){
                     //                 if(isStart){
                     //                    setState(() {

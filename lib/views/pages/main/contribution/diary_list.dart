@@ -97,7 +97,9 @@ class _DiaryPageState extends State<DiaryPage> {
                     Navigator.of(context).pushNamed("/AddDiaryStep1");
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: 1,
+                    splashFactory: NoSplash.splashFactory,
+                    elevation: 0,
+                    shadowColor: Colors.transparent,
                     padding: const EdgeInsets.only(top: 21, bottom: 22),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(6))),

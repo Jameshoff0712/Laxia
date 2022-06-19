@@ -66,7 +66,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
           suffixIcon: widget.issuffixicon!
               ? Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: InkWell(
+                  child: GestureDetector(
                     onTap: () {
                       widget.onpress!();
                     },

@@ -195,7 +195,7 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                   : Container(),
               Align(
                 alignment: Alignment.centerRight,
-                child: InkWell(
+                child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed("/passwordResetone");
                   },
@@ -211,18 +211,13 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 24, left: 61, right: 61),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: Helper.mainColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0),
+                child: GestureDetector(
+                  child: Container(
+                    decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(40.0),
+                       color: Helper.mainColor,
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
+                      child:Padding(
                         padding: const EdgeInsets.only(top: 12, bottom: 12),
                         child: Align(
                           alignment: Alignment.center,
@@ -236,9 +231,8 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                           ),
                         ),
                       ),
-                    ],
                   ),
-                  onPressed: () {
+                  onTap: () {
                     login(context);
                   },
                 ),

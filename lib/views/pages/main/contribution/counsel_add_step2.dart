@@ -476,7 +476,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                       ),
                       Align(
                         alignment: Alignment.center,
-                        child: InkWell(
+                        child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
@@ -511,7 +511,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
   }
 
   Widget Star(int sindex, Color color) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         setState(() {
           selectstar = sindex + 1;

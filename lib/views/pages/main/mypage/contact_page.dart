@@ -161,7 +161,7 @@ class _ContactPageState extends State<ContactPage> {
                     SizedBox(
                       height: 24,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {},
                       child: Align(
                         alignment: Alignment.center,

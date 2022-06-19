@@ -84,7 +84,7 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
   FittedBox Image_Widget(BuildContext context,int imageUrl,int index) {
     return FittedBox(
       fit: BoxFit.fill,
-      child: InkWell(
+      child: GestureDetector(
         onTap: (){
           Navigator.of(context).push(
                                    MaterialPageRoute(

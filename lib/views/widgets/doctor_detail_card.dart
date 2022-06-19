@@ -354,7 +354,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
             ),
             Center(
               child: isVisible
-                  ? InkWell(
+                  ? GestureDetector(
                       onTap: () => setState(() {
                         isVisible = !isVisible;
                       }),
@@ -377,7 +377,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                         ),
                       ),
                     )
-                  : InkWell(
+                  : GestureDetector(
                       onTap: () => setState(() {
                         isVisible = !isVisible;
                       }),

@@ -140,7 +140,7 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
           ),
           Align(
             alignment: Alignment.center,
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 Navigator.of(context).pop();
               },

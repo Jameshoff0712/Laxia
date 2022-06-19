@@ -74,7 +74,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
     //                       ),
     //                       Padding(
     //                           padding: const EdgeInsets.all(8.0),
-    //                           child: InkWell(
+    //                           child: GestureDetector(
     //                             onTap: (){
     //                                     Navigator.of(context).push(
     //                                       MaterialPageRoute(

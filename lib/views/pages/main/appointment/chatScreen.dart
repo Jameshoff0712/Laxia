@@ -47,18 +47,18 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-              child: ListView.builder(
-                  reverse: true,
-                  itemCount: messages.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final Message message = messages[index];
-                    final bool isMe = message.sender!.id == currentUser.id;
-                    prevUserId = message.sender!.id;
-                    return ChatSlot(message: message, isMe: isMe);
-                  })),
-          SizedBox(
-            height: 24,
-          ),
+              child: Container(
+                color: Color.fromARGB(255, 240, 242, 245),
+                child: ListView.builder(
+                    reverse: true,
+                    itemCount: messages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final Message message = messages[index];
+                      final bool isMe = message.sender!.id == currentUser.id;
+                      prevUserId = message.sender!.id;
+                      return ChatSlot(message: message, isMe: isMe);
+                    }),
+              )),
           _buildSendMessageBox(),
         ],
       ),
@@ -69,7 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 7),
+          padding: EdgeInsets.only(left: 16, right: 16, bottom: 7),
           color: Helper.whiteColor,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -118,7 +118,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   color: contentChat.isEmpty
                       ? Color.fromARGB(255, 222, 222, 222)
                       : Color.fromARGB(255, 0, 184, 169),
-                  size: 20,
+                  size: 22,
                 ),
                 alignment: Alignment.bottomCenter,
                 onPressed: () {},

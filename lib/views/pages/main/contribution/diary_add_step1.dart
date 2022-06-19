@@ -162,7 +162,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
             Positioned(
               top: 14,
               right: 15,
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -331,7 +331,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -410,7 +410,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -482,7 +482,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -558,7 +558,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -634,7 +634,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -792,7 +792,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       child: GestureDetector(
         child: Row(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               onTap: () {
                 _openImagePicker();
               },

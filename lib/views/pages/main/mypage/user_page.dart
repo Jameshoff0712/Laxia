@@ -100,9 +100,11 @@ class _UserPageState extends State<UserPage>
         controller: _tabController,
         indicatorColor: Helper.mainColor,
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorWeight: 3.8,
+        indicatorWeight: 2.0,
         labelColor: Helper.titleColor,
         unselectedLabelColor: Helper.unSelectTabColor,
+        labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
+        indicatorPadding: EdgeInsets.only(bottom: 10, right: -3, left: -3),
         tabs: [
           Tab(
             child: Text(
@@ -355,7 +357,7 @@ class _UserPageState extends State<UserPage>
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
@@ -366,7 +368,6 @@ class _UserPageState extends State<UserPage>
                           children: [
                             SizedBox(
                                 height: 24,
-                                width: 24,
                                 child: Text(
                                   "26",
                                   style: TextStyle(
@@ -395,7 +396,7 @@ class _UserPageState extends State<UserPage>
                       SizedBox(
                         width: 20,
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
@@ -406,7 +407,6 @@ class _UserPageState extends State<UserPage>
                           children: [
                             SizedBox(
                                 height: 24,
-                                width: 24,
                                 child: Text(
                                   "26",
                                   style: TextStyle(

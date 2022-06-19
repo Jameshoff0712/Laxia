@@ -172,7 +172,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
   }
 
   Widget checkCondition(bool status, int index, String strCondition) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         setState(() {
           chk_status[index] = !status;

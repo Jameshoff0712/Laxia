@@ -46,7 +46,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               children: [
@@ -214,7 +214,8 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     child: ElevatedButton(
                       onPressed: () { Navigator.of(context).pushNamed("/AddDiaryProgress"); },
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
+                        shadowColor: Colors.transparent,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: const RoundedRectangleBorder(
                             borderRadius:
@@ -255,7 +256,8 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
+                        shadowColor: Colors.transparent,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: const RoundedRectangleBorder(
                             borderRadius:

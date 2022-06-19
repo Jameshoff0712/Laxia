@@ -42,6 +42,11 @@ class _Menu_DetailState extends State<Menu_Detail> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Helper.whiteColor,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarColor: Helper.whiteColor,
+    ));
     // print(Menu_Datails[0]);
     return Menu_Datails.isNotEmpty
         ? Scaffold(
@@ -52,7 +57,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => PageViewWidget(
@@ -187,33 +192,26 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         SizedBox(
                                           width: 158,
                                           height: 30,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shadowColor: Helper.whiteColor,
-                                              elevation: 0,
-                                              side: BorderSide(
-                                                  color: Helper.mainColor,
-                                                  width: 1),
-                                              primary: Helper.whiteColor,
-                                              shape: RoundedRectangleBorder(
+                                          child: GestureDetector(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Helper.whiteColor,
+                                                border: Border.all(color: Helper.mainColor),
                                                 borderRadius:
                                                     BorderRadius.circular(5.0),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "詳細を表示",
-                                                  style: defaultTextStyle(
-                                                      Helper.mainColor,
-                                                      FontWeight.w700,
-                                                      size: 13),
                                                 ),
-                                              ],
+                                              child:
+                                                Center(
+                                                  child: Text(
+                                                    "詳細を表示",
+                                                    style: defaultTextStyle(
+                                                        Helper.mainColor,
+                                                        FontWeight.w700,
+                                                        size: 13),
+                                                  ),
+                                                ),
                                             ),
-                                            onPressed: () {
+                                            onTap: () {
                                               showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   shape: RoundedRectangleBorder(
@@ -371,33 +369,26 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         SizedBox(
                                           width: 158,
                                           height: 30,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shadowColor: Helper.whiteColor,
-                                              elevation: 0,
-                                              side: BorderSide(
-                                                  color: Helper.mainColor,
-                                                  width: 1),
-                                              primary: Helper.whiteColor,
-                                              shape: RoundedRectangleBorder(
+                                          child: GestureDetector(
+                                           child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Helper.whiteColor,
+                                                border: Border.all(color: Helper.mainColor),
                                                 borderRadius:
                                                     BorderRadius.circular(5.0),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "詳細を表示",
-                                                  style: defaultTextStyle(
-                                                      Helper.mainColor,
-                                                      FontWeight.w700,
-                                                      size: 13),
                                                 ),
-                                              ],
+                                              child:
+                                                Center(
+                                                  child: Text(
+                                                    "詳細を表示",
+                                                    style: defaultTextStyle(
+                                                        Helper.mainColor,
+                                                        FontWeight.w700,
+                                                        size: 13),
+                                                  ),
+                                                ),
                                             ),
-                                            onPressed: () {
+                                            onTap: () {
                                               showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   shape: RoundedRectangleBorder(
@@ -483,7 +474,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                           return Container(
                                             decoration: BoxDecoration(
                                                 color: index % 2 == 0
-                                                    ? Helper.searchBarBgColor
+                                                    ? Helper.homeBgColor
                                                     : Helper.whiteColor),
                                             child: Padding(
                                               padding:
@@ -498,13 +489,13 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   Row(
                                                     children: [
                                                       Container(
-                                                        width: 12,
-                                                        height: 12,
+                                                        width: 14,
+                                                        height: 14,
                                                         decoration: BoxDecoration(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        6),
+                                                                        7),
                                                             color: Helper
                                                                 .mainColor),
                                                         child: Center(
@@ -599,33 +590,26 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         SizedBox(
                                           width: 158,
                                           height: 30,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shadowColor: Helper.whiteColor,
-                                              elevation: 0,
-                                              side: BorderSide(
-                                                  color: Helper.mainColor,
-                                                  width: 1),
-                                              primary: Helper.whiteColor,
-                                              shape: RoundedRectangleBorder(
+                                          child: GestureDetector(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Helper.whiteColor,
+                                                border: Border.all(color: Helper.mainColor),
                                                 borderRadius:
                                                     BorderRadius.circular(5.0),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "詳細を表示",
-                                                  style: defaultTextStyle(
-                                                      Helper.mainColor,
-                                                      FontWeight.w700,
-                                                      size: 13),
                                                 ),
-                                              ],
+                                              child:
+                                                Center(
+                                                  child: Text(
+                                                    "詳細を表示",
+                                                    style: defaultTextStyle(
+                                                        Helper.mainColor,
+                                                        FontWeight.w700,
+                                                        size: 13),
+                                                  ),
+                                                ),
                                             ),
-                                            onPressed: () {
+                                            onTap: () {
                                               showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   shape: RoundedRectangleBorder(
@@ -700,7 +684,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         shrinkWrap: true,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          return InkWell(
+                                          return GestureDetector(
                                             onTap: () {
                                               //  Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
                                             },
@@ -858,90 +842,93 @@ class _Menu_DetailState extends State<Menu_Detail> {
                     ),
                   )
                 : Container(),
-            bottomNavigationBar: SafeArea(
-              child: Container(
-                height: 66,
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(color: Helper.whiteColor),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              Menu_Datails[0]["price"],
+            bottomNavigationBar: Container(
+              color: Helper.whiteColor,
+              child: SafeArea(
+                child: Container(
+                  height: 66,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(color: Helper.whiteColor),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                Menu_Datails[0]["price"],
+                                style: defaultTextStyle(
+                                    Helper.priceColor, FontWeight.w700,
+                                    size: 18.0),
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                Menu_Datails[0]["tax"],
+                                style: TextStyle(
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w500,
+                                    
+                                    fontSize: 12.0),
+                              ),
+                              SizedBox(
+                                width: 2.5,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              isfavourite
+                                  ? Icon(
+                                      Icons.star_rounded,
+                                      color: Helper.starColor,
+                                      size: 16,
+                                    )
+                                  : Icon(
+                                      Icons.star_border_rounded,
+                                      color: Helper.txtColor,
+                                      size: 16,
+                                    ),
+                              Text(
+                                "4.23(102)",
+                                style: TextStyle(
+                                    
+                                    color: Helper.titleColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushNamed("/Reservation");
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(70),
+                              color: Helper.btnBgYellowColor),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 10),
+                            child: Text(
+                              "クリニックを予約",
                               style: defaultTextStyle(
-                                  Helper.priceColor, FontWeight.w700,
-                                  size: 18.0),
+                                  Helper.whiteColor, FontWeight.w700,
+                                  size: 16),
                             ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              Menu_Datails[0]["tax"],
-                              style: TextStyle(
-                                  color: Helper.titleColor,
-                                  fontWeight: FontWeight.w500,
-                                  
-                                  fontSize: 12.0),
-                            ),
-                            SizedBox(
-                              width: 2.5,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            isfavourite
-                                ? Icon(
-                                    Icons.star_rounded,
-                                    color: Helper.starColor,
-                                    size: 16,
-                                  )
-                                : Icon(
-                                    Icons.star_border_rounded,
-                                    color: Helper.txtColor,
-                                    size: 16,
-                                  ),
-                            Text(
-                              "4.23(102)",
-                              style: TextStyle(
-                                  
-                                  color: Helper.titleColor,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushNamed("/Reservation");
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(70),
-                            color: Helper.btnBgYellowColor),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 10),
-                          child: Text(
-                            "クリニックを予約",
-                            style: defaultTextStyle(
-                                Helper.whiteColor, FontWeight.w700,
-                                size: 16),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -62,7 +62,7 @@ class _CaseDetailState extends State<CaseDetail> {
                 children: [
                   Row(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           // Navigator.of(context).pushNamed("/Mypage");
                         },
@@ -90,8 +90,9 @@ class _CaseDetailState extends State<CaseDetail> {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        case_detail.name == null ? "" : case_detail.name!,
+                        case_detail.name == null ? "" : case_detail.name!.length>15?case_detail.name!.substring(0,15)+"...":case_detail.name!,
                         style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
                             fontSize: 16,
                             fontFamily: Helper.headFontFamily,
                             color: Colors.black,
@@ -131,6 +132,8 @@ class _CaseDetailState extends State<CaseDetail> {
                     //padding: EdgeInsets.symmetric(vertical: 10),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
                         primary: Helper.btnBgYellowColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40.0),
@@ -163,7 +166,7 @@ class _CaseDetailState extends State<CaseDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    InkWell(
+                    GestureDetector(
                       onTap: () => Navigator.push(context,
                           MaterialPageRoute(builder: (_) => CaseMediaList())),
                       child: Container(

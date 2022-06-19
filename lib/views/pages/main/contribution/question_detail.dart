@@ -93,7 +93,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                 children: [
                   Row(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           // Navigator.of(context).pushNamed("/Mypage");
                         },
@@ -139,7 +139,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       !widget.isMyDiary
                           ? Padding(
                               padding: const EdgeInsets.symmetric(vertical: 30),
-                              child: InkWell(
+                              child: GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .pushNamed("/AddDiaryProgress");
@@ -156,7 +156,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                       'フォロー',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 8,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                           color: Helper.mainColor),
                                     ),
@@ -202,7 +202,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                               ),
                             ),
                       SizedBox(
-                        width: 10,
+                        width: 16,
                       ),
                       SvgPicture.asset(
                         "assets/icons/upright_nobg.svg",
@@ -223,7 +223,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
             bottomNavigationBar: SafeArea(
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                height: 60,
+                height: 66,
                 decoration: BoxDecoration(color: Helper.whiteColor),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -232,41 +232,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(
                       width: 21,
                     ),
-                    InkWell(
-                      onTap: () {
-                        postToogleFavorite(widget.index);
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          isfavorite
-                              ? Icon(
-                                  Icons.favorite,
-                                  color: Helper.btnBgYellowColor,
-                                  size: 23,
-                                )
-                              : SvgPicture.asset(
-                                  "assets/icons/bottombar/heart.svg",
-                                  width: 22,
-                                  height: 22,
-                                ),
-                          Text(
-                            question_detail.likes_count!.toString(),
-                            style: TextStyle(
-                                color: isfavorite
-                                    ? Helper.btnBgYellowColor
-                                    : Helper.txtColor,
-                                fontSize: 10,
-                                
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         postToogleLike(widget.index);
                       },
@@ -288,9 +254,38 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           Text(
                             "お気に入り",
                             style: TextStyle(
-                                color: islike
-                                    ? Helper.btnBgYellowColor
-                                    : Helper.txtColor,
+                                color:Helper.txtColor,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        postToogleFavorite(widget.index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          isfavorite
+                              ? Icon(
+                                  Icons.favorite,
+                                  color: Helper.redColor,
+                                  size: 23,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/bottombar/heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                ),
+                          Text(
+                            question_detail.likes_count!.toString(),
+                            style: TextStyle(
+                                color:Helper.txtColor,
                                 fontSize: 10,
                                 
                                 fontWeight: FontWeight.w400),
@@ -301,7 +296,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(
                       width: 15,
                     ),
-                    InkWell(
+                    
+                    GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
                             constraints: BoxConstraints(
@@ -343,38 +339,43 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       ),
                     ),
                     SizedBox(
-                      width: 21,
+                      width: 31,
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 243, 243, 243),
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 12, top: 7, bottom: 7, right: 100),
-                          child: Text(
-                            "コメントする",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 196, 196, 196),
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 243, 243, 243),
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, top: 7, bottom: 7, right: 10),
+                            child: Text(
+                              "コメントする",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 196, 196, 196),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12),
+                            ),
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 16,
                     ),
                   ],
                 ),
               ),
             ),
+            backgroundColor: Helper.whiteColor,
             body: SingleChildScrollView(
               reverse: false,
-              padding: EdgeInsets.symmetric(vertical: 30),
               child: Container(
                 color: Helper.whiteColor,
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.only(left: 16, right: 16, top: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -384,18 +385,18 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         color: question_detail.answers.isEmpty
-                            ? Helper.extraGrey
+                            ? Color.fromARGB(255, 224, 226, 226)
                             : Color.fromARGB(255, 240, 154, 55)
                                 .withOpacity(0.2),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 6),
+                            horizontal: 6, vertical: 4),
                         child: Text(
                           question_detail.answers.isEmpty ? "未回答" : "回答あり",
                           style: TextStyle(
                               color: question_detail.answers.isEmpty
-                                  ? Helper.lightGrey
+                                  ? Helper.maintxtColor
                                   : Color.fromARGB(255, 249, 161, 56),
                               fontSize: 10,
                               fontWeight: FontWeight.w400),
@@ -409,6 +410,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         style: TextStyle(
                             fontFamily: Helper.headFontFamily,
                             color: Helper.titleColor,
+                            height: 25/18,
                             fontSize: 18,
                             fontWeight: FontWeight.w700),
                       ),
@@ -419,7 +421,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         question_detail.created_at!
                             .split("T")[0]
                             .replaceAll('-', '/'),
-                        style: TextStyle(color: Helper.darkGrey, fontSize: 10),
+                        style: TextStyle(color: Helper.searchBartxtColor, fontSize: 10),
                       ),
                     ),
                     Container(
@@ -543,19 +545,26 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                               left: 15,
                                               right: 15,
                                               bottom: 0),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15.0)),
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    192, 231, 231, 231)),
+                                          ),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(15.0)),
                                             borderSide: BorderSide(
                                                 color: Color.fromARGB(
-                                                    255, 231, 231, 231)),
+                                                    192, 231, 231, 231)),
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(15.0)),
                                             borderSide: BorderSide(
                                                 color: Color.fromARGB(
-                                                    255, 231, 231, 231)),
+                                                    192, 231, 231, 231)),
                                           ),
                                         ),
                                       ),

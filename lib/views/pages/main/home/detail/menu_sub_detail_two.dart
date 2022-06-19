@@ -35,7 +35,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
             ]),
             Text(
               widget.detailList[0],
-              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
+              style: TextStyle(color:Helper.titleColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -48,44 +48,44 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
             ),
             Text(
               widget.detailList[1],
-              style: TextStyle(color:Helper.maintxtColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
+              style: TextStyle(color:Helper.titleColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
             ),
             Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 219,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 219,
                         height: 44,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Helper.mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Helper.mainColor,
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "閉じる",
+                                  style: defaultTextStyle(
+                                      Helper.whiteColor, FontWeight.w700,
+                                      size: 13),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "閉じる",
-                              style: defaultTextStyle(
-                                  Helper.whiteColor, FontWeight.w700,
-                                  size: 13),
-                            ),
-                          ],
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
             SizedBox(height: 40,)
           ],),
         ),

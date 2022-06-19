@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/static/master_model.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
@@ -68,7 +69,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
+                    GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
                         },
@@ -76,7 +77,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                           Icons.close,
                           size: 25,
                         )),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         for (int i = 0; i < widget.treatments.length; i++) {
                           for (int j = 0;
@@ -91,7 +92,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                       },
                       child: Text("クリア",
                           style: TextStyle(
-                              color: Helper.unClickClearButtonColor,
+                              color: Helper.maintxtColor,
                               fontSize: 16,
                               fontWeight: FontWeight.w400)),
                     )
@@ -100,6 +101,82 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
               ],
             ),
           ),
+          Wrap(
+            // alignment: WrapAlignment.spaceBetween,
+            runSpacing: 10,
+            spacing: 0,
+            children: [
+              for (int j = 0;
+                  j < widget.treatments[currentpage].all_childrens!.length;
+                  j++)
+                !selected[currentpage][j]
+                    ? SizedBox()
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selected[currentpage][j] =
+                                  !selected[currentpage][j];
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(22),
+                                border: Border.all(
+                                    width: 1, color: Helper.mainColor),
+                                color: selected[currentpage][j]
+                                    ? Helper.mainColor
+                                    : Helper.whiteColor),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 6),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    widget.treatments[currentpage]
+                                        .all_childrens![j].name!,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        color: selected[currentpage][j]
+                                            ? Helper.whiteColor
+                                            : Helper.mainColor),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  SvgPicture.asset(
+                                    "assets/icons/arrowclear.svg",
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+            ],
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: 1,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.25), //color of shadow
+                  spreadRadius: 2,
+                  offset: Offset(0, 2),
+                  //first paramerter of offset is left-right
+                  //second parameter is top to down
+                ),
+                //you can set more BoxShadow() here
+              ],
+            ),
+          ),
+          SizedBox(height: 5,),
           Container(
             child: Expanded(
               child: Row(
@@ -116,7 +193,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                 itemCount: widget.treatments.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Center(
-                                      child: InkWell(
+                                      child: GestureDetector(
                                     onTap: () {
                                       page.jumpToPage(index);
                                       setState(() {
@@ -203,7 +280,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       for (int j = 0;
                                           j <
@@ -265,7 +342,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                                         .all_childrens!
                                                         .length;
                                                 j++)
-                                              InkWell(
+                                              GestureDetector(
                                                 onTap: () {
                                                   setState(() {
                                                     selected[currentpage][j] =
@@ -333,7 +410,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
           SizedBox(
             height: 4,
           ),
-          InkWell(
+          GestureDetector(
             onTap: () {
               surgeryProvider.initSelected();
               for (int i = 0; i < widget.treatments.length; i++) {

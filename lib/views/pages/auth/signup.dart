@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/views/pages/auth/login.dart';
@@ -225,9 +226,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: BoxDecoration(
                           color: Color.fromARGB(
                             255,
-                            240,
-                            242,
-                            245,
+                           239, 242, 245
                           ),
                         ),
                         child: Row(
@@ -247,8 +246,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: Text(
                                   Trans.of(context).login,
                                   style: TextStyle(
+                                    fontFamily: Helper.headFontFamily,
                                       color: Helper.mainColor,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 16.0),
                                 ))
                           ],
@@ -266,34 +266,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Widget LoginButton(String name, IconData icon, String event) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        side: BorderSide(color: Helper.txtColor, width: 1),
-        elevation: 0,
-        primary: Helper.whiteColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 8, bottom: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: event == "facebook" ? Colors.blue : Helper.blackColor,
-              size: 26,
-            ),
-            Text(
-              "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w700,
-                  size: 14),
-            ),
-          ],
-        ),
-      ),
-      onPressed: () {
+    return GestureDetector(
+      onTap: () {
         if (event == "email")
           Navigator.of(context).pushNamed("/Registration");
         else if (event == "apple") {
@@ -311,7 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).pop();
                                 Navigator.of(context).pop();
@@ -323,7 +297,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     size: 14),
                               ),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).pop();
                               },
@@ -369,6 +343,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
           AddCounselStep2Page();
         }
       },
+      child: Container(
+        decoration: BoxDecoration(
+              border: Border.all(color: Helper.txtColor, width: 1),
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 8, bottom: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: event == "facebook" ? Colors.blue : Helper.blackColor,
+                size: 26,
+              ),
+              Text(
+                "   " + name,
+                style: defaultTextStyle(Helper.blackColor, FontWeight.w700,
+                    size: 14),
+              ),
+            ],
+          ),
+        ),
+        
+      ),
     );
   }
 }
@@ -382,34 +381,32 @@ class TwitterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        side: BorderSide(color: Helper.txtColor, width: 1),
-        elevation: 0,
-        primary: Helper.whiteColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
+    return GestureDetector(
+      onTap: (){},
+      child: Container(
+        decoration: BoxDecoration(
+                border: Border.all(color: Helper.txtColor, width: 1),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 12, bottom: 11),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                "assets/images/twitter.svg",
+                width: 24,
+                height: 19,
+              ),
+              Text(
+                "   " + name,
+                style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
+                    size: 14),
+              ),
+            ],
+          ),
         ),
       ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 12, bottom: 11),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              "assets/images/twitter.svg",
-              width: 24,
-              height: 19,
-            ),
-            Text(
-              "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
-                  size: 14),
-            ),
-          ],
-        ),
-      ),
-      onPressed: () {},
     );
   }
 }

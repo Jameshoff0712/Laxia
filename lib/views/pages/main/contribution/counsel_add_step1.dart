@@ -246,7 +246,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200), width: 1.0),
                   ),
                 ),
                 child: Padding(
@@ -318,7 +318,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -394,7 +394,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -470,7 +470,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -707,7 +707,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
       child: GestureDetector(
         child: Row(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               onTap: () {
                 setState(() {
                   index = subindex;

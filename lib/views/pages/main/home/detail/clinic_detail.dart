@@ -73,7 +73,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: Helper.whiteColor,
       statusBarIconBrightness: Brightness.dark,
-      statusBarColor: Helper.whiteColor.withOpacity(0),
+      statusBarColor: Helper.whiteColor,
     ));
     // print(clinic_detail);
     return isloading
@@ -99,7 +99,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       children: [
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Clinic_MediaList(
@@ -171,7 +171,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -202,7 +202,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             ],
                           ),
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -232,7 +232,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             ],
                           ),
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -262,7 +262,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             ],
                           ),
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -316,7 +316,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Clinic_Sub_Detail(
@@ -408,7 +408,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           
                                           fontWeight: FontWeight.w700),
                                     ),
-                                    InkWell(
+                                    GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -487,7 +487,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: InkWell(
+                                    child: GestureDetector(
                                       onTap: () {
                                         // Navigator.of(context).push(
                                         //     MaterialPageRoute(
@@ -501,7 +501,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       },
                                       child: Row(
                                         children: [
-                                          InkWell(
+                                          GestureDetector(
                                             onTap: () {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
@@ -570,7 +570,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           
                                           fontWeight: FontWeight.w700),
                                     ),
-                                    InkWell(
+                                    GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -721,7 +721,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: InkWell(
+                                    child: GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -734,7 +734,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       },
                                       child: Row(
                                         children: [
-                                          InkWell(
+                                          GestureDetector(
                                             onTap: () {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
@@ -811,7 +811,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     // widget.tabController.animateTo(1);
                                   },
@@ -1016,73 +1016,73 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                 ],
               ),
             ),
-            bottomNavigationBar: SafeArea(
-              child: Container(
-                height: 66,
-                decoration: BoxDecoration(color: Helper.whiteColor),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        postToogleFavorite(clinic_detail.clinic.id);
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          isfavourite
-                              ? SvgPicture.asset(
-                                  "assets/icons/star.svg",
-                                  width: 22,
-                                  height: 22,
-                                  color: Helper.starColor,
-                                )
-                              : SvgPicture.asset(
-                                  "assets/icons/borderstar.svg",
-                                  width: 22,
-                                  height: 22,
-                                ),
-                          Text(
-                            "お気に入り",
-                            style: TextStyle(
-                                color: isfavourite
-                                    ? Helper.btnBgYellowColor
-                                    : Helper.txtColor,
-                                fontSize: 10,
-                                
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shadowColor: Colors.transparent,
-                        elevation: 0,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 6),
-                        primary: Helper.btnBgYellowColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(70.0),
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(color: Helper.whiteColor),
+              child: SafeArea(
+                child: Container(
+                  height: 66,
+                  decoration: BoxDecoration(color: Helper.whiteColor),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          postToogleFavorite(clinic_detail.clinic.id);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            isfavourite
+                                ? SvgPicture.asset(
+                                    "assets/icons/star.svg",
+                                    width: 22,
+                                    height: 22,
+                                    color: Helper.starColor,
+                                  )
+                                : SvgPicture.asset(
+                                    "assets/icons/borderstar.svg",
+                                    width: 22,
+                                    height: 22,
+                                  ),
+                            Text(
+                              "お気に入り",
+                              style: TextStyle(
+                                  color: Helper.txtColor,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "クリニックを予約",
-                            style: defaultTextStyle(
-                                Helper.whiteColor, FontWeight.w700,
-                                size: 16),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.transparent,
+                          elevation: 0,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 40, vertical: 6),
+                          primary: Helper.btnBgYellowColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(70.0),
                           ),
-                        ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "クリニックを予約",
+                              style: defaultTextStyle(
+                                  Helper.whiteColor, FontWeight.w700,
+                                  size: 16),
+                            ),
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("/Reservation");
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/Reservation");
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

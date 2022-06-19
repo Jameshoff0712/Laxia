@@ -258,9 +258,9 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
-                  ),
+                  // border: Border(
+                  //   bottom: BorderSide(color: Helper.txtColor),
+                  // ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
@@ -511,7 +511,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
       child: GestureDetector(
         child: Row(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               onTap: () {
                 _openImagePicker();
               },

@@ -126,7 +126,7 @@ class _Home_QuestionState extends State<Home_Question> {
                     for (int i = 0;
                         i <widget.last!.length;
                         i++)
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           setState(() {
                             if (index == i) {
@@ -159,7 +159,7 @@ class _Home_QuestionState extends State<Home_Question> {
                         ),
                       )
                   ]),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       setState(() {
                         expanded = !expanded;

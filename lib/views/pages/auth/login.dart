@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -104,9 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     color: Color.fromARGB(
                       255,
-                      248,
-                      250,
-                      249,
+                      239, 242, 245
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 50, top: 33),
@@ -124,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             width: 5,
                           ),
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               Navigator.of(context).pushNamed("/Signup");
                             },
@@ -165,36 +164,34 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        side: BorderSide(color: Helper.txtColor, width: 1),
-        elevation: 0,
-        primary: Helper.whiteColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 8, bottom: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: color ?? Helper.blackColor,
-              size: 26,
-            ),
-            Text(
-              "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
-                  size: 14),
-            ),
-          ],
-        ),
-      ),
-      onPressed: () {
+    return GestureDetector(
+      onTap: () {
         if (event == "email") Navigator.of(context).pushNamed("/EmailLogin");
       },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Helper.txtColor, width: 1),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 8, bottom: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: Helper.blackColor,
+                size: 26,
+              ),
+              Text(
+                "   " + name,
+                style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
+                    size: 14),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -206,36 +203,36 @@ class TwitterButton extends StatelessWidget {
   TwitterButton({Key? key, required this.name, required this.icon, this.color})
       : super(key: key);
 
-  @override
+
+@override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        side: BorderSide(color: Helper.txtColor, width: 1),
-        elevation: 0,
-        primary: Helper.whiteColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Helper.txtColor, width: 1),
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 12, bottom: 11),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                "assets/images/twitter.svg",
+                width: 24,
+                height: 19,
+              ),
+              Text(
+                "   " + name,
+                style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
+                    size: 14),
+              ),
+            ],
+          ),
         ),
+        
       ),
-      child: Padding(
-        padding: EdgeInsets.only(top: 12, bottom: 11),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              "assets/images/twitter.svg",
-              width: 24,
-              height: 19,
-            ),
-            Text(
-              "   " + name,
-              style: defaultTextStyle(Helper.blackColor, FontWeight.w400,
-                  size: 14),
-            ),
-          ],
-        ),
-      ),
-      onPressed: () {},
     );
   }
 }

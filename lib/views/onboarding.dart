@@ -43,15 +43,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     // if (currentPageValue!.floor() != 3) {
     return Scaffold(
       backgroundColor: Helper.whiteColor,
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: onBoardingInstructions.length,
-                itemBuilder: (context, i) => Column(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: onBoardingInstructions.length,
+              itemBuilder: (context, i) => Padding(
+                padding: const EdgeInsets.only(top:16),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Padding(
@@ -86,8 +86,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
               ),
             ),
-            Padding(
-                padding: const EdgeInsets.only(bottom: 32, top: 0),
+          ),
+          SafeArea(
+            child: Padding(
+                padding: const EdgeInsets.only(bottom:40, top: 0),
                 child: Column(
                   children: [
                     Row(
@@ -108,7 +110,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 22),
                     (currentPageValue!.floor() != 3)
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -135,7 +137,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     color: Helper.mainColor,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: InkWell(
+                                  child: GestureDetector(
                                     onTap: () => _pageController.nextPage(
                                         duration:
                                             const Duration(microseconds: 300),
@@ -151,33 +153,35 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               ],
                             ),
                           )
-                        : Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            decoration: BoxDecoration(
-                              color: Helper.mainColor,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Center(
-                              child: InkWell(
-                                onTap: () => Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginScreen())),
-                                child: Text("ラシアを始める",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400,
-                                        height: 27 / 18,
-                                        letterSpacing: -0.54,
-                                        color: Helper.whiteColor)),
+                        : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              decoration: BoxDecoration(
+                                color: Helper.mainColor,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Center(
+                                child: GestureDetector(
+                                  onTap: () => Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen())),
+                                  child: Text("ラシアを始める",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: -0.54,
+                                          color: Helper.whiteColor)),
+                                ),
                               ),
                             ),
-                          )
+                        )
                   ],
                 )),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
