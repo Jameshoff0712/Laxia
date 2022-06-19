@@ -195,7 +195,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                                 ),
                               ),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 postComment(sender.text);
                               },

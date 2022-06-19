@@ -60,7 +60,7 @@ class _BottomNavState extends State<BottomNav> {
         height: kBottomNavigationBarHeight * 0.6,
         child: Material(
           color: _getBgColor(index),
-          child: InkWell(
+          child: GestureDetector(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,

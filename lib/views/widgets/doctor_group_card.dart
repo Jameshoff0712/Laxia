@@ -17,7 +17,7 @@ class Doctor_Group_Card extends StatefulWidget {
 class _Doctor_Group_CardState extends State<Doctor_Group_Card> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: widget.onpress,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),

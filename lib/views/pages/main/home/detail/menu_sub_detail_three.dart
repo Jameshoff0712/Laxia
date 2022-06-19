@@ -45,7 +45,7 @@ class _Menu_Sub_Detail_ThreeState extends State<Menu_Sub_Detail_Three> {
                       SizedBox(
                         width: 219,
                         height: 44,
-                        child: InkWell(
+                        child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).pop();
                           },

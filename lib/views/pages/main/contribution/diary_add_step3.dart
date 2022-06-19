@@ -505,7 +505,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
   }
 
   Widget Star(int sindex, int qindex, Color color) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         setState(() {
           selectstar[qindex] = sindex + 1;

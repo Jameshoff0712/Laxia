@@ -82,7 +82,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                         i++)
                       FittedBox(
                         fit: BoxFit.fill,
-                        child: InkWell(
+                        child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
                                    MaterialPageRoute(
@@ -141,7 +141,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                         i++)
                       FittedBox(
                         fit: BoxFit.fill,
-                        child: InkWell(
+                        child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
                                    MaterialPageRoute(

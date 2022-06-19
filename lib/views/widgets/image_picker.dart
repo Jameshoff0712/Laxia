@@ -78,7 +78,7 @@ class _ImagePickerState extends State<ImagePicker> {
       child: GestureDetector(
         child: Row(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               //onTap: () => context.getImageFromGallery(),
               child: Container(
                 alignment: Alignment.center,

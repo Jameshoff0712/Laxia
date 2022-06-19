@@ -100,7 +100,7 @@ class _InputCodePageState extends State<InputCodePage> {
                     : Helper.mainColor,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {
                   if (content.isNotEmpty) {
                     showDialog(

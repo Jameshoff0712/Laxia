@@ -91,7 +91,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                                   size: 22, color: Colors.black),
                               onPressed: () => Navigator.pop(context),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {},
                               child: SizedBox(
                                 height: 30,
@@ -204,7 +204,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkWell(
+                GestureDetector(
                   onTap: () {
                     postToogleFavorite(widget.doctor_detail.doctor.id);
                   },
@@ -227,7 +227,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                         "お気に入り",
                         style: TextStyle(
                             color: isfavourite
-                                ? Helper.btnBgYellowColor
+                                ? Helper.starColor
                                 : Helper.txtColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
@@ -235,7 +235,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                     ],
                   ),
                 ),
-                InkWell(
+                GestureDetector(
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 6,horizontal: 42),
                     decoration: BoxDecoration(

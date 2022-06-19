@@ -67,7 +67,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                             fontSize: 18,
                                             fontWeight: FontWeight.w700),
                                       ),
-                                      InkWell(
+                                      GestureDetector(
                                         onTap: () {
                                           widget.tabController.animateTo(1);
                                         },
@@ -139,7 +139,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     widget.tabController.animateTo(2);
                                   },
@@ -209,7 +209,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     widget.tabController.animateTo(3);
                                   },
@@ -274,7 +274,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     widget.tabController.animateTo(4);
                                   },
@@ -344,7 +344,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     widget.tabController.animateTo(5);
                                   },
@@ -419,7 +419,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     widget.tabController.animateTo(6);
                                   },
@@ -492,7 +492,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     widget.tabController.animateTo(7);
                                   },

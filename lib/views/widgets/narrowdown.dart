@@ -42,7 +42,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
+                    GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
                         },
@@ -50,7 +50,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                           Icons.close,
                           size: 28,
                         )),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {},
                       child: Text("クリア",
                           style: TextStyle(
@@ -223,7 +223,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
               ),
             ),
             Center(
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {},
                 child: Container(
                   decoration: BoxDecoration(
@@ -257,7 +257,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
     int index,
     Color color,
   ) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         setState(() {
           selectstar[index] = !selectstar[index];

@@ -71,7 +71,7 @@ class _Detail_ImageState extends State<Detail_Image> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
+              GestureDetector(
                 onTap: (){
                   Navigator.of(context).pop();
                 },
@@ -89,7 +89,7 @@ class _Detail_ImageState extends State<Detail_Image> {
                     height: 30,
                   ),
                   SizedBox(width: 10,),
-                  (widget.insidestar!)&&(!widget.isDoctor!)?InkWell(
+                  (widget.insidestar!)&&(!widget.isDoctor!)?GestureDetector(
                     onTap: widget.onStar,
                     child: SvgPicture.asset(
                       "assets/icons/insidestar.svg",

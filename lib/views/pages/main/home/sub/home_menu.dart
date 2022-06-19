@@ -175,7 +175,7 @@ class _Home_MenuState extends State<Home_Menu> {
                                       for (int i = 0;
                                           i < widget.last!.length;
                                           i++)
-                                        InkWell(
+                                        GestureDetector(
                                           onTap: () {
                                             setState(() {
                                               if (index == i) {
@@ -208,7 +208,7 @@ class _Home_MenuState extends State<Home_Menu> {
                                           ),
                                         )
                                     ]),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       expanded = !expanded;

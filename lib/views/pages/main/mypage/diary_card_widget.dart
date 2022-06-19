@@ -76,7 +76,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
                             )),
                       ),
                       widget.isMe
-                          ? InkWell(
+                          ? GestureDetector(
                               onTap: () {},
                               child: Container(
                                 padding: EdgeInsets.all(5.0),
@@ -342,7 +342,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
 }
 
 Widget _buildInfoTile(Text label, FaIcon icon) {
-  return InkWell(
+  return GestureDetector(
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

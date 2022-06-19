@@ -94,7 +94,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                 children: [
                   Row(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.of(context).pushNamed("/Mypage");
                         },
@@ -271,7 +271,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     SizedBox(
                       width: 21,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         postToogleFavorite(widget.index);
                       },
@@ -306,7 +306,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     SizedBox(
                       width: 15,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         postToogleLike(widget.index);
                       },
@@ -316,7 +316,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                           islike
                               ? Icon(
                                   Icons.star,
-                                  color: Helper.btnBgYellowColor,
+                                  color: Helper.starColor,
                                   size: 22,
                                 )
                               : Icon(
@@ -328,7 +328,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             "お気に入り",
                             style: TextStyle(
                                 color: islike
-                                    ? Helper.btnBgYellowColor
+                                    ? Helper.starColor
                                     : Helper.txtColor,
                                 fontSize: 10,
                                 
@@ -340,7 +340,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     SizedBox(
                       width: 15,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
                             constraints: BoxConstraints(
@@ -386,7 +386,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     SizedBox(
                       width: 21,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {},
                       child: Container(
                         decoration: BoxDecoration(

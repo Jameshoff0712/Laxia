@@ -44,7 +44,7 @@ class _Clinic_TopState extends State<Clinic_Top> {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w700),
                               ),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   widget.onpress(2);
                                 },
@@ -103,7 +103,7 @@ class _Clinic_TopState extends State<Clinic_Top> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: InkWell(
+                                  child: GestureDetector(
                                     onTap: () {
                                        widget.onpress(2);
                                     },
@@ -159,7 +159,7 @@ class _Clinic_TopState extends State<Clinic_Top> {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w700),
                               ),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                    widget.onpress(3);
                                 },
@@ -237,7 +237,7 @@ class _Clinic_TopState extends State<Clinic_Top> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: InkWell(
+                                  child: GestureDetector(
                                     onTap: () {
                                       widget.onpress(3);
                                     },

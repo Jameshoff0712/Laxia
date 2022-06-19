@@ -132,8 +132,8 @@ class _InviteSharePageState extends State<InviteSharePage> {
     );
   }
 
-  InkWell _buildSingleUser() {
-    return InkWell(
+  GestureDetector _buildSingleUser() {
+    return GestureDetector(
       onTap: () {},
       child: Container(
         padding: EdgeInsets.all(15),
@@ -164,8 +164,8 @@ class _InviteSharePageState extends State<InviteSharePage> {
     );
   }
 
-  InkWell _buildSocialLink() {
-    return InkWell(
+  GestureDetector _buildSocialLink() {
+    return GestureDetector(
       onTap: () {},
       child: Container(
         padding: EdgeInsets.all(15),

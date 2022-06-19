@@ -138,7 +138,7 @@ class _PointPageState extends State<PointPage> {
           SizedBox(
             height: 18,
           ),
-          InkWell(
+          GestureDetector(
             onTap: () {},
             child: Container(
               padding: EdgeInsets.only(right: 16),

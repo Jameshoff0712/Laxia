@@ -99,7 +99,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       children: [
                         Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Clinic_MediaList(
@@ -171,7 +171,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -202,7 +202,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             ],
                           ),
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -232,7 +232,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             ],
                           ),
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -262,7 +262,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             ],
                           ),
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
@@ -316,7 +316,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Clinic_Sub_Detail(
@@ -408,7 +408,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           
                                           fontWeight: FontWeight.w700),
                                     ),
-                                    InkWell(
+                                    GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -487,7 +487,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: InkWell(
+                                    child: GestureDetector(
                                       onTap: () {
                                         // Navigator.of(context).push(
                                         //     MaterialPageRoute(
@@ -501,7 +501,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       },
                                       child: Row(
                                         children: [
-                                          InkWell(
+                                          GestureDetector(
                                             onTap: () {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
@@ -570,7 +570,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           
                                           fontWeight: FontWeight.w700),
                                     ),
-                                    InkWell(
+                                    GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -721,7 +721,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: InkWell(
+                                    child: GestureDetector(
                                       onTap: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -734,7 +734,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       },
                                       child: Row(
                                         children: [
-                                          InkWell(
+                                          GestureDetector(
                                             onTap: () {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
@@ -811,7 +811,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       
                                       fontWeight: FontWeight.w700),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     // widget.tabController.animateTo(1);
                                   },
@@ -1026,7 +1026,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           postToogleFavorite(clinic_detail.clinic.id);
                         },
@@ -1049,7 +1049,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                               "お気に入り",
                               style: TextStyle(
                                   color: isfavourite
-                                      ? Helper.btnBgYellowColor
+                                      ? Helper.starColor
                                       : Helper.txtColor,
                                   fontSize: 10,
                                   

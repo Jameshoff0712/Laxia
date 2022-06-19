@@ -90,7 +90,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
           children: [
             Row(
               children: [
-                InkWell(
+                GestureDetector(
                   onTap:(){
                     Navigator.of(context).pushNamed("/Mypage");
                   },
@@ -244,7 +244,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(width: 16.5,),
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   postToogleLike(widget.index);
                 },
@@ -254,7 +254,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     islike
                         ? Icon(
                             Icons.star,
-                            color: Helper.btnBgYellowColor,
+                            color: Helper.starColor,
                             size: 22,
                           )
                         : Icon(
@@ -266,7 +266,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       "お気に入り",
                       style: TextStyle(
                           color: islike
-                              ? Helper.btnBgYellowColor
+                              ? Helper.starColor
                               : Helper.txtColor,
                           fontSize: 10,
                           
@@ -276,7 +276,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 ),
               ),
               SizedBox(width: 26.5,),
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   setState(() {
                     postToogleFavorite(widget.index);
@@ -358,7 +358,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       crossAxisCount: 2,
                       childAspectRatio: 1),
                   children: [
-                    InkWell(
+                    GestureDetector(
                       onTap: (){
                         Navigator.of(context).push(
                                    MaterialPageRoute(
@@ -412,7 +412,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         ),
                       ),
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: (){
                         Navigator.of(context).push(
                                    MaterialPageRoute(
@@ -475,7 +475,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 spacing: 10,
                 children: [
                 for(int i=0;i<diary_detail.diary.categories!.length;i++)
-                InkWell(
+                GestureDetector(
                   onTap: () {
                     //
                   },
@@ -773,7 +773,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
               //           crossAxisCount: 1,
               //           childAspectRatio: 1),
               //       itemBuilder:  (BuildContext context, int index){
-              //         return InkWell(
+              //         return GestureDetector(
               //           onTap: (){
               //             // Navigator.of(context).push(MaterialPageRoute(builder: (_) => Diary_MediaList(post_treatment:  diary_detail["post-treatment"], before: {"label":"施術前","images":diary_detail["before_image"]["images"]},)));
               //           },
@@ -811,7 +811,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         fontSize: 18,
                         fontWeight: FontWeight.w700),
                   ),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       
                     },

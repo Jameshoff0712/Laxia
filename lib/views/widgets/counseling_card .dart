@@ -53,12 +53,12 @@ class _Counseling_CardState extends State<Counseling_Card> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                InkWell(
+                GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed('/Userpage');
                   },

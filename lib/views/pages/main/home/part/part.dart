@@ -126,7 +126,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                                         ["children"]
                                                     .length;
                                             i++)
-                                          InkWell(
+                                          GestureDetector(
                                             onTap: () {
                                               setState(() {
                                                 if (index == i) {
@@ -169,7 +169,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               setState(() {
                                 expanded = !expanded;
@@ -190,7 +190,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                     width: 8.41,
                                   ),
                                   SvgPicture.asset(
-                                    "assets/icons/arrowdownpart.svg",
+                                    expanded?"assets/icons/arrowdownpart.svg": "assets/icons/arrowuppart.svg",
                                     fit: BoxFit.cover,
                                     width: 10,
                                     height: 5,

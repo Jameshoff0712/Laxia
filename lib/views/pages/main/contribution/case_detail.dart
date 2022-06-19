@@ -62,7 +62,7 @@ class _CaseDetailState extends State<CaseDetail> {
                 children: [
                   Row(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           // Navigator.of(context).pushNamed("/Mypage");
                         },
@@ -166,7 +166,7 @@ class _CaseDetailState extends State<CaseDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    InkWell(
+                    GestureDetector(
                       onTap: () => Navigator.push(context,
                           MaterialPageRoute(builder: (_) => CaseMediaList())),
                       child: Container(

@@ -105,9 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     color: Color.fromARGB(
                       255,
-                      248,
-                      250,
-                      249,
+                      239, 242, 245
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 50, top: 33),
@@ -125,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             width: 5,
                           ),
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               Navigator.of(context).pushNamed("/Signup");
                             },
@@ -166,7 +164,7 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         if (event == "email") Navigator.of(context).pushNamed("/EmailLogin");
       },
@@ -182,7 +180,7 @@ class LoginButton extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: color ?? Helper.blackColor,
+                color: Helper.blackColor,
                 size: 26,
               ),
               Text(
@@ -208,7 +206,7 @@ class TwitterButton extends StatelessWidget {
 
 @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {},
       child: Container(
         decoration: BoxDecoration(

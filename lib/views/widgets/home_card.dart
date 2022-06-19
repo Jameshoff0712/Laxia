@@ -77,7 +77,7 @@ class _Home_CardState extends State<Home_Card> {
         ),
         width: 175,
         height: 291,
-        child: InkWell(
+        child: GestureDetector(
           onTap: widget.onpress,
           child: Column(
             children: [
@@ -121,7 +121,7 @@ class _Home_CardState extends State<Home_Card> {
                     isvideo
                         ? Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => PageViewWidget(

@@ -64,7 +64,7 @@ class _FollowerCardWidgetState extends State<FollowerCardWidget> {
                   ],
                 ),
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () {},
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 4),

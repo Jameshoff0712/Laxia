@@ -57,7 +57,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => PageViewWidget(
@@ -192,33 +192,26 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         SizedBox(
                                           width: 158,
                                           height: 30,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shadowColor: Helper.whiteColor,
-                                              elevation: 0,
-                                              side: BorderSide(
-                                                  color: Helper.mainColor,
-                                                  width: 1),
-                                              primary: Helper.whiteColor,
-                                              shape: RoundedRectangleBorder(
+                                          child: GestureDetector(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Helper.whiteColor,
+                                                border: Border.all(color: Helper.mainColor),
                                                 borderRadius:
                                                     BorderRadius.circular(5.0),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "詳細を表示",
-                                                  style: defaultTextStyle(
-                                                      Helper.mainColor,
-                                                      FontWeight.w700,
-                                                      size: 13),
                                                 ),
-                                              ],
+                                              child:
+                                                Center(
+                                                  child: Text(
+                                                    "詳細を表示",
+                                                    style: defaultTextStyle(
+                                                        Helper.mainColor,
+                                                        FontWeight.w700,
+                                                        size: 13),
+                                                  ),
+                                                ),
                                             ),
-                                            onPressed: () {
+                                            onTap: () {
                                               showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   shape: RoundedRectangleBorder(
@@ -376,33 +369,26 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         SizedBox(
                                           width: 158,
                                           height: 30,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shadowColor: Helper.whiteColor,
-                                              elevation: 0,
-                                              side: BorderSide(
-                                                  color: Helper.mainColor,
-                                                  width: 1),
-                                              primary: Helper.whiteColor,
-                                              shape: RoundedRectangleBorder(
+                                          child: GestureDetector(
+                                           child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Helper.whiteColor,
+                                                border: Border.all(color: Helper.mainColor),
                                                 borderRadius:
                                                     BorderRadius.circular(5.0),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "詳細を表示",
-                                                  style: defaultTextStyle(
-                                                      Helper.mainColor,
-                                                      FontWeight.w700,
-                                                      size: 13),
                                                 ),
-                                              ],
+                                              child:
+                                                Center(
+                                                  child: Text(
+                                                    "詳細を表示",
+                                                    style: defaultTextStyle(
+                                                        Helper.mainColor,
+                                                        FontWeight.w700,
+                                                        size: 13),
+                                                  ),
+                                                ),
                                             ),
-                                            onPressed: () {
+                                            onTap: () {
                                               showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   shape: RoundedRectangleBorder(
@@ -604,33 +590,26 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         SizedBox(
                                           width: 158,
                                           height: 30,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              shadowColor: Helper.whiteColor,
-                                              elevation: 0,
-                                              side: BorderSide(
-                                                  color: Helper.mainColor,
-                                                  width: 1),
-                                              primary: Helper.whiteColor,
-                                              shape: RoundedRectangleBorder(
+                                          child: GestureDetector(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Helper.whiteColor,
+                                                border: Border.all(color: Helper.mainColor),
                                                 borderRadius:
                                                     BorderRadius.circular(5.0),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "詳細を表示",
-                                                  style: defaultTextStyle(
-                                                      Helper.mainColor,
-                                                      FontWeight.w700,
-                                                      size: 13),
                                                 ),
-                                              ],
+                                              child:
+                                                Center(
+                                                  child: Text(
+                                                    "詳細を表示",
+                                                    style: defaultTextStyle(
+                                                        Helper.mainColor,
+                                                        FontWeight.w700,
+                                                        size: 13),
+                                                  ),
+                                                ),
                                             ),
-                                            onPressed: () {
+                                            onTap: () {
                                               showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   shape: RoundedRectangleBorder(
@@ -705,7 +684,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         shrinkWrap: true,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          return InkWell(
+                                          return GestureDetector(
                                             onTap: () {
                                               //  Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
                                             },
@@ -928,7 +907,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                           ),
                         ],
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.of(context).pushNamed("/Reservation");
                         },

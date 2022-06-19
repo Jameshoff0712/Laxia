@@ -409,7 +409,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
@@ -449,7 +449,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                       SizedBox(
                         width: 20,
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
@@ -578,7 +578,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 showModalBottomSheet(
                                   shape: RoundedRectangleBorder(
@@ -623,7 +623,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                             width: 20,
                           ),
                           Expanded(
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                     context,

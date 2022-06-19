@@ -46,7 +46,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               children: [

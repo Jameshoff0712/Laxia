@@ -93,7 +93,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                 children: [
                   Row(
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           // Navigator.of(context).pushNamed("/Mypage");
                         },
@@ -139,7 +139,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       !widget.isMyDiary
                           ? Padding(
                               padding: const EdgeInsets.symmetric(vertical: 30),
-                              child: InkWell(
+                              child: GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .pushNamed("/AddDiaryProgress");
@@ -232,7 +232,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(
                       width: 21,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         postToogleFavorite(widget.index);
                       },
@@ -242,7 +242,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           isfavorite
                               ? Icon(
                                   Icons.favorite,
-                                  color: Helper.btnBgYellowColor,
+                                  color: Helper.starColor,
                                   size: 23,
                                 )
                               : SvgPicture.asset(
@@ -254,7 +254,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                             question_detail.likes_count!.toString(),
                             style: TextStyle(
                                 color: isfavorite
-                                    ? Helper.btnBgYellowColor
+                                    ? Helper.starColor
                                     : Helper.txtColor,
                                 fontSize: 10,
                                 
@@ -266,7 +266,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(
                       width: 15,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         postToogleLike(widget.index);
                       },
@@ -289,7 +289,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                             "お気に入り",
                             style: TextStyle(
                                 color: islike
-                                    ? Helper.btnBgYellowColor
+                                    ? Helper.starColor
                                     : Helper.txtColor,
                                 fontSize: 10,
                                 
@@ -301,7 +301,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(
                       width: 15,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
                             constraints: BoxConstraints(
@@ -346,7 +346,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       width: 31,
                     ),
                     Expanded(
-                      child: InkWell(
+                      child: GestureDetector(
                         onTap: () {},
                         child: Container(
                           decoration: BoxDecoration(

@@ -180,7 +180,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                                     for (int i = 0;
                                         i < widget.last!.length;
                                         i++)
-                                      InkWell(
+                                      GestureDetector(
                                         onTap: () {
                                           setState(() {
                                             if (index == i) {
@@ -213,7 +213,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                                         ),
                                       )
                                   ]),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   setState(() {
                                     expanded = !expanded;

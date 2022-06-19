@@ -511,7 +511,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
       child: GestureDetector(
         child: Row(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               onTap: () {
                 _openImagePicker();
               },

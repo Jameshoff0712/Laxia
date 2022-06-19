@@ -59,7 +59,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
                       SizedBox(
                         width: 219,
                         height: 44,
-                        child: InkWell(
+                        child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).pop();
                           },

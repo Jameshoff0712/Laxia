@@ -118,7 +118,7 @@ class _SearchViewState extends State<SearchView> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 12),
                                 child: Center(
-                                    child: InkWell(
+                                    child: GestureDetector(
                                         onTap: () {
                                           Navigator.pop(context);
                                         },
@@ -178,7 +178,7 @@ class _SearchViewState extends State<SearchView> {
                   ),
             unchange
                 ? Expanded(
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         flag = false;
@@ -204,7 +204,7 @@ class _SearchViewState extends State<SearchView> {
                                           spacing: 10,
                                           children: [
                                             for (int j = 0; j < 20; j++)
-                                              InkWell(
+                                              GestureDetector(
                                                 onTap: () {
                                                   filter.text =
                                                       menu_list[j]["label"];
@@ -267,7 +267,7 @@ class _SearchViewState extends State<SearchView> {
                                           spacing: 10,
                                           children: [
                                             for (int j = 0; j < 20; j++)
-                                              InkWell(
+                                              GestureDetector(
                                                 onTap: () {
                                                   filter.text =
                                                       menu_list[j]["label"];

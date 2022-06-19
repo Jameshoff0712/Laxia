@@ -25,7 +25,7 @@ class _Home_Sub_HorizonalbarState extends State<Home_Sub_Horizonalbar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Helper.whiteColor),
-      child: InkWell(
+      child: GestureDetector(
         onTap: widget.onpress,
         child: Column(
           children: [

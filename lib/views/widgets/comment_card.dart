@@ -26,7 +26,7 @@ class _Comment_CardState extends State<Comment_Card> {
         children: [
           Row(
             children: [
-              InkWell(
+              GestureDetector(
                 onTap: (){
                   // Navigator.of(context).pushNamed("/Mypage");
                 },
@@ -93,7 +93,7 @@ class _Comment_CardState extends State<Comment_Card> {
                   widget.date,
                   style: TextStyle( fontWeight: FontWeight.w400,fontSize: 12, color: Helper.darkGrey),
                 ),
-                InkWell(
+                GestureDetector(
                   child: Text(
                     '返信',
                     style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13, color: Helper.mainColor),

@@ -58,7 +58,7 @@ class _chatStatusState extends State<chatStatus> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: widget.statusCode == 4 ? toChatScreen : null,
       child: Container(
         padding: EdgeInsets.only(left: 10, top: 10, bottom: 15, right: 10),

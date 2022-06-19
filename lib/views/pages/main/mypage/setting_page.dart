@@ -270,8 +270,8 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
-  InkWell _buildSettingItem(String text, Widget Right, Function taped) {
-    return InkWell(
+  GestureDetector _buildSettingItem(String text, Widget Right, Function taped) {
+    return GestureDetector(
       onTap: () {
         taped(context);
       },

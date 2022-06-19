@@ -45,7 +45,7 @@ class _SearchResultState extends State<SearchResult> {
             ),
           ),
           for (int i = 0; i < widget.count; i++)
-            InkWell(
+            GestureDetector(
               onTap: widget.onpress,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 13),

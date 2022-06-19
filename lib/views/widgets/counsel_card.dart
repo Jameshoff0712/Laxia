@@ -46,7 +46,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

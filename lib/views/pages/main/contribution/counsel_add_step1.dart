@@ -707,7 +707,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
       child: GestureDetector(
         child: Row(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               onTap: () {
                 setState(() {
                   index = subindex;

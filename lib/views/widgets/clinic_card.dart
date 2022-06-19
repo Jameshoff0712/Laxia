@@ -170,7 +170,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                       SizedBox(
                         height: widget.image != "none" ? 20 : 10,
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           if (widget.posPress != null) {
                             widget.posPress!();

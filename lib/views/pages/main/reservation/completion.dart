@@ -88,7 +88,7 @@ class _CompletionState extends State<Completion> {
             SizedBox(height: 70),
             Container(
               alignment: Alignment.center,
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pop(context);

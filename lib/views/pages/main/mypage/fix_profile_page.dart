@@ -88,7 +88,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                 ),
                 actions: [
                   Center(
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).pushNamed("/Mypage");
                       },
@@ -136,7 +136,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                             height: 80,
                                             fit: BoxFit.cover)),
                               ),
-                              InkWell(
+                              GestureDetector(
                                 onTap: _openImagePicker,
                                 child: Container(
                                     height: 20,
@@ -152,7 +152,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                         SizedBox(
                           height: 8,
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: _openImagePicker,
                           child: Text(
                             "プロフィール写真を変更",

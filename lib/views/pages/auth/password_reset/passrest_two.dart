@@ -43,7 +43,7 @@ class _PassRest_TwoState extends State<PassRest_Two> {
                 height: 20,
               ),
               Center(
-                  child: InkWell(
+                  child: GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,

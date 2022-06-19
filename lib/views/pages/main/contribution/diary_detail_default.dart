@@ -181,7 +181,7 @@ SvgPicture.asset(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            InkWell(
+            GestureDetector(
               onTap: () {
                 setState(() {
                   isfavourite = !isfavourite;
@@ -213,7 +213,7 @@ SvgPicture.asset(
                 ],
               ),
             ),
-            InkWell(
+            GestureDetector(
               onTap: () {
                 setState(() {
                   isfavourite = !isfavourite;
@@ -225,7 +225,7 @@ SvgPicture.asset(
                   isfavourite
                       ? Icon(
                           Icons.star,
-                          color: Helper.btnBgYellowColor,
+                          color: Helper.starColor,
                           size: 30,
                         )
                       : Icon(
@@ -237,7 +237,7 @@ SvgPicture.asset(
                     "お気に入り",
                     style: TextStyle(
                         color: isfavourite
-                            ? Helper.btnBgYellowColor
+                            ? Helper.starColor
                             : Helper.txtColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w400),
@@ -245,7 +245,7 @@ SvgPicture.asset(
                 ],
               ),
             ),
-            InkWell(
+            GestureDetector(
               onTap: () {
                 setState(() {
                   isfavourite = !isfavourite;

@@ -183,7 +183,7 @@ class _ConfirmationState extends State<Confirmation> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 confirm(context);
               },
@@ -211,7 +211,7 @@ class _ConfirmationState extends State<Confirmation> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {},
               child: Container(
                 width: MediaQuery.of(context).size.width,

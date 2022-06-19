@@ -357,7 +357,7 @@ class _UserPageState extends State<UserPage>
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
@@ -396,7 +396,7 @@ class _UserPageState extends State<UserPage>
                       SizedBox(
                         width: 20,
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,

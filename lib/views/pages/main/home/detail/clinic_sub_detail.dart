@@ -79,67 +79,69 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
       body: SafeArea(
         child: Container(
           color: Helper.whiteColor,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.arrow_back_ios,
-                                size: 22, color: Colors.black),
-                            onPressed: () => Navigator.pop(context),
-                          ),
-                          Text(
-                            widget.clinic_Detail.clinic.name == null
-                                ? ""
-                                : widget.clinic_Detail.clinic.name!,
-                            style: TextStyle(
-                                color: Helper.blackColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          SvgPicture.asset(
-                            "assets/icons/upright_nobg.svg",
-                            width: 20,
-                            height: 20,
-                          ),
-                        ],
+          child: SafeArea(
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Container(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.arrow_back_ios,
+                                  size: 22, color: Colors.black),
+                              onPressed: () => Navigator.pop(context),
+                            ),
+                            Text(
+                              widget.clinic_Detail.clinic.name == null
+                                  ? ""
+                                  : widget.clinic_Detail.clinic.name!,
+                              style: TextStyle(
+                                  color: Helper.blackColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            SvgPicture.asset(
+                              "assets/icons/upright_nobg.svg",
+                              width: 20,
+                              height: 20,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    TabBarWidget(
-                      tabMenus: tabMenus,
-                      tabController: _tabController,
-                    ),
-                    Expanded(
-                      child: TabBarView(
-                        physics: NeverScrollableScrollPhysics(),
-                        children: [
-                          Clinic_Top(
-                              clinic_detail: widget.clinic_Detail,
-                              onpress: changeTabIndex),
-                          Home_Doctor(
-                            doctors: widget.clinic_Detail.doctors,
-                          ),
-                          Home_Menu(menus: widget.clinic_Detail.menu),
-                          Home_Diary(diaries: widget.clinic_Detail.diaries),
-                          Home_Counseling(
-                              councelings: widget.clinic_Detail.counselings),
-                          Home_Case(cases: widget.clinic_Detail.cases),
-                        ],
-                        controller: _tabController,
+                      TabBarWidget(
+                        tabMenus: tabMenus,
+                        tabController: _tabController,
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: TabBarView(
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            Clinic_Top(
+                                clinic_detail: widget.clinic_Detail,
+                                onpress: changeTabIndex),
+                            Home_Doctor(
+                              doctors: widget.clinic_Detail.doctors,
+                            ),
+                            Home_Menu(menus: widget.clinic_Detail.menu),
+                            Home_Diary(diaries: widget.clinic_Detail.diaries),
+                            Home_Counseling(
+                                councelings: widget.clinic_Detail.counselings),
+                            Home_Case(cases: widget.clinic_Detail.cases),
+                          ],
+                          controller: _tabController,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -174,7 +176,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
                       "お気に入り",
                       style: TextStyle(
                           color: isfavourite
-                              ? Helper.btnBgYellowColor
+                              ? Helper.starColor
                               : Helper.txtColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),

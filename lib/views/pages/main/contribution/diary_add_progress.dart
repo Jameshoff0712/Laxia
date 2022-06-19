@@ -330,7 +330,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
       child: GestureDetector(
         child: Row(
           children: <Widget>[
-            InkWell(
+            GestureDetector(
               onTap: () {
                 _openImagePicker();
               },

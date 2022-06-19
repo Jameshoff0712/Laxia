@@ -88,7 +88,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                     child: Stack(
                       alignment: AlignmentDirectional.topEnd,
                       children: [
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             // Navigator.of(context).push(MaterialPageRoute(
                             //     builder: (context) => PageViewWidget(
@@ -252,7 +252,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                   ),
                                 ],
                               ),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(
@@ -362,7 +362,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(
@@ -431,7 +431,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                   ),
                                 ],
                               ),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(
@@ -537,7 +537,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(
@@ -606,7 +606,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                   ),
                                 ],
                               ),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(
@@ -685,7 +685,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(
@@ -733,7 +733,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           postToogleFavorite(widget.index);
                         },
@@ -756,7 +756,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                               "お気に入り",
                               style: TextStyle(
                                   color: isfavourite
-                                      ? Helper.btnBgYellowColor
+                                      ? Helper.starColor
                                       : Helper.txtColor,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400),

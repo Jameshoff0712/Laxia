@@ -72,7 +72,7 @@ class _Question_CardState extends State<Question_Card> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: InkWell(
+          child: GestureDetector(
             onTap: widget.onpress,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

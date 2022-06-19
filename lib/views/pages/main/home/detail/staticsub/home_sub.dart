@@ -108,7 +108,7 @@ class DockBar_Bottom extends StatelessWidget {
     return Container(
       width: 31,
       height: 6,
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           _pageController.animateToPage((currentPageValue!.floor() + 1) % 2,
               duration: Duration(milliseconds: 250), curve: Curves.easeIn);

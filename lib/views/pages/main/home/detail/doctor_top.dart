@@ -67,7 +67,7 @@ class _Doctor_TopState extends State<Doctor_Top> {
                                 ),
                               ],
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 widget.onpress(1);
                               },
@@ -173,7 +173,7 @@ class _Doctor_TopState extends State<Doctor_Top> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 widget.onpress(1);
                               },
@@ -245,7 +245,7 @@ class _Doctor_TopState extends State<Doctor_Top> {
                                 ),
                               ],
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 widget.onpress(4);
                               },
@@ -320,7 +320,7 @@ class _Doctor_TopState extends State<Doctor_Top> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 widget.onpress(4);
                               },

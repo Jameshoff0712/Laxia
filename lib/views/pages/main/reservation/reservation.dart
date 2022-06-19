@@ -128,7 +128,7 @@ class _ReservationState extends State<Reservation> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       Navigator.pop(context);
                                     },
@@ -153,7 +153,7 @@ class _ReservationState extends State<Reservation> {
                                       ),
                                     ),
                                   ),
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       Navigator.pop(context);
                                       Navigator.pop(context);
@@ -926,7 +926,7 @@ class _ReservationState extends State<Reservation> {
                             children: [
                               Expanded(
                                 flex: 1,
-                                child: InkWell(
+                                child: GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       sexId = 0;
@@ -968,7 +968,7 @@ class _ReservationState extends State<Reservation> {
                               ),
                               Expanded(
                                 flex: 1,
-                                child: InkWell(
+                                child: GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       sexId = 1;
@@ -1240,7 +1240,7 @@ class _ReservationState extends State<Reservation> {
                       SizedBox(
                         height: 50,
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: progress == 1 ? _validate : null,
                         child: Container(
                           width: MediaQuery.of(context).size.width,
@@ -1331,7 +1331,7 @@ class _ReservationState extends State<Reservation> {
                 
                 decoration: TextDecoration.none,
               )),
-          InkWell(
+          GestureDetector(
             onTap: () {
               setState(() {
                 list_ReservedTime.removeAt(index);
@@ -1364,7 +1364,7 @@ class _ReservationState extends State<Reservation> {
   }
 
   Widget _buildTimeButton(int index, String time) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         setState(() {
           for (int i = 0; i < 4; i++) {

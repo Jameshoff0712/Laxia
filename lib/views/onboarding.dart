@@ -137,7 +137,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     color: Helper.mainColor,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: InkWell(
+                                  child: GestureDetector(
                                     onTap: () => _pageController.nextPage(
                                         duration:
                                             const Duration(microseconds: 300),
@@ -163,7 +163,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Center(
-                                child: InkWell(
+                                child: GestureDetector(
                                   onTap: () => Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(

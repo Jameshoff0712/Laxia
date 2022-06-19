@@ -226,9 +226,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: BoxDecoration(
                           color: Color.fromARGB(
                             255,
-                            240,
-                            242,
-                            245,
+                           239, 242, 245
                           ),
                         ),
                         child: Row(
@@ -248,8 +246,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: Text(
                                   Trans.of(context).login,
                                   style: TextStyle(
+                                    fontFamily: Helper.headFontFamily,
                                       color: Helper.mainColor,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 16.0),
                                 ))
                           ],
@@ -267,7 +266,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Widget LoginButton(String name, IconData icon, String event) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         if (event == "email")
           Navigator.of(context).pushNamed("/Registration");
@@ -286,7 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).pop();
                                 Navigator.of(context).pop();
@@ -298,7 +297,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     size: 14),
                               ),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.of(context).pop();
                               },
@@ -382,7 +381,7 @@ class TwitterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: (){},
       child: Container(
         decoration: BoxDecoration(
