@@ -23,6 +23,7 @@ import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
+import 'package:laxia/views/widgets/indicator.dart';
 import 'package:laxia/views/widgets/question_card.dart';
 import 'package:provider/provider.dart';
 
@@ -99,7 +100,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         elevation: 0,
       ),
       body: Container(
-        margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+        // margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
         child: NestedScrollView(
           headerSliverBuilder: _silverBuilder,
           body: ListView(
@@ -116,13 +117,13 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   TabBar _buildTabBar() {
     return TabBar(
         controller: _tabController,
-        indicatorColor: Helper.mainColor,
         indicatorSize: TabBarIndicatorSize.label,
         indicatorWeight: 2.0,
         labelColor: Helper.titleColor,
         unselectedLabelColor: Helper.unSelectTabColor,
         labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
-        indicatorPadding: EdgeInsets.only(bottom: 10, right: -3, left: -3),
+        indicatorPadding: EdgeInsets.only(bottom: 5, right: -3, left: -3),
+        indicator: CircleTabIndicator(color: Helper.mainColor, radius: 20),
         tabs: [
           Tab(
             child: Text(

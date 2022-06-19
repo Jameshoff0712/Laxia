@@ -53,6 +53,7 @@ class _AddCounselPageState extends State<AddCounselPage> {
                     Navigator.of(context).pushNamed("/AddCounselStep1");
                   },
                   style: ElevatedButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
                     elevation: 0,
                     shadowColor: Colors.transparent,
                     padding: const EdgeInsets.fromLTRB(16, 21, 16, 21),
