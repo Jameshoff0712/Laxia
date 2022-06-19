@@ -755,9 +755,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             Text(
                               "お気に入り",
                               style: TextStyle(
-                                  color: isfavourite
-                                      ? Helper.starColor
-                                      : Helper.txtColor,
+                                  color: Helper.txtColor,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400),
                             ),

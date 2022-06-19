@@ -234,40 +234,6 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        postToogleFavorite(widget.index);
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          isfavorite
-                              ? Icon(
-                                  Icons.favorite,
-                                  color: Helper.starColor,
-                                  size: 23,
-                                )
-                              : SvgPicture.asset(
-                                  "assets/icons/bottombar/heart.svg",
-                                  width: 22,
-                                  height: 22,
-                                ),
-                          Text(
-                            question_detail.likes_count!.toString(),
-                            style: TextStyle(
-                                color: isfavorite
-                                    ? Helper.starColor
-                                    : Helper.txtColor,
-                                fontSize: 10,
-                                
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    GestureDetector(
-                      onTap: () {
                         postToogleLike(widget.index);
                       },
                       child: Column(
@@ -288,9 +254,38 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           Text(
                             "お気に入り",
                             style: TextStyle(
-                                color: islike
-                                    ? Helper.starColor
-                                    : Helper.txtColor,
+                                color:Helper.txtColor,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        postToogleFavorite(widget.index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          isfavorite
+                              ? Icon(
+                                  Icons.favorite,
+                                  color: Helper.redColor,
+                                  size: 23,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/bottombar/heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                ),
+                          Text(
+                            question_detail.likes_count!.toString(),
+                            style: TextStyle(
+                                color:Helper.txtColor,
                                 fontSize: 10,
                                 
                                 fontWeight: FontWeight.w400),
@@ -301,6 +296,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     SizedBox(
                       width: 15,
                     ),
+                    
                     GestureDetector(
                       onTap: () {
                         showModalBottomSheet(

@@ -180,7 +180,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "すべて表示",
+                                    expanded?"すべて表示":"閉じる",
                                     style: TextStyle(
                                         color: Helper.mainColor,
                                         fontWeight: FontWeight.w400,

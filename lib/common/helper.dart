@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import '../generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +41,7 @@ class Helper {
   static const authHintColor = Color.fromARGB(255, 210, 210, 212);
   static const loginButtonColor = searchBartxtColor;
   static const homeBgColor = Color.fromARGB(255, 240, 242, 245);
+  static const redColor=Color.fromARGB(255,255, 35, 75);
 
   static const appTxtColor = Color(0xFF181a3c);
   static const green = Color(0xFF1ec760);

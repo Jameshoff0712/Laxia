@@ -265,9 +265,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     Text(
                       "お気に入り",
                       style: TextStyle(
-                          color: islike
-                              ? Helper.starColor
-                              : Helper.txtColor,
+                          color:  Helper.txtColor,
                           fontSize: 10,
                           
                           fontWeight: FontWeight.w400),

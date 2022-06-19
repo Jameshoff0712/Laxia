@@ -1048,11 +1048,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             Text(
                               "お気に入り",
                               style: TextStyle(
-                                  color: isfavourite
-                                      ? Helper.starColor
-                                      : Helper.txtColor,
+                                  color: Helper.txtColor,
                                   fontSize: 10,
-                                  
                                   fontWeight: FontWeight.w400),
                             ),
                           ],

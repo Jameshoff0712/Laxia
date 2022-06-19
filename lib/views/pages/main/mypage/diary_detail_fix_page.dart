@@ -399,7 +399,6 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 10,
-                                  
                                   color: Helper.txtColor,
                                 ),
                               ),
