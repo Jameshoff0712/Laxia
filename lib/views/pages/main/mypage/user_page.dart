@@ -19,6 +19,7 @@ import 'package:laxia/views/widgets/question_card.dart';
 
 import '../../../../models/counseling_model.dart';
 import '../../../../models/question_model.dart';
+import '../../../widgets/indicator.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -81,7 +82,7 @@ class _UserPageState extends State<UserPage>
         elevation: 0,
       ),
       body: Container(
-        margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+        // margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
         child: NestedScrollView(
           headerSliverBuilder: _silverBuilder,
           body: ListView(
@@ -104,7 +105,8 @@ class _UserPageState extends State<UserPage>
         labelColor: Helper.titleColor,
         unselectedLabelColor: Helper.unSelectTabColor,
         labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
-        indicatorPadding: EdgeInsets.only(bottom: 10, right: -3, left: -3),
+        indicatorPadding: EdgeInsets.only(bottom: 5, right: -3, left: -3),
+        indicator: CircleTabIndicator(color: Helper.mainColor, radius: 20),
         tabs: [
           Tab(
             child: Text(
@@ -314,38 +316,42 @@ class _UserPageState extends State<UserPage>
                                   ),
                                 )),
                           ),
-                          OutlinedButton(
-                              onPressed: () {
-                                setState(() {
-                                  isFollowing = !isFollowing;
-                                });
-                              },
-                              style: OutlinedButton.styleFrom(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  shape: StadiumBorder(),
-                                  side: BorderSide(
-                                      width: 1, color: Helper.mainColor),
-                                      backgroundColor: isFollowing ? Helper.whiteColor : Helper.mainColor),
-                              child: isFollowing
-                                  ? Text(
-                                      "フォロー中",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                        
-                                        color: Helper.mainColor,
-                                      ),
-                                    )
-                                  : Text(
-                                      "フォローする",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                        
-                                        color: Helper.whiteColor,
-                                      ),
-                                    )),
+                          Container(
+                            width: 110,
+                            height: 30,
+                            child: OutlinedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isFollowing = !isFollowing;
+                                  });
+                                },
+                                style: OutlinedButton.styleFrom(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 6),
+                                    shape: StadiumBorder(),
+                                    side: BorderSide(
+                                        width: 1, color: Helper.mainColor),
+                                        backgroundColor: isFollowing ? Helper.whiteColor : Helper.mainColor),
+                                child: isFollowing
+                                    ? Text(
+                                        "フォロー中",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12,
+                                          
+                                          color: Helper.mainColor,
+                                        ),
+                                      )
+                                    : Text(
+                                        "フォローする",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12,
+                                          
+                                          color: Helper.whiteColor,
+                                        ),
+                                      )),
+                          ),
                         ],
                       ))
                     ],

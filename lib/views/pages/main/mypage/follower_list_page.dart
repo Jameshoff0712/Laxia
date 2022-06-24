@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/my_controller.dart';
 import 'package:laxia/models/follow/follow_model.dart';
@@ -155,7 +156,9 @@ class _FollowerListPageState extends State<FollowerListPage> {
                             SizedBox(
                               height: 60,
                             ),
-                            Image.asset('assets/images/LAXIA.png'),
+                            SvgPicture.asset(
+                              "assets/images/LAXIA.svg",
+                            ),
                             SizedBox(
                               height: 50,
                             ),
