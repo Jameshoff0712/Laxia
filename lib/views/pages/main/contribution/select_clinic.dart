@@ -88,13 +88,10 @@ class _SelectClinicState extends State<SelectClinic> {
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
     return Container(
-      color: Helper.whiteColor,
+      padding: EdgeInsets.only(top: 10),
       height: MediaQuery.of(context).size.height * 0.9,
       child: Column(
         children: [
-          SizedBox(
-            height: 15,
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -114,7 +111,7 @@ class _SelectClinicState extends State<SelectClinic> {
                 Text(
                   "クリニック名で検索",
                   style: defaultTextStyle(Helper.titleColor, FontWeight.w700,
-                      size: 18),
+                      size: 16),
                 ),
                 Icon(
                   Icons.arrow_back_ios,
@@ -165,7 +162,7 @@ class _SelectClinicState extends State<SelectClinic> {
                               ),
                             )
                           : ListView.builder(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              // padding: const EdgeInsets.symmetric(vertical: 4),
                               itemCount: clinic_data.data.length,
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
@@ -181,7 +178,7 @@ class _SelectClinicState extends State<SelectClinic> {
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       border: Border(
-                                        bottom: BorderSide(color: Colors.grey),
+                                        bottom: BorderSide(color: Color.fromARGB(255, 200, 199, 204)),
                                       ),
                                     ),
                                     child: Row(
@@ -193,9 +190,9 @@ class _SelectClinicState extends State<SelectClinic> {
                                             child: Text(
                                               clinic_data.data[index].name!,
                                               style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.normal,
-                                                  fontSize: 16),
+                                                  color: Color.fromARGB(255, 51, 51, 51),
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12),
                                             ),
                                           ),
                                         )

@@ -56,7 +56,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                           label: Text(widget.detailList[0],
                               style: TextStyle(
                                   fontSize: 14,
-                                  color: Helper.maintxtColor,
+                                  color: Helper.titleColor,
                                   fontWeight: FontWeight.w400))),
                     ],
                     rows: [
@@ -72,7 +72,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[1],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                              color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -85,7 +85,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[2],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -98,7 +98,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[3],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -113,7 +113,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[4],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -126,7 +126,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[5],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -139,7 +139,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[6],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -154,7 +154,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[7],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -167,7 +167,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[8],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -180,7 +180,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[9],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -193,7 +193,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[10],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                                color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ]),
                       DataRow(cells: [
@@ -205,7 +205,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                         DataCell(Text(widget.detailList[11],
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Helper.maintxtColor,
+                               color: Helper.titleColor,
                                 fontWeight: FontWeight.w400))),
                       ])
                     ]),

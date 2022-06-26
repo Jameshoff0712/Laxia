@@ -52,6 +52,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
 
     return Expanded(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 15,
@@ -103,8 +104,11 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
           ),
           Wrap(
             // alignment: WrapAlignment.spaceBetween,
+            direction: Axis.horizontal,
             runSpacing: 10,
             spacing: 0,
+            alignment: WrapAlignment.start,
+            runAlignment: WrapAlignment.start,
             children: [
               for (int j = 0;
                   j < widget.treatments[currentpage].all_childrens!.length;
@@ -130,8 +134,9 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                     : Helper.whiteColor),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 6),
+                                  horizontal: 12, vertical: 6),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(

@@ -189,12 +189,11 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                   SizedBox(
                                     width: 8.41,
                                   ),
-                                  SvgPicture.asset(
-                                    expanded?"assets/icons/arrowdownpart.svg": "assets/icons/arrowuppart.svg",
-                                    fit: BoxFit.cover,
-                                    width: 10,
-                                    height: 5,
+                                  
+                                  Icon(
+                                    expanded? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_up_rounded,
                                     color: Helper.mainColor,
+                                    size: 24,
                                   ),
                                 ]),
                           ),

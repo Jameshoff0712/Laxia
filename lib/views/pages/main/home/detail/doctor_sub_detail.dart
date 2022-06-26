@@ -70,6 +70,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Helper.whiteColor,
       body: SafeArea(
         child: Stack(
           alignment: Alignment.bottomCenter,

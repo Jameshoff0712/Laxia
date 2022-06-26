@@ -524,17 +524,13 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                 GestureDetector(
                                   onTap: () {
                                     showModalBottomSheet(
-                                        constraints: BoxConstraints(
-                                          maxHeight:
-                                              MediaQuery.of(context).size.height *
-                                                  0.9,
-                                        ),
                                         isScrollControlled: true,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(15.0),
                                               topRight: Radius.circular(15.0)),
                                         ),
+                                        backgroundColor: Colors.white,
                                         context: context,
                                         builder: (context) {
                                           return SelectClinic();
@@ -600,17 +596,13 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                 GestureDetector(
                                   onTap: () {
                                     showModalBottomSheet(
-                                        constraints: BoxConstraints(
-                                          maxHeight:
-                                              MediaQuery.of(context).size.height *
-                                                  0.9,
-                                        ),
                                         isScrollControlled: true,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(15.0),
                                               topRight: Radius.circular(15.0)),
                                         ),
+                                        backgroundColor: Colors.white,
                                         context: context,
                                         builder: (context) {
                                           return SelectDoctor();

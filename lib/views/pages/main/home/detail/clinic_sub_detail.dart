@@ -76,6 +76,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
       statusBarColor: Helper.whiteColor,
     ));
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           color: Helper.whiteColor,

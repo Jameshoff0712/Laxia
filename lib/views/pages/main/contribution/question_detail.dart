@@ -230,7 +230,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 21,
+                      width: 16,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -250,6 +250,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   "assets/icons/borderstar.svg",
                                   width: 22,
                                   height: 22,
+                                  // color: Colors.red,
+                                  color: Color.fromARGB(255, 155, 155, 155),
                                 ),
                           Text(
                             "お気に入り",
@@ -262,7 +264,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       ),
                     ),
                     SizedBox(
-                      width: 5,
+                      width: 15,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -278,9 +280,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   size: 23,
                                 )
                               : SvgPicture.asset(
-                                  "assets/icons/bottombar/heart.svg",
+                                  "assets/icons/heart.svg",
                                   width: 22,
                                   height: 22,
+                                  color: Color.fromARGB(255, 155, 155, 155),
                                 ),
                           Text(
                             question_detail.likes_count!.toString(),
@@ -323,9 +326,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
-                            "assets/icons/chart.svg",
+                            "assets/icons/chat.svg",
                             width: 22,
                             height: 22,
+                            color: Color.fromARGB(255, 155, 155, 155),
                           ),
                           Text(
                             question_detail.comments_count.toString(),
@@ -339,7 +343,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       ),
                     ),
                     SizedBox(
-                      width: 31,
+                      width: 22,
                     ),
                     Expanded(
                       child: GestureDetector(

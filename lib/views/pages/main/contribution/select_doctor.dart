@@ -89,13 +89,10 @@ class _SelectDoctorState extends State<SelectDoctor> {
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
     return Container(
-      color: Helper.homeBgColor,
+      padding: EdgeInsets.only(top: 10),
       height: MediaQuery.of(context).size.height * 0.9,
       child: Column(
         children: [
-          SizedBox(
-            height: 15,
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -109,7 +106,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                       Navigator.of(context).pop();
                     },
                     icon: Icon(
-                      Icons.close,
+                      Icons.arrow_back_ios,
                       size: 20,
                     )),
                 Text(
@@ -118,7 +115,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                       size: 18),
                 ),
                 Icon(
-                  Icons.close,
+                  Icons.arrow_back_ios,
                   size: 20,
                   color: Helper.whiteColor,
                 )
@@ -126,7 +123,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
             child: SearchbarWidget(
               onchange: () {
                 userProperties.setSearchtext(filter.text);
@@ -135,6 +132,10 @@ class _SelectDoctorState extends State<SelectDoctor> {
               filter: filter,
               hinttext: "ドクターを検索",
             ),
+          ),
+          SizedBox(
+            height: 12,
+            child: Container(color: Helper.homeBgColor,),
           ),
           Expanded(
             child: NotificationListener<ScrollNotification>(
@@ -168,7 +169,6 @@ class _SelectDoctorState extends State<SelectDoctor> {
                             ),
                           )
                         : ListView.builder(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
                             itemCount: doctor_data.data.length,
                             shrinkWrap: true,
                             physics: AlwaysScrollableScrollPhysics(),
@@ -187,7 +187,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0, vertical: 4),
+                                        horizontal: 16.0, vertical: 4),
                                     child: Container(
                                       width: double.infinity,
                                       height: 65,
@@ -200,7 +200,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                                           Container(
                                             child: Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 8),
+                                                  left: 8, top: 15, bottom: 15),
                                               child: SizedBox(
                                                 height: 35,
                                                 width: 35,
@@ -231,7 +231,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                                           ),
                                           Container(
                                             child: SizedBox(
-                                              width: 12,
+                                              width: 6,
                                             ),
                                           ),
                                           Expanded(
@@ -251,7 +251,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                                                         style: defaultTextStyle(
                                                             Helper.titleColor,
                                                             FontWeight.w700,
-                                                            size: 16.0),
+                                                            size: 12),
                                                       ),
                                                       SizedBox(
                                                         width: 3,
@@ -261,10 +261,13 @@ class _SelectDoctorState extends State<SelectDoctor> {
                                                             .job_name!,
                                                         style: defaultTextStyle(
                                                             Helper.maintxtColor,
-                                                            FontWeight.w700,
+                                                            FontWeight.w400,
                                                             size: 10.0),
                                                       ),
                                                     ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 9,
                                                   ),
                                                   Text(
                                                     doctor_data
@@ -273,7 +276,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                                                     style: defaultTextStyle(
                                                         Helper.maintxtColor,
                                                         FontWeight.w400,
-                                                        size: 12.0),
+                                                        size: 10.0),
                                                   ),
                                                 ],
                                               ),

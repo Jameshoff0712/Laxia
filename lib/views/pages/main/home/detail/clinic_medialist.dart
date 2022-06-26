@@ -36,6 +36,7 @@ class _Clinic_MediaListState extends State<Clinic_MediaList> {
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
