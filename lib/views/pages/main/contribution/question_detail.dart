@@ -264,7 +264,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       ),
                     ),
                     SizedBox(
-                      width: 15,
+                      width: 5,
                     ),
                     GestureDetector(
                       onTap: () {
