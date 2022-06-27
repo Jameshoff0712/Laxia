@@ -70,6 +70,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Helper.whiteColor,
       body: SafeArea(
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -90,6 +91,8 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                               icon: Icon(Icons.arrow_back_ios,
                                   size: 22, color: Colors.black),
                               onPressed: () => Navigator.pop(context),
+                              splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                             ),
                             GestureDetector(
                               onTap: () {},

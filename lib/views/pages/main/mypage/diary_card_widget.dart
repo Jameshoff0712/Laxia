@@ -34,6 +34,7 @@ class _DiaryCardWidgetState extends State<DiaryCardWidget> {
         // borderOnForeground: true,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

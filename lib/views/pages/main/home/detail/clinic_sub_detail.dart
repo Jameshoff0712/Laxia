@@ -76,6 +76,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
       statusBarColor: Helper.whiteColor,
     ));
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           color: Helper.whiteColor,
@@ -96,6 +97,8 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
                               icon: Icon(Icons.arrow_back_ios,
                                   size: 22, color: Colors.black),
                               onPressed: () => Navigator.pop(context),
+                              splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                             ),
                             Text(
                               widget.clinic_Detail.clinic.name == null
@@ -185,6 +188,8 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(224, 36),
+                  splashFactory: NoSplash.splashFactory,
+                              
                   shadowColor: Colors.transparent,
                   elevation: 0,
                   primary: Helper.btnBgYellowColor,

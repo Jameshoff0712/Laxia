@@ -52,6 +52,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
 
     return Expanded(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 15,
@@ -71,6 +72,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                   children: [
                     GestureDetector(
                         onTap: () {
+                          surgeryProvider.setButtonText("");
                           Navigator.pop(context);
                         },
                         child: Icon(
@@ -103,8 +105,11 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
           ),
           Wrap(
             // alignment: WrapAlignment.spaceBetween,
+            direction: Axis.horizontal,
             runSpacing: 10,
             spacing: 0,
+            alignment: WrapAlignment.start,
+            runAlignment: WrapAlignment.start,
             children: [
               for (int j = 0;
                   j < widget.treatments[currentpage].all_childrens!.length;
@@ -130,8 +135,9 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                                     : Helper.whiteColor),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 6),
+                                  horizontal: 12, vertical: 6),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
@@ -158,24 +164,24 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                       )
             ],
           ),
-          Container(
-            alignment: Alignment.center,
-            height: 1,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.25), //color of shadow
-                  spreadRadius: 2,
-                  offset: Offset(0, 2),
-                  //first paramerter of offset is left-right
-                  //second parameter is top to down
-                ),
-                //you can set more BoxShadow() here
-              ],
-            ),
-          ),
+          // Container(
+          //   alignment: Alignment.center,
+          //   height: 1,
+          //   width: double.infinity,
+          //   decoration: BoxDecoration(
+          //     color: Colors.white,
+          //     boxShadow: [
+          //       BoxShadow(
+          //         color: Colors.grey.withOpacity(0.25), //color of shadow
+          //         spreadRadius: 2,
+          //         offset: Offset(0, 2),
+          //         //first paramerter of offset is left-right
+          //         //second parameter is top to down
+          //       ),
+          //       //you can set more BoxShadow() here
+          //     ],
+          //   ),
+          // ),
           SizedBox(height: 5,),
           Container(
             child: Expanded(
@@ -426,24 +432,30 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
               }
               diaryProperties
                   .setOperatinTypes(surgeryProvider.getSelectedCurePos);
+
+              surgeryProvider.setButtonText("");
               Navigator.of(context).pop();
             },
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Helper.btnBgMainColor),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 114, vertical: 12),
-                child: Text(
-                  surgeryProvider.btnText.isEmpty
-                      ? widget.buttontxt
-                      : surgeryProvider.btnText,
-                  style: TextStyle(
-                      fontFamily: Helper.headFontFamily,
-                      color: Helper.whiteColor,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700),
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Helper.btnBgMainColor),
+                    width: 290,
+                    height: 42,
+                child: Center(
+                  
+                  child: Text(
+                    surgeryProvider.btnText.isEmpty
+                        ? widget.buttontxt
+                        : surgeryProvider.btnText,
+                    style: TextStyle(
+                        fontFamily: Helper.headFontFamily,
+                        color: Helper.whiteColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
               ),
             ),

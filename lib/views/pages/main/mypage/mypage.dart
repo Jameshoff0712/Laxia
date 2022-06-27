@@ -25,6 +25,7 @@ import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/indicator.dart';
 import 'package:laxia/views/widgets/question_card.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../models/counseling_model.dart';
@@ -88,6 +89,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               userProperties.setCurrentPageIndex(0);
               Navigator.of(context).pushNamed('/Pages');
@@ -362,6 +365,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 )),
                           ),
                           OutlinedButton(
+                            
                               onPressed: () {
                                 // Navigator.push(
                                 //     context,
@@ -376,14 +380,26 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                         topLeft: Radius.circular(10.0),
                                         topRight: Radius.circular(10.0)),
                                   ),
+                                  backgroundColor: Colors.white,
                                   context: context,
                                   builder: (context) {
                                     return FixProfilePage();
+                                    // return Container(
+                                    //   decoration: BoxDecoration(
+                                    //     color: Colors.white,
+                                    //     borderRadius: BorderRadius.only(
+                                    //       topLeft: Radius.circular(10.0),
+                                    //       topRight: Radius.circular(10.0),
+                                    //     )
+                                    //   ),
+                                    //   child: FixProfilePage());
                                   },
                                   isScrollControlled: true,
                                 );
                               },
                               style: OutlinedButton.styleFrom(
+                                splashFactory: NoSplash.splashFactory,
+                                shadowColor: Colors.transparent,
                                 minimumSize: Size.zero,
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),

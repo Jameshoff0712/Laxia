@@ -83,6 +83,8 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                       primary: Color.fromARGB(255, 249, 161, 56),
                       onPrimary: Colors.white,
                       onSurface: Color.fromARGB(255, 110, 198, 210),
+                      splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                     ),
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
@@ -115,6 +117,8 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
             onPressed: () => Navigator.pop(context),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
           ),
         ),
         body: SingleChildScrollView(
@@ -192,7 +196,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                             Navigator.of(context).pushNamed("");
                           },
                           style: ElevatedButton.styleFrom(
-                            elevation: 1,
+                            elevation: 0,
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
@@ -204,6 +208,8 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                             primary: Colors.white,
                             onPrimary: Colors.white,
                             onSurface: Helper.mainColor,
+                            splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                           ),
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
@@ -228,7 +234,7 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                             Navigator.of(context).pushNamed("");
                           },
                           style: ElevatedButton.styleFrom(
-                            elevation: 1,
+                            elevation: 0,
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
@@ -240,6 +246,8 @@ class _DiaryDetailFixPageState extends State<DiaryDetailFixPage> {
                             primary: Colors.white,
                             onPrimary: Colors.white,
                             onSurface: Helper.mainColor,
+                            splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                           ),
                           child: FittedBox(
                             fit: BoxFit.fitWidth,

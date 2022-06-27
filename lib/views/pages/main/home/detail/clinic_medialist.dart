@@ -31,11 +31,14 @@ class _Clinic_MediaListState extends State<Clinic_MediaList> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
           onPressed: () => Navigator.pop(context),
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,

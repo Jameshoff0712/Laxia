@@ -125,6 +125,8 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
+                                    splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                                   ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -184,6 +186,8 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                             Navigator.of(context).pushNamed("/Clinic_Detail");
                           
                         },
+                        splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, 
                       ),
                     ],
                   ),
@@ -231,6 +235,8 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                   Navigator.of(context).pushNamed("/Clinic_Detail");
 
                         },
+                        splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, 
                       ),
                     ],
                   ),

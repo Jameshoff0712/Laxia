@@ -36,6 +36,8 @@ class _SearchResultWidgetState extends StateMVC<SearchResultWidget> {
               dense: true,
               contentPadding: EdgeInsets.symmetric(vertical: 0),
               trailing: IconButton(
+                splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                 icon: Icon(Icons.close),
                 color: Theme.of(context).hintColor,
                 onPressed: () {

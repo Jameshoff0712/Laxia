@@ -30,6 +30,8 @@ class _DeletionGuideWebState extends State<DeletionGuideWeb> {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               Navigator.pop(context);
             },

@@ -31,6 +31,8 @@ class _InputCodePageState extends State<InputCodePage> {
           ),
           centerTitle: true,
           leading: IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -111,6 +113,8 @@ class _InputCodePageState extends State<InputCodePage> {
                                   new Text('ポイント＊＊＊＊が追加されました。'),
                               actions: <Widget>[
                                 new IconButton(
+                                  splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                                     icon: new Icon(Icons.close),
                                     onPressed: () {
                                       Navigator.pop(context);

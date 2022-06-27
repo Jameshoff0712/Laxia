@@ -74,6 +74,8 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -259,13 +261,15 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 child: ElevatedButton(
                   onPressed: isAddEnabled ? () => AddDiaryPage() : null,
                   style: ElevatedButton.styleFrom(
-                    elevation: 1,
+                    elevation: 0,
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(6))),
                     primary: Helper.mainColor,
                     onPrimary: Colors.white,
                     onSurface: Colors.grey,
+                    splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                   ),
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
@@ -293,7 +297,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                         //             isMyDiary: widget.isMyDiary)));
                       },
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 70),
                         shape: const RoundedRectangleBorder(
@@ -304,6 +308,8 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                             width: 1,
                             style: BorderStyle.solid),
                         primary: Helper.whiteColor,
+                        splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,

@@ -67,6 +67,8 @@ class _FixProfilePageState extends State<FixProfilePage> {
               appBar: AppBar(
                 backgroundColor: Helper.whiteColor,
                 leading: IconButton(
+                  splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -234,14 +236,12 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                           color: Helper.txtColor),
                                       focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: Color.fromARGB(
-                                                  255, 240, 242, 245),
-                                              width: 2.0)),
-                                      border: UnderlineInputBorder(
+                                              color: Helper.authHintColor,
+                                              width: 1.0)),
+                                      enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: Color.fromARGB(
-                                                  255, 240, 242, 245),
-                                              width: 2.0)),
+                                              color: Helper.authHintColor,
+                                              width: 1.0)),
                                     ),
                                   ),
                                   Align(

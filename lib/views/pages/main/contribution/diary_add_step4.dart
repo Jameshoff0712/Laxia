@@ -75,6 +75,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -339,29 +341,37 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 ? Center(
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      height: 67,
-                      padding: EdgeInsets.only(top: 22, left: 16, right: 16),
-                      child: ElevatedButton(
-                        onPressed:
-                            isAddEnabled ? () => AddDiaryStep5Page() : null,
-                        style: ElevatedButton.styleFrom(
-                          elevation: 1,
-                          padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(6))),
-                          primary: Helper.mainColor,
-                          onPrimary: Colors.white,
-                          onSurface: Colors.grey,
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            '次に進む',
-                            style: TextStyle(
-                                fontSize: 14,
-                                
-                                fontWeight: FontWeight.w700),
+                      height: 177,
+                      padding: EdgeInsets.only(top: 22, left: 16, right: 16, bottom: 110),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Color.fromARGB(255, 194, 194, 194),
+                          ),
+                        child: ElevatedButton(
+                          onPressed:
+                              isAddEnabled ? () => AddDiaryStep5Page() : null,
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            primary: Helper.mainColor,
+                            onPrimary: Colors.white,
+                            onSurface: Color.fromARGB(255, 194, 194, 194),
+                            splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              '次に進む',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700),
+                            ),
                           ),
                         ),
                       ),
@@ -378,7 +388,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 70),
                         shape: const RoundedRectangleBorder(
@@ -389,6 +399,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                             width: 1,
                             style: BorderStyle.solid),
                         primary: Helper.whiteColor,
+                        splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,

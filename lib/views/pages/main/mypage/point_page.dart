@@ -94,6 +94,8 @@ class _PointPageState extends State<PointPage> {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               Navigator.pop(context);
             },

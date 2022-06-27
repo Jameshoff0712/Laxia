@@ -65,7 +65,34 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
               icon: Icon(
                 Icons.keyboard_arrow_down,
                 color: Helper.titleColor,
-              )),
+              ),
+              decoration: InputDecoration(
+                // filled: true,
+                // fillColor: Helper.whiteColor.withOpacity(0.2),
+                // contentPadding: EdgeInsets.symmetric(vertical: 12),
+                // counterText: "",
+                // hintStyle: TextStyle(
+                //     fontWeight: FontWeight.w400,
+                //     fontSize: 14,
+                    
+                //     color: Helper.txtColor),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      // color: Colors.black,
+                        color: Helper.authHintColor,
+                        width: 1.0)),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      // color: Colors.black,
+                        color: Helper.authHintColor,
+                        width: 1.0)),
+                border: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      // color: Colors.black,
+                        color: Helper.authHintColor,
+                        width: 1.0)),
+              ),
+            ),
         ],
       ),
     );

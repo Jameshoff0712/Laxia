@@ -70,6 +70,8 @@ class _InputTextWidgetState extends State<InputTextWidget> {
           maxLength: int.parse(widget.maxLegnth),
           maxLines: widget.maxlines,
           decoration: InputDecoration(
+            // filled: true,
+            // fillColor: Helper.whiteColor.withOpacity(0.2),
             contentPadding: EdgeInsets.symmetric(vertical: 12),
             hintText: widget.placeHolder,
             counterText: "",
@@ -80,10 +82,19 @@ class _InputTextWidgetState extends State<InputTextWidget> {
                 color: Helper.txtColor),
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                    color: Color.fromARGB(255, 240, 242, 245), width: 2.0)),
+                  // color: Colors.black,
+                    color: Helper.authHintColor,
+                    width: 1.0)),
+            enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  // color: Colors.black,
+                    color: Helper.authHintColor,
+                    width: 1.0)),
             border: UnderlineInputBorder(
                 borderSide: BorderSide(
-                    color: Color.fromARGB(255, 240, 242, 245), width: 2.0)),
+                  // color: Colors.black,
+                    color: Helper.authHintColor,
+                    width: 1.0)),
           ),
           style: TextStyle(
               fontWeight: FontWeight.w400,

@@ -79,6 +79,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -474,29 +476,40 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                 width: MediaQuery.of(context).size.width,
                 height: 85,
                 padding: EdgeInsets.only(top: 40, left: 16, right: 16),
-                child: ElevatedButton(
-                  onPressed: isAddEnabled ? () => AddDiaryStep4Page() : null,
-                  style: ElevatedButton.styleFrom(
-                    elevation: 1,
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(6))),
-                    primary: Helper.mainColor,
-                    onPrimary: Colors.white,
-                    onSurface: Colors.grey,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      '次に進む',
-                      style: TextStyle(
-                          fontSize: 14,
-                          
-                          fontWeight: FontWeight.w700),
+                child: Container(
+                  decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Color.fromARGB(255, 194, 194, 194),
+                          ),
+                  child: ElevatedButton(
+                    onPressed: isAddEnabled ? () => AddDiaryStep4Page() : null,
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6))),
+                      primary: Helper.mainColor,
+                      onPrimary: Colors.white,
+                      onSurface: Colors.grey,
+                      splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
+                    ),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        '次に進む',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 120,
             )
           ],
         ),

@@ -33,7 +33,10 @@ class _ContactPageState extends State<ContactPage> {
               Icons.keyboard_arrow_left,
               color: Helper.titleColor,
               size: 30,
-            )),
+            ),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
+            ),
         elevation: 0,
       ),
       body: SingleChildScrollView(

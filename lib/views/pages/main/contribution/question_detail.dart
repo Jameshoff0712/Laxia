@@ -181,6 +181,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                 primary: Color.fromARGB(255, 249, 161, 56),
                                 onPrimary: Colors.white,
                                 onSurface: Color.fromARGB(255, 110, 198, 210),
+                                splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                               ),
                               child: FittedBox(
                                 fit: BoxFit.fitWidth,
@@ -218,6 +220,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
+                splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
               ),
             ),
             bottomNavigationBar: SafeArea(
@@ -230,7 +234,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 21,
+                      width: 16,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -250,6 +254,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   "assets/icons/borderstar.svg",
                                   width: 22,
                                   height: 22,
+                                  // color: Colors.red,
+                                  color: Color.fromARGB(255, 155, 155, 155),
                                 ),
                           Text(
                             "お気に入り",
@@ -278,9 +284,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   size: 23,
                                 )
                               : SvgPicture.asset(
-                                  "assets/icons/bottombar/heart.svg",
+                                  "assets/icons/heart.svg",
                                   width: 22,
                                   height: 22,
+                                  color: Color.fromARGB(255, 155, 155, 155),
                                 ),
                           Text(
                             question_detail.likes_count!.toString(),
@@ -323,9 +330,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
-                            "assets/icons/chart.svg",
+                            "assets/icons/chat.svg",
                             width: 22,
                             height: 22,
+                            color: Color.fromARGB(255, 155, 155, 155),
                           ),
                           Text(
                             question_detail.comments_count.toString(),
@@ -339,7 +347,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                       ),
                     ),
                     SizedBox(
-                      width: 31,
+                      width: 22,
                     ),
                     Expanded(
                       child: GestureDetector(

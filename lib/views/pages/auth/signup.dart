@@ -89,6 +89,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: EdgeInsets.only(left: 7),
           icon: const Icon(Icons.clear, color: Helper.titleColor),
           iconSize: 28,
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
         shadowColor: Helper.whiteColor,
       ),
@@ -243,6 +245,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
+                                style: ButtonStyle(
+                splashFactory: NoSplash.splashFactory,
+              ),
                                 child: Text(
                                   Trans.of(context).login,
                                   style: TextStyle(

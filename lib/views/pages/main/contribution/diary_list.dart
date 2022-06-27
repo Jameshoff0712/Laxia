@@ -80,6 +80,8 @@ class _DiaryPageState extends State<DiaryPage> {
         leading: IconButton(
           icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
           onPressed: () => Navigator.pop(context),
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(

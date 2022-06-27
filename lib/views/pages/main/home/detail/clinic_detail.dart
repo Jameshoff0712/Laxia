@@ -1057,6 +1057,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          splashFactory: NoSplash.splashFactory,
+                              
                           shadowColor: Colors.transparent,
                           elevation: 0,
                           padding:

@@ -52,6 +52,8 @@ class _PassRest_FourState extends State<PassRest_Four> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40.0),
                     ),
+                    splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

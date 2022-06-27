@@ -47,6 +47,8 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
           onPressed: () => Navigator.pop(context),
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(

@@ -30,6 +30,8 @@ class _PrivacyPolicyWebState extends State<PrivacyPolicyWeb> {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               Navigator.pop(context);
             },
