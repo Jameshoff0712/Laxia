@@ -33,7 +33,10 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                     icon: Icon(
                       Icons.close,
                       size: 20,
-                    ))
+                    ),
+                    splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
+                    )
               ]),
               SizedBox(
                 width: double.infinity,

@@ -69,6 +69,8 @@ class _FollowingListPageState extends State<FollowingListPage> {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               Navigator.pop(context);
             },

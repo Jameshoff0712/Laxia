@@ -54,6 +54,8 @@ class _Signup_TwoState extends State<Signup_Two> {
                 padding: EdgeInsets.only(left: 7),
                 icon: const Icon(Icons.clear, color: Helper.titleColor),
                 iconSize: 25,
+                splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
               ),
               centerTitle: true,
               title: Text(
@@ -328,6 +330,8 @@ class _Signup_TwoState extends State<Signup_Two> {
                                 width: 1,
                                 style: BorderStyle.solid),
                           ),
+                          splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

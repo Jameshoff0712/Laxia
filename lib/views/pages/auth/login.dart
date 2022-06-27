@@ -25,6 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.only(left: 7),
           icon: const Icon(Icons.clear, color: Helper.titleColor),
           iconSize: 28,
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
         shadowColor: Helper.whiteColor,
       ),

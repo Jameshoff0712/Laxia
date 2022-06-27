@@ -28,6 +28,9 @@ class _TextButton_DrawerState extends State<TextButton_Drawer> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: widget.horizontal!),
         child: TextButton(
+          style: ButtonStyle(
+                splashFactory: NoSplash.splashFactory,
+              ),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

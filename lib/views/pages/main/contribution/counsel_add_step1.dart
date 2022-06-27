@@ -160,6 +160,8 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: Container(
@@ -641,7 +643,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                             onPressed:
                                 isAddEnabled ? () => _AddCounselStep2Page() : null,
                             style: ElevatedButton.styleFrom(
-                              elevation: 1,
+                              elevation: 0,
                               padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
@@ -649,6 +651,8 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                               primary: Helper.mainColor,
                               onPrimary: Colors.white,
                               onSurface: Color.fromARGB(255, 194, 194, 194),
+                              splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                             ),
                             child: FittedBox(
                               fit: BoxFit.fitWidth,
@@ -676,7 +680,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                       isMyDiary: widget.isMyDiary)));
                         },
                         style: ElevatedButton.styleFrom(
-                          elevation: 1,
+                          elevation: 0,
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 70),
                           shape: const RoundedRectangleBorder(
@@ -687,6 +691,8 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                               width: 1,
                               style: BorderStyle.solid),
                           primary: Helper.whiteColor,
+                          splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                         ),
                         child: FittedBox(
                           fit: BoxFit.fitWidth,

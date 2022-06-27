@@ -84,6 +84,8 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -175,6 +177,8 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   primary: Colors.white,
                   onPrimary: Helper.mainColor,
                   onSurface: Colors.grey,
+                  splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                 ),
                 child: FittedBox(
                   fit: BoxFit.fitWidth,
@@ -361,7 +365,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                           onPressed:
                               isAddEnabled ? () => AddCounselPage() : null,
                           style: ElevatedButton.styleFrom(
-                            elevation: 1,
+                            elevation: 0,
                             padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
@@ -369,6 +373,8 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                             primary: Helper.mainColor,
                             onPrimary: Colors.white,
                             onSurface: Colors.grey,
+                            splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                           ),
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
@@ -394,7 +400,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                             CounselDownloadPage();
                           },
                           style: ElevatedButton.styleFrom(
-                            elevation: 1,
+                            elevation: 0,
                             padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
@@ -406,6 +412,8 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                             primary: Colors.white,
                             onPrimary: Helper.mainColor,
                             onSurface: Colors.grey,
+                            splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                           ),
                           child: FittedBox(
                             fit: BoxFit.fitWidth,

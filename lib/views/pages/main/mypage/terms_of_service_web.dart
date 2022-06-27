@@ -30,6 +30,8 @@ class _TermsOfServiceWebState extends State<TermsOfServiceWeb> {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               Navigator.pop(context);
             },

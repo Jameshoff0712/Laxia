@@ -108,7 +108,10 @@ class _SelectDoctorState extends State<SelectDoctor> {
                     icon: Icon(
                       Icons.arrow_back_ios,
                       size: 20,
-                    )),
+                    ),
+                    splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
+                  ),
                 Text(
                   "担当ドクターを選択",
                   style: defaultTextStyle(Helper.titleColor, FontWeight.w700,

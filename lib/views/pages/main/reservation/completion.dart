@@ -26,6 +26,8 @@ class _CompletionState extends State<Completion> {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, 
             onPressed: () {
               Navigator.pop(context);
             },

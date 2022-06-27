@@ -156,6 +156,8 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                         primary: Colors.white,
                         onPrimary: Colors.white,
                         onSurface: Helper.mainColor,
+                        splashFactory: NoSplash.splashFactory,
+                             
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,

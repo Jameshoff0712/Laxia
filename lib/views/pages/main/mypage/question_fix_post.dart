@@ -27,6 +27,8 @@ class _QuestionFixPostPageState extends State<QuestionFixPostPage> {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               Navigator.pop(context);
             },

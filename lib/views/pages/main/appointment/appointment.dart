@@ -70,10 +70,13 @@ class _AppointmentState extends State<Appointment>
               userProperties.setCurrentPageIndex(0);
               Navigator.of(context).pushNamed('/Pages');
             },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             icon: Icon(
               Icons.keyboard_arrow_left,
               color: Helper.titleColor,
               size: 30,
+              
             )),
         elevation: 0,
       ),
@@ -214,6 +217,9 @@ class _AppointmentState extends State<Appointment>
             SizedBox(width: double.infinity, height: 64),
             TextButton(
               onPressed: () {},
+              style: ButtonStyle(
+                splashFactory: NoSplash.splashFactory,
+              ),
               child: Container(
                 width: 250,
                 height: 44,

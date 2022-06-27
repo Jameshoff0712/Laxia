@@ -58,6 +58,8 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -120,6 +122,8 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       primary: Helper.mainColor,
                       onPrimary: Colors.white,
                       onSurface: Color.fromARGB(255, 194, 194, 194),
+                      splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                     ),
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
@@ -162,6 +166,8 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       primary: Colors.white,
                       onPrimary: Helper.mainColor,
                       onSurface: Color.fromARGB(255, 194, 194, 194),
+                      splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                     ),
                     child: FittedBox(
                       fit: BoxFit.fitWidth,

@@ -31,6 +31,8 @@ class VideoVolumeWidgetState extends State<VideoVolumeWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, 
       icon: Icon(isMute ? Icons.volume_off_outlined : Icons.volume_up_outlined, size: 18),
       onPressed: () {
         if (isMute) {

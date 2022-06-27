@@ -75,6 +75,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -358,6 +360,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                             primary: Helper.mainColor,
                             onPrimary: Colors.white,
                             onSurface: Color.fromARGB(255, 194, 194, 194),
+                            splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                           ),
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
@@ -384,7 +388,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 70),
                         shape: const RoundedRectangleBorder(
@@ -395,6 +399,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                             width: 1,
                             style: BorderStyle.solid),
                         primary: Helper.whiteColor,
+                        splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,

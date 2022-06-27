@@ -95,6 +95,8 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                               size: 16,
                             ),
                             iconSize: 16,
+                            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                           ),
                         )
                       ],

@@ -35,6 +35,8 @@ class _NoticeDetailPageState extends State<NoticeDetailPage> {
             onPressed: () {
               Navigator.pop(context);
             },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             icon: Icon(
               Icons.keyboard_arrow_left,
               color: Helper.titleColor,

@@ -51,6 +51,8 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                               icon: const Icon(Icons.clear,
                                   color: Helper.blackColor),
                               iconSize: 25,
+                              splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                             ))),
                     Expanded(
                         flex: 6,
@@ -137,6 +139,8 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                       icon: Icon(_con.hidePassword
                           ? Icons.visibility
                           : Icons.visibility_off),
+                      splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                     ),
                     // border: OutlineInputBorder(
                     //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
@@ -165,6 +169,8 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
+                      splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

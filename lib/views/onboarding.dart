@@ -118,6 +118,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextButton(
+                                  style: ButtonStyle(
+                splashFactory: NoSplash.splashFactory,
+              ),
                                   child: Text("スキップ",
                                       style: TextStyle(
                                           fontSize: 16,

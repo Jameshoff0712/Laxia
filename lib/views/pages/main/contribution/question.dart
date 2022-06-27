@@ -232,6 +232,8 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
             surgeryProvider.selectedCurePos.clear();
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: Container(
@@ -485,13 +487,15 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                     child: ElevatedButton(
                       onPressed: isAddEnabled ? () => _AddQuestion() : null,
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
                         padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(6))),
                         primary: Helper.mainColor,
                         onPrimary: Colors.white,
                         onSurface: Color.fromARGB(255, 194, 194, 194),
+                        splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,

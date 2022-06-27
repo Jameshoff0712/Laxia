@@ -170,7 +170,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     .pushNamed("/AddDiaryProgress");
                               },
                               style: ElevatedButton.styleFrom(
-                                elevation: 1,
+                                elevation: 0,
                                 padding:
                                     const EdgeInsets.fromLTRB(12, 3, 12, 3),
                                 shape: const RoundedRectangleBorder(
@@ -183,6 +183,8 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                 primary: Colors.white,
                                 onPrimary: Colors.white,
                                 onSurface: Color.fromARGB(255, 110, 198, 210),
+                                splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                               ),
                               child: FittedBox(
                                 fit: BoxFit.fitWidth,
@@ -220,6 +222,8 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                 primary: Color.fromARGB(255, 249, 161, 56),
                                 onPrimary: Colors.white,
                                 onSurface: Color.fromARGB(255, 110, 198, 210),
+                                splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                               ),
                               child: FittedBox(
                                 fit: BoxFit.fitWidth,
@@ -257,6 +261,8 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
+                splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
               ),
             ),
             bottomNavigationBar: SafeArea(

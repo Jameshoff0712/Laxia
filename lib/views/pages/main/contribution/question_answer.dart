@@ -37,7 +37,10 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                 Icons.close,
                 color: Helper.titleColor,
                 size: 25,
-              )),
+              ),
+              splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
+            ),
           elevation: 0,
         ),
         body: Container(
@@ -126,13 +129,15 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: 1,
+                    elevation: 0,
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     primary: Helper.mainColor,
                     onPrimary: Colors.white,
                     onSurface: Colors.grey,
+                    splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                   ),
                   child: FittedBox(
                     fit: BoxFit.fitWidth,

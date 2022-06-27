@@ -107,7 +107,10 @@ class _SelectClinicState extends State<SelectClinic> {
                     icon: Icon(
                       Icons.arrow_back_ios,
                       size: 20,
-                    )),
+                    ),
+                    splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
+                ),
                 Text(
                   "クリニック名で検索",
                   style: defaultTextStyle(Helper.titleColor, FontWeight.w700,

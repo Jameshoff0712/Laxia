@@ -83,6 +83,8 @@ class _ReservationState extends State<Reservation> {
         ),
         actions: [
           IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, 
               onPressed: () => showDialog(
                   context: context,
                   builder: (BuildContext context) {

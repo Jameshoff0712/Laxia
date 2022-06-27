@@ -54,6 +54,8 @@ class _PassRest_OneState extends State<PassRest_One> {
                               icon: const Icon(Icons.arrow_back_ios,
                                   color: Helper.blackColor),
                               iconSize: 20,
+                              splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                             ))),
                     Expanded(
                         flex: 6,
@@ -163,6 +165,7 @@ class _PassRest_OneState extends State<PassRest_One> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
+                      splashFactory: NoSplash.splashFactory,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

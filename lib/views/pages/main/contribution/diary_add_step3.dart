@@ -79,6 +79,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -489,6 +491,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                       primary: Helper.mainColor,
                       onPrimary: Colors.white,
                       onSurface: Colors.grey,
+                      splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                     ),
                     child: FittedBox(
                       fit: BoxFit.fitWidth,

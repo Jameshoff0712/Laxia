@@ -68,6 +68,8 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                             icon: const Icon(Icons.clear,
                                 color: Helper.titleColor),
                             iconSize: 28,
+                            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                           ))),
                   Expanded(
                       flex: 6,
@@ -162,6 +164,8 @@ class _EMLoginScreenState extends State<EMLoginScreen> {
                         _con.hidePassword = !_con.hidePassword;
                       });
                     },
+                    splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                     color: Color.fromARGB(255, 210, 210, 212),
                     icon: Icon(_con.hidePassword
                         ? Icons.visibility

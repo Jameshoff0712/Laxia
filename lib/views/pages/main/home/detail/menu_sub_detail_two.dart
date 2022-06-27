@@ -31,7 +31,10 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
                 ),
                 IconButton(onPressed: (){
                   Navigator.of(context).pop();
-                }, icon: Icon(Icons.close,size: 20,))
+                }, icon: Icon(Icons.close,size: 20,),
+                splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
+                )
             ]),
             Text(
               widget.detailList[0],

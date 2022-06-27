@@ -89,6 +89,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             onPressed: () {
               userProperties.setCurrentPageIndex(0);
               Navigator.of(context).pushNamed('/Pages');
@@ -363,6 +365,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 )),
                           ),
                           OutlinedButton(
+                            
                               onPressed: () {
                                 // Navigator.push(
                                 //     context,
@@ -395,6 +398,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                 );
                               },
                               style: OutlinedButton.styleFrom(
+                                splashFactory: NoSplash.splashFactory,
+                                shadowColor: Colors.transparent,
                                 minimumSize: Size.zero,
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),

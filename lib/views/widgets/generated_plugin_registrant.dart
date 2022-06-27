@@ -64,6 +64,8 @@ class _PageViewWidgetState extends State<PageViewWidget> {
           ),
           centerTitle: true,
           leading: IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, 
               onPressed: () {
                 Navigator.of(context).pop();
               },

@@ -76,6 +76,8 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
           onPressed: () {
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: SingleChildScrollView(
@@ -364,7 +366,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                         onPressed:
                             isAddEnabled ? () => AddDiaryStep3Page() : null,
                         style: ElevatedButton.styleFrom(
-                          elevation: 1,
+                          elevation: 0,
                           padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                           shape: const RoundedRectangleBorder(
                               borderRadius:
@@ -372,6 +374,8 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           primary: Helper.mainColor,
                           onPrimary: Colors.white,
                           onSurface: Colors.grey,
+                          splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                         ),
                         child: FittedBox(
                           fit: BoxFit.fitWidth,
@@ -399,7 +403,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                                     isMyDiary: widget.isMyDiary)));
                       },
                       style: ElevatedButton.styleFrom(
-                        elevation: 1,
+                        elevation: 0,
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 70),
                         shape: const RoundedRectangleBorder(
@@ -410,6 +414,8 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             width: 1,
                             style: BorderStyle.solid),
                         primary: Helper.whiteColor,
+                        splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                       ),
                       child: FittedBox(
                         fit: BoxFit.fitWidth,

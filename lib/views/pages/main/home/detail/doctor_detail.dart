@@ -770,6 +770,8 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40.0),
                           ),
+                          splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

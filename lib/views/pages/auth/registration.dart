@@ -56,6 +56,8 @@ class _RegistrationState extends State<Registration> {
                               icon: const Icon(Icons.clear,
                                   color: Helper.blackColor),
                               iconSize: 25,
+                              splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                             ))),
                     Expanded(
                         flex: 6,
@@ -176,6 +178,8 @@ class _RegistrationState extends State<Registration> {
                       icon: Icon(_con.hidePassword
                           ? Icons.visibility
                           : Icons.visibility_off),
+                          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                     ),
                     // border: OutlineInputBorder(
                     //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
@@ -194,6 +198,9 @@ class _RegistrationState extends State<Registration> {
                       onPressed: () {
                         Navigator.of(context).pushNamed("/passwordResetone");
                       },
+                      style: ButtonStyle(
+                splashFactory: NoSplash.splashFactory,
+              ),
                       child: Text(
                         Trans.of(context).required_password,
                         style: TextStyle(
@@ -215,6 +222,8 @@ class _RegistrationState extends State<Registration> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
+                      splashFactory: NoSplash.splashFactory,
+                      shadowColor: Colors.transparent,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -252,6 +261,9 @@ class _RegistrationState extends State<Registration> {
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           },
+                          style: ButtonStyle(
+                splashFactory: NoSplash.splashFactory,
+              ),
                           child: Text(
                             "すでにアカウントを持っている方はこちら",
                             style: TextStyle(

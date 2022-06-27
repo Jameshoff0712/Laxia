@@ -31,6 +31,8 @@ class _Clinic_PosState extends State<Clinic_Pos> {
         leading:IconButton(
                 icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
+                splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
               ),
         title: Text('湘南美容クリニック 新宿院',
           style: TextStyle(

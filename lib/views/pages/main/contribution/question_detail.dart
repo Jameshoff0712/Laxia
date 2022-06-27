@@ -181,6 +181,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                 primary: Color.fromARGB(255, 249, 161, 56),
                                 onPrimary: Colors.white,
                                 onSurface: Color.fromARGB(255, 110, 198, 210),
+                                splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                               ),
                               child: FittedBox(
                                 fit: BoxFit.fitWidth,
@@ -218,6 +220,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
+                splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
               ),
             ),
             bottomNavigationBar: SafeArea(

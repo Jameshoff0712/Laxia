@@ -71,6 +71,8 @@ class _UserPageState extends State<UserPage>
         ),
         centerTitle: true,
         leading: IconButton(
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, 
             onPressed: () {
               Navigator.pop(context);
             },
@@ -326,6 +328,8 @@ class _UserPageState extends State<UserPage>
                                   });
                                 },
                                 style: OutlinedButton.styleFrom(
+                                  splashFactory: NoSplash.splashFactory,
+                                shadowColor: Colors.transparent,
                                     padding:
                                         EdgeInsets.symmetric(vertical: 6),
                                     shape: StadiumBorder(),

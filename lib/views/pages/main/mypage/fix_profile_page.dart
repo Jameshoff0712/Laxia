@@ -67,6 +67,8 @@ class _FixProfilePageState extends State<FixProfilePage> {
               appBar: AppBar(
                 backgroundColor: Helper.whiteColor,
                 leading: IconButton(
+                  splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                     onPressed: () {
                       Navigator.pop(context);
                     },

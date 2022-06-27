@@ -215,6 +215,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                       onPressed: () { Navigator.of(context).pushNamed("/AddDiaryProgress"); },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
+                        splashFactory: NoSplash.splashFactory,
                         shadowColor: Colors.transparent,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: const RoundedRectangleBorder(
@@ -257,6 +258,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
+                        splashFactory: NoSplash.splashFactory,
                         shadowColor: Colors.transparent,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: const RoundedRectangleBorder(

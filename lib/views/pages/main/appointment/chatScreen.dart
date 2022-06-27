@@ -37,6 +37,8 @@ class _ChatScreenState extends State<ChatScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
             icon: Icon(
               Icons.close,
               color: Helper.titleColor,

@@ -304,6 +304,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
             surgeryProvider.selectedCurePos.clear();
             Navigator.pop(context);
           },
+          splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
         ),
       ),
       body: Container(
@@ -727,6 +729,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                               primary: Helper.mainColor,
                               onPrimary: Colors.white,
                               onSurface: Color.fromARGB(255, 194, 194, 194),
+                              splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                             ),
                             child: FittedBox(
                               fit: BoxFit.fitWidth,
@@ -766,6 +770,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                               width: 1,
                               style: BorderStyle.solid),
                           primary: Helper.whiteColor,
+                          splashFactory: NoSplash.splashFactory,
+                              shadowColor: Colors.transparent,
                         ),
                         child: FittedBox(
                           fit: BoxFit.fitWidth,

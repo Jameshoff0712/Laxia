@@ -41,6 +41,8 @@ class _InviteSharePageState extends State<InviteSharePage> {
                 ),
                 Expanded(child: Container()),
                 IconButton(
+                  splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,  
                     onPressed: () {
                       Navigator.pop(context);
                     },
