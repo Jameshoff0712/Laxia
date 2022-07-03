@@ -43,99 +43,103 @@ class _InputCodePageState extends State<InputCodePage> {
               )),
           elevation: 0,
         ),
-        body: Column(
-          children: [
-            SizedBox(
-              height: 90,
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                'お友達の紹介コードを\n入力してください。',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                  
-                  color: Helper.titleColor,
-                ),
+        body: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 90,
               ),
-            ),
-            SizedBox(
-              height: 70,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 75),
-              child: TextField(
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(color: Helper.mainColor),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(color: Helper.mainColor),
-                  ),
-                  hintText: '紹介コードを入力',
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                    height: 1.8,
-                    color: Color.fromARGB(255, 194, 194, 194),
-                  ),
-                  isDense: true,
-                  contentPadding: EdgeInsets.all(0),
-                ),
-                onChanged: (text) {
-                  setState(() {
-                    content = text;
-                  });
-                },
-              ),
-            ),
-            SizedBox(
-              height: 60,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 46, vertical: 9),
-              decoration: BoxDecoration(
-                color: content.isEmpty
-                    ? Color.fromARGB(255, 194, 194, 194)
-                    : Helper.mainColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  if (content.isNotEmpty) {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) => new AlertDialog(
-                              title: new Text('成功'),
-                              content:
-                                  new Text('ポイント＊＊＊＊が追加されました。'),
-                              actions: <Widget>[
-                                new IconButton(
-                                  splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
-                                    icon: new Icon(Icons.close),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    })
-                              ],
-                            ));
-                  }
-                },
+              Container(
+                alignment: Alignment.center,
                 child: Text(
-                  '登録',
+                  'お友達の紹介コードを\n入力してください。',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 14,
+                    fontSize: 18,
                     
-                    color: Helper.whiteColor,
+                    color: Helper.titleColor,
                   ),
                 ),
               ),
-            )
-          ],
+              SizedBox(
+                height: 70,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 75),
+                child: TextField(
+                  cursorColor: Helper.mainColor,
+                  cursorHeight: 21,
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(color: Helper.mainColor),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: const BorderSide(color: Helper.mainColor),
+                    ),
+                    hintText: '紹介コードを入力',
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color.fromARGB(255, 194, 194, 194),
+                    ),
+                    isDense: true,
+                    contentPadding: EdgeInsets.all(0),
+                  ),
+                  onChanged: (text) {
+                    setState(() {
+                      content = text;
+                    });
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 46, vertical: 9),
+                decoration: BoxDecoration(
+                  color: content.isEmpty
+                      ? Color.fromARGB(255, 194, 194, 194)
+                      : Helper.mainColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    if (content.isNotEmpty) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => new AlertDialog(
+                                title: new Text('成功'),
+                                content:
+                                    new Text('ポイント＊＊＊＊が追加されました。'),
+                                actions: <Widget>[
+                                  new IconButton(
+                                    splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,  
+                                      icon: new Icon(Icons.close),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      })
+                                ],
+                              ));
+                    }
+                  },
+                  child: Text(
+                    '登録',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      
+                      color: Helper.whiteColor,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

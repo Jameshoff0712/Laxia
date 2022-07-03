@@ -21,7 +21,8 @@ class _Comment_CardState extends State<Comment_Card> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+      // color: Colors.white,
       child: Column(
         children: [
           Row(
@@ -31,8 +32,8 @@ class _Comment_CardState extends State<Comment_Card> {
                   // Navigator.of(context).pushNamed("/Mypage");
                 },
                 child: SizedBox(
-                  height: 32,
-                  width: 32,
+                  height: 25,
+                  width: 25,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: CachedNetworkImage(
@@ -50,12 +51,12 @@ class _Comment_CardState extends State<Comment_Card> {
                   ),
                 ),
               ),
-              SizedBox(width: 5),
+              SizedBox(width: 7),
               Text(
                 widget.name,
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
-                  height:1.5,
+                  fontSize: 14,
                   color: Helper.titleColor),
               ),
             ],
@@ -69,7 +70,6 @@ class _Comment_CardState extends State<Comment_Card> {
                   "@"+widget.ename,
                   style: TextStyle(
                     fontSize: 14,
-                    height:1.5,
                     fontWeight: FontWeight.w400,
                     color: Helper.mainColor),
                 ),
@@ -77,7 +77,6 @@ class _Comment_CardState extends State<Comment_Card> {
                   '  ' + widget.comment,
                   style: TextStyle(
                     fontSize: 14,
-                    height:1.5,
                     fontWeight: FontWeight.w400,
                     color: Helper.titleColor),
                 ),
@@ -85,18 +84,18 @@ class _Comment_CardState extends State<Comment_Card> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   widget.date,
-                  style: TextStyle( fontWeight: FontWeight.w400,fontSize: 12, color: Helper.darkGrey),
+                  style: TextStyle( fontWeight: FontWeight.w400,fontSize: 12, color: Color.fromARGB(255, 197, 199, 199)),
                 ),
                 GestureDetector(
                   child: Text(
                     '返信',
-                    style: TextStyle(fontWeight: FontWeight.w400,fontSize: 13, color: Helper.mainColor),
+                    style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12, color: Helper.mainColor),
                   ),
                 )
               ],

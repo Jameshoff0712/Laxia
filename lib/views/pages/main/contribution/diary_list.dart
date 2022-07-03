@@ -84,7 +84,8 @@ class _DiaryPageState extends State<DiaryPage> {
             highlightColor: Colors.transparent,  
         ),
       ),
-      body: SingleChildScrollView(
+      body: Container(
+        color: Color.fromARGB(255, 245, 245, 245),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

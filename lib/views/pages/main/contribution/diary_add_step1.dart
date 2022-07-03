@@ -29,12 +29,13 @@ class AddDiaryStep1Page extends StatefulWidget {
 }
 
 class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
+  // 選択してください
   List<String> addList = [
-    "選択してください",
-    "選択してください",
-    "選択してください",
-    "選択してください",
-    "選択してください"
+    "",
+    "",
+    "",
+    "",
+    "",
   ];
   bool isAddEnabled = true, isUsed = false;
   TextEditingController filter = new TextEditingController();
@@ -310,484 +311,482 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       ),
       body: Container(
         color: Color.fromARGB(255, 240, 242, 245),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
-                child: Text(
-                  '基本情報',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 23, left: 16, bottom: 6),
+              child: Text(
+                '基本情報',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "施術日",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 51, 51, 51),
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  addList[0],
-                                  style: TextStyle(
-                                      color: Helper.txtColor,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    DatePicker.showDatePicker(context,
-                                        showTitleActions: true,
-                                        minTime: DateTime(2018, 3, 5),
-                                        maxTime: DateTime(2200, 6, 7),
-                                        onChanged: (date) {}, onConfirm: (date) {
-                                      setState(() {
-                                        addList[0] = date.year.toString() +
-                                            "年" +
-                                            date.month.toString() +
-                                            "月" +
-                                            date.day.toString() +
-                                            "日";
-                                      });
-                                      diaryProperties.setDate(
-                                          date.year.toString() +
-                                              "/" +
-                                              date.month.toString() +
-                                              "/" +
-                                              date.day.toString());
-                                    },
-                                        currentTime: DateTime.now(),
-                                        locale: LocaleType.jp);
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Helper.txtColor,
-                                    size: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ]),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "施術箇所",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 51, 51, 51),
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    surgeryProvider.selectedCurePosStr.isNotEmpty
-                                        ? surgeryProvider.getSelectedCurePosStr
-                                        : "選択してください",
-                                    textAlign: TextAlign.end,
-                                    overflow: TextOverflow.clip,
-                                    softWrap: true,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                        color: Helper.txtColor,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 12,
-                                        ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    surgeryProvider.selectedCurePosStr.clear();
-                                    surgeryProvider.setButtonText("次へ");
-                                    Navigator.of(context)
-                                        .pushNamed("/SelectSurgery");
-                                    setState(() {
-                                      isUsed = true;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Helper.txtColor,
-                                    size: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "クリニック",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 51, 51, 51),
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  userProperties.getSelectedClinic != ""
-                                      ? userProperties.getSelectedClinic
-                                      : "選択してください",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      color: Helper.txtColor,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(15.0),
-                                              topRight: Radius.circular(15.0)),
-                                        ),
-                                        backgroundColor: Colors.white,
-                                        context: context,
-                                        builder: (context) {
-                                          return SelectClinic();
-                                        });
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Helper.txtColor,
-                                    size: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "担当ドクター",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 51, 51, 51),
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  userProperties.getSelectedDoctor != ""
-                                      ? userProperties.getSelectedDoctor
-                                      : "選択してください",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      color: Helper.txtColor,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(15.0),
-                                              topRight: Radius.circular(15.0)),
-                                        ),
-                                        backgroundColor: Colors.white,
-                                        context: context,
-                                        builder: (context) {
-                                          return SelectDoctor();
-                                        });
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Helper.txtColor,
-                                    size: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                padding: EdgeInsets.only(left: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: Text(
-                              "施術内容",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 51, 51, 51),
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  addList[4],
-                                  style: TextStyle(
-                                      color: Helper.txtColor,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12,
-                                      ),
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                        constraints: BoxConstraints(
-                                          maxHeight:
-                                              MediaQuery.of(context).size.height *
-                                                  0.9,
-                                        ),
-                                        isScrollControlled: true,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(15.0),
-                                              topRight: Radius.circular(15.0)),
-                                        ),
-                                        context: context,
-                                        builder: (context) {
-                                          return Container();
-                                        });
-                                  },
-                                  child: Icon(Icons.arrow_forward_ios,
-                                      color: Helper.txtColor, size: 15),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 16, top: 23, bottom: 10),
-                child: Text(
-                  '施術前の写真',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 102, 110, 110),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      ),
-                ),
-              ),
-              imagePicker(context),
-              !widget.isMyDiary!
-                  ? Center(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 85,
-                        padding: EdgeInsets.only(top: 40, left: 16, right: 16),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            color: Color.fromARGB(255, 194, 194, 194),
-                          ),
-                          child: ElevatedButton(
-                            onPressed:
-                                isAddEnabled ? () => _AddDiaryStep1Page() : null,
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6))),
-                              primary: Helper.mainColor,
-                              onPrimary: Colors.white,
-                              onSurface: Color.fromARGB(255, 194, 194, 194),
-                              splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Text(
-                                '次に進む',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : Center(
-                      child: Container(
-                      height: 45,
-                      margin: EdgeInsets.only(top: 40),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AddDiaryStep2Page(
-                                      isMyDiary: widget.isMyDiary)));
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 70),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                          side: const BorderSide(
-                              color: Helper.mainColor,
-                              width: 1,
-                              style: BorderStyle.solid),
-                          primary: Helper.whiteColor,
-                          splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
                           child: Text(
-                            '次へ進む',
+                            "施術日",
                             style: TextStyle(
-                                fontSize: 14,
-                                
-                                fontWeight: FontWeight.w700,
-                                color: Helper.mainColor),
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                addList[0] != "" ? addList[0] : '選択してください',
+                                style: TextStyle(
+                                    color: addList[0] != "" ? Helper.titleColor : Helper.txtColor,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12,
+                                    ),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  DatePicker.showDatePicker(context,
+                                      showTitleActions: true,
+                                      minTime: DateTime(2018, 3, 5),
+                                      maxTime: DateTime(2200, 6, 7),
+                                      onChanged: (date) {}, onConfirm: (date) {
+                                    setState(() {
+                                      addList[0] = date.year.toString() +
+                                          "年" +
+                                          date.month.toString() +
+                                          "月" +
+                                          date.day.toString() +
+                                          "日";
+                                    });
+                                    diaryProperties.setDate(
+                                        date.year.toString() +
+                                            "/" +
+                                            date.month.toString() +
+                                            "/" +
+                                            date.day.toString());
+                                  },
+                                      currentTime: DateTime.now(),
+                                      locale: LocaleType.jp);
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "施術箇所",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  surgeryProvider.selectedCurePosStr.isNotEmpty
+                                      ? surgeryProvider.getSelectedCurePosStr
+                                      : "選択してください",
+                                  textAlign: TextAlign.end,
+                                  overflow: TextOverflow.clip,
+                                  softWrap: true,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: surgeryProvider.selectedCurePosStr.isNotEmpty? Helper.titleColor: Helper.txtColor,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 12,
+                                      ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  surgeryProvider.selectedCurePosStr.clear();
+                                  surgeryProvider.setButtonText("次へ");
+                                  Navigator.of(context)
+                                      .pushNamed("/SelectSurgery");
+                                  setState(() {
+                                    isUsed = true;
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "クリニック",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                userProperties.getSelectedClinic != ""
+                                    ? userProperties.getSelectedClinic
+                                    : "選択してください",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: userProperties.getSelectedClinic != ""? Helper.titleColor : Helper.txtColor,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12,
+                                    ),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(15.0),
+                                            topRight: Radius.circular(15.0)),
+                                      ),
+                                      backgroundColor: Colors.white,
+                                      context: context,
+                                      builder: (context) {
+                                        return SelectClinic();
+                                      });
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "担当ドクター",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                userProperties.getSelectedDoctor != ""
+                                    ? userProperties.getSelectedDoctor
+                                    : "選択してください",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: userProperties.getSelectedDoctor != ""? Helper.titleColor : Helper.txtColor,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12,
+                                    ),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(15.0),
+                                            topRight: Radius.circular(15.0)),
+                                      ),
+                                      backgroundColor: Colors.white,
+                                      context: context,
+                                      builder: (context) {
+                                        return SelectDoctor();
+                                      });
+                                },
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Helper.txtColor,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              padding: EdgeInsets.only(left: 16),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 15.0, 21.0, 15.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Text(
+                            "施術内容",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 51, 51, 51),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                '選択してください',
+                                style: TextStyle(
+                                    color: Helper.txtColor,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12,
+                                    ),
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      constraints: BoxConstraints(
+                                        maxHeight:
+                                            MediaQuery.of(context).size.height *
+                                                0.9,
+                                      ),
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(15.0),
+                                            topRight: Radius.circular(15.0)),
+                                      ),
+                                      context: context,
+                                      builder: (context) {
+                                        return Container();
+                                      });
+                                },
+                                child: Icon(Icons.arrow_forward_ios,
+                                    color: Helper.txtColor, size: 15),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 16, top: 23, bottom: 10),
+              child: Text(
+                '施術前の写真',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    ),
+              ),
+            ),
+            imagePicker(context),
+            !widget.isMyDiary!
+                ? Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 85,
+                      padding: EdgeInsets.only(top: 40, left: 16, right: 16),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: Color.fromARGB(255, 194, 194, 194),
+                        ),
+                        child: ElevatedButton(
+                          onPressed:
+                              isAddEnabled ? () => _AddDiaryStep1Page() : null,
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            primary: Helper.mainColor,
+                            onPrimary: Colors.white,
+                            onSurface: Color.fromARGB(255, 194, 194, 194),
+                            splashFactory: NoSplash.splashFactory,
+                            shadowColor: Colors.transparent,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              '次に進む',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),
-                    )),
-            ],
-          ),
+                    ),
+                  )
+                : Center(
+                    child: Container(
+                    height: 45,
+                    margin: EdgeInsets.only(top: 40),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddDiaryStep2Page(
+                                    isMyDiary: widget.isMyDiary)));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 70),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        side: const BorderSide(
+                            color: Helper.mainColor,
+                            width: 1,
+                            style: BorderStyle.solid),
+                        primary: Helper.whiteColor,
+                        splashFactory: NoSplash.splashFactory,
+                            shadowColor: Colors.transparent,
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          '次へ進む',
+                          style: TextStyle(
+                              fontSize: 14,
+                              
+                              fontWeight: FontWeight.w700,
+                              color: Helper.mainColor),
+                        ),
+                      ),
+                    ),
+                  )),
+          ],
         ),
       ),
     );

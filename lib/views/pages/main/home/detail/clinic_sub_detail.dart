@@ -33,7 +33,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
     'メニュー',
     '日記',
     'カウセレポ',
-    '質問',
+    '症例',
   ];
   late TabController _tabController;
   bool isfavourite = false;

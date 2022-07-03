@@ -126,7 +126,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                                 ? ""
                                 : comment.data[i].patient_nickname!,
                             avatar: comment.data[i].patient_photo == null
-                                ? "http:/error.png"
+                                ? ''
                                 : comment.data[i].patient_photo!,
                             comment: comment.data[i].comment!,
                             date: comment.data[i].created_at!.split('T')[0]),
@@ -200,8 +200,8 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                                 postComment(sender.text);
                               },
                               child: SvgPicture.asset("assets/icons/send.svg",
-                                  width: 30,
-                                  height: 30,
+                                  // width: 30,
+                                  // height: 30,
                                   color: bSend
                                       ? Helper.mainColor
                                       : Helper.extraGrey),

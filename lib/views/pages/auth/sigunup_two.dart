@@ -70,6 +70,7 @@ class _Signup_TwoState extends State<Signup_Two> {
             ),
             body: SingleChildScrollView(
               child: Container(
+                color: Colors.white,
                   child: Padding(
                 padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
                 child: Column(
