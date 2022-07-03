@@ -65,6 +65,7 @@ class _DiaryPageState extends State<DiaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -84,8 +85,7 @@ class _DiaryPageState extends State<DiaryPage> {
             highlightColor: Colors.transparent,  
         ),
       ),
-      body: Container(
-        color: Color.fromARGB(255, 245, 245, 245),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

@@ -97,7 +97,7 @@ class _RegistrationState extends State<Registration> {
                       //   return "メールを入力してください";
                       // }
                       final regex = RegExp('[^@]+@[^\.]+\..+');
-                      if (!regex.hasMatch(email!) || email!.isEmpty) {
+                      if (!regex.hasMatch(email!) || email.isEmpty) {
                         return "メールアドレスに誤りがあります。";
                       }
 
@@ -123,10 +123,14 @@ class _RegistrationState extends State<Registration> {
                       // fillColor: Helper.whiteColor.withOpacity(0.2),
                       contentPadding:
                           EdgeInsets.only(left: 16, top: 16, bottom: 16),
-                          errorBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 235, 87, 87), width: 1),
-                      ),
+                      // errorBorder: UnderlineInputBorder(
+                      //   borderSide:
+                      //       BorderSide(color: Colors.orange, width: 1),
+                      // ),
+                      // errorStyle: _focusNode.hasFocus ? TextStyle(fontSize: 0, height: 0) : null,
+                      focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 235, 87, 87)),
+                        ),
                       focusedBorder: UnderlineInputBorder(
                           borderSide:
                               BorderSide(color: Helper.mainColor, width: 1)),
@@ -187,10 +191,11 @@ class _RegistrationState extends State<Registration> {
                         // if (pwd!.isEmpty) {
                         //   return "パスワードを入力してください";
                         // }
-                        if (pwd!.length < 8 || pwd!.isEmpty) {
+                        if (pwd!.length < 8 || pwd.isEmpty) {
                           setState(() {
                             isPassError = true;
                           });
+                          return 'パスワードは、英数字/記号で8文字以上必要です';
                         }
                         return null;
                       },
@@ -214,10 +219,13 @@ class _RegistrationState extends State<Registration> {
                             color: Helper.authHintColor, fontSize: 14),
                         contentPadding:
                             EdgeInsets.only(left: 16, top: 16, bottom: 16),
-                            errorBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 235, 87, 87), width: 1),
-                      ),
+                        errorBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color.fromARGB(255, 235, 87, 87), width: 1),
+                        ),
+                        focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 235, 87, 87)),
+                        ),
                         focusedBorder: UnderlineInputBorder(
                             borderSide:
                                 BorderSide(color: Helper.mainColor, width: 1)),
@@ -287,14 +295,14 @@ class _RegistrationState extends State<Registration> {
                 SizedBox(
                   height: 12,
                 ),
-                Align(
+                !isPassError ?Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: EdgeInsets.only(left: 16),
                     child: Text(
                           Trans.of(context).required_password,
                           style: TextStyle(
-                              color: isPassError? Color.fromARGB(255, 235, 87, 87) :Helper.titleColor,
+                              color: Helper.titleColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 12),
                         ),
@@ -313,7 +321,7 @@ class _RegistrationState extends State<Registration> {
                   //           fontWeight: FontWeight.bold,
                   //           fontSize: 12),
                   //     )),
-                ),
+                ) : SizedBox(width: 0,),
                 SizedBox(
                   height: 22,
                 ),
