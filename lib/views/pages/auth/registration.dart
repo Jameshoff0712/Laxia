@@ -22,6 +22,9 @@ class _RegistrationState extends State<Registration> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String _errorMsg = "";
+  bool isPassNotEmpty = false;
+  bool isEmailNotEmpty = false;
+  bool isPassError = false;
   Future<void> registerEmail() async {
     try {
       var email = _emailController.text.trim();
@@ -57,7 +60,7 @@ class _RegistrationState extends State<Registration> {
                                   color: Helper.blackColor),
                               iconSize: 25,
                               splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                              highlightColor: Colors.transparent,
                             ))),
                     Expanded(
                         flex: 6,
@@ -78,136 +81,249 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(
                   height: 11,
                 ),
-                TextFormField(
-                  controller: _emailController,
-                  onTap: () {
-                    setState(() {
-                      isBtnColor = false;
-                    });
-                  },
-                  keyboardType: TextInputType.emailAddress,
-                  // onSaved: (input) => _con.user.email = input,
-                  validator: (email) {
-                    if (email!.isEmpty) {
-                      return "メールを入力してください";
-                    }
-                    final regex = RegExp('[^@]+@[^\.]+\..+');
-                    if (!regex.hasMatch(email)) {
-                      return "メールアドレスに誤りがあります。";
-                    }
+                Stack(children: [
+                  TextFormField(
+                    controller: _emailController,
+                    onTap: () {
+                      setState(() {
+                        isBtnColor = false;
+                      });
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    cursorColor: Helper.mainColor,
+                    // onSaved: (input) => _con.user.email = input,
+                    validator: (email) {
+                      // if (email!.isEmpty) {
+                      //   return "メールを入力してください";
+                      // }
+                      final regex = RegExp('[^@]+@[^\.]+\..+');
+                      if (!regex.hasMatch(email!) || email.isEmpty) {
+                        return "メールアドレスに誤りがあります。";
+                      }
 
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    hintText: Trans.of(context).input_email,
-                    hintStyle: TextStyle(
-                      color: Helper.authHintColor,
-                      fontSize: 14,
-                    ),
-                    // filled: true,
-                    // fillColor: Helper.whiteColor.withOpacity(0.2),
-                    contentPadding:
-                        EdgeInsets.only(left: 16, top: 16, bottom: 16),
-                    focusedBorder: UnderlineInputBorder(
+                      return null;
+                    },
+                    onChanged: (email) {
+                        if (email.isEmpty)
+                          setState(() {
+                            isEmailNotEmpty = false;
+                          });
+                        else
+                          setState(() {
+                            isEmailNotEmpty = true;
+                          });
+                      },
+                    decoration: InputDecoration(
+                      hintText: Trans.of(context).input_email,
+                      hintStyle: TextStyle(
+                        color: Helper.authHintColor,
+                        fontSize: 14,
+                      ),
+                      // filled: true,
+                      // fillColor: Helper.whiteColor.withOpacity(0.2),
+                      contentPadding:
+                          EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                      // errorBorder: UnderlineInputBorder(
+                      //   borderSide:
+                      //       BorderSide(color: Colors.orange, width: 1),
+                      // ),
+                      // errorStyle: _focusNode.hasFocus ? TextStyle(fontSize: 0, height: 0) : null,
+                      focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 235, 87, 87)),
+                        ),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Helper.mainColor, width: 1)),
+                      border: UnderlineInputBorder(
                         borderSide:
-                            BorderSide(color: Helper.authHintColor, width: 1)),
-                    border: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Helper.authHintColor, width: 1),
+                            BorderSide(color: Helper.authHintColor, width: 1),
+                      ),
+                      
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Helper.authHintColor, width: 1)),
                     ),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Helper.authHintColor, width: 1)),
                   ),
-                ),
+
+                  isEmailNotEmpty
+                        ? Positioned(
+                            top: 20,
+                            right: 15,
+                            child: GestureDetector(
+                              onTap: () {
+                                _emailController.text = '';
+                                setState(() {
+                                  isEmailNotEmpty = false;
+                                });
+                              },
+                              child: Container(
+                                width: 18,
+                                height: 18,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 210, 210, 212),
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                                child: Icon(Icons.close,
+                                    color: Colors.white, size: 15),
+                              ),
+                            ),
+                          )
+                        : Container(),
+                ]),
                 _errorMsg != ""
                     ? SizedBox(
                         height: 40,
                         child: Text(
                           _errorMsg,
-                          style: const TextStyle(color: Colors.red),
+                          // style: const TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: Color.fromARGB(255, 235, 87, 87)),
                         ))
                     : Container(),
                 // SizedBox(height: 20),
-                TextFormField(
-                  controller: _passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  // onSaved: (input) => _con.user.password = input,
-                  validator: (pwd) {
-                    if (pwd!.isEmpty) {
-                      return "パスワードを入力してください";
-                    }
-                    if (pwd.length < 8) {
-                      return "パスワードは、英数字/記号で8文字以上必要です";
-                    }
-                    return null;
-                  },
-                  // validator: (input) => input!.length < 8 ? "パスワードは、英数字/記号で8文字以上必要です" : null,
-                  obscureText: _con.hidePassword,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Helper.whiteColor.withOpacity(0.2),
-                    hintText: Trans.of(context).password,
-                    hintStyle:
-                        TextStyle(color: Helper.authHintColor, fontSize: 14),
-                    contentPadding:
-                        EdgeInsets.only(left: 16, top: 16, bottom: 16),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Helper.authHintColor, width: 1)),
-                    border: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Helper.authHintColor, width: 1),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Helper.authHintColor, width: 1)),
-                    // hintText: '••••••••••••',
-                    // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
-                    // errorBorder: OutlineInputBorder(
-                    //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
-                    // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
-                    // prefixIcon: Icon(Icons.lock_outline, color: Helper.whiteColor),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _con.hidePassword = !_con.hidePassword;
-                        });
+                Stack(
+                  children: [
+                    TextFormField(
+                      controller: _passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      cursorColor: Helper.mainColor,
+                      // onSaved: (input) => _con.user.password = input,
+                      validator: (pwd) {
+                        // if (pwd!.isEmpty) {
+                        //   return "パスワードを入力してください";
+                        // }
+                        if (pwd!.length < 8 || pwd.isEmpty) {
+                          setState(() {
+                            isPassError = true;
+                          });
+                          return 'パスワードは、英数字/記号で8文字以上必要です';
+                        }
+                        return null;
                       },
-                      color: Helper.authHintColor,
-                      icon: Icon(_con.hidePassword
-                          ? Icons.visibility
-                          : Icons.visibility_off),
+                      onChanged: (pwd) {
+                        if (pwd.isEmpty)
+                          setState(() {
+                            isPassNotEmpty = false;
+                          });
+                        else
+                          setState(() {
+                            isPassNotEmpty = true;
+                          });
+                      },
+                      // validator: (input) => input!.length < 8 ? "パスワードは、英数字/記号で8文字以上必要です" : null,
+                      obscureText: _con.hidePassword,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Helper.whiteColor.withOpacity(0.2),
+                        hintText: Trans.of(context).password,
+                        hintStyle: TextStyle(
+                            color: Helper.authHintColor, fontSize: 14),
+                        contentPadding:
+                            EdgeInsets.only(left: 16, top: 16, bottom: 16),
+                        errorBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color.fromARGB(255, 235, 87, 87), width: 1),
+                        ),
+                        focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color.fromARGB(255, 235, 87, 87)),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Helper.mainColor, width: 1)),
+                        border: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Helper.authHintColor, width: 1),
+                        ),
+                        
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Helper.authHintColor, width: 1)),
+                        // hintText: '••••••••••••',
+                        // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                        // errorBorder: OutlineInputBorder(
+                        //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                        // hintStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
+                        // prefixIcon: Icon(Icons.lock_outline, color: Helper.whiteColor),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _con.hidePassword = !_con.hidePassword;
+                            });
+                          },
+                          color: _con.hidePassword
+                              ? Helper.titleColor
+                              : Helper.authHintColor,
+                          icon: Icon(_con.hidePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off),
                           splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                          highlightColor: Colors.transparent,
+                        ),
+                        // border: OutlineInputBorder(
+                        //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                        // focusedBorder: OutlineInputBorder(
+                        //     borderRadius: BorderRadius.rall(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
+                        // enabledBorder: OutlineInputBorder(
+                        //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
+                      ),
                     ),
-                    // border: OutlineInputBorder(
-                    //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
-                    // focusedBorder: OutlineInputBorder(
-                    //     borderRadius: BorderRadius.rall(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.5))),
-                    // enabledBorder: OutlineInputBorder(
-                    //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
-                  ),
+                    isPassNotEmpty
+                        ? Positioned(
+                            top: 20,
+                            right: 45,
+                            child: GestureDetector(
+                              onTap: () {
+                                _passwordController.text = '';
+                                setState(() {
+                                  isPassNotEmpty = false;
+                                });
+                              },
+                              child: Container(
+                                width: 18,
+                                height: 18,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 210, 210, 212),
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                                child: Icon(Icons.close,
+                                    color: Colors.white, size: 15),
+                              ),
+                            ),
+                          )
+                        : Container(),
+                  ],
                 ),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                Align(
+                SizedBox(
+                  height: 12,
+                ),
+                !isPassError ?Align(
                   alignment: Alignment.centerLeft,
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/passwordResetone");
-                      },
-                      style: ButtonStyle(
-                splashFactory: NoSplash.splashFactory,
-              ),
-                      child: Text(
-                        Trans.of(context).required_password,
-                        style: TextStyle(
-                            color: Helper.titleColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12),
-                      )),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 16),
+                    child: Text(
+                          Trans.of(context).required_password,
+                          style: TextStyle(
+                              color: Helper.titleColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                        ),
+                  )
+                  // child: TextButton(
+                  //     onPressed: () {
+                  //       Navigator.of(context).pushNamed("/passwordResetone");
+                  //     },
+                  //     style: ButtonStyle(
+                  //       splashFactory: NoSplash.splashFactory,
+                  //     ),
+                  //     child: Text(
+                  //       Trans.of(context).required_password,
+                  //       style: TextStyle(
+                  //           color: Helper.titleColor,
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 12),
+                  //     )),
+                ) : SizedBox(width: 0,),
+                SizedBox(
+                  height: 22,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 0, left: 61, right: 61),
@@ -215,7 +331,10 @@ class _RegistrationState extends State<Registration> {
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size.zero, // Set this
                       padding: EdgeInsets.zero, // and this
-                      side: BorderSide(color: isBtnColor ?Helper.txtColor:Helper.mainColor, width: 1),
+                      side: BorderSide(
+                          color:
+                              isBtnColor ? Helper.txtColor : Helper.mainColor,
+                          width: 1),
                       elevation: 0,
                       primary:
                           isBtnColor ? Helper.whiteColor : Helper.mainColor,
@@ -262,8 +381,8 @@ class _RegistrationState extends State<Registration> {
                             Navigator.of(context).pop();
                           },
                           style: ButtonStyle(
-                splashFactory: NoSplash.splashFactory,
-              ),
+                            splashFactory: NoSplash.splashFactory,
+                          ),
                           child: Text(
                             "すでにアカウントを持っている方はこちら",
                             style: TextStyle(

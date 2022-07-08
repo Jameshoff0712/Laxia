@@ -117,11 +117,12 @@ class _SelectDoctorState extends State<SelectDoctor> {
                   style: defaultTextStyle(Helper.titleColor, FontWeight.w700,
                       size: 18),
                 ),
-                Icon(
-                  Icons.arrow_back_ios,
-                  size: 20,
-                  color: Helper.whiteColor,
-                )
+                SizedBox(width: 20,)
+                // Icon(
+                //   Icons.arrow_back_ios,
+                //   size: 20,
+                //   color: Helper.whiteColor,
+                // )
               ],
             ),
           ),

@@ -68,9 +68,11 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
     return (partResult.isNotEmpty && treatment.isNotEmpty)
         ? Scaffold(
             backgroundColor: Helper.whiteColor,
-            body: SafeArea(
+            body: Container(
+              color: Helper.whiteColor,
               child: Column(
                 children: [
+                  SizedBox(height: 45,),
                   Padding(
                     padding:
                         const EdgeInsets.only(top: 10.0, left: 16, right: 16),

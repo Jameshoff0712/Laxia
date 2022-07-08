@@ -278,10 +278,11 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           isfavorite
-                              ? Icon(
-                                  Icons.favorite,
-                                  color: Helper.redColor,
-                                  size: 23,
+                              ? SvgPicture.asset(
+                                  "assets/icons/red_heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Colors.red,
                                 )
                               : SvgPicture.asset(
                                   "assets/icons/heart.svg",
@@ -314,9 +315,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                             isScrollControlled: true,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15.0),
-                                  topRight: Radius.circular(15.0)),
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0)),
                             ),
+                            backgroundColor: Colors.white,
                             context: context,
                             builder: (context) {
                               return CommentDialogSheet(

@@ -92,7 +92,8 @@ class _SelectClinicState extends State<SelectClinic> {
       height: MediaQuery.of(context).size.height * 0.9,
       child: Column(
         children: [
-          Padding(
+          Container(
+            color: Colors.white,
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
             ),
@@ -116,11 +117,12 @@ class _SelectClinicState extends State<SelectClinic> {
                   style: defaultTextStyle(Helper.titleColor, FontWeight.w700,
                       size: 16),
                 ),
-                Icon(
-                  Icons.arrow_back_ios,
-                  size: 20,
-                  color: Helper.whiteColor,
-                )
+                SizedBox(width: 20,),
+                // Icon(
+                //   Icons.arrow_back_ios,
+                //   size: 20,
+                //   color: Helper.whiteColor,
+                // )
               ],
             ),
           ),

@@ -28,7 +28,7 @@ class _Home_MenuState extends State<Home_Menu> {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
+              padding: const EdgeInsets.symmetric(vertical: 0),
               child: LayoutBuilder(
                   builder: (context, BoxConstraints viewportConstraints) {
                 return Column(

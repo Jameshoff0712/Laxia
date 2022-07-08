@@ -124,8 +124,8 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
         indicatorWeight: 2.0,
         labelColor: Helper.titleColor,
         unselectedLabelColor: Helper.unSelectTabColor,
-        labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
-        indicatorPadding: EdgeInsets.only(bottom: 5, right: -3, left: -3),
+        labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 0),
+        indicatorPadding: EdgeInsets.only(bottom: 0, right: -3, left: -3),
         indicator: CircleTabIndicator(color: Helper.mainColor, radius: 20),
         tabs: [
           Tab(
@@ -314,7 +314,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
     return <Widget>[
       SliverAppBar(
         elevation: 0,
-        expandedHeight: 290,
+        expandedHeight: 285,
         floating: true,
         pinned: false,
         automaticallyImplyLeading: false,
@@ -603,6 +603,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                                         topLeft: Radius.circular(10.0),
                                         topRight: Radius.circular(10.0)),
                                   ),
+                                  backgroundColor: Colors.white,
                                   context: context,
                                   builder: (context) {
                                     return InvitePage();

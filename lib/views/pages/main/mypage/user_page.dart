@@ -106,8 +106,8 @@ class _UserPageState extends State<UserPage>
         indicatorWeight: 2.0,
         labelColor: Helper.titleColor,
         unselectedLabelColor: Helper.unSelectTabColor,
-        labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
-        indicatorPadding: EdgeInsets.only(bottom: 5, right: -3, left: -3),
+        labelPadding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 0),
+        indicatorPadding: EdgeInsets.only(bottom: 0, right: -3, left: -3),
         indicator: CircleTabIndicator(color: Helper.mainColor, radius: 20),
         tabs: [
           Tab(

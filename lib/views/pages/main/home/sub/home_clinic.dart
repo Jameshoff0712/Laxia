@@ -183,7 +183,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                                       post: "",
                                       name: clinic_data.data[index].name==null?"":clinic_data.data[index].name!,
                                       mark: clinic_data
-                                                  .data[index].diaries_count ==
+                                                  .data[index].avg_rate ==
                                               null
                                           ? ""
                                           : clinic_data.data[index].diaries_count

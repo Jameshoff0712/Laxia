@@ -65,6 +65,7 @@ class _DiaryPageState extends State<DiaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,

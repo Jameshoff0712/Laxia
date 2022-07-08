@@ -28,11 +28,10 @@ class AddCounselStep1Page extends StatefulWidget {
 
 class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
   List<String> addList = [
-    "選択してください",
-    "選択してください",
-    "選択してください",
-    "選択してください",
-    "選択してください"
+    '',
+    '',
+    '',
+    '',
   ];
   bool isAddEnabled = true, isUsed = false;
   int index = 0;
@@ -64,36 +63,148 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text("下書きに保存しますか？"),
-          content: Text("まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
-              style: TextStyle(fontSize: 14)),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                new FlatButton(
-                  textColor: Color.fromARGB(255, 110, 198, 210),
-                  child: new Text('保存しない'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Stack(children: [
+            Container(
+              width: 300,
+              height: 200,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(50, 20, 50, 14),
+                    child: Text(
+                      "下書きに保存しますか？",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        
+                        fontWeight: FontWeight.w700,
+                        color: Helper.titleColor,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 30),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
+                        style: TextStyle(
+                          fontSize: 14,
+                          
+                          fontWeight: FontWeight.w400,
+                          color: Helper.titleColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        new FlatButton(
+                          textColor: Helper.mainColor,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 3, horizontal: 0),
+                            child: Text(
+                              '保存しない',
+                              style: TextStyle(
+                                fontSize: 16,
+                                
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        new FlatButton(
+                          color: Helper.mainColor,
+                          textColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 3, horizontal: 10),
+                              child: Text(
+                                '保存する',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )),
+                          onPressed: () {
+                            // diaryProperties.setMedias(images);
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pushNamed("/AddCounselStep2");
+                          },
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              top: 14,
+              right: 15,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.close,
+                  size: 20,
+                  color: Helper.titleColor,
                 ),
-                new FlatButton(
-                  color: Color.fromARGB(255, 110, 198, 210),
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: new Text('保存する'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pushNamed("/AddCounselStep2");
-                  },
-                )
-              ],
+              ),
             )
-          ],
+          ]),
         );
+        // return AlertDialog(
+        //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(24))),
+        //   title: Text(
+        //     "下書きに保存しますか？", 
+        //     style: TextStyle(
+        //       fontSize: 16,
+        //       fontWeight: FontWeight.w700,
+        //       color: Helper.titleColor
+        //     )),
+        //   content: Text("まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
+        //       style: TextStyle(fontSize: 14)),
+        //   actions: <Widget>[
+        //     Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //       children: [
+        //         new FlatButton(
+        //           textColor: Color.fromARGB(255, 110, 198, 210),
+        //           child: new Text('保存しない'),
+        //           onPressed: () {
+        //             Navigator.of(context).pop();
+        //           },
+        //         ),
+        //         new FlatButton(
+        //           color: Helper.mainColor,
+        //           textColor: Colors.white,
+        //           shape: RoundedRectangleBorder(
+        //               borderRadius: BorderRadius.circular(15)),
+        //           child: new Text('保存する'),
+        //           onPressed: () {
+        //             Navigator.of(context).pop();
+        //             Navigator.of(context).pushNamed("/AddCounselStep2");
+        //           },
+        //         )
+        //       ],
+        //     )
+        //   ],
+        // );
       },
     );
   }
@@ -283,7 +394,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                     softWrap: true,
                                     maxLines: 1,
                                     style: TextStyle(
-                                        color: Helper.txtColor,
+                                        color: surgeryProvider.selectedCurePosStr.isNotEmpty? Helper.titleColor : Helper.txtColor,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
                                         ),
@@ -351,7 +462,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                       : "選択してください",
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      color: Helper.txtColor,
+                                      color: userProperties.getSelectedClinic != ""? Helper.titleColor: Helper.txtColor,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       ),
@@ -373,6 +484,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                               topLeft: Radius.circular(15.0),
                                               topRight: Radius.circular(15.0)),
                                         ),
+                                        backgroundColor: Colors.white,
                                         context: context,
                                         builder: (context) {
                                           return SelectClinic();
@@ -427,7 +539,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                       : "選択してください",
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      color: Helper.txtColor,
+                                      color: userProperties.getSelectedDoctor != ""? Helper.titleColor :Helper.txtColor,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       ),
@@ -449,6 +561,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                               topLeft: Radius.circular(15.0),
                                               topRight: Radius.circular(15.0)),
                                         ),
+                                        backgroundColor: Colors.white,
                                         context: context,
                                         builder: (context) {
                                           return SelectDoctor();
@@ -498,9 +611,9 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  addList[0],
+                                  addList[3] != ''? addList[3] : '選択してください',
                                   style: TextStyle(
-                                      color: Helper.txtColor,
+                                      color: addList[3] != ''? Helper.titleColor : Helper.txtColor,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       ),
@@ -516,7 +629,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                         maxTime: DateTime(2200, 6, 7),
                                         onChanged: (date) {}, onConfirm: (date) {
                                       setState(() {
-                                        addList[0] = date.year.toString() +
+                                        addList[3] = date.year.toString() +
                                             "年" +
                                             date.month.toString() +
                                             "月" +
