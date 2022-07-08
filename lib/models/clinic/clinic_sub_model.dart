@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:laxia/models/clinic/worktime_model.dart';
 
+import '../doctor/doctor_sub_model.dart';
+
 class Clinic_Sub_Model extends Equatable {
   final int id;
   final int? user_id;
@@ -19,6 +21,7 @@ class Clinic_Sub_Model extends Equatable {
   final String? created_at;
   final String? updated_at;
   final String? firebase_key;
+  final int? avg_rate;
   final int? diaries_count;
   final int? counselings_count;
   final int? menus_count;
@@ -31,6 +34,7 @@ class Clinic_Sub_Model extends Equatable {
   final String? email;
   final String? role;
   final List<Work_Time>? work_times;
+  // final List<Doctor_Sub_Model>? doctors;
 
   const Clinic_Sub_Model(
       { required this.id,
@@ -50,6 +54,7 @@ class Clinic_Sub_Model extends Equatable {
        this.created_at,
        this.updated_at,
        this.firebase_key,
+       this.avg_rate,
        this.diaries_count,
        this.counselings_count,
        this.menus_count,
@@ -61,7 +66,9 @@ class Clinic_Sub_Model extends Equatable {
        this.user_name,
        this.email,
        this.role,
-       this.work_times});
+       this.work_times,
+      //  this.doctors
+       });
 
   factory Clinic_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Clinic_Sub_Model(
@@ -82,6 +89,7 @@ class Clinic_Sub_Model extends Equatable {
           created_at:json["created_at"],
           updated_at:json["updated_at"],
           firebase_key:json["firebase_key"],
+          avg_rate: json["avg_rate"],
           diaries_count:json["diaries_count"],
           counselings_count:json["counselings_count"],
           menus_count:json["menus_count"],
@@ -93,7 +101,8 @@ class Clinic_Sub_Model extends Equatable {
           user_name:json["user_name"],
           email:json["email"],
           role:json["role"],
-          work_times:List<Work_Time>.from(json["work_times"].map((x) => Work_Time.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>)
+          work_times:List<Work_Time>.from(json["work_times"].map((x) => Work_Time.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>),
+          // doctors: List<Doctor_Sub_Model>.from(json["data"].map((x) => Doctor_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
         );
   }
   @override
@@ -115,6 +124,7 @@ class Clinic_Sub_Model extends Equatable {
       created_at,
       updated_at,
       firebase_key,
+      avg_rate,
       diaries_count,
       counselings_count,
       menus_count,
@@ -126,6 +136,7 @@ class Clinic_Sub_Model extends Equatable {
       user_name,
       email,
       role,
-      work_times
+      work_times,
+      // doctors
       ];
 }

@@ -259,7 +259,7 @@ class _Home_MenuState extends State<Home_Menu> {
                                   price: menu_data.data[index].price == 0
                                       ? ""
                                       : menu_data.data[index].price!.toString(),
-                                  clinic: menu_data.data[index].name);
+                                  clinic: menu_data.data[index].clinic == null ? '' : menu_data.data[index].clinic!.name!);
                             }),
                     Container(
                       height: isexpanding ? 0 : 100,
