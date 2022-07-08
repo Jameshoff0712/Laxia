@@ -11,7 +11,7 @@ class Work_Time extends Equatable {
   factory Work_Time.fromJson(Map<String, dynamic> json) {
     return Work_Time(
         weekday: json["weekday"],
-        type: json["type"],
+        type: json["type"].toString(),
         start_time: json["start_time"],
         end_time:json["end_time"]
         );
