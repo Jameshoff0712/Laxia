@@ -47,9 +47,9 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/menus?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&clinic_id="+clinic_id+"&q="+q+"&filter="+filter+"&city_id="+city_id, token);
     return Menu.fromJson(res.data["menus"]);
   }
-  Future<Diary> getDiaryData(String per_page, String page, String category_id, String patient_id, String favorote, String orderby, String menu_id, String price_min, String price_max, String rate, String q,String filter) async {
+  Future<Diary> getDiaryData(String per_page, String page, String category_id, String patient_id, String favorote, String orderby, String menu_id, String price_min, String price_max, String rate, String q,String filter,String city_id) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/diaries?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&favorote="+favorote+"&orderby="+orderby+"&menu_id="+menu_id+"&price_min="+price_min+"&price_max="+price_max+"&rate="+rate+"&filter="+filter, token);
+    final res = await Api.get("$apiUrl/diaries?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&favorote="+favorote+"&orderby="+orderby+"&menu_id="+menu_id+"&price_min="+price_min+"&price_max="+price_max+"&rate="+rate+"&filter="+filter+"&city_id="+city_id, token);
       //  print(res.data["data"]["diaries"]);
     return Diary.fromJson(res.data["data"]["diaries"]);
   }

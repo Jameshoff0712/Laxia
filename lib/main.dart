@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/provider/question_provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
       ChangeNotifierProvider<UserProvider>.value(value: UserProvider()),
       ChangeNotifierProvider<SurGeryProvider>.value(value: SurGeryProvider()),
       ChangeNotifierProvider<QuestionProvider>.value(value: QuestionProvider()),
+      ChangeNotifierProvider<PrefProvider>.value(value: PrefProvider()),
       ChangeNotifierProvider<PostDiaryProvider>.value(
           value: PostDiaryProvider()),
     ], child: MyApp()));
