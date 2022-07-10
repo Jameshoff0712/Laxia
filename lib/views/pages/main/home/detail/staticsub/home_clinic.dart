@@ -68,7 +68,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                   child: Dropdownbutton(
                       items: <String>["評価が高い順", "日記の多い順"],
                       hintText: "並び替え",
-                      horizontal: 60),
+                      horizontal: 60, onpress: (String val) {  },),
                 ),
               ],
             ),

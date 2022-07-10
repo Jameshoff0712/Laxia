@@ -8,10 +8,10 @@ class Home extends Equatable {
   final int from;
   final int last_page;
   final String last_page_url;
-  final String? next_page_url;
+  // final String? next_page_url;
   final String path;
   final int per_page;
-  final String? prev_page_url;
+  // final String? prev_page_url;
   final int to;
   final int total;
 
@@ -22,10 +22,10 @@ class Home extends Equatable {
       required this.from,
       required this.last_page,
       required this.last_page_url,
-      required this.next_page_url,
+      // required this.next_page_url,
       required this.path,
       required this.per_page,
-      required this.prev_page_url,
+      // required this.prev_page_url,
       required this.to,
       required this.total});
 
@@ -37,10 +37,10 @@ class Home extends Equatable {
         from: json["from"],
         last_page: json["last_page"],
         last_page_url: json["last_page_url"],
-        next_page_url: json["next_page_url"],
+        // next_page_url: json["next_page_url"],
         path: json["path"],
         per_page: int.parse(json["per_page"].toString()) ,
-        prev_page_url: json["prev_page_url"],
+        // prev_page_url: json["prev_page_url"],
         to: json["to"],
         total: json["total"]);
   }
@@ -52,10 +52,10 @@ class Home extends Equatable {
         from,
         last_page,
         last_page_url,
-        next_page_url,
+        // next_page_url,
         path,
         per_page,
-        prev_page_url,
+        // prev_page_url,
         to,
         total
       ];

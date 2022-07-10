@@ -31,6 +31,7 @@ class Home_Diary extends StatefulWidget {
 }
 
 class _Home_DiaryState extends State<Home_Diary> {
+  String filter='';
   String searchdata = "";
   int page = 0;
   bool isend = false, isloading = true, isexpanding = true;
@@ -45,7 +46,7 @@ class _Home_DiaryState extends State<Home_Diary> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDiaryData(page: page, q: q);
+        final mid = await _con.getDiaryData(page: page, q: q,filter:filter);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -129,6 +130,16 @@ class _Home_DiaryState extends State<Home_Diary> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
+                            onpress: (val){
+                              setState(() {
+                                page=1;
+                                isend = false;
+                                filter=val;
+                                isloading = true;
+                              });
+                              // print(val);
+                              getData(page: page.toString(), q: userProperties.searchtext);
+                            },
                             items: <String>["人気投稿順", "満足度が高い順", "新着順"],
                             hintText: "並び替え",
                             horizontal: 32),
