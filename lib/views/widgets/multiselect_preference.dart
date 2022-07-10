@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/models/static/areas_model.dart';
 import 'package:laxia/models/static/master_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 
@@ -46,8 +47,8 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
 
   @override
   Widget build(BuildContext context) {
-    SurGeryProvider surgeryProvider =
-        Provider.of<SurGeryProvider>(context, listen: true);
+    PrefProvider prefprovider =
+        Provider.of<PrefProvider>(context, listen: true);
 
     return Expanded(
       child: Column(
@@ -71,7 +72,7 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                   children: [
                     GestureDetector(
                         onTap: () {
-                          surgeryProvider.setButtonText("");
+                          prefprovider.setButtonText("");
                           Navigator.pop(context);
                         },
                         child: Icon(
@@ -396,18 +397,18 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
           ),
           GestureDetector(
             onTap: () {
-              surgeryProvider.initSelected();
+              prefprovider.initSelected();
               for (int i = 0; i < widget.areas.length; i++) {
                 for (int j = 0; j < widget.areas[i].all_Citys!.length; j++) {
                   if (selected[i][j]) {
-                    surgeryProvider.setSelectedCurePos(
+                    prefprovider.setSelectedCurePos(
                         widget.areas[i].all_Citys![j].id,
                         widget.areas[i].all_Citys![j].name!);
                   }
                 }
               }
 
-              surgeryProvider.setButtonText("");
+              prefprovider.setButtonText("");
               Navigator.of(context).pop();
             },
             child: Align(
@@ -421,9 +422,9 @@ class _MultiSelectDartState extends State<MultiSelectDart> {
                 child: Center(
                   //padding: EdgeInsets.symmetric(horizontal: 114, vertical: 12),
                   child: Text(
-                    surgeryProvider.btnText.isEmpty
+                    prefprovider.btnText.isEmpty
                         ? widget.buttontxt
-                        : surgeryProvider.btnText,
+                        : prefprovider.btnText,
                     style: TextStyle(
                         fontFamily: "Hiragino Kaku Gothic Pro w6",
                         color: Helper.whiteColor,

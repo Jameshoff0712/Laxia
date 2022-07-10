@@ -28,6 +28,7 @@ class Home_Clinic extends StatefulWidget {
 
 class _Home_ClinicState extends State<Home_Clinic> {
   String searchdata = "";
+  String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
   bool expanded = false;
@@ -49,7 +50,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
             isexpanding = false;
           });
         final mid = await _con.getclinicData(
-            page: page, pref_id: pref_id!, city_id: city_id!, q: q!);
+            page: page, pref_id: pref_id!, city_id: city_id!, q: q!,filter:filter);
         setState(() {
           if (isloading) {
             clinic_data = mid;
@@ -119,6 +120,16 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
+                      onpress: (val){
+                        setState(() {
+                              filter=val;
+                              page=1;
+                              isend = false;
+                              isloading = true;
+                            });
+                            // print(val);
+                            getData(page: page.toString(), q: userProperties.searchtext);
+                      },
                       width: 123,
                       items: <String>["評価が高い順", "日記の多い順"],
                       hintText: "並び替え",

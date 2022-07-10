@@ -29,6 +29,7 @@ class Home_Doctor extends StatefulWidget {
 
 class _Home_DoctorState extends State<Home_Doctor> {
   String searchdata = "";
+  String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
   bool expanded = false;
@@ -42,7 +43,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDoctorData(page: page, q: q!);
+        final mid = await _con.getDoctorData(page: page, q: q!,filter:filter);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -118,6 +119,16 @@ class _Home_DoctorState extends State<Home_Doctor> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
+                            onpress: (val){
+                              setState(() {
+                                filter=val;
+                                page=1;
+                                isend = false;
+                                isloading = true;
+                              });
+                              // print(val);
+                              getData(page: page.toString(), q: userProperties.searchtext);
+                            },
                             items: <String>["評価が高い順", "日記の多い順"],
                             hintText: "並び替え",
                             horizontal: 62),

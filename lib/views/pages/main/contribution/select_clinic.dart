@@ -36,7 +36,7 @@ class _SelectClinicState extends State<SelectClinic> {
             isexpanding = false;
           });
         final mid = await _con.getclinicData(
-            page: page, pref_id: pref_id!, city_id: city_id!, q: q!);
+            page: page, pref_id: pref_id!, city_id: city_id!, q: q!,filter: '');
         setState(() {
           if (isloading) {
             clinic_data = mid;

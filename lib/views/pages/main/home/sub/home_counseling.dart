@@ -29,6 +29,7 @@ class Home_Counseling extends StatefulWidget {
 
 class _Home_CounselingState extends State<Home_Counseling> {
   String searchdata = "";
+  String filter='';
   bool expanded = true;
   int index = -1, page = 0;
   bool isend = false, isloading = true, isexpanding = true;
@@ -41,7 +42,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCouncelingData(page: page, q: q);
+        final mid = await _con.getCouncelingData(page: page, q: q,filter:filter);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -118,6 +119,16 @@ class _Home_CounselingState extends State<Home_Counseling> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
+                            onpress: (val){
+                              setState(() {
+                                filter=val;
+                                page=1;
+                                isend = false;
+                                isloading = true;
+                              });
+                              // print(val);
+                              getData(page: page.toString(), q: userProperties.searchtext);
+                            },
                             items: <String>["人気投稿順", "新着順"],
                             hintText: "並び替え",
                             horizontal: 62),

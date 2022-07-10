@@ -28,6 +28,7 @@ class Home_Case extends StatefulWidget {
 }
 
 class _Home_CaseState extends State<Home_Case> {
+  String filter='';
   String searchdata = "";
   bool expanded = true;
   int page = 0, index = -1;
@@ -41,7 +42,7 @@ class _Home_CaseState extends State<Home_Case> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCaseData(page: page, q: q);
+        final mid = await _con.getCaseData(page: page, q: q,filter:filter);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -125,6 +126,16 @@ class _Home_CaseState extends State<Home_Case> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
+                            onpress: (val){
+                              setState(() {
+                                filter=val;
+                                page=1;
+                                isend = false;
+                                isloading = true;
+                              });
+                              // print(val);
+                              getData(page: page.toString(), q: userProperties.searchtext);
+                            },
                             items: <String>["人気投稿順", "新着順"],
                             hintText: "並び替え",
                             horizontal: 32),

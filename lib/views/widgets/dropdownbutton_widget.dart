@@ -8,12 +8,14 @@ class Dropdownbutton extends StatefulWidget {
   final double horizontal;
   final String hintText;
   final double? width;
+  final void Function(String val) onpress;
   const Dropdownbutton(
       {Key? key,
       required this.items,
       required this.horizontal,
       required this.hintText,
-      this.width = 74})
+      this.width = 74, 
+      required this.onpress})
       : super(key: key);
 
   @override
@@ -76,8 +78,8 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
               ),
         items: widget.items
             .map((item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: selectedValue == item
+                  value:  widget.items.indexOf(item).toString(),
+                  child: selectedValue == widget.items.indexOf(item).toString()
                       ? Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Row(
@@ -114,6 +116,7 @@ class _DropdownbuttonState extends State<Dropdownbutton> {
         onChanged: (value) {
           setState(() {
             selectedValue = value as String;
+            widget.onpress(value);
           });
         },
         buttonHeight: 36,

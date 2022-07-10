@@ -7,7 +7,7 @@ class Home_Sub_Model extends Equatable {
   final String? nickname;
   final String? photo;
   final String? clinic;
-  final int? clinic_id;
+  final String? clinic_id;
   final String? first_content;
   final String? last_content;
   final String? first_thumb_path;
@@ -24,16 +24,16 @@ class Home_Sub_Model extends Equatable {
     return Home_Sub_Model(
         id: json["id"],
         patient_id: json["patient_id"],
-        nickname: json["nickname"],
+        nickname: json["nickname"]==null?"":json["nickname"],
         photo: json["photo"],
-        clinic: json["clinic"],
-        clinic_id: json["clinic_id"],
+        clinic: json["clinic"]==null?"":json["clinic"],
+        clinic_id: json["clinic_id"]==null?"":json["clinic_id"],
         first_content: json["first_content"],
         last_content: json["last_content"],
-        first_thumb_path:json["first_thumb_path"],
-        last_thumb_path: json["last_thumb_path"],
-        comments_count: json["comments_count"],
-        views_count: json["views_count"],
+        first_thumb_path:json["first_thumb_path"]==null?"":json["first_thumb_path"],
+        last_thumb_path: json["last_thumb_path"]==null?"":json["last_thumb_path"],
+        comments_count: json["comments_count"]==null?0:json["comments_count"],
+        views_count: json["views_count"]==null?0:json["views_count"],
         updated_at: json["updated_at"],
         type: json["type"],
         categories: List<Category>.from(json["categories"].map((x) => Category.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>)

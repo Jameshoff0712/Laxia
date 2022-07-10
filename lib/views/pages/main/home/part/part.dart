@@ -229,11 +229,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                       issearch: true,
                                       model: partResult[1],
                                       isScrollable: isChildScrollable,
-                                      scrollTop: () {
-                                        setState(() {
-                                          isChildScrollable = false;
-                                        });
-                                      },
+                    
                                     ),
                                     Home_Clinic(
                                       issearch: true,

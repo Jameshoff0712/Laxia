@@ -31,9 +31,11 @@ class Doctor_Sub_Model extends Equatable {
   final int? favoriters_count;
   final bool? is_favorite;
   final int? views_count;
+  final double avg_rate;
 
   const Doctor_Sub_Model({
     required this.id,
+    required this.avg_rate,
     this.user_id,
     required this.clinic_id,
     required this.kata_name,
@@ -67,6 +69,7 @@ class Doctor_Sub_Model extends Equatable {
 
   factory Doctor_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Doctor_Sub_Model(
+        avg_rate:json['avg_rate'],
         id: json["id"],
         user_id: json["user_id"],
         clinic_id: json["clinic_id"] == null ? 0 : json["clinic_id"],

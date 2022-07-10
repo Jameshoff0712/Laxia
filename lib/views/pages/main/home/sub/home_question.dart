@@ -22,6 +22,7 @@ class Home_Question extends StatefulWidget {
 
 class _Home_QuestionState extends State<Home_Question> {
   String searchdata="";
+  String filter='';
   bool isloading = true,isexpanding=true,isend=false;
   int page = 1;
   bool expanded=false;
@@ -35,7 +36,7 @@ class _Home_QuestionState extends State<Home_Question> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getQuestionData(page: page,q: q);
+        final mid = await _con.getQuestionData(page: page,q: q,filter:filter);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -98,6 +99,7 @@ class _Home_QuestionState extends State<Home_Question> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
+                      onpress: (val){},
                       items: <String>["回答あり", "回答なし"],
                       hintText: "絞り込み",
                       horizontal: 60),
@@ -105,6 +107,16 @@ class _Home_QuestionState extends State<Home_Question> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
+                      onpress: (val){
+                        setState(() {
+                          filter=val;
+                          page=1;
+                          isend = false;
+                          isloading = true;
+                        });
+                        // print(val);
+                        getData(page: page.toString(), q: userProperties.searchtext);
+                      },
                       items: <String>["人気投稿順", "新着順"],
                       hintText: "並び替え",
                       horizontal: 60),
