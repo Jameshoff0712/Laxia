@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -28,7 +29,7 @@ class Home_Doctor extends StatefulWidget {
 }
 
 class _Home_DoctorState extends State<Home_Doctor> {
-  String searchdata = "";
+  String searchdata = "",city_id='';
   String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
@@ -90,11 +91,20 @@ class _Home_DoctorState extends State<Home_Doctor> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
         getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
+    if (city_id != prefyprovider.getSelectedCurePos.join(",")) {
+      init();
+      setState(() {
+        city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
       });
     }
     return Container(

@@ -36,8 +36,8 @@ class HomeController extends BaseController {
   Future<Menu> getMenuData({String per_page="10",required String city_id,required String filter, required String page, String? category_id="", String? clinic_id="", String? q=""}) async {
     return await api.getMenuData( per_page,  page,  category_id!,  clinic_id!,  q!,filter,city_id);
   }
-   Future<Diary> getDiaryData({String per_page="10", required String page, String? category_id="", String? clinic_id="", String? patient_id="", String? favorote="", String? orderby="", String? menu_id="", String? price_min="", String? price_max="", String? rate="", String? q="",required String filter}) async {
-    return await api.getDiaryData( per_page,  page,  category_id!,  patient_id!,  favorote!,  orderby!,  menu_id!,  price_min!,  price_max!,  rate!,  q!,filter);
+   Future<Diary> getDiaryData({required String city_id, String per_page="10", required String page, String? category_id="", String? clinic_id="", String? patient_id="", String? favorote="", String? orderby="", String? menu_id="", String? price_min="", String? price_max="", String? rate="", String? q="",required String filter}) async {
+    return await api.getDiaryData( per_page,  page,  category_id!,  patient_id!,  favorote!,  orderby!,  menu_id!,  price_min!,  price_max!,  rate!,  q!,filter,city_id);
   }
   Future<DiaryDetail_Model> getDiaryDetail({required int index}) async {
     return await api.getDiaryDetail(index);

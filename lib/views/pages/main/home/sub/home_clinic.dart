@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/clinic/clinic_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -34,15 +35,13 @@ class _Home_ClinicState extends State<Home_Clinic> {
   bool expanded = false;
   int index = -1;
   late int pref_id;
-  late int city_id;
+  String city_id='';
   List mid = [];
   late Clinic clinic_data;
   final _con = HomeController();
   Future<void> getData(
       {required String page,
-      String? pref_id = "",
-      String? city_id = "",
-      String? q = ""}) async {
+      String? pref_id = ""}) async {
     try {
       if (!isend) {
         if (!isloading)
@@ -50,7 +49,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
             isexpanding = false;
           });
         final mid = await _con.getclinicData(
-            page: page, pref_id: pref_id!, city_id: city_id!, q: q!,filter:filter);
+            page: page, pref_id: pref_id!, city_id: city_id, q: searchdata,filter:filter);
         setState(() {
           if (isloading) {
             clinic_data = mid;
@@ -93,11 +92,20 @@ class _Home_ClinicState extends State<Home_Clinic> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
-        getData(page: page.toString(), q: userProperties.searchtext);
+        getData(page: page.toString());
+      });
+    }
+    if (city_id != prefyprovider.getSelectedCurePos.join(",")) {
+      init();
+      setState(() {
+        city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
       });
     }
     return Container(
@@ -126,9 +134,10 @@ class _Home_ClinicState extends State<Home_Clinic> {
                               page=1;
                               isend = false;
                               isloading = true;
+                              searchdata=userProperties.searchtext;
                             });
                             // print(val);
-                            getData(page: page.toString(), q: userProperties.searchtext);
+                            getData(page: page.toString());
                       },
                       width: 123,
                       items: <String>["評価が高い順", "日記の多い順"],
@@ -156,7 +165,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                         if (scrollInfo.metrics.pixels ==
                             scrollInfo.metrics.maxScrollExtent) {
                           if (isexpanding) {
-                            getData(page: (page + 1).toString(), q: searchdata);
+                            getData(page: (page + 1).toString());
                             setState(() {
                               page += 1;
                             });

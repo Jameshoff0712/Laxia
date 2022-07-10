@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
@@ -109,7 +107,7 @@ class _Home_MenuState extends State<Home_Menu> {
     if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
       init();
       setState(() {
-        category_id = prefyprovider.getSelectedCurePos.join(",");
+        category_id = surgeryprovider.getSelectedCurePos.join(",");
         getData(page: page.toString());
       });
     }
