@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -28,7 +29,8 @@ class Home_Doctor extends StatefulWidget {
 }
 
 class _Home_DoctorState extends State<Home_Doctor> {
-  String searchdata = "";
+  String searchdata = "",city_id='';
+  String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
   bool expanded = false;
@@ -42,7 +44,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDoctorData(page: page, q: q!);
+        final mid = await _con.getDoctorData(page: page, q: q!,filter:filter);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -89,11 +91,20 @@ class _Home_DoctorState extends State<Home_Doctor> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
         getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
+    if (city_id != prefyprovider.getSelectedCurePos.join(",")) {
+      init();
+      setState(() {
+        city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
       });
     }
     return Container(
@@ -118,6 +129,16 @@ class _Home_DoctorState extends State<Home_Doctor> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
+                            onpress: (val){
+                              setState(() {
+                                filter=val;
+                                page=1;
+                                isend = false;
+                                isloading = true;
+                              });
+                              // print(val);
+                              getData(page: page.toString(), q: userProperties.searchtext);
+                            },
                             items: <String>["評価が高い順", "日記の多い順"],
                             hintText: "並び替え",
                             horizontal: 62),

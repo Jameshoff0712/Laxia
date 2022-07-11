@@ -90,34 +90,34 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) => PageViewWidget(
-                            //           onBoardingInstructions: [
-                            //             for (int j = 0;
-                            //                 j <
-                            //                     doctor_detail.["images"]
-                            //                         .length;
-                            //                 j++)
-                            //               doctor_detail.["images"][j]
-                            //           ],
-                            //           startindex: 1,
-                            //         )));
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => PageViewWidget(
                                       onBoardingInstructions: [
-                                        "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
-                                        "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
-                                        "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
-                                        "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg"
+                                        for (int j = 0;
+                                            j <
+                                                doctor_detail.images
+                                                    .length;
+                                            j++)
+                                          doctor_detail.images[j].path
                                       ],
                                       startindex: 1,
                                     )));
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) => PageViewWidget(
+                            //           onBoardingInstructions: [
+                            //             "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-1.jpg",
+                            //             "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-2.jpg",
+                            //             "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-3.jpg",
+                            //             "https://res.cloudinary.com/ladla8602/image/upload/v1611921105/DCA/doctor-4.jpg"
+                            //           ],
+                            //           startindex: 1,
+                            //         )));
                           },
                           child: Detail_Image(
                             isDoctor: true,
                             insidestar: true,
                             height: 330,
-                            imageList: [], // doctor_detail.["images"],
+                            imageList: doctor_detail.images,
                             onPressUpRight: () {},
                             onPressBack: () {
                               Navigator.of(context).pop();
@@ -152,8 +152,8 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                       clinic: doctor_detail.clinic == null
                                           ? ""
                                           : doctor_detail.clinic.name!,
-                                      name: doctor_detail.doctor.name!,
-                                      mark: 4.5
+                                      name: doctor_detail.doctor.hira_name,
+                                      mark: doctor_detail.doctor.avg_rate
                                           .toString(), //doctor_detail.doctor.mark,
                                       post: doctor_detail.doctor.job_name ==
                                               null
@@ -179,7 +179,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                         }
                                       ],
                                       items: [
-                                        0,
+                                        doctor_detail.diaries.length,
                                         doctor_detail.counselings.length,
                                         doctor_detail.cases.length
                                       ],

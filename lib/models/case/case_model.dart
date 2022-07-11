@@ -10,7 +10,7 @@ class Case extends Equatable {
   final String last_page_url;
   final String? next_page_url;
   final String path;
-  final int per_page;
+  // final int per_page;
   final String? prev_page_url;
   final int to;
   final int total;
@@ -24,7 +24,7 @@ class Case extends Equatable {
       required this.last_page_url,
       required this.next_page_url,
       required this.path,
-      required this.per_page,
+      // required this.per_page,
       required this.prev_page_url,
       required this.to,
       required this.total});
@@ -39,7 +39,7 @@ class Case extends Equatable {
         last_page_url: json["last_page_url"],
         next_page_url: json["next_page_url"],
         path: json["path"],
-        per_page: int.parse(json["per_page"].toString()) ,
+        // per_page: int.parse(json["per_page"].toString()) ,
         prev_page_url: json["prev_page_url"],
         to: json["to"],
         total: json["total"]);
@@ -54,7 +54,7 @@ class Case extends Equatable {
         last_page_url,
         next_page_url,
         path,
-        per_page,
+        // per_page,
         prev_page_url,
         to,
         total

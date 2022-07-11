@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/diary_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -31,6 +32,7 @@ class Home_Diary extends StatefulWidget {
 }
 
 class _Home_DiaryState extends State<Home_Diary> {
+  String filter='',city_id='';
   String searchdata = "";
   int page = 0;
   bool isend = false, isloading = true, isexpanding = true;
@@ -38,14 +40,14 @@ class _Home_DiaryState extends State<Home_Diary> {
   int index = -1;
   late Diary diary_data;
   final _con = HomeController();
-  Future<void> getData({required String page, String? q = ""}) async {
+  Future<void> getData({required String page}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDiaryData(page: page, q: q);
+        final mid = await _con.getDiaryData(page: page, q: searchdata,filter:filter,city_id:city_id);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -92,11 +94,20 @@ class _Home_DiaryState extends State<Home_Diary> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
-        getData(page: page.toString(), q: userProperties.searchtext);
+        getData(page: page.toString());
+      });
+    }
+    if (city_id != prefyprovider.getSelectedCurePos.join(",")) {
+      init();
+      setState(() {
+        city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
       });
     }
     return Container(
@@ -129,6 +140,16 @@ class _Home_DiaryState extends State<Home_Diary> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
+                            onpress: (val){
+                              setState(() {
+                                page=1;
+                                isend = false;
+                                filter=val;
+                                isloading = true;
+                              });
+                              // print(val);
+                              getData(page: page.toString());
+                            },
                             items: <String>["人気投稿順", "満足度が高い順", "新着順"],
                             hintText: "並び替え",
                             horizontal: 32),
@@ -145,7 +166,7 @@ class _Home_DiaryState extends State<Home_Diary> {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
                 if (isexpanding && !isend) {
-                  getData(page: (page + 1).toString(), q: searchdata);
+                  getData(page: (page + 1).toString());
                   setState(() {
                     page += 1;
                   });

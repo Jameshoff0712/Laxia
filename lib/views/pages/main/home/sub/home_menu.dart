@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/menu/menu_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -12,7 +14,6 @@ import 'package:provider/provider.dart';
 
 class Home_Menu extends StatefulWidget {
   final bool? isScrollable, isdrawer;
-  final VoidCallback? scrollTop;
   final bool issearch;
   final List? model, last;
   Home_Menu(
@@ -20,7 +21,6 @@ class Home_Menu extends StatefulWidget {
       this.model,
       required this.issearch,
       this.isScrollable = true,
-      this.scrollTop = null,
       this.isdrawer = true,
       this.last})
       : super(key: key);
@@ -30,21 +30,22 @@ class Home_Menu extends StatefulWidget {
 }
 
 class _Home_MenuState extends State<Home_Menu> {
-  String searchdata = "";
+  String searchdata = "",city_id='',category_id="";
+  String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
   bool expanded = false;
   int index = -1;
   late Menu menu_data;
   final _con = HomeController();
-  Future<void> getData({required String page, required q}) async {
+  Future<void> getData({required String page}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getMenuData(page: page, q: q);
+        final mid = await _con.getMenuData(page: page, q: searchdata,filter:filter,city_id:city_id,category_id:category_id);
         setState(() {
           if (isloading) {
             menu_data = mid;
@@ -77,7 +78,7 @@ class _Home_MenuState extends State<Home_Menu> {
 
   @override
   void initState() {
-    getData(page: page.toString(), q: "");
+    getData(page: page.toString());
     super.initState();
   }
 
@@ -85,11 +86,29 @@ class _Home_MenuState extends State<Home_Menu> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+  SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+  PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
-        getData(page: page.toString(), q: userProperties.searchtext);
+        getData(page: page.toString());
+      });
+    }
+    if (city_id != prefyprovider.getSelectedCurePos.join(",")) {
+      init();
+      setState(() {
+        city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
+      });
+    }
+    if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
+      init();
+      setState(() {
+        category_id = surgeryprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
       });
     }
     return Container(
@@ -121,7 +140,18 @@ class _Home_MenuState extends State<Home_Menu> {
                       ),
                       Expanded(
                         flex: 3,
-                        child: Dropdownbutton(items: <String>[
+                        child: Dropdownbutton(
+                          onpress: (val){
+                            setState(() {
+                              filter=val;
+                              page=1;
+                              isend = false;
+                              isloading = true;
+                            });
+                            // print(val);
+                            getData(page: page.toString());
+                          },
+                          items: <String>[
                           "日記数が多い順",
                           "評価が高い順",
                           "値段が高い順",
@@ -140,7 +170,7 @@ class _Home_MenuState extends State<Home_Menu> {
                 if (scrollInfo.metrics.pixels ==
                     scrollInfo.metrics.maxScrollExtent) {
                   if (isexpanding) {
-                    getData(page: (page + 1).toString(), q: searchdata);
+                    getData(page: (page + 1).toString());
                     setState(() {
                       page += 1;
                     });
@@ -259,7 +289,7 @@ class _Home_MenuState extends State<Home_Menu> {
                                   price: menu_data.data[index].price == 0
                                       ? ""
                                       : menu_data.data[index].price!.toString(),
-                                  clinic: menu_data.data[index].name);
+                                  clinic: menu_data.data[index].clinic == null ? '' : menu_data.data[index].clinic!.name!);
                             }),
                     Container(
                       height: isexpanding ? 0 : 100,

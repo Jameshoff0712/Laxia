@@ -32,9 +32,9 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/search?q="+q+"?perpage="+perpage, token);
     return Home_Search_Model.fromJson(res.data);
   }
-  Future<Clinic> getclinicData(String per_page, String page, String q, String favorite, String pref_id, String city_id) async {
+  Future<Clinic> getclinicData(String per_page, String page, String q, String favorite, String pref_id, String city_id,String filter) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/clinics?per_page="+per_page+"&page="+page+"&q="+q+"&favorite="+favorite+"&pref_id="+pref_id +"&city_id="+city_id, token);
+    final res = await Api.get("$apiUrl/clinics?per_page="+per_page+"&page="+page+"&q="+q+"&favorite="+favorite+"&pref_id="+pref_id +"&city_id="+city_id+"&filter="+filter, token);
     return Clinic.fromJson(res.data["clinics"]);
   }
   Future<ClinicDetail_Model> getClinicDetail(int index) async {
@@ -42,14 +42,14 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/clinics/"+index.toString(), token);
     return ClinicDetail_Model.fromJson(res.data["clinic"]);
   }
-  Future<Menu> getMenuData(String per_page, String page, String category_id, String clinic_id, String q) async {
+  Future<Menu> getMenuData(String per_page, String page, String category_id, String clinic_id, String q,String filter,String city_id) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/menus?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&clinic_id="+clinic_id+"&q="+q, token);
+    final res = await Api.get("$apiUrl/menus?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&clinic_id="+clinic_id+"&q="+q+"&filter="+filter+"&city_id="+city_id, token);
     return Menu.fromJson(res.data["menus"]);
   }
-  Future<Diary> getDiaryData(String per_page, String page, String category_id, String patient_id, String favorote, String orderby, String menu_id, String price_min, String price_max, String rate, String q) async {
+  Future<Diary> getDiaryData(String per_page, String page, String category_id, String patient_id, String favorote, String orderby, String menu_id, String price_min, String price_max, String rate, String q,String filter,String city_id) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/diaries?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&favorote="+favorote+"&orderby="+orderby+"&menu_id="+menu_id+"&price_min="+price_min+"&price_max="+price_max+"&rate="+rate, token);
+    final res = await Api.get("$apiUrl/diaries?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&favorote="+favorote+"&orderby="+orderby+"&menu_id="+menu_id+"&price_min="+price_min+"&price_max="+price_max+"&rate="+rate+"&filter="+filter+"&city_id="+city_id, token);
       //  print(res.data["data"]["diaries"]);
     return Diary.fromJson(res.data["data"]["diaries"]);
   }
@@ -58,9 +58,9 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/diaries/"+index.toString(), token);
     return DiaryDetail_Model.fromJson(res.data["data"]["diary"]);
   }
-  Future<Doctor> getDoctorData(String per_page, String page, String favorite, String clinic_id, String q) async {
+  Future<Doctor> getDoctorData(String per_page, String page, String favorite, String clinic_id, String q,String filter) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/doctors?per_page="+per_page+"&page="+page+"&favorite="+favorite+"&clinic_id="+clinic_id+"&q="+q, token);
+    final res = await Api.get("$apiUrl/doctors?per_page="+per_page+"&page="+page+"&favorite="+favorite+"&clinic_id="+clinic_id+"&q="+q+"&filter="+filter, token);
     return Doctor.fromJson(res.data["doctors"]);
   }
   Future<DoctorDetail_Model> getDoctorDetail(int index) async {
@@ -84,9 +84,9 @@ class HomeApi extends Api {
     }
     return false;
   }
-  Future<Case> getCaseData(String per_page, String page, String clinic_id, String doctor_id, String q) async {
+  Future<Case> getCaseData(String per_page, String page, String clinic_id, String doctor_id, String q,String filter) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/cases?per_page="+per_page+"&page="+page+"&clinic_id="+clinic_id+"&doctor_id="+doctor_id+"&q="+q, token);
+    final res = await Api.get("$apiUrl/cases?per_page="+per_page+"&page="+page+"&clinic_id="+clinic_id+"&doctor_id="+doctor_id+"&q="+q+"&filter="+filter, token);
     // print(res.data["cases"]);
     return Case.fromJson(res.data["cases"]);
   }
@@ -95,9 +95,9 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/cases/"+index.toString(), token);
     return Case_Sub_Model.fromJson(res.data["case"]);
   }
-   Future<Counceling> getCouncelingData(String per_page, String page, String category_id, String patient_id, String favorote, String pref_id, String city, String orderby) async {
+   Future<Counceling> getCouncelingData(String per_page, String page, String category_id, String patient_id, String favorote, String pref_id, String city, String orderby, String filter) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/counselings?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&favorote="+favorote+"&pref_id="+pref_id+"&city="+city+"&orderby="+orderby, token);
+    final res = await Api.get("$apiUrl/counselings?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&favorote="+favorote+"&pref_id="+pref_id+"&city="+city+"&orderby="+orderby+"&filter="+filter, token);
     // print(res.data["data"]["counselings"]);
     return Counceling.fromJson(res.data["data"]["counselings"]);
   }
@@ -106,7 +106,7 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/counselings/"+index.toString(), token);
     return CouncelingDetail_Model.fromJson(res.data["data"]["counseling"]);
   }
-  Future<Question> getQuestionData(String per_page, String page, String category_id, String patient_id, String favorote, String pref_id, String city, String orderby) async {
+  Future<Question> getQuestionData(String per_page, String page, String category_id, String patient_id, String favorote, String pref_id, String city, String orderby,String filter) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/questions?per_page="+per_page+"&page="+page+"&category_id="+category_id+"&patient_id="+patient_id+"&pref_id="+pref_id+"&city="+city+"&orderby="+orderby, token);
     //  print(res.data["data"]["questions"]);
@@ -119,7 +119,7 @@ class HomeApi extends Api {
   }
   Future<Comment> getCommentList(int index,String domain,String page, String per_page) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/$domain/"+index.toString()+"/comments?per_page=$per_page&page=$page",token);
+    final res = await Api.get("$apiUrl/$domain/"+index.toString()+"/comments?per_page="+per_page+"&page="+page,token);
     return Comment.fromJson(res.data["data"]);
   }
   Future<Comment_Sub_Model> postComment(int index,String domain,String comment, String? parent_id) async {

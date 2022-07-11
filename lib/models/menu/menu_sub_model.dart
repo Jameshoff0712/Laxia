@@ -13,7 +13,7 @@ class Menu_Sub_Model extends Equatable {
   final String? guarantee;
   final int? treat_time;
   final int? basshi;
-  final String? hospital_visit;
+  final int? hospital_visit;
   final int? hare;
   final int? pain;
   final int? bleeding;
