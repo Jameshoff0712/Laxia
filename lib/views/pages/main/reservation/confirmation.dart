@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/reserve_controller.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/reserve_post_model.dart';
+import 'package:laxia/views/pages/main/reservation/reservation.dart';
+
+import '../../../../models/case/menu_sub_model.dart';
+import '../../../../models/clinic/clinic_sub_model.dart';
 
 class Confirmation extends StatefulWidget {
-  final String doctor;
+  final Clinic_Sub_Model clinic;
+  final Menu_Sub_Model? treat;
+  final Doctor_Sub_Model doctor;
   final String wantedValue;
-  final String todayValue;
+  final option_item todayValue;
   final List<String> list_ReservedTime;
   final List<Map> list_ReservedRealTime;
   final String firstName;
@@ -20,6 +27,8 @@ class Confirmation extends StatefulWidget {
   final int usedPoints;
   const Confirmation({
     Key? key,
+    required this.clinic,
+    this.treat,
     required this.doctor,
     required this.wantedValue,
     required this.todayValue,
@@ -47,11 +56,11 @@ class _ConfirmationState extends State<Confirmation> {
   @override
   initState() {
     rsv = new ReservePost(
-      clinic_id: 1, //widget.clinic_id
-      opertion_type: 0, //widget.operation_type
-      doctor_id: 0, //widget.doctor_id
+      clinic_id: widget.clinic.id,
+      opertion_type: widget.treat?.id,
+      doctor_id: widget.doctor.id,
       question_content: widget.wantedValue,
-      decision_type_today: 0, //widget.todayValue,
+      decision_type_today: widget.todayValue.id,
       list_visitDates: widget.list_ReservedRealTime,
       firstName: widget.firstName,
       secondName: widget.secondName,
@@ -63,6 +72,7 @@ class _ConfirmationState extends State<Confirmation> {
   }
 
   Future<void> confirm(BuildContext context) async {
+    print(rsv);
     try {
       await _con.reserve(rsv);
       Navigator.of(context).pushNamed("/Completion");
@@ -119,11 +129,11 @@ class _ConfirmationState extends State<Confirmation> {
                           color: Color.fromARGB(255, 243, 243, 243)))),
             ),
           ),
-          _buildConfirmRow('クリニック', '湘南美容クリニック 銀座院'),
-          _buildConfirmRow('施術', 'クイックコスメティーク･ダブルNeo'),
-          _buildConfirmRow('ご希望のドクター', widget.doctor),
+          _buildConfirmRow('クリニック', widget.clinic.name),
+          _buildConfirmRow('施術', widget.treat?.name),
+          _buildConfirmRow('ご希望のドクター', widget.doctor.hira_name),
           _buildConfirmRow('ご相談・ご要望', widget.wantedValue),
-          _buildConfirmRow('当日施術', widget.todayValue),
+          _buildConfirmRow('当日施術', widget.todayValue.name),
           Container(
             decoration: BoxDecoration(
                 border: Border(

@@ -21,8 +21,8 @@ class ReservationApi extends Api {
         <String, String>{
           "rsv[clinic_id]": rsv.clinic_id.toString(),
           // rsv.opertion_type
-          "rsv[operation_type]": rsv.opertion_type.toString(),
-          "rsv[doctor_id]": "",//rsv.doctor_id.toString(),
+          "rsv[type]": rsv.opertion_type.toString(),
+          "rsv[doctor_id]": rsv.doctor_id.toString(),
           "rsv[note]": rsv.question_content,
           "rsv[hope_treat]": rsv.decision_type_today.toString(),
           for (int i = 0; i < rsv.list_visitDates.length; i++)
@@ -42,7 +42,6 @@ class ReservationApi extends Api {
           "info[phone_number]": rsv.mobileNumber,
           "rsv[use_point]": rsv.usedPoint.toString(),
 
-          "rsv[type]": "5"
         },
         token);
     if (res != null) {

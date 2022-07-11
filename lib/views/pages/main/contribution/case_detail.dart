@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/case/case_sub_model.dart';
 import 'package:laxia/views/pages/main/contribution/case_media_list.dart';
+import 'package:laxia/views/pages/main/reservation/reservation.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 
@@ -27,7 +28,7 @@ class _CaseDetailState extends State<CaseDetail> {
       final mid = await _con.getCaseDetail(index: index);
       setState(() {
         case_detail = mid;
-        //  print(case_detail);
+        print(case_detail.menus);
         isloading = false;
       });
     } catch (e) {
@@ -154,7 +155,10 @@ class _CaseDetailState extends State<CaseDetail> {
                           ),
                         ],
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Reservation(clinic_id: case_detail.clinic_id!, treat: case_detail.menus![0] )));
+                      },
                     ),
                   ),
                 ),

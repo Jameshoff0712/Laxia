@@ -12,6 +12,7 @@ import 'package:laxia/views/pages/main/home/detail/clinic_medialist.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_pos.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_sub_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
+import 'package:laxia/views/pages/main/reservation/reservation.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/detail_image.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
@@ -1080,7 +1081,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           ],
                         ),
                         onPressed: () {
-                          Navigator.of(context).pushNamed("/Reservation");
+                          Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Reservation(clinic_id: widget.index, treat: null, )));
                         },
                       ),
                     ],
