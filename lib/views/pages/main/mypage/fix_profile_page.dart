@@ -26,6 +26,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
   File? _image;
   final _picker = ImagePicker();
   TextEditingController _conDate = TextEditingController();
+  TextEditingController _conSurgery = TextEditingController();
 
   Future<void> _openImagePicker() async {
     final XFile? pickedImage =
@@ -50,6 +51,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
 
   @override
   void initState() {
+    _conSurgery.text=_enteredText;
     super.initState();
     readCities();
   }
@@ -58,6 +60,13 @@ class _FixProfilePageState extends State<FixProfilePage> {
   Widget build(BuildContext context) {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
+    if(_enteredText!= surgeryProvider.selectedCurePosStr.join(' ')){
+      setState(() {
+        _enteredText=surgeryProvider.selectedCurePosStr.join(' ');
+         _conSurgery.text=_enteredText;
+
+      });
+    }
     // TODO: implement build
     return _cities.isNotEmpty
         ? Container(
@@ -67,9 +76,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
               appBar: AppBar(
                 backgroundColor: Helper.whiteColor,
                 leading: IconButton(
-                  splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     onPressed: () {
+                      _conSurgery.text = '';
+                      surgeryProvider.selectedCurePosStr.clear();
                       Navigator.pop(context);
                     },
                     icon: const Icon(
@@ -83,7 +94,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 16,
-                      
                       color: Helper.titleColor,
                     ),
                   ),
@@ -99,7 +109,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 14,
-                          
                           color: Helper.mainColor,
                         ),
                       ),
@@ -161,7 +170,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 11,
-                              
                               color: Helper.mainColor,
                             ),
                           ),
@@ -191,7 +199,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 14,
-                                            
                                             color:
                                                 Color.fromARGB(255, 18, 18, 18),
                                           ),
@@ -203,7 +210,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
-                                        
                                         color: Color.fromARGB(255, 18, 18, 18)),
                                     keyboardType: TextInputType.datetime,
                                     onTap: () {
@@ -232,7 +238,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                       hintStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14,
-                                          
                                           color: Helper.txtColor),
                                       focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
@@ -246,12 +251,14 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                   ),
                                   Align(
                                     alignment: Alignment.centerLeft,
-                                    child: Text('生年月日は非公開です。年代のみ公開されます。',
-                                    style: TextStyle(
+                                    child: Text(
+                                      '生年月日は非公開です。年代のみ公開されます。',
+                                      style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 11,
-                                          
-                                          color: Color.fromARGB(255, 156, 161, 161)),),
+                                          color: Color.fromARGB(
+                                              255, 156, 161, 161)),
+                                    ),
                                   )
                                 ],
                               ),
@@ -264,10 +271,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                 chosenValue: "女性",
                               ),
                               InputTextWidget(
-                                  labelName: "自己紹介",
-                                  placeHolder: "",
-                                  maxLegnth: "140",
-                                  maxlines: 2,),
+                                labelName: "自己紹介",
+                                placeHolder: "",
+                                maxLegnth: "140",
+                                maxlines: 2,
+                              ),
                               SizedBox(
                                 height: 10.0,
                               ),
@@ -286,7 +294,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 14,
-                                    
                                     color: Color.fromARGB(255, 18, 18, 18),
                                   ),
                                 ),
@@ -294,42 +301,57 @@ class _FixProfilePageState extends State<FixProfilePage> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Container(
-                                decoration: BoxDecoration(color: Colors.white),
-                                child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      18.0, 14.0, 18.0, 14.0),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            surgeryProvider
-                                                    .selectedCurePos.isEmpty
-                                                ? "選択してください"
-                                                : surgeryProvider
-                                                    .getSelectedCurePosStr,
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontWeight: FontWeight.normal,
-                                                fontSize: 16),
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            surgeryProvider.setButtonText("次へ");
-                                            Navigator.of(context)
-                                                .pushNamed("/SelectSurgery");
-                                          },
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                      ]),
+                              TextFormField(
+                                controller: _conSurgery,
+                                onTap: () {
+                                  surgeryProvider.selectedCurePosStr.clear();
+                                  surgeryProvider.setButtonText("次へ");
+                                  Navigator.of(context)
+                                      .pushNamed("/SelectSurgery");
+                                  // setState(() {
+                                  //   isUsed = true;
+                                  // });
+                                },
+                                
+                                validator: (v) {
+                                  if (v!.isEmpty) return '入力してください';
+                                  // final regex = RegExp('^[1-9]+[0-9]*');
+                                  // if (!regex.hasMatch(v)) return 'Enter a valid point value';
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  // filled: true,
+                                  // fillColor: Helper.whiteColor.withOpacity(0.2),
+                                  contentPadding:
+                                      EdgeInsets.symmetric(vertical: 12),
+                                  hintText: '今気になってる施術や部位を選択',
+                                  counterText: "",
+                                  hintStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: Helper.txtColor),
+                                  focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          // color: Colors.black,
+                                          color: Helper.authHintColor,
+                                          width: 1.0)),
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          // color: Colors.black,
+                                          color: Helper.authHintColor,
+                                          width: 1.0)),
+                                  border: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          // color: Colors.black,
+                                          color: Helper.authHintColor,
+                                          width: 1.0)),
                                 ),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 18, 18, 18)),
                               ),
+
                             ],
                           ),
                         )
