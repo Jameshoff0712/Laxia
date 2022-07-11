@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/search_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
@@ -13,15 +15,17 @@ class NarrowDownn extends StatefulWidget {
 
 class _NarrowDownnState extends State<NarrowDownn> {
   SfRangeValues _currentRangeValues = SfRangeValues(0, 100);
-  List<bool> selectstar = [
-    false,
-    false,
-    false,
-    false,
-    false,
+  List<int> selectstar = [
+    6,
+    6,
+    6,
+    6,
+    6,
   ];
   @override
   Widget build(BuildContext context) {
+    SearchProvider searchProvider =
+        Provider.of<SearchProvider>(context, listen: true);
     return SafeArea(
       child: Container(
         child: Padding(
@@ -74,7 +78,6 @@ class _NarrowDownnState extends State<NarrowDownn> {
                               fontFamily: Helper.headFontFamily,
                               color: Helper.titleColor,
                               fontSize: 16,
-                              
                               fontWeight: FontWeight.w700)),
                       SizedBox(height: 20),
                       Row(
@@ -83,9 +86,19 @@ class _NarrowDownnState extends State<NarrowDownn> {
                           for (int i = 0; i < 5; i++)
                             Star(
                                 i,
-                                selectstar[i] == true
+                                selectstar[i] == i+1
                                     ? Helper.starColor
-                                    : Helper.blackColor),
+                                    : Helper.blackColor,()=>{
+                                      if(selectstar[i]==6){
+                                        setState(() {
+                                          selectstar[i]= i+1;
+                                        })
+                                      }else {
+                                        setState(() {
+                                          selectstar[i]= 6;
+                                        })
+                                      }
+                                    }),
                         ],
                       ),
                     ],
@@ -120,6 +133,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                 SizedBox(
                   width: 8,
                 ),
+                
                 Text("-",
                     style: TextStyle(
                         color: Helper.titleColor,
@@ -224,7 +238,12 @@ class _NarrowDownnState extends State<NarrowDownn> {
             ),
             Center(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  searchProvider.setminprice(_currentRangeValues.start.round());
+                  searchProvider.setmaxprice(_currentRangeValues.end.round());
+                  searchProvider.setMark(selectstar);
+                  Navigator.pop(context);
+                },
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -256,13 +275,10 @@ class _NarrowDownnState extends State<NarrowDownn> {
   Widget Star(
     int index,
     Color color,
+    VoidCallback onpress
   ) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectstar[index] = !selectstar[index];
-        });
-      },
+      onTap: onpress,
       child: Container(
         decoration: BoxDecoration(color: Color.fromARGB(255, 245, 245, 245)),
         width: 60,

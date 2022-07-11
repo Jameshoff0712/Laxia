@@ -5,6 +5,7 @@ import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/diary_model.dart';
 import 'package:laxia/provider/pref_provider.dart';
+import 'package:laxia/provider/search_provider.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -39,6 +40,14 @@ class _Home_DiaryState extends State<Home_Diary> {
   bool expanded = true;
   int index = -1;
   late Diary diary_data;
+  List<int> selectstar = [
+    6,
+    6,
+    6,
+    6,
+    6,
+  ];
+  int minprice=0,maxprice=0,year=10;
   final _con = HomeController();
   Future<void> getData({required String page}) async {
     try {
@@ -47,7 +56,7 @@ class _Home_DiaryState extends State<Home_Diary> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDiaryData(page: page, q: searchdata,filter:filter,city_id:city_id);
+        final mid = await _con.getDiaryData(page: page, q: searchdata,filter:filter,city_id:city_id,price_min:minprice.toString(),price_max:maxprice.toString(),rate:selectstar.join(","),year:year);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -96,6 +105,8 @@ class _Home_DiaryState extends State<Home_Diary> {
         Provider.of<UserProvider>(context, listen: true);
     PrefProvider prefyprovider =
         Provider.of<PrefProvider>(context, listen: true);
+    SearchProvider searchprovider =
+        Provider.of<SearchProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
@@ -107,6 +118,16 @@ class _Home_DiaryState extends State<Home_Diary> {
       init();
       setState(() {
         city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
+      });
+    }
+    if (!selectstar.any((item) => searchprovider.mark.contains(item))|| minprice!=searchprovider.minprice||maxprice!=searchprovider.maxprice||year!=searchprovider.year) {
+      init();
+      setState(() {
+        selectstar=searchprovider.mark;
+        minprice=searchprovider.minprice;
+        maxprice=searchprovider.maxprice;
+        year=searchprovider.year;
         getData(page: page.toString());
       });
     }
