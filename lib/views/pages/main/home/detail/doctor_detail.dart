@@ -487,15 +487,15 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                         : doctor_detail
                                             .cases[index].doctor!.name!,
                                 image2:
-                                    doctor_detail.cases[index].images!.isEmpty
+                                    doctor_detail.cases[index].afterimage!.isEmpty
                                         ? "http://error.png"
                                         : doctor_detail
-                                            .cases[index].images![0].path,
+                                            .cases[index].afterimage![0].path,
                                 image1:
-                                    doctor_detail.cases[index].images!.isEmpty
+                                    doctor_detail.cases[index].beforeimage!.isEmpty
                                         ? "http://error.png"
                                         : doctor_detail
-                                            .cases[index].images![1].path,
+                                            .cases[index].beforeimage![0].path,
                                 eyes: doctor_detail
                                             .cases[index].views_count ==
                                         null

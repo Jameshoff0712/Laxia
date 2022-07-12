@@ -106,7 +106,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
                               imageUrl:
-                                  counceling_detail.counceling.patient_photo,
+                                  counceling_detail.counceling.patient_photo==null?"https://error.png":counceling_detail.counceling.patient_photo,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,
@@ -429,7 +429,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     Container(
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
-                        "title is missed", //counceling_detail.counceling.,
+                        counceling_detail.counceling.title,
                         style: TextStyle(
                             color: Helper.titleColor,
                             fontSize: 18,
@@ -473,7 +473,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     ),
                     CounselShort_Card(
                       clinic: counceling_detail.clinic.name!,
-                      doctor: counceling_detail.doctor.name!,
+                      doctor: counceling_detail.doctor.kata_name,
                       onclinic: () {},
                       ondoctor: () {},
                     ),
@@ -517,9 +517,9 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      // PhotoCarouselWidget(
-                                      //   bRemove:false,
-                                      //     ImageList: counceling_detail.counceling.medias![0], onRemove: (int ) {  },)
+                                      PhotoCarouselWidget(
+                                        bRemove:false,
+                                          ImageList: counceling_detail.counceling.media_self, onRemove: (int ) {  },)
                                     ],
                                   ),
                                 ),
@@ -549,9 +549,9 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      // PhotoCarouselWidget(
-                                      //   bRemove: false,
-                                      //     ImageList: counceling_detail.counceling.medias![1], onRemove: (int ) {  },)
+                                      PhotoCarouselWidget(
+                                        bRemove:false,
+                                          ImageList: counceling_detail.counceling.media_like, onRemove: (int ) {  },)
                                     ],
                                   ),
                                 ),
@@ -581,9 +581,9 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      // PhotoCarouselWidget(
-                                      //   bRemove: false,
-                                      //     ImageList: counceling_detail.counceling.medias![2], onRemove: (int ) {  },)
+                                      PhotoCarouselWidget(
+                                        bRemove:false,
+                                          ImageList: counceling_detail.counceling.media_dislike, onRemove: (int ) {  },)
                                     ],
                                   ),
                                 ),
@@ -601,14 +601,14 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            counceling_detail.counceling.reason!,
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
                             "このクリニック、ドクターを選んだ理由は？", //counceling_detail.counceling.reason!,
                             style: TextStyle(
                                 color: Helper.extraGrey, fontSize: 14),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            counceling_detail.counceling.reason!,
+                            style: TextStyle(fontSize: 15),
                           ),
                         ],
                       ),
@@ -677,7 +677,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     ),
                     CounselShort_Card(
                       clinic: counceling_detail.clinic.name!,
-                      doctor: counceling_detail.doctor.name!,
+                      doctor: counceling_detail.doctor.kata_name,
                       onclinic: () {},
                       ondoctor: () {},
                     ),

@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/case/case_sub_model.dart';
 import 'package:laxia/views/pages/main/contribution/case_media_list.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 
@@ -197,8 +198,8 @@ class _CaseDetailState extends State<CaseDetail> {
                                       borderRadius: BorderRadius.circular(30),
                                       child: CachedNetworkImage(
                                         fit: BoxFit.fill,
-                                        imageUrl:
-                                            "http://error.png", // case_data.data[index]["image1"],
+                                        imageUrl:case_detail.beforeimage!.isEmpty?'https://error.png':
+                                            case_detail.beforeimage![0].path,
                                         placeholder: (context, url) =>
                                             Image.asset(
                                           'assets/images/loading.gif',
@@ -245,8 +246,8 @@ class _CaseDetailState extends State<CaseDetail> {
                                       borderRadius: BorderRadius.circular(30),
                                       child: CachedNetworkImage(
                                         fit: BoxFit.fill,
-                                        imageUrl:
-                                            "http://error.png", // case_data.data[index]["image2"],
+                                        imageUrl:case_detail.afterimage!.isEmpty?'https://error.png':
+                                            case_detail.afterimage![0].path,
                                         placeholder: (context, url) =>
                                             Image.asset(
                                           'assets/images/loading.gif',
@@ -337,13 +338,14 @@ class _CaseDetailState extends State<CaseDetail> {
                         style: TextStyle(color: Helper.darkGrey, fontSize: 14),
                       ),
                     ),
-                    // CureMethod_Card(
-                    //     image: case_detail.["cure_method"][0]["image"],
-                    //     heading: case_detail.["cure_method"][0]["heading"],
-                    //     price: case_detail.["cure_method"][0]["price"],
-                    //     tax: case_detail.["cure_method"][0]["tax"],
-                    //     clinic: case_detail.["cure_method"][0]["clinic"],
-                    //     doctor: case_detail.["cure_method"][0]["doctor"]),
+                    CureMethod_Card(
+                        image: case_detail.menus![0].photo!,
+                        heading: case_detail.menus![0].description!,
+                        price: case_detail.menus![0].price.toString(),
+                        tax: '（税込）',
+                        doctor: case_detail.doctor==null?"":case_detail.doctor!.kata_name, 
+                        clinic: case_detail.clinic==null?"":case_detail.clinic!.name!,
+                    ),
                     Container(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       child: Text(
@@ -354,67 +356,153 @@ class _CaseDetailState extends State<CaseDetail> {
                             fontFamily: Helper.headFontFamily),
                       ),
                     ),
-                    // Container(
-                    //   padding: const EdgeInsets.only(
-                    //     top: 20,
-                    //   ),
-                    //   margin: EdgeInsets.only(
-                    //     bottom: 10,
-                    //   ),
-                    //   decoration: BoxDecoration(
-                    //       color: Helper.lightGrey,
-                    //       borderRadius: BorderRadius.circular(6.0)),
-                    //   child: Column(
-                    //     children: [
-                    //       for (int i = 0;
-                    //           i < case_detail.["menu_info"].length;
-                    //           i++)
-                    //         Column(
-                    //           children: [
-                    //             Padding(
-                    //               padding: const EdgeInsets.only(
-                    //                 left: 15,
-                    //               ),
-                    //               child: Align(
-                    //                 alignment: Alignment.centerLeft,
-                    //                 child: Row(
-                    //                   children: [
-                    //                     SvgPicture.asset(
-                    //                       "assets/icons/menubar/tag_fill.svg",
-                    //                       width: 12,
-                    //                       height: 12,
-                    //                     ),
-                    //                     SizedBox(
-                    //                       width: 4,
-                    //                     ),
-                    //                     Text(
-                    //                       case_detail.["menu_info"][i]["title"],
-                    //                       style: defaultTextStyle(
-                    //                           Helper.titleColor, FontWeight.w500,
-                    //                           size: 14.0),
-                    //                     ),
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //             Padding(
-                    //               padding: const EdgeInsets.only(
-                    //                   left: 25, top: 10, right: 20, bottom: 20),
-                    //               child: Align(
-                    //                 alignment: Alignment.centerLeft,
-                    //                 child: Text(
-                    //                   case_detail.["menu_info"][i]["content"],
-                    //                   style: defaultTextStyle(
-                    //                       Helper.titleColor, FontWeight.w500,
-                    //                       size: 12.0),
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //     ],
-                    //   ),
-                    // ),
+                    Container(
+                      padding: const EdgeInsets.only(
+                        top: 20,
+                      ),
+                      margin: EdgeInsets.only(
+                        bottom: 10,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Helper.lightGrey,
+                          borderRadius: BorderRadius.circular(6.0)),
+                      child: Column(
+                        children: [
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 15,
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "assets/icons/menubar/tag_fill.svg",
+                                          width: 12,
+                                          height: 12,
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Text( 
+                                          "施術の解説",
+                                          style: defaultTextStyle(
+                                              Helper.titleColor, FontWeight.w500,
+                                              size: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 25, top: 10, right: 20, bottom: 20),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      case_detail.menus![0].description!,
+                                      style: defaultTextStyle(
+                                          Helper.titleColor, FontWeight.w500,
+                                          size: 12.0),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 15,
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "assets/icons/menubar/tag_fill.svg",
+                                          width: 12,
+                                          height: 12,
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Text( 
+                                          '副作用・リスク',
+                                          style: defaultTextStyle(
+                                              Helper.titleColor, FontWeight.w500,
+                                              size: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 25, top: 10, right: 20, bottom: 20),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      case_detail.menus![0].risk!,
+                                      style: defaultTextStyle(
+                                          Helper.titleColor, FontWeight.w500,
+                                          size: 12.0),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 15,
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "assets/icons/menubar/tag_fill.svg",
+                                          width: 12,
+                                          height: 12,
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Text( 
+                                          '担当ドクターからのコメント',
+                                          style: defaultTextStyle(
+                                              Helper.titleColor, FontWeight.w500,
+                                              size: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 25, top: 10, right: 20, bottom: 20),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      case_detail.menus![0].guarantee!,
+                                      style: defaultTextStyle(
+                                          Helper.titleColor, FontWeight.w500,
+                                          size: 12.0),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -428,39 +516,61 @@ class _CaseDetailState extends State<CaseDetail> {
                             fontFamily: Helper.headFontFamily),
                       ),
                     ),
-                    // Container(
-                    //   color: Helper.whiteColor,
-                    //   child: Column(
-                    //     children: [
-                    //       ListView.builder(
-                    //           physics: NeverScrollableScrollPhysics(),
-                    //           shrinkWrap: true,
-                    //           itemCount: case_detail.['diarys'].length,
-                    //           itemBuilder: (BuildContext context, int index) {
-                    //             return Diary_Card(
-                    //                 avator: case_detail.['diarys'][index]
-                    //                     ["avator"],
-                    //                 check: case_detail.['diarys'][index]
-                    //                     ["check"],
-                    //                 image2: case_detail.['diarys'][index]
-                    //                     ["image2"],
-                    //                 image1: case_detail.['diarys'][index]
-                    //                     ["image1"],
-                    //                 eyes: case_detail.['diarys'][index]["eyes"],
-                    //                 clinic: case_detail.['diarys'][index]
-                    //                     ["clinic"],
-                    //                 name: case_detail.['diarys'][index]["name"],
-                    //                 onpress: () {},
-                    //                 price: case_detail.['diarys'][index]
-                    //                     ["price"],
-                    //                 sentence: case_detail.['diarys'][index]
-                    //                     ["sentence"],
-                    //                 type: case_detail.['diarys'][index]
-                    //                     ["type"]);
-                    //           }),
-                    //     ],
-                    //   ),
-                    // ),
+                    Container(
+                      color: Helper.whiteColor,
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: case_detail.diaries!.length,
+                              itemBuilder: (BuildContext context, int midindex) {
+                                return Diary_Card(
+                                  avator:
+                                      case_detail.diaries![midindex].patient_photo == null
+                                          ? "http://error.png"
+                                          : case_detail.diaries![midindex].patient_photo!,
+                                  check: case_detail.diaries![midindex].doctor_name == null
+                                      ? ""
+                                      : case_detail.diaries![midindex].doctor_name!,
+                                  image2: case_detail.diaries![midindex].after_image!.isEmpty
+                                      ? "http://error.png"
+                                      : case_detail.diaries![midindex].after_image![0],
+                                  image1:
+                                      case_detail.diaries![midindex].before_image!.isEmpty
+                                          ? "http://error.png"
+                                          : case_detail.diaries![midindex].before_image![0],
+                                  eyes: case_detail.diaries![midindex].views_count == null
+                                      ? ""
+                                      : case_detail.diaries![midindex].views_count!
+                                          .toString(),
+                                  clinic: case_detail.diaries![midindex].clinic_name == null
+                                      ? ""
+                                      : case_detail.diaries![midindex].clinic_name!,
+                                  name: case_detail.diaries![midindex].patient_nickname ==
+                                          null
+                                      ? ""
+                                      : case_detail.diaries![midindex].patient_nickname!,
+                                  onpress: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (_) => Diary_Detail(
+                                            index: case_detail.diaries![midindex].id)));
+                                  },
+                                  price: case_detail.diaries![midindex].price == null
+                                      ? ""
+                                      : case_detail.diaries![midindex].price.toString(),
+                                  sentence:
+                                      case_detail.diaries![midindex].doctor_name == null
+                                          ? ""
+                                          : case_detail.diaries![midindex].doctor_name!,
+                                  type: case_detail.diaries![midindex].doctor_name == null
+                                      ? ""
+                                      : case_detail.diaries![midindex].doctor_name!,
+                                );
+                                }),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

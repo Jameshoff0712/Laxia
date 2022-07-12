@@ -281,12 +281,12 @@ class _Home_CaseState extends State<Home_Case> {
                               check: case_data.data[index].doctor == null
                                   ? ""
                                   : case_data.data[index].doctor!.name!,
-                              image2: case_data.data[index].images!.isEmpty
+                              image2: case_data.data[index].afterimage!.isEmpty
                                   ? "http://error.png"
-                                  : case_data.data[index].images![1].path,
-                              image1: case_data.data[index].images!.isEmpty
+                                  : case_data.data[index].afterimage![0].path,
+                              image1: case_data.data[index].beforeimage!.isEmpty
                                   ? "http://error.png"
-                                  : case_data.data[index].images![0].path,
+                                  : case_data.data[index].beforeimage![0].path,
                               eyes: case_data.data[index].views_count == null
                                   ? ""
                                   : case_data.data[index].views_count
