@@ -271,7 +271,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                               image3:
                                   "http://error.png", //counceling_data.data[index]["image3"],
                               image4:
-                                  "http://error.png", //counceling_data.data[index]["image4"],
+                                  "http://error.png", //counceling_data.data[index]["image4"], 
                               eyes: counceling_data.data[index].views_count ==
                                       null
                                   ? ""

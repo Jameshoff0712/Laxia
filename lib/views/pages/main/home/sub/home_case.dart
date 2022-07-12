@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/case/case_model.dart';
 import 'package:laxia/models/case_model.dart';
+import 'package:laxia/provider/search_provider.dart';
 import 'package:laxia/views/pages/main/contribution/case_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -34,15 +35,16 @@ class _Home_CaseState extends State<Home_Case> {
   int page = 0, index = -1;
   bool isend = false, isloading = true, isexpanding = true;
   late Case case_data;
+  int minprice=0,maxprice=0,year=10;
   final _con = HomeController();
-  Future<void> getData({required String page, String? q = ""}) async {
+  Future<void> getData({required String page}) async {
     try {
       if (!isend) {
         if (!isloading)
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCaseData(page: page, q: q,filter:filter);
+        final mid = await _con.getCaseData(page: page, q: searchdata,filter:filter,price_min:minprice.toString(),price_max:maxprice.toString(),year:year);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -89,11 +91,22 @@ class _Home_CaseState extends State<Home_Case> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    SearchProvider searchprovider =
+        Provider.of<SearchProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
-        getData(page: page.toString(), q: userProperties.searchtext);
+        getData(page: page.toString());
+      });
+    }
+    if (minprice!=searchprovider.minprice||maxprice!=searchprovider.maxprice||year!=searchprovider.year) {
+      init();
+      setState(() {
+        minprice=searchprovider.minprice;
+        maxprice=searchprovider.maxprice;
+        year=searchprovider.year;
+        getData(page: page.toString());
       });
     }
     return Container(
@@ -134,7 +147,7 @@ class _Home_CaseState extends State<Home_Case> {
                                 isloading = true;
                               });
                               // print(val);
-                              getData(page: page.toString(), q: userProperties.searchtext);
+                              getData(page: page.toString());
                             },
                             items: <String>["人気投稿順", "新着順"],
                             hintText: "並び替え",
@@ -152,7 +165,7 @@ class _Home_CaseState extends State<Home_Case> {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
                 if (isexpanding && !isend) {
-                  getData(page: (page + 1).toString(), q: searchdata);
+                  getData(page: (page + 1).toString());
                   setState(() {
                     page += 1;
                   });
@@ -268,12 +281,12 @@ class _Home_CaseState extends State<Home_Case> {
                               check: case_data.data[index].doctor == null
                                   ? ""
                                   : case_data.data[index].doctor!.name!,
-                              image2: case_data.data[index].images!.isEmpty
+                              image2: case_data.data[index].afterimage!.isEmpty
                                   ? "http://error.png"
-                                  : case_data.data[index].images![1].path,
-                              image1: case_data.data[index].images!.isEmpty
+                                  : case_data.data[index].afterimage![0].path,
+                              image1: case_data.data[index].beforeimage!.isEmpty
                                   ? "http://error.png"
-                                  : case_data.data[index].images![0].path,
+                                  : case_data.data[index].beforeimage![0].path,
                               eyes: case_data.data[index].views_count == null
                                   ? ""
                                   : case_data.data[index].views_count

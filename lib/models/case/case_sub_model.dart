@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:laxia/models/case/menu_sub_model.dart';
 import 'package:laxia/models/clinic/clinic_sub_model.dart';
+import 'package:laxia/models/diary/diary_sub_model.dart';
 import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/home/category_model.dart';
 import 'package:laxia/models/menu/image_model.dart';
@@ -25,13 +26,17 @@ class Case_Sub_Model extends Equatable {
   final List<Category>? categories;
   final List<Menu_Sub_Model>? menus;
   final Doctor_Sub_Model? doctor;
-  final List<Image_model>? images;
+  final List<Image_model>? beforeimage;
+  final List<Image_model>? afterimage;
+  final List<Diary_Sub_Model>? diaries;
 
   const Case_Sub_Model(
       {required this.id,
-      this.images, 
+      this.beforeimage, 
+      this.afterimage, 
       this.clinic_id,
       this.name,
+      this.diaries,
       this.patient_age,
       this.doctor_id,
       this.patient_gender,
@@ -73,8 +78,14 @@ class Case_Sub_Model extends Equatable {
         menus: List<Menu_Sub_Model>.from(json["menus"]
                 .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
-        images:json["images"]==null?[] :List<Image_model>.from(json["images"]
+        beforeimage:json["beforeimage"]==null?[] :List<Image_model>.from(json["beforeimage"]
                 .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>),
+        afterimage:json["afterimage"]==null?[] :List<Image_model>.from(json["afterimage"]
+                .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>),
+        diaries:json["diaries"]==null?[] :List<Diary_Sub_Model>.from(json["diaries"]
+                .map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
         doctor:json["doctor"]==null?null: Doctor_Sub_Model.fromJson(json["doctor"]),
         );
