@@ -7,6 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/counseling/councelingdetail_model.dart';
+import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step2.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -39,7 +40,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
         isloading = false;
       });
     } catch (e) {
-      print(e.toString());
+      print(e.toString()+"");
     }
   }
 
@@ -105,8 +106,8 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             borderRadius: BorderRadius.circular(25),
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl:
-                                  counceling_detail.counceling.patient_photo==null?"https://error.png":counceling_detail.counceling.patient_photo,
+                              imageUrl:'http://error.png',
+                                  //counceling_detail.counceling.patient_photo==null?"http://error.png":"http://error.png",//counceling_detail.counceling.patient_photo,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,
@@ -164,45 +165,27 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                   Row(
                     children: [
                       !widget.isMyDiary
-                          ? ElevatedButton(
-                              onPressed: () {
+                          ? InkWell(
+                              onTap: () {
                                 Navigator.of(context)
                                     .pushNamed("/AddDiaryProgress");
                               },
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                padding:
-                                    const EdgeInsets.fromLTRB(12, 3, 12, 3),
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                side: const BorderSide(
-                                    color: Color.fromARGB(255, 110, 198, 210),
-                                    width: 2,
-                                    style: BorderStyle.solid),
-                                primary: Colors.white,
-                                onPrimary: Colors.white,
-                                onSurface: Color.fromARGB(255, 110, 198, 210),
-                                splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                              ),
-                              child: FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                      border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
+                                      color:Colors.white
+                                  ),
+                                  child: Padding(
+                                    padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
+                                    child: Text(
                                       'フォロー',
                                       style: TextStyle(
-                                          
-                                          fontSize: 8,
-                                          color: Color.fromARGB(
-                                              255, 110, 198, 210)),
+                                          fontSize: 13,
+                                          color: Color.fromARGB(255, 110, 198, 210),),
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
                             )
                           : ElevatedButton(
                               onPressed: () {
@@ -279,61 +262,62 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        postToogleFavorite(widget.index);
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          isfavorite
-                              ? Icon(
-                                  Icons.favorite,
-                                  color: Helper.btnBgYellowColor,
-                                  size: 22,
-                                )
-                              : Icon(
-                                  Icons.favorite_border,
-                                  color: Helper.txtColor,
-                                  size: 22,
-                                ),
-                          Text(
-                            counceling_detail.counceling.likes_count!
-                                .toString(),
-                            style: TextStyle(
-                                color: isfavorite
-                                    ? Helper.btnBgYellowColor
-                                    : Helper.txtColor,
-                                fontSize: 10,
-                                
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    GestureDetector(
-                      onTap: () {
                         postToogleLike(widget.index);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           islike
-                              ? Icon(
-                                  Icons.star,
+                              ? SvgPicture.asset(
+                                  "assets/icons/star.svg",
+                                  width: 22,
+                                  height: 22,
                                   color: Helper.starColor,
-                                  size: 22,
                                 )
-                              : Icon(
-                                  Icons.star_border,
-                                  color: Helper.txtColor,
-                                  size: 22,
+                              : SvgPicture.asset(
+                                  "assets/icons/borderstar.svg",
+                                  width: 22,
+                                  height: 22,
+                                  // color: Colors.red,
+                                  color: Color.fromARGB(255, 155, 155, 155),
                                 ),
                           Text(
                             "お気に入り",
                             style: TextStyle(
-                                color: Helper.txtColor,
+                                color:Helper.txtColor,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        postToogleFavorite(widget.index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          isfavorite
+                              ? SvgPicture.asset(
+                                  "assets/icons/red_heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Colors.red,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Color.fromARGB(255, 155, 155, 155),
+                                ),
+                          Text(
+                            counceling_detail.counceling.likes_count!.toString(),
+                            style: TextStyle(
+                                color:Helper.txtColor,
                                 fontSize: 10,
                                 
                                 fontWeight: FontWeight.w400),
@@ -346,7 +330,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        showModalBottomSheet(
+                         showModalBottomSheet(
                             constraints: BoxConstraints(
                               maxHeight:
                                   MediaQuery.of(context).size.height * 0.9,
@@ -370,14 +354,14 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            FontAwesomeIcons.commentDots,
-                            color: Helper.txtColor,
-                            size: 22,
+                          SvgPicture.asset(
+                            "assets/icons/chat.svg",
+                            width: 22,
+                            height: 22,
+                            color: Color.fromARGB(255, 155, 155, 155),
                           ),
                           Text(
-                            counceling_detail.counceling.comments_count
-                                .toString(),
+                            counceling_detail.counceling.comments_count.toString(),
                             style: TextStyle(
                                 color: Helper.txtColor,
                                 fontSize: 10,
@@ -387,6 +371,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                         ],
                       ),
                     ),
+                   
                     SizedBox(
                       width: 21,
                     ),
@@ -703,8 +688,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                         borderRadius: BorderRadius.circular(25),
                                         child: CachedNetworkImage(
                                           fit: BoxFit.cover,
-                                          imageUrl: counceling_detail
-                                              .counceling.patient_photo,
+                                          imageUrl:"http://error.png",//counceling_detail.counceling.patient_photo,
                                           placeholder: (context, url) =>
                                               Image.asset(
                                             'assets/images/loading.gif',

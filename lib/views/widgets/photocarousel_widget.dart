@@ -61,7 +61,7 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                                     width: 80, height: 80, fit: BoxFit.cover)
                                 : CachedNetworkImage(
                                     fit: BoxFit.cover,
-                                    imageUrl: widget.ImageList[i]!.path,
+                                    imageUrl: widget.ImageList[i]!.path.contains('http')?widget.ImageList[i]!.path:"http://test.clinic.lxa.jp"+widget.ImageList[i]!.path,
                                     placeholder: (context, url) => Image.asset(
                                       'assets/images/loading.gif',
                                       fit: BoxFit.cover,

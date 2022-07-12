@@ -69,7 +69,7 @@ class Doctor_Sub_Model extends Equatable {
 
   factory Doctor_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Doctor_Sub_Model(
-        avg_rate:json['avg_rate'],
+        avg_rate:json['avg_rate'].toDouble(),
         id: json["id"],
         user_id: json["user_id"],
         clinic_id: json["clinic_id"] == null ? 0 : json["clinic_id"],

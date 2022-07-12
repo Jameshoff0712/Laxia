@@ -111,7 +111,7 @@ class _CaseDetailState extends State<CaseDetail> {
                         width: 20,
                         height: 20,
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 15),
                     ],
                   ),
                 ],

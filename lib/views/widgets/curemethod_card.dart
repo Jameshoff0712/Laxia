@@ -119,28 +119,30 @@ class _CureMethod_CardState extends State<CureMethod_Card> {
                                     ),
                                   ],
                                 ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Helper.btnBgYellowColor,
-                                    shape: RoundedRectangleBorder(
+                                InkWell(
+                                  
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color:Helper.btnBgYellowColor,
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
-                                    splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "予約",
-                                        style: defaultTextStyle(
-                                            Helper.whiteColor,
-                                            FontWeight.normal,
-                                            size: 10),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 2),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "予約",
+                                            style: defaultTextStyle(
+                                                Helper.whiteColor,
+                                                FontWeight.normal,
+                                                size: 10),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                  onPressed: () {
+                                  onTap: () {
                                      Navigator.of(context).pushNamed("/Reservation");
                                   },
                                 ),
