@@ -10,6 +10,7 @@ import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/mypage/input_text_widget.dart';
 import 'package:laxia/views/pages/main/mypage/mypage.dart';
 import 'package:laxia/views/pages/main/mypage/selectbox_widget.dart';
+import 'package:laxia/views/widgets/select_gender.dart';
 // import 'package:laxia/views/widgets/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,6 +27,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
   File? _image;
   final _picker = ImagePicker();
   TextEditingController _conDate = TextEditingController();
+  TextEditingController _conGender = TextEditingController();
   TextEditingController _conSurgery = TextEditingController();
 
   Future<void> _openImagePicker() async {
@@ -265,10 +267,80 @@ class _FixProfilePageState extends State<FixProfilePage> {
                               SizedBox(
                                 height: 10.0,
                               ),
-                              SelectBoxWidget(
-                                name: "性別",
-                                items: ["女性", "男性"],
-                                chosenValue: "女性",
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '性別',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 18, 18, 18),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextFormField(
+                                controller: _conGender,
+                                readOnly: true,
+                                onTap: () {
+                                  // surgeryProvider.selectedCurePosStr.clear();
+                                  // surgeryProvider.setButtonText("次へ");
+                                  // Navigator.of(context)
+                                  //     .pushNamed("/SelectSurgery");
+                                  showModalBottomSheet(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10.0),
+                                          topRight: Radius.circular(10.0)),
+                                    ),
+                                    backgroundColor: Colors.white,
+                                    context: context,
+                                    builder: (context) {
+                                      return SelectGender(controller: _conGender);
+                                    },
+                                    isScrollControlled: true,
+                                  );
+                                },
+                                
+                                validator: (v) {
+                                  if (v!.isEmpty) return '入力してください';
+                                  // final regex = RegExp('^[1-9]+[0-9]*');
+                                  // if (!regex.hasMatch(v)) return 'Enter a valid point value';
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  // filled: true,
+                                  // fillColor: Helper.whiteColor.withOpacity(0.2),
+                                  contentPadding:
+                                      EdgeInsets.symmetric(vertical: 12),
+                                  // hintText: '今気になってる施術や部位を選択',
+                                  counterText: "",
+                                  hintStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: Helper.txtColor),
+                                  focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          // color: Colors.black,
+                                          color: Helper.authHintColor,
+                                          width: 1.0)),
+                                  enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          // color: Colors.black,
+                                          color: Helper.authHintColor,
+                                          width: 1.0)),
+                                  border: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          // color: Colors.black,
+                                          color: Helper.authHintColor,
+                                          width: 1.0)),
+                                ),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 18, 18, 18)),
                               ),
                               InputTextWidget(
                                 labelName: "自己紹介",
