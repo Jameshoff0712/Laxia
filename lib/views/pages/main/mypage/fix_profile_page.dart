@@ -25,7 +25,14 @@ class _FixProfilePageState extends State<FixProfilePage> {
   List<String> _cities = [];
   File? _image;
   final _picker = ImagePicker();
+  TextEditingController _conNickname = TextEditingController();
+  TextEditingController _conId = TextEditingController();
   TextEditingController _conDate = TextEditingController();
+  String valGender = '';
+  // TextEditingController _conGender = TextEditingController();
+  TextEditingController _conIntro = TextEditingController();
+  // TextEditingController _conPrefecture = TextEditingController();
+  String valPrefecture = '';
   TextEditingController _conSurgery = TextEditingController();
 
   Future<void> _openImagePicker() async {
@@ -102,6 +109,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
+                        
                         Navigator.of(context).pushNamed("/Mypage");
                       },
                       child: Text(
@@ -179,10 +187,12 @@ class _FixProfilePageState extends State<FixProfilePage> {
                           child: Column(
                             children: [
                               InputTextWidget(
+                                  controller: _conNickname,
                                   labelName: "ニックネーム",
                                   placeHolder: "あやか",
                                   maxLegnth: "40"),
                               InputTextWidget(
+                                  controller: _conId,
                                   labelName: "ユーザーID",
                                   placeHolder: "Ayaka",
                                   maxLegnth: "40"),
@@ -266,11 +276,17 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                 height: 10.0,
                               ),
                               SelectBoxWidget(
+                                onChange: (val) {
+                                  setState(() {
+                                    valGender = val;
+                                  });
+                                },
                                 name: "性別",
                                 items: ["女性", "男性"],
                                 chosenValue: "女性",
                               ),
                               InputTextWidget(
+                                controller: _conIntro,
                                 labelName: "自己紹介",
                                 placeHolder: "",
                                 maxLegnth: "140",
@@ -280,6 +296,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                 height: 10.0,
                               ),
                               SelectBoxWidget(
+                                onChange: (val) {
+                                  setState(() {
+                                    valPrefecture = val;
+                                  });
+                                },
                                 name: "施術希望エリア",
                                 items: _cities,
                                 chosenValue: "",

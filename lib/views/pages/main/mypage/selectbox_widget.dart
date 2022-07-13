@@ -5,8 +5,9 @@ class SelectBoxWidget extends StatefulWidget {
   String name = '';
   List<String> items = [];
   String? chosenValue;
+  void Function(String val) onChange;
   SelectBoxWidget(
-      {required this.name, required this.items, required this.chosenValue});
+      {required this.name, required this.items, required this.chosenValue,required this.onChange});
   @override
   State<SelectBoxWidget> createState() => _SelectBoxWidgetState();
 }
@@ -54,8 +55,9 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
                       ))
                   .toList(),
               onChanged: (String? value) {
+                widget.onChange(value!);
                 setState(() {
-                  _chosenValue = value!;
+                  _chosenValue = value;
                 });
               },
               validator: (v) {
