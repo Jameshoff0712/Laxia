@@ -60,10 +60,10 @@ class _Home_CaseState extends State<Home_Case> {
                               check: widget.cases[index].doctor == null
                                   ? ""
                                   : widget.cases[index].doctor!.name!,
-                              image2:widget.cases[index].images!.isEmpty?"http://error.png":
-                                  widget.cases[index].images![1].path,
-                              image1:widget.cases[index].images!.isEmpty?"http://error.png":
-                                  widget.cases[index].images![0].path,
+                              image2:widget.cases[index].beforeimage!.isEmpty?"http://error.png":
+                                  widget.cases[index].beforeimage![0].path,
+                              image1:widget.cases[index].afterimage!.isEmpty?"http://error.png":
+                                  widget.cases[index].afterimage![0].path,
                               eyes: widget.cases[index].views_count == null
                                   ? ""
                                   : widget.cases[index].views_count

@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/case/case_model.dart';
 import 'package:laxia/models/case/case_sub_model.dart';
@@ -36,8 +37,8 @@ class HomeController extends BaseController {
   Future<Menu> getMenuData({String per_page="10",required String city_id,required String filter, required String page, String? category_id="", String? clinic_id="", String? q=""}) async {
     return await api.getMenuData( per_page,  page,  category_id!,  clinic_id!,  q!,filter,city_id);
   }
-   Future<Diary> getDiaryData({required String city_id, String per_page="10", required String page, String? category_id="", String? clinic_id="", String? patient_id="", String? favorote="", String? orderby="", String? menu_id="", String? price_min="", String? price_max="", String? rate="", String? q="",required String filter}) async {
-    return await api.getDiaryData( per_page,  page,  category_id!,  patient_id!,  favorote!,  orderby!,  menu_id!,  price_min!,  price_max!,  rate!,  q!,filter,city_id);
+   Future<Diary> getDiaryData({required String city_id, String per_page="10", required String page, String? category_id="", String? clinic_id="", String? patient_id="", String? favorote="", String? orderby="", String? menu_id="", String? price_min="", String? price_max="", String? rate="", String? q="",required String filter,required int year}) async {
+    return await api.getDiaryData( per_page,  page,  category_id!,  patient_id!,  favorote!,  orderby!,  menu_id!,  price_min!,  price_max!,  rate!,  q!,filter,city_id,year.toString());
   }
   Future<DiaryDetail_Model> getDiaryDetail({required int index}) async {
     return await api.getDiaryDetail(index);
@@ -54,8 +55,8 @@ class HomeController extends BaseController {
   Future<bool> postToogleLike({required int index, required String domain}) async{
      return api.postToogleLike(index,domain);
   }
-  Future<Case> getCaseData({String per_page="10", required String page, String? clinic_id="", String? doctor_id="", String? q="",required String filter}) async {
-    return await api.getCaseData( per_page,  page, doctor_id!,  clinic_id!,  q!, filter);
+  Future<Case> getCaseData({String per_page="10", required String page, String? clinic_id="", String? doctor_id="", String? q="",required String filter,required String price_min, required String price_max, required int year,}) async {
+    return await api.getCaseData( per_page,  page, doctor_id!,  clinic_id!,  q!, filter,price_min,price_max,year);
   }
   Future<Case_Sub_Model> getCaseDetail({required int index}) async {
     return await api.getCaseDetail(index);
@@ -66,8 +67,8 @@ class HomeController extends BaseController {
   Future<CouncelingDetail_Model> getCouncelingDetail({required int index}) async {
     return await api.getCouncelingDetail(index);
   }
-   Future<Question> getQuestionData({String per_page="10", required String page, String? category_id="", String? patient_id="", String? favorote="", String? pref_id="", String? city="", String? orderby="",String ? q="",required String filter}) async {
-    return await api.getQuestionData( per_page,  page,  category_id!,  patient_id!,  favorote!,  pref_id!,  city!,  orderby!,filter);
+   Future<Question> getQuestionData({String per_page="10", required String page, String? category_id="", String? patient_id="", String? favorote="", String? pref_id="", String? city="", String? orderby="",String ? q="",required String filter,required String isanswer}) async {
+    return await api.getQuestionData( per_page,  page,  category_id!,  patient_id!,  favorote!,  pref_id!,  city!,  orderby!,filter,isanswer);
   }
   Future<Question_Sub_Model> getQuestionDetail({required int index}) async {
     return await api.getQuestionDetail(index);

@@ -157,36 +157,24 @@ class _Diary_DetailState extends State<Diary_Detail> {
             Row(
               children: [
                 !widget.isMyDiary! ?
-                ElevatedButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                   },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    side: const BorderSide(
-                        color: Color.fromARGB(255, 110, 198, 210),
-                        width: 2,
-                        style: BorderStyle.solid),
-                    primary: Colors.white,
-                    onPrimary: Colors.white,
-                    onSurface: Color.fromARGB(255, 110, 198, 210),
-                    splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'フォロー',
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: Color.fromARGB(255, 110, 198, 210)),
-                        ),
-                      ],
+                  
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                         border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
+                         color:Colors.white
+                    ),
+                    child: Padding(
+                      padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
+                      child: Text(
+                        'フォロー',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: Color.fromARGB(255, 110, 198, 210),),
+                      ),
                     ),
                   ),
                 )
@@ -225,12 +213,13 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5),
+                SizedBox(width: 15),
                 SvgPicture.asset(
                   "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
                 ),
+                SizedBox(width: 15),
               ],
             ),
           ],
@@ -253,68 +242,70 @@ class _Diary_DetailState extends State<Diary_Detail> {
             children: [
               SizedBox(width: 16.5,),
               GestureDetector(
-                onTap: () {
-                  postToogleLike(widget.index);
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    islike
-                        ? Icon(
-                            Icons.star,
-                            color: Helper.starColor,
-                            size: 22,
-                          )
-                        : Icon(
-                            Icons.star_border,
-                            color: Helper.txtColor,
-                            size: 22,
+                      onTap: () {
+                        postToogleLike(widget.index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          islike
+                              ? SvgPicture.asset(
+                                  "assets/icons/star.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Helper.starColor,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/borderstar.svg",
+                                  width: 22,
+                                  height: 22,
+                                  // color: Colors.red,
+                                  color: Color.fromARGB(255, 155, 155, 155),
+                                ),
+                          Text(
+                            "お気に入り",
+                            style: TextStyle(
+                                color:Helper.txtColor,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
                           ),
-                    Text(
-                      "お気に入り",
-                      style: TextStyle(
-                          color:  Helper.txtColor,
-                          fontSize: 10,
-                          
-                          fontWeight: FontWeight.w400),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(width: 26.5,),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    postToogleFavorite(widget.index);
-                  });
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    isfavorite
-                        ? Icon(
-                            Icons.favorite,
-                            color: Helper.btnBgYellowColor,
-                            size: 22,
-                          )
-                        : Icon(
-                            Icons.favorite_border,
-                            color: Helper.txtColor,
-                            size: 22,
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        postToogleFavorite(widget.index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          isfavorite
+                              ? SvgPicture.asset(
+                                  "assets/icons/red_heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Colors.red,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Color.fromARGB(255, 155, 155, 155),
+                                ),
+                          Text(
+                            diary_detail.diary.likes_count!.toString(),
+                            style: TextStyle(
+                                color:Helper.txtColor,
+                                fontSize: 10,
+                                
+                                fontWeight: FontWeight.w400),
                           ),
-                    Text(
-                      diary_detail.diary.likes_count==null?"":diary_detail.diary.likes_count.toString(),
-                      style: TextStyle(
-                          color: isfavorite
-                              ? Helper.btnBgYellowColor
-                              : Helper.txtColor,
-                          fontSize: 10,
-                          
-                          fontWeight: FontWeight.w400),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
               SizedBox(width: 29,),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -525,7 +516,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   for (int i = 0; i < 5; i++)
                     Icon(
                       Icons.star,
-                      color: Colors.yellow,
+                      color: Helper.starColor,
                       size: 18,
                     ),
                      SizedBox(width: 12,),
@@ -572,7 +563,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                             fontWeight: FontWeight.w700,
                             fontSize: 16,
                             
-                            color: Helper.titleColor,
+                            color: Helper.maintxtColor,
                           ),
                         )
                       ],

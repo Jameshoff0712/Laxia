@@ -140,8 +140,10 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
                  child: Padding(
                    padding: EdgeInsets.only(left: 10,top: 5),
                    child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
                        Image_Widget(context,0),
+                       SizedBox(height: 10,),
                        Text(
                           widget.post_treatment.content!,
                           style: TextStyle(
