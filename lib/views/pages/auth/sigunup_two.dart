@@ -5,6 +5,7 @@ import 'package:bottom_picker/resources/arrays.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_datetime_picker_forked/flutter_datetime_picker_forked.dart';
@@ -27,6 +28,7 @@ class _Signup_TwoState extends State<Signup_Two> {
   TextEditingController controller = TextEditingController();
   TextEditingController _conDate = TextEditingController();
   TextEditingController _conPrefecture = TextEditingController();
+  int  genderId = -1;
   Future<void> initSettings() async {
     String countyText =
         await rootBundle.loadString("assets/cfg/japanese-city-data.json");
@@ -176,10 +178,95 @@ class _Signup_TwoState extends State<Signup_Two> {
                               fontSize: 12,
                               height: 1.5),
                         ),
-                        selectBoxWidget(
-                          name: "性別",
-                          items: ["女性", "男性"],
-                          chosenValue: "女性",
+                        Container(
+                          padding: EdgeInsets.only(top: 24, bottom: 12),
+                          child: Text(
+                            '性別',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              color: Helper.mainColor,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(36, 0, 36, 0),
+                          color: Colors.white,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    genderId = 0;
+                                    // widget.controller.text = '女性';
+                                  });
+                                },
+                                child: Container(
+                                  width: 120,
+                                  height: 120,
+                                  padding: EdgeInsets.symmetric(vertical: 23),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: genderId == 0
+                                        ? Color.fromARGB(255, 251, 215, 215)
+                                        : Color.fromARGB(255, 240, 242, 245),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/icons/female.svg",
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        '女性',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          color: Helper.titleColor,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    genderId = 1;
+                                    // widget.controller.text = '男性';
+                                  });
+                                },
+                                child: Container(
+                                  width: 120,
+                                  height: 120,
+                                  padding: EdgeInsets.symmetric(vertical: 23),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: genderId == 1
+                                        ? Color.fromARGB(255, 215, 238, 251)
+                                        : Color.fromARGB(255, 240, 242, 245),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/icons/male.svg",
+                                      ),
+                                      SizedBox(height: 12.5),
+                                      Text(
+                                        '男性',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          color: Helper.titleColor,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                         inputTextWidget(
                             labelName: "自己紹介",
@@ -204,7 +291,10 @@ class _Signup_TwoState extends State<Signup_Two> {
                           keyboardType: TextInputType.datetime,
                           onTap: () {
                             BottomPicker(
-                              items: cities.map((val) => Text(val, textAlign: TextAlign.justify)).toList(),
+                              items: cities
+                                  .map((val) =>
+                                      Text(val, textAlign: TextAlign.justify))
+                                  .toList(),
                               title: 'Choose your country',
                               titleStyle: TextStyle(
                                   fontWeight: FontWeight.w400,
