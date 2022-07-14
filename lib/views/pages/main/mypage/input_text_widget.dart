@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 
 class InputTextWidget extends StatefulWidget {
+  TextEditingController controller;
   String labelName = '';
   String placeHolder = '';
   String maxLegnth = '';
   final int? maxlines;
 
   InputTextWidget(
-      {required this.labelName,
+      {
+      required this.controller,
+      required this.labelName,
       required this.placeHolder,
       required this.maxLegnth,
       this.maxlines = 1});
@@ -56,6 +59,7 @@ class _InputTextWidgetState extends State<InputTextWidget> {
           ),
         ),
         TextFormField(
+          controller: widget.controller,
           onChanged: (value) {
             setState(() {
               _enteredText = value;

@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/doctor/doctordetail_model.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_sub_detail.dart';
+import 'package:laxia/views/pages/main/reservation/reservation.dart';
 import 'package:laxia/views/widgets/detail_image.dart';
 import 'package:laxia/views/widgets/doctor_detail_card.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
@@ -784,7 +785,10 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                             ),
                           ],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Reservation(clinic_id: doctor_detail.clinic.id, treat: null )));
+                        },
                       ),
                     ],
                   ),

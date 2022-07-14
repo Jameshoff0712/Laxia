@@ -1,12 +1,21 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/clinic/clinicdetail_model.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/views/pages/main/reservation/confirmation.dart';
 import 'package:laxia/views/widgets/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+// import '../../../../models/menu/menu_sub_model.dart';
+
+import '../../../../models/case/menu_sub_model.dart';
+
 class Reservation extends StatefulWidget {
-  const Reservation({Key? key}) : super(key: key);
+  final int clinic_id;
+  final Menu_Sub_Model? treat;
+  const Reservation({Key? key, required this.clinic_id, this.treat = null}) : super(key: key);
 
   @override
   State<Reservation> createState() => _ReservationState();
@@ -15,21 +24,17 @@ class Reservation extends StatefulWidget {
 class _ReservationState extends State<Reservation> {
   double progress = 0.1;
   final _formKey = GlobalKey<FormState>();
-  String? doctorValue;
+  Doctor_Sub_Model? doctorValue;
   bool selectedDoctor = false;
-  List<String> doctors = [
-    'eva',
-    'com',
-    'key',
-  ];
+  List<Doctor_Sub_Model> doctors = [];
   String? wantedValue;
   bool? isWantedValue;
-  String? todayValue;
+  option_item? todayValue;
   bool selectedToday = false;
-  List<String> options_Today = [
-    'カウンセリングのみ',
-    '施術',
-    'カウンセリング・施術',
+  List<option_item>options_Today = [ 
+    option_item('カウンセリングのみ', 5),
+    option_item('施術', 10),
+    option_item('カウンセリング・施術', 20)
   ];
   late CalendarController _controller;
   List<bool> selectedTime = List<bool>.filled(4, false);
@@ -56,15 +61,41 @@ class _ReservationState extends State<Reservation> {
   bool? isUsedPoints;
   bool checkBoxValue = false;
 
+  
+  bool isfavourite = false, isloading = true;
+  final _con = HomeController();
+  late ClinicDetail_Model clinic_detail;
+  Future<void> getData({required int index}) async {
+    try {
+      final mid = await _con.getClinicDetail(index: index);
+      setState(() {
+        clinic_detail = mid;
+        isloading = false;
+      });
+      doctors.addAll(clinic_detail.doctors);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
   @override
   void initState() {
     super.initState();
+     getData(index: widget.clinic_id);
     _controller = CalendarController();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return isloading
+        ? Container(
+            child: Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ))
+        : Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
@@ -243,7 +274,7 @@ class _ReservationState extends State<Reservation> {
                           SizedBox(
                             height: 7,
                           ),
-                          Text('湘南美容クリニック 新宿院',
+                          Text(clinic_detail.clinic.name!,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 51, 51, 51),
                                 fontSize: 16,
@@ -256,7 +287,8 @@ class _ReservationState extends State<Reservation> {
                       SizedBox(
                         height: 34,
                       ),
-                      Container(
+                      widget.treat != null 
+                      ? Container(
                           child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -271,7 +303,7 @@ class _ReservationState extends State<Reservation> {
                           SizedBox(
                             height: 7,
                           ),
-                          Text('クイックコスメティーク･ダブルNeo',
+                          Text(widget.treat!.name,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 51, 51, 51),
                                 fontSize: 16,
@@ -280,10 +312,13 @@ class _ReservationState extends State<Reservation> {
                                 decoration: TextDecoration.none,
                               )),
                         ],
-                      )),
-                      SizedBox(
+                      ))
+                      : Container(),
+                      widget.treat != null
+                      ? SizedBox(
                         height: 34,
-                      ),
+                      )
+                      : Container(),
                       // wanted doctor list
                       Container(
                           child: Column(
@@ -323,7 +358,7 @@ class _ReservationState extends State<Reservation> {
                                     .map((item) => DropdownMenuItem(
                                         value: item,
                                         child: Text(
-                                          item,
+                                          item.hira_name,
                                           style: const TextStyle(
                                             fontSize: 16,
                                             
@@ -336,7 +371,7 @@ class _ReservationState extends State<Reservation> {
                                     .toList(),
                                 onChanged: (value) {
                                   setState(() {
-                                    doctorValue = value as String?;
+                                    doctorValue = value as Doctor_Sub_Model?;
                                     if (!selectedDoctor) progress += 0.1;
                                     if (doctorValue != null)
                                       selectedDoctor = true;
@@ -476,7 +511,7 @@ class _ReservationState extends State<Reservation> {
                                     .map((item) => DropdownMenuItem(
                                         value: item,
                                         child: Text(
-                                          item,
+                                          item.name,
                                           style: const TextStyle(
                                             fontSize: 16,
                                             
@@ -489,7 +524,7 @@ class _ReservationState extends State<Reservation> {
                                     .toList(),
                                 onChanged: (value) {
                                   setState(() {
-                                    todayValue = value as String?;
+                                    todayValue = value as option_item?;
                                     if (!selectedToday) progress += 0.1;
                                     if (todayValue != null) selectedToday = true;
                                   });
@@ -1287,6 +1322,8 @@ class _ReservationState extends State<Reservation> {
       context,
       MaterialPageRoute(
           builder: (context) => Confirmation(
+                clinic: clinic_detail.clinic,
+                treat: widget.treat,
                 doctor: doctorValue!,
                 wantedValue: wantedValue!,
                 todayValue: todayValue!,
@@ -1457,4 +1494,12 @@ class _ReservationState extends State<Reservation> {
   //         }),
   //   );
   // }
+}
+
+
+class option_item {
+  String name;
+  int id;  
+
+  option_item(this.name, this.id);
 }

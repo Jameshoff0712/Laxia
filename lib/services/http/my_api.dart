@@ -1,6 +1,7 @@
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
+import 'package:laxia/models/profile_model.dart';
 import 'package:laxia/services/http/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:nb_utils/nb_utils.dart';
@@ -72,5 +73,26 @@ class MyApi extends Api {
         },
         token);
     
+  }
+
+  Future<dynamic> editProfile(ProfileModel profile) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.post(
+      "$apiUrl/register/detail",
+        profile.list(),
+        token
+    );
+    return res;
+  }
+
+  Future<void> editImageUpload() async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.put(
+      "$apiUrl/",
+      <String, String> {
+        "image": "ryu"
+      },
+      token
+    );
   }
 }

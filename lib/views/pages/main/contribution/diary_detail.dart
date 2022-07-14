@@ -10,6 +10,7 @@ import 'package:laxia/models/diary/diary/diarydetail_model.dart';
 import 'package:laxia/models/instructions.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/diary_medialist.dart';
+import 'package:laxia/views/pages/main/reservation/reservation.dart';
 import 'package:laxia/views/pages/main/mypage/mypage.dart';
 import 'package:laxia/views/pages/main/mypage/user_page.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
@@ -17,6 +18,7 @@ import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 class Diary_Detail extends StatefulWidget {
   final bool? isMyDiary;
@@ -336,7 +338,8 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   ],
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/Reservation");
+                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Reservation(clinic_id: diary_detail.diary.clinic_id!, treat: diary_detail.menus![0] )));
                 },
               ),
             ],

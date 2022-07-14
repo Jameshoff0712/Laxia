@@ -3,8 +3,9 @@ import 'package:laxia/models/case/Owner_model.dart';
 import 'package:laxia/models/diary/diary/progress.dart';
 import 'package:laxia/models/diary/diary/text_question.dart';
 import 'package:laxia/models/diary/diary_sub_model.dart';
-import 'package:laxia/models/menu/menu_sub_model.dart';
 import 'package:laxia/models/question/media_model.dart';
+
+import '../../case/menu_sub_model.dart';
 
 class DiaryDetail_Model extends Equatable {
   final Diary_Sub_Model diary;
