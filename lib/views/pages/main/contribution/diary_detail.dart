@@ -10,10 +10,13 @@ import 'package:laxia/models/diary/diary/diarydetail_model.dart';
 import 'package:laxia/models/instructions.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/diary_medialist.dart';
+import 'package:laxia/views/pages/main/mypage/mypage.dart';
+import 'package:laxia/views/pages/main/mypage/user_page.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
 import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Diary_Detail extends StatefulWidget {
   final bool? isMyDiary;
@@ -25,6 +28,7 @@ class Diary_Detail extends StatefulWidget {
 }
 
 class _Diary_DetailState extends State<Diary_Detail> {
+  final apiUrl = dotenv.env["DEV_API_URL"];
  bool isVisible=false,isPostVisible=false;
  bool isloading = true,isfavorite=false, islike=false;
   final _con = HomeController();
@@ -92,7 +96,11 @@ class _Diary_DetailState extends State<Diary_Detail> {
               children: [
                 GestureDetector(
                   onTap:(){
-                    Navigator.of(context).pushNamed("/Mypage");
+                    // Navigator.of(context).pushNamed("/Mypage");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UserPage(id: diary_detail.owner.id)));
                   },
                   child: SizedBox(
                     height: 32,
@@ -101,7 +109,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       borderRadius: BorderRadius.circular(25),
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl: diary_detail.owner.photo==null?"http://error.png":diary_detail.owner.photo!,
+                        imageUrl: diary_detail.owner.photo==null?"http://error.png":(apiUrl!+diary_detail.owner.photo!),
                         placeholder: (context, url) => Image.asset(
                           'assets/images/loading.gif',
                           fit: BoxFit.cover,
@@ -376,7 +384,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: CachedNetworkImage(
                                   fit: BoxFit.fill,
-                                  imageUrl:diary_detail.medias!.isEmpty?"http://":  diary_detail.medias![0].path,
+                                  imageUrl:diary_detail.medias!.isEmpty?"http://":  (apiUrl!+diary_detail.medias![0].path),
                                   placeholder: (context, url) => Image.asset(
                                     'assets/images/loading.gif',
                                     fit: BoxFit.fill,

@@ -31,6 +31,7 @@ class Me extends Equatable {
   bool? isFollow;
   String? phoneOnlyNumber;
   List<Diary_Sub_Model>? diaries;
+  List<Question_Sub_Model>? questions;
   List<Counceling_Sub_Model>? counselings;
   List<Diary_Sub_Model>? favorite_diaries;
   List<Question_Sub_Model>? favorite_questions;
@@ -38,10 +39,12 @@ class Me extends Equatable {
   List<Counceling_Sub_Model>? favorite_counseling_reports;
   List<Menu_Sub_Model>? favorite_menus;
   List<Clinic_Sub_Model>? favorite_clinics;
+  bool? isfollow;
 
   Me({
     required this.id,
     required this.userId,
+    this.questions,
     this.name,
     this.kana,
     this.gender,
@@ -70,11 +73,13 @@ class Me extends Equatable {
     this.favorite_counseling_reports,
     this.favorite_menus,
     this.favorite_clinics,
+    this.isfollow,
   });
 
   factory Me.fromJson(Map<String, dynamic> json) {
     return Me(
       id: json["id"],
+      isfollow: json["isfollow"]==null?false:(json["isfollow"]==1?true:false),
       userId: json["user_id"],
       name: json["name"] != null ? json["name"] : "",
       kana: json["kana"],
@@ -96,29 +101,32 @@ class Me extends Equatable {
       followersCount: json["followers_count"],
       isFollow: json["is_follow"],
       phoneOnlyNumber: json["phone_only_number"],
+      questions:json["questions"]==null?[]: List<Question_Sub_Model>.from(json["questions"]
+              .map((x) => Question_Sub_Model.fromJson(x as Map<String, dynamic>))
+          as Iterable<dynamic>),
       diaries: List<Diary_Sub_Model>.from(
           json["diaries"].map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
               as Iterable<dynamic>),
       counselings: List<Counceling_Sub_Model>.from(json["counselings"]
               .map((x) => Counceling_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_diaries: List<Diary_Sub_Model>.from(json["favorite_diaries"]
+      favorite_diaries:json["favorite_diaries"]==null?[]: List<Diary_Sub_Model>.from(json["favorite_diaries"]
               .map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_questions: List<Question_Sub_Model>.from(json["favorite_questions"]
+      favorite_questions:json["favorite_questions"]==null?[]: List<Question_Sub_Model>.from(json["favorite_questions"]
               .map((x) => Question_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_doctors: List<Doctor_Sub_Model>.from(json["favorite_doctors"]
+      favorite_doctors:json["favorite_doctors"]==null?[]: List<Doctor_Sub_Model>.from(json["favorite_doctors"]
               .map((x) => Doctor_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_counseling_reports: List<Counceling_Sub_Model>.from(
+      favorite_counseling_reports:json["favorite_counseling_reports"]==null?[]:List<Counceling_Sub_Model>.from(
           json["favorite_counseling_reports"]
                   .map((x) => Counceling_Sub_Model.fromJson(x as Map<String, dynamic>))
               as Iterable<dynamic>),
-      favorite_menus: List<Menu_Sub_Model>.from(json["favorite_menus"]
+      favorite_menus: json["favorite_menus"]==null?[]:List<Menu_Sub_Model>.from(json["favorite_menus"]
               .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      favorite_clinics: List<Clinic_Sub_Model>.from(json["favorite_clinics"]
+      favorite_clinics:json["favorite_clinics"]==null?[]:List<Clinic_Sub_Model>.from(json["favorite_clinics"]
               .map((x) => Clinic_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
     );

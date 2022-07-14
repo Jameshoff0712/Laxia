@@ -1,29 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/generated/L10n.dart';
-import 'package:laxia/models/m_user.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
-import 'package:laxia/views/pages/main/contribution/question.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/pages/main/contribution/question_detail.dart';
-import 'package:laxia/views/pages/main/mypage/counseling_fix_page.dart';
-import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
-import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
-import 'package:laxia/views/pages/main/mypage/invite_page.dart';
-import 'package:laxia/views/pages/main/mypage/point_page.dart';
-import 'package:laxia/views/pages/main/mypage/setting_page.dart';
 import 'package:laxia/views/widgets/counseling_card%20.dart';
+import 'package:laxia/views/widgets/diray_card.dart';
+import 'package:laxia/views/widgets/indicator.dart';
 import 'package:laxia/views/widgets/question_card.dart';
-
-import '../../../../models/counseling_model.dart';
-import '../../../../models/question_model.dart';
-import '../../../widgets/indicator.dart';
-
 class UserPage extends StatefulWidget {
-  const UserPage({Key? key}) : super(key: key);
-
+  final int id;
+  const UserPage({Key? key, required this.id}) : super(key: key);
   @override
   _UserPageState createState() => _UserPageState();
 }
@@ -31,21 +22,26 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  List mid = [];
-  List nid = [];
-  bool isFollowing = true;
+  bool isFollowing = false,isloading=true;
+  final _con = MyController();
+  late Me patient_info;
+  Future<void> getData() async {
+    try {
+      final mid = await _con.getPatientInfo(widget.id);
+      setState(() {
+        patient_info = mid;
+        isFollowing=patient_info.isfollow!;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
   @override
   void initState() {
     super.initState();
+    getData();
     _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
-    for (int i = 0; i < counseling_list.length; i++)
-      setState(() {
-        mid.add(counseling_list[i]);
-      });
-    for (int i = 0; i < question_list.length; i++)
-      setState(() {
-        nid.add(question_list[i]);
-      });
   }
 
   @override
@@ -53,15 +49,34 @@ class _UserPageState extends State<UserPage>
     _tabController.dispose();
     super.dispose();
   }
-
+  Future<void> postTooglefollow() async {
+    try {
+      final res=await _con.postTooglefollow(index:widget.id);
+      if(res==true){
+        setState(() {
+          isFollowing=!isFollowing;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
         title: Text(
-          'Ayaka11',
+          patient_info.name!,
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
@@ -160,18 +175,64 @@ class _UserPageState extends State<UserPage>
 
   Widget buildDiaryPage() {
     return Container(
-      color: Helper.bodyBgColor,
       height: 640,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            DiaryCardWidget(isMe: false),
-            SizedBox(
-              height: 8,
-            ),
-            DiaryCardWidget(isMe: false)
-          ],
-        ),
+      color: Helper.bodyBgColor,
+      child: Column(
+        children: [
+          Expanded(
+            child: LayoutBuilder(
+                builder: (context, BoxConstraints viewportConstraints) {
+              return ListView.builder(
+                  padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+                  itemCount: patient_info.diaries!.length,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Diary_Card(
+                              avator:
+                                  patient_info.diaries![index].patient_photo == null
+                                      ? "http://error.png"
+                                      : patient_info.diaries![index].patient_photo!,
+                              check: patient_info.diaries![index].doctor_name == null
+                                  ? ""
+                                  : patient_info.diaries![index].doctor_name!,
+                              image2: patient_info.diaries![index].after_image == null
+                                  ? "http://error.png"
+                                  : patient_info.diaries![index].after_image!,
+                              image1:
+                                  patient_info.diaries![index].before_image == null
+                                      ? "http://error.png"
+                                      : patient_info.diaries![index].before_image!,
+                              eyes: patient_info.diaries![index].views_count == null
+                                  ? ""
+                                  : patient_info.diaries![index].views_count!
+                                      .toString(),
+                              clinic: patient_info.diaries![index].clinic_name == null
+                                  ? ""
+                                  : patient_info.diaries![index].clinic_name!,
+                              name: patient_info.diaries![index].patient_nickname ==
+                                      null
+                                  ? ""
+                                  : patient_info.diaries![index].patient_nickname!,
+                              onpress: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Diary_Detail(
+                                        index: patient_info.diaries![index].id)));
+                              },
+                              price: patient_info.diaries![index].price == null
+                                  ? ""
+                                  : patient_info.diaries![index].price.toString(),
+                              sentence:
+                                  patient_info.diaries![index].doctor_name == null
+                                      ? ""
+                                      : patient_info.diaries![index].doctor_name!,
+                              type: patient_info.diaries![index].doctor_name == null
+                                  ? ""
+                                  : patient_info.diaries![index].doctor_name!,
+                            );
+                      });
+            }),
+          ),
+        ],
       ),
     );
   }
@@ -187,32 +248,63 @@ class _UserPageState extends State<UserPage>
                 builder: (context, BoxConstraints viewportConstraints) {
               return ListView.builder(
                   padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                  itemCount: mid.length,
+                  itemCount: patient_info.counselings!.length,
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Counseling_Card(
-                      hearts: mid[index]["hearts"],
-                      chats: mid[index]["chats"],
-                      avator: mid[index]["avator"],
-                      check: mid[index]["check"],
-                      image2: mid[index]["image2"],
-                      image1: mid[index]["image1"],
-                      image3: mid[index]["image3"],
-                      image4: mid[index]["image4"],
-                      eyes: mid[index]["eyes"],
-                      name: mid[index]["name"],
-                      onpress: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CounselDetail(
-                                      isMyDiary: true, index: 1,
-                                    )));
-                      },
-                      sentence: mid[index]["sentence"],
-                      type: mid[index]["type"],
-                      clinic: mid[index]["clinic"],
-                    );
+                              hearts: patient_info.counselings![index].likes_count ==
+                                      null
+                                  ? ""
+                                  : patient_info.counselings![index].likes_count!
+                                      .toString(),
+                              chats: patient_info.counselings![index].comments_count ==
+                                      null
+                                  ? ""
+                                  : patient_info.counselings![index].comments_count
+                                      .toString(),
+                              avator: patient_info.counselings![index].patient_photo ==
+                                      null
+                                  ? "http://error.png"
+                                  : patient_info.counselings![index].patient_photo!,
+                              check: patient_info.counselings![index].doctor_name ==
+                                      null
+                                  ? ""
+                                  : patient_info.counselings![index].doctor_name!,
+                              image2:
+                                  "http://error.png", //patient_info.counselings![index]["image2"],
+                              image1:
+                                  "http://error.png", //patient_info.counselings![index]["image1"],
+                              image3:
+                                  "http://error.png", //patient_info.counselings![index]["image3"],
+                              image4:
+                                  "http://error.png", //patient_info.counselings![index]["image4"], 
+                              eyes: patient_info.counselings![index].views_count ==
+                                      null
+                                  ? ""
+                                  : patient_info.counselings![index].views_count!
+                                      .toString(),
+                              name: patient_info.counselings![index].patient_nickname ==
+                                      null
+                                  ? ""
+                                  : patient_info.counselings![index].patient_nickname!,
+                              onpress: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CounselDetail(
+                                            index: patient_info.counselings![index].id)));
+                              },
+                              sentence:
+                                  patient_info.counselings![index].content == null
+                                      ? ""
+                                      : patient_info.counselings![index].content!,
+                              type:
+                                  "回答あり", // patient_info.counselings![index]["type"],
+                              clinic: patient_info.counselings![index].clinic_name ==
+                                      null
+                                  ? ""
+                                  : patient_info.counselings![index].clinic_name!,
+                            );
                   });
             }),
           ),
@@ -232,29 +324,28 @@ class _UserPageState extends State<UserPage>
               builder: (context, BoxConstraints viewportConstraints) {
                 return ListView.builder(
                     padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                    itemCount: mid.length,
+                    itemCount: patient_info.questions!.length,
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Question_Card(
-                        isanswer: mid[index].answers.isNotEmpty,
-                        hearts: mid[index]["hearts"],
-                        chats: mid[index]["chats"],
-                        avator: mid[index]["avator"],
-                        image2: mid[index]["image2"],
-                        image1: mid[index]["image1"],
-                        eyes: mid[index]["eyes"],
-                        name: mid[index]["name"],
-                        onpress: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => QuestionDetail(
-                                        isMyDiary: true, index: mid[index].id,
-                                      )));
-                        },
-                        sentence: mid[index]["sentence"],
-                        type: mid[index]["type"],
-                      );
+                          isanswer: patient_info.questions![index].answers.isNotEmpty,
+                          hearts: patient_info.questions![index].likes_count==null?"":patient_info.questions![index].likes_count!.toString(),
+                          chats: patient_info.questions![index].comments_count==null?"":patient_info.questions![index].comments_count.toString(),
+                          avator:patient_info.questions![index].owner!.photo==null?"http://error.png": patient_info.questions![index].owner!.photo!,
+                          image2: (patient_info.questions![index].medias!.isEmpty||patient_info.questions![index].medias!.length==1)?"http://error.png":patient_info.questions![index].medias![1].path,
+                          image1:patient_info.questions![index].medias!.isEmpty?"http://error.png":patient_info.questions![index].medias![0].path,
+                          eyes: patient_info.questions![index].views_count==null?"":patient_info.questions![index].views_count!.toString(),
+                          name:patient_info.questions![index].owner!.name==null?"": patient_info.questions![index].owner!.name!,
+                          onpress: () {
+                             Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => QuestionDetail(index:  patient_info.questions![index].id)));
+                            //Navigator.of(context).pushNamed("/QuestionDetail");
+                          },
+                          sentence:patient_info.questions![index].content==null?"": patient_info.questions![index].content!,
+                          type:"二重切開" //patient_info.questions![index]["type"],
+                        );
                     });
               },
             ),
@@ -287,15 +378,24 @@ class _UserPageState extends State<UserPage>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        height: 60,
-                        width: 60,
-                        child: CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage(
-                            "${currentUser.imageUrl}",
+                          height: 60,
+                          width: 60,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: patient_info.photo==null?"https://error.png":patient_info.photo,
+                              placeholder: (context, url) => Image.asset(
+                                'assets/images/loading.gif',
+                                fit: BoxFit.cover,
+                              ),
+                              errorWidget: (context, url, error) => Image.asset(
+                                'assets/images/profile.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
                       SizedBox(
                         width: 14,
                       ),
@@ -309,7 +409,7 @@ class _UserPageState extends State<UserPage>
                                 flex: 1,
                                 fit: FlexFit.tight,
                                 child: Text(
-                                  "あやか",
+                                  patient_info.kana!,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 18,
@@ -324,7 +424,7 @@ class _UserPageState extends State<UserPage>
                             child: OutlinedButton(
                                 onPressed: () {
                                   setState(() {
-                                    isFollowing = !isFollowing;
+                                    postTooglefollow();
                                   });
                                 },
                                 style: OutlinedButton.styleFrom(
@@ -335,7 +435,7 @@ class _UserPageState extends State<UserPage>
                                     shape: StadiumBorder(),
                                     side: BorderSide(
                                         width: 1, color: Helper.mainColor),
-                                        backgroundColor: isFollowing ? Helper.whiteColor : Helper.mainColor),
+                                        backgroundColor: isFollowing ? Helper.mainColor : Helper.whiteColor),
                                 child: isFollowing
                                     ? Text(
                                         "フォロー中",
@@ -343,7 +443,7 @@ class _UserPageState extends State<UserPage>
                                           fontWeight: FontWeight.w400,
                                           fontSize: 12,
                                           
-                                          color: Helper.mainColor,
+                                          color: Helper.whiteColor
                                         ),
                                       )
                                     : Text(
@@ -351,8 +451,7 @@ class _UserPageState extends State<UserPage>
                                         style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 12,
-                                          
-                                          color: Helper.whiteColor,
+                                          color: Helper.mainColor,
                                         ),
                                       )),
                           ),
@@ -379,7 +478,7 @@ class _UserPageState extends State<UserPage>
                             SizedBox(
                                 height: 24,
                                 child: Text(
-                                  "26",
+                                  patient_info.followsCount.toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
@@ -418,7 +517,7 @@ class _UserPageState extends State<UserPage>
                             SizedBox(
                                 height: 24,
                                 child: Text(
-                                  "26",
+                                  patient_info.followersCount.toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
@@ -453,7 +552,7 @@ class _UserPageState extends State<UserPage>
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            "こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。こちらに紹介文が入ります。",
+                            patient_info.intro!,
                             overflow: TextOverflow.clip,
                             textAlign: TextAlign.justify,
                             maxLines: 4,
@@ -469,16 +568,16 @@ class _UserPageState extends State<UserPage>
                     )
                   ]),
                 ],
-              ),
-            ),
+              ), 
+            ),    
           ),
-        ),
+        ),  
       ),
       SliverPersistentHeader(
           pinned: true, delegate: _SliverAppBarDelegate(_buildTabBar()))
     ];
   }
-}
+}                         
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate(this._tabBar);
