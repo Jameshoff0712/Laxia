@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/models/profile_model.dart';
+import 'package:laxia/models/question_post_model.dart';
 import 'package:laxia/services/http/my_api.dart';
+
+import '../models/question/media_model.dart';
 
 class MyController extends BaseController {
   MyApi api = MyApi();
@@ -26,5 +31,11 @@ class MyController extends BaseController {
   }
   Future<bool> postTooglefollow({required int index}){
     return api.postTooglefollow(index);
+  }
+  Future<dynamic> postQuestion(QuestionPostModel newQuestion){
+    return api.postQuestion(newQuestion);
+  }
+  Future<Media_model> imageUpload(File imageFile) {
+    return api.imageUpload(imageFile);
   }
 }

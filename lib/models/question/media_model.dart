@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class Media_model extends Equatable {
   final int id;
-  final String mediable_type;
+  final String? mediable_type;
   final int? mediable_id;
   final String path;
   final int? type;
