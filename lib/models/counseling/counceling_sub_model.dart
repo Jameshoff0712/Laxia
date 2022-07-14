@@ -27,18 +27,18 @@ class Counceling_Sub_Model extends Equatable {
   final String? reason;
   final String title;
   final List<Category>? categories;
-  final List<Image_model> media_self;
-  final List<Image_model> media_like;
-  final List<Image_model> media_dislike;
+  final List<Image_model>? media_self;
+  final List<Image_model>? media_like;
+  final List<Image_model>? media_dislike;
 
   const Counceling_Sub_Model(
       {required this.id,
       this.patient_id,
       this.reason,
       this.clinic_id,
-      required this.media_self,
-      required this.media_like,
-      required this.media_dislike,
+       this.media_self,
+       this.media_like,
+       this.media_dislike,
       required this.title,
       this.doctor_id,
       this.counseling_date,
@@ -67,13 +67,13 @@ class Counceling_Sub_Model extends Equatable {
         title: json["title"],
         clinic_id: json["clinic_id"],
         doctor_id: json["doctor_id"],
-        media_self:List<Image_model>.from(json["media_self"]
+        media_self:json["media_self"]==null?[]:List<Image_model>.from(json["media_self"]
                 .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
-        media_like:List<Image_model>.from(json["media_like"]
+        media_like:json["media_like"]==null?[]:List<Image_model>.from(json["media_like"]
                 .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
-        media_dislike:List<Image_model>.from(json["media_dislike"]
+        media_dislike:json["media_dislike"]==null?[]:List<Image_model>.from(json["media_dislike"]
                 .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
         counseling_date: json["counseling_date"],

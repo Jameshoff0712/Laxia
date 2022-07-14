@@ -120,8 +120,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => FavoriteScreen());
       case '/Mypage':
         return MaterialPageRoute(builder: (_) => Mypage());
-      case '/Userpage':
-        return MaterialPageRoute(builder: (_) => UserPage());
+      // case '/Userpage':
+      //   return MaterialPageRoute(builder: (_) => UserPage());
       case '/FollowingList':
         return MaterialPageRoute(builder: (_) => FollowingListPage());
       case '/FollowerList':
