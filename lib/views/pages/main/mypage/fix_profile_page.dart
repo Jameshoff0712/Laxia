@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker_forked/flutter_datetime_picker_forked.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/controllers/static_controller.dart';
+import 'package:laxia/models/profile_model.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/mypage/input_text_widget.dart';
 import 'package:laxia/views/pages/main/mypage/mypage.dart';
@@ -15,6 +18,8 @@ import 'package:laxia/views/widgets/select_gender.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../models/static/areas_model.dart';
+
 class FixProfilePage extends StatefulWidget {
   @override
   State<FixProfilePage> createState() => _FixProfilePageState();
@@ -23,9 +28,13 @@ class FixProfilePage extends StatefulWidget {
 class _FixProfilePageState extends State<FixProfilePage> {
   final _formKey = GlobalKey<FormState>();
   String _enteredText = '';
-  List<String> _cities = [];
+  // List<String> _cities = [];
+  List<Area_Model> areas = [];
+  late List<int> surgery_ids;
   File? _image;
   final _picker = ImagePicker();
+  MyController _con = new MyController();
+  final _conStatic = StaticController();
   TextEditingController _conNickname = TextEditingController();
   TextEditingController _conId = TextEditingController();
   TextEditingController _conDate = TextEditingController();
@@ -44,37 +53,52 @@ class _FixProfilePageState extends State<FixProfilePage> {
     }
   }
 
-  Future<void> readCities() async {
-    final String response =
-        await rootBundle.loadString('assets/cfg/japanese-city-data.json');
-    final data = await json.decode(response);
-    setState(() {
-      for (int i = 0; i < data.length; i++) {
-        _cities.add(data[i]["label"]);
-      }
-    });
+  Future<void> post() async {
+    ProfileModel profile = new ProfileModel(
+        birthday: _conDate.text,
+        gender: _conGender.text,
+        unique_id: _conId.text,
+        nick_name: _conNickname.text,
+        intro: _conIntro.text,
+        photo: _image,
+        area_id: 1,
+        patient_categories: surgery_ids);
+    dynamic result = await _con.editProfile(profile);
+    print(result.data);
+  }
+
+  Future<void> readAreas() async {
+    try {
+      areas = await _conStatic.getAreas();
+      setState(() {
+        // isloading = false;
+      });
+    } catch (e) {
+      setState(() {
+        print(e.toString());
+      });
+    }
   }
 
   @override
   void initState() {
-    _conSurgery.text=_enteredText;
+    _conSurgery.text = _enteredText;
     super.initState();
-    readCities();
+    readAreas();
   }
 
   @override
   Widget build(BuildContext context) {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
-    if(_enteredText!= surgeryProvider.selectedCurePosStr.join(' ')){
+    if (_enteredText != surgeryProvider.selectedCurePosStr.join(' ')) {
       setState(() {
-        _enteredText=surgeryProvider.selectedCurePosStr.join(' ');
-         _conSurgery.text=_enteredText;
-
+        _enteredText = surgeryProvider.selectedCurePosStr.join(' ');
+        _conSurgery.text = _enteredText;
       });
     }
     // TODO: implement build
-    return _cities.isNotEmpty
+    return areas.isNotEmpty
         ? Container(
             padding: EdgeInsets.only(top: 10),
             height: MediaQuery.of(context).size.height - 54,
@@ -108,8 +132,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        
-                        Navigator.of(context).pushNamed("/Mypage");
+                        setState(() {
+                          surgery_ids = surgeryProvider.getSelectedCurePos;
+                        });
+                        post();
+                        // Navigator.of(context).pushNamed("/Mypage");
                       },
                       child: Text(
                         "保存",
@@ -305,12 +332,12 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                     backgroundColor: Colors.white,
                                     context: context,
                                     builder: (context) {
-                                      return SelectGender(controller: _conGender);
+                                      return SelectGender(
+                                          controller: _conGender);
                                     },
                                     isScrollControlled: true,
                                   );
                                 },
-                                
                                 validator: (v) {
                                   if (v!.isEmpty) return '入力してください';
                                   // final regex = RegExp('^[1-9]+[0-9]*');
@@ -366,7 +393,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                   });
                                 },
                                 name: "施術希望エリア",
-                                items: _cities,
+                                items: areas,
                                 chosenValue: "",
                               ),
                               SizedBox(
@@ -397,7 +424,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                   //   isUsed = true;
                                   // });
                                 },
-                                
                                 validator: (v) {
                                   if (v!.isEmpty) return '入力してください';
                                   // final regex = RegExp('^[1-9]+[0-9]*');
@@ -436,7 +462,6 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                     fontSize: 14,
                                     color: Color.fromARGB(255, 18, 18, 18)),
                               ),
-
                             ],
                           ),
                         )

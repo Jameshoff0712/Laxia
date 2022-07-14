@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/static/areas_model.dart';
 
 class SelectBoxWidget extends StatefulWidget {
   String name = '';
-  List<String> items = [];
+  List<Area_Model> items = [];
   String? chosenValue;
   void Function(String val) onChange;
   SelectBoxWidget(
@@ -42,9 +43,9 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
           DropdownButtonFormField<String>(
               items: widget.items
                   .map((item) => DropdownMenuItem<String>(
-                        value: item,
+                        value: item.id.toString(),
                         child: Text(
-                          item,
+                          item.name!,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
