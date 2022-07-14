@@ -504,7 +504,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     children: [
                                       PhotoCarouselWidget(
                                         bRemove:false,
-                                          ImageList: counceling_detail.counceling.media_self, onRemove: (int ) {  },)
+                                          ImageList: counceling_detail.counceling.media_self!, onRemove: (int ) {  },)
                                     ],
                                   ),
                                 ),
@@ -536,7 +536,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     children: [
                                       PhotoCarouselWidget(
                                         bRemove:false,
-                                          ImageList: counceling_detail.counceling.media_like, onRemove: (int ) {  },)
+                                          ImageList: counceling_detail.counceling.media_like!, onRemove: (int ) {  },)
                                     ],
                                   ),
                                 ),
@@ -568,7 +568,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     children: [
                                       PhotoCarouselWidget(
                                         bRemove:false,
-                                          ImageList: counceling_detail.counceling.media_dislike, onRemove: (int ) {  },)
+                                          ImageList: counceling_detail.counceling.media_dislike!, onRemove: (int ) {  },)
                                     ],
                                   ),
                                 ),

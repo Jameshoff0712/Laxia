@@ -1,5 +1,6 @@
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/follow/follow_model.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/services/http/my_api.dart';
 
@@ -15,5 +16,11 @@ class MyController extends BaseController {
   }
   Future<Point> getPointInfo() async {
     return await api.getPointInfo();
+  }
+  Future<Me> getPatientInfo(int index) async {
+    return await api.getPatientInfo(index);
+  }
+  Future<bool> postTooglefollow({required int index}){
+    return api.postTooglefollow(index);
   }
 }

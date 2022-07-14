@@ -1,7 +1,9 @@
 import 'package:laxia/models/follow/follow_model.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/services/http/api.dart';
 import 'package:http/http.dart' as http;
+import 'package:nb_utils/nb_utils.dart';
 
 class MyApi extends Api {
   MyApi();
@@ -20,13 +22,24 @@ class MyApi extends Api {
         "$apiUrl/followers?per_page=" + per_page + "&page=" + page, token);
     return Follow.fromJson(res.data["data"]["followers"]);
   }
-
+  Future<Me> getPatientInfo(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/patients/$index", token);
+    return Me.fromJson(res.data['data']['patient']);
+  }
   Future<Point> getPointInfo() async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/points/history", token);
     return Point.fromJson(res.data);
   }
-
+  Future<bool> postTooglefollow(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.post("$apiUrl/patients/$index/toggleFollow",<String, String>{}, token);
+    if(res!.data["status"]==1){
+      return true;
+    }
+    return false;
+  }
   Future<void> postDiary(
       int clinic_id,
       String date,
