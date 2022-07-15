@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/question/media_model.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
@@ -10,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:laxia/controllers/question_controller.dart';
+
+import '../../../../models/question_post_model.dart';
 
 class AddQuestion extends StatefulWidget {
   @override
@@ -21,17 +25,23 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
   bool isUsed = false;
   //File imageURI;
   late QuestionController _con;
+  MyController _conMy = MyController();
   int index = 0;
   List images = [];
+  List<int> imageIds = [];
   final _picker = ImagePicker();
+
+  late List<int> qst_categories;
   Future<void> _openImagePicker() async {
     try{
       final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
       if(pickedImage == null) return;
 
+      final Media_model res = await _conMy.imageUpload(File(pickedImage.path));
       setState(() {
-        images.add(pickedImage.path);
+        images.add(File(pickedImage.path));
+        imageIds.add(res.id);
       });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
@@ -40,6 +50,18 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
 
   _AddQuestionState() : super(QuestionController()) {
     _con = controller as QuestionController;
+  }
+
+  Future<void> post() async {
+    QuestionPostModel newQuestion = new QuestionPostModel(
+        categories: qst_categories,
+        title: _con.question_titleCtrl.text,
+        content: _con.question_contentCtrl.text,
+        imageID_list: imageIds
+        );
+
+    dynamic result = _conMy.postQuestion(newQuestion);
+    print(result.data);
   }
 
   enableAddButton() {
@@ -137,6 +159,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                               )),
                           onPressed: () {
                             // diaryProperties.setMedias(images);
+                            post();
                             Navigator.of(context).pop();
                             Navigator.of(context).pushNamed("/Pages");
                           },
@@ -490,7 +513,14 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                       color: Color.fromARGB(255, 194, 194, 194),
                     ),
                     child: ElevatedButton(
-                      onPressed: isAddEnabled ? () => _AddQuestion() : null,
+                      onPressed: isAddEnabled 
+                      ? () {
+                        setState(() {
+                          qst_categories = surgeryProvider.getSelectedCurePos;
+                        });
+                        _AddQuestion();
+                      }  
+                      : null,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -571,9 +601,10 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                   children: [
                     PhotoCarouselWidget(
                       ImageList: images,
-                      onRemove: (int) {
+                      onRemove: (i) {
                         setState(() {
-                          images.removeAt(int);
+                          images.removeAt(i);
+                          imageIds.removeAt(i);
                         });
                       },
                     ),

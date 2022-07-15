@@ -36,7 +36,7 @@ class Api {
       });
 
       data.forEach((key, value) async {
-        if(key.contains("medias")){
+        if(key == "media"){
           request.files.add(await http.MultipartFile.fromPath("image", value));
         }
         request.fields[key] = value;
