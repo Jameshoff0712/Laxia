@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
@@ -5,6 +7,9 @@ import 'package:laxia/models/profile_model.dart';
 import 'package:laxia/services/http/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:nb_utils/nb_utils.dart';
+
+import '../../models/question/media_model.dart';
+import '../../models/question_post_model.dart';
 
 class MyApi extends Api {
   MyApi();
@@ -75,24 +80,51 @@ class MyApi extends Api {
     
   }
 
+  Future<dynamic> postQuestion(QuestionPostModel newQuestion) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.post(
+      "$apiUrl/questions", 
+      <String, String> {
+        'questions[title]': newQuestion.title,
+        'questions[content]': newQuestion.content,
+        for(int i = 0; i < newQuestion.categories.length; i++)
+          'categories[]': newQuestion.categories[i].toString(),
+        for(int j = 0; j < newQuestion.imageID_list!.length; j++)
+          'medias[]': newQuestion.imageID_list![j].toString(),
+      } ,
+      token
+    );
+    return res;
+  }
   Future<dynamic> editProfile(ProfileModel profile) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
       "$apiUrl/register/detail",
-        profile.list(),
-        token
+      <String, String> {
+        'patients[unique_id]': profile.unique_id.toString(),
+        'patients[nickname]': profile.nick_name.toString(),
+        'patients[intro]': profile.intro.toString(),
+        'medias': profile.photo.toString(),
+        'patients[birthday]': profile.birthday.toString(),
+        'patients[gender]': profile.gender.toString(),
+        'patients[area_id]': profile.area_id.toString(),
+        for(int k = 0; k < profile.patient_categories.length; k++)
+          'patient_categories[' + k.toString() + ']': profile.patient_categories[k].toString(),
+      },
+      token
     );
     return res;
   }
 
-  Future<void> editImageUpload() async {
+  Future<Media_model> imageUpload(File imageFile) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.put(
-      "$apiUrl/",
+    final res = await Api.post(
+      "$apiUrl/media",
       <String, String> {
-        "image": "ryu"
+        "media": imageFile.path
       },
       token
     );
+    return Media_model.fromJson(res!.data);
   }
 }
