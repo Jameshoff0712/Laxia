@@ -206,11 +206,12 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     ],
                   ),
                 ),
+                SizedBox(height: 20,),
                 Center(
                   child: Container(
                     height: 42,
                     width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.only(top: 20, left: 32, right: 32),
+                    padding: EdgeInsets.only(left: 32, right: 32),
                     child: ElevatedButton(
                       onPressed: () { Navigator.of(context).pushNamed("/AddDiaryProgress"); },
                       style: ElevatedButton.styleFrom(
@@ -253,7 +254,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                   child: Container(
                     height: 42,
                     width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.only(top: 10, left: 32, right: 32),
+                    padding: EdgeInsets.only(left: 32, right: 32),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
