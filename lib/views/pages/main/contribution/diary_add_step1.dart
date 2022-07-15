@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
@@ -43,14 +44,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
   List<String> images = [];
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
-    final XFile? pickedImage =
+    try{
+      final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
+      if(pickedImage == null) return;
+
       setState(() {
         images.add(pickedImage.path);
       });
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
     }
-    ;
   }
 
   enableAddButton() {

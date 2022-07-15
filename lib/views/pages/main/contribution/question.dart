@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/surgery_provider.dart';
@@ -24,12 +25,16 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
   List images = [];
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
-    final XFile? pickedImage =
+    try{
+      final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
+      if(pickedImage == null) return;
+
       setState(() {
-        images.add(File(pickedImage.path));
+        images.add(pickedImage.path);
       });
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
     }
   }
 

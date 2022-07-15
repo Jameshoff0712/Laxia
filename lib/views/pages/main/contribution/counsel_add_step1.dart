@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/user_provider.dart';
@@ -38,12 +39,16 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
   List images = [[]];
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
-    final XFile? pickedImage =
+    try{
+      final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
+      if(pickedImage == null) return;
+
       setState(() {
-        images[index].add(File(pickedImage.path));
+        images[index].add(pickedImage.path);
       });
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
     }
   }
 
