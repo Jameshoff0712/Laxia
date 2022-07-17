@@ -1,21 +1,60 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/models/m_message.dart';
-import 'package:laxia/models/m_user.dart';
+// import 'package:laxia/models/m_message.dart';
+// import 'package:laxia/models/m_user.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:laxia/utils/preference_util.dart';
 import 'package:laxia/views/widgets/chatSlot.dart';
+import 'package:flutter_pusher_client/flutter_pusher.dart';
+import 'package:laxia/services/http/api.dart';
+import 'package:laravel_echo/laravel_echo.dart';
 
-class ChatScreen extends StatefulWidget {
-  final User? user;
-  ChatScreen({this.user});
+class ChatScreen extends StatefulWidget{
+  final int mailbox_id;
+  ChatScreen({required this.mailbox_id});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final PreferenceUtil preferenceUtil = PreferenceUtil();
+  // String? token = await PreferenceUtil().getToken();
+  final pusher_key = dotenv.env["PUSHER_APP_KEY"];
+  final pusher_cluseter = dotenv.env["PUSHER_APP_CLUSTER"];
   final textController = TextEditingController();
   String contentChat = '';
+  late Echo echo;
+  PusherOptions options = PusherOptions(
+    host: '127.0.0.1',
+    port: 8000,
+    encrypted: true,
+  );
+  late FlutterPusher pusher;
+  Future<void> initEcho() async {
+    final token=await preferenceUtil.getToken();
+    pusher = FlutterPusher('app', options, enableLogging: true);
+    echo =new Echo({
+      'broadcaster':'pusher',
+      'client':pusher,
+      'key': pusher_key,
+      'cluster': pusher_cluseter,
+      'auth': {
+          'headers': {
+              'Authorization': 'Bearer '+ token!
+          }
+        }
+    });
+    echo.private('Chat.${widget.mailbox_id}').listen('.private-chat-event', (e) {
+      print(e);
+    });
+  }
+  @override
+  void initState() {
+    initEcho();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     int? prevUserId;
@@ -48,22 +87,27 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: [
-          Expanded(
-              child: Container(
-                color: Color.fromARGB(255, 240, 242, 245),
-                child: ListView.builder(
-                    reverse: true,
-                    itemCount: messages.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final Message message = messages[index];
-                      final bool isMe = message.sender!.id == currentUser.id;
-                      prevUserId = message.sender!.id;
-                      return ChatSlot(message: message, isMe: isMe);
-                    }),
-              )),
-          _buildSendMessageBox(),
+          // Expanded(
+          //     child: Container(
+          //       color: Color.fromARGB(255, 240, 242, 245),
+          //       child: ListView.builder(
+          //           reverse: true,
+          //           itemCount: messages.length,
+          //           itemBuilder: (BuildContext context, int index) {
+          //             final Message message = messages[index];
+          //             final bool isMe = message.sender!.id == currentUser.id;
+          //             prevUserId = message.sender!.id;
+          //             return ChatSlot(message: message, isMe: isMe);
+          //           }),
+          //     )),
+         
         ],
       ),
+      bottomNavigationBar:Container(
+        child: Column(children: [
+           _buildSendMessageBox(),
+        ]),
+      ) ,
     );
   }
 

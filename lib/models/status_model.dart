@@ -1,24 +1,43 @@
-
 import 'package:equatable/equatable.dart';
 
 class StatusInfo extends Equatable {
+  final String clinic_name;
+  final String created_at;
+  final int mailbox;
   final int status;
-  final List data;
+  final String updated_at;
+  final String visit_date;
+  final String visit_time;
   const StatusInfo({
+    required this.clinic_name,
+    required this.created_at,
+    required this.mailbox,
+    required this.updated_at,
+    required this.visit_date,
+    required this.visit_time,
     required this.status,
-    required this.data,
   });
 
   factory StatusInfo.fromJson(Map<String, dynamic> json) {
     return StatusInfo(
-        status: json['status'],
-        data: json['data'],
+      clinic_name:json['clinic_name'],
+      created_at:json['created_at'],
+      mailbox:json['mailbox'],
+      updated_at:json['updated_at'],
+      visit_date:json['visit_date']==null?"":json['visit_date'],
+      visit_time:json['visit_time']==null?"":json['visit_time'],
+      status:json['status'],
     );
   }
 
   @override
   List<Object?> get props => [
-        status,
-        data,
+          clinic_name,
+          created_at,
+          mailbox,
+          updated_at,
+          visit_date,
+          visit_time,
+          status,        
       ];
 }
