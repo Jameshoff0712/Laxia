@@ -39,8 +39,12 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
       if(pickedImage == null) return;
 
       final Media_model res = await _conMy.imageUpload(File(pickedImage.path));
+      print(File(pickedImage.path).path);
+      print('======================');
+      print(pickedImage.path);
+      print(res);
       setState(() {
-        images.add(File(pickedImage.path));
+        images.add(pickedImage.path);
         imageIds.add(res.id);
       });
     } on PlatformException catch(e) {
