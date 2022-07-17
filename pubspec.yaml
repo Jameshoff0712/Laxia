@@ -83,6 +83,8 @@ dependencies:
   flutter_datetime_picker_forked: ^1.4.1
   uni_links: ^0.5.1
   bottom_picker: ^1.9.1
+  laravel_echo: ^0.2.9
+  flutter_pusher_client: ^0.3.1
 
 dev_dependencies:
   flutter_test:
