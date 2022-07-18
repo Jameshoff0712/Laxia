@@ -30,12 +30,13 @@ class _AppointmentState extends State<Appointment>
     // '1234567'
   ];
   late TabController _tabController;
-  bool isEmpty = true;
-  StatusInfo? statusInfo;
+  bool isloading = true;
+  late List<StatusInfo> statusInfo;
   Future<void> getStatusInfo() async {
-    final info = await _con.getAllStatus() as StatusInfo;
+    final info = await _con.getAllStatus();
     setState(() {
       statusInfo = info;
+      isloading = false;
     });
 
     // print(statusInfo);
@@ -52,150 +53,166 @@ class _AppointmentState extends State<Appointment>
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Helper.whiteColor,
-        shadowColor: Helper.whiteColor,
-        title: Text(
-          '予約',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-            color: Helper.titleColor,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              userProperties.setCurrentPageIndex(0);
-              Navigator.of(context).pushNamed('/Pages');
-            },
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
-            icon: Icon(
-              Icons.keyboard_arrow_left,
-              color: Helper.titleColor,
-              size: 30,
-              
-            )),
-        elevation: 0,
-      ),
-      body: Column(children: [
-        TabBarWidget(
-          tabMenus: tabMenus,
-          tabController: _tabController,
-          padding: 8,
-          isScrollable: false,
-        ),
-        Expanded(
-          child: TabBarView(
-            physics: NeverScrollableScrollPhysics(),
-            children: [
-              Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Color.fromARGB(255, 240, 242, 245),
-                      child: isEmpty
-                          ? _buildEmptyClinic()
-                          : ListView(
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              children: [
-                                chatStatus(
-                                    statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-                                chatStatus(
-                                  statusCode: 2,
-                                  clinicName: '湘南美容クリニック 銀座院',
-                                  bookDate: '予約日時：2020/07/25 11：００〜',
-                                ),
-                                chatStatus(
-                                    statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                                chatStatus(
-                                    statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                              ],
-                            ),
-                    ),
-                  ),
-                ],
+    return isloading
+        ? Container(
+            child: Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ))
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: Helper.whiteColor,
+              shadowColor: Helper.whiteColor,
+              title: Text(
+                '予約',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
+                  color: Helper.titleColor,
+                ),
               ),
-              Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Color.fromARGB(255, 240, 242, 245),
-                      child: ListView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        children: [
-                          chatStatus(
-                              statusCode: 1, clinicName: '湘南美容クリニック 銀座院'),
-                          chatStatus(
-                            statusCode: 1,
-                            clinicName: '湘南美容クリニック 銀座院',
-                            notificCount: 1,
+              centerTitle: true,
+              leading: IconButton(
+                  onPressed: () {
+                    userProperties.setCurrentPageIndex(0);
+                    Navigator.of(context).pushNamed('/Pages');
+                  },
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  icon: Icon(
+                    Icons.keyboard_arrow_left,
+                    color: Helper.titleColor,
+                    size: 30,
+                  )),
+              elevation: 0,
+            ),
+            body: Column(children: [
+              TabBarWidget(
+                tabMenus: tabMenus,
+                tabController: _tabController,
+                padding: 8,
+                isScrollable: false,
+              ),
+              Expanded(
+                child: TabBarView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Color.fromARGB(255, 240, 242, 245),
+                            child: statusInfo.isEmpty
+                                ? _buildEmptyClinic()
+                                : ListView.builder(
+                                    physics:
+                                        const AlwaysScrollableScrollPhysics(),
+                                        itemCount: statusInfo.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return chatStatus(
+                                        mailbox:  statusInfo[index].mailbox,
+                                        statusCode: statusInfo[index].status,
+                                        clinicName:
+                                            statusInfo[index].clinic_name,
+                                        bookDate: statusInfo[index].visit_time +
+                                            "~" +
+                                            statusInfo[index].visit_date,
+                                      );
+                                    }),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Color.fromARGB(255, 240, 242, 245),
-                      child: ListView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        children: [
-                          chatStatus(
-                            statusCode: 2,
-                            clinicName: '湘南美容クリニック 銀座院',
-                            bookDate: '予約日時：2020/07/25 11：００〜',
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Color.fromARGB(255, 240, 242, 245),
+                            child: ListView.builder(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                 itemCount: statusInfo.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return statusInfo[index].status!=5?
+                                    Container()
+                                  :chatStatus(
+                                    mailbox:  statusInfo[index].mailbox,
+                                    statusCode: statusInfo[index].status,
+                                    clinicName: statusInfo[index].clinic_name,
+                                    bookDate: statusInfo[index].visit_time +
+                                        "~" +
+                                        statusInfo[index].visit_date,
+                                  );
+                                }),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Color.fromARGB(255, 240, 242, 245),
-                      child: ListView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        children: [
-                          chatStatus(
-                              statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Color.fromARGB(255, 240, 242, 245),
+                            child: ListView.builder(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemCount: statusInfo.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return statusInfo[index].status!=15?
+                                    Container()
+                                  :chatStatus(
+                                    statusCode: statusInfo[index].status,
+                                    clinicName: statusInfo[index].clinic_name,
+                                    bookDate: statusInfo[index].visit_time +
+                                        "~" +
+                                        statusInfo[index].visit_date, 
+                                    mailbox:  statusInfo[index].mailbox,
+                                  );
+                                }),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Color.fromARGB(255, 240, 242, 245),
-                      child: ListView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        children: [
-                          chatStatus(
-                              statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Color.fromARGB(255, 240, 242, 245),
+                            // child: ListView(
+                            //   physics: const AlwaysScrollableScrollPhysics(),
+                            //   children: [
+                            //     chatStatus(
+                            //         statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
+                            //   ],
+                            // ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Color.fromARGB(255, 240, 242, 245),
+                            // child: ListView(
+                            //   physics: const AlwaysScrollableScrollPhysics(),
+                            //   children: [
+                            //     chatStatus(
+                            //         statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
+                            //   ],
+                            // ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                  controller: _tabController,
+                ),
               ),
-            ],
-            controller: _tabController,
-          ),
-        ),
-      ]),
-    );
+            ]),
+          );
   }
 
   Widget _buildEmptyClinic() {
@@ -207,7 +224,6 @@ class _AppointmentState extends State<Appointment>
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,
-            
             color: Color.fromARGB(255, 102, 110, 110),
           ),
         ),

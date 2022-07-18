@@ -5,12 +5,14 @@ import 'package:laxia/common/helper.dart';
 
 class chatStatus extends StatefulWidget {
   final int statusCode;
+  final int mailbox;
   final String clinicName;
   final String? bookDate;
   final int? notificCount;
 
   const chatStatus(
       {Key? key,
+      required this.mailbox,
       required this.statusCode,
       required this.clinicName,
       this.bookDate,
@@ -27,13 +29,13 @@ class _chatStatusState extends State<chatStatus> {
   void initState() {
     setState(() {
       switch (widget.statusCode) {
-        case 1:
+        case 5:
           {
             statusText = '調整中';
             statusColor = Color.fromARGB(255, 102, 110, 110);
           }
           break;
-        case 2:
+        case 15:
           {
             statusText = '予約済';
             statusColor = Color.fromARGB(255, 0, 184, 169);
@@ -59,7 +61,7 @@ class _chatStatusState extends State<chatStatus> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.statusCode == 4 ? toChatScreen : null,
+      onTap:  toChatScreen,
       child: Container(
         padding: EdgeInsets.only(left: 10, top: 10, bottom: 15, right: 10),
         margin: EdgeInsets.fromLTRB(16, 10, 16, 0),
@@ -82,7 +84,6 @@ class _chatStatusState extends State<chatStatus> {
                   statusText,
                   style: TextStyle(
                     fontSize: 12,
-                    
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                     decoration: TextDecoration.none,
@@ -142,7 +143,7 @@ class _chatStatusState extends State<chatStatus> {
                 ? Container()
                 : Container(
                     child: Text(
-                      '予約日時：2020/07/25 11：００〜',
+                      widget.bookDate!,
                       style: TextStyle(
                         fontSize: 12,
                         
@@ -162,6 +163,6 @@ class _chatStatusState extends State<chatStatus> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => ChatScreen(user: favorites[0])));
+            builder: (context) => ChatScreen(mailbox_id: widget.mailbox)));
   }
 }
