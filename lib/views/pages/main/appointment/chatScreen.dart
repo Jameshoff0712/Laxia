@@ -27,28 +27,41 @@ class _ChatScreenState extends State<ChatScreen> {
   String contentChat = '';
   late Echo echo;
   PusherOptions options = PusherOptions(
-    host: '127.0.0.1',
+    host: 'localhost',
     port: 8000,
     encrypted: true,
   );
   late FlutterPusher pusher;
   Future<void> initEcho() async {
     final token=await preferenceUtil.getToken();
-    pusher = FlutterPusher('app', options, enableLogging: true);
+    options= PusherOptions(
+    host: 'https://4b3a-45-126-3-252.ap.ngrok.io ',
+    port: 8000,
+    auth: PusherAuth(
+            'https://4b3a-45-126-3-252.ap.ngrok.io/broadcasting/auth',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+token!
+            },
+          ),
+    encrypted: true,
+  );
+    pusher = FlutterPusher('app', options, enableLogging: false);
     echo =new Echo({
       'broadcaster':'pusher',
       'client':pusher,
       'key': pusher_key,
       'cluster': pusher_cluseter,
-      'auth': {
-          'headers': {
-              'Authorization': 'Bearer '+ token!
-          }
+      'auth':{
+        'headers':{
+          'Authorization': 'Bearer '+token
         }
+      }
     });
-    echo.private('Chat.${widget.mailbox_id}').listen('.private-chat-event', (e) {
+    echo.private('Chat.'+widget.mailbox_id.toString()).listen('private-chat-event', (e) {
       print(e);
     });
+    print('Chat.'+widget.mailbox_id.toString());
   }
   @override
   void initState() {
