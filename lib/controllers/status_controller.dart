@@ -7,7 +7,7 @@ class StatusController extends BaseController {
 
   ReservationApi api = ReservationApi();
 
-  Future<StatusInfo> getAllStatus() async {
+  Future<List<StatusInfo>> getAllStatus() async {
     // print(await api.allStatus());
     return await api.allStatus();
   }
