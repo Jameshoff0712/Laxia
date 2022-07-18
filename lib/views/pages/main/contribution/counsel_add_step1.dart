@@ -221,6 +221,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
             color: Helper.titleColor,
           ),
           onPressed: () {
+            diaryProperties.date = '';
             surgeryProvider.selectedCurePos.clear();
             surgeryProvider.selectedCurePosStr.clear();
             userProperties.selectedClinic = '';
@@ -511,9 +512,9 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  date_counsel != ''? date_counsel : '選択してください',
+                                  diaryProperties.getDate != ''? diaryProperties.getDate : '選択してください',
                                   style: TextStyle(
-                                      color: date_counsel != ''? Helper.titleColor : Helper.txtColor,
+                                      color: diaryProperties.getDate != ''? Helper.titleColor : Helper.txtColor,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       ),
@@ -536,12 +537,12 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                             date.day.toString() +
                                             "日";
                                       });
-                                      // diaryProperties.setDate(
-                                      //     date.year.toString() +
-                                      //         "/" +
-                                      //         date.month.toString() +
-                                      //         "/" +
-                                      //         date.day.toString());
+                                      diaryProperties.setDate(
+                                          date.year.toString() +
+                                              "/" +
+                                              date.month.toString() +
+                                              "/" +
+                                              date.day.toString());
                                     },
                                         currentTime: DateTime.now(),
                                         locale: LocaleType.jp);
