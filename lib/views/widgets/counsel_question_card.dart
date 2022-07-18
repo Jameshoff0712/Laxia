@@ -48,6 +48,8 @@ class _CounselQuestion_CardState extends State<CounselQuestion_Card> {
                     ),
                     Text(
                       widget.question,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 14,
                           

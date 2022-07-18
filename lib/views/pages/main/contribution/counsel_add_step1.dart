@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/contribution/select_clinic.dart';
 import 'package:laxia/views/pages/main/contribution/select_doctor.dart';
@@ -28,12 +29,8 @@ class AddCounselStep1Page extends StatefulWidget {
 }
 
 class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
-  List<String> addList = [
-    '',
-    '',
-    '',
-    '',
-  ];
+  String date_counsel = '';
+  String content_worry = '';
   bool isAddEnabled = true, isUsed = false;
   int index = 0;
   List images = [[]];
@@ -50,18 +47,6 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
-  }
-
-  enableAddButton() {
-    setState(() {
-      isAddEnabled = true;
-    });
-  }
-
-  disableAddButton() {
-    setState(() {
-      isAddEnabled = false;
-    });
   }
 
   _AddCounselStep2Page() {
@@ -173,49 +158,8 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
             )
           ]),
         );
-        // return AlertDialog(
-        //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(24))),
-        //   title: Text(
-        //     "下書きに保存しますか？", 
-        //     style: TextStyle(
-        //       fontSize: 16,
-        //       fontWeight: FontWeight.w700,
-        //       color: Helper.titleColor
-        //     )),
-        //   content: Text("まだ投稿が完了しておりません。\n戻ると入力内容が消えてしまいます。",
-        //       style: TextStyle(fontSize: 14)),
-        //   actions: <Widget>[
-        //     Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //       children: [
-        //         new FlatButton(
-        //           textColor: Color.fromARGB(255, 110, 198, 210),
-        //           child: new Text('保存しない'),
-        //           onPressed: () {
-        //             Navigator.of(context).pop();
-        //           },
-        //         ),
-        //         new FlatButton(
-        //           color: Helper.mainColor,
-        //           textColor: Colors.white,
-        //           shape: RoundedRectangleBorder(
-        //               borderRadius: BorderRadius.circular(15)),
-        //           child: new Text('保存する'),
-        //           onPressed: () {
-        //             Navigator.of(context).pop();
-        //             Navigator.of(context).pushNamed("/AddCounselStep2");
-        //           },
-        //         )
-        //       ],
-        //     )
-        //   ],
-        // );
       },
     );
-  }
-
-  editTitle(String title) {
-    if (title.isNotEmpty) isAddEnabled = true;
   }
 
   @override
@@ -243,8 +187,12 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
   Widget build(BuildContext context) {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
-
-    if (surgeryProvider.selectedCurePos.isNotEmpty) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
+    if (surgeryProvider.selectedCurePos.isNotEmpty && diaryProperties.clinic_id != '' && diaryProperties.doctor_id != '' &&
+        date_counsel != '' && content_worry != '') {
       setState(() {
         isAddEnabled = true;
       });
@@ -253,8 +201,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
         isAddEnabled = false;
       });
     }
-    UserProvider userProperties =
-        Provider.of<UserProvider>(context, listen: true);
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -274,6 +221,12 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
             color: Helper.titleColor,
           ),
           onPressed: () {
+            surgeryProvider.selectedCurePos.clear();
+            surgeryProvider.selectedCurePosStr.clear();
+            userProperties.selectedClinic = '';
+            diaryProperties.clinic_id = '';
+            userProperties.selectedDoctor = '';
+            diaryProperties.doctor_id = '';
             Navigator.pop(context);
           },
           splashColor: Colors.transparent,
@@ -300,65 +253,6 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                       ),
                 ),
               ),
-              // Container(
-              //   decoration: BoxDecoration(color: Colors.white),
-              //   child: Padding(
-              //     padding: const EdgeInsets.fromLTRB(16.0, 15.0, 16.0, 12.0),
-              //     child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //         children: [
-              //           Flexible(
-              //             flex: 1,
-              //             child: Text(
-              //               "質問したい施術内容",
-              //               style: TextStyle(
-              //                   color: Color.fromARGB(255, 18, 18, 18),
-              //                   fontWeight: FontWeight.w700,
-              //                   fontSize: 12,
-              //                   height: 1.5),
-              //             ),
-              //           ),
-              //           Flexible(
-              //             flex: 1,
-              //             child: Row(
-              //               children: [
-              //                 Expanded(
-              //                   child: Text(
-              //                     surgeryProvider.selectedCurePos.isEmpty
-              //                         ? "選択してください"
-              //                         : surgeryProvider.getSelectedCurePosStr,
-              //                     style: TextStyle(
-              //                         color: Helper.titleColor,
-              //                         fontWeight: FontWeight.w400,
-              //                         fontSize: 14,
-              //                         height: 1.3),
-              //                   ),
-              //                 ),
-              //                 SizedBox(
-              //                   width: 25,
-              //                 ),
-              //                 GestureDetector(
-              //                   onTap: () {
-              //                     surgeryProvider.setButtonText("次へ");
-              //                     Navigator.of(context)
-              //                         .pushNamed("/SelectSurgery");
-              //                     setState(() {isAddEnabled = true;});
-              //                   },
-              //                   child: Icon(
-              //                     Icons.arrow_forward_ios,
-              //                     color: Colors.grey,
-              //                     size: 20,
-              //                   ),
-              //                 ),
-              //                 SizedBox(
-              //                   width: 8,
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ]),
-              //   ),
-              // ),
               Container(
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16),
@@ -411,6 +305,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                 GestureDetector(
                                   onTap: () {
                                     surgeryProvider.selectedCurePosStr.clear();
+                                    surgeryProvider.selectedCurePos.clear();
                                     surgeryProvider.setButtonText("次へ");
                                     Navigator.of(context)
                                         .pushNamed("/SelectSurgery");
@@ -569,7 +464,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                         backgroundColor: Colors.white,
                                         context: context,
                                         builder: (context) {
-                                          return SelectDoctor();
+                                          return SelectDoctor(clinic_id: diaryProperties.getClinicID.toString());
                                         });
                                   },
                                   child: Icon(
@@ -616,9 +511,9 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  addList[3] != ''? addList[3] : '選択してください',
+                                  date_counsel != ''? date_counsel : '選択してください',
                                   style: TextStyle(
-                                      color: addList[3] != ''? Helper.titleColor : Helper.txtColor,
+                                      color: date_counsel != ''? Helper.titleColor : Helper.txtColor,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
                                       ),
@@ -634,7 +529,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                         maxTime: DateTime(2200, 6, 7),
                                         onChanged: (date) {}, onConfirm: (date) {
                                       setState(() {
-                                        addList[3] = date.year.toString() +
+                                        date_counsel = date.year.toString() +
                                             "年" +
                                             date.month.toString() +
                                             "月" +
@@ -682,16 +577,10 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 child: TextFormField(
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
-                  onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                  onChanged: (val) {
+                    setState(() {
+                      content_worry = val;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)二重幅が狭いことに悩んでいました',
