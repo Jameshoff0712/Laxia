@@ -84,11 +84,11 @@ class _RegistrationState extends State<Registration> {
                 Stack(children: [
                   TextFormField(
                     controller: _emailController,
-                    onTap: () {
-                      setState(() {
-                        isBtnColor = false;
-                      });
-                    },
+                    // onTap: () {
+                    //   setState(() {
+                    //     isBtnColor = false;
+                    //   });
+                    // },
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Helper.mainColor,
                     // onSaved: (input) => _con.user.email = input,
@@ -111,6 +111,15 @@ class _RegistrationState extends State<Registration> {
                         else
                           setState(() {
                             isEmailNotEmpty = true;
+                          });
+
+                        if( _emailController.text != '' && _passwordController.text != '')
+                          setState(() {
+                            isBtnColor = false;
+                          });
+                        else
+                          setState(() {
+                            isBtnColor = true;
                           });
                       },
                     decoration: InputDecoration(
@@ -155,6 +164,14 @@ class _RegistrationState extends State<Registration> {
                                 setState(() {
                                   isEmailNotEmpty = false;
                                 });
+                                if( _emailController.text != '' && _passwordController.text != '')
+                                  setState(() {
+                                    isBtnColor = false;
+                                  });
+                                else
+                                  setState(() {
+                                    isBtnColor = true;
+                                  });
                               },
                               child: Container(
                                 width: 18,
@@ -207,6 +224,15 @@ class _RegistrationState extends State<Registration> {
                         else
                           setState(() {
                             isPassNotEmpty = true;
+                          });
+
+                        if( _emailController.text != '' && _passwordController.text != '')
+                          setState(() {
+                            isBtnColor = false;
+                          });
+                        else
+                          setState(() {
+                            isBtnColor = true;
                           });
                       },
                       // validator: (input) => input!.length < 8 ? "パスワードは、英数字/記号で8文字以上必要です" : null,
@@ -276,6 +302,14 @@ class _RegistrationState extends State<Registration> {
                                 setState(() {
                                   isPassNotEmpty = false;
                                 });
+                                if( _emailController.text != '' && _passwordController.text != '')
+                                  setState(() {
+                                    isBtnColor = false;
+                                  });
+                                else
+                                  setState(() {
+                                    isBtnColor = true;
+                                  });
                               },
                               child: Container(
                                 width: 18,
