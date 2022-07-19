@@ -1,3 +1,4 @@
+import 'package:laxia/models/static/Search_Model.dart';
 import 'package:laxia/models/static/areas_model.dart';
 import 'package:laxia/models/static/master_model.dart';
 import 'package:laxia/services/http/api.dart';
@@ -8,6 +9,17 @@ class HomeApi extends Api {
   Future<List<Master_Model>> getTreatCategories() async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/load/master", token);
+    return List<Master_Model>.from(res.data["data"]["treatCategories"].map((x) => Master_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>);
+  }
+  Future<Search_Model> getSearch() async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/globalsearch", token);
+    print(res.data);
+    return Search_Model.fromJson(res.data);
+  }
+  Future<List<Master_Model>> getIndexTreatCategories(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/load/master/$index", token);
     return List<Master_Model>.from(res.data["data"]["treatCategories"].map((x) => Master_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>);
   }
   Future<List<Area_Model>> getAreas() async {

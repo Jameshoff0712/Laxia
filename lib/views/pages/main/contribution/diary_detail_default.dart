@@ -1,46 +1,87 @@
-import 'dart:convert';
 
-import 'package:flutter/services.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/diary/diary/progress_detail_model.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/state_slider_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
-import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:laxia/views/widgets/comment_dialog.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
+import 'package:provider/provider.dart';
 
 class DiaryDetailDefault extends StatefulWidget {
   final bool isMyDiary;
-  const DiaryDetailDefault({ Key? key, this.isMyDiary = false }) : super(key: key);
+  final int index;
+  const DiaryDetailDefault({ Key? key, this.isMyDiary = false, required this.index }) : super(key: key);
   @override
   _DiaryDetailDefaultState createState() => _DiaryDetailDefaultState();
 }
 
 class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
-  List question_Details = [];
-  bool isfavourite = false;
+   bool isloading = true,isfavorite=false, islike=false;
   int currentSlider = 1;
-
-  Future<void> get_counsel_info() async {
-    String mid = await rootBundle.loadString("assets/cfg/detail_diary_default.json");
-    setState(() {
-      question_Details.addAll(json.decode(mid));
-    });
+  final _con = HomeController();
+  late ProgressDetail_Model progress_detail;
+  Future<void> getData() async {
+    try {
+      final mid = await _con.getProgressDetail(index: widget.index);
+      setState(() {
+        progress_detail = mid;
+        isfavorite=progress_detail.diary.is_favorite==null?false:progress_detail.diary.is_favorite!;
+         islike=progress_detail.diary.is_like!;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString()); 
+    }
   }
-
+  Future<void> postToogleFavorite(index) async {
+    try {
+      final res=await _con.postToogleFavorite(index:index, domain: 'diaries');
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
+  Future<void> postToogleLike(index) async {
+    try {
+      final res=await _con.postToogleLike(index:index, domain: 'diaries');
+      if(res==true){
+        setState(() {
+          islike=!islike;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   void initState() {
-    get_counsel_info();
+    getData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return question_Details.isNotEmpty? Scaffold(
+    UserProvider userProperties = Provider.of<UserProvider>(context, listen: true);
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -57,7 +98,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                     borderRadius: BorderRadius.circular(25),
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl: question_Details[0]["avator"],
+                      imageUrl: progress_detail.diary.patient_photo,
                       placeholder: (context, url) => Image.asset(
                         'assets/images/loading.gif',
                         fit: BoxFit.cover,
@@ -75,16 +116,16 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      question_Details[0]["name"],
+                      progress_detail.diary.patient_nickname!,
                       style: TextStyle(
                           color: Helper.titleColor, fontWeight: FontWeight.bold,fontSize: 12),
                     ),
                     Text(
                       "施術 " +
-                          question_Details[0]["date"] +
+                          progress_detail.diary.treat_date! +
                           "   " +
                           "経過" +
-                          question_Details[0]["days"] +
+                          progress_detail.progress.from_treat_day.toString() +
                           "日",
                       style: TextStyle(
                               color: Helper.maintxtColor, fontWeight: FontWeight.w400,fontSize: 8),
@@ -98,7 +139,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                 !widget.isMyDiary ?
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/AddDiaryProgress");
+                    //follow
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
@@ -117,7 +158,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                   ),
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: Row(
+                    child: Row(     
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -163,7 +204,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                   ),
                 ),
                 SizedBox(width: 10,),
-SvgPicture.asset(
+                SvgPicture.asset(
                   "assets/icons/upright_nobg.svg",
                   width: 20,
                   height: 20,
@@ -189,28 +230,29 @@ SvgPicture.asset(
           children: [
             GestureDetector(
               onTap: () {
-                setState(() {
-                  isfavourite = !isfavourite;
-                });
+                postToogleLike(progress_detail.diary.id);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  isfavourite
-                      ? Icon(
-                          Icons.favorite,
-                          color: Helper.btnBgYellowColor,
-                          size: 30,
-                        )
-                      : Icon(
-                          Icons.favorite_border,
-                          color: Helper.txtColor,
-                          size: 30,
-                        ),
+                  islike
+                    ? SvgPicture.asset(
+                        "assets/icons/star.svg",
+                        width: 22,
+                        height: 22,
+                        color: Helper.starColor,
+                      )
+                    : SvgPicture.asset(
+                        "assets/icons/borderstar.svg",
+                        width: 22,
+                        height: 22,
+                        // color: Colors.red,
+                        color: Color.fromARGB(255, 155, 155, 155),
+                      ),
                   Text(
-                    "223",
+                    "お気に入り",
                     style: TextStyle(
-                        color: isfavourite
+                        color: isfavorite
                             ? Helper.btnBgYellowColor
                             : Helper.txtColor,
                         fontSize: 12,
@@ -221,38 +263,38 @@ SvgPicture.asset(
             ),
             GestureDetector(
               onTap: () {
-                setState(() {
-                  isfavourite = !isfavourite;
-                });
+                postToogleFavorite(progress_detail.diary.id);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  isfavourite
-                      ? Icon(
-                          Icons.star,
-                          color: Helper.starColor,
-                          size: 30,
-                        )
-                      : Icon(
-                          Icons.star_border,
-                          color: Helper.txtColor,
-                          size: 30,
-                        ),
+                  isfavorite
+                    ? SvgPicture.asset(
+                        "assets/icons/red_heart.svg",
+                        width: 22,
+                        height: 22,
+                        color: Colors.red,
+                      )
+                    : SvgPicture.asset(
+                        "assets/icons/heart.svg",
+                        width: 22,
+                        height: 22,
+                        color: Color.fromARGB(255, 155, 155, 155),
+                      ),
                   Text(
-                    "お気に入り",
+                    progress_detail.diary.likes_count!.toString(),
                     style: TextStyle(
                         color:Helper.txtColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w400),
                   ),
                 ],
-              ),
+              ), 
             ),
             GestureDetector(
               onTap: () {
                 setState(() {
-                  isfavourite = !isfavourite;
+                  isfavorite = !isfavorite;
                 });
 
                 showModalBottomSheet(
@@ -264,13 +306,13 @@ SvgPicture.asset(
                     ),
                     context: context,
                     builder: (context) {
-                      return CommentDialogSheet(count: 0, index: 0, domain: 'diaries',);
+                      return CommentDialogSheet(count: 0, index: 0, domain: 'progress',);
                     });
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  isfavourite
+                  isfavorite
                       ? Icon(
                           FontAwesomeIcons.commentDots,
                           color: Helper.btnBgYellowColor,
@@ -284,7 +326,7 @@ SvgPicture.asset(
                   Text(
                     "20",
                     style: TextStyle(
-                        color: isfavourite
+                        color: isfavorite
                             ? Helper.btnBgYellowColor
                             : Helper.txtColor,
                         fontSize: 12,
@@ -343,10 +385,18 @@ SvgPicture.asset(
                     autoPlayInterval: 0,
                     isLoop: true,
                     children: [
-                      for (int j = 0; j < 5; j++)
-                        Image.asset(
-                          'assets/images/canada.png',
+                      for (int j = 0; j < progress_detail.progress.medias.length; j++)
+                        CachedNetworkImage(
                           fit: BoxFit.cover,
+                          imageUrl: progress_detail.progress.medias[j].path,
+                          placeholder: (context, url) => Image.asset(
+                            'assets/images/loading.gif',
+                            fit: BoxFit.cover,
+                          ),
+                          errorWidget: (context, url, error) => Image.asset(
+                            'assets/images/profile.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                     ],
                   ),
@@ -360,7 +410,7 @@ SvgPicture.asset(
                           color: Color.fromARGB(179, 0, 0, 0),
                           borderRadius: BorderRadius.circular(20)),
                       child: Text(
-                        "$currentSlider/5",
+                        "$currentSlider/${progress_detail.progress.medias.length}",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
@@ -379,7 +429,7 @@ SvgPicture.asset(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      "二重整形150日後の経過日記",
+                      progress_detail.menu.name+progress_detail.progress.from_treat_day.toString()+'日後の経過日記',
                       style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(height: 10),
@@ -387,7 +437,7 @@ SvgPicture.asset(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         for (int i = 0;
-                            i < question_Details[0]["surgery"].length;
+                            i <  progress_detail.diary.categories!.length;
                             i++)
                           Center(
                             child: Container(
@@ -401,7 +451,7 @@ SvgPicture.asset(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 3),
                                 child: Text(
-                                  question_Details[0]["surgery"][i],
+                                  progress_detail.diary.categories![i].name,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
@@ -412,23 +462,23 @@ SvgPicture.asset(
                           ),
                       ],
                     ),
-                    StateSliderWidget(state_str: "痛み", state_val: 2),
-                    StateSliderWidget(state_str: "腫れ", state_val: 2),
-                    StateSliderWidget(state_str: "傷あと", state_val: 3),
+                    StateSliderWidget(state_str: "痛み", state_val:  progress_detail.statuses[0].pivot.value),
+                    StateSliderWidget(state_str: "腫れ", state_val: progress_detail.statuses[1].pivot.value),
+                    StateSliderWidget(state_str: "傷あと", state_val: progress_detail.statuses[2].pivot.value),
                     Text(
-                      question_Details[0]["content"],
+                      progress_detail.progress.content!,
                       style: TextStyle(color: Helper.extraGrey, fontSize: 14),
                     ),
                   ],
                 ),
               ),
               CureMethod_Card(
-                  image: question_Details[0]["cure_method"][0]["image"],
-                  heading: question_Details[0]["cure_method"][0]["heading"],
-                  price: question_Details[0]["cure_method"][0]["price"],
-                  tax: question_Details[0]["cure_method"][0]["tax"],
-                  clinic: question_Details[0]["cure_method"][0]["clinic"],
-                  doctor: question_Details[0]["cure_method"][0]["doctor"]),
+                  image: progress_detail.menu.photo!,
+                  heading: progress_detail.menu.name,
+                  price: progress_detail.menu.price.toString(),
+                  tax: '（税込）',
+                  clinic: progress_detail.diary.clinic_name!,
+                  doctor: progress_detail.diary.doctor_name!),
               Container(
                 padding: const EdgeInsets.only(top: 15, bottom: 10),
                 child: Column(
@@ -451,7 +501,7 @@ SvgPicture.asset(
                                 borderRadius: BorderRadius.circular(25),
                                 child: CachedNetworkImage(
                                   fit: BoxFit.cover,
-                                  imageUrl: question_Details[0]["avator"],
+                                  imageUrl: userProperties.currentMe.photo,
                                   placeholder: (context, url) => Image.asset(
                                     'assets/images/loading.gif',
                                     fit: BoxFit.cover,
@@ -515,30 +565,50 @@ SvgPicture.asset(
                     ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: question_Details[0]['diarys'].length,
+                        itemCount:  progress_detail.diaries.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Diary_Card(
-                              avator: question_Details[0]['diarys'][index]
-                                  ["avator"],
-                              check: question_Details[0]['diarys'][index]
-                                  ["check"],
-                              image2: question_Details[0]['diarys'][index]
-                                  ["image2"],
-                              image1: question_Details[0]['diarys'][index]
-                                  ["image1"],
-                              eyes: question_Details[0]['diarys'][index]
-                                  ["eyes"],
-                              clinic: question_Details[0]['diarys'][index]
-                                  ["clinic"],
-                              name: question_Details[0]['diarys'][index]
-                                  ["name"],
-                              onpress: () {},
-                              price: question_Details[0]['diarys'][index]
-                                  ["price"],
-                              sentence: question_Details[0]['diarys'][index]
-                                  ["sentence"],
-                              type: question_Details[0]['diarys'][index]
-                                  ["type"]);
+                              avator:
+                                  progress_detail.diaries[index].patient_photo == null
+                                      ? "http://error.png"
+                                      : progress_detail.diaries[index].patient_photo!,
+                              check: progress_detail.diaries[index].doctor_name == null
+                                  ? ""
+                                  : progress_detail.diaries[index].doctor_name!,
+                              image2: progress_detail.diaries[index].after_image == null
+                                  ? "http://error.png"
+                                  : progress_detail.diaries[index].after_image!,
+                              image1:
+                                  progress_detail.diaries[index].before_image == null
+                                      ? "http://error.png"
+                                      : progress_detail.diaries[index].before_image!,
+                              eyes: progress_detail.diaries[index].views_count == null
+                                  ? ""
+                                  : progress_detail.diaries[index].views_count!
+                                      .toString(),
+                              clinic: progress_detail.diaries[index].clinic_name == null
+                                  ? ""
+                                  : progress_detail.diaries[index].clinic_name!,
+                              name: progress_detail.diaries[index].patient_nickname ==
+                                      null
+                                  ? ""
+                                  : progress_detail.diaries[index].patient_nickname!,
+                              onpress: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Diary_Detail(
+                                        index: progress_detail.diaries[index].id)));
+                              },
+                              price: progress_detail.diaries[index].price == null
+                                  ? ""
+                                  : progress_detail.diaries[index].price.toString(),
+                              sentence:
+                                  progress_detail.diaries[index].doctor_name == null
+                                      ? ""
+                                      : progress_detail.diaries[index].doctor_name!,
+                              type: progress_detail.diaries[index].doctor_name == null
+                                  ? ""
+                                  : progress_detail.diaries[index].doctor_name!,
+                            );
                         }),
                   ],
                 ),
@@ -547,6 +617,6 @@ SvgPicture.asset(
           ),
         ),
       ),
-    ):Scaffold();
+    );
   }
 }

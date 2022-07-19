@@ -8,9 +8,9 @@ class Progress extends Equatable {
   final String? content;
   final String? created_at;
   final String? updated_at;
-  final List<Media_model>? medias;
+  final List<Media_model> medias;
 
-  const Progress({required this.id, this.updated_at, this.medias,this.diary_id,  this.from_treat_day,  this.content,  this.created_at});
+  const Progress({required this.id, this.updated_at, required this.medias,this.diary_id,  this.from_treat_day,  this.content,  this.created_at});
 
   factory Progress.fromJson(Map<String, dynamic> json) {
     return Progress(

@@ -14,6 +14,7 @@ import 'package:laxia/views/pages/main/reservation/reservation.dart';
 import 'package:laxia/views/pages/main/mypage/mypage.dart';
 import 'package:laxia/views/pages/main/mypage/user_page.dart';
 import 'package:laxia/views/widgets/curemethod_card.dart';
+import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/post_treatment_card.dart';
@@ -895,38 +896,68 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 ),
               ),
               SizedBox(height: 4,),
-              // Container(
-              //   decoration: BoxDecoration(color: Helper.homeBgColor),
-              //   child: Column(children: [
-              //     GridView.builder(
-              //       physics: NeverScrollableScrollPhysics(),
-              //       shrinkWrap: true,
-              //       padding:
-              //           EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              //       scrollDirection: Axis.vertical,
-              //       gridDelegate:
-              //       SliverGridDelegateWithFixedCrossAxisCount(
-              //           childAspectRatio:175/291,
-              //           crossAxisCount: 2,
-              //           crossAxisSpacing: 10,
-              //           mainAxisSpacing: 10),
-              //       itemCount: diary_detail["home"].length,
-              //       itemBuilder: (BuildContext context, int index) {
-              //         return Home_Card(
-              //           onpress: () {
-              //         },
-              //           title: diary_detail["home"][index]["title"],
-              //           type: diary_detail["home"][index]["type"],
-              //           clinic: diary_detail["home"][index]["clinic"],
-              //           recommend: diary_detail["home"][index]["recommend"],
-              //           source: diary_detail["home"][index]["source"],
-              //           name: diary_detail["home"][index]["name"],
-              //           doctorimage: diary_detail["home"][index]["doctorimage"],
-              //           chat: diary_detail["home"][index]["chat"],
-              //         );
-              //       }),
-              //   ],),
-              // )
+              Container(
+                decoration: BoxDecoration(color: Helper.homeBgColor),
+                child: Column(children: [
+                  GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    scrollDirection: Axis.vertical,
+                    gridDelegate:
+                    SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio:175/291,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10),
+                    itemCount: diary_detail.diaries.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Diary_Card(
+                              avator:
+                                  diary_detail.diaries[index].patient_photo == null
+                                      ? "http://error.png"
+                                      : diary_detail.diaries[index].patient_photo!,
+                              check: diary_detail.diaries[index].doctor_name == null
+                                  ? ""
+                                  : diary_detail.diaries[index].doctor_name!,
+                              image2: diary_detail.diaries[index].after_image == null
+                                  ? "http://error.png"
+                                  : diary_detail.diaries[index].after_image!,
+                              image1:
+                                  diary_detail.diaries[index].before_image == null
+                                      ? "http://error.png"
+                                      : diary_detail.diaries[index].before_image!,
+                              eyes: diary_detail.diaries[index].views_count == null
+                                  ? ""
+                                  : diary_detail.diaries[index].views_count!
+                                      .toString(),
+                              clinic: diary_detail.diaries[index].clinic_name == null
+                                  ? ""
+                                  : diary_detail.diaries[index].clinic_name!,
+                              name: diary_detail.diaries[index].patient_nickname ==
+                                      null
+                                  ? ""
+                                  : diary_detail.diaries[index].patient_nickname!,
+                              onpress: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Diary_Detail(
+                                        index: diary_detail.diaries[index].id)));
+                              },
+                              price: diary_detail.diaries[index].price == null
+                                  ? ""
+                                  : diary_detail.diaries[index].price.toString(),
+                              sentence:
+                                  diary_detail.diaries[index].doctor_name == null
+                                      ? ""
+                                      : diary_detail.diaries[index].doctor_name!,
+                              type: diary_detail.diaries[index].doctor_name == null
+                                  ? ""
+                                  : diary_detail.diaries[index].doctor_name!,
+                            );
+                    }),
+                ],),
+              )
             ],),
           ),
         ),

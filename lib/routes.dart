@@ -95,8 +95,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NarrowCase());
       case '/NarrowDiary':
         return MaterialPageRoute(builder: (_) => NarrowDiary());
-      case '/Part':
-        return MaterialPageRoute(builder: (_) => Part());
+      // case '/Part':
+      //   return MaterialPageRoute(builder: (_) => Part());
       // case '/Clinic_Detail':
       //   return MaterialPageRoute(builder: (_) => Clinic_Detail());
       // case '/Menu_Detail':
@@ -178,8 +178,8 @@ class RouteGenerator {
       //   return MaterialPageRoute(builder: (_) => CaseDetail());
       // case '/CounselDetail':
       //   return MaterialPageRoute(builder: (_) => CounselDetail());
-      case '/DiaryDetailDefault':
-        return MaterialPageRoute(builder: (_) => DiaryDetailDefault());
+      // case '/DiaryDetailDefault':
+      //   return MaterialPageRoute(builder: (_) => DiaryDetailDefault());
       default:
         return MaterialPageRoute(builder: (_) => DashboardScreen());
     }
