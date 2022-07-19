@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:laxia/models/res_model.dart';
@@ -38,7 +39,12 @@ class Api {
       data.forEach((key, value) async {
         print(key);
         if(key == "media"){
-          request.files.add(await http.MultipartFile.fromPath("image", value.path));
+          // request.files.add(await http.MultipartFile.fromPath("image", <File>(value)));
+          // request.files.add(
+          //   http.MultipartFile(
+          //     'image',
+          //     value.
+          //   ));
         }
         else if(key == "medias"){
           request.files.add(await http.MultipartFile.fromPath("image", value.path));
