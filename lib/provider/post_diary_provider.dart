@@ -16,17 +16,17 @@ class PostDiaryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  late int clinic_id;
+  String clinic_id = '';
   get getClinicID => clinic_id;
   void setClinicID(int postClinicID) {
-    clinic_id = postClinicID;
+    clinic_id = postClinicID.toString();
     notifyListeners();
   }
 
-  late int doctor_id;
+  String doctor_id = '';
   get getDoctorID => doctor_id;
   void setDoctorID(int postDoctorID) {
-    doctor_id = postDoctorID;
+    doctor_id = postDoctorID.toString();
     notifyListeners();
   }
 

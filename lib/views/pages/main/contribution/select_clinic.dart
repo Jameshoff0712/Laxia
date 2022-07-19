@@ -176,7 +176,8 @@ class _SelectClinicState extends State<SelectClinic> {
                                     userProperties.setSelectedClinic(
                                         clinic_data.data[index].name!);
                                     userProperties.setSearchtext("");
-                                    diaryProperties.setClinicID(userProperties.getSelectedClinic);
+                                    // diaryProperties.setClinicID(userProperties.getSelectedClinic);
+                                    diaryProperties.setClinicID(clinic_data.data[index].id);
                                     Navigator.of(context).pop();
                                   },
                                   child: Container(

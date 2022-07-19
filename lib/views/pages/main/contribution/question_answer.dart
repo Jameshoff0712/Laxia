@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/counsel_question_model.dart';
 
 class QuestionAnswer extends StatefulWidget {
-  const QuestionAnswer({Key? key}) : super(key: key);
+  final void Function (CounselQuestion_Model val) onAdd;
+  QuestionAnswer({Key? key, required this.onAdd}) : super(key: key);
 
   @override
   State<QuestionAnswer> createState() => _QuestionAnswerState();
 }
 
 class _QuestionAnswerState extends State<QuestionAnswer> {
-  final _titleController = TextEditingController();
+  bool isAddEnabled = true;
+  String title = '';
+  String content = '';
   bool isTitleNotEmpty = false;
   @override
   Widget build(BuildContext context) {
+    if(title != '' && content != '') {
+      setState(() {
+        isAddEnabled = true;
+      });
+    } else {
+      setState(() {
+        isAddEnabled = false;
+      });
+    }
     return Container(
       padding: EdgeInsets.only(top: 10),
       height: MediaQuery.of(context).size.height - 54,
@@ -53,7 +66,6 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                   cursorColor: Helper.mainColor,
                   // cursorHeight: 14,
                   
-                  controller: _titleController,
                   keyboardType: TextInputType.multiline,
                   maxLines: 1,
                   maxLength: 60,
@@ -61,11 +73,13 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                     if (text.isNotEmpty) {
                       setState(() {
                         isTitleNotEmpty = true;
+                        title = text;
                         // isAddEnabled = true;
                       });
                     } else {
                       setState(() {
                         isTitleNotEmpty = false;
+                        title = '';
                         // isAddEnabled = false;
                       });
                     }
@@ -95,7 +109,7 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                             right: 0,
                             child: GestureDetector(
                               onTap: () {
-                                _titleController.text = '';
+                                title = '';
                                 setState(() {
                                   isTitleNotEmpty = false;
                                 });
@@ -125,15 +139,10 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                   expands: true,
                   keyboardType: TextInputType.multiline,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        // isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        // isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      content = text;
+                      // isAddEnabled = true;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '回答（必須1000文字以内）',
@@ -158,9 +167,11 @@ class _QuestionAnswerState extends State<QuestionAnswer> {
                   height: 42,
                   margin: EdgeInsets.only(left: 26, right: 26),
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: isAddEnabled ? () {
+                      CounselQuestion_Model tmp = CounselQuestion_Model(title, content);
+                      widget.onAdd(tmp);
                       Navigator.pop(context);
-                    },
+                    } : null,
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),

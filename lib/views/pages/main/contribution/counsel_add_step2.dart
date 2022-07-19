@@ -2,6 +2,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/models/counsel_question_model.dart';
+import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/pages/main/contribution/question_answer.dart';
 import 'package:laxia/views/widgets/ToggleSwitchButton.dart';
 import 'package:laxia/views/widgets/counsel_question_card.dart';
@@ -18,6 +19,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
   bool isAddEnabled = true;
   int selectstar = 0;
   bool _notificationStatus = true;
+  List<CounselQuestion_Model> CounselQuestion_list = [];
   // late OfferController _con;
 
   // _AddCounselStep2PageState() : super(OfferController()) {
@@ -166,7 +168,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                         backgroundColor: Colors.white,
                         context: context,
                         builder: (context) {
-                          return QuestionAnswer();
+                          return QuestionAnswer(onAdd: (value){
+                            setState(() {
+                              CounselQuestion_list.add(value);
+                            });
+                            // CounselQuestion_list.add(value);
+                            // print(CounselQuestion_list);
+                          });
                         });
                   },
                   style: ElevatedButton.styleFrom(

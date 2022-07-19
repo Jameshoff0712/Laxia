@@ -9,7 +9,8 @@ import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'package:provider/provider.dart';
 
 class SelectDoctor extends StatefulWidget {
-  const SelectDoctor({Key? key}) : super(key: key);
+  String? clinic_id;
+  SelectDoctor({Key? key, this.clinic_id}) : super(key: key);
 
   @override
   State<SelectDoctor> createState() => _SelectDoctorState();
@@ -29,6 +30,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
       {required String page,
       String? pref_id = "",
       String? city_id = "",
+      String? clinic_id = "",
       String? q = ""}) async {
     try {
       if (!isend) {
@@ -36,7 +38,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDoctorData(page: page, q: q!, filter: '');
+        final mid = await _con.getDoctorData(page: page, q: q!, filter: '', clinic_id: clinic_id);
         print(mid.data.length);
         setState(() {
           if (isloading) {
@@ -71,23 +73,24 @@ class _SelectDoctorState extends State<SelectDoctor> {
   @override
   void initState() {
     isUsed = false;
-    getDoctorData(page: page.toString());
+    getDoctorData(page: page.toString(), clinic_id: widget.clinic_id);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
-        getDoctorData(page: page.toString(), q: userProperties.searchtext);
+        getDoctorData(page: page.toString(), q: userProperties.searchtext, clinic_id: diaryProperties.getClinicID);
       });
     }
-    PostDiaryProvider diaryProperties =
-        Provider.of<PostDiaryProvider>(context, listen: true);
+    
     return Container(
       padding: EdgeInsets.only(top: 10),
       height: MediaQuery.of(context).size.height * 0.9,
@@ -130,7 +133,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
             padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
             child: SearchbarWidget(
               onchange: () {
-                userProperties.setSearchtext(filter.text);
+                userProperties.setSearchtext(filter.text.toString());
               },
               state: false,
               filter: filter,
@@ -182,7 +185,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
                                   userProperties.setSelectedDoctor(
                                       doctor_data.data[index].hira_name);
                                   userProperties.setSearchtext("");
-                                  diaryProperties.setDoctorID(userProperties.getSelectedDoctor);
+                                  diaryProperties.setDoctorID(doctor_data.data[index].id);
                                   Navigator.of(context).pop();
                                 },
                                 child: Container(
