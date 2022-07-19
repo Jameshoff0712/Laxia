@@ -107,11 +107,11 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
     //     ],),
     //   );
     // }
-    switch (widget.post_treatment.medias!.length) {
+    switch (widget.post_treatment.medias.length) {
       case 1 : return GestureDetector(
         onTap: (){
            Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,index:widget.post_treatment.id,),));
         },
         child: Container(
           width: double.infinity,
@@ -165,7 +165,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
       case 2 : return GestureDetector(
         onTap: (){
            Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,index:widget.post_treatment.id,),));
         },
         child: Container(
           width: double.infinity,
@@ -231,7 +231,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
       case 3 : return GestureDetector(
         onTap: (){
            Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,index:widget.post_treatment.id,),));
         },
         child: Container(
           width: double.infinity,
@@ -331,7 +331,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
       case 4 :return GestureDetector(
         onTap: (){
            Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,index:widget.post_treatment.id,),));
         },
         child: Container(
           width: double.infinity,
@@ -399,7 +399,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
       case 5 : return GestureDetector(
         onTap: (){
            Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,index:widget.post_treatment.id,),));
         },
         child: Container(
           width: double.infinity,
@@ -490,7 +490,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
       case 6 : return GestureDetector(
         onTap: (){
           Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,index:widget.post_treatment.id,),));
         },
         child: Container(
           width: double.infinity,
@@ -609,7 +609,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
       default:  return GestureDetector(
         onTap: (){
            Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,),));
+            context, MaterialPageRoute(builder: (context) => DiaryDetailDefault(isMyDiary: true,index:widget.post_treatment.id,),));
         },
         child: Container(
           width: double.infinity,
@@ -747,7 +747,7 @@ class _Post_Treatment_CardState extends State<Post_Treatment_Card> {
             borderRadius: BorderRadius.circular(10),
             child: CachedNetworkImage(
               fit: BoxFit.fill,
-              imageUrl: widget.post_treatment.medias![index].path,
+              imageUrl: widget.post_treatment.medias[index].path,
               placeholder: (context, url) => Image.asset(
                 'assets/images/loading.gif',
                 fit: BoxFit.fill,

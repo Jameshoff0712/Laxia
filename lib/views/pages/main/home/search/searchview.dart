@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/static_controller.dart';
+import 'package:laxia/models/static/Search_Model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'dart:async';
@@ -18,26 +20,27 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   bool flag = false, unchange = true;
-  List menu_list = [];
+  // List menu_list = [];
   List counts = [];
+  final _con = StaticController();
+  late Search_Model search;
+  bool isloading = true;
   Future<void> searchCount() async {
-    String mid = await rootBundle.loadString("assets/cfg/searchdefault.json");
-    setState(() {
-      counts = json.decode(mid);
-    });
+    try {
+      final mid = await _con.getSearch();
+      setState(() {
+        search=mid;
+        isloading = false;
+      });
+    } catch (e) {
+      setState(() {
+        print(e.toString());
+      });
+    }
   }
-
-  Future<void> initSettings() async {
-    String countyText =
-        await rootBundle.loadString("assets/cfg/japanese-city-data.json");
-    setState(() {
-      menu_list = json.decode(countyText);
-    });
-  }
-
   @override
   void initState() {
-    initSettings();
+    searchCount();
     super.initState();
   }
 
@@ -48,7 +51,16 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: false);
-    return Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Helper.whiteColor,
       body: SafeArea(
@@ -203,11 +215,11 @@ class _SearchViewState extends State<SearchView> {
                                           runSpacing: 10,
                                           spacing: 10,
                                           children: [
-                                            for (int j = 0; j < 20; j++)
+                                            for (int j = 0; j < search.recent.length; j++)
                                               GestureDetector(
                                                 onTap: () {
                                                   filter.text =
-                                                      menu_list[j]["label"];
+                                                      search.recent[j].text;
                                                   setState(() {
                                                     unchange = false;
                                                     flag = true;
@@ -230,7 +242,7 @@ class _SearchViewState extends State<SearchView> {
                                                             horizontal: 15,
                                                             vertical: 6),
                                                     child: Text(
-                                                      menu_list[j]["label"],
+                                                      search.recent[j].text,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w400,
@@ -266,11 +278,11 @@ class _SearchViewState extends State<SearchView> {
                                           runSpacing: 10,
                                           spacing: 10,
                                           children: [
-                                            for (int j = 0; j < 20; j++)
+                                            for (int j = 0; j < search.global.length; j++)
                                               GestureDetector(
                                                 onTap: () {
                                                   filter.text =
-                                                      menu_list[j]["label"];
+                                                      search.global[j].text;;
                                                   setState(() {
                                                     unchange = false;
                                                     flag = true;
@@ -293,7 +305,7 @@ class _SearchViewState extends State<SearchView> {
                                                             horizontal: 15,
                                                             vertical: 6),
                                                     child: Text(
-                                                      menu_list[j]["label"],
+                                                      search.global[j].text,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w400,

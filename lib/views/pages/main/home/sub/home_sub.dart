@@ -3,6 +3,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/home/home_model.dart';
 import 'package:laxia/provider/user_provider.dart';
+import 'package:laxia/views/pages/main/home/part/part.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
@@ -317,8 +318,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/doubles.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(0);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 1)));
                       },
                       text: "二重",
                     ),
@@ -327,8 +329,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/Contour.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(1);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 2)));
                       },
                       text: "輪郭・小顔",
                     ),
@@ -337,8 +340,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/raise_nose.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(2);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 3)));
                       },
                       text: "鼻を高く",
                     ),
@@ -347,8 +351,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/drooping_eye.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(3);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 4)));
                       },
                       text: "タレ目",
                     ),
@@ -357,8 +362,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/hair_loss.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(4);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 5)));
                       },
                       text: "脱毛",
                     ),
@@ -367,8 +373,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/chest.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(5);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 6)));
                       },
                       text: "胸",
                     ),
@@ -377,8 +384,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/body.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(6);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 7)));
                       },
                       text: "ボディ",
                     ),
@@ -387,8 +395,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/nose.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(7);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 8)));
                       },
                       text: "小鼻",
                     ),
@@ -397,8 +406,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/wrinkles.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(8);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 9)));
                       },
                       text: "しわ",
                     ),
@@ -407,8 +417,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/spots_freckles.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(9);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 10)));
                       },
                       text: "しみ・そばかす",
                     ),
@@ -433,8 +444,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/mouth.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(10);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 11)));
                       },
                       text: "口元",
                     ),
@@ -443,8 +455,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/inner_eye.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(11);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 12)));
                       },
                       text: "目頭",
                     ),
@@ -453,8 +466,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/pores.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(12);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 13)));
                       },
                       text: "毛穴",
                     ),
@@ -463,8 +477,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/sagging.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(13);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 14)));
                       },
                       text: "たるみ",
                     ),
@@ -473,8 +488,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/eyes.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(14);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 15)));
                       },
                       text: "目元",
                     ),
@@ -483,8 +499,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/mole_warts.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(15);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 16)));
                       },
                       text: "ホクロ・イボ",
                     ),
@@ -493,8 +510,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/permanent_makeup.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(16);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 17)));
                       },
                       text: "アートメイク",
                     ),
@@ -503,8 +521,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/nose_tip.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(17);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 18)));
                       },
                       text: "鼻先",
                     ),
@@ -513,8 +532,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/aesthetic_dentistry.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(18);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 19)));
                       },
                       text: "審美歯科",
                     ),
@@ -523,8 +543,9 @@ class Horizontal_Dockbar extends StatelessWidget {
                       height: 65,
                       image: "assets/icons/menubar/all.svg",
                       onpress: () {
-                        userProperties.setCurrentPartIndex(19);
-                        Navigator.of(context).pushNamed("/Part");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Part(
+                                        index: 20)));
                       },
                       text: "すべて",
                     ),

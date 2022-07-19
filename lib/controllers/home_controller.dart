@@ -7,6 +7,7 @@ import 'package:laxia/models/clinic/clinicdetail_model.dart';
 import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/counseling/councelingdetail_model.dart';
 import 'package:laxia/models/diary/diary/diarydetail_model.dart';
+import 'package:laxia/models/diary/diary/progress_detail_model.dart';
 import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
 import 'package:laxia/models/doctor/doctordetail_model.dart';
@@ -33,6 +34,9 @@ class HomeController extends BaseController {
   }
    Future<ClinicDetail_Model> getClinicDetail({required int index}) async {
     return await api.getClinicDetail(index);
+  }
+  Future<ProgressDetail_Model> getProgressDetail({required int index}) async {
+    return await api.getProgressDetail(index);
   }
   Future<Menu> getMenuData({String per_page="10",required String city_id,required String filter, required String page, String? category_id="", String? clinic_id="", String? q=""}) async {
     return await api.getMenuData( per_page,  page,  category_id!,  clinic_id!,  q!,filter,city_id);

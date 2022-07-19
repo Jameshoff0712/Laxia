@@ -7,6 +7,7 @@ import 'package:laxia/models/clinic/clinicdetail_model.dart';
 import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/counseling/councelingdetail_model.dart';
 import 'package:laxia/models/diary/diary/diarydetail_model.dart';
+import 'package:laxia/models/diary/diary/progress_detail_model.dart';
 import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
 import 'package:laxia/models/doctor/doctordetail_model.dart';
@@ -41,6 +42,11 @@ class HomeApi extends Api {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/clinics/"+index.toString(), token);
     return ClinicDetail_Model.fromJson(res.data["clinic"]);
+  }
+  Future<ProgressDetail_Model> getProgressDetail(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/progresses/"+index.toString(), token);
+    return ProgressDetail_Model.fromJson(res.data["progress"]);
   }
   Future<Menu> getMenuData(String per_page, String page, String category_id, String clinic_id, String q,String filter,String city_id) async {
     String? token = await preferenceUtil.getToken();
