@@ -1,11 +1,18 @@
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/counsel_post_model.dart';
 import 'package:laxia/models/counsel_question_model.dart';
 import 'package:laxia/models/counseling_model.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/views/pages/main/contribution/question_answer.dart';
 import 'package:laxia/views/widgets/ToggleSwitchButton.dart';
 import 'package:laxia/views/widgets/counsel_question_card.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../provider/surgery_provider.dart';
+import '../../../../provider/user_provider.dart';
 
 class AddCounselStep2Page extends StatefulWidget {
   final bool? isMyDiary;
@@ -19,13 +26,43 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
   bool isAddEnabled = true;
   int selectstar = 0;
   bool _notificationStatus = true;
+  MyController _conMy = MyController();
   List<CounselQuestion_Model> CounselQuestion_list = [];
+
+  String reason = '';
+  String feeling = '';
+  String impress = '';
+
+  String doctor_id = '';
+  String clinic_id = '';
+  String date = '';
+  String content = '';
+  List<int> categories = [];
+  List<List<int>> imageIds = [[], [], []];
   // late OfferController _con;
 
   // _AddCounselStep2PageState() : super(OfferController()) {
   //   _con = controller as OfferController;
   // }
 
+  Future<void> post() async {
+    CounselPostModel newQuestion = new CounselPostModel(
+        clinic_id: clinic_id,
+        doctor_id: doctor_id,
+        date: date,
+        content: content,
+        categories: categories,
+        imageIds: imageIds,
+        reason: reason,
+        before_counsel: feeling,
+        after_counsel: impress,
+        rate: selectstar.toString(),
+        question: CounselQuestion_list
+        );
+
+    dynamic result = _conMy.postCounsel(newQuestion);
+    print(result.data);
+  }
   enableAddButton() {
     setState(() {
       isAddEnabled = true;
@@ -65,6 +102,21 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
 
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryProvider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
+    if (reason != '' && feeling != '' && impress != '' && selectstar != 0 ) {
+      setState(() {
+        isAddEnabled = true;
+      });
+    } else {
+      setState(() {
+        isAddEnabled = false;
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -118,15 +170,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      reason = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)ラシアの他の口コミをみて、ここのクリニックの田中先生に相談してみようと思い選択しました。',
@@ -251,15 +297,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      feeling = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText:
@@ -294,15 +334,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      impress = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)自分にあった二重幅を知ることができた。料金も良心的であると思いました。',
@@ -377,7 +411,25 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                           padding: EdgeInsets.only(top: 0, left: 16, right: 16),
                           child: ElevatedButton(
                             onPressed:
-                                isAddEnabled ? () => AddCounselPage() : null,
+                                isAddEnabled ? () { 
+                                  setState(() {
+                                    doctor_id = diaryProperties.getDoctorID;
+                                    clinic_id = diaryProperties.getClinicID;
+                                    date = diaryProperties.getDate;
+                                    categories.addAll(surgeryProvider.getSelectedCurePos);
+                                    content = diaryProperties.getCounselContent;
+                                    for(int i = 0; i<3; i++)
+                                      imageIds[i].addAll(diaryProperties.getCounselImageIds[i]);
+                                  });
+                                  diaryProperties.clinic_id = '';
+                                  diaryProperties.doctor_id = '';
+                                  diaryProperties.date = '';
+                                  diaryProperties.counsel_content = '';
+                                  surgeryProvider.selectedCurePos = [];
+                                  diaryProperties.counsel_imageIds = [[], [], []];
+                                  post();
+                                  AddCounselPage(); 
+                                  } : null,
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
