@@ -116,12 +116,12 @@ class MyApi extends Api {
     return res;
   }
 
-  Future<Media_model> imageUpload(File imageFile) async {
+  Future<Media_model> imageUpload(File imagePicked) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
       "$apiUrl/media",
-      <String, String> {
-        "media": imageFile.path
+      <String, dynamic> {
+        "media": imagePicked
       },
       token
     );

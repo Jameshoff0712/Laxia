@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:laxia/models/res_model.dart';
@@ -27,7 +28,7 @@ class Api {
   }
 
   static Future<ResObj?> post(
-      String url, Map<String, String> data, String? token) async {
+      String url, Map<String, dynamic> data, String? token) async {
     try {
       var request = new http.MultipartRequest('POST', Uri.parse(url));
       request.headers.addAll({
@@ -36,17 +37,35 @@ class Api {
       });
 
       data.forEach((key, value) async {
+        print(key);
         if(key == "media"){
-          request.files.add(await http.MultipartFile.fromPath("image", value));
+          // request.files.add(await http.MultipartFile.fromPath("image", <File>(value)));
+          // request.files.add(
+          //   http.MultipartFile(
+          //     'image',
+          //     value.
+          //   ));
         }
-        request.fields[key] = value;
+        else if(key == "medias"){
+          request.files.add(await http.MultipartFile.fromPath("image", value.path));
+        }
+        else{
+          print('kkkkkkkkkkkkkkkkkkkkkkk');
+          request.fields[key] = value;}
       });
       var streamResponse = await request.send();
-      print(streamResponse);
+      print('pppppppppppp');
+      print(streamResponse.statusCode);
       final responseString = await streamResponse.stream.bytesToString();
+      print('pppppppppppp');
+      print(responseString);
+      // final responsed = await http.Response.fromStream(streamResponse);
+      // final responseString = json.decode(responsed.body);
 
       if (streamResponse.statusCode == 200) {
         final dynamic jsonMap = json.decode(responseString);
+        print('mmmmm');
+        print(jsonMap);
         return ResObj(
             status: true, code: streamResponse.statusCode, data: jsonMap);
       } else {

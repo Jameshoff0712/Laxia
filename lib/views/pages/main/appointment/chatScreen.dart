@@ -23,45 +23,42 @@ class _ChatScreenState extends State<ChatScreen> {
   // String? token = await PreferenceUtil().getToken();
   final pusher_key = dotenv.env["PUSHER_APP_KEY"];
   final pusher_cluseter = dotenv.env["PUSHER_APP_CLUSTER"];
+  final pusher_authurl=dotenv.env['PUSHER_AUTHURL'];
   final textController = TextEditingController();
   String contentChat = '';
   late Echo echo;
-  PusherOptions options = PusherOptions(
-    host: 'localhost',
-    port: 8000,
-    encrypted: true,
-  );
-  late FlutterPusher pusher;
+  late PusherOptions options;
+  late FlutterPusher pusher; 
   Future<void> initEcho() async {
     final token=await preferenceUtil.getToken();
-    options= PusherOptions(
-    host: 'https://4b3a-45-126-3-252.ap.ngrok.io ',
-    port: 8000,
-    auth: PusherAuth(
-            'https://4b3a-45-126-3-252.ap.ngrok.io/broadcasting/auth',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer '+token!
-            },
-          ),
-    encrypted: true,
-  );
-    pusher = FlutterPusher('app', options, enableLogging: false);
+    options = PusherOptions(
+      host:'ws-ap3.pusher.com',
+      port: 443,
+      // encrypted: true,
+      cluster: pusher_cluseter!,
+      //  auth: PusherAuth(
+      //       pusher_authurl,
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //         'Authorization': 'Bearer '+token!
+      //       },
+      //     ),
+    );
+   
+    pusher = FlutterPusher(pusher_key, options, enableLogging: false,  onConnectionStateChange: (ConnectionStateChange x) async {
+     print(x.currentState);
+},onError: (ConnectionError y)=>{
+  print(y.exception)
+});
     echo =new Echo({
       'broadcaster':'pusher',
       'client':pusher,
-      'key': pusher_key,
-      'cluster': pusher_cluseter,
-      'auth':{
-        'headers':{
-          'Authorization': 'Bearer '+token
-        }
-      }
     });
-    echo.private('Chat.'+widget.mailbox_id.toString()).listen('private-chat-event', (e) {
+    echo.private('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (e) {
       print(e);
     });
-    print('Chat.'+widget.mailbox_id.toString());
+    
+    // print('Chat.'+widget.mailbox_id.toString());
   }
   @override
   void initState() {
