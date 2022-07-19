@@ -40,6 +40,8 @@ class Api {
         print(key);
         if(key == "media"){
           request.files.add(await http.MultipartFile.fromPath("media", value));
+        } else if (key == 'medias') {
+          request.files.add(await http.MultipartFile.fromPath("medias", value));
         }
         else{
           request.fields[key] = value;}
