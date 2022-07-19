@@ -8,6 +8,7 @@ import 'package:laxia/models/profile_model.dart';
 import 'package:laxia/models/question_post_model.dart';
 import 'package:laxia/services/http/my_api.dart';
 
+import '../models/counsel_post_model.dart';
 import '../models/question/media_model.dart';
 
 class MyController extends BaseController {
@@ -34,6 +35,9 @@ class MyController extends BaseController {
   }
   Future<dynamic> postQuestion(QuestionPostModel newQuestion){
     return api.postQuestion(newQuestion);
+  }
+  Future<dynamic> postCounsel(CounselPostModel newCounsel){
+    return api.postCounsel(newCounsel);
   }
   Future<Media_model> imageUpload(String imagePicked) {
     return api.imageUpload(imagePicked);
