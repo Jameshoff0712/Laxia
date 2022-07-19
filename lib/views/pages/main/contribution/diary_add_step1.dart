@@ -38,6 +38,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
     "",
     "",
   ];
+  String date_diary = '';
+
   bool isAddEnabled = true, isUsed = false;
   TextEditingController filter = new TextEditingController();
   int index = 0;
@@ -304,7 +306,9 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
           onPressed: () {
             diaryProperties.setDate("");
             userProperties.setSelectedClinic("");
+            diaryProperties.clinic_id = '';
             userProperties.setSelectedDoctor("");
+            diaryProperties.doctor_id = '';
             surgeryProvider.selectedCurePosStr.clear();
             surgeryProvider.selectedCurePos.clear();
             Navigator.pop(context);
@@ -363,9 +367,9 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                addList[0] != "" ? addList[0] : '選択してください',
+                                diaryProperties.getDate != "" ? diaryProperties.getDate : '選択してください',
                                 style: TextStyle(
-                                    color: addList[0] != "" ? Helper.titleColor : Helper.txtColor,
+                                    color: diaryProperties.getDate != "" ? Helper.titleColor : Helper.txtColor,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12,
                                     ),
@@ -381,7 +385,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                       maxTime: DateTime(2200, 6, 7),
                                       onChanged: (date) {}, onConfirm: (date) {
                                     setState(() {
-                                      addList[0] = date.year.toString() +
+                                      date_diary = date.year.toString() +
                                           "年" +
                                           date.month.toString() +
                                           "月" +
@@ -390,7 +394,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                     });
                                     diaryProperties.setDate(
                                         date.year.toString() +
-                                            "/" +
+                                            "/" + 
                                             date.month.toString() +
                                             "/" +
                                             date.day.toString());
@@ -611,7 +615,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                       backgroundColor: Colors.white,
                                       context: context,
                                       builder: (context) {
-                                        return SelectDoctor();
+                                        return SelectDoctor(clinic_id: diaryProperties.getClinicID.toString());
                                       });
                                 },
                                 child: Icon(
