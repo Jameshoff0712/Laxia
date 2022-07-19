@@ -6,7 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/controllers/my_controller.dart';
 import 'package:laxia/models/clinic/clinic_model.dart';
+import 'package:laxia/models/question/media_model.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
@@ -42,6 +44,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
 
   bool isAddEnabled = true, isUsed = false;
   TextEditingController filter = new TextEditingController();
+  MyController _conMy = MyController();
   int index = 0;
   List<String> images = [];
   final _picker = ImagePicker();
@@ -50,7 +53,9 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
       if(pickedImage == null) return;
-
+      final Media_model res = await _conMy.imageUpload(pickedImage.path);
+      print(pickedImage.path);
+      print(res);
       setState(() {
         images.add(pickedImage.path);
       });

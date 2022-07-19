@@ -35,7 +35,7 @@ class MyController extends BaseController {
   Future<dynamic> postQuestion(QuestionPostModel newQuestion){
     return api.postQuestion(newQuestion);
   }
-  Future<Media_model> imageUpload(File imagePicked) {
+  Future<Media_model> imageUpload(String imagePicked) {
     return api.imageUpload(imagePicked);
   }
 }

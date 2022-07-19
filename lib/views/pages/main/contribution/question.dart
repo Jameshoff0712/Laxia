@@ -38,9 +38,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
         await _picker.pickImage(source: ImageSource.gallery);
       if(pickedImage == null) return;
 
-      final Media_model res = await _conMy.imageUpload(File(pickedImage.path));
-      print(File(pickedImage.path).path);
-      print('======================');
+      final Media_model res = await _conMy.imageUpload(pickedImage.path);
       print(pickedImage.path);
       print(res);
       setState(() {
@@ -522,6 +520,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                         setState(() {
                           qst_categories = surgeryProvider.getSelectedCurePos;
                         });
+                        print(imageIds);
                         _AddQuestion();
                       }  
                       : null,
