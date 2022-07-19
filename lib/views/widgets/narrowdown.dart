@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/search_provider.dart';
+import 'package:laxia/views/widgets/select_age.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -211,10 +212,27 @@ class _NarrowDownnState extends State<NarrowDownn> {
                                   color: Color.fromARGB(255, 156, 161, 161),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400)),
-                          Icon(
-                            Icons.navigate_next,
-                            color: Color.fromARGB(255, 156, 161, 161),
-                            size: 25,
+                          GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10.0),
+                                      topRight: Radius.circular(10.0)),
+                                ),
+                                backgroundColor: Colors.white,
+                                context: context,
+                                builder: (context) {
+                                  return SelectAge();
+                                },
+                                isScrollControlled: true,
+                              );
+                            },
+                            child: Icon(
+                              Icons.navigate_next,
+                              color: Color.fromARGB(255, 156, 161, 161),
+                              size: 25,
+                            ),
                           ),
                         ],
                       ))
