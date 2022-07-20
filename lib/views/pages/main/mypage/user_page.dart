@@ -270,19 +270,7 @@ class _UserPageState extends State<UserPage>
                                       null
                                   ? ""
                                   : patient_info.counselings![index].doctor_name!,
-                              image2:
-                                  "http://error.png", //patient_info.counselings![index]["image2"],
-                              image1:
-                                  "http://error.png", //patient_info.counselings![index]["image1"],
-                              image3:
-                                  "http://error.png", //patient_info.counselings![index]["image3"],
-                              image4:
-                                  "http://error.png", //patient_info.counselings![index]["image4"], 
-                              eyes: patient_info.counselings![index].views_count ==
-                                      null
-                                  ? ""
-                                  : patient_info.counselings![index].views_count!
-                                      .toString(),
+                              images:patient_info.counselings![index].media_self!,
                               name: patient_info.counselings![index].patient_nickname ==
                                       null
                                   ? ""
@@ -299,11 +287,12 @@ class _UserPageState extends State<UserPage>
                                       ? ""
                                       : patient_info.counselings![index].content!,
                               type:
-                                  "回答あり", // patient_info.counselings![index]["type"],
+                                  patient_info.counselings![index].categories!,
                               clinic: patient_info.counselings![index].clinic_name ==
                                       null
                                   ? ""
-                                  : patient_info.counselings![index].clinic_name!,
+                                  : patient_info.counselings![index].clinic_name!, 
+                              eyes: patient_info.counselings![index].views_count.toString(),
                             );
                   });
             }),

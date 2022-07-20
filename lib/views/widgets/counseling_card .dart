@@ -2,39 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/home/category_model.dart';
+import 'package:laxia/models/menu/image_model.dart';
+import 'package:laxia/models/question/media_model.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class Counseling_Card extends StatefulWidget {
   final VoidCallback onpress;
   final String avator,
       name,
-      image1,
-      image2,
-      image3,
-      image4,
       sentence,
-      type,
       check,
       clinic,
       eyes,
       hearts,
       chats;
+  final List<Image_model> images;
+  final List<Category> type;
   const Counseling_Card(
       {Key? key,
       required this.onpress,
       required this.avator,
       required this.name,
-      required this.image1,
-      required this.image2,
+      required this.images,
       required this.sentence,
       required this.type,
       required this.clinic,
       required this.check,
       required this.hearts,
       required this.chats,
-      required this.eyes,
-      required this.image3,
-      required this.image4})
+      required this.eyes,})
       : super(key: key);
 
   @override
@@ -42,6 +39,13 @@ class Counseling_Card extends StatefulWidget {
 }
 
 class _Counseling_CardState extends State<Counseling_Card> {
+  String type='';
+  @override
+  void initState(){
+    for(int i=0;i<widget.type.length;i++)
+      type+=widget.type[i].name;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -112,17 +116,18 @@ class _Counseling_CardState extends State<Counseling_Card> {
                       color: Helper.titleColor),
                 ),
                 Container(
-                  child: GridView(
+                  child: GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.symmetric(vertical: 10),
+                    itemCount: widget.images.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 5,
                         crossAxisCount: 4,
                         childAspectRatio: 1),
-                    children: [
-                      SizedBox(
+                    itemBuilder: (BuildContext context, int index) {
+                      return SizedBox(
                         height: 78,
                         width: 78,
                         child: Stack(
@@ -131,7 +136,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                               borderRadius: BorderRadius.circular(8),
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
-                                imageUrl: widget.image1,
+                                imageUrl: widget.images[index].path,
                                 placeholder: (context, url) => Image.asset(
                                   'assets/images/loading.gif',
                                   fit: BoxFit.cover,
@@ -145,80 +150,8 @@ class _Counseling_CardState extends State<Counseling_Card> {
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: 78,
-                        width: 78,
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: widget.image2,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
-                                  fit: BoxFit.cover,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/profile.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 78,
-                        width: 78,
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: widget.image3,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
-                                  fit: BoxFit.cover,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/profile.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 78,
-                        width: 78,
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: widget.image4,
-                                placeholder: (context, url) => Image.asset(
-                                  'assets/images/loading.gif',
-                                  fit: BoxFit.cover,
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  'assets/images/profile.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      );
+                    }
                   ),
                 ),
                 // SizedBox(height: 10,),
@@ -238,7 +171,7 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         width: 9,
                       ),
                       Text(
-                        widget.type,
+                        type,
                         style: TextStyle(
                             fontSize: 12,
                             

@@ -47,7 +47,7 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                                         widget.ImageList[j],
                                     ],
                                     startindex: 1,
-                                  )));
+                                  ))); 
                         },
                         child: Container(
                           width: 80,

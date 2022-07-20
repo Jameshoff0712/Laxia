@@ -249,7 +249,7 @@ class _Home_QuestionState extends State<Home_Question> {
                           images: question_data.data[index].medias!,
                           eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
                           name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
-                          onpress: () {
+                          onpress: () { 
                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
