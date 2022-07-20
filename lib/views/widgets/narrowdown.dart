@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/search_provider.dart';
@@ -23,10 +24,21 @@ class _NarrowDownnState extends State<NarrowDownn> {
     6,
     6,
   ];
+  List<int> year = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ];
   @override
   Widget build(BuildContext context) {
     SearchProvider searchProvider =
         Provider.of<SearchProvider>(context, listen: true);
+    if(searchProvider.year!=year){
+      year=searchProvider.year;
+    }
     return SafeArea(
       child: Container(
         child: Padding(
@@ -207,7 +219,9 @@ class _NarrowDownnState extends State<NarrowDownn> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("指定しない",
+                          Text(year.equals([0,0,0,0,0,0])?
+                          "指定しない":
+                            (year.join('0代,')+'0代').replaceAll('00代,', '').replaceAll(',00代', ''),
                               style: TextStyle(
                                   color: Color.fromARGB(255, 156, 161, 161),
                                   fontSize: 16,
@@ -258,7 +272,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
               child: GestureDetector(
                 onTap: () {
                   searchProvider.setminprice(_currentRangeValues.start.round());
-                  searchProvider.setmaxprice(_currentRangeValues.end.round());
+                  searchProvider.setmaxprice(_currentRangeValues.end.round()*40000);
                   searchProvider.setMark(selectstar);
                   Navigator.pop(context);
                 },

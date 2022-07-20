@@ -40,8 +40,7 @@ class _Home_QuestionState extends State<Home_Question> {
                         hearts: widget.questions[index].likes_count==null?"":widget.questions[index].likes_count!.toString(),
                         chats: widget.questions[index].comments_count==null?"":widget.questions[index].comments_count.toString(),
                         avator:widget.questions[index].owner!.photo==null?"http://error.png": widget.questions[index].owner!.photo!,
-                        image2: (widget.questions[index].medias!.isEmpty||widget.questions[index].medias!.length==1)?"http://error.png":widget.questions[index].medias![1].path,
-                        image1:widget.questions[index].medias!.isEmpty?"http://error.png":widget.questions[index].medias![0].path,
+                        images: widget.questions[index].medias!,
                         eyes: widget.questions[index].views_count==null?"":widget.questions[index].views_count!.toString(),
                         name:widget.questions[index].owner!.name==null?"": widget.questions[index].owner!.name!,
                         onpress: () {
@@ -52,7 +51,7 @@ class _Home_QuestionState extends State<Home_Question> {
                           //Navigator.of(context).pushNamed("/QuestionDetail");
                         },
                         sentence:widget.questions[index].content==null?"": widget.questions[index].content!,
-                        type:"二重切開" //widget.questions[index]["type"],
+                        type:widget.questions[index].categories!
                       );
                     });
               },

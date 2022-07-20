@@ -16,6 +16,9 @@ class _SelectAgeState extends State<SelectAge> {
   Widget build(BuildContext context) {
     SearchProvider searchProvider =
         Provider.of<SearchProvider>(context, listen: true);
+        if(searchProvider.year!=age_state_list){
+      age_state_list=searchProvider.year;
+    }
     return SafeArea(
       child: Container(
           height: 250,

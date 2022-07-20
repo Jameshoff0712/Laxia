@@ -29,6 +29,8 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
   void initSelected() {
+     minprice=0;
+     maxprice=0;
      mark = [6,6,6,6,6];
      year=[0,0,0,0,0,0];
     notifyListeners();

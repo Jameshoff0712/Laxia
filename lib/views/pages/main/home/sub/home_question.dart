@@ -246,8 +246,7 @@ class _Home_QuestionState extends State<Home_Question> {
                           hearts: question_data.data[index].likes_count==null?"":question_data.data[index].likes_count!.toString(),
                           chats: question_data.data[index].comments_count==null?"":question_data.data[index].comments_count.toString(),
                           avator:question_data.data[index].owner!.photo==null?"http://error.png": question_data.data[index].owner!.photo!,
-                          image2: (question_data.data[index].medias!.isEmpty||question_data.data[index].medias!.length==1)?"http://error.png":question_data.data[index].medias![1].path,
-                          image1:question_data.data[index].medias!.isEmpty?"http://error.png":question_data.data[index].medias![0].path,
+                          images: question_data.data[index].medias!,
                           eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
                           name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
                           onpress: () {
@@ -258,7 +257,7 @@ class _Home_QuestionState extends State<Home_Question> {
                             //Navigator.of(context).pushNamed("/QuestionDetail");
                           },
                           sentence:question_data.data[index].content==null?"": question_data.data[index].content!,
-                          type:"二重切開" //question_data.data[index]["type"],
+                          type:question_data.data[index].categories!,
                         );
                       });
                               },

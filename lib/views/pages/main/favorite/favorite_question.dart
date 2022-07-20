@@ -51,12 +51,11 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
                 itemBuilder: (BuildContext context, int index) {
                   return Question_Card(
                     isanswer: mid[index].answers.isNotEmpty,
-                    avator: "",
-                    name: "",
+                    avator: mid[index].owner!.photo!,
+                    name: mid[index].owner!.kana!,
                     sentence: mid[index].content!,
-                    image1: "",
-                    image2: "",
-                    type: "",
+                    images: mid[index].medias!,
+                    type: mid[index].categories!,
                     eyes: mid[index].views_count.toString(),
                     hearts: mid[index].likes_count.toString(),
                     chats: mid[index].comments_count.toString(),

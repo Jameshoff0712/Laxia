@@ -525,19 +525,20 @@ class _SearchResultAllState extends State<SearchResultAll> {
                               // physics: const AlwaysScrollableScrollPhysics(),
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
-                                return Question_Card(
-                                  isanswer: true,
-                                  hearts: widget.model[6][index]["hearts"],
-                                  chats: widget.model[6][index]["chats"],
-                                  avator: widget.model[6][index]["avator"],
-                                  image2: widget.model[6][index]["image2"],
-                                  image1: widget.model[6][index]["image1"],
-                                  eyes: widget.model[6][index]["eyes"],
-                                  name: widget.model[6][index]["name"],
-                                  onpress: () {},
-                                  sentence: widget.model[6][index]["sentence"],
-                                  type: widget.model[6][index]["type"],
-                                );
+                                return SizedBox();
+                                // return Question_Card(
+                                //   isanswer: true,
+                                //   hearts: widget.model[6][index]["hearts"],
+                                //   chats: widget.model[6][index]["chats"],
+                                //   avator: widget.model[6][index]["avator"],
+                                //   image2: widget.model[6][index]["image2"],
+                                //   image1: widget.model[6][index]["image1"],
+                                //   eyes: widget.model[6][index]["eyes"],
+                                //   name: widget.model[6][index]["name"],
+                                //   onpress: () {},
+                                //   sentence: widget.model[6][index]["sentence"],
+                                //   type: widget.model[6][index]["type"],
+                                // );
                               }),
                         ],
                       ),

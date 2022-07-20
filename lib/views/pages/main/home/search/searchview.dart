@@ -42,6 +42,7 @@ class _SearchViewState extends State<SearchView> {
   Future<void> midSearch(String q) async {
     try {
       final mid = await _con.midSearch(q);
+      print('wwwww');
       setState(() {
         midsearch=mid;
         unchange = false;

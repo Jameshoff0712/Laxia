@@ -291,15 +291,7 @@ class _Doctor_TopState extends State<Doctor_Top> {
                                     ? "http://error.png"
                                     : widget.doctor_detail.questions[index]
                                         .owner!.photo!,
-                                image2: (widget.doctor_detail.questions[index].medias!.isEmpty ||
-                                        widget.doctor_detail.questions[index].medias!.length ==
-                                            1)
-                                    ? "http://error.png"
-                                    : widget.doctor_detail.questions[index]
-                                        .medias![1].path,
-                                image1: widget.doctor_detail.questions[index].medias!.isEmpty
-                                    ? "http://error.png"
-                                    : widget.doctor_detail.questions[index].medias![0].path,
+                                images: widget.doctor_detail.questions[index].medias!,
                                 eyes: widget.doctor_detail.questions[index].views_count == null ? "" : widget.doctor_detail.questions[index].views_count!.toString(),
                                 name: widget.doctor_detail.questions[index].owner!.name == null ? "" : widget.doctor_detail.questions[index].owner!.name!,
                                 onpress: () {
@@ -309,10 +301,9 @@ class _Doctor_TopState extends State<Doctor_Top> {
                                           builder: (context) => QuestionDetail(
                                               index: widget.doctor_detail
                                                   .questions[index].id)));
-                                  //Navigator.of(context).pushNamed("/QuestionDetail");
                                 },
                                 sentence: widget.doctor_detail.questions[index].content == null ? "" : widget.doctor_detail.questions[index].content!,
-                                type: "二重切開" //widget.doctor_detail.questions[index]["type"],
+                                type: widget.doctor_detail.questions[index].categories!,
                                 );
                           }),
                       Row(

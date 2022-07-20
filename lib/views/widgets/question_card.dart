@@ -3,26 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/home/category_model.dart';
+import 'package:laxia/models/question/media_model.dart';
 
 class Question_Card extends StatefulWidget {
   final VoidCallback onpress;
   final String avator,
       name,
-      image1,
-      image2,
       sentence,
-      type,
       eyes,
       hearts,
       chats;
+  final List<Media_model> images;
+  final List<Category> type;
   final bool isanswer;
   const Question_Card({
     Key? key,
+    required this.images,
     required this.onpress,
     required this.avator,
     required this.name,
-    required this.image1,
-    required this.image2,
+
     required this.sentence,
     required this.type,
     required this.hearts,
@@ -37,26 +38,12 @@ class Question_Card extends StatefulWidget {
 
 class _Question_CardState extends State<Question_Card> {
   final apiUrl = dotenv.env["DEV_API_URL"];
-  late String image1, image2;
+  String type='';
   @override
   void initState() {
-    if (widget.image1.contains("https://")) {
-      setState(() {
-        image1 = widget.image1;
-      });
-    } else {
-      setState(() {
-        image1 = apiUrl! + "/" + widget.image1;
-      });
-    }
-    if (widget.image2.contains("https://")) {
-      setState(() {
-        image2 = widget.image2;
-      });
-    } else {
-      setState(() {
-        image2 = apiUrl! + "/" + widget.image2;
-      });
+    for(int i=0;i<widget.type.length;i++)
+    {
+      type+=widget.type[i].name;
     }
     super.initState();
   }
@@ -168,24 +155,25 @@ class _Question_CardState extends State<Question_Card> {
                       color: Helper.titleColor),
                 ),
                 Container(
-                  child: GridView(
+                  child: GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
+                    itemCount: widget.images.length,
                     padding: EdgeInsets.symmetric(vertical: 10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 5,
                         crossAxisCount: 4,
                         childAspectRatio: 1),
-                    children: [
-                      SizedBox(
+                    itemBuilder: (BuildContext context, int index) {
+                      return SizedBox(
                         height: 78,
                         width: 78,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            imageUrl: image1,
+                            imageUrl: widget.images[index].path,
                             placeholder: (context, url) => Image.asset(
                               'assets/images/loading.gif',
                               fit: BoxFit.cover,
@@ -196,35 +184,8 @@ class _Question_CardState extends State<Question_Card> {
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 78,
-                        width: 78,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: image2,
-                            placeholder: (context, url) => Image.asset(
-                              'assets/images/loading.gif',
-                              fit: BoxFit.cover,
-                            ),
-                            errorWidget: (context, url, error) => Image.asset(
-                              'assets/images/profile.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 78,
-                        width: 78,
-                      ),
-                      SizedBox(
-                        height: 78,
-                        width: 78,
-                      ),
-                    ],
+                      );
+                     }
                   ),
                 ),
                 Align(
@@ -243,7 +204,7 @@ class _Question_CardState extends State<Question_Card> {
                         width: 9,
                       ),
                       Text(
-                        widget.type,
+                        type,
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,

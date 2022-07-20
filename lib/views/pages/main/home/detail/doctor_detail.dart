@@ -660,14 +660,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                       ? "http://error.png"
                                       : doctor_detail
                                           .questions[index].owner!.photo!,
-                                  image2: doctor_detail.questions[index].medias!.isEmpty
-                                      ? "http://error.png"
-                                      : doctor_detail
-                                          .questions[index].medias![1].path,
-                                  image1: doctor_detail.questions[index].medias!.isEmpty
-                                      ? "http://error.png"
-                                      : doctor_detail
-                                          .questions[index].medias![0].path,
+                                  images: doctor_detail.questions[index].medias!,
                                   eyes: doctor_detail.questions[index].views_count == null
                                       ? ""
                                       : doctor_detail.questions[index].views_count!.toString(),
@@ -677,7 +670,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                         .pushNamed("/QuestionDetail");
                                   },
                                   sentence: doctor_detail.questions[index].content == null ? "" : doctor_detail.questions[index].content!,
-                                  type: "二重切開" //doctor_detail.questions[index]["type"],
+                                  type: doctor_detail.questions[index].categories!,
                                   );
                             }),
                         Padding(

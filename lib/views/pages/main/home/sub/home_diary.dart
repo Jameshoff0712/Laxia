@@ -59,7 +59,10 @@ class _Home_DiaryState extends State<Home_Diary> {
           setState(() {
             isexpanding = false;
           });
+          print(minprice.toString()+"   "+maxprice.toString());
+          print(selectstar.join(",")+year.join(','));
         final mid = await _con.getDiaryData(page: page, q: searchdata,filter:filter,city_id:city_id,price_min:minprice.toString(),price_max:maxprice.toString(),rate:selectstar.join(","),year:year.join(','));
+        print(mid);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;

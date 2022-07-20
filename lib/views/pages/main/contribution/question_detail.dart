@@ -23,16 +23,15 @@ class QuestionDetail extends StatefulWidget {
 }
 
 class _QuestionDetailState extends State<QuestionDetail> {
-  final apiUrl = dotenv.env["DEV_API_URL"];
   bool isloading = true, isfavorite = false, islike = false;
   final _con = HomeController();
   late Question_Sub_Model question_detail;
   Future<void> getData({required int index}) async {
     try {
       final mid = await _con.getQuestionDetail(index: index);
+      print(mid);
       setState(() {
         question_detail = mid;
-        //  print(question_detail);
         isfavorite = question_detail.is_favorite!;
         islike = question_detail.is_like!;
         isloading = false;
@@ -104,13 +103,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                             borderRadius: BorderRadius.circular(25),
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl: question_detail.owner!.photo == null
-                                  ? "http://error.png"
-                                  : (question_detail.owner!.photo!
-                                          .contains("http")
-                                      ? question_detail.owner!.photo
-                                      : apiUrl! +
-                                          question_detail.owner!.photo!),
+                              imageUrl: question_detail.owner!.photo,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,

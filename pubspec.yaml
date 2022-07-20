@@ -85,6 +85,7 @@ dependencies:
   bottom_picker: ^1.9.1
   laravel_echo: ^0.2.9
   flutter_pusher_client: ^0.3.1
+  collection: ^1.15.0
 
 dev_dependencies:
   flutter_test:

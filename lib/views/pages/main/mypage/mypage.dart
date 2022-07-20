@@ -11,10 +11,7 @@ import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
-import 'package:laxia/views/pages/main/contribution/question.dart';
 import 'package:laxia/views/pages/main/contribution/question_detail.dart';
-import 'package:laxia/views/pages/main/mypage/counseling_fix_page.dart';
-import 'package:laxia/views/pages/main/mypage/diary_card_widget.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/follower_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
@@ -27,9 +24,6 @@ import 'package:laxia/views/widgets/indicator.dart';
 import 'package:laxia/views/widgets/question_card.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../models/counseling_model.dart';
-import '../../../../models/question_model.dart';
 
 class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);
@@ -176,7 +170,6 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   }
 
   Widget buildDiaryPage(List<Diary_Sub_Model> mid) {
-    // print(mid);
     return Container(
       color: Helper.bodyBgColor,
       height: 640,
@@ -283,12 +276,11 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
                     itemBuilder: (BuildContext context, int index) {
                       return Question_Card(
                         isanswer: mid[index].answers.isNotEmpty,
-                        avator: "",
-                        name: "",
+                        avator: mid[index].owner!.photo!,
+                        name: mid[index].owner!.kana!,
                         sentence: mid[index].content!,
-                        image1: "",
-                        image2: "",
-                        type: "",
+                        images: mid[index].medias!,
+                        type: mid[index].categories!,
                         eyes: mid[index].views_count.toString(),
                         hearts: mid[index].likes_count.toString(),
                         chats: mid[index].comments_count.toString(),
