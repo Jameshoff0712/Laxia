@@ -197,8 +197,12 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
         Provider.of<UserProvider>(context, listen: true);
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
-    if (surgeryProvider.selectedCurePos.isNotEmpty && diaryProperties.clinic_id != '' && diaryProperties.doctor_id != '' &&
-        diaryProperties.getDate != '' && diaryProperties.counsel_content!= '') {
+    if (surgeryProvider.selectedCurePos.isNotEmpty 
+        && diaryProperties.clinic_id != '' 
+        && diaryProperties.doctor_id != '' 
+        && diaryProperties.getDate != '' 
+        && diaryProperties.counsel_content!= ''
+    ) {
       setState(() {
         isAddEnabled = true;
       });
@@ -658,6 +662,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                             onPressed:
                                 isAddEnabled ? () { 
                                   diaryProperties.setCounselImageIds(imageIds);
+                                  print(diaryProperties.getCounselImageIds);
                                   _AddCounselStep2Page(); } : null,
                             style: ElevatedButton.styleFrom(
                               elevation: 0,

@@ -82,6 +82,8 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
     showDialog(
       context: context,
       builder: (context) {
+        SurGeryProvider surgeryProvider =
+          Provider.of<SurGeryProvider>(context, listen: true);
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
@@ -162,6 +164,8 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                           onPressed: () {
                             // diaryProperties.setMedias(images);
                             post();
+                            surgeryProvider.selectedCurePosStr.clear();
+                            surgeryProvider.selectedCurePos.clear();
                             Navigator.of(context).pop();
                             Navigator.of(context).pushNamed("/Pages");
                           },
