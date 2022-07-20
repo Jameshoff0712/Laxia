@@ -27,7 +27,7 @@ class _DiaryPageState extends State<DiaryPage> {
           setState(() {
             isexpanding = false;
           });
-        mid = await _con.getDiaryData(page: page, q: q, filter: '', city_id: '', year: 10);
+        mid = await _con.getDiaryData(page: page, q: q, filter: '', city_id: '');
         for (int i = 0; i < mid.data.length; i++) {
           categoryList.addAll(mid.data[i].categories!);
         }
