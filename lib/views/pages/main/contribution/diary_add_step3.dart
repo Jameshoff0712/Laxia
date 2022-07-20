@@ -1,7 +1,9 @@
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class AddDiaryStep3Page extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class AddDiaryStep3Page extends StatefulWidget {
 class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
   bool isAddEnabled = true;
   List<int> selectstar = [];
+  // bool isAllSelected = false;
   //File imageURI;
   // late OfferController _con;
 
@@ -58,6 +61,20 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
 
   @override
   Widget build(BuildContext context) {
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
+    for(int i = 0; i < 9; i++){
+      if(selectstar[i] == 0) {
+        setState(() {
+          isAddEnabled = false;
+        });
+        break;
+      }
+      else 
+        setState(() {
+          isAddEnabled = true;
+        });
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -259,8 +276,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                   for (int i = 0; i < 5; i++)
                     Star(
                         i,
-                        0,
-                        selectstar[0] > i
+                        3,
+                        selectstar[3] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -296,8 +313,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                   for (int i = 0; i < 5; i++)
                     Star(
                         i,
-                        1,
-                        selectstar[1] > i
+                        4,
+                        selectstar[4] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -333,8 +350,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                   for (int i = 0; i < 5; i++)
                     Star(
                         i,
-                        2,
-                        selectstar[2] > i
+                        5,
+                        selectstar[5] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -386,8 +403,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                   for (int i = 0; i < 5; i++)
                     Star(
                         i,
-                        0,
-                        selectstar[0] > i
+                        6,
+                        selectstar[6] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -423,8 +440,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                   for (int i = 0; i < 5; i++)
                     Star(
                         i,
-                        1,
-                        selectstar[1] > i
+                        7,
+                        selectstar[7] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -460,8 +477,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                   for (int i = 0; i < 5; i++)
                     Star(
                         i,
-                        2,
-                        selectstar[2] > i
+                        8,
+                        selectstar[8] > i
                             ? Color.fromARGB(255, 242, 201, 76)
                             : Color.fromARGB(255, 222, 222, 222)),
                 ],
@@ -482,7 +499,11 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                             color: Color.fromARGB(255, 194, 194, 194),
                           ),
                   child: ElevatedButton(
-                    onPressed: isAddEnabled ? () => AddDiaryStep4Page() : null,
+                    onPressed: isAddEnabled ? (){
+                      diaryProperties.setRates(selectstar);
+
+                      AddDiaryStep4Page();
+                     } : null,
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),

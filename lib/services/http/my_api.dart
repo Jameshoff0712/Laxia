@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:laxia/models/counsel_post_model.dart';
+import 'package:laxia/models/diary_post_model.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
@@ -47,35 +48,26 @@ class MyApi extends Api {
     }
     return false;
   }
-  Future<void> postDiary(
-      int clinic_id,
-      String date,
-      int doctor_id,
-      List<int> operationTypes,
-      List<String> questions,
-      List<int> rates,
-      int cost_anesthetic,
-      int cost_drug,
-      int cost_other,
-      List images) async {
+  Future<void> postDiary(DiaryPostModel newDiary) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
         "$apiUrl/diaries",
         <String, String>{
-          "diaries[clinic_id]": clinic_id.toString(),
-          "diaries[treat_date]": date,
-          "diaries[doctor_id]": doctor_id.toString(),
-          for (int i = 0; i < operationTypes.length; i++)
-            "categories[" + i.toString() + "]": operationTypes[i].toString(),
-          for (int j = 0; j < questions.length; j++)
-            "diary_tqs[" + (j + 1).toString() + "]": questions[j],
-          for (int k = 0; k < rates.length; k++)
-            "diaries[rate_0" + (k + 1).toString() + "]": rates[k].toString(),
-          "diaries[cost_anesthetic]": cost_anesthetic.toString(),
-          "diaries[cost_drug]": cost_drug.toString(),
-          "diaries[cost_other]": cost_other.toString(),
-          for (int i = 0; i < images.length; i++)
-            "medias[" + i.toString() + "]": images[i].toString(),
+          "diaries[clinic_id]": newDiary.clinic_id,
+          "diaries[treat_date]": newDiary.date,
+          "diaries[doctor_id]": newDiary.doctor_id,
+          for (int i = 0; i < newDiary.categories.length; i++)
+            "categories[]": newDiary.categories[i].toString(),
+          for (int j = 0; j < newDiary.questions.length; j++)
+            "diary_tqs[" + (j + 1).toString() + "]": newDiary.questions[j],
+          for (int k = 0; k < newDiary.rates.length; k++)
+            "diaries[rate_0" + (k + 1).toString() + "]": newDiary.rates[k].toString(),
+          "diaries[cost_anesthetic]": newDiary.cost_anes.toString(),
+          "diaries[cost_drug]": newDiary.cost_drug.toString(),
+          "diaries[cost_other]": newDiary.cost_other.toString(),
+          for (int i = 0; i < newDiary.imageIds.length; i++)
+            "medias[]": newDiary.imageIds[i].toString(),
+          "menus[0][cost]": newDiary.cost_op.toString(),
         },
         token);
     
