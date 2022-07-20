@@ -68,6 +68,7 @@ class MyApi extends Api {
           for (int i = 0; i < newDiary.imageIds.length; i++)
             "medias[]": newDiary.imageIds[i].toString(),
           "menus[0][cost]": newDiary.cost_op.toString(),
+          "menus[0][id]": newDiary.categories[0].toString(),
         },
         token);
     

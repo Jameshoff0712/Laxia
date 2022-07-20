@@ -140,7 +140,7 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                         cost_other: diaryProperties.getCostOther
                       );
                       dynamic result = await _conMy.postDiary(newDiary);
-                      print(result.data);
+                      // print(result.data);
 
 
                       diaryProperties.clinic_id = '';
@@ -155,7 +155,10 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       diaryProperties.cost_anesthetic = 0;
                       diaryProperties.cost_drug = 0;
                       diaryProperties.cost_other = 0;
-                      AddDiaryPage();
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddDiaryPage()));
                     } : null,
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
