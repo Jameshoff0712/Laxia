@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/search_provider.dart';
+import 'package:provider/provider.dart';
 
 class SelectAge extends StatefulWidget {
   const SelectAge({Key? key}) : super(key: key);
@@ -9,9 +11,11 @@ class SelectAge extends StatefulWidget {
 }
 
 class _SelectAgeState extends State<SelectAge> {
-  List<bool> age_state_list = [false, false, false, false, false, false, false];
+  List<int> age_state_list = [0, 0, 0, 0, 0, 0];
   @override
   Widget build(BuildContext context) {
+    SearchProvider searchProvider =
+        Provider.of<SearchProvider>(context, listen: true);
     return SafeArea(
       child: Container(
           height: 250,
@@ -46,8 +50,9 @@ class _SelectAgeState extends State<SelectAge> {
                       onTap: () {
                         setState(() {
                           for(int i = 0; i < 6; i++)
-                            age_state_list[i] = false;
+                            age_state_list[i] = 0;
                         });
+
                       },
                       child: Text(
                         'クリア',
@@ -71,15 +76,20 @@ class _SelectAgeState extends State<SelectAge> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            age_state_list[i] = !age_state_list[i];
+                            if(age_state_list[i]==0){
+                              age_state_list[i]=i+1;
+                            }else{
+                              age_state_list[i]=0;
+                            }
                           });
+                          searchProvider.setYear(age_state_list);
                         },
                         child: Container(
                           width: 160,
                           height: 40,
                           padding: EdgeInsets.symmetric(vertical: 8),
                           decoration: BoxDecoration(
-                            color: age_state_list[i] ? Helper.mainColor : Color.fromARGB(255, 240, 242, 245),
+                            color: age_state_list[i]!=0 ? Helper.mainColor : Color.fromARGB(255, 240, 242, 245),
                             borderRadius: BorderRadius.all(Radius.circular(3)),
                           ),
                           child: Align(
@@ -89,7 +99,7 @@ class _SelectAgeState extends State<SelectAge> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 16,
-                                color: age_state_list[i] ? Helper.whiteColor : Helper.titleColor,
+                                color: age_state_list[i]!=0 ? Helper.whiteColor : Helper.titleColor,
                               ),
                             ),
                           ),

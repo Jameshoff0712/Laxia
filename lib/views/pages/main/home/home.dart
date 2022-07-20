@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:laxia/provider/pref_provider.dart';
+import 'package:laxia/provider/search_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/home/search/searchresult.dart';
 import 'package:laxia/views/pages/main/home/sub/home_case.dart';
@@ -74,6 +77,12 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
+    SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+    SearchProvider searchProvider =
+        Provider.of<SearchProvider>(context, listen: true);
     tabMenus[0]="ホーム";
     if (userProperties.searchtext != "") {
           isvisible=true;
@@ -107,7 +116,12 @@ class _HomeScreenState extends State<HomeScreen>
             visible: isvisible,
             child: TabBarWidget(
               tabMenus: tabMenus,
-              tabController: _tabController,
+              tabController: _tabController, 
+              onpress: () {
+                searchProvider.initSelected();
+                prefyprovider.initSelected();
+                surgeryprovider.initSelected();
+              },
             ),
           ),
           userProperties.searchtext.isEmpty

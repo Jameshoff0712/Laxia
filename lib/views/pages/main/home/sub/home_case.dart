@@ -35,7 +35,10 @@ class _Home_CaseState extends State<Home_Case> {
   int page = 0, index = -1;
   bool isend = false, isloading = true, isexpanding = true;
   late Case case_data;
-  int minprice=0,maxprice=0,year=10;
+  int minprice=0,maxprice=0;
+  List<int> year=[
+    0,0,0,0,0,0
+  ];
   final _con = HomeController();
   Future<void> getData({required String page}) async {
     try {
@@ -44,7 +47,7 @@ class _Home_CaseState extends State<Home_Case> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCaseData(page: page, q: searchdata,filter:filter,price_min:minprice.toString(),price_max:maxprice.toString(),year:year);
+        final mid = await _con.getCaseData(page: page, q: searchdata,filter:filter,price_min:minprice.toString(),price_max:maxprice.toString(),year:year.join(','));
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;

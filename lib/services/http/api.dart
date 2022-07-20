@@ -37,7 +37,7 @@ class Api {
       });
 
       data.forEach((key, value) async {
-        print(key);
+        // print(key);
         if(key == "media"){
           request.files.add(await http.MultipartFile.fromPath("media", value));
         } else if (key == 'medias') {
@@ -101,7 +101,6 @@ class Api {
             }
           });
           var streamResponse = await request.send();
-          print(streamResponse);
           final responseString = await streamResponse.stream.bytesToString();
 
           if (streamResponse.statusCode == 200) {

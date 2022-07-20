@@ -3,7 +3,8 @@ import 'package:laxia/models/me_model.dart';
 
 class SearchProvider extends ChangeNotifier {
   List<int> mark = [6,6,6,6,6];
-  int minprice=0,maxprice=0,year=0;
+  int minprice=0,maxprice=0;
+  List<int> year=[0,0,0,0,0,0];
 
   void setMark(List<int> star) {
     for(int i=0;i<5;i++)
@@ -20,8 +21,16 @@ class SearchProvider extends ChangeNotifier {
     maxprice= price;
     notifyListeners();
   }
-  void setYear(int val){
-    year=val;
+  void setYear(List<int> mid) {
+    for(int i=0;i<6;i++)
+    {
+      year[i]=mid[i];
+    }
+    notifyListeners();
+  }
+  void initSelected() {
+     mark = [6,6,6,6,6];
+     year=[0,0,0,0,0,0];
     notifyListeners();
   }
 }

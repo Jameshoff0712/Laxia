@@ -90,7 +90,7 @@ class HomeApi extends Api {
     }
     return false;
   }
-  Future<Case> getCaseData(String per_page, String page, String clinic_id, String doctor_id, String q,String filter, String price_min, String price_max, int year) async {
+  Future<Case> getCaseData(String per_page, String page, String clinic_id, String doctor_id, String q,String filter, String price_min, String price_max, String year) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/cases?per_page="+per_page+"&page="+page+"&clinic_id="+clinic_id+"&doctor_id="+doctor_id+"&q="+q+"&filter="+filter+"&price_min="+price_min+"&price_max="+price_max+"&year="+year.toString(), token);
     // print(res.data["cases"]);

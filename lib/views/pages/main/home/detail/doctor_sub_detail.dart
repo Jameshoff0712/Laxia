@@ -172,7 +172,7 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                   TabBarWidget(
                     tabMenus: tabMenus,
                     tabController: _tabController,
-                    padding: 15,
+                    padding: 15, onpress: () {  },
                   ),
                   Expanded(
                     child: TabBarView(
