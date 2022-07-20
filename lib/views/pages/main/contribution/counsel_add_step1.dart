@@ -4,6 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/question/media_model.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/contribution/select_clinic.dart';
@@ -32,8 +34,10 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
   String date_counsel = '';
   String content_worry = '';
   bool isAddEnabled = true, isUsed = false;
+  MyController _conMy = MyController();
   int index = 0;
-  List images = [[]];
+  List images = [[], [], []];
+  List<List<int>> imageIds = [[], [], []];
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
     try{
@@ -41,8 +45,10 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
         await _picker.pickImage(source: ImageSource.gallery);
       if(pickedImage == null) return;
 
+      final Media_model res = await _conMy.imageUpload(pickedImage.path);
       setState(() {
         images[index].add(pickedImage.path);
+        imageIds[index].add(res.id);
       });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
@@ -164,9 +170,9 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
 
   @override
   void initState() {
-    images.add([]);
-    images.add([]);
-    images.add([]);
+    // images.add([]);
+    // images.add([]);
+    // images.add([]);
     super.initState();
   }
 
@@ -192,7 +198,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
     if (surgeryProvider.selectedCurePos.isNotEmpty && diaryProperties.clinic_id != '' && diaryProperties.doctor_id != '' &&
-        date_counsel != '' && content_worry != '') {
+        diaryProperties.getDate != '' && diaryProperties.counsel_content!= '') {
       setState(() {
         isAddEnabled = true;
       });
@@ -582,6 +588,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                     setState(() {
                       content_worry = val;
                     });
+                    diaryProperties.setCounselContent(val);
                   },
                   decoration: InputDecoration(
                     hintText: '例)二重幅が狭いことに悩んでいました',
@@ -649,7 +656,9 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                           ),
                           child: ElevatedButton(
                             onPressed:
-                                isAddEnabled ? () => _AddCounselStep2Page() : null,
+                                isAddEnabled ? () { 
+                                  diaryProperties.setCounselImageIds(imageIds);
+                                  _AddCounselStep2Page(); } : null,
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -777,6 +786,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                       onRemove: (int) {
                         setState(() {
                           images[subindex].removeAt(int);
+                          imageIds[subindex].removeAt(int);
                         });
                       },
                     ),

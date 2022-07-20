@@ -79,4 +79,28 @@ class PostDiaryProvider extends ChangeNotifier {
     questions.addAll(postQuestions);
     notifyListeners();
   }
+
+
+
+
+
+
+
+
+
+
+  String counsel_content = '';
+  get getCounselContent => counsel_content;
+  void setCounselContent(String value) {
+    counsel_content = value;
+    notifyListeners();
+  }
+
+  List<List<int>> counsel_imageIds = [[], [], []];
+  get getCounselImageIds => counsel_imageIds;
+  void setCounselImageIds(List<List<int>> imageIds) {
+    counsel_imageIds.clear();
+    for(int i = 0; i< imageIds.length; i++)
+      counsel_imageIds[i].addAll(imageIds[i]);
+  }
 }
