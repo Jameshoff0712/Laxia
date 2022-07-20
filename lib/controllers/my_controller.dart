@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:laxia/controllers/base_controller.dart';
+import 'package:laxia/models/diary_post_model.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
@@ -30,14 +31,17 @@ class MyController extends BaseController {
   Future<Me> getPatientInfo(int index) async {
     return await api.getPatientInfo(index);
   }
-  Future<bool> postTooglefollow({required int index}){
-    return api.postTooglefollow(index);
+  Future<bool> postTooglefollow({required int index}) async {
+    return await api.postTooglefollow(index);
   }
-  Future<dynamic> postQuestion(QuestionPostModel newQuestion){
-    return api.postQuestion(newQuestion);
+  Future<dynamic> postQuestion(QuestionPostModel newQuestion) async {
+    return await api.postQuestion(newQuestion);
   }
-  Future<dynamic> postCounsel(CounselPostModel newCounsel){
-    return api.postCounsel(newCounsel);
+  Future<dynamic> postCounsel(CounselPostModel newCounsel) async {
+    return await api.postCounsel(newCounsel);
+  }
+  Future<dynamic> postDiary(DiaryPostModel newDiary) async {
+    return await api.postDiary(newDiary);
   }
   Future<Media_model> imageUpload(String imagePicked) {
     return api.imageUpload(imagePicked);

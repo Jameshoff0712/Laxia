@@ -154,8 +154,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DiaryPage());
       case '/AddDiaryStep1':
         return MaterialPageRoute(builder: (_) => AddDiaryStep1Page());
-      case '/AddDiaryStep2':
-        return MaterialPageRoute(builder: (_) => AddDiaryStep2Page());
+      // case '/AddDiaryStep2':
+      //   return MaterialPageRoute(builder: (_) => AddDiaryStep2Page());
       case '/AddDiaryStep3':
         return MaterialPageRoute(builder: (_) => AddDiaryStep3Page());
       case '/AddDiaryStep4':

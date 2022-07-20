@@ -1,6 +1,12 @@
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/diary_post_model.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddDiaryStep5Page extends StatefulWidget {
   @override
@@ -10,7 +16,7 @@ class AddDiaryStep5Page extends StatefulWidget {
 class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
   bool isNextEnabled = false;
   List<bool> chk_status = [];
-
+  MyController _conMy = MyController();
   // late OfferController _con;
 
   // _AddDiaryStep5PageState() : super(OfferController()) {
@@ -37,6 +43,12 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
 
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryProvider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -113,7 +125,38 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                             color: Color.fromARGB(255, 194, 194, 194),
                           ),
                   child: ElevatedButton(
-                    onPressed: isNextEnabled ? () => AddDiaryPage() : null,
+                    onPressed: isNextEnabled ? () async {
+                      DiaryPostModel newDiary = new DiaryPostModel(
+                        clinic_id: diaryProperties.getClinicID, 
+                        doctor_id: diaryProperties.getDoctorID,
+                        date: diaryProperties.getDate, 
+                        categories: surgeryProvider.getSelectedCurePos, 
+                        imageIds: diaryProperties.getDiaryImageIds, 
+                        questions: diaryProperties.getQuestions, 
+                        rates: diaryProperties.getRates, 
+                        cost_op: diaryProperties.getCostOp,
+                        cost_anes: diaryProperties.getCostAnesthetic, 
+                        cost_drug: diaryProperties.getCostDrug, 
+                        cost_other: diaryProperties.getCostOther
+                      );
+                      dynamic result = await _conMy.postDiary(newDiary);
+                      print(result.data);
+
+
+                      diaryProperties.clinic_id = '';
+                      diaryProperties.doctor_id = '';
+                      diaryProperties.date = '';
+                      surgeryProvider.selectedCurePos = [];
+                      surgeryProvider.selectedCurePosStr = [];
+                      diaryProperties.diary_imageIds = [];
+                      diaryProperties.questions = [];
+                      diaryProperties.rates = [];
+                      diaryProperties.cost_op = 0;
+                      diaryProperties.cost_anesthetic = 0;
+                      diaryProperties.cost_drug = 0;
+                      diaryProperties.cost_other = 0;
+                      AddDiaryPage();
+                    } : null,
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),

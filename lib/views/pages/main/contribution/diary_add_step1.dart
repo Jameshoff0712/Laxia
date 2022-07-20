@@ -47,6 +47,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
   MyController _conMy = MyController();
   int index = 0;
   List<String> images = [];
+  List<int> imageIds = [];
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
     try{
@@ -58,6 +59,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       print(res);
       setState(() {
         images.add(pickedImage.path);
+        imageIds.add(res.id);
       });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
@@ -82,6 +84,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       builder: (context) {
         PostDiaryProvider diaryProperties =
             Provider.of<PostDiaryProvider>(context, listen: true);
+        SurGeryProvider surgeryProvider =
+            Provider.of<SurGeryProvider>(context, listen: true);
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
@@ -160,9 +164,14 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                 ),
                               )),
                           onPressed: () {
-                            diaryProperties.setMedias(images);
+                            diaryProperties.setDiaryImageIds(imageIds);
                             Navigator.of(context).pop();
-                            Navigator.of(context).pushNamed("/AddDiaryStep2");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddDiaryStep2Page(
+                                  operationName: surgeryProvider.getSelectedCurePosStr,
+                            )));
                           },
                         )
                       ],
@@ -267,10 +276,10 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
     List listOperationTypes = diaryProperties.getOperationTypes;
-    if (diaryProperties.getDate != "" //&&
-        // listOperationTypes.length != 0 &&
-        // diaryProperties.getClinicID &&
-        // diaryProperties.getDoctorID &&
+    if (diaryProperties.getDate != "" 
+        && surgeryProvider.getSelectedCurePos.length != 0 
+        && diaryProperties.getClinicID != ''
+        && diaryProperties.getDoctorID != ''
         // images.isNotEmpty
         ) {
       setState(() {
@@ -769,6 +778,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => AddDiaryStep2Page(
+                                  operationName: surgeryProvider.getSelectedCurePosStr,
                                     isMyDiary: widget.isMyDiary)));
                       },
                       style: ElevatedButton.styleFrom(
@@ -856,6 +866,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                       onRemove: (int) {
                         setState(() {
                           images.removeAt(int);
+                          imageIds.removeAt(int);
                         });
                       },
                       bRemove: true,

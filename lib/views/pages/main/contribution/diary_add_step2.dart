@@ -1,18 +1,26 @@
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step4.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class AddDiaryStep2Page extends StatefulWidget {
+  final String operationName;
   final bool? isMyDiary;
-  const AddDiaryStep2Page({Key? key, this.isMyDiary = false}) : super(key: key);
+  const AddDiaryStep2Page({Key? key, required this.operationName, this.isMyDiary = false}) : super(key: key);
   @override
   _AddDiaryStep2PageState createState() => _AddDiaryStep2PageState();
 }
 
 class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
   bool isAddEnabled = true;
+  int cost_op = 0;
+  int cost_anes = 0;
+  int cost_drug = 0;
+  int cost_other = 0;
+  int total_cost = 0;
   //File imageURI;
   // late OfferController _con;
 
@@ -55,6 +63,22 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
 
   @override
   Widget build(BuildContext context) {
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
+    // diaryProperties.setCostAnesthetic(cost_anes);
+    // diaryProperties.setCostDrug(cost_drug);
+    // diaryProperties.setCostOther(cost_other);
+    setState(() {
+      total_cost = cost_op + cost_anes + cost_drug + cost_other;
+    });
+    if(diaryProperties.getCostOp > 0)
+      setState(() {
+        isAddEnabled = true;
+      });
+    else
+      setState(() {
+        isAddEnabled = false;
+      });
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -116,7 +140,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.6,
                           child: Text(
-                            "腫れづらいスクエア二施術",
+                            widget.operationName,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
                                 fontWeight: FontWeight.w700,
@@ -128,6 +152,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            onChanged: (val){
+                              setState(() {
+                                cost_op = int.parse(val);
+                              });
+                              diaryProperties.setCostOp(int.parse(val));
+                            },
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
                                 fontWeight: FontWeight.w400,
@@ -182,6 +212,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            onChanged: (val) {
+                              setState(() {
+                                cost_anes = int.parse(val);
+                              });
+                              diaryProperties.setCostAnesthetic(int.parse(val));
+                            },
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
                                 fontWeight: FontWeight.w400,
@@ -236,6 +272,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            onChanged: (val) {
+                              setState(() {
+                                cost_drug = int.parse(val);
+                              });
+                              diaryProperties.setCostDrug(int.parse(val));
+                            },
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
                                 fontWeight: FontWeight.w400,
@@ -290,6 +332,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                           child: TextField(
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
+                            onChanged: (val) {
+                              setState(() {
+                                cost_other = int.parse(val);
+                              });
+                              diaryProperties.setCostOther(int.parse(val));
+                            },
                             style: TextStyle(
                                 color: Color.fromARGB(255, 18, 18, 18),
                                 fontWeight: FontWeight.w400,
@@ -337,7 +385,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                               height: 1.5),
                     ),
                     Text(
-                      "0",
+                      total_cost.toString(),
                       style: TextStyle(
                               color: Color.fromARGB(255, 18, 18, 18),
                               fontWeight: FontWeight.w700,

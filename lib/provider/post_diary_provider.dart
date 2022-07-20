@@ -37,27 +37,32 @@ class PostDiaryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> medias = [];
-  get getMedias => medias;
-  void setMedias(List<String> postMedias) {
-    medias.clear();
-    medias.addAll(postMedias);
+  List<int> diary_imageIds = [];
+  get getDiaryImageIds => diary_imageIds;
+  void setDiaryImageIds(List<int> postMedias) {
+    diary_imageIds.clear();
+    diary_imageIds.addAll(postMedias);
     notifyListeners();
   }
-
-  late int cost_anesthetic;
+  int cost_op = 0;
+  get getCostOp => cost_op;
+  void setCostOp(int postCostOp) {
+    cost_op = postCostOp;
+    notifyListeners();
+  }
+  int cost_anesthetic = 0;
   get getCostAnesthetic => cost_anesthetic;
   void setCostAnesthetic(int postCostAnesthetic) {
     cost_anesthetic = postCostAnesthetic;
     notifyListeners();
   }
-  late int cost_drug;
+  int cost_drug = 0;
   get getCostDrug => cost_drug;
   void setCostDrug(int postCostDrug) {
     cost_drug = postCostDrug;
     notifyListeners();
   }
-  late int cost_other;
+  int cost_other = 0;
   get getCostOther => cost_other;
   void setCostOther(int postCostOther) {
     cost_other = postCostOther;

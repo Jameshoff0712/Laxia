@@ -1,9 +1,11 @@
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class AddDiaryStep4Page extends StatefulWidget {
   final bool? isMyDiary;
@@ -13,6 +15,7 @@ class AddDiaryStep4Page extends StatefulWidget {
 }
 
 class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
+  List<String> questions = ['', '', '', '', '', ''];
   bool isAddEnabled = true;
   // late OfferController _con;
 
@@ -55,6 +58,20 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
 
   @override
   Widget build(BuildContext context) {
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
+    for(int i = 0; i < 6; i++){
+      if(questions[i] == '') {
+        setState(() {
+          isAddEnabled = false;
+        });
+        break;
+      }
+      else 
+        setState(() {
+          isAddEnabled = true;
+        });
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -106,15 +123,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      questions[0] = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)目が一重で目つきがキツイことで悩んでいました。',
@@ -148,15 +159,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      questions[1] = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)二重部門でラシアでの評価も高く信頼できると思ったからです。',
@@ -190,15 +195,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      questions[2] = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)二重切開が良いと思ったのですが、私のまぶただと埋没でも大丈夫ということで、埋没にしました。',
@@ -232,15 +231,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      questions[3] = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)施術は15分ほどで終わりました。麻酔をしていたので特に痛みはなかったです。',
@@ -274,15 +267,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      questions[4] = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)ドクターもスタッフの方も優しく声をかけていただき、安心して施術に向かうことができきました。',
@@ -316,15 +303,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    if (text.isNotEmpty) {
-                      setState(() {
-                        isAddEnabled = true;
-                      });
-                    } else {
-                      setState(() {
-                        isAddEnabled = false;
-                      });
-                    }
+                    setState(() {
+                      questions[5] = text;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)毎日自分の顔が見るのが楽しみになりました。もし迷っているなら、是非オススメします。',
@@ -352,7 +333,10 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                             ),
                           child: ElevatedButton(
                             onPressed:
-                                isAddEnabled ? () => AddDiaryStep5Page() : null,
+                                isAddEnabled ? () { 
+                                  diaryProperties.setQuestions(questions);
+                                  AddDiaryStep5Page();
+                                } : null,
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
