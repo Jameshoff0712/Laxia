@@ -37,7 +37,7 @@ class Api {
       });
 
       data.forEach((key, value) async {
-        print(key);
+        // print(key);
         if(key == "media"){
           // request.files.add(await http.MultipartFile.fromPath("image", <File>(value)));
           // request.files.add(
@@ -50,22 +50,15 @@ class Api {
           request.files.add(await http.MultipartFile.fromPath("image", value.path));
         }
         else{
-          print('kkkkkkkkkkkkkkkkkkkkkkk');
           request.fields[key] = value;}
       });
       var streamResponse = await request.send();
-      print('pppppppppppp');
-      print(streamResponse.statusCode);
       final responseString = await streamResponse.stream.bytesToString();
-      print('pppppppppppp');
-      print(responseString);
       // final responsed = await http.Response.fromStream(streamResponse);
       // final responseString = json.decode(responsed.body);
 
       if (streamResponse.statusCode == 200) {
         final dynamic jsonMap = json.decode(responseString);
-        print('mmmmm');
-        print(jsonMap);
         return ResObj(
             status: true, code: streamResponse.statusCode, data: jsonMap);
       } else {
@@ -113,7 +106,6 @@ class Api {
             }
           });
           var streamResponse = await request.send();
-          print(streamResponse);
           final responseString = await streamResponse.stream.bytesToString();
 
           if (streamResponse.statusCode == 200) {

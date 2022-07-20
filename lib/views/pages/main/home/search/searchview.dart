@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/static_controller.dart';
 import 'package:laxia/models/static/Search_Model.dart';
+import 'package:laxia/models/static/midsearch_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';
 import 'dart:async';
@@ -21,11 +22,11 @@ class SearchView extends StatefulWidget {
 class _SearchViewState extends State<SearchView> {
   bool flag = false, unchange = true;
   // List menu_list = [];
-  List counts = [];
   final _con = StaticController();
   late Search_Model search;
-  bool isloading = true;
-  Future<void> searchCount() async {
+  late MidSearch_Model midsearch;
+  bool isloading = true,issearch=true;
+  Future<void> searchList() async {
     try {
       final mid = await _con.getSearch();
       setState(() {
@@ -38,9 +39,22 @@ class _SearchViewState extends State<SearchView> {
       });
     }
   }
+  Future<void> midSearch(String q) async {
+    try {
+      final mid = await _con.midSearch(q);
+      setState(() {
+        midsearch=mid;
+        unchange = false;
+      });
+    } catch (e) {
+      setState(() {
+        print(e.toString());
+      });
+    }
+  }
   @override
   void initState() {
-    searchCount();
+    searchList();
     super.initState();
   }
 
@@ -96,7 +110,6 @@ class _SearchViewState extends State<SearchView> {
                               state: false,
                               filter: filter,
                               onchange: () {
-                                searchCount();
                                 if (filter.text.isEmpty) {
                                   setState(() {
                                     issuffixicon = false;
@@ -106,13 +119,14 @@ class _SearchViewState extends State<SearchView> {
                                 } else {
                                   setState(() {
                                     issuffixicon = true;
-                                    unchange = false;
                                   });
                                 }
                               },
                               oncompleted: () {
-                                userProperties.setSearchtext(filter.text);
-                                Navigator.pop(context);
+                                midSearch(filter.text);
+                                
+                                // userProperties.setSearchtext(filter.text);
+                                // Navigator.pop(context);
                               },
                             ),
                             onFocusChange: (hasfocus) {
@@ -356,18 +370,31 @@ class _SearchViewState extends State<SearchView> {
                           children: [
                             // menuAppBar(context),
                             Expanded(
-                              child: ListView.builder(
-                                  itemCount: counts.length,
+                              child: ListView(
                                   physics:
                                       const AlwaysScrollableScrollPhysics(),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return SearchResult(
-                                      count: counts[index]["count"],
-                                      index: index,
-                                      onpress: () {},
-                                    );
-                                  }),
+                                  children: [
+                                    SearchResult(
+                                      count: midsearch.menus,
+                                      index: 1,
+                                    ),
+                                    SearchResult(
+                                      count: midsearch.clinics,
+                                      index: 2,
+                                    ),
+                                    SearchResult(
+                                      count: midsearch.doctors,
+                                      index: 3,
+                                    ),
+                                    SearchResult(
+                                      count: midsearch.diaries,
+                                      index: 4,
+                                    ),
+                                    SearchResult(
+                                      count: midsearch.cases,
+                                      index: 5,
+                                    )
+                                  ],),
                             ),
                           ],
                         );

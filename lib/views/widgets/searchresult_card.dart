@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/views/pages/main/contribution/case_detail.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
 
 class SearchResult extends StatefulWidget {
-  final int index, count;
-  final VoidCallback onpress;
+  final int index;
+  final List<int> count;
   const SearchResult(
       {Key? key,
       required this.index,
-      required this.count,
-      required this.onpress})
+      required this.count})
       : super(key: key);
   @override
   State<SearchResult> createState() => _SearchResultState();
@@ -44,9 +48,37 @@ class _SearchResultState extends State<SearchResult> {
                   fontWeight: FontWeight.w700),
             ),
           ),
-          for (int i = 0; i < widget.count; i++)
+          for (int i = 0; i < widget.count.length; i++)
             GestureDetector(
-              onTap: widget.onpress,
+              onTap: (){
+                switch(widget.index){
+                  case 1:  Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => Menu_Detail(
+                                                index:
+                                                    widget.count[i]))); break;
+                  case 2: Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => Clinic_Detail(
+                                                index:
+                                                    widget.count[i]))); break;
+                  case 3: Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => Doctor_Detail(
+                                                index:
+                                                    widget.count[i]))); break;
+                  case 4: Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => Diary_Detail(
+                                                index:
+                                                    widget.count[i]))); break;
+                  case 5: Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => CaseDetail(
+                                                index:
+                                                    widget.count[i]))); break;
+                }
+              },
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 13),
                 child: Row(
