@@ -7,12 +7,13 @@ class TabBarWidget extends StatefulWidget {
   final bool? isScrollable;
   final TabController tabController;
   final List<String> tabMenus;
+  final VoidCallback onpress;
   const TabBarWidget(
       {Key? key,
       required this.tabMenus,
       required this.tabController,
       this.padding = 12,
-      this.isScrollable = true})
+      this.isScrollable = true, required this.onpress})
       : super(key: key);
   @override
   _TabBarWidgetState createState() => _TabBarWidgetState();
@@ -22,6 +23,7 @@ class _TabBarWidgetState extends State<TabBarWidget>
     with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       color: Helper.whiteColor,
       child: Column(
@@ -44,7 +46,9 @@ class _TabBarWidgetState extends State<TabBarWidget>
                 : TabBarIndicatorSize.tab,
             indicatorPadding: EdgeInsets.only(bottom: -1, left: 4, right: 4),
             isScrollable: widget.isScrollable!,
-            onTap: (value) {},
+            onTap: (value) {
+              widget.onpress();
+            },
             tabs: [
               for (final tabMenu in widget.tabMenus) _buildTab(tabMenu),
             ],

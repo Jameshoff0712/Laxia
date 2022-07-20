@@ -60,8 +60,8 @@ class _FixProfilePageState extends State<FixProfilePage> {
         unique_id: _conId.text,
         nick_name: _conNickname.text,
         intro: _conIntro.text,
-        photo: _image,
-        area_id: 1,
+        photo: _image!.path,
+        area_id: int.parse(valPrefecture),
         patient_categories: surgery_ids);
     dynamic result = await _con.editProfile(profile);
     print(result.data);

@@ -38,9 +38,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
         await _picker.pickImage(source: ImageSource.gallery);
       if(pickedImage == null) return;
 
-      final Media_model res = await _conMy.imageUpload(File(pickedImage.path));
-      print(File(pickedImage.path).path);
-      print('======================');
+      final Media_model res = await _conMy.imageUpload(pickedImage.path);
       print(pickedImage.path);
       print(res);
       setState(() {
@@ -84,6 +82,8 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
     showDialog(
       context: context,
       builder: (context) {
+        SurGeryProvider surgeryProvider =
+          Provider.of<SurGeryProvider>(context, listen: true);
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
@@ -164,6 +164,8 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                           onPressed: () {
                             // diaryProperties.setMedias(images);
                             post();
+                            surgeryProvider.selectedCurePosStr.clear();
+                            surgeryProvider.selectedCurePos.clear();
                             Navigator.of(context).pop();
                             Navigator.of(context).pushNamed("/Pages");
                           },
@@ -522,6 +524,7 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                         setState(() {
                           qst_categories = surgeryProvider.getSelectedCurePos;
                         });
+                        print(imageIds);
                         _AddQuestion();
                       }  
                       : null,

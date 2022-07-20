@@ -39,26 +39,21 @@ class Api {
       data.forEach((key, value) async {
         // print(key);
         if(key == "media"){
-          // request.files.add(await http.MultipartFile.fromPath("image", <File>(value)));
-          // request.files.add(
-          //   http.MultipartFile(
-          //     'image',
-          //     value.
-          //   ));
-        }
-        else if(key == "medias"){
-          request.files.add(await http.MultipartFile.fromPath("image", value.path));
+          request.files.add(await http.MultipartFile.fromPath("media", value));
+        } else if (key == 'medias') {
+          request.files.add(await http.MultipartFile.fromPath("medias", value));
         }
         else{
           request.fields[key] = value;}
       });
       var streamResponse = await request.send();
+      print(streamResponse.statusCode);
       final responseString = await streamResponse.stream.bytesToString();
-      // final responsed = await http.Response.fromStream(streamResponse);
-      // final responseString = json.decode(responsed.body);
+      print(responseString);
 
       if (streamResponse.statusCode == 200) {
         final dynamic jsonMap = json.decode(responseString);
+        print(jsonMap);
         return ResObj(
             status: true, code: streamResponse.statusCode, data: jsonMap);
       } else {

@@ -59,7 +59,7 @@ class HomeController extends BaseController {
   Future<bool> postToogleLike({required int index, required String domain}) async{
      return api.postToogleLike(index,domain);
   }
-  Future<Case> getCaseData({String per_page="10", required String page, String? clinic_id="", String? doctor_id="", String? q="",required String filter,required String price_min, required String price_max, required int year,}) async {
+  Future<Case> getCaseData({String per_page="10", required String page, String? clinic_id="", String? doctor_id="", String? q="",required String filter,required String price_min, required String price_max, required String year,}) async {
     return await api.getCaseData( per_page,  page, doctor_id!,  clinic_id!,  q!, filter,price_min,price_max,year);
   }
   Future<Case_Sub_Model> getCaseDetail({required int index}) async {

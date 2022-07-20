@@ -119,7 +119,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
                       ),
                       TabBarWidget(
                         tabMenus: tabMenus,
-                        tabController: _tabController,
+                        tabController: _tabController, onpress: () {  },
                       ),
                       Expanded(
                         child: TabBarView(

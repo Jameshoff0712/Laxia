@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:laxia/models/counsel_post_model.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
@@ -96,6 +97,36 @@ class MyApi extends Api {
     );
     return res;
   }
+  Future<dynamic> postCounsel(CounselPostModel newCounsel) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.post(
+      "$apiUrl/counselings", 
+      <String, String> {
+        'counselings[clinic_id]': newCounsel.clinic_id,
+        'counselings[doctor_id]': newCounsel.doctor_id,
+        'counselings[counseling_date]': newCounsel.date,
+        'counselings[content]': newCounsel.content,
+        'counselings[reason]': newCounsel.reason,
+        'counselings[before_counseling]': newCounsel.before_counsel,
+        'counselings[after_ccounseling]': newCounsel.after_counsel,
+        'counselings[rate]': newCounsel.rate,
+        for(int i = 0; i < newCounsel.categories.length; i++)
+          'categories[]': newCounsel.categories[i].toString(),
+        for(int j = 0; j < newCounsel.imageIds[0].length; j++)
+          'medias[self][]': newCounsel.imageIds[0][j].toString(),
+        for(int j = 0; j < newCounsel.imageIds[1].length; j++)
+          'medias[like][]': newCounsel.imageIds[1][j].toString(),
+        for(int j = 0; j < newCounsel.imageIds[2].length; j++)
+          'medias[dislike][]': newCounsel.imageIds[2][j].toString(),
+        for(int i = 0; i < newCounsel.question.length; i++)
+          'questions[' + (i+1).toString() + '][question]': newCounsel.question[i].question,
+        for(int i = 0; i < newCounsel.question.length; i++)
+          'questions[' + (i+1).toString() + '][answer]': newCounsel.question[i].answer,
+      } ,
+      token
+    );
+    return res;
+  }
   Future<dynamic> editProfile(ProfileModel profile) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
@@ -116,7 +147,7 @@ class MyApi extends Api {
     return res;
   }
 
-  Future<Media_model> imageUpload(File imagePicked) async {
+  Future<Media_model> imageUpload(String imagePicked) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
       "$apiUrl/media",
@@ -125,6 +156,6 @@ class MyApi extends Api {
       },
       token
     );
-    return Media_model.fromJson(res!.data);
+    return Media_model.fromJson(res!.data['media']);
   }
 }
