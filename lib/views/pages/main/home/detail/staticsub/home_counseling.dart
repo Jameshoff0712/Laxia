@@ -41,10 +41,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                         chats: widget.councelings[index].comments_count==null?"":widget.councelings[index].comments_count.toString(),
                         avator:widget.councelings[index].patient_photo==null?"http://error.png": widget.councelings[index].patient_photo!,
                         check: widget.councelings[index].doctor_name==null?"":widget.councelings[index].doctor_name!,
-                        image2:"http://error.png", //widget.councelings[index]["image2"],
-                        image1:"http://error.png", //widget.councelings[index]["image1"],
-                        image3:"http://error.png", //widget.councelings[index]["image3"],
-                        image4:"http://error.png", //widget.councelings[index]["image4"],
+                        images:widget.councelings[index].media_self!,
                         eyes: widget.councelings[index].views_count==null?"":widget.councelings[index].views_count!.toString(),
                         name: widget.councelings[index].patient_nickname==null?"":widget.councelings[index].patient_nickname!,
                          onpress: (){
@@ -54,7 +51,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                                   builder: (context) => CounselDetail(index:  widget.councelings[index].id)));
                           },
                         sentence:widget.councelings[index].content==null?"": widget.councelings[index].content!,
-                        type:"回答あり",// widget.councelings[index]["type"],
+                        type:widget.councelings[index].categories!,
                         clinic:widget.councelings[index].clinic_name==null?"": widget.councelings[index].clinic_name!,
                       );
                   });

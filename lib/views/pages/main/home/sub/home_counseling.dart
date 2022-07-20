@@ -264,14 +264,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                                       null
                                   ? ""
                                   : counceling_data.data[index].doctor_name!,
-                              image2:
-                                  "http://error.png", //counceling_data.data[index]["image2"],
-                              image1:
-                                  "http://error.png", //counceling_data.data[index]["image1"],
-                              image3:
-                                  "http://error.png", //counceling_data.data[index]["image3"],
-                              image4:
-                                  "http://error.png", //counceling_data.data[index]["image4"], 
+                              images:counceling_data.data[index].media_self!,
                               eyes: counceling_data.data[index].views_count ==
                                       null
                                   ? ""
@@ -296,7 +289,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                                       ? ""
                                       : counceling_data.data[index].content!,
                               type:
-                                  "回答あり", // counceling_data.data[index]["type"],
+                                  counceling_data.data[index].categories!,
                               clinic: counceling_data.data[index].clinic_name ==
                                       null
                                   ? ""

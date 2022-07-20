@@ -250,7 +250,7 @@ class _Home_QuestionState extends State<Home_Question> {
                           image1:question_data.data[index].medias!.isEmpty?"http://error.png":question_data.data[index].medias![0].path,
                           eyes: question_data.data[index].views_count==null?"":question_data.data[index].views_count!.toString(),
                           name:question_data.data[index].owner!.name==null?"": question_data.data[index].owner!.name!,
-                          onpress: () {
+                          onpress: () { 
                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
