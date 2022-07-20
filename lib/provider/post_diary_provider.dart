@@ -99,10 +99,11 @@ class PostDiaryProvider extends ChangeNotifier {
   List<List<int>> counsel_imageIds = [[], [], []];
   get getCounselImageIds => counsel_imageIds;
   void setCounselImageIds(List<List<int>> imageIds) {
-    //counsel_imageIds.clear();
     for(int i = 0; i< imageIds.length; i++){
-      counsel_imageIds[i].clear(); 
-      counsel_imageIds[i].addAll(imageIds[i]);
+      print(counsel_imageIds);
+      if(imageIds[i].length > 0){
+        counsel_imageIds[i].addAll(imageIds[i]);
+      }
     }
   }
 }

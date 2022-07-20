@@ -422,10 +422,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                                       imageIds[i].addAll(diaryProperties.getCounselImageIds[i]);
                                   });
                                   diaryProperties.clinic_id = '';
+                                  userProperties.selectedClinic = '';
                                   diaryProperties.doctor_id = '';
+                                  userProperties.selectedDoctor = '';
                                   diaryProperties.date = '';
                                   diaryProperties.counsel_content = '';
                                   surgeryProvider.selectedCurePos = [];
+                                  surgeryProvider.selectedCurePosStr = [];
                                   diaryProperties.counsel_imageIds = [[], [], []];
                                   post();
                                   AddCounselPage(); 

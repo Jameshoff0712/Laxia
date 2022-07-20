@@ -59,6 +59,8 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     showDialog(
       context: context,
       builder: (context) {
+        PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
@@ -138,6 +140,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                               )),
                           onPressed: () {
                             // diaryProperties.setMedias(images);
+                            diaryProperties.setCounselImageIds(imageIds);
                             Navigator.of(context).pop();
                             Navigator.of(context).pushNamed("/AddCounselStep2");
                           },
@@ -661,8 +664,10 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                           child: ElevatedButton(
                             onPressed:
                                 isAddEnabled ? () { 
-                                  diaryProperties.setCounselImageIds(imageIds);
-                                  print(diaryProperties.getCounselImageIds);
+                                  print(imageIds);
+                                  // diaryProperties.setCounselImageIds(imageIds);
+                                  
+                                  // print(diaryProperties.getCounselImageIds);
                                   _AddCounselStep2Page(); } : null,
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
