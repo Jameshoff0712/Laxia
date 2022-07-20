@@ -47,7 +47,10 @@ class _Home_DiaryState extends State<Home_Diary> {
     6,
     6,
   ];
-  int minprice=0,maxprice=0,year=10;
+  List<int> year=[
+    0,0,0,0,0,0
+  ];
+  int minprice=0,maxprice=0;
   final _con = HomeController();
   Future<void> getData({required String page}) async {
     try {
@@ -56,7 +59,7 @@ class _Home_DiaryState extends State<Home_Diary> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDiaryData(page: page, q: searchdata,filter:filter,city_id:city_id,price_min:minprice.toString(),price_max:maxprice.toString(),rate:selectstar.join(","),year:year);
+        final mid = await _con.getDiaryData(page: page, q: searchdata,filter:filter,city_id:city_id,price_min:minprice.toString(),price_max:maxprice.toString(),rate:selectstar.join(","),year:year.join(','));
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;

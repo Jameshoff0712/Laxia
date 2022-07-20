@@ -22,6 +22,14 @@ class _NarrowDownnState extends State<NarrowDownn> {
     6,
     6,
   ];
+  List<int> year = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ];
   @override
   Widget build(BuildContext context) {
     SearchProvider searchProvider =
