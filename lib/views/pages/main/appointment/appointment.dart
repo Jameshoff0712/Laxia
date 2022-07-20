@@ -94,7 +94,7 @@ class _AppointmentState extends State<Appointment>
                 tabMenus: tabMenus,
                 tabController: _tabController,
                 padding: 8,
-                isScrollable: false,
+                isScrollable: false, onpress: () {  },
               ),
               Expanded(
                 child: TabBarView(

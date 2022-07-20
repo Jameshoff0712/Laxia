@@ -66,7 +66,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                 color: Colors.white, border: Border.all(color: Colors.white)),
             child: TabBarWidget(
               tabMenus: tabMenus,
-              tabController: _tabController,
+              tabController: _tabController, onpress: () {  },
             ),
           ),
           Expanded(
