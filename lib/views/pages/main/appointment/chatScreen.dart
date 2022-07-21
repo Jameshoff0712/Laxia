@@ -30,34 +30,50 @@ class _ChatScreenState extends State<ChatScreen> {
   late PusherOptions options;
   late FlutterPusher pusher; 
   Future<void> initEcho() async {
+    // print(pusher_authurl);
     final token=await preferenceUtil.getToken();
     options = PusherOptions(
       host:'ws-ap3.pusher.com',
       port: 443,
-      // encrypted: true,
+      encrypted: true,
       cluster: pusher_cluseter!,
       //  auth: PusherAuth(
       //       pusher_authurl,
       //       headers: {
-      //         'Content-Type': 'application/json',
-      //         'Authorization': 'Bearer '+token!
+      //         'Authorization': token!
       //       },
       //     ),
     );
    
     pusher = FlutterPusher(pusher_key, options, enableLogging: false,  onConnectionStateChange: (ConnectionStateChange x) async {
-     print(x.currentState);
-},onError: (ConnectionError y)=>{
-  print(y.exception)
-});
-    echo =new Echo({
-      'broadcaster':'pusher',
-      'client':pusher,
-    });
-    echo.private('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (e) {
-      print(e);
+        print(x.currentState);
+         if (pusher != null && x.currentState == 'CONNECTED') {
+          final String socketId = pusher.getSocketId();
+          print('pusher socket id: $socketId');
+           echo =new Echo({
+              'broadcaster':'pusher',
+              'client':pusher,
+              'key': pusher_key,
+              'cluster':pusher_cluseter
+              // 'host':"sockjs-ap3.pusher.com/pusher",
+              // 'auth': {
+              //       'headers': {
+              //           'Authorization': '$token',
+              //       }
+              //   }
+            });
+            echo.channel('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (e) {
+              print(e);
+            });
+            print('Chat.'+widget.mailbox_id.toString());
+         }
+    },onError: (ConnectionError y)=>{
+        print(y.exception)
     });
     
+    // pusher.subscribe('private-Chat.109').bind('.private-chat-event', (){
+    //   print('e');
+    // });
     // print('Chat.'+widget.mailbox_id.toString());
   }
   @override

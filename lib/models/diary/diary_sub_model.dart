@@ -19,7 +19,7 @@ class Diary_Sub_Model extends Equatable {
   final int? rate_07;
   final int? rate_08;
   final int? rate_09;
-  final int? ave_rate;
+  final double? ave_rate;
   final int? cost_anesthetic;
   final int? cost_drug;
   final int? cost_other;
@@ -96,7 +96,7 @@ class Diary_Sub_Model extends Equatable {
         rate_07: json["rate_07"],
         rate_08: json["rate_08"],
         rate_09: json["rate_09"],
-        ave_rate: json["ave_rate"],
+        ave_rate: json["ave_rate"].toDouble(),
         cost_anesthetic: json["cost_anesthetic"],
         cost_drug: json["cost_drug"],
         cost_other: json["cost_other"],

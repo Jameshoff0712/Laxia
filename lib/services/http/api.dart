@@ -47,13 +47,13 @@ class Api {
           request.fields[key] = value;}
       });
       var streamResponse = await request.send();
-      print(streamResponse.statusCode);
+      // print(streamResponse.statusCode);
       final responseString = await streamResponse.stream.bytesToString();
-      print(responseString);
+      // print(responseString);
 
       if (streamResponse.statusCode == 200) {
         final dynamic jsonMap = json.decode(responseString);
-        print(jsonMap);
+        // print(jsonMap);
         return ResObj(
             status: true, code: streamResponse.statusCode, data: jsonMap);
       } else {
