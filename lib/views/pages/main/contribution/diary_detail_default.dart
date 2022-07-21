@@ -41,6 +41,17 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
       print(e.toString()); 
     }
   }
+   Future<void> postToogleFollow(index) async {
+    try {
+      final res=await _con.postToogleFollow(index:progress_detail.owner.id);
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
   Future<void> postToogleFavorite(index) async {
     try {
       final res=await _con.postToogleFavorite(index:index, domain: 'diaries');
@@ -137,37 +148,25 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
             Row(
               children: [
                 !widget.isMyDiary ?
-                ElevatedButton(
-                  onPressed: () {
-                    //follow
+                InkWell(
+                  onTap: () {
+                    postToogleFollow(progress_detail.owner.id);
+                    progress_detail.owner.is_follow!=!progress_detail.owner.is_follow!;
                   },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    side: const BorderSide(
-                        color: Color.fromARGB(255, 110, 198, 210),
-                        width: 2,
-                        style: BorderStyle.solid),
-                    primary: Colors.white,
-                    onPrimary: Colors.white,
-                    onSurface: Color.fromARGB(255, 110, 198, 210),
-                    splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Row(     
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'フォロー',
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Color.fromARGB(255, 110, 198, 210)),
-                        ),
-                      ],
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                         border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
+                         color: progress_detail.owner.is_follow!? Color.fromARGB(255, 110, 198, 210):Colors.white
+                    ),
+                    child: Padding(
+                      padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
+                      child: Text(
+                        'フォロー',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: progress_detail.owner.is_follow!?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
+                      ),
                     ),
                   ),
                 )
