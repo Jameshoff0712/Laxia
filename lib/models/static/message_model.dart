@@ -12,7 +12,7 @@ class Message_Model extends Equatable {
   final bool is_mine;
   final String file_thumb_url;
   final String display_time_lable;
-  final Sender sender;
+  final Sender? sender;
 
   const Message_Model({
     required this.id,
@@ -25,7 +25,7 @@ class Message_Model extends Equatable {
     required this.is_mine,
     required this.file_thumb_url,
     required this.display_time_lable,
-    required this.sender,
+    this.sender,
   });
 
   factory Message_Model.fromJson(Map<String, dynamic> json) {
@@ -40,7 +40,7 @@ class Message_Model extends Equatable {
       is_mine:json['is_mine'],
       file_thumb_url:json['file_thumb_url'],
       display_time_lable:json['display_time_lable'],
-      sender:json['sender'],
+      sender:json['sender']==null?null:Sender.fromJson(json['sender']),
     );
   }
   @override
@@ -50,19 +50,19 @@ class Message_Model extends Equatable {
 class Sender extends Equatable {
   final int id;
   final String name;
-  final String photo;
+  final String? photo;
 
   const Sender({
     required this.id,
     required this.name,
-    required this.photo,
+    this.photo,
   });
 
   factory Sender.fromJson(Map<String, dynamic> json) {
     return Sender(
       id: json['id'],
       name: json['name'],
-      photo: json['clinic']['photo'],
+      photo: json['clinic']==null?null: json['clinic']['photo'],
     );
   }
   @override

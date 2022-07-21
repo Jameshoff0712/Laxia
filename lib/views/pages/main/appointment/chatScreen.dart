@@ -37,6 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Future<void> getmessages() async {
     try {
       final mid = await _con.getMessages(widget.mailbox_id.toString());
+      print(mid);
       setState(() {
         messages = mid;
          isloading = false;
@@ -50,6 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
       new_message=await _con.postMessage(value,isfile,widget.mailbox_id.toString());
       messages.add(new_message);
     } catch (e) {
+      print(e.toString());
     }
   }
   Future<void> initEcho() async {
@@ -117,6 +119,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ))
     :Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,

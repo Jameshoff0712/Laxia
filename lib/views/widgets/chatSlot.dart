@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/generated/intl/messages_ja.dart';
 import 'package:laxia/models/static/message_model.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class ChatSlot extends StatefulWidget {
   final Message_Model message;
@@ -17,6 +19,7 @@ class _ChatSlotState extends State<ChatSlot> {
   @override
   Widget build(BuildContext context) {
     if (widget.message.is_mine) {
+      // UserProvider userProperties = Provider.of<UserProvider>(context, listen: true);
       return Container(
         margin: EdgeInsets.only(top: 24, left: 16, right: 16),
         child: Column(
@@ -84,7 +87,7 @@ class _ChatSlotState extends State<ChatSlot> {
                   borderRadius: BorderRadius.circular(40),
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: widget.message.sender.photo,
+                    imageUrl: widget.message.sender!.photo!,
                     placeholder: (context, url) => Image.asset(
                       'assets/images/loading.gif',
                       fit: BoxFit.cover,

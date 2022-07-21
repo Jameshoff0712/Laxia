@@ -15,12 +15,12 @@ class HomeApi extends Api {
   }
   Future<List<Message_Model>> getMessages(String mailbox) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/mailboxes/$mailbox/messages", token);
+    final res = await Api.get("$apiUrl/mailboxs/$mailbox/messages", token);
     return List<Message_Model>.from(res.data["messages"].map((x) => Message_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>);
   }
   Future<Message_Model> postMessage(String value,int isfile, String id) async {
     String? token = await preferenceUtil.getToken();
-    final res=await Api.post("$apiUrl/mailboxes/$id/messages",
+    final res=await Api.post("$apiUrl/mailboxs/$id/messages",
       <String, String> {
         'messages[message]': value.toString(),
         'messages[is_file]': isfile.toString(),
