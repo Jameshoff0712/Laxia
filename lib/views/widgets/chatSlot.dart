@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
-import 'package:laxia/models/m_message.dart';
+import 'package:laxia/generated/intl/messages_ja.dart';
+import 'package:laxia/models/static/message_model.dart';
 
 class ChatSlot extends StatefulWidget {
-  final Message message;
-  final bool isMe;
-  const ChatSlot({Key? key, required this.message, required this.isMe})
+  final Message_Model message;
+  const ChatSlot({Key? key, required this.message})
       : super(key: key);
 
   @override
@@ -16,7 +16,7 @@ class ChatSlot extends StatefulWidget {
 class _ChatSlotState extends State<ChatSlot> {
   @override
   Widget build(BuildContext context) {
-    if (widget.isMe) {
+    if (widget.message.is_mine) {
       return Container(
         margin: EdgeInsets.only(top: 24, left: 16, right: 16),
         child: Column(
@@ -43,7 +43,7 @@ class _ChatSlotState extends State<ChatSlot> {
                             ),
                           ),
                           child: Text(
-                            widget.message.text!,
+                            widget.message.message,
                             style: TextStyle(
                                 // fontFamily: 'Hiragino Kaku Gothic Pro',
                                 color: Helper.whiteColor,
@@ -56,7 +56,7 @@ class _ChatSlotState extends State<ChatSlot> {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      widget.message.time!,
+                      widget.message.display_time_lable,
                       style: TextStyle(
                           // fontFamily: 'Hiragino Kaku Gothic Pro',
                           color: Helper.txtColor,
@@ -84,7 +84,7 @@ class _ChatSlotState extends State<ChatSlot> {
                   borderRadius: BorderRadius.circular(40),
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: widget.message.sender!.imageUrl!,
+                    imageUrl: widget.message.sender.photo,
                     placeholder: (context, url) => Image.asset(
                       'assets/images/loading.gif',
                       fit: BoxFit.cover,
@@ -122,7 +122,7 @@ class _ChatSlotState extends State<ChatSlot> {
                                 ),
                               ),
                               child: Text(
-                                widget.message.text!,
+                                widget.message.message,
                                 style: TextStyle(
                                     // fontFamily: 'Hiragino Kaku Gothic Pro',
                                     color: Color.fromARGB(255, 51, 51, 51),
@@ -135,7 +135,7 @@ class _ChatSlotState extends State<ChatSlot> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          widget.message.time!,
+                          widget.message.display_time_lable,
                           style: TextStyle(
                               color: Color.fromARGB(255, 156, 161, 161),
                               fontWeight: FontWeight.w400,
