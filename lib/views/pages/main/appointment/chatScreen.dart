@@ -4,16 +4,17 @@ import 'package:laxia/common/helper.dart';
 // import 'package:laxia/models/m_message.dart';
 // import 'package:laxia/models/m_user.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:laxia/models/static/message_model.dart';
 import 'package:laxia/utils/preference_util.dart';
 import 'package:laxia/views/widgets/chatSlot.dart';
 import 'package:flutter_pusher_client/flutter_pusher.dart';
 import 'package:laxia/services/http/api.dart';
 import 'package:laravel_echo/laravel_echo.dart';
+import 'package:laxia/controllers/static_controller.dart';
 
 class ChatScreen extends StatefulWidget{
   final int mailbox_id;
   ChatScreen({required this.mailbox_id});
-
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -29,9 +30,31 @@ class _ChatScreenState extends State<ChatScreen> {
   late Echo echo;
   late PusherOptions options;
   late FlutterPusher pusher; 
+  final _con = StaticController();
+  bool isloading = true;
+  late List<Message_Model> messages;
+  late Message_Model new_message;
+  Future<void> getmessages() async {
+    try {
+      final mid = await _con.getMessages(widget.mailbox_id.toString());
+      setState(() {
+        messages = mid;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+  Future<void> postMessage({required String value,int isfile=0}) async {
+    try {
+      new_message=await _con.postMessage(value,isfile,widget.mailbox_id.toString());
+      messages.add(new_message);
+    } catch (e) {
+    }
+  }
   Future<void> initEcho() async {
     // print(pusher_authurl);
-    final token=await preferenceUtil.getToken();
+    // final token=await preferenceUtil.getToken();
     options = PusherOptions(
       host:'ws-ap3.pusher.com',
       port: 443,
@@ -44,7 +67,6 @@ class _ChatScreenState extends State<ChatScreen> {
       //       },
       //     ),
     );
-   
     pusher = FlutterPusher(pusher_key, options, enableLogging: false,  onConnectionStateChange: (ConnectionStateChange x) async {
         print(x.currentState);
          if (pusher != null && x.currentState == 'CONNECTED') {
@@ -62,8 +84,9 @@ class _ChatScreenState extends State<ChatScreen> {
               //       }
               //   }
             });
-            echo.channel('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (e) {
-              print(e);
+            echo.channel('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (res) {
+               new_message=Message_Model.fromJson(res['message']);
+               messages.add(new_message);
             });
             print('Chat.'+widget.mailbox_id.toString());
          }
@@ -78,13 +101,22 @@ class _ChatScreenState extends State<ChatScreen> {
   }
   @override
   void initState() {
+    getmessages();
     initEcho();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    int? prevUserId;
-    return Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
@@ -113,19 +145,16 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: [
-          // Expanded(
-          //     child: Container(
-          //       color: Color.fromARGB(255, 240, 242, 245),
-          //       child: ListView.builder(
-          //           reverse: true,
-          //           itemCount: messages.length,
-          //           itemBuilder: (BuildContext context, int index) {
-          //             final Message message = messages[index];
-          //             final bool isMe = message.sender!.id == currentUser.id;
-          //             prevUserId = message.sender!.id;
-          //             return ChatSlot(message: message, isMe: isMe);
-          //           }),
-          //     )),
+          Expanded(
+              child: Container(
+                color: Color.fromARGB(255, 240, 242, 245),
+                child: ListView.builder(
+                    reverse: true,
+                    itemCount: messages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ChatSlot(message: messages[index]);
+                    }),
+              )),
          
         ],
       ),
@@ -188,7 +217,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 size: 22,
               ),
               alignment: Alignment.bottomCenter,
-              onPressed: () {},
+              onPressed: () {
+                postMessage(value: contentChat);
+              },
             )
           ],
         ),
