@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:laxia/models/case/Owner_model.dart';
 import 'package:laxia/models/clinic/clinic_sub_model.dart';
 import 'package:laxia/models/counseling/counceling_sub_model.dart';
 import 'package:laxia/models/counseling/miniquestion_model.dart';
@@ -9,7 +10,9 @@ class CouncelingDetail_Model extends Equatable {
   final Clinic_Sub_Model clinic;
   final Doctor_Sub_Model doctor;
   final List<Mini_Qmodel> questions;
-  const CouncelingDetail_Model( {
+  final Owner owner;
+  const CouncelingDetail_Model({
+    required this.owner,  
     required this.questions,
     required this.counceling,
     required this.clinic,
@@ -23,7 +26,8 @@ class CouncelingDetail_Model extends Equatable {
       questions: List<Mini_Qmodel>.from(json["questions"]
               .map((x) => Mini_Qmodel.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      clinic: Clinic_Sub_Model.fromJson(json["clinic"]),
+      clinic: Clinic_Sub_Model.fromJson(json["clinic"]), 
+      owner:Owner.fromJson(json["owner"]),
     );
   }
   @override

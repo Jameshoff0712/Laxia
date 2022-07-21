@@ -82,6 +82,14 @@ class HomeApi extends Api {
     }
     return false;
   }
+  Future<bool> postToogleFollow(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res=await Api.post("$apiUrl/patients/$index/toggleFollow",<String, String>{},token);
+    if(res!.data["status"]==1){
+      return true;
+    }
+    return false;
+  }
   Future<bool> postToogleLike(int index,String domain) async {
     String? token = await preferenceUtil.getToken();
     final res=await Api.post("$apiUrl/$domain/"+index.toString()+"/toggleLike",<String, String>{},token);

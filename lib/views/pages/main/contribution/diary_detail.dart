@@ -49,6 +49,17 @@ class _Diary_DetailState extends State<Diary_Detail> {
       print(e.toString());
     }
   }
+  Future<void> postToogleFollow(index) async {
+    try {
+      final res=await _con.postToogleFollow(index:diary_detail.owner.id);
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
   Future<void> postToogleFavorite(index) async {
     try {
       final res=await _con.postToogleFavorite(index:index, domain: 'diaries');
@@ -100,10 +111,10 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 GestureDetector(
                   onTap:(){
                     // Navigator.of(context).pushNamed("/Mypage");
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UserPage(id: diary_detail.owner.id)));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => UserPage(id: diary_detail.owner.id)));
                   },
                   child: SizedBox(
                     height: 32,
@@ -168,13 +179,14 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 !widget.isMyDiary! ?
                 InkWell(
                   onTap: () {
+                    postToogleFollow(diary_detail.owner.id);
+                    diary_detail.owner.is_follow!=!diary_detail.owner.is_follow!;
                   },
-                  
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                          border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
-                         color:Colors.white
+                         color: diary_detail.owner.is_follow!? Color.fromARGB(255, 110, 198, 210):Colors.white
                     ),
                     child: Padding(
                       padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
@@ -182,7 +194,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         'フォロー',
                         style: TextStyle(
                             fontSize: 13,
-                            color: Color.fromARGB(255, 110, 198, 210),),
+                            color: diary_detail.owner.is_follow!?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
                       ),
                     ),
                   ),

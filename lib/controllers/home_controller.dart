@@ -56,6 +56,9 @@ class HomeController extends BaseController {
   Future<bool> postToogleFavorite({required int index, required String domain}) async{
      return api.postToogleFavorite(index,domain);
   }
+  Future<bool> postToogleFollow({required int index}) async{
+     return api.postToogleFollow(index);
+  }
   Future<bool> postToogleLike({required int index, required String domain}) async{
      return api.postToogleLike(index,domain);
   }

@@ -43,7 +43,17 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
       print(e.toString()+"");
     }
   }
-
+  Future<void> postToogleFollow(index) async {
+    try {
+      final res=await _con.postToogleFollow(index:counceling_detail.owner.id);
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
   Future<void> postToogleFavorite(index) async {
     try {
       final res =
@@ -106,8 +116,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             borderRadius: BorderRadius.circular(25),
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl:'http://error.png',
-                                  //counceling_detail.counceling.patient_photo==null?"http://error.png":"http://error.png",//counceling_detail.counceling.patient_photo,
+                              imageUrl:counceling_detail.owner.photo,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,
@@ -138,7 +147,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                           Row(
                             children: [
                               Text(
-                                "カウンセリング日 ",
+                                "カウンセリング日",
                                 style: TextStyle(
                                     fontFamily: Helper.headFontFamily,
                                     color: Helper.darkGrey,
@@ -167,25 +176,25 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                       !widget.isMyDiary
                           ? InkWell(
                               onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed("/AddDiaryProgress");
+                                postToogleFollow(counceling_detail.owner.id);
+                                counceling_detail.owner.is_follow!=!counceling_detail.owner.is_follow!;
                               },
                               child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                                      border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
-                                      color:Colors.white
-                                  ),
-                                  child: Padding(
-                                    padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
-                                    child: Text(
-                                      'フォロー',
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          color: Color.fromARGB(255, 110, 198, 210),),
-                                    ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
+                                    color: counceling_detail.owner.is_follow!? Color.fromARGB(255, 110, 198, 210):Colors.white
+                                ),
+                                child: Padding(
+                                  padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
+                                  child: Text(
+                                    'フォロー',
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        color: counceling_detail.owner.is_follow!?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
                                   ),
                                 ),
+                              ),
                             )
                           : ElevatedButton(
                               onPressed: () {

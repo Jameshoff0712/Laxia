@@ -40,7 +40,17 @@ class _QuestionDetailState extends State<QuestionDetail> {
       print(e.toString());
     }
   }
-
+  Future<void> postToogleFollow(index) async {
+    try {
+      final res=await _con.postToogleFollow(index:question_detail.owner!.id);
+      if(res==true){
+        setState(() {
+          isfavorite=!isfavorite;
+        });
+      }
+    } catch (e) {
+    }
+  }
   Future<void> postToogleFavorite(index) async {
     try {
       final res =
@@ -130,29 +140,24 @@ class _QuestionDetailState extends State<QuestionDetail> {
                   Row(
                     children: [
                       !widget.isMyDiary
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 30),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .pushNamed("/AddDiaryProgress");
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: Helper.mainColor),
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(12, 3, 12, 3),
-                                    child: Text(
-                                      'フォロー',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                          color: Helper.mainColor),
-                                    ),
+                          ? InkWell(
+                              onTap: () {
+                                postToogleFollow(question_detail.owner!.id);
+                                question_detail.owner!.is_follow!=!question_detail.owner!.is_follow!;
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
+                                    color: question_detail.owner!.is_follow!? Color.fromARGB(255, 110, 198, 210):Colors.white
+                                ),
+                                child: Padding(
+                                  padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
+                                  child: Text(
+                                    'フォロー',
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        color: question_detail.owner!.is_follow!?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
                                   ),
                                 ),
                               ),
