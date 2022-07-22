@@ -150,8 +150,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => QuestionFixPage());
       case '/QuestionFixPost':
         return MaterialPageRoute(builder: (_) => QuestionFixPostPage());
-      case '/AddDiaryList':
-        return MaterialPageRoute(builder: (_) => DiaryPage());
+      // case '/AddDiaryList':
+      //   return MaterialPageRoute(builder: (_) => DiaryPage());
       case '/AddDiaryStep1':
         return MaterialPageRoute(builder: (_) => AddDiaryStep1Page());
       // case '/AddDiaryStep2':

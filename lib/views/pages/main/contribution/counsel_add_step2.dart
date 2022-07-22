@@ -15,19 +15,25 @@ import '../../../../provider/surgery_provider.dart';
 import '../../../../provider/user_provider.dart';
 
 class AddCounselStep2Page extends StatefulWidget {
+  final String? counsel_id;
   final bool? isMyDiary;
-  const AddCounselStep2Page({Key? key, this.isMyDiary = false})
+  const AddCounselStep2Page({Key? key, this.isMyDiary = false, this.counsel_id = ''})
       : super(key: key);
   @override
   _AddCounselStep2PageState createState() => _AddCounselStep2PageState();
 }
 
 class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
+  bool initDetail = true;
   bool isAddEnabled = true;
   int selectstar = 0;
   bool _notificationStatus = true;
   MyController _conMy = MyController();
   List<CounselQuestion_Model> CounselQuestion_list = [];
+
+  TextEditingController conReason = TextEditingController();
+  TextEditingController conBefore = TextEditingController();
+  TextEditingController conAfter = TextEditingController();
 
   String reason = '';
   String feeling = '';
@@ -117,6 +123,17 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         isAddEnabled = false;
       });
     }
+
+    if(initDetail && widget.counsel_id != '') {
+      setState(() {
+        conReason.text = diaryProperties.getCounselReason;
+        conBefore.text = diaryProperties.getCounselBefore;
+        conAfter.text = diaryProperties.getCounselAfter;
+        selectstar = diaryProperties.getCounselRate;
+        CounselQuestion_list = diaryProperties.getCounselQuestions;
+        initDetail = false;
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -166,12 +183,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: conReason,
                   cursorColor: Helper.mainColor,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      reason = text;
+                      conReason.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -293,12 +311,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: conBefore,
                   cursorColor: Helper.mainColor,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      feeling = text;
+                      conBefore.text= text;
                     });
                   },
                   decoration: InputDecoration(
@@ -330,12 +349,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: conAfter,
                   cursorColor: Helper.mainColor,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      impress = text;
+                      conAfter.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -430,6 +450,12 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                                   surgeryProvider.selectedCurePos = [];
                                   surgeryProvider.selectedCurePosStr = [];
                                   diaryProperties.counsel_imageIds = [[], [], []];
+
+                                  diaryProperties.counsel_reason = '';
+                                  diaryProperties.counsel_before = '';
+                                  diaryProperties.counsel_after = '';
+                                  diaryProperties.counsel_rate = 0;
+                                  diaryProperties.counsel_questions = [];
                                   post();
                                   AddCounselPage(); 
                                   } : null,

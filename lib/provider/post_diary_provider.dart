@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxia/models/counsel_question_model.dart';
 
 class PostDiaryProvider extends ChangeNotifier {
   String date = "";
@@ -110,5 +111,48 @@ class PostDiaryProvider extends ChangeNotifier {
         counsel_imageIds[i].addAll(imageIds[i]);
       }
     }
+    notifyListeners();
+  }
+  List<List<String>> counsel_images = [[], [], []];
+  get getCounselImages => counsel_images;
+  void setCounselImages(List<List<String>> images) {
+    for(int i = 0; i< images.length; i++){
+      print(counsel_images);
+      if(images[i].length > 0){
+        counsel_images[i].addAll(images[i]);
+      }
+    }
+    notifyListeners();
+  }
+
+  String counsel_reason = '';
+  get getCounselReason => counsel_reason;
+  void setCounselReason(String reason) {
+    counsel_reason = reason;
+    notifyListeners();
+  }
+  String counsel_before = '';
+  get getCounselBefore => counsel_before;
+  void setCounselBefore(String before) {
+    counsel_before = before;
+    notifyListeners();
+  }
+  String counsel_after = '';
+  get getCounselAfter => counsel_after;
+  void setCounselAfter(String after) {
+    counsel_after = after;
+    notifyListeners();
+  }
+  int counsel_rate = 0;
+  get getCounselRate => counsel_rate;
+  void setCounselRate(int rate) {
+    counsel_rate = rate;
+    notifyListeners();
+  }
+  List<CounselQuestion_Model> counsel_questions = [];
+  get getCounselQuestions => counsel_questions;
+  void setCounselQuestions(List<CounselQuestion_Model> questions) {
+    counsel_questions = questions;
+    notifyListeners();
   }
 }
