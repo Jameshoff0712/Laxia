@@ -266,6 +266,9 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
         diaryProperties.counsel_questions.add(new CounselQuestion_Model(counselDetail.questions[i].question!, counselDetail.questions[i].answer!));
       }
       
+      setState(() {
+        initDetail = false;
+      });
 
     }
     
