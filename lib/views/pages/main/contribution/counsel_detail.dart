@@ -27,7 +27,7 @@ class CounselDetail extends StatefulWidget {
 
 class _CounselDetailState extends StateMVC<CounselDetail> {
   final apiUrl = dotenv.env["DEV_API_URL"];
-  bool isloading = true, isfavorite = false, islike = false;
+  bool isloading = true, isfavorite = false, islike = false,isfollow=false;
   final _con = HomeController();
   late CouncelingDetail_Model counceling_detail;
   Future<void> getData({required int index}) async {
@@ -36,6 +36,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
       setState(() {
         counceling_detail = mid;
         isfavorite = counceling_detail.counceling.is_favorite!;
+        isfollow=counceling_detail.owner.is_follow!;
         islike = counceling_detail.counceling.is_like!;
         isloading = false;
       });
@@ -48,7 +49,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
       final res=await _con.postToogleFollow(index:counceling_detail.owner.id);
       if(res==true){
         setState(() {
-          isfavorite=!isfavorite;
+          isfollow=!isfollow;
         });
       }
     } catch (e) {
@@ -177,13 +178,12 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                           ? InkWell(
                               onTap: () {
                                 postToogleFollow(counceling_detail.owner.id);
-                                counceling_detail.owner.is_follow!=!counceling_detail.owner.is_follow!;
                               },
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(20)),
                                     border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
-                                    color: counceling_detail.owner.is_follow!? Color.fromARGB(255, 110, 198, 210):Colors.white
+                                    color: isfollow? Color.fromARGB(255, 110, 198, 210):Colors.white
                                 ),
                                 child: Padding(
                                   padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
@@ -191,7 +191,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     'フォロー',
                                     style: TextStyle(
                                         fontSize: 13,
-                                        color: counceling_detail.owner.is_follow!?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
+                                        color: isfollow?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
                                   ),
                                 ),
                               ),

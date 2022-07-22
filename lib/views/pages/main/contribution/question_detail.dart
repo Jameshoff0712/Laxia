@@ -23,16 +23,16 @@ class QuestionDetail extends StatefulWidget {
 }
 
 class _QuestionDetailState extends State<QuestionDetail> {
-  bool isloading = true, isfavorite = false, islike = false;
+  bool isloading = true, isfavorite = false,isfollow=false, islike = false;
   final _con = HomeController();
   late Question_Sub_Model question_detail;
   Future<void> getData({required int index}) async {
     try {
       final mid = await _con.getQuestionDetail(index: index);
-      print(mid);
       setState(() {
         question_detail = mid;
         isfavorite = question_detail.is_favorite!;
+        isfollow = isfollow;
         islike = question_detail.is_like!;
         isloading = false;
       });
@@ -45,7 +45,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
       final res=await _con.postToogleFollow(index:question_detail.owner!.id);
       if(res==true){
         setState(() {
-          isfavorite=!isfavorite;
+          isfollow=!isfollow;
         });
       }
     } catch (e) {
@@ -143,13 +143,12 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           ? InkWell(
                               onTap: () {
                                 postToogleFollow(question_detail.owner!.id);
-                                question_detail.owner!.is_follow!=!question_detail.owner!.is_follow!;
                               },
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(20)),
                                     border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
-                                    color: question_detail.owner!.is_follow!? Color.fromARGB(255, 110, 198, 210):Colors.white
+                                    color: isfollow? Color.fromARGB(255, 110, 198, 210):Colors.white
                                 ),
                                 child: Padding(
                                   padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
@@ -157,7 +156,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                     'フォロー',
                                     style: TextStyle(
                                         fontSize: 13,
-                                        color: question_detail.owner!.is_follow!?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
+                                        color: isfollow?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
                                   ),
                                 ),
                               ),

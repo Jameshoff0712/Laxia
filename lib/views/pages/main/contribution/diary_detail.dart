@@ -33,7 +33,7 @@ class Diary_Detail extends StatefulWidget {
 class _Diary_DetailState extends State<Diary_Detail> {
   final apiUrl = dotenv.env["DEV_API_URL"];
  bool isVisible=false,isPostVisible=false;
- bool isloading = true,isfavorite=false, islike=false;
+ bool isloading = true,isfavorite=false,isfollow=false, islike=false;
   final _con = HomeController();
   late DiaryDetail_Model diary_detail;
   Future<void> getData({required int index}) async {
@@ -43,6 +43,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
         diary_detail = mid;
          isfavorite=diary_detail.diary.is_favorite==null?false:diary_detail.diary.is_favorite!;
          islike=diary_detail.diary.is_like!;
+         isfollow=diary_detail.owner.is_follow!;
          isloading = false;
       });
     } catch (e) {
@@ -54,7 +55,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
       final res=await _con.postToogleFollow(index:diary_detail.owner.id);
       if(res==true){
         setState(() {
-          isfavorite=!isfavorite;
+          isfollow=!isfollow;
         });
       }
     } catch (e) {
@@ -180,13 +181,12 @@ class _Diary_DetailState extends State<Diary_Detail> {
                 InkWell(
                   onTap: () {
                     postToogleFollow(diary_detail.owner.id);
-                    diary_detail.owner.is_follow!=!diary_detail.owner.is_follow!;
                   },
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                          border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
-                         color: diary_detail.owner.is_follow!? Color.fromARGB(255, 110, 198, 210):Colors.white
+                         color:isfollow? Color.fromARGB(255, 110, 198, 210):Colors.white
                     ),
                     child: Padding(
                       padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
@@ -194,7 +194,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         'フォロー',
                         style: TextStyle(
                             fontSize: 13,
-                            color: diary_detail.owner.is_follow!?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
+                            color:isfollow?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
                       ),
                     ),
                   ),

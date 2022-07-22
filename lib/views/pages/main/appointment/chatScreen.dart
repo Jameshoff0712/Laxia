@@ -34,6 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool isloading = true;
   late List<Message_Model> messages;
   late Message_Model new_message;
+  ScrollController scrollcontroller=new ScrollController();
   Future<void> getmessages() async {
     try {
       final mid = await _con.getMessages(widget.mailbox_id.toString());
@@ -48,8 +49,18 @@ class _ChatScreenState extends State<ChatScreen> {
   }
   Future<void> postMessage({required String value,int isfile=0}) async {
     try {
-      new_message=await _con.postMessage(value,isfile,widget.mailbox_id.toString());
-      messages.add(new_message);
+      try{
+        new_message=await _con.postMessage(value,isfile,widget.mailbox_id.toString());
+        textController.text='';
+        setState(() {
+          messages.add(new_message);
+        });
+        scrollcontroller.jumpTo(scrollcontroller.position.maxScrollExtent);
+      }
+      catch(e){
+        
+      }
+      
     } catch (e) {
       print(e.toString());
     }
@@ -87,8 +98,14 @@ class _ChatScreenState extends State<ChatScreen> {
               //   }
             });
             echo.channel('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (res) {
-               new_message=Message_Model.fromJson(res['message']);
-               messages.add(new_message);
+               res['message']['is_mine']=false;
+               
+               setState(() {
+                new_message=Message_Model.fromJson(res['message']);
+                print(new_message.toString());
+                 messages.add(res['message']);
+               });
+               scrollcontroller.jumpTo(scrollcontroller.position.maxScrollExtent);
             });
             print('Chat.'+widget.mailbox_id.toString());
          }
@@ -152,7 +169,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Container(
                 color: Color.fromARGB(255, 240, 242, 245),
                 child: ListView.builder(
-                    reverse: true,
+                    controller: scrollcontroller,
                     itemCount: messages.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ChatSlot(message: messages[index]);

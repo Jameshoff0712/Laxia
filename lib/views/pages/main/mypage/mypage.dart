@@ -34,11 +34,21 @@ class Mypage extends StatefulWidget {
 
 class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  List mid = [];
-  List nid = [];
-
+   bool isfirst=true;
+    final _con = AuthController();
   late UserProvider userProperties;
-
+Future<void> Me() async {
+    try {
+      final me = await _con.getMe();
+      if (me.id != 0) {
+        userProperties.setMe(me);
+      }
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+      });
+    }
+  }
   @override
   initState() {
     _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
@@ -67,6 +77,12 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     userProperties = Provider.of<UserProvider>(context, listen: true);
+    if(isfirst==true){
+      Me();
+      setState(() {
+        isfirst=false;
+      });
+    }
     // print(userProperties.getMe.diaries);
     return Scaffold(
       appBar: AppBar(
@@ -253,6 +269,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
             }),
           ),
         ],
+        
       ),
     );
   }

@@ -24,7 +24,7 @@ class DiaryDetailDefault extends StatefulWidget {
 }
 
 class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
-   bool isloading = true,isfavorite=false, islike=false;
+   bool isloading = true,isfavorite=false, islike=false,isfollow=false;
   int currentSlider = 1;
   final _con = HomeController();
   late ProgressDetail_Model progress_detail;
@@ -36,6 +36,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
         isfavorite=progress_detail.diary.is_favorite==null?false:progress_detail.diary.is_favorite!;
          islike=progress_detail.diary.is_like!;
          isloading = false;
+          isfollow=progress_detail.owner.is_follow!;
       });
     } catch (e) {
       print(e.toString()); 
@@ -46,7 +47,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
       final res=await _con.postToogleFollow(index:progress_detail.owner.id);
       if(res==true){
         setState(() {
-          isfavorite=!isfavorite;
+          isfollow=!isfollow;
         });
       }
     } catch (e) {
@@ -151,7 +152,6 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                 InkWell(
                   onTap: () {
                     postToogleFollow(progress_detail.owner.id);
-                    progress_detail.owner.is_follow!=!progress_detail.owner.is_follow!;
                   },
                   child: Container(
                     decoration: BoxDecoration(

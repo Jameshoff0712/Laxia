@@ -39,7 +39,7 @@ class _chatStatusState extends State<chatStatus> {
           {
             statusText = '予約済';
             statusColor = Color.fromARGB(255, 0, 184, 169);
-          }0
+          }
           break;
         case 3:
           {
