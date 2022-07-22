@@ -35,9 +35,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
   TextEditingController conBefore = TextEditingController();
   TextEditingController conAfter = TextEditingController();
 
-  String reason = '';
-  String feeling = '';
-  String impress = '';
+  // String reason = '';
+  // String feeling = '';
+  // String impress = '';
 
   String doctor_id = '';
   String clinic_id = '';
@@ -59,9 +59,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         content: content,
         categories: categories,
         imageIds: imageIds,
-        reason: reason,
-        before_counsel: feeling,
-        after_counsel: impress,
+        reason: conReason.text,
+        before_counsel: conBefore.text,
+        after_counsel: conAfter.text,
         rate: selectstar.toString(),
         question: CounselQuestion_list
         );
@@ -114,7 +114,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         Provider.of<UserProvider>(context, listen: true);
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
-    if (reason != '' && feeling != '' && impress != '' && selectstar != 0 ) {
+    if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 ) {
       setState(() {
         isAddEnabled = true;
       });
