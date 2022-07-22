@@ -6,6 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/static_controller.dart';
 import 'package:laxia/models/static/master_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
+import 'package:laxia/provider/search_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/home/sub/home_clinic.dart';
 import 'package:laxia/views/pages/main/home/sub/home_diary.dart';
@@ -26,18 +29,24 @@ class Part extends StatefulWidget {
 class _PartState extends State<Part> with SingleTickerProviderStateMixin {
   List<String> tabMenus = ['日記', 'メニュー', 'クリニック', 'ドクター'];
   late TabController _tabController;
-  int index = -1;
   bool expanded = true, isChildScrollable = false;
   late ScrollController scrollController;
   late Master_Model master_model;
   final _con = StaticController();
+  List<bool> willSelect = [];
   bool isloading = true;
   Future<void> getData() async {
     try {
       master_model = await _con.getIndexPartCategories(widget.index);
+      for (int i = 0; i < master_model.all_childrens!.length; i++) {
+        setState(() {
+          willSelect.add(false);
+        });
+      }
       setState(() {
         isloading = false;
       });
+
     } catch (e) {
       setState(() {
         print(e.toString());
@@ -64,10 +73,23 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
+    SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+    SearchProvider searchProvider =
+        Provider.of<SearchProvider>(context, listen: true);
     return //(partResult.isNotEmpty && treatment.isNotEmpty)
-    true
-    
-        ? Scaffold(
+    isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    : Scaffold(
             backgroundColor: Helper.whiteColor,
             body: Container(
               color: Helper.whiteColor,
@@ -99,7 +121,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                             ),
                             iconSize: 16,
                             splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                            highlightColor: Colors.transparent,  
                           ),
                         )
                       ],
@@ -131,12 +153,10 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                             i++)
                                           GestureDetector(
                                             onTap: () {
+                                              surgeryprovider.setSelectedCurePos(master_model.all_childrens![i].id,master_model.all_childrens![i].name!);
+                                              print(surgeryprovider.selectedCurePos.join(','));
                                               setState(() {
-                                                if (index == i) {
-                                                  index = -1;
-                                                } else {
-                                                  index = i;
-                                                }
+                                                willSelect[i]=!willSelect[i];
                                               });
                                             },
                                             child: Container(
@@ -146,19 +166,19 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                                   border: Border.all(
                                                       width: 1,
                                                       color: Helper.mainColor),
-                                                  color: index == i
+                                                  color: willSelect[i]
                                                       ? Helper.mainColor
                                                       : Helper.whiteColor),
                                               child: Padding(
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 8, vertical: 3),
                                                 child: Text(
-                                                  master_model.all_childrens![index].name!,
+                                                  master_model.all_childrens![i].name!,
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       fontSize: 12,
-                                                      color: index == i
+                                                      color:willSelect[i]
                                                           ? Helper.whiteColor
                                                           : Helper.mainColor),
                                                 ),
@@ -198,62 +218,41 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                   ),
                                 ]),
                           ),
-                          // Container(
-                          //     child: Column(
-                          //   children: [
-                          //     TabBarWidget(
-                          //       tabMenus: tabMenus,
-                          //       tabController: _tabController,
-                          //       padding: 25,
-                          //     ),
-                          //     Container(
-                          //       height:
-                          //           MediaQuery.of(context).size.height - 101,
-                          //       child: TabBarView(
-                          //         physics: NeverScrollableScrollPhysics(),
-                          //         children: [
-                          //           Home_Diary(
-                          //             issearch: true,
-                          //             model: partResult[0],
-                          //             isScrollable: isChildScrollable,
-                          //             scrollTop: () {
-                          //               setState(() {
-                          //                 isChildScrollable = false;
-                          //               });
-                          //             },
-                          //           ),
-                          //           Home_Menu(
-                          //             issearch: true,
-                          //             model: partResult[1],
-                          //             isScrollable: isChildScrollable,
-                    
-                          //           ),
-                          //           Home_Clinic(
-                          //             issearch: true,
-                          //             model: partResult[2],
-                          //             isScrollable: isChildScrollable,
-                          //             scrollTop: () {
-                          //               setState(() {
-                          //                 isChildScrollable = false;
-                          //               });
-                          //             },
-                          //           ),
-                          //           Home_Doctor(
-                          //             issearch: true,
-                          //             model: partResult[3],
-                          //             isScrollable: isChildScrollable,
-                          //             scrollTop: () {
-                          //               setState(() {
-                          //                 isChildScrollable = false;
-                          //               });
-                          //             },
-                          //           ),
-                          //         ],
-                          //         controller: _tabController,
-                          //       ),
-                          //     )
-                          //   ],
-                          // )),
+                          Container(
+                              child: Column(
+                            children: [
+                              TabBarWidget(
+                                tabMenus: tabMenus,
+                                tabController: _tabController,
+                                padding: 25, onpress: () {
+                                  searchProvider.initSelected();
+                                  prefyprovider.initSelected();
+                                },
+                              ),
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height - 101,
+                                child: TabBarView(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  children: [
+                                    Home_Diary(
+                                      issearch: true,
+                                    ),
+                                    Home_Menu(
+                                      issearch: true,
+                                    ),
+                                    Home_Clinic(
+                                      issearch: true,
+                                    ),
+                                    Home_Doctor(
+                                      issearch: true,
+                                    ),
+                                  ],
+                                  controller: _tabController,
+                                ),
+                              )
+                            ],
+                          )),
                         ],
                       ),
                     ),
@@ -261,7 +260,6 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-          )
-        : Scaffold();
+          );
   }
 }

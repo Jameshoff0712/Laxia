@@ -33,9 +33,9 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/search?q="+q+"?perpage="+perpage, token);
     return Home_Search_Model.fromJson(res.data);
   }
-  Future<Clinic> getclinicData(String per_page, String page, String q, String favorite, String pref_id, String city_id,String filter) async {
+  Future<Clinic> getclinicData(String per_page, String page, String q, String favorite, String category_id, String city_id,String filter) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/clinics?per_page="+per_page+"&page="+page+"&q="+q+"&favorite="+favorite+"&pref_id="+pref_id +"&city_id="+city_id+"&filter="+filter, token);
+    final res = await Api.get("$apiUrl/clinics?per_page="+per_page+"&page="+page+"&q="+q+"&favorite="+favorite+"&category_id="+category_id +"&city_id="+city_id+"&filter="+filter, token);
     return Clinic.fromJson(res.data["clinics"]);
   }
   Future<ClinicDetail_Model> getClinicDetail(int index) async {
@@ -64,9 +64,9 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/diaries/"+index.toString(), token);
     return DiaryDetail_Model.fromJson(res.data["data"]["diary"]);
   }
-  Future<Doctor> getDoctorData(String per_page, String page, String favorite, String clinic_id, String q,String filter) async {
+  Future<Doctor> getDoctorData(String per_page, String page, String favorite, String clinic_id, String q,String filter, String category_id, String city_id) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/doctors?per_page="+per_page+"&page="+page+"&favorite="+favorite+"&clinic_id="+clinic_id+"&q="+q+"&filter="+filter, token);
+    final res = await Api.get("$apiUrl/doctors?per_page="+per_page+"&page="+page+"&favorite="+favorite+"&clinic_id="+clinic_id+"&city_id="+city_id+"&category_id="+category_id+"&q="+q+"&filter="+filter, token);
     return Doctor.fromJson(res.data["doctors"]);
   }
   Future<DoctorDetail_Model> getDoctorDetail(int index) async {

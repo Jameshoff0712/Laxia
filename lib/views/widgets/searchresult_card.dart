@@ -30,7 +30,9 @@ class _SearchResultState extends State<SearchResult> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return widget.count.isEmpty?
+    Container():
+    Padding(
       padding: EdgeInsets.only(bottom: 8.0),
       child: Container(
         width: MediaQuery.of(context).size.width,

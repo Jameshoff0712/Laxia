@@ -29,8 +29,8 @@ class HomeController extends BaseController {
   Future<Home_Search_Model> getHomeSearch({required String q, required String perpage}) async {
     return await api.homeSearchData(q,perpage);
   }
-  Future<Clinic> getclinicData({String? per_page="10", required String page, String? q="", String? favorite="", String? pref_id="", String? city_id="",required String filter}) async {
-    return await api.getclinicData( per_page!,  page,  q!,  favorite!,  pref_id!,  city_id!,filter);
+  Future<Clinic> getclinicData({String? per_page="10", required String page, String? q="", String? favorite="", String? category_id="", String? city_id="",required String filter}) async {
+    return await api.getclinicData( per_page!,  page,  q!,  favorite!,  category_id!,  city_id!,filter);
   }
    Future<ClinicDetail_Model> getClinicDetail({required int index}) async {
     return await api.getClinicDetail(index);
@@ -47,8 +47,8 @@ class HomeController extends BaseController {
   Future<DiaryDetail_Model> getDiaryDetail({required int index}) async {
     return await api.getDiaryDetail(index);
   }
-  Future<Doctor> getDoctorData({String per_page="10", required String page, String? clinic_id="", String? favorite="", String? q="",required String filter}) async {
-    return await api.getDoctorData( per_page,  page, favorite!,  clinic_id!,  q!,filter);
+  Future<Doctor> getDoctorData({String per_page="10", String? category_id="", required String page,required String city_id, String? clinic_id="", String? favorite="", String? q="",required String filter}) async {
+    return await api.getDoctorData( per_page,  page, favorite!,  clinic_id!,  q!,filter,category_id!,city_id);
   }
   Future<DoctorDetail_Model> getDoctorDetail({required int index}) async {
     return await api.getDoctorDetail(index);

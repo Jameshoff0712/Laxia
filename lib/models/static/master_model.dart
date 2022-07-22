@@ -44,7 +44,7 @@ class Children extends Equatable {
       id: json["id"],
       parent_id: json["parent_id"],
       name: json["name"],
-      all_childrens: List<Children>.from(json["all_children"]
+      all_childrens:json["all_children"]==null?[]: List<Children>.from(json["all_children"]
                 .map((x) => Children.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
     );

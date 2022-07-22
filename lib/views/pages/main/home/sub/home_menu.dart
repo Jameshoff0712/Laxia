@@ -45,7 +45,9 @@ class _Home_MenuState extends State<Home_Menu> {
           setState(() {
             isexpanding = false;
           });
+          print(category_id);
         final mid = await _con.getMenuData(page: page, q: searchdata,filter:filter,city_id:city_id,category_id:category_id);
+        print(mid.data.length);
         setState(() {
           if (isloading) {
             menu_data = mid;
@@ -105,11 +107,12 @@ class _Home_MenuState extends State<Home_Menu> {
       });
     }
     if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
-      init();
+      if(!isloading)
+      {init();
       setState(() {
         category_id = surgeryprovider.getSelectedCurePos.join(",");
         getData(page: page.toString());
-      });
+      });}
     }
     return Container(
       color: Helper.homeBgColor,

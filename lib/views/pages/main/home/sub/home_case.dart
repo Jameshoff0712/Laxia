@@ -283,7 +283,7 @@ class _Home_CaseState extends State<Home_Case> {
                                       : case_data.data[index].clinic!.photo!,
                               check: case_data.data[index].doctor == null
                                   ? ""
-                                  : case_data.data[index].doctor!.name!,
+                                  : case_data.data[index].doctor!.kata_name,
                               image2: case_data.data[index].afterimage!.isEmpty
                                   ? "http://error.png"
                                   : case_data.data[index].afterimage![0].path,

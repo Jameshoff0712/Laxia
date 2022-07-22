@@ -38,8 +38,7 @@ class _SelectDoctorState extends State<SelectDoctor> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDoctorData(page: page, q: q!, filter: '', clinic_id: clinic_id);
-        print(mid.data.length);
+        final mid = await _con.getDoctorData(page: page, q: q!, filter: '', clinic_id: clinic_id,city_id: city_id!);
         setState(() {
           if (isloading) {
             doctor_data = mid;
