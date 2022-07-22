@@ -13,6 +13,9 @@ class StaticController extends BaseController {
   Future<List<Master_Model>> getTreatCategories() async {
     return await api.getTreatCategories();
   }
+  Future<Master_Model> getIndexPartCategories(int index) async {
+    return await api.getIndexPartCategories(index);
+  }
   Future<List<Message_Model>> getMessages(String mailbox) async {
     return await api.getMessages(mailbox);
   }
