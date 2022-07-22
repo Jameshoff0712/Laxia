@@ -29,12 +29,12 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
   int index = -1;
   bool expanded = true, isChildScrollable = false;
   late ScrollController scrollController;
-  late List<Master_Model> treatments;
+  late Master_Model master_model;
   final _con = StaticController();
   bool isloading = true;
   Future<void> getData() async {
     try {
-      treatments = await _con.getIndexTreatCategories(widget.index);
+      master_model = await _con.getIndexPartCategories(widget.index);
       setState(() {
         isloading = false;
       });
@@ -105,163 +105,159 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  // Expanded(
-                  //   child: SingleChildScrollView(
-                  //     physics: AlwaysScrollableScrollPhysics(),
-                  //     controller: scrollController,
-                  //     child: Column(
-                  //       children: [
-                  //         Container(
-                  //           child: Padding(
-                  //             padding: EdgeInsets.symmetric(
-                  //                 horizontal: 16, vertical: 8),
-                  //             child: Column(
-                  //               children: [
-                  //                 ExtendedWrap(
-                  //                     alignment: WrapAlignment.center,
-                  //                     maxLines: expanded ? 2 : 100,
-                  //                     clipBehavior: Clip.none,
-                  //                     runSpacing: 10,
-                  //                     spacing: 10,
-                  //                     children: [
-                  //                       for (int i = 0;
-                  //                           i <
-                  //                               treatment[userProperties
-                  //                                           .currentPartIndex]
-                  //                                       ["children"]
-                  //                                   .length;
-                  //                           i++)
-                  //                         GestureDetector(
-                  //                           onTap: () {
-                  //                             setState(() {
-                  //                               if (index == i) {
-                  //                                 index = -1;
-                  //                               } else {
-                  //                                 index = i;
-                  //                               }
-                  //                             });
-                  //                           },
-                  //                           child: Container(
-                  //                             decoration: BoxDecoration(
-                  //                                 borderRadius:
-                  //                                     BorderRadius.circular(22),
-                  //                                 border: Border.all(
-                  //                                     width: 1,
-                  //                                     color: Helper.mainColor),
-                  //                                 color: index == i
-                  //                                     ? Helper.mainColor
-                  //                                     : Helper.whiteColor),
-                  //                             child: Padding(
-                  //                               padding: EdgeInsets.symmetric(
-                  //                                   horizontal: 8, vertical: 3),
-                  //                               child: Text(
-                  //                                 treatment[userProperties
-                  //                                         .currentPartIndex]
-                  //                                     ["children"][i]["label"],
-                  //                                 style: TextStyle(
-                  //                                     fontWeight:
-                  //                                         FontWeight.w400,
-                  //                                     fontSize: 12,
-                  //                                     color: index == i
-                  //                                         ? Helper.whiteColor
-                  //                                         : Helper.mainColor),
-                  //                               ),
-                  //                             ),
-                  //                           ),
-                  //                         )
-                  //                     ]),
-                  //               ],
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         GestureDetector(
-                  //           onTap: () {
-                  //             setState(() {
-                  //               expanded = !expanded;
-                  //             });
-                  //           },
-                  //           child: Row(
-                  //               mainAxisAlignment: MainAxisAlignment.center,
-                  //               crossAxisAlignment: CrossAxisAlignment.center,
-                  //               children: [
-                  //                 Text(
-                  //                   expanded?"すべて表示":"閉じる",
-                  //                   style: TextStyle(
-                  //                       color: Helper.mainColor,
-                  //                       fontWeight: FontWeight.w400,
-                  //                       fontSize: 12),
-                  //                 ),
-                  //                 SizedBox(
-                  //                   width: 8.41,
-                  //                 ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      controller: scrollController,
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                              child: Column(
+                                children: [
+                                  ExtendedWrap(
+                                      alignment: WrapAlignment.center,
+                                      maxLines: expanded ? 2 : 100,
+                                      clipBehavior: Clip.none,
+                                      runSpacing: 10,
+                                      spacing: 10,
+                                      children: [
+                                        for (int i = 0;
+                                            i <
+                                                master_model.all_childrens!
+                                                    .length;
+                                            i++)
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                if (index == i) {
+                                                  index = -1;
+                                                } else {
+                                                  index = i;
+                                                }
+                                              });
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(22),
+                                                  border: Border.all(
+                                                      width: 1,
+                                                      color: Helper.mainColor),
+                                                  color: index == i
+                                                      ? Helper.mainColor
+                                                      : Helper.whiteColor),
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 8, vertical: 3),
+                                                child: Text(
+                                                  master_model.all_childrens![index].name!,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 12,
+                                                      color: index == i
+                                                          ? Helper.whiteColor
+                                                          : Helper.mainColor),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                      ]),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                expanded = !expanded;
+                              });
+                            },
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    expanded?"すべて表示":"閉じる",
+                                    style: TextStyle(
+                                        color: Helper.mainColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12),
+                                  ),
+                                  SizedBox(
+                                    width: 8.41,
+                                  ),
                                   
-                  //                 Icon(
-                  //                   expanded? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_up_rounded,
-                  //                   color: Helper.mainColor,
-                  //                   size: 24,
-                  //                 ),
-                  //               ]),
-                  //         ),
-                  //         Container(
-                  //             child: Column(
-                  //           children: [
-                  //             TabBarWidget(
-                  //               tabMenus: tabMenus,
-                  //               tabController: _tabController,
-                  //               padding: 25,
-                  //             ),
-                  //             Container(
-                  //               height:
-                  //                   MediaQuery.of(context).size.height - 101,
-                  //               child: TabBarView(
-                  //                 physics: NeverScrollableScrollPhysics(),
-                  //                 children: [
-                  //                   Home_Diary(
-                  //                     issearch: true,
-                  //                     model: partResult[0],
-                  //                     isScrollable: isChildScrollable,
-                  //                     scrollTop: () {
-                  //                       setState(() {
-                  //                         isChildScrollable = false;
-                  //                       });
-                  //                     },
-                  //                   ),
-                  //                   Home_Menu(
-                  //                     issearch: true,
-                  //                     model: partResult[1],
-                  //                     isScrollable: isChildScrollable,
+                                  Icon(
+                                    expanded? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_up_rounded,
+                                    color: Helper.mainColor,
+                                    size: 24,
+                                  ),
+                                ]),
+                          ),
+                          // Container(
+                          //     child: Column(
+                          //   children: [
+                          //     TabBarWidget(
+                          //       tabMenus: tabMenus,
+                          //       tabController: _tabController,
+                          //       padding: 25,
+                          //     ),
+                          //     Container(
+                          //       height:
+                          //           MediaQuery.of(context).size.height - 101,
+                          //       child: TabBarView(
+                          //         physics: NeverScrollableScrollPhysics(),
+                          //         children: [
+                          //           Home_Diary(
+                          //             issearch: true,
+                          //             model: partResult[0],
+                          //             isScrollable: isChildScrollable,
+                          //             scrollTop: () {
+                          //               setState(() {
+                          //                 isChildScrollable = false;
+                          //               });
+                          //             },
+                          //           ),
+                          //           Home_Menu(
+                          //             issearch: true,
+                          //             model: partResult[1],
+                          //             isScrollable: isChildScrollable,
                     
-                  //                   ),
-                  //                   Home_Clinic(
-                  //                     issearch: true,
-                  //                     model: partResult[2],
-                  //                     isScrollable: isChildScrollable,
-                  //                     scrollTop: () {
-                  //                       setState(() {
-                  //                         isChildScrollable = false;
-                  //                       });
-                  //                     },
-                  //                   ),
-                  //                   Home_Doctor(
-                  //                     issearch: true,
-                  //                     model: partResult[3],
-                  //                     isScrollable: isChildScrollable,
-                  //                     scrollTop: () {
-                  //                       setState(() {
-                  //                         isChildScrollable = false;
-                  //                       });
-                  //                     },
-                  //                   ),
-                  //                 ],
-                  //                 controller: _tabController,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         )),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
+                          //           ),
+                          //           Home_Clinic(
+                          //             issearch: true,
+                          //             model: partResult[2],
+                          //             isScrollable: isChildScrollable,
+                          //             scrollTop: () {
+                          //               setState(() {
+                          //                 isChildScrollable = false;
+                          //               });
+                          //             },
+                          //           ),
+                          //           Home_Doctor(
+                          //             issearch: true,
+                          //             model: partResult[3],
+                          //             isScrollable: isChildScrollable,
+                          //             scrollTop: () {
+                          //               setState(() {
+                          //                 isChildScrollable = false;
+                          //               });
+                          //             },
+                          //           ),
+                          //         ],
+                          //         controller: _tabController,
+                          //       ),
+                          //     )
+                          //   ],
+                          // )),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

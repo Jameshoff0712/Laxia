@@ -42,6 +42,11 @@ class HomeApi extends Api {
     final res = await Api.get("$apiUrl/load/master/$index", token);
     return List<Master_Model>.from(res.data["data"]["treatCategories"].map((x) => Master_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>);
   }
+  Future<Master_Model> getIndexPartCategories(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/load/master/part/$index", token);
+    return Master_Model.fromJson(res.data);
+  }
   Future<List<Area_Model>> getAreas() async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/load/areas", token);
