@@ -113,7 +113,10 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: IconButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: (){
+                                            surgeryprovider.initSelected();
+                                            Navigator.pop(context);
+                                          },
                             icon: const Icon(
                               Icons.arrow_back_ios,
                               color: Helper.blackColor,

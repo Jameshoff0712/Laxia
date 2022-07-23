@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/static/midsearch_model.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/contribution/case_detail.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
+import 'package:laxia/views/pages/main/home/part/part.dart';
+import 'package:provider/provider.dart';
 
 class SearchResult extends StatefulWidget {
   final int index;
-  final List<int> count;
+  final List<Sub> count;
   const SearchResult(
       {Key? key,
       required this.index,
@@ -20,16 +24,15 @@ class SearchResult extends StatefulWidget {
 
 class _SearchResultState extends State<SearchResult> {
   final List<String> tabMenus = [
+    '施術箇所',
     'メニュー',
     'クリニック',
-    'ドクター',
-    '日記',
-    '症例',
-    'カウセレポ',
-    '質問',
+    'ドクター'
   ];
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
     return widget.count.isEmpty?
     Container():
     Padding(
@@ -54,31 +57,30 @@ class _SearchResultState extends State<SearchResult> {
             GestureDetector(
               onTap: (){
                 switch(widget.index){
-                  case 1:  Navigator.of(context).push(
+                  case 1: if(widget.count[i].part_id!=null){
+                              surgeryprovider.setSelectedCurePos(widget.count[i].part_id!, 'curePosStr');
+                            }
+                          Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => Part(
+                                                index:
+                                                    widget.count[i].id))); break;
+                  case 2:  Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (_) => Menu_Detail(
                                                 index:
-                                                    widget.count[i]))); break;
-                  case 2: Navigator.of(context).push(
+                                                    widget.count[i].id))); break;
+                  case 3: Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (_) => Clinic_Detail(
                                                 index:
-                                                    widget.count[i]))); break;
-                  case 3: Navigator.of(context).push(
+                                                    widget.count[i].id))); break;
+                  case 4: Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (_) => Doctor_Detail(
                                                 index:
-                                                    widget.count[i]))); break;
-                  case 4: Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) => Diary_Detail(
-                                                index:
-                                                    widget.count[i]))); break;
-                  case 5: Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) => CaseDetail(
-                                                index:
-                                                    widget.count[i]))); break;
+                                                    widget.count[i].id))); break;
+                  
                 }
               },
               child: Padding(
@@ -87,7 +89,7 @@ class _SearchResultState extends State<SearchResult> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "検索結果" + (i + 1).toString(),
+                      widget.count[i].name,
                       style: TextStyle(
                           color: Helper.selectTabColor,
                           fontSize: 12,

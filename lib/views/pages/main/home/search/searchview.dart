@@ -386,14 +386,6 @@ class _SearchViewState extends State<SearchView> {
                                       count: midsearch.doctors,
                                       index: 3,
                                     ),
-                                    SearchResult(
-                                      count: midsearch.diaries,
-                                      index: 4,
-                                    ),
-                                    SearchResult(
-                                      count: midsearch.cases,
-                                      index: 5,
-                                    )
                                   ],),
                             ),
                           ],
