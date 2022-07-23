@@ -1,9 +1,13 @@
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/diary_model.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/views/widgets/diary_addpage_card.dart';
+
+import '../../../../models/diary/diary_sub_model.dart';
 
 class DiaryPage extends StatefulWidget {
   @override
@@ -16,9 +20,11 @@ class _DiaryPageState extends State<DiaryPage> {
   bool isend = false, isloading = true, isexpanding = true;
   bool expanded = true;
   int index = -1;
-  late Diary diary_data;
-  final _con = HomeController();
-  late Diary mid;
+  late List<Diary_Sub_Model> diary_data;
+  // final _con = HomeController();
+  final _con = AuthController();
+  late List<Diary_Sub_Model> mid;
+  late Me myInfo;
   List categoryList = [];
   Future<void> getData({required String page, String? q = ""}) async {
     try {
@@ -27,11 +33,14 @@ class _DiaryPageState extends State<DiaryPage> {
           setState(() {
             isexpanding = false;
           });
-        mid = await _con.getDiaryData(page: page, q: q, filter: '', city_id: '');
-        for (int i = 0; i < mid.data.length; i++) {
-          categoryList.addAll(mid.data[i].categories!);
-        }
-        if (mid.data.isEmpty) {
+        myInfo = await _con.getMe();
+        mid = myInfo.diaries!;
+        print(mid);
+        // mid = await _con.getDiaryData(page: page, q: q, filter: '', city_id: '');
+        // for (int i = 0; i < mid.data.length; i++) {
+        //   categoryList.addAll(mid.data[i].categories!);
+        // }
+        if (mid.isEmpty) {
           setState(() {
             isexpanding = true;
             isend = true;
@@ -42,7 +51,7 @@ class _DiaryPageState extends State<DiaryPage> {
             diary_data = mid;
             isloading = false;
           } else {
-            diary_data.data.addAll(mid.data);
+            diary_data.addAll(mid);
             isexpanding = true;
           }
         });
@@ -82,7 +91,7 @@ class _DiaryPageState extends State<DiaryPage> {
           icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
           onPressed: () => Navigator.pop(context),
           splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+          highlightColor: Colors.transparent,
         ),
       ),
       body: SingleChildScrollView(
@@ -119,7 +128,6 @@ class _DiaryPageState extends State<DiaryPage> {
                             style: TextStyle(
                                 fontSize: 18,
                                 fontFamily: Helper.headFontFamily,
-                                
                                 color: Helper.whiteColor,
                                 fontWeight: FontWeight.w400)),
                         SizedBox(width: 26.8),
@@ -178,45 +186,44 @@ class _DiaryPageState extends State<DiaryPage> {
                         children: [
                           ListView.builder(
                               shrinkWrap: true,
-                              itemCount: mid.data.length,
+                              itemCount: diary_data.length,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount:
-                                        mid.data[index].categories!.length,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemBuilder:
-                                        (BuildContext context, int subIndex) {
-                                      return DiaryAddPage_Card(
-                                        avator: mid.data[index].patient_photo!,
-                                        name: mid.data[index]
-                                            .categories![subIndex].name,
-                                        image1: diary_list[index]["image1"],
-                                        image2: diary_list[index]["image2"],
-                                        sentence: diary_list[index]["sentence"],
-                                        clinic: mid.data[index].clinic_name,
-                                        type: mid.data[index]
-                                            .categories![subIndex].name,
-                                        check: mid.data[index].doctor_name!,
-                                        eyes: diary_list[index]["eyes"],
-                                        onpress: () {},
-                                        price: diary_list[index]["price"],
-                                        buttontext: diary_list[index]["status"],
-                                        fontcolor: (diary_list[index]
-                                                    ["status"] ==
-                                                "未公開"
-                                            ? Color.fromARGB(255, 102, 110, 110)
-                                            : Color.fromARGB(
-                                                255, 240, 154, 55)),
-                                        buttoncolor: (diary_list[index]
-                                                    ["status"] ==
-                                                "未公開"
-                                            ? Color.fromARGB(50, 102, 110, 110)
-                                            : Color.fromARGB(50, 240, 154, 55)),
-                                      );
-                                    });
+                              itemBuilder:
+                                  (BuildContext context, int index) {
+                                final List<String> categories = [];
+                                for(int i=0; i< diary_data[index].categories!.length; i++)
+                                  categories.add(diary_data[index].categories![i].name);
+                                return DiaryAddPage_Card(
+                                  title: diary_data[index].categories![0].name,
+                                  photo: diary_data[index].before_image!,
+                                  categories: categories.join(', '),
+                                  clinic_name: diary_data[index].clinic_name!,
+                                  doctor_name: diary_data[index].doctor_name!,
+                                  diary_id: diary_data[index].id,
+                                  onpress: () {},
+                                  // avator: mid.data[index].patient_photo!,
+                                  // name: mid
+                                  //     .data[index].categories![subIndex].name,
+                                  // image1: diary_list[index]["image1"],
+                                  // image2: diary_list[index]["image2"],
+                                  // sentence: diary_list[index]["sentence"],
+                                  // clinic: mid.data[index].clinic_name,
+                                  // type: mid
+                                  //     .data[index].categories![subIndex].name,
+                                  // check: mid.data[index].doctor_name!,
+                                  // eyes: diary_list[index]["eyes"],
+                                  // onpress: () {},
+                                  // price: diary_list[index]["price"],
+                                  // buttontext: diary_list[index]["status"],
+                                  // fontcolor:
+                                  //     (diary_list[index]["status"] == "未公開"
+                                  //         ? Color.fromARGB(255, 102, 110, 110)
+                                  //         : Color.fromARGB(255, 240, 154, 55)),
+                                  // buttoncolor:
+                                  //     (diary_list[index]["status"] == "未公開"
+                                  //         ? Color.fromARGB(50, 102, 110, 110)
+                                  //         : Color.fromARGB(50, 240, 154, 55)),
+                                );
                               }),
                           isexpanding
                               ? Container()

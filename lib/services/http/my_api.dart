@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:laxia/models/counsel_post_model.dart';
 import 'package:laxia/models/counseling/councelingdetail_model.dart';
+import 'package:laxia/models/diary/diary/diarydetail_model.dart';
 import 'package:laxia/models/diary_post_model.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
@@ -159,5 +160,12 @@ class MyApi extends Api {
         "$apiUrl/counselings/" + counsel_id,
         token);
     return CouncelingDetail_Model.fromJson(res.data["data"]["counseling"]);
+  }
+  Future<DiaryDetail_Model> getDiaryDetail(String diary_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get(
+        "$apiUrl/diaries/" + diary_id,
+        token);
+    return DiaryDetail_Model.fromJson(res.data["data"]["diary"]);
   }
 }

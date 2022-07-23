@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/counseling/councelingdetail_model.dart';
+import 'package:laxia/models/diary/diary/diarydetail_model.dart';
 import 'package:laxia/models/diary_post_model.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
@@ -51,5 +52,8 @@ class MyController extends BaseController {
   
   Future<CouncelingDetail_Model> getCounselDetail(String counsel_id) async {
     return await api.getCounselDetail(counsel_id);
+  }
+  Future<DiaryDetail_Model> getDiaryDetail(String diary_id) async {
+    return await api.getDiaryDetail(diary_id);
   }
 }

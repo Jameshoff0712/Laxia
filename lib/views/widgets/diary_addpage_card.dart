@@ -1,32 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:laxia/common/helper.dart';
 
 class DiaryAddPage_Card extends StatefulWidget {
   final VoidCallback onpress;
-  final Color? buttoncolor, fontcolor;
-  final String avator, name, image1, image2, sentence, type, check, price, eyes;
-  final String? buttontext, hearts, chats, clinic;
+  final String title;
+  final String photo;
+  final String categories;
+  final String clinic_name;
+  final String doctor_name;
+  final int diary_id;
+
+  // final Color? buttoncolor, fontcolor;
+  // final String avator, name, image1, image2, sentence, type, check, price, eyes;
+  // final String? buttontext, hearts, chats, clinic;
   const DiaryAddPage_Card(
       {Key? key,
-      required this.onpress,
-      required this.avator,
-      required this.name,
-      this.buttontext = "",
-      required this.image1,
-      required this.image2,
-      required this.sentence,
-      required this.type,
-      this.clinic = "",
-      required this.check,
-      required this.price,
-      this.buttoncolor,
-      this.fontcolor,
-      this.hearts = "",
-      this.chats = "",
-      required this.eyes})
+      required this.title,
+      required this.photo,
+      required this.categories,
+      required this.clinic_name,
+      required this.doctor_name,
+      required this.diary_id,
+      required this.onpress
+      // required this.onpress,
+      // required this.avator,
+      // required this.name,
+      // this.buttontext = "",
+      // required this.image1,
+      // required this.image2,
+      // required this.sentence,
+      // required this.type,
+      // this.clinic = "",
+      // required this.check,
+      // required this.price,
+      // this.buttoncolor,
+      // this.fontcolor,
+      // this.hearts = "",
+      // this.chats = "",
+      // required this.eyes
+      })
       : super(key: key);
 
   @override
@@ -54,38 +70,38 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      widget.type,
+                      widget.title,
                       style: TextStyle(
                           fontSize: 16,
                           
                           fontWeight: FontWeight.w700,
                           color: Helper.maintxtColor),
                     ),
-                    widget.buttontext!.isEmpty
-                        ? SizedBox(
-                            width: 1,
-                          )
-                        : Expanded(
-                            child: Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3),
-                                color: widget.buttoncolor,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 6, vertical: 4),
-                                child: Text(
-                                  widget.buttontext!,
-                                  style: TextStyle(
-                                      color: widget.fontcolor,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                          ))
+                    // widget.buttontext!.isEmpty
+                    //     ? SizedBox(
+                    //         width: 1,
+                    //       )
+                    //     : Expanded(
+                    //         child: Align(
+                    //         alignment: Alignment.topRight,
+                    //         child: Container(
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(3),
+                    //             color: widget.buttoncolor,
+                    //           ),
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.symmetric(
+                    //                 horizontal: 6, vertical: 4),
+                    //             child: Text(
+                    //               widget.buttontext!,
+                    //               style: TextStyle(
+                    //                   color: widget.fontcolor,
+                    //                   fontSize: 10,
+                    //                   fontWeight: FontWeight.w400),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ))
                   ],
                 ),
                 SizedBox(height: 6,),
@@ -99,7 +115,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                           borderRadius: BorderRadius.circular(15),
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            imageUrl: widget.image1,
+                            imageUrl: widget.photo,
                             placeholder: (context, url) => Image.asset(
                               'assets/images/loading.gif',
                               fit: BoxFit.cover,
@@ -129,7 +145,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       width: 5,
                                     ),
                                     Text(
-                                      widget.type,
+                                      widget.categories,
                                       style: TextStyle(
                                           fontSize: 12,
                                           
@@ -142,7 +158,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                               SizedBox(
                                 height: 5,
                               ),
-                              widget.clinic!.isEmpty
+                              widget.clinic_name.isEmpty
                                   ? SizedBox(
                                       height: 0,
                                     )
@@ -161,7 +177,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                                 width: 5,
                                               ),
                                               Text(
-                                                widget.clinic!,
+                                                widget.clinic_name,
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     
@@ -189,7 +205,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       width: 5,
                                     ),
                                     Text(
-                                      widget.check,
+                                      widget.doctor_name,
                                       style: TextStyle(
                                           fontSize: 12,
                                           
@@ -256,7 +272,10 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.only(left: 32, right: 32),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AddDiaryStep1Page(diary_id: widget.diary_id.toString(),)));
+                      },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         splashFactory: NoSplash.splashFactory,

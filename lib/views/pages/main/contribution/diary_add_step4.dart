@@ -8,8 +8,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class AddDiaryStep4Page extends StatefulWidget {
+  String? diary_id;
   final bool? isMyDiary;
-  const AddDiaryStep4Page({Key? key, this.isMyDiary = false}) : super(key: key);
+  AddDiaryStep4Page({Key? key, this.isMyDiary = false, this.diary_id = ''}) : super(key: key);
   @override
   _AddDiaryStep4PageState createState() => _AddDiaryStep4PageState();
 }
@@ -17,6 +18,7 @@ class AddDiaryStep4Page extends StatefulWidget {
 class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
   List<String> questions = ['', '', '', '', '', ''];
   bool isAddEnabled = true;
+  bool initDetail = true;
   // late OfferController _con;
 
   // _AddDiaryStep4PageState() : super(OfferController()) {
@@ -71,6 +73,13 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
         setState(() {
           isAddEnabled = true;
         });
+    }
+    if(initDetail && widget.diary_id != '') {
+      setState(() {
+        questions = diaryProperties.questions;
+
+        initDetail = false;
+      });
     }
     return Scaffold(
       appBar: AppBar(

@@ -6,12 +6,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class AddDiaryStep3Page extends StatefulWidget {
+  String? diary_id;
+  AddDiaryStep3Page({Key? key, this.diary_id = ''}) : super(key: key);
   @override
   _AddDiaryStep3PageState createState() => _AddDiaryStep3PageState();
 }
 
 class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
   bool isAddEnabled = true;
+  bool initDetail = true;
   List<int> selectstar = [];
   // bool isAllSelected = false;
   //File imageURI;
@@ -33,7 +36,7 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
     });
   }
 
-  AddDiaryStep4Page() {
+  AddDiaryStep4Page({String? diary_id}) {
     Navigator.of(context).pushNamed("/AddDiaryStep4");
   }
 
@@ -75,6 +78,13 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
           isAddEnabled = true;
         });
     }
+    if(initDetail && widget.diary_id != '') {
+      setState(() {
+        selectstar = diaryProperties.rates;
+        initDetail = false;
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -502,7 +512,12 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
                     onPressed: isAddEnabled ? (){
                       diaryProperties.setRates(selectstar);
 
-                      AddDiaryStep4Page();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddDiaryStep4Page(
+                            diary_id: widget.diary_id,
+                      )));
                      } : null,
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
