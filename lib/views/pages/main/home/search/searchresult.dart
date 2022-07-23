@@ -17,16 +17,29 @@ class SearchResultAll extends StatefulWidget {
   @override
   State<SearchResultAll> createState() => _SearchResultAllState();
 }
-
+Future<void> getData({required int index}) async {
+    try {
+      final mid = await _con.getDiaryDetail(index: index);
+      setState(() {
+        diary_detail = mid;
+         isfavorite=diary_detail.diary.is_favorite==null?false:diary_detail.diary.is_favorite!;
+         islike=diary_detail.diary.is_like!;
+         isfollow=diary_detail.owner.is_follow!;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 class _SearchResultAllState extends State<SearchResultAll> {
   final List<String> tabMenus = [
     'メニュー',
     'クリニック',
     'ドクター',
-    '日記',
-    '症例',
-    'カウセレポ',
-    '質問',
+    // '日記',
+    // '症例',
+    // 'カウセレポ',
+    // '質問',
   ];
   @override
   Widget build(BuildContext context) {
@@ -324,226 +337,226 @@ class _SearchResultAllState extends State<SearchResultAll> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(color: Helper.whiteColor),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  tabMenus[4],
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 51, 51, 51),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    widget.tabController.animateTo(5);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "もっと見る",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 156, 161, 161),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Icon(
-                                        Icons.navigate_next,
-                                        size: 15,
-                                        color:
-                                            Color.fromARGB(255, 156, 161, 161),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: widget.model[4].length,
-                              // physics: const AlwaysScrollableScrollPhysics(),
-                              // scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Diary_Card(
-                                  buttoncolor:
-                                      Helper.btnBgMainColor,
-                                  buttontext: widget.model[4][index]
-                                      ["buttontext"],
-                                  hearts: widget.model[4][index]["hearts"],
-                                  chats: widget.model[4][index]["chats"],
-                                  avator: widget.model[4][index]["avator"],
-                                  check: widget.model[4][index]["check"],
-                                  image2: widget.model[4][index]["image2"],
-                                  image1: widget.model[4][index]["image1"],
-                                  eyes: widget.model[4][index]["eyes"],
-                                  name: widget.model[4][index]["name"],
-                                  onpress: () {},
-                                  price: widget.model[4][index]["price"],
-                                  sentence: widget.model[4][index]["sentence"],
-                                  type: widget.model[4][index]["type"],
-                                );
-                              }),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(color: Helper.whiteColor),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  tabMenus[5],
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 51, 51, 51),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    widget.tabController.animateTo(6);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "もっと見る",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 156, 161, 161),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Icon(
-                                        Icons.navigate_next,
-                                        size: 15,
-                                        color:
-                                            Color.fromARGB(255, 156, 161, 161),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: widget.model[5].length,
-                              // physics: const AlwaysScrollableScrollPhysics(),
-                              // scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return SizedBox();
-                                // return Counseling_Card(
-                                //   hearts: widget.model[5][index]["hearts"],
-                                //   chats: widget.model[5][index]["chats"],
-                                //   avator: widget.model[5][index]["avator"],
-                                //   check: widget.model[5][index]["check"],
-                                //   image2: widget.model[5][index]["image2"],
-                                //   image1: widget.model[5][index]["image1"],
-                                //   image3: widget.model[5][index]["image3"],
-                                //   image4: widget.model[5][index]["image4"],
-                                //   eyes: widget.model[5][index]["eyes"],
-                                //   name: widget.model[5][index]["name"],
-                                //   onpress: () {},
-                                //   sentence: widget.model[5][index]["sentence"],
-                                //   type: widget.model[5][index]["type"],
-                                //   clinic: widget.model[5][index]["clinic"],
-                                // );
-                              }),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(color: Helper.whiteColor),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  tabMenus[6],
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 51, 51, 51),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    widget.tabController.animateTo(7);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "もっと見る",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 156, 161, 161),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Icon(
-                                        Icons.navigate_next,
-                                        size: 15,
-                                        color:
-                                            Color.fromARGB(255, 156, 161, 161),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: widget.model[6].length,
-                              // physics: const AlwaysScrollableScrollPhysics(),
-                              // scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return SizedBox();
-                                // return Question_Card(
-                                //   isanswer: true,
-                                //   hearts: widget.model[6][index]["hearts"],
-                                //   chats: widget.model[6][index]["chats"],
-                                //   avator: widget.model[6][index]["avator"],
-                                //   image2: widget.model[6][index]["image2"],
-                                //   image1: widget.model[6][index]["image1"],
-                                //   eyes: widget.model[6][index]["eyes"],
-                                //   name: widget.model[6][index]["name"],
-                                //   onpress: () {},
-                                //   sentence: widget.model[6][index]["sentence"],
-                                //   type: widget.model[6][index]["type"],
-                                // );
-                              }),
-                        ],
-                      ),
-                    ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    // Container(
+                    //   decoration: BoxDecoration(color: Helper.whiteColor),
+                    //   child: Column(
+                    //     children: [
+                    //       Padding(
+                    //         padding: EdgeInsets.symmetric(
+                    //             horizontal: 16, vertical: 12),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //           children: [
+                    //             Text(
+                    //               tabMenus[4],
+                    //               style: TextStyle(
+                    //                   color: Color.fromARGB(255, 51, 51, 51),
+                    //                   fontSize: 18,
+                    //                   fontWeight: FontWeight.w700),
+                    //             ),
+                    //             GestureDetector(
+                    //               onTap: () {
+                    //                 widget.tabController.animateTo(5);
+                    //               },
+                    //               child: Row(
+                    //                 children: [
+                    //                   Text(
+                    //                     "もっと見る",
+                    //                     style: TextStyle(
+                    //                         color: Color.fromARGB(
+                    //                             255, 156, 161, 161),
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w400),
+                    //                   ),
+                    //                   Icon(
+                    //                     Icons.navigate_next,
+                    //                     size: 15,
+                    //                     color:
+                    //                         Color.fromARGB(255, 156, 161, 161),
+                    //                   )
+                    //                 ],
+                    //               ),
+                    //             )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       ListView.builder(
+                    //           physics: NeverScrollableScrollPhysics(),
+                    //           shrinkWrap: true,
+                    //           itemCount: widget.model[4].length,
+                    //           // physics: const AlwaysScrollableScrollPhysics(),
+                    //           // scrollDirection: Axis.horizontal,
+                    //           itemBuilder: (BuildContext context, int index) {
+                    //             return Diary_Card(
+                    //               buttoncolor:
+                    //                   Helper.btnBgMainColor,
+                    //               buttontext: widget.model[4][index]
+                    //                   ["buttontext"],
+                    //               hearts: widget.model[4][index]["hearts"],
+                    //               chats: widget.model[4][index]["chats"],
+                    //               avator: widget.model[4][index]["avator"],
+                    //               check: widget.model[4][index]["check"],
+                    //               image2: widget.model[4][index]["image2"],
+                    //               image1: widget.model[4][index]["image1"],
+                    //               eyes: widget.model[4][index]["eyes"],
+                    //               name: widget.model[4][index]["name"],
+                    //               onpress: () {},
+                    //               price: widget.model[4][index]["price"],
+                    //               sentence: widget.model[4][index]["sentence"],
+                    //               type: widget.model[4][index]["type"],
+                    //             );
+                    //           }),
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    // Container(
+                    //   decoration: BoxDecoration(color: Helper.whiteColor),
+                    //   child: Column(
+                    //     children: [
+                    //       Padding(
+                    //         padding: EdgeInsets.symmetric(
+                    //             horizontal: 16, vertical: 12),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //           children: [
+                    //             Text(
+                    //               tabMenus[5],
+                    //               style: TextStyle(
+                    //                   color: Color.fromARGB(255, 51, 51, 51),
+                    //                   fontSize: 18,
+                    //                   fontWeight: FontWeight.w700),
+                    //             ),
+                    //             GestureDetector(
+                    //               onTap: () {
+                    //                 widget.tabController.animateTo(6);
+                    //               },
+                    //               child: Row(
+                    //                 children: [
+                    //                   Text(
+                    //                     "もっと見る",
+                    //                     style: TextStyle(
+                    //                         color: Color.fromARGB(
+                    //                             255, 156, 161, 161),
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w400),
+                    //                   ),
+                    //                   Icon(
+                    //                     Icons.navigate_next,
+                    //                     size: 15,
+                    //                     color:
+                    //                         Color.fromARGB(255, 156, 161, 161),
+                    //                   )
+                    //                 ],
+                    //               ),
+                    //             )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       ListView.builder(
+                    //           physics: NeverScrollableScrollPhysics(),
+                    //           shrinkWrap: true,
+                    //           itemCount: widget.model[5].length,
+                    //           // physics: const AlwaysScrollableScrollPhysics(),
+                    //           // scrollDirection: Axis.horizontal,
+                    //           itemBuilder: (BuildContext context, int index) {
+                    //             return SizedBox();
+                    //             // return Counseling_Card(
+                    //             //   hearts: widget.model[5][index]["hearts"],
+                    //             //   chats: widget.model[5][index]["chats"],
+                    //             //   avator: widget.model[5][index]["avator"],
+                    //             //   check: widget.model[5][index]["check"],
+                    //             //   image2: widget.model[5][index]["image2"],
+                    //             //   image1: widget.model[5][index]["image1"],
+                    //             //   image3: widget.model[5][index]["image3"],
+                    //             //   image4: widget.model[5][index]["image4"],
+                    //             //   eyes: widget.model[5][index]["eyes"],
+                    //             //   name: widget.model[5][index]["name"],
+                    //             //   onpress: () {},
+                    //             //   sentence: widget.model[5][index]["sentence"],
+                    //             //   type: widget.model[5][index]["type"],
+                    //             //   clinic: widget.model[5][index]["clinic"],
+                    //             // );
+                    //           }),
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    // Container(
+                    //   decoration: BoxDecoration(color: Helper.whiteColor),
+                    //   child: Column(
+                    //     children: [
+                    //       Padding(
+                    //         padding: EdgeInsets.symmetric(
+                    //             horizontal: 16, vertical: 12),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //           children: [
+                    //             Text(
+                    //               tabMenus[6],
+                    //               style: TextStyle(
+                    //                   color: Color.fromARGB(255, 51, 51, 51),
+                    //                   fontSize: 18,
+                    //                   fontWeight: FontWeight.w700),
+                    //             ),
+                    //             GestureDetector(
+                    //               onTap: () {
+                    //                 widget.tabController.animateTo(7);
+                    //               },
+                    //               child: Row(
+                    //                 children: [
+                    //                   Text(
+                    //                     "もっと見る",
+                    //                     style: TextStyle(
+                    //                         color: Color.fromARGB(
+                    //                             255, 156, 161, 161),
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w400),
+                    //                   ),
+                    //                   Icon(
+                    //                     Icons.navigate_next,
+                    //                     size: 15,
+                    //                     color:
+                    //                         Color.fromARGB(255, 156, 161, 161),
+                    //                   )
+                    //                 ],
+                    //               ),
+                    //             )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       ListView.builder(
+                    //           physics: NeverScrollableScrollPhysics(),
+                    //           shrinkWrap: true,
+                    //           itemCount: widget.model[6].length,
+                    //           // physics: const AlwaysScrollableScrollPhysics(),
+                    //           // scrollDirection: Axis.horizontal,
+                    //           itemBuilder: (BuildContext context, int index) {
+                    //             return SizedBox();
+                    //             // return Question_Card(
+                    //             //   isanswer: true,
+                    //             //   hearts: widget.model[6][index]["hearts"],
+                    //             //   chats: widget.model[6][index]["chats"],
+                    //             //   avator: widget.model[6][index]["avator"],
+                    //             //   image2: widget.model[6][index]["image2"],
+                    //             //   image1: widget.model[6][index]["image1"],
+                    //             //   eyes: widget.model[6][index]["eyes"],
+                    //             //   name: widget.model[6][index]["name"],
+                    //             //   onpress: () {},
+                    //             //   sentence: widget.model[6][index]["sentence"],
+                    //             //   type: widget.model[6][index]["type"],
+                    //             // );
+                    //           }),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
               );
