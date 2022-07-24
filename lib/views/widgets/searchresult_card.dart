@@ -63,6 +63,7 @@ class _SearchResultState extends State<SearchResult> {
                           Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (_) => Part(
+                                              part_id: widget.count[i].part_id!,
                                                 index:
                                                     widget.count[i].id))); break;
                   case 2:  Navigator.of(context).push(

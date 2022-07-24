@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:laxia/models/home/category_model.dart';
 
 class Doctor_Sub_Model extends Equatable {
   final int id;
@@ -32,8 +33,10 @@ class Doctor_Sub_Model extends Equatable {
   final bool? is_favorite;
   final int? views_count;
   final double avg_rate;
+  final List<Category>? categories;
 
   const Doctor_Sub_Model({
+    this.categories,
     required this.id,
     required this.avg_rate,
     this.user_id,
@@ -99,7 +102,10 @@ class Doctor_Sub_Model extends Equatable {
         is_like: json["is_like"],
         favoriters_count: json["favoriters_count"],
         is_favorite: json["is_favorite"],
-        views_count: json["views_count"]
+        views_count: json["views_count"],
+        categories:json["categories"]==null?[]: List<Category>.from(json["categories"]
+              .map((x) => Category.fromJson(x as Map<String, dynamic>))
+          as Iterable<dynamic>),
         );
   }
   @override

@@ -20,7 +20,8 @@ import 'package:provider/provider.dart';
 
 class Part extends StatefulWidget {
   final int index ;
-  const Part({Key? key, required this.index}) : super(key: key);
+  final int? part_id;
+  const Part({Key? key, required this.index, this.part_id=0}) : super(key: key);
 
   @override
   State<Part> createState() => _PartState();
@@ -40,7 +41,11 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
       master_model = await _con.getIndexPartCategories(widget.index);
       for (int i = 0; i < master_model.all_childrens!.length; i++) {
         setState(() {
-          willSelect.add(false);
+          if(widget.part_id== master_model.all_childrens![i].id)
+          {
+            willSelect.add(true);
+          }
+            willSelect.add(false);
         });
       }
       setState(() {

@@ -8,6 +8,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/clinic/clinicdetail_model.dart';
+import 'package:laxia/models/home/category_model.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_medialist.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_pos.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_sub_detail.dart';
@@ -19,6 +21,7 @@ import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/doctor_group_card.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
+import 'package:provider/provider.dart';
 
 class Clinic_Detail extends StatefulWidget {
   final int index;
@@ -36,6 +39,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
   bool isfavourite = false, isloading = true;
   final _con = HomeController();
   late ClinicDetail_Model clinic_detail;
+  List<Category> categories=[];
   Future<void> getData({required int index}) async {
     try {
       final mid = await _con.getClinicDetail(index: index);
@@ -62,7 +66,16 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       }
     } catch (e) {}
   }
-
+  void addCategory(Category cate){
+    for(int i=0;i<categories.length;i++){
+      if(cate.id==categories[i].id){
+        return;
+      }
+    }
+    setState(() {
+      categories.add(cate);
+    });
+  }
   @override
   void initState() {
     getData(index: widget.index);
@@ -76,12 +89,18 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       statusBarIconBrightness: Brightness.dark,
       statusBarColor: Helper.whiteColor,
     ));
-    // print(clinic_detail);
+    if(!isloading){
+      for(int i=0;i<clinic_detail.doctors.length;i++){
+        for(int j=0;j<clinic_detail.doctors[i].categories!.length;j++){
+          addCategory(clinic_detail.doctors[i].categories![j]);
+        }
+      }
+    }
     return isloading
         ? Container(
             child: Container(
             height: MediaQuery.of(context).size.width,
-            color: Colors.transparent,
+            color: Color.fromARGB(0, 10, 9, 9),
             child: Center(
               child: new CircularProgressIndicator(),
             ),

@@ -17,20 +17,20 @@ class SearchResultAll extends StatefulWidget {
   @override
   State<SearchResultAll> createState() => _SearchResultAllState();
 }
-Future<void> getData({required int index}) async {
-    try {
-      final mid = await _con.getDiaryDetail(index: index);
-      setState(() {
-        diary_detail = mid;
-         isfavorite=diary_detail.diary.is_favorite==null?false:diary_detail.diary.is_favorite!;
-         islike=diary_detail.diary.is_like!;
-         isfollow=diary_detail.owner.is_follow!;
-         isloading = false;
-      });
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+// Future<void> getData({required int index}) async {
+//     try {
+//       final mid = await _con.getDiaryDetail(index: index);
+//       setState(() {
+//         diary_detail = mid;
+//          isfavorite=diary_detail.diary.is_favorite==null?false:diary_detail.diary.is_favorite!;
+//          islike=diary_detail.diary.is_like!;
+//          isfollow=diary_detail.owner.is_follow!;
+//          isloading = false;
+//       });
+//     } catch (e) {
+//       print(e.toString());
+//     }
+//   }
 class _SearchResultAllState extends State<SearchResultAll> {
   final List<String> tabMenus = [
     'メニュー',
