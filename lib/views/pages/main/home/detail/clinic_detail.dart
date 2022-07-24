@@ -62,7 +62,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       }
     } catch (e) {}
   }
-
+  String getFreeday(){
+    String mid='';
+    for(int i=0;i<clinic_detail.clinic.work_times!.length; i++)
+      if(clinic_detail.clinic.work_times![i].type==1){
+        mid+=clinic_detail.clinic.work_times![i].weekday+' ';
+      }
+    return mid;
+  }
   @override
   void initState() {
     getData(index: widget.index);
@@ -888,7 +895,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 fontWeight: FontWeight.w700))),
                                     DataColumn(
                                         label: Text(
-                                            'clinic_detail["clinicname"]',
+                                            clinic_detail.clinic.name!,
                                             style: TextStyle(
                                                 
                                                 fontSize: 14,
@@ -907,7 +914,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
-                                      DataCell(Text('clinic_detail["access"]',
+                                      DataCell(Text( clinic_detail.clinic.nearest_station==null?"":clinic_detail.clinic.nearest_station!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -925,7 +932,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
-                                      DataCell(Text('clinic_detail["access"]',
+                                      DataCell(Text(clinic_detail.clinic.access==null?"":clinic_detail.clinic.access!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -956,7 +963,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text(' clinic_detail["workday"]',
+                                      DataCell(Text(getFreeday(),
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -968,11 +975,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: Helper.headFontFamily,
-                                              
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text(
-                                          'clinic_detail["phonenumber"]',
+                                          clinic_detail.clinic.phone_number==null?"":clinic_detail.clinic.phone_number.toString(),
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -987,7 +993,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               fontFamily: Helper.headFontFamily,
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text('clinic_detail["card"]',
+                                      DataCell(Text(clinic_detail.clinic.credit_card==null?"":clinic_detail.clinic.credit_card!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -1002,7 +1008,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text('clinic_detail["park"]',
+                                      DataCell(Text(clinic_detail.clinic.parking==null?"":clinic_detail.clinic.parking!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               
