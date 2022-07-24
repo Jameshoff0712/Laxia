@@ -70,6 +70,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
+                      // 'ryu',
                       widget.title,
                       style: TextStyle(
                           fontSize: 16,
@@ -145,6 +146,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                                       width: 5,
                                     ),
                                     Text(
+                                      // 'ryu',
                                       widget.categories,
                                       style: TextStyle(
                                           fontSize: 12,

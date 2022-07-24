@@ -65,9 +65,15 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         rate: selectstar.toString(),
         question: CounselQuestion_list
         );
-
-    dynamic result = _conMy.postCounsel(newQuestion);
-    print(result.data);
+    if(widget.counsel_id != ''){
+      dynamic result = _conMy.editCounsel(newQuestion, widget.counsel_id!);
+      print(result.data);
+    }
+    else{
+      dynamic result = _conMy.postCounsel(newQuestion);
+      print(result.data);
+    }
+    // print(result.data);
   }
   enableAddButton() {
     setState(() {
@@ -114,15 +120,15 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         Provider.of<UserProvider>(context, listen: true);
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
-    if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 ) {
-      setState(() {
-        isAddEnabled = true;
-      });
-    } else {
-      setState(() {
-        isAddEnabled = false;
-      });
-    }
+    // if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 ) {
+    //   setState(() {
+    //     isAddEnabled = true;
+    //   });
+    // } else {
+    //   setState(() {
+    //     isAddEnabled = false;
+    //   });
+    // }
 
     if(initDetail && widget.counsel_id != '') {
       setState(() {
@@ -132,6 +138,15 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         selectstar = diaryProperties.getCounselRate;
         CounselQuestion_list = diaryProperties.getCounselQuestions;
         initDetail = false;
+      });
+    }
+    if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 ) {
+      setState(() {
+        isAddEnabled = true;
+      });
+    } else {
+      setState(() {
+        isAddEnabled = false;
       });
     }
     return Scaffold(

@@ -1,5 +1,6 @@
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step4.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +16,8 @@ class AddDiaryStep3Page extends StatefulWidget {
 class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
   bool isAddEnabled = true;
   bool initDetail = true;
-  List<int> selectstar = [];
+  List<int> selectstar = [0,0,0,0,0,0,0,0,0];
+  // List<int> selectstar = [1,1,1,1,1,1,1,1,1];
   // bool isAllSelected = false;
   //File imageURI;
   // late OfferController _con;
@@ -36,9 +38,9 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
     });
   }
 
-  AddDiaryStep4Page({String? diary_id}) {
-    Navigator.of(context).pushNamed("/AddDiaryStep4");
-  }
+  // AddDiaryStep4Page({String? diary_id}) {
+  //   Navigator.of(context).pushNamed("/AddDiaryStep4");
+  // }
 
   editTitle(String title) {
     if (title.isNotEmpty) isAddEnabled = true;
@@ -46,11 +48,12 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
 
   @override
   void initState() {
-    for (int qindex = 0; qindex < 9; qindex++) {
-      setState(() {
-        selectstar.add(0);
-      });
-    }
+    // setState(() {
+    //   for (int i = 0; i < 9; i++) {
+    //       selectstar.add(0);
+    //   }
+    //   // selectstar[2] = 2;
+    // });
     super.initState();
   }
 
@@ -66,6 +69,17 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
   Widget build(BuildContext context) {
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
+    if(initDetail && widget.diary_id != '') {
+      setState(() {
+        for (int i = 0; i < 9; i++) {
+          selectstar[i] = 0;
+          selectstar[i] = diaryProperties.rates[i];
+        }
+        // print(diaryProperties.rates);
+        // selectstar = diaryProperties.rates;
+        initDetail = false;
+      });
+    }
     for(int i = 0; i < 9; i++){
       if(selectstar[i] == 0) {
         setState(() {
@@ -78,13 +92,8 @@ class _AddDiaryStep3PageState extends State<AddDiaryStep3Page> {
           isAddEnabled = true;
         });
     }
-    if(initDetail && widget.diary_id != '') {
-      setState(() {
-        selectstar = diaryProperties.rates;
-        initDetail = false;
-      });
-    }
 
+    // print(selectstar);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

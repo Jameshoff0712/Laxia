@@ -42,8 +42,14 @@ class MyController extends BaseController {
   Future<dynamic> postCounsel(CounselPostModel newCounsel) async {
     return await api.postCounsel(newCounsel);
   }
+  Future<dynamic> editCounsel(CounselPostModel newCounsel, String counsel_id) async {
+    return await api.editCounsel(newCounsel, counsel_id);
+  }
   Future<dynamic> postDiary(DiaryPostModel newDiary) async {
     return await api.postDiary(newDiary);
+  }
+  Future<dynamic> editDiary(DiaryPostModel newDiary, String diary_id) async {
+    return await api.editDiary(newDiary, diary_id);
   }
   Future<Media_model> imageUpload(String imagePicked) {
     return api.imageUpload(imagePicked);

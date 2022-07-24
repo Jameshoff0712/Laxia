@@ -153,7 +153,7 @@ class _DiaryPageState extends State<DiaryPage> {
                     ),
                   )
                 : Column(children: [
-                    categoryList.length > 0
+                    diary_data.length > 0
                         ? Padding(
                             padding: const EdgeInsets.only(top: 27, left: 16),
                             child: ListTile(
@@ -194,7 +194,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                 for(int i=0; i< diary_data[index].categories!.length; i++)
                                   categories.add(diary_data[index].categories![i].name);
                                 return DiaryAddPage_Card(
-                                  title: diary_data[index].categories![0].name,
+                                  title: diary_data[index].categories!.length > 0 ? diary_data[index].categories![0].name : '',
                                   photo: diary_data[index].before_image!,
                                   categories: categories.join(', '),
                                   clinic_name: diary_data[index].clinic_name!,

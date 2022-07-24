@@ -1,5 +1,6 @@
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step3.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step4.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +47,9 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
     });
   }
 
-  AddDiaryStep3Page({String? diary_id}) {
-    Navigator.of(context).pushNamed("/AddDiaryStep3");
-  }
+  // AddDiaryStep3Page({String? diary_id}) {
+  //   Navigator.of(context).pushNamed("/AddDiaryStep3");
+  // }
 
   editTitle(String title) {
     if (title.isNotEmpty) isAddEnabled = true;
@@ -76,7 +77,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
     // diaryProperties.setCostOther(cost_other);
     if(initDetail && widget.diary_id != '') {
       setState(() {
-        conOp.text = diaryProperties.cost_op.toString();
+        conOp.text = (diaryProperties.cost_op - diaryProperties.cost_anesthetic - diaryProperties.cost_drug - diaryProperties.cost_other).toString();
         conAnes.text = diaryProperties.cost_anesthetic.toString();
         conDrug.text = diaryProperties.cost_drug.toString();
         conOther.text = diaryProperties.cost_other.toString();
@@ -446,7 +447,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => AddDiaryStep3Page(
-                                    diary_id: widget.diary_id,
+                                    diary_id: widget.diary_id
                               )));
                             } : null,
                         style: ElevatedButton.styleFrom(

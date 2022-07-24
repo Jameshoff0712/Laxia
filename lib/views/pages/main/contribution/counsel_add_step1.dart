@@ -152,7 +152,12 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                             // diaryProperties.setMedias(images);
                             diaryProperties.setCounselImageIds(imageIds);
                             Navigator.of(context).pop();
-                            Navigator.of(context).pushNamed("/AddCounselStep2");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddCounselStep2Page(
+                                  counsel_id: widget.counsel_id,
+                            )));
                           },
                         )
                       ],
@@ -240,23 +245,23 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
       userProperties.selectedDoctor = counselDetail.counceling.doctor_name!;
       diaryProperties.date = counselDetail.counceling.counseling_date!;
       diaryProperties.counsel_content = counselDetail.counceling.content!;
-      setState(() {
-        imageIds = [[], [], []];
-        for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
-          imageIds[0].add(counselDetail.counceling.media_self![i].id);
-        for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
-          imageIds[1].add(counselDetail.counceling.media_like![i].id);
-        for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
-          imageIds[2].add(counselDetail.counceling.media_dislike![i].id);
+      // setState(() {
+      //   imageIds = [[], [], []];
+      //   for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
+      //     imageIds[0].add(counselDetail.counceling.media_self![i].id);
+      //   for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
+      //     imageIds[1].add(counselDetail.counceling.media_like![i].id);
+      //   for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
+      //     imageIds[2].add(counselDetail.counceling.media_dislike![i].id);
 
-        images = [[], [], []];
-        for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
-          images[0].add(counselDetail.counceling.media_self![i].path);
-        for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
-          images[1].add(counselDetail.counceling.media_like![i].path);
-        for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
-          images[2].add(counselDetail.counceling.media_dislike![i].path);
-      });
+      //   images = [[], [], []];
+      //   for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
+      //     images[0].add(counselDetail.counceling.media_self![i].path);
+      //   for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
+      //     images[1].add(counselDetail.counceling.media_like![i].path);
+      //   for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
+      //     images[2].add(counselDetail.counceling.media_dislike![i].path);
+      // });
 
       diaryProperties.counsel_reason = counselDetail.counceling.reason!;
       diaryProperties.counsel_before = counselDetail.counceling.before_counseling!;
