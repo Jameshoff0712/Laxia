@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/clinic/clinicdetail_model.dart';
+import 'package:laxia/models/home/category_model.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_top.dart';
 import 'package:laxia/views/pages/main/home/detail/staticsub/home_case.dart';
 import 'package:laxia/views/pages/main/home/detail/staticsub/home_counseling.dart';
@@ -17,8 +18,9 @@ import 'package:laxia/views/widgets/tabbar.dart';
 class Clinic_Sub_Detail extends StatefulWidget {
   final int index;
   final ClinicDetail_Model clinic_Detail;
+  final List<Category> categories;
   const Clinic_Sub_Detail(
-      {Key? key, required this.clinic_Detail, required this.index})
+      {Key? key, required this.clinic_Detail, required this.index, required this.categories})
       : super(key: key);
 
   @override
@@ -98,7 +100,7 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
                                   size: 22, color: Colors.black),
                               onPressed: () => Navigator.pop(context),
                               splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                              highlightColor: Colors.transparent,  
                             ),
                             Text(
                               widget.clinic_Detail.clinic.name == null
@@ -131,11 +133,11 @@ class _Clinic_Sub_DetailState extends State<Clinic_Sub_Detail>
                             Home_Doctor(
                               doctors: widget.clinic_Detail.doctors,
                             ),
-                            Home_Menu(menus: widget.clinic_Detail.menu),
-                            Home_Diary(diaries: widget.clinic_Detail.diaries),
+                            Home_Menu(menus: widget.clinic_Detail.menu, categories:widget.categories,),
+                            Home_Diary(diaries: widget.clinic_Detail.diaries, categories: widget.categories,),
                             Home_Counseling(
-                                councelings: widget.clinic_Detail.counselings),
-                            Home_Case(cases: widget.clinic_Detail.cases),
+                                councelings: widget.clinic_Detail.counselings, categories: widget.categories,),
+                            Home_Case(cases: widget.clinic_Detail.cases, categories: widget.categories,),
                           ],
                           controller: _tabController,
                         ),

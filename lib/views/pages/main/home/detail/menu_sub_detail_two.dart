@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
 
 class Menu_Sub_Detail_Two extends StatefulWidget {
-  final List detailList;
-  const Menu_Sub_Detail_Two({ Key? key, required this.detailList }) : super(key: key);
+  final Menu_Sub_Model menu;
+  const Menu_Sub_Detail_Two({ Key? key, required this.menu }) : super(key: key);
 
   @override
   State<Menu_Sub_Detail_Two> createState() => _Menu_Sub_Detail_TwoState();
@@ -37,7 +38,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
                 )
             ]),
             Text(
-              widget.detailList[0],
+              widget.menu.description!,
               style: TextStyle(color:Helper.titleColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
             ),
             Padding(
@@ -50,7 +51,7 @@ class _Menu_Sub_Detail_TwoState extends State<Menu_Sub_Detail_Two> {
               ),
             ),
             Text(
-              widget.detailList[1],
+              widget.menu.risk!,
               style: TextStyle(color:Helper.titleColor, fontWeight:FontWeight.w400,fontSize: 14,height: 2.1),
             ),
             Expanded(

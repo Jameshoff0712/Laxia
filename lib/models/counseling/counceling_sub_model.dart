@@ -25,7 +25,7 @@ class Counceling_Sub_Model extends Equatable {
   final bool? is_favorite;
   final List? medias;
   final String? reason;
-  final String title;
+  final String? title;
   final List<Category>? categories;
   final List<Image_model>? media_self;
   final List<Image_model>? media_like;
@@ -36,10 +36,10 @@ class Counceling_Sub_Model extends Equatable {
       this.patient_id,
       this.reason,
       this.clinic_id,
-       this.media_self,
-       this.media_like,
-       this.media_dislike,
-      required this.title,
+      this.media_self,
+      this.media_like,
+      this.media_dislike,
+      this.title,
       this.doctor_id,
       this.counseling_date,
       this.content,

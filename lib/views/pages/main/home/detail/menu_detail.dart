@@ -3,14 +3,19 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/menu/menu_sub_model.dart';
+import 'package:laxia/models/menu/menudetail_model.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_one.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_three.dart';
 import 'package:laxia/views/pages/main/home/detail/menu_sub_detail_two.dart';
 import 'package:laxia/views/widgets/detail_image.dart';
+import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:laxia/views/widgets/home_card.dart';
@@ -24,19 +29,36 @@ class Menu_Detail extends StatefulWidget {
 }
 
 class _Menu_DetailState extends State<Menu_Detail> {
-  List Menu_Datails = [];
-  bool isfavourite = false;
-  Future<void> get_Menu_Datails() async {
-    String mid = await rootBundle.loadString("assets/cfg/detail_menu.json");
-    setState(() {
-      Menu_Datails.addAll(json.decode(mid));
-      isfavourite = Menu_Datails[0]["favourite"];
-    });
+  bool isVisible=false,isPostVisible=false;
+  bool isloading = true,islike=false;
+  final _con = HomeController();
+  late MenuDetail_Model menu_detail;
+  Future<void> getData() async {
+    try {
+      final mid = await _con.getMenuDetail(index: widget.index);
+      setState(() {
+        menu_detail = mid;
+         islike=menu_detail.menu.is_favorite==null?false:menu_detail.menu.is_favorite!;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
-
+  Future<void> postToogleLike(index) async {
+    try {
+      final res=await _con.postToogleLike(index:index, domain: 'diaries');
+      if(res==true){
+        setState(() {
+          islike=!islike;
+        });
+      }
+    } catch (e) {
+    }
+  }
   @override
   void initState() {
-    get_Menu_Datails();
+    getData();
     super.initState();
   }
 
@@ -48,11 +70,18 @@ class _Menu_DetailState extends State<Menu_Detail> {
       statusBarColor: Helper.whiteColor,
     ));
     // print(Menu_Datails[0]);
-    return Menu_Datails.isNotEmpty
-        ? Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
             backgroundColor: Helper.homeBgColor,
-            body: Menu_Datails.isNotEmpty
-                ? SingleChildScrollView(
+            body: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,10 +93,9 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                       onBoardingInstructions: [
                                         for (int j = 0;
                                             j <
-                                                Menu_Datails[0]["images"]
-                                                    .length;
+                                                menu_detail.menu.images!.length;
                                             j++)
-                                          Menu_Datails[0]["images"][j]
+                                          menu_detail.menu.images![j].path
                                       ],
                                       startindex: 1,
                                     )));
@@ -82,7 +110,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                             },
                             onStar: () {
                               setState(() {
-                                isfavourite = !isfavourite;
+                                // isfavorite = !isfavorite;
                               });
                             },
                           ),
@@ -98,7 +126,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                   Row(
                                     children: [
                                       Text(
-                                        Menu_Datails[0]["price"],
+                                        menu_detail.menu.price.toString(),
                                         style: defaultTextStyle(
                                             Helper.priceColor, FontWeight.w700,
                                             size: 24.0),
@@ -107,9 +135,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         width: 6,
                                       ),
                                       Text(
-                                        Menu_Datails[0]["tax"],
+                                        '（税込）',
                                         style: TextStyle(
-                                            
                                             color: Helper.titleColor,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 12.0),
@@ -123,7 +150,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                     height: 9,
                                   ),
                                   Text(
-                                    Menu_Datails[0]["heading"],
+                                    menu_detail.menu.name,
                                     style: TextStyle(
                                         fontFamily: Helper.headFontFamily,
                                         color: Helper.titleColor,
@@ -143,7 +170,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                           size: 18,
                                         ),
                                       Text(
-                                        Menu_Datails[0]["mark"],
+                                        menu_detail.menu.avg_rate.toString(),
                                         style: defaultTextStyle(
                                             Helper.titleColor, FontWeight.w700,
                                             size: 14.0),
@@ -173,7 +200,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                     height: 12,
                                   ),
                                   Text(
-                                    Menu_Datails[0]["description"]["label"],
+                                    menu_detail.menu.description!,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 3,
                                     style: TextStyle(
@@ -226,10 +253,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   ),
                                                   context: context,
                                                   builder: (context) {
-                                                    return Menu_Sub_Detail_One(
-                                                      detailList: Menu_Datails[
-                                                              0]["description"]
-                                                          ["children"],
+                                                    return Menu_Sub_Detail_Two(
+                                                      menu: menu_detail.menu,
                                                     );
                                                   });
                                             },
@@ -285,8 +310,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                           FontWeight.w700))),
                                           DataColumn(
                                               label: Text(
-                                                  Menu_Datails[0]["description"]
-                                                      ["children"][0],
+                                                  Helper.TreatTime(menu_detail.menu.treat_time!),
                                                   style: TextStyle(
                                                       
                                                       fontSize: 14,
@@ -308,8 +332,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                           FontWeight.w700)),
                                             ),
                                             DataCell(Text(
-                                                Menu_Datails[0]["description"]
-                                                    ["children"][1],
+                                                Helper.Basshi(menu_detail.menu.basshi!),
                                                 style: TextStyle(
                                                     
                                                     fontSize: 14,
@@ -328,8 +351,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                     fontWeight:
                                                         FontWeight.w700))),
                                             DataCell(Text(
-                                                Menu_Datails[0]["description"]
-                                                    ["children"][2],
+                                                Helper.HospitalVisit(menu_detail.menu.hospital_visit!),
                                                 style: TextStyle(
                                                     
                                                     fontSize: 14,
@@ -348,8 +370,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                     fontWeight:
                                                         FontWeight.w700))),
                                             DataCell(Text(
-                                                Menu_Datails[0]["description"]
-                                                    ["children"][3],
+                                                Helper.Hare(menu_detail.menu.hare!),
                                                 style: TextStyle(
                                                     
                                                     fontSize: 14,
@@ -403,11 +424,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   ),
                                                   context: context,
                                                   builder: (context) {
-                                                    return Menu_Sub_Detail_Two(
-                                                      detailList:
-                                                          Menu_Datails[0]
-                                                                  ["cert"]
-                                                              ["children"],
+                                                    return Menu_Sub_Detail_One(
+                                                      menu:menu_detail.menu,
                                                     );
                                                   });
                                             },
@@ -451,7 +469,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 8, vertical: 3),
                                           child: Text(
-                                            "施術時間 90分",
+                                            "施術時間"+menu_detail.menu.alltime.toString()+"分",
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 249, 161, 56),
@@ -468,7 +486,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         physics: NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
                                         itemCount:
-                                            Menu_Datails[0]["follow"].length,
+                                            menu_detail.process.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           return Container(
@@ -516,9 +534,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                         width: 12,
                                                       ),
                                                       Text(
-                                                          Menu_Datails[0]
-                                                                  ["follow"]
-                                                              [index]["label"],
+                                                          menu_detail.process[index].title,
                                                           style: TextStyle(
                                                               
                                                               fontSize: 12,
@@ -530,11 +546,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                     ],
                                                   ),
                                                   Text(
-                                                      Menu_Datails[0]["follow"]
-                                                                      [index]
-                                                                  ["value"]
-                                                              .toString() +
-                                                          "分",
+                                                      menu_detail.process[index].period.toString() + "分",
                                                       style: TextStyle(
                                                           
                                                           fontSize: 12,
@@ -571,7 +583,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                     height: 12,
                                   ),
                                   Text(
-                                    Menu_Datails[0]["cert"]["label"],
+                                    menu_detail.menu.guarantee!,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 3,
                                     style: TextStyle(
@@ -625,9 +637,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                   context: context,
                                                   builder: (context) {
                                                     return Menu_Sub_Detail_Three(
-                                                      detailList:
-                                                          Menu_Datails[0]
-                                                              ["check"],
+                                                      menu:menu_detail.menu,
                                                     );
                                                   });
                                             },
@@ -675,53 +685,34 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         ],
                                       ),
                                     ),
-                                    ListView.builder(
-                                        padding: EdgeInsets.only(
-                                            top: 8, left: 8, right: 8),
-                                        itemCount:
-                                            Menu_Datails[0]["doctors"].length,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              //  Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
-                                            },
-                                            child: Container(
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                    child: Doctor_Card(
-                                                        onpress: () {},
-                                                        image: Menu_Datails[0]
-                                                                ["doctors"]
-                                                            [index]["image"],
-                                                        post: Menu_Datails[0]["doctors"]
-                                                            [index]["post"],
-                                                        name: Menu_Datails[0]["doctors"]
-                                                            [index]["name"],
-                                                        mark: Menu_Datails[0]["doctors"]
-                                                            [index]["mark"],
-                                                        day: Menu_Datails[0]["doctors"]
-                                                            [index]["day"],
-                                                        clinic: Menu_Datails[0]
-                                                                ["doctors"]
-                                                            [index]["clinic"]),
-                                                  ),
-                                                  Icon(
-                                                    Icons
-                                                        .arrow_forward_ios_outlined,
-                                                    size: 15,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 20,
-                                                  )
-                                                ],
-                                              ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        //  Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Doctor_Detail()));
+                                      },
+                                      child: Container(
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Doctor_Card(
+                                                  onpress: () {},
+                                                  image: menu_detail.menu.clinic!.photo!,
+                                                  name: menu_detail.menu.clinic!.name!,
+                                                  mark: menu_detail.menu.clinic!.avg_rate.toString(),
+                                                  day: menu_detail.menu.clinic!.diaries_count.toString(),
+                                                  clinic: menu_detail.menu.clinic!.addr01!),
                                             ),
-                                          );
-                                        }),
+                                            Icon(
+                                              Icons
+                                                  .arrow_forward_ios_outlined,
+                                              size: 15,
+                                            ),
+                                            SizedBox(
+                                              width: 20,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
@@ -775,27 +766,6 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         ),
                                       ),
                                     ),
-                                    // ListView.builder(
-                                    //     padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-                                    //     itemCount: Menu_Datails[0]["diarys"].length,
-                                    //     physics:NeverScrollableScrollPhysics(),
-                                    //     shrinkWrap:true,
-                                    //     itemBuilder: (BuildContext context, int index) {
-                                    //       return Diary_Card(
-                                    //         avator: Menu_Datails[0]["diarys"][index]["avator"],
-                                    //         check: Menu_Datails[0]["diarys"][index]["check"],
-                                    //         image2: Menu_Datails[0]["diarys"][index]["image2"],
-                                    //         image1: Menu_Datails[0]["diarys"][index]["image1"],
-                                    //         eyes: Menu_Datails[0]["diarys"][index]["eyes"],
-                                    //         clinic: Menu_Datails[0]["diarys"][index]["clinic"],
-                                    //         name: Menu_Datails[0]["diarys"][index]["name"],
-                                    //         onpress: () {
-                                    //           Navigator.of(context).push( MaterialPageRoute(builder: (_) =>Diary_Detail()));
-                                    //         },
-                                    //         price: Menu_Datails[0]["diarys"][index]["price"],
-                                    //         sentence: Menu_Datails[0]["diarys"][index]["sentence"],
-                                    //         type: Menu_Datails[0]["diarys"][index]["type"],
-                                    //       );
                                     GridView.builder(
                                         physics: NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
@@ -809,27 +779,50 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                                 crossAxisSpacing: 10,
                                                 mainAxisSpacing: 10),
                                         itemCount:
-                                            Menu_Datails[0]["home"].length,
+                                            menu_detail.diaries.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          return Home_Card(
-                                            onpress: () {},
-                                            title: Menu_Datails[0]["home"]
-                                                [index]["title"],
-                                            type: Menu_Datails[0]["home"][index]
-                                                ["type"],
-                                            clinic: Menu_Datails[0]["home"]
-                                                [index]["clinic"],
-                                            recommend: Menu_Datails[0]["home"]
-                                                [index]["recommend"],
-                                            source: Menu_Datails[0]["home"]
-                                                [index]["source"],
-                                            name: Menu_Datails[0]["home"][index]
-                                                ["name"],
-                                            doctorimage: Menu_Datails[0]["home"]
-                                                [index]["doctorimage"],
-                                            chat: Menu_Datails[0]["home"][index]
-                                                ["chat"],
+                                          return Diary_Card(
+                                            avator:
+                                                menu_detail.diaries[index].patient_photo == null
+                                                    ? "http://error.png"
+                                                    : menu_detail.diaries[index].patient_photo!,
+                                            check: menu_detail.diaries[index].doctor_name == null
+                                                ? ""
+                                                : menu_detail.diaries[index].doctor_name!,
+                                            image2: menu_detail.diaries[index].after_image == null
+                                                ? "http://error.png"
+                                                : menu_detail.diaries[index].after_image!,
+                                            image1:
+                                                menu_detail.diaries[index].before_image == null
+                                                    ? "http://error.png"
+                                                    : menu_detail.diaries[index].before_image!,
+                                            eyes: menu_detail.diaries[index].views_count == null
+                                                ? ""
+                                                : menu_detail.diaries[index].views_count!
+                                                    .toString(),
+                                            clinic: menu_detail.diaries[index].clinic_name == null
+                                                ? ""
+                                                : menu_detail.diaries[index].clinic_name!,
+                                            name: menu_detail.diaries[index].patient_nickname ==
+                                                    null
+                                                ? ""
+                                                : menu_detail.diaries[index].patient_nickname!,
+                                            onpress: () {
+                                              Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (_) => Diary_Detail(
+                                                      index: menu_detail.diaries[index].id)));
+                                            },
+                                            price: menu_detail.diaries[index].price == null
+                                                ? ""
+                                                : menu_detail.diaries[index].price.toString(),
+                                            sentence:
+                                                menu_detail.diaries[index].doctor_name == null
+                                                    ? ""
+                                                    : menu_detail.diaries[index].doctor_name!,
+                                            type: menu_detail.diaries[index].doctor_name == null
+                                                ? ""
+                                                : menu_detail.diaries[index].doctor_name!,
                                           );
                                         }),
                                   ],
@@ -840,8 +833,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                         ),
                       ],
                     ),
-                  )
-                : Container(),
+                  ),
             bottomNavigationBar: Container(
               color: Helper.whiteColor,
               child: SafeArea(
@@ -861,7 +853,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                Menu_Datails[0]["price"],
+                                menu_detail.menu.price.toString(),
                                 style: defaultTextStyle(
                                     Helper.priceColor, FontWeight.w700,
                                     size: 18.0),
@@ -870,7 +862,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                 width: 6,
                               ),
                               Text(
-                                Menu_Datails[0]["tax"],
+                                '（税込）',
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontWeight: FontWeight.w500,
@@ -884,19 +876,39 @@ class _Menu_DetailState extends State<Menu_Detail> {
                           ),
                           Row(
                             children: [
-                              isfavourite
-                                  ? Icon(
-                                      Icons.star_rounded,
-                                      color: Helper.starColor,
-                                      size: 16,
-                                    )
-                                  : Icon(
-                                      Icons.star_border_rounded,
-                                      color: Helper.txtColor,
-                                      size: 16,
-                                    ),
+                              GestureDetector(
+                                  onTap: () {
+                                    postToogleLike(widget.index);
+                                  },
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      islike
+                                          ? SvgPicture.asset(
+                                              "assets/icons/star.svg",
+                                              width: 22,
+                                              height: 22,
+                                              color: Helper.starColor,
+                                            )
+                                          : SvgPicture.asset(
+                                              "assets/icons/borderstar.svg",
+                                              width: 22,
+                                              height: 22,
+                                              // color: Colors.red,
+                                              color: Color.fromARGB(255, 155, 155, 155),
+                                            ),
+                                      Text(
+                                        "お気に入り",
+                                        style: TextStyle(
+                                            color:Helper.txtColor,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               Text(
-                                "4.23(102)",
+                                menu_detail.menu.avg_rate.toString()+"("+menu_detail.diaries.length.toString()+")",
                                 style: TextStyle(
                                     
                                     color: Helper.titleColor,
@@ -932,7 +944,6 @@ class _Menu_DetailState extends State<Menu_Detail> {
                 ),
               ),
             ),
-          )
-        : Container();
+          );
   }
 }

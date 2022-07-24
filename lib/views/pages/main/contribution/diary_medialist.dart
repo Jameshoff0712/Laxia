@@ -1,26 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:image_viewer/image_viewer.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/diary/diary/progress.dart';
+import 'package:laxia/models/question/media_model.dart';
 import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 
 
 class Diary_MediaList extends StatefulWidget {
-  final dynamic before;
-  final List post_treatment;
-  const Diary_MediaList({ Key? key, required this.post_treatment, this.before}) : super(key: key);
+  final List<Media_model> before_medias;
+  final List<Progress> processes;
+  const Diary_MediaList({ Key? key, required this.processes, required this.before_medias}) : super(key: key);
 
   @override
   State<Diary_MediaList> createState() => _Diary_MediaListState();
 }
 
 class _Diary_MediaListState extends State<Diary_MediaList> {
-  List mid=[];
   @override
   void initState(){
-    mid.add(widget.before);
-    for(int i=0;i<widget.post_treatment.length;i++)
-      mid.add(widget.post_treatment[i]["post_list"]);
     super.initState();
   }
   @override
@@ -50,12 +47,11 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            for(int i=0;i<mid.length;i++)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    mid[i]["label"],
+                    "施術前",
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                         fontSize: 16,
@@ -72,9 +68,37 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
                         crossAxisCount: 3,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10),
-                        itemCount: mid[i]["images"].length,
+                        itemCount: widget.before_medias.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Image_Widget(context,index,i);
+                          return Image_Widget(context,index,widget.before_medias);
+                  }),
+                ],
+              ),
+            for(int i=0;i<widget.processes.length;i++)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "施術"+widget.processes[i].from_treat_day.toString()+"日後",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color:Helper.titleColor)
+                  ),
+                  GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    gridDelegate:
+                    SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio:1,
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10),
+                        itemCount: widget.processes[i].medias.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Image_Widget(context,index,widget.processes[i].medias);
                   }),
                 ],
               ),
@@ -83,7 +107,7 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
       ),
     );
   }
-  FittedBox Image_Widget(BuildContext context,int imageUrl,int index) {
+  FittedBox Image_Widget(BuildContext context,int startindex,List<Media_model> medias) {
     return FittedBox(
       fit: BoxFit.fill,
       child: GestureDetector(
@@ -91,10 +115,10 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
           Navigator.of(context).push(
                                    MaterialPageRoute(
                             builder: (context) => PageViewWidget( onBoardingInstructions: [
-                for (int j = 0; j < mid[index]["images"].length; j++)
-                   mid[index]["images"][j]
+                for (int j = 0; j < medias.length; j++)
+                  medias[j].path
               ],
-              startindex: imageUrl,)));
+              startindex: startindex,)));
         },
         child: SizedBox(
             height: MediaQuery.of(context).size.width,
@@ -103,7 +127,7 @@ class _Diary_MediaListState extends State<Diary_MediaList> {
               borderRadius: BorderRadius.circular(10),
               child: CachedNetworkImage(
                 fit: BoxFit.fill,
-                imageUrl: mid[index]["images"][imageUrl],
+                imageUrl: medias[startindex].path,
                 placeholder: (context, url) => Image.asset(
                   'assets/images/loading.gif',
                   fit: BoxFit.fill,

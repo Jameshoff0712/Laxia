@@ -48,7 +48,6 @@ class _Home_DoctorState extends State<Home_Doctor> {
                                   // Navigator.of(context).pushNamed("/Doctor_Detail");
                                 },
                                 image: widget.doctors[index].photo==null?"http://error.png": widget.doctors[index].photo!,
-                                post: "院長", //widget.doctors[index]["post"],
                                 name: widget.doctors[index].hira_name,
                                 mark:4.8.toString(), //widget.doctors[index]["mark"],
                                 day:222.toString(), //widget.doctors[index]["day"],

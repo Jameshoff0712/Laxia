@@ -14,6 +14,7 @@ import 'package:laxia/models/doctor/doctordetail_model.dart';
 import 'package:laxia/models/home/home_model.dart';
 import 'package:laxia/models/home/home_search_model.dart';
 import 'package:laxia/models/menu/menu_model.dart';
+import 'package:laxia/models/menu/menudetail_model.dart';
 import 'package:laxia/models/question/comment_model.dart';
 import 'package:laxia/models/question/question_model.dart';
 import 'package:laxia/models/question/question_sub_model.dart';
@@ -63,6 +64,11 @@ class HomeApi extends Api {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/diaries/"+index.toString(), token);
     return DiaryDetail_Model.fromJson(res.data["data"]["diary"]);
+  }
+  Future<MenuDetail_Model> getMenuDetail(int index) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/menus/"+index.toString(), token);
+    return MenuDetail_Model.fromJson(res.data["data"]);
   }
   Future<Doctor> getDoctorData(String per_page, String page, String favorite, String clinic_id, String q,String filter, String category_id, String city_id) async {
     String? token = await preferenceUtil.getToken();

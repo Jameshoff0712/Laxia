@@ -320,7 +320,6 @@ class _QuestionDetailState extends State<QuestionDetail> {
                             builder: (context) {
                               return CommentDialogSheet(
                                 index: widget.index,
-                                count: question_detail.comments_count!,
                                 domain: 'questions',
                               );
                             });
@@ -546,6 +545,19 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                     ),
                                     Expanded(
                                       child: TextField(
+                                        onTap: (){
+                                          showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(15.0),
+                                                  topRight: Radius.circular(15.0)),
+                                            ),
+                                            context: context,
+                                            builder: (context) {
+                                              return CommentDialogSheet( index: widget.index, domain: 'questions',);
+                                            });
+                                          },
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 0,

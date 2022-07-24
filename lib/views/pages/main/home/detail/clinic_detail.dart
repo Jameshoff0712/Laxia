@@ -204,7 +204,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
                                       clinic_Detail: clinic_detail,
-                                      index: 2,
+                                      index: 2, categories: categories,
                                     )));
                           },
                           child: Column(
@@ -234,6 +234,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
+                                      categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 3,
                                     )));
@@ -264,6 +265,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
+                                   categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 4,
                                     )));
@@ -294,6 +296,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
+                                   categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 1,
                                     )));
@@ -348,6 +351,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Clinic_Sub_Detail(
+                                       categories: categories,
                                           clinic_Detail: clinic_detail,
                                           index: 1,
                                         )));
@@ -442,6 +446,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             MaterialPageRoute(
                                                 builder: (_) =>
                                                     Clinic_Sub_Detail(
+                                                       categories: categories,
                                                       clinic_Detail:
                                                           clinic_detail,
                                                       index: 2,
@@ -535,6 +540,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
+                                                             categories: categories,
                                                             clinic_Detail:
                                                                 clinic_detail,
                                                             index: 2,
@@ -604,6 +610,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             MaterialPageRoute(
                                                 builder: (_) =>
                                                     Clinic_Sub_Detail(
+                                                       categories: categories,
                                                       clinic_Detail:
                                                           clinic_detail,
                                                       index: 3,
@@ -755,6 +762,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             MaterialPageRoute(
                                                 builder: (_) =>
                                                     Clinic_Sub_Detail(
+                                                       categories: categories,
                                                       clinic_Detail:
                                                           clinic_detail,
                                                       index: 3,
@@ -768,6 +776,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
+                                                             categories: categories,
                                                             clinic_Detail:
                                                                 clinic_detail,
                                                             index: 3,

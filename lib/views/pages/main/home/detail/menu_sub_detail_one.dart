@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
 
 class Menu_Sub_Detail_One extends StatefulWidget {
-  final List detailList;
-  const Menu_Sub_Detail_One({Key? key, required this.detailList})
+  final Menu_Sub_Model menu;
+  const Menu_Sub_Detail_One({Key? key, required this.menu})
       : super(key: key);
 
   @override
@@ -56,7 +57,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                   color: Helper.titleColor,
                                   fontWeight: FontWeight.w700))),
                       DataColumn(
-                          label: Text(widget.detailList[0],
+                          label: Text(Helper.TreatTime(widget.menu.treat_time!),
                               style: TextStyle(
                                   fontSize: 14,
                                   color: Helper.titleColor,
@@ -72,7 +73,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                   color: Helper.titleColor,
                                   fontWeight: FontWeight.w700)),
                         ),
-                        DataCell(Text(widget.detailList[1],
+                        DataCell(Text(Helper.Basshi(widget.menu.basshi!),
                             style: TextStyle(
                                 fontSize: 14,
                               color: Helper.titleColor,
@@ -85,7 +86,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[2],
+                        DataCell(Text(Helper.HospitalVisit(widget.menu.hospital_visit!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -98,7 +99,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[3],
+                        DataCell(Text(Helper.Hare(widget.menu.hare!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -113,7 +114,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                   color: Helper.titleColor,
                                   fontWeight: FontWeight.w700)),
                         ),
-                        DataCell(Text(widget.detailList[4],
+                        DataCell(Text(Helper.Pain(widget.menu.pain!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -126,7 +127,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[5],
+                        DataCell(Text(Helper.Bleeding(widget.menu.bleeding!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -139,7 +140,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[6],
+                        DataCell(Text(Helper.HospitalNeed(widget.menu.hospital_need!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -154,7 +155,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                   color: Helper.titleColor,
                                   fontWeight: FontWeight.w700)),
                         ),
-                        DataCell(Text(widget.detailList[7],
+                        DataCell(Text(Helper.Masui(widget.menu.masui!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -167,7 +168,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[8],
+                        DataCell(Text(Helper.Makeup(widget.menu.makeup!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -180,7 +181,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[9],
+                        DataCell(Text(Helper.Shower(widget.menu.shower!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -193,7 +194,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[10],
+                        DataCell(Text(Helper.Massage(widget.menu.massage!),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Helper.titleColor,
@@ -205,7 +206,7 @@ class _Menu_Sub_Detail_OneState extends State<Menu_Sub_Detail_One> {
                                 fontSize: 14,
                                 color: Helper.titleColor,
                                 fontWeight: FontWeight.w700))),
-                        DataCell(Text(widget.detailList[11],
+                        DataCell(Text(Helper.SportImpossible(widget.menu.sport_impossible!),
                             style: TextStyle(
                                 fontSize: 14,
                                color: Helper.titleColor,

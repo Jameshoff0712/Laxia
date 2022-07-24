@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/menu/menu_sub_model.dart';
 
 
 class Menu_Sub_Detail_Three extends StatefulWidget {
-  final dynamic detailList;
-  const Menu_Sub_Detail_Three({ Key? key, required this.detailList }) : super(key: key);
+  final Menu_Sub_Model menu;
+  const Menu_Sub_Detail_Three({ Key? key, required this.menu }) : super(key: key);
 
   @override
   State<Menu_Sub_Detail_Three> createState() => _Menu_Sub_Detail_ThreeState();
@@ -36,7 +37,7 @@ class _Menu_Sub_Detail_ThreeState extends State<Menu_Sub_Detail_Three> {
                 )
             ]),
             Text(
-                  widget.detailList,
+                  widget.menu.guarantee!,
                   style: TextStyle(color:Helper.titleColor, fontWeight:FontWeight.w400,fontSize: 14, height: 2.1),
                 ),
            Expanded(

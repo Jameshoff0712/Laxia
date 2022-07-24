@@ -181,15 +181,17 @@ class _Doctor_Sub_DetailState extends State<Doctor_Sub_Detail>
                         Doctor_Top(
                             doctor_detail: widget.doctor_detail,
                             onpress: changeTabIndex),
-                        Home_Diary(diaries: widget.doctor_detail.diaries),
-                        Home_Case(cases: widget.doctor_detail.cases),
+                        Home_Diary(diaries: widget.doctor_detail.diaries, categories: widget.doctor_detail.doctor.categories!,),
+                        Home_Case(cases: widget.doctor_detail.cases, categories: widget.doctor_detail.doctor.categories!,),
                         Home_Counseling(
-                            councelings: widget.doctor_detail.counselings),
+                            councelings: widget.doctor_detail.counselings, categories: widget.doctor_detail.doctor.categories!,),
                         Home_Question(
-                            questions: widget.doctor_detail.questions),
+                            questions: widget.doctor_detail.questions, categories: widget.doctor_detail.doctor.categories!,),
                       ],
                       controller: _tabController,
                     ),
+
+
                   ),
                 ],
               ),
