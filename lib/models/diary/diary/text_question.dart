@@ -19,7 +19,7 @@ class Test_Question extends Equatable {
         created_at:json["created_at"], 
         id: json["id"],
         updated_at:json["updated_at"],
-        pivot: Pivot.fromJson(json["pivot"])
+        pivot: json["pivot"] == null ? Pivot(answer: '') : Pivot.fromJson(json["pivot"])
         );
   }
   @override
@@ -39,7 +39,7 @@ class Pivot extends Equatable {
 
   factory Pivot.fromJson(Map<String, dynamic> json) {
     return Pivot(
-        answer:json["answr"],
+        answer:json["answer"],
         diary_id: json["diary_id"],
         question_id: json["question_id"]);
   }

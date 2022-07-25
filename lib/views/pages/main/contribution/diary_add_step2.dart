@@ -1,5 +1,6 @@
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step3.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step4.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +8,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class AddDiaryStep2Page extends StatefulWidget {
+  String? diary_id;
   final String operationName;
   final bool? isMyDiary;
-  const AddDiaryStep2Page({Key? key, required this.operationName, this.isMyDiary = false}) : super(key: key);
+  AddDiaryStep2Page({Key? key, required this.operationName, this.isMyDiary = false, this.diary_id = ''}) : super(key: key);
   @override
   _AddDiaryStep2PageState createState() => _AddDiaryStep2PageState();
 }
 
 class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
   bool isAddEnabled = true;
+  bool initDetail = true;
+  TextEditingController conOp = TextEditingController();
+  TextEditingController conAnes = TextEditingController();
+  TextEditingController conDrug = TextEditingController();
+  TextEditingController conOther = TextEditingController();
   int cost_op = 0;
   int cost_anes = 0;
   int cost_drug = 0;
@@ -40,9 +47,9 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
     });
   }
 
-  AddDiaryStep3Page() {
-    Navigator.of(context).pushNamed("/AddDiaryStep3");
-  }
+  // AddDiaryStep3Page({String? diary_id}) {
+  //   Navigator.of(context).pushNamed("/AddDiaryStep3");
+  // }
 
   editTitle(String title) {
     if (title.isNotEmpty) isAddEnabled = true;
@@ -68,9 +75,28 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
     // diaryProperties.setCostAnesthetic(cost_anes);
     // diaryProperties.setCostDrug(cost_drug);
     // diaryProperties.setCostOther(cost_other);
+    if(initDetail && widget.diary_id != '') {
+      setState(() {
+        conOp.text = (diaryProperties.cost_op - diaryProperties.cost_anesthetic - diaryProperties.cost_drug - diaryProperties.cost_other).toString();
+        conAnes.text = diaryProperties.cost_anesthetic.toString();
+        conDrug.text = diaryProperties.cost_drug.toString();
+        conOther.text = diaryProperties.cost_other.toString();
+        initDetail = false;
+      });
+    }
     setState(() {
-      total_cost = cost_op + cost_anes + cost_drug + cost_other;
+      total_cost = 0;
+      if(conOp.text != '' && conOp.text != null)
+        total_cost += int.parse(conOp.text);
+      if(conAnes.text != '' && conAnes.text != null)
+        total_cost += int.parse(conAnes.text);
+      if(conDrug.text != '' && conDrug.text != null)
+        total_cost += int.parse(conDrug.text);
+      if(conOther.text != '' && conOther.text != null)
+        total_cost += int.parse(conOther.text);
+      // total_cost = cost_op + cost_anes + cost_drug + cost_other;
     });
+    
     if(diaryProperties.getCostOp > 0)
       setState(() {
         isAddEnabled = true;
@@ -150,11 +176,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                         ),
                         Flexible(
                           child: TextField(
+                            controller: conOp,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val){
                               setState(() {
-                                cost_op = int.parse(val);
+                                conOp.text = val;
                               });
                               diaryProperties.setCostOp(int.parse(val));
                             },
@@ -210,11 +237,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                         ),
                         Flexible(
                           child: TextField(
+                            controller: conAnes,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val) {
                               setState(() {
-                                cost_anes = int.parse(val);
+                                conAnes.text = val;
                               });
                               diaryProperties.setCostAnesthetic(int.parse(val));
                             },
@@ -270,11 +298,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                         ),
                         Flexible(
                           child: TextField(
+                            controller: conDrug,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val) {
                               setState(() {
-                                cost_drug = int.parse(val);
+                                conDrug.text = val;
                               });
                               diaryProperties.setCostDrug(int.parse(val));
                             },
@@ -330,11 +359,12 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                         ),
                         Flexible(
                           child: TextField(
+                            controller: conOther,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val) {
                               setState(() {
-                                cost_other = int.parse(val);
+                                conOther.text = val;
                               });
                               diaryProperties.setCostOther(int.parse(val));
                             },
@@ -412,7 +442,14 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                       padding: EdgeInsets.only(top: 40, left: 16, right: 16),
                       child: ElevatedButton(
                         onPressed:
-                            isAddEnabled ? () => AddDiaryStep3Page() : null,
+                            isAddEnabled ? () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddDiaryStep3Page(
+                                    diary_id: widget.diary_id
+                              )));
+                            } : null,
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
                           padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),

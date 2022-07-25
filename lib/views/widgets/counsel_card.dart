@@ -1,32 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/views/pages/main/contribution/counsel_add_step1.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:laxia/common/helper.dart';
 
 class CounselAddPage_Card extends StatefulWidget {
   final VoidCallback onpress;
-  final Color? buttoncolor, fontcolor;
-  final String avator, name, image1, image2, sentence, type, check, price, eyes;
-  final String? buttontext, hearts, chats, clinic;
+  // final Color? buttoncolor, fontcolor;
+  // final String avator, name, image1, image2, sentence, type, check, price, eyes;
+  // final String? buttontext, hearts, chats, clinic;
+  final String category_name;
+  final String clinic_name;
+  final String doctor_name;
+  final int counsel_id;
   const CounselAddPage_Card(
       {Key? key,
+      required this.category_name,
+      required this.clinic_name,
+      required this.doctor_name,
+      required this.counsel_id,
       required this.onpress,
-      required this.avator,
-      required this.name,
-      this.buttontext = "",
-      required this.image1,
-      required this.image2,
-      required this.sentence,
-      required this.type,
-      this.clinic = "",
-      required this.check,
-      required this.price,
-      this.buttoncolor,
-      this.fontcolor,
-      this.hearts = "",
-      this.chats = "",
-      required this.eyes})
+      // required this.avator,
+      // required this.name,
+      // this.buttontext = "",
+      // required this.image1,
+      // required this.image2,
+      // required this.sentence,
+      // required this.type,
+      // this.clinic = "",
+      // required this.check,
+      // required this.price,
+      // this.buttoncolor,
+      // this.fontcolor,
+      // this.hearts = "",
+      // this.chats = "",
+      // required this.eyes
+      })
       : super(key: key);
 
   @override
@@ -47,13 +57,13 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: GestureDetector(
-            onTap: widget.onpress,
+            onTap: null,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  widget.type,
+                  widget.category_name,
                   style: TextStyle(
                       fontSize: 16,
                       
@@ -85,7 +95,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                                     width: 5,
                                   ),
                                   Text(
-                                    widget.clinic!,
+                                    widget.clinic_name,
                                     style: TextStyle(
                                         fontSize: 12,
                                         
@@ -114,7 +124,7 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                                     width: 5,
                                   ),
                                   Text(
-                                    widget.check,
+                                    widget.doctor_name,
                                     style: TextStyle(
                                         fontSize: 12,
                                         
@@ -140,7 +150,8 @@ class _CounselAddPage_CardState extends State<CounselAddPage_Card> {
                     padding: EdgeInsets.symmetric(horizontal: 32),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed("/AddCounselStep1");
+                        Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AddCounselStep1Page(counsel_id: widget.counsel_id.toString(),)));
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
