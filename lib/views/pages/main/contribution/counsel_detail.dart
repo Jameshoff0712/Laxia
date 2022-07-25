@@ -10,6 +10,8 @@ import 'package:laxia/models/counseling/councelingdetail_model.dart';
 import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step1.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_add_step2.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:laxia/views/widgets/counsel_short_card.dart';
 import 'package:laxia/views/widgets/qa_card.dart';
@@ -27,7 +29,7 @@ class CounselDetail extends StatefulWidget {
 
 class _CounselDetailState extends StateMVC<CounselDetail> {
   final apiUrl = dotenv.env["DEV_API_URL"];
-  bool isloading = true, isfavorite = false, islike = false,isfollow=false;
+  bool isloading = true, isfavorite = false, islike = false, isfollow = false;
   final _con = HomeController();
   late CouncelingDetail_Model counceling_detail;
   Future<void> getData({required int index}) async {
@@ -36,25 +38,27 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
       setState(() {
         counceling_detail = mid;
         isfavorite = counceling_detail.counceling.is_favorite!;
-        isfollow=counceling_detail.owner.is_follow!;
+        isfollow = counceling_detail.owner.is_follow!;
         islike = counceling_detail.counceling.is_like!;
         isloading = false;
       });
     } catch (e) {
-      print(e.toString()+"");
+      print(e.toString() + "");
     }
   }
+
   Future<void> postToogleFollow(index) async {
     try {
-      final res=await _con.postToogleFollow(index:counceling_detail.owner.id);
-      if(res==true){
+      final res =
+          await _con.postToogleFollow(index: counceling_detail.owner.id);
+      if (res == true) {
         setState(() {
-          isfollow=!isfollow;
+          isfollow = !isfollow;
         });
       }
-    } catch (e) {
-    }
+    } catch (e) {}
   }
+
   Future<void> postToogleFavorite(index) async {
     try {
       final res =
@@ -108,7 +112,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushNamed("/Mypage");
+                          // Navigator.of(context).pushNamed("/Mypage");
                         },
                         child: SizedBox(
                           height: 32,
@@ -117,7 +121,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             borderRadius: BorderRadius.circular(25),
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl:counceling_detail.owner.photo,
+                              imageUrl: counceling_detail.owner.photo,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.cover,
@@ -181,17 +185,27 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
-                                    color: isfollow? Color.fromARGB(255, 110, 198, 210):Colors.white
-                                ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(
+                                        color:
+                                            Color.fromARGB(255, 110, 198, 210),
+                                        width: 2,
+                                        style: BorderStyle.solid),
+                                    color: isfollow
+                                        ? Color.fromARGB(255, 110, 198, 210)
+                                        : Colors.white),
                                 child: Padding(
-                                  padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(12, 2, 12, 3),
                                   child: Text(
                                     'フォロー',
                                     style: TextStyle(
-                                        fontSize: 13,
-                                        color: isfollow?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
+                                      fontSize: 13,
+                                      color: isfollow
+                                          ? Helper.whiteColor
+                                          : Color.fromARGB(255, 110, 198, 210),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -215,7 +229,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                 onPrimary: Colors.white,
                                 onSurface: Color.fromARGB(255, 110, 198, 210),
                                 splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
+                                shadowColor: Colors.transparent,
                               ),
                               child: FittedBox(
                                 fit: BoxFit.fitWidth,
@@ -228,7 +242,6 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
-                                        
                                         color: Helper.whiteColor,
                                       ),
                                     ),
@@ -254,7 +267,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                 icon: Icon(Icons.arrow_back_ios, size: 22, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
                 splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                highlightColor: Colors.transparent,
               ),
             ),
             bottomNavigationBar: SafeArea(
@@ -293,7 +306,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                           Text(
                             "お気に入り",
                             style: TextStyle(
-                                color:Helper.txtColor,
+                                color: Helper.txtColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -324,11 +337,11 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                   color: Color.fromARGB(255, 155, 155, 155),
                                 ),
                           Text(
-                            counceling_detail.counceling.likes_count!.toString(),
+                            counceling_detail.counceling.likes_count!
+                                .toString(),
                             style: TextStyle(
-                                color:Helper.txtColor,
+                                color: Helper.txtColor,
                                 fontSize: 10,
-                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -339,7 +352,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     ),
                     GestureDetector(
                       onTap: () {
-                         showModalBottomSheet(
+                        showModalBottomSheet(
                             constraints: BoxConstraints(
                               maxHeight:
                                   MediaQuery.of(context).size.height * 0.9,
@@ -354,8 +367,6 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             builder: (context) {
                               return CommentDialogSheet(
                                 index: widget.index,
-                                count: counceling_detail
-                                    .counceling.comments_count!,
                                 domain: 'counselings',
                               );
                             });
@@ -370,17 +381,16 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             color: Color.fromARGB(255, 155, 155, 155),
                           ),
                           Text(
-                            counceling_detail.counceling.comments_count.toString(),
+                            counceling_detail.counceling.comments_count
+                                .toString(),
                             style: TextStyle(
                                 color: Helper.txtColor,
                                 fontSize: 10,
-                                
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ),
-                   
                     SizedBox(
                       width: 21,
                     ),
@@ -399,7 +409,6 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                             style: TextStyle(
                                 color: Helper.txtColor,
                                 fontWeight: FontWeight.w700,
-                                
                                 fontSize: 14),
                           ),
                         ),
@@ -423,7 +432,9 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     Container(
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
-                        counceling_detail.counceling.title,
+                        counceling_detail.counceling.title == null
+                            ? ""
+                            : counceling_detail.counceling.title!,
                         style: TextStyle(
                             color: Helper.titleColor,
                             fontSize: 18,
@@ -468,8 +479,20 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     CounselShort_Card(
                       clinic: counceling_detail.clinic.name!,
                       doctor: counceling_detail.doctor.kata_name,
-                      onclinic: () {},
-                      ondoctor: () {},
+                      onclinic: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Clinic_Detail(
+                                    index: counceling_detail.clinic.id)));
+                      },
+                      ondoctor: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Doctor_Detail(
+                                    index: counceling_detail.doctor.id)));
+                      },
                     ),
                     Container(
                       padding: const EdgeInsets.only(top: 15, bottom: 10),
@@ -512,8 +535,11 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       PhotoCarouselWidget(
-                                        bRemove:false,
-                                          ImageList: counceling_detail.counceling.media_self!, onRemove: (int ) {  },)
+                                        bRemove: false,
+                                        ImageList: counceling_detail
+                                            .counceling.media_self!,
+                                        onRemove: (int) {}, 
+                                      )
                                     ],
                                   ),
                                 ),
@@ -544,8 +570,11 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       PhotoCarouselWidget(
-                                        bRemove:false,
-                                          ImageList: counceling_detail.counceling.media_like!, onRemove: (int ) {  },)
+                                        bRemove: false,
+                                        ImageList: counceling_detail
+                                            .counceling.media_like!,
+                                        onRemove: (int) {},
+                                      )
                                     ],
                                   ),
                                 ),
@@ -576,8 +605,11 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       PhotoCarouselWidget(
-                                        bRemove:false,
-                                          ImageList: counceling_detail.counceling.media_dislike!, onRemove: (int ) {  },)
+                                        bRemove: false,
+                                        ImageList: counceling_detail
+                                            .counceling.media_dislike!,
+                                        onRemove: (int) {},
+                                      )
                                     ],
                                   ),
                                 ),
@@ -672,8 +704,20 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                     CounselShort_Card(
                       clinic: counceling_detail.clinic.name!,
                       doctor: counceling_detail.doctor.kata_name,
-                      onclinic: () {},
-                      ondoctor: () {},
+                      onclinic: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Clinic_Detail(
+                                    index: counceling_detail.clinic.id)));
+                      },
+                      ondoctor: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Doctor_Detail(
+                                    index: counceling_detail.doctor.id)));
+                      },
                     ),
                     Container(
                         padding: const EdgeInsets.only(top: 15, bottom: 10),
@@ -697,7 +741,8 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                         borderRadius: BorderRadius.circular(25),
                                         child: CachedNetworkImage(
                                           fit: BoxFit.cover,
-                                          imageUrl:"http://error.png",//counceling_detail.counceling.patient_photo,
+                                          imageUrl:
+                                              "http://error.png", //counceling_detail.counceling.patient_photo,
                                           placeholder: (context, url) =>
                                               Image.asset(
                                             'assets/images/loading.gif',
@@ -716,6 +761,19 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     ),
                                     Expanded(
                                       child: TextField(
+                                        onTap: (){
+                                          showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(15.0),
+                                                  topRight: Radius.circular(15.0)),
+                                            ),
+                                            context: context,
+                                            builder: (context) {
+                                              return CommentDialogSheet( index: widget.index, domain: 'counselings',);
+                                            });
+                                          },
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 0,

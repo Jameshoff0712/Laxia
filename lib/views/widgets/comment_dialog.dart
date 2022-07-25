@@ -11,11 +11,9 @@ import 'package:laxia/views/widgets/comment_card.dart';
 class CommentDialogSheet extends StatefulWidget {
   final String domain;
   final int index;
-  final int count;
   const CommentDialogSheet(
       {Key? key,
       required this.index,
-      required this.count,
       required this.domain})
       : super(key: key);
   @override
@@ -104,7 +102,7 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                               size: 22),
                         ),
                         Text(
-                          widget.count.toString() + "件のコメント",
+                          comment.data.length.toString() + "件のコメント",
                           style: defaultTextStyle(Colors.black, FontWeight.w400,
                               size: 16),
                         ),
@@ -119,6 +117,11 @@ class _CommentDialogSheetState extends State<CommentDialogSheet>
                     child: Column(children: [
                       for (int i = 0; i < comment.data.length; i++)
                         Comment_Card(
+                          onpress: (){
+                            setState(() {
+                              sender.text=comment.data[i].patient_nickname!+' '+sender.text;
+                            });
+                          },
                             name: comment.data[i].patient_nickname == null
                                 ? ""
                                 : comment.data[i].patient_nickname!,

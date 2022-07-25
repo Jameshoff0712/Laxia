@@ -14,6 +14,7 @@ import 'package:laxia/models/doctor/doctordetail_model.dart';
 import 'package:laxia/models/home/home_model.dart';
 import 'package:laxia/models/home/home_search_model.dart';
 import 'package:laxia/models/menu/menu_model.dart';
+import 'package:laxia/models/menu/menudetail_model.dart';
 import 'package:laxia/models/question/comment_model.dart';
 import 'package:laxia/models/question/question_model.dart';
 import 'package:laxia/models/question/question_sub_model.dart';
@@ -34,6 +35,9 @@ class HomeController extends BaseController {
   }
    Future<ClinicDetail_Model> getClinicDetail({required int index}) async {
     return await api.getClinicDetail(index);
+  }
+  Future<MenuDetail_Model> getMenuDetail({required int index}) async {
+    return await api.getMenuDetail(index);
   }
   Future<ProgressDetail_Model> getProgressDetail({required int index}) async {
     return await api.getProgressDetail(index);

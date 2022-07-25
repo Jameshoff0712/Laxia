@@ -7,11 +7,13 @@ class StateSliderWidget extends StatefulWidget {
   final String state_str;
   final int state_val;
   final bool? bBorder;
+  final bool? isenable;
   const StateSliderWidget(
       {Key? key,
       required this.state_str,
       required this.state_val,
-      this.bBorder = false})
+      this.bBorder = false, 
+      this.isenable=true})
       : super(key: key);
 
   @override
@@ -111,9 +113,12 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
                       },
                       value: _value,
                       onChanged: (dynamic newValue) {
-                        setState(() {
-                          _value = newValue;
-                        });
+                        if(widget.isenable!)
+                        {
+                           setState(() {
+                              _value = newValue;
+                            });
+                        }
                       },
                     ))),
           ],

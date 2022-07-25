@@ -36,7 +36,7 @@ class ProgressDetail_Model extends Equatable {
       diaries: List<Diary_Sub_Model>.from(json["diary"]["menus"][0]["diaries"]
                   .map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
               as Iterable<dynamic>),
-      comments: List<Comment_Model>.from(json["comments"]
+      comments: List<Comment_Model>.from(json["comments_limit50"]
                   .map((x) => Comment_Model.fromJson(x as Map<String, dynamic>))
               as Iterable<dynamic>), 
       owner:Owner.fromJson(json['diary']["owner"]),

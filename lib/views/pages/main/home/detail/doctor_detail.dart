@@ -7,6 +7,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/doctor/doctordetail_model.dart';
+import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/pages/main/home/detail/doctor_sub_detail.dart';
 import 'package:laxia/views/pages/main/reservation/reservation.dart';
 import 'package:laxia/views/widgets/detail_image.dart';
@@ -54,7 +55,13 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
       }
     } catch (e) {}
   }
+  String getcategoryname(){
+    String mid='';
+    for(int i=0;i<doctor_detail.doctor.categories!.length;i++)
+     mid+=doctor_detail.doctor.categories![i].name+' ';
+    return mid;
 
+  }
   @override
   void initState() {
     getData(index: widget.index);
@@ -161,7 +168,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                           ? ""
                                           : doctor_detail.doctor.job_name!,
                                       profile: [
-                                        {"title": "専門領域", "content": ""},
+                                        {"title": "専門領域", "content": getcategoryname()},
                                         {
                                           "title": "経歴",
                                           "content": doctor_detail
@@ -215,8 +222,8 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                         image: doctor_detail.clinic.photo!,
                         post: doctor_detail.clinic.diaries_count!.toString(),
                         name: doctor_detail.clinic.name!,
-                        mark: 4.8.toString(), // doctor_detail.clinic.mark,
-                        day: "",
+                        mark: doctor_detail.clinic.avg_rate.toString(), // doctor_detail.clinic.mark,
+                        day: doctor_detail.clinic.diaries_count.toString(),
                         location: doctor_detail.clinic.address!),
                   ),
                   SizedBox(
@@ -335,8 +342,9 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                     : doctor_detail
                                         .diaries[index].patient_nickname!,
                                 onpress: () {
-                                  Navigator.of(context)
-                                      .pushNamed("/Diary_Detail");
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => Diary_Detail(
+                                        index: doctor_detail.diaries[index].id)));
                                 },
                                 price:
                                     doctor_detail.diaries[index].price == null

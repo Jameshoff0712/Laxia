@@ -64,7 +64,175 @@ class Helper {
   static getData(Map<String, dynamic> data) {
     return data['data'] ?? [];
   }
-
+  static String TreatTime(int val) {
+    switch (val) {
+      case 5:
+        return "10分以内";
+      case 10:
+        return "10分~30分";
+      case 15:
+        return "30分~1時間";
+      case 20:
+        return "2時間";
+      case 25:
+        return "3時間以上";
+      default:
+        return '';
+    }
+  }
+  static String Basshi(int val) {
+    switch (val) {
+      case 5:
+        return "あり";
+      case 10:
+        return "なし";
+      default:
+        return '';
+    }
+  }
+  static String Bleeding(int val) {
+    switch (val) {
+      case 5:
+        return "あり";
+      case 10:
+        return "個人差あり";
+      case 15:
+        return "なし";
+      default:
+        return '';
+    }
+  }
+  static String Hare(int val) {
+    switch (val) {
+      case 5:
+        return "3日ほど";
+      case 10:
+        return "3~7日ほど";
+      case 15:
+        return "1~2週間ほど";
+      case 20:
+        return "1ヶ月ほど";
+      case 25:
+        return "なし";
+      case 30:
+        return "ほとんどなし";
+      default:
+        return '';
+    }
+  }
+  static String HospitalVisit(int val) {
+    switch (val) {
+      case 5:
+        return "あり";
+      case 10:
+        return "なし";
+      default:
+        return '';
+    }
+  }
+  static String HospitalNeed(int val) {
+    switch (val) {
+      case 5:
+        return "あり";
+      case 10:
+        return "なし";
+      default:
+        return '';
+    }
+  }
+  static String Makeup(int val) {
+    switch (val) {
+      case 5:
+        return "当日から大丈夫です。";
+      case 10:
+        return "明日から大丈夫です。";
+      case 15:
+        return "2,3日後から大丈夫です。";
+      case 20:
+        return "5日後から大丈夫です。";
+      case 25:
+        return "1週間後から大丈夫です。";
+      default:
+        return '';
+    }
+  }
+  static String Massage(int val) {
+    switch (val) {
+      case 5:
+        return "3日控えてください";
+      case 10:
+        return "1週間控えてください";
+      case 15:
+        return "2週間控えてください";
+      case 20:
+        return "1ヶ月控えてください";
+      default:
+        return '';
+    }
+  }
+  static String Masui(int val) {
+    switch (val) {
+      case 5:
+        return "局所麻酔";
+      case 10:
+        return "全身麻酔";
+      case 15:
+        return "なし";
+      default:
+        return '';
+    }
+  }
+  static String Pain(int val) {
+    switch (val) {
+      case 5:
+        return "3日ほど";
+      case 10:
+        return "3~7日ほど";
+      case 15:
+        return "1~2週間ほど";
+      case 20:
+        return "1ヶ月ほど";
+      case 25:
+        return "なし";
+      case 30:
+        return "ほとんどなし";
+      default:
+        return '';
+    }
+  }
+  static String RequestTime(int val) {
+    return val.toString()+'分';
+  }
+  static String Shower(int val) {
+    switch (val) {
+      case 5:
+        return "当日から大丈夫です。";
+      case 10:
+        return "明日から大丈夫です。";
+      case 15:
+        return "2,3日後から大丈夫です。";
+      case 20:
+        return "5日後から大丈夫です。";
+      case 25:
+        return "1週間後から大丈夫です。";
+      default:
+        return '';
+    }
+  }
+  static String SportImpossible(int val) {
+    switch (val) {
+      case 5:
+        return "3日控えてください";
+      case 10:
+        return "1週間控えてください";
+      case 15:
+        return "2週間控えてください";
+      case 20:
+        return "1ヶ月控えてください";
+      default:
+        return '';
+    }
+  }
   Color getColorFromHex(String hex) {
     if (hex.contains('#')) {
       return Color(int.parse(hex.replaceAll("#", "0xFF")));
@@ -218,5 +386,6 @@ class Drawhorizontalline extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
   }
+  
 }
  

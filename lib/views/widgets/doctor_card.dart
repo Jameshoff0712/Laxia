@@ -6,11 +6,10 @@ import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 
 class Doctor_Card extends StatefulWidget {
   final VoidCallback? onpress;
-  final String image, post, name, mark, day, clinic;
+  final String image, name, mark, day, clinic;
   const Doctor_Card(
       {Key? key,
       required this.image,
-      required this.post,
       required this.name,
       required this.mark,
       required this.day,
@@ -98,17 +97,6 @@ class _Doctor_CardState extends State<Doctor_Card> {
                               color: Helper.titleColor,
                               fontWeight: FontWeight.w700,
                               fontSize: 16.0,
-                              height: 1.5),
-                        ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        Text(
-                          widget.post,
-                          style: TextStyle(
-                              color: Helper.maintxtColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 10.0,
                               height: 1.5),
                         ),
                       ],
