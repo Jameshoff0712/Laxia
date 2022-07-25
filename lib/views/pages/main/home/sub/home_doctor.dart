@@ -3,6 +3,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
 import 'package:laxia/provider/pref_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
@@ -29,7 +30,7 @@ class Home_Doctor extends StatefulWidget {
 }
 
 class _Home_DoctorState extends State<Home_Doctor> {
-  String searchdata = "",city_id='';
+  String searchdata = "",city_id='',category_id="";
   String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
@@ -44,7 +45,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDoctorData(page: page, q: q!,filter:filter);
+        final mid = await _con.getDoctorData(page: page,city_id:city_id, q: q!,filter:filter,category_id:category_id);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -93,6 +94,8 @@ class _Home_DoctorState extends State<Home_Doctor> {
         Provider.of<UserProvider>(context, listen: true);
     PrefProvider prefyprovider =
         Provider.of<PrefProvider>(context, listen: true);
+    SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
@@ -106,6 +109,14 @@ class _Home_DoctorState extends State<Home_Doctor> {
         city_id = prefyprovider.getSelectedCurePos.join(",");
         getData(page: page.toString());
       });
+    }
+    if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
+      if(!isloading)
+      {init();
+      setState(() {
+        category_id = surgeryprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
+      });}
     }
     return Container(
       color: Helper.homeBgColor,

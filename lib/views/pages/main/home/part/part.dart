@@ -6,6 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/static_controller.dart';
 import 'package:laxia/models/static/master_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
+import 'package:laxia/provider/search_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/home/sub/home_clinic.dart';
 import 'package:laxia/views/pages/main/home/sub/home_diary.dart';
@@ -17,7 +20,8 @@ import 'package:provider/provider.dart';
 
 class Part extends StatefulWidget {
   final int index ;
-  const Part({Key? key, required this.index}) : super(key: key);
+  final int? part_id;
+  const Part({Key? key, required this.index, this.part_id=0}) : super(key: key);
 
   @override
   State<Part> createState() => _PartState();
@@ -26,18 +30,28 @@ class Part extends StatefulWidget {
 class _PartState extends State<Part> with SingleTickerProviderStateMixin {
   List<String> tabMenus = ['日記', 'メニュー', 'クリニック', 'ドクター'];
   late TabController _tabController;
-  int index = -1;
   bool expanded = true, isChildScrollable = false;
   late ScrollController scrollController;
-  late List<Master_Model> treatments;
+  late Master_Model master_model;
   final _con = StaticController();
+  List<bool> willSelect = [];
   bool isloading = true;
   Future<void> getData() async {
     try {
-      treatments = await _con.getIndexTreatCategories(widget.index);
+      master_model = await _con.getIndexPartCategories(widget.index);
+      for (int i = 0; i < master_model.all_childrens!.length; i++) {
+        setState(() {
+          if(widget.part_id== master_model.all_childrens![i].id)
+          {
+            willSelect.add(true);
+          }
+            willSelect.add(false);
+        });
+      }
       setState(() {
         isloading = false;
       });
+
     } catch (e) {
       setState(() {
         print(e.toString());
@@ -64,10 +78,23 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
+    SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
+    SearchProvider searchProvider =
+        Provider.of<SearchProvider>(context, listen: true);
     return //(partResult.isNotEmpty && treatment.isNotEmpty)
-    true
-    
-        ? Scaffold(
+    isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    : Scaffold(
             backgroundColor: Helper.whiteColor,
             body: Container(
               color: Helper.whiteColor,
@@ -91,7 +118,10 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: IconButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: (){
+                                            surgeryprovider.initSelected();
+                                            Navigator.pop(context);
+                                          },
                             icon: const Icon(
                               Icons.arrow_back_ios,
                               color: Helper.blackColor,
@@ -99,173 +129,145 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                             ),
                             iconSize: 16,
                             splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                            highlightColor: Colors.transparent,  
                           ),
                         )
                       ],
                     ),
                   ),
-                  // Expanded(
-                  //   child: SingleChildScrollView(
-                  //     physics: AlwaysScrollableScrollPhysics(),
-                  //     controller: scrollController,
-                  //     child: Column(
-                  //       children: [
-                  //         Container(
-                  //           child: Padding(
-                  //             padding: EdgeInsets.symmetric(
-                  //                 horizontal: 16, vertical: 8),
-                  //             child: Column(
-                  //               children: [
-                  //                 ExtendedWrap(
-                  //                     alignment: WrapAlignment.center,
-                  //                     maxLines: expanded ? 2 : 100,
-                  //                     clipBehavior: Clip.none,
-                  //                     runSpacing: 10,
-                  //                     spacing: 10,
-                  //                     children: [
-                  //                       for (int i = 0;
-                  //                           i <
-                  //                               treatment[userProperties
-                  //                                           .currentPartIndex]
-                  //                                       ["children"]
-                  //                                   .length;
-                  //                           i++)
-                  //                         GestureDetector(
-                  //                           onTap: () {
-                  //                             setState(() {
-                  //                               if (index == i) {
-                  //                                 index = -1;
-                  //                               } else {
-                  //                                 index = i;
-                  //                               }
-                  //                             });
-                  //                           },
-                  //                           child: Container(
-                  //                             decoration: BoxDecoration(
-                  //                                 borderRadius:
-                  //                                     BorderRadius.circular(22),
-                  //                                 border: Border.all(
-                  //                                     width: 1,
-                  //                                     color: Helper.mainColor),
-                  //                                 color: index == i
-                  //                                     ? Helper.mainColor
-                  //                                     : Helper.whiteColor),
-                  //                             child: Padding(
-                  //                               padding: EdgeInsets.symmetric(
-                  //                                   horizontal: 8, vertical: 3),
-                  //                               child: Text(
-                  //                                 treatment[userProperties
-                  //                                         .currentPartIndex]
-                  //                                     ["children"][i]["label"],
-                  //                                 style: TextStyle(
-                  //                                     fontWeight:
-                  //                                         FontWeight.w400,
-                  //                                     fontSize: 12,
-                  //                                     color: index == i
-                  //                                         ? Helper.whiteColor
-                  //                                         : Helper.mainColor),
-                  //                               ),
-                  //                             ),
-                  //                           ),
-                  //                         )
-                  //                     ]),
-                  //               ],
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         GestureDetector(
-                  //           onTap: () {
-                  //             setState(() {
-                  //               expanded = !expanded;
-                  //             });
-                  //           },
-                  //           child: Row(
-                  //               mainAxisAlignment: MainAxisAlignment.center,
-                  //               crossAxisAlignment: CrossAxisAlignment.center,
-                  //               children: [
-                  //                 Text(
-                  //                   expanded?"すべて表示":"閉じる",
-                  //                   style: TextStyle(
-                  //                       color: Helper.mainColor,
-                  //                       fontWeight: FontWeight.w400,
-                  //                       fontSize: 12),
-                  //                 ),
-                  //                 SizedBox(
-                  //                   width: 8.41,
-                  //                 ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      controller: scrollController,
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                              child: Column(
+                                children: [
+                                  ExtendedWrap(
+                                      alignment: WrapAlignment.center,
+                                      maxLines: expanded ? 2 : 100,
+                                      clipBehavior: Clip.none,
+                                      runSpacing: 10,
+                                      spacing: 10,
+                                      children: [
+                                        for (int i = 0;
+                                            i <
+                                                master_model.all_childrens!
+                                                    .length;
+                                            i++)
+                                          GestureDetector(
+                                            onTap: () {
+                                              surgeryprovider.setSelectedCurePos(master_model.all_childrens![i].id,master_model.all_childrens![i].name!);
+                                              print(surgeryprovider.selectedCurePos.join(','));
+                                              setState(() {
+                                                willSelect[i]=!willSelect[i];
+                                              });
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(22),
+                                                  border: Border.all(
+                                                      width: 1,
+                                                      color: Helper.mainColor),
+                                                  color: willSelect[i]
+                                                      ? Helper.mainColor
+                                                      : Helper.whiteColor),
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 8, vertical: 3),
+                                                child: Text(
+                                                  master_model.all_childrens![i].name!,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 12,
+                                                      color:willSelect[i]
+                                                          ? Helper.whiteColor
+                                                          : Helper.mainColor),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                      ]),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                expanded = !expanded;
+                              });
+                            },
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    expanded?"すべて表示":"閉じる",
+                                    style: TextStyle(
+                                        color: Helper.mainColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12),
+                                  ),
+                                  SizedBox(
+                                    width: 8.41,
+                                  ),
                                   
-                  //                 Icon(
-                  //                   expanded? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_up_rounded,
-                  //                   color: Helper.mainColor,
-                  //                   size: 24,
-                  //                 ),
-                  //               ]),
-                  //         ),
-                  //         Container(
-                  //             child: Column(
-                  //           children: [
-                  //             TabBarWidget(
-                  //               tabMenus: tabMenus,
-                  //               tabController: _tabController,
-                  //               padding: 25,
-                  //             ),
-                  //             Container(
-                  //               height:
-                  //                   MediaQuery.of(context).size.height - 101,
-                  //               child: TabBarView(
-                  //                 physics: NeverScrollableScrollPhysics(),
-                  //                 children: [
-                  //                   Home_Diary(
-                  //                     issearch: true,
-                  //                     model: partResult[0],
-                  //                     isScrollable: isChildScrollable,
-                  //                     scrollTop: () {
-                  //                       setState(() {
-                  //                         isChildScrollable = false;
-                  //                       });
-                  //                     },
-                  //                   ),
-                  //                   Home_Menu(
-                  //                     issearch: true,
-                  //                     model: partResult[1],
-                  //                     isScrollable: isChildScrollable,
-                    
-                  //                   ),
-                  //                   Home_Clinic(
-                  //                     issearch: true,
-                  //                     model: partResult[2],
-                  //                     isScrollable: isChildScrollable,
-                  //                     scrollTop: () {
-                  //                       setState(() {
-                  //                         isChildScrollable = false;
-                  //                       });
-                  //                     },
-                  //                   ),
-                  //                   Home_Doctor(
-                  //                     issearch: true,
-                  //                     model: partResult[3],
-                  //                     isScrollable: isChildScrollable,
-                  //                     scrollTop: () {
-                  //                       setState(() {
-                  //                         isChildScrollable = false;
-                  //                       });
-                  //                     },
-                  //                   ),
-                  //                 ],
-                  //                 controller: _tabController,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         )),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
+                                  Icon(
+                                    expanded? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_up_rounded,
+                                    color: Helper.mainColor,
+                                    size: 24,
+                                  ),
+                                ]),
+                          ),
+                          Container(
+                              child: Column(
+                            children: [
+                              TabBarWidget(
+                                tabMenus: tabMenus,
+                                tabController: _tabController,
+                                padding: 25, onpress: () {
+                                  searchProvider.initSelected();
+                                  prefyprovider.initSelected();
+                                },
+                              ),
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height - 101,
+                                child: TabBarView(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  children: [
+                                    Home_Diary(
+                                      issearch: true,
+                                    ),
+                                    Home_Menu(
+                                      issearch: true,
+                                    ),
+                                    Home_Clinic(
+                                      issearch: true,
+                                    ),
+                                    Home_Doctor(
+                                      issearch: true,
+                                    ),
+                                  ],
+                                  controller: _tabController,
+                                ),
+                              )
+                            ],
+                          )),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
-        : Scaffold();
+          );
   }
 }

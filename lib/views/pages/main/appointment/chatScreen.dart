@@ -4,16 +4,17 @@ import 'package:laxia/common/helper.dart';
 // import 'package:laxia/models/m_message.dart';
 // import 'package:laxia/models/m_user.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:laxia/models/static/message_model.dart';
 import 'package:laxia/utils/preference_util.dart';
 import 'package:laxia/views/widgets/chatSlot.dart';
 import 'package:flutter_pusher_client/flutter_pusher.dart';
 import 'package:laxia/services/http/api.dart';
 import 'package:laravel_echo/laravel_echo.dart';
+import 'package:laxia/controllers/static_controller.dart';
 
 class ChatScreen extends StatefulWidget{
   final int mailbox_id;
   ChatScreen({required this.mailbox_id});
-
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -29,46 +30,113 @@ class _ChatScreenState extends State<ChatScreen> {
   late Echo echo;
   late PusherOptions options;
   late FlutterPusher pusher; 
+  final _con = StaticController();
+  bool isloading = true;
+  late List<Message_Model> messages;
+  late Message_Model new_message;
+  ScrollController scrollcontroller=new ScrollController();
+  Future<void> getmessages() async {
+    try {
+      final mid = await _con.getMessages(widget.mailbox_id.toString());
+      print(mid);
+      setState(() {
+        messages = mid;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+  Future<void> postMessage({required String value,int isfile=0}) async {
+    try {
+      try{
+        new_message=await _con.postMessage(value,isfile,widget.mailbox_id.toString());
+        textController.text='';
+        setState(() {
+          messages.add(new_message);
+        });
+        scrollcontroller.jumpTo(scrollcontroller.position.maxScrollExtent);
+      }
+      catch(e){
+        
+      }
+      
+    } catch (e) {
+      print(e.toString());
+    }
+  }
   Future<void> initEcho() async {
-    final token=await preferenceUtil.getToken();
+    // print(pusher_authurl);
+    // final token=await preferenceUtil.getToken();
     options = PusherOptions(
       host:'ws-ap3.pusher.com',
       port: 443,
-      // encrypted: true,
+      encrypted: true,
       cluster: pusher_cluseter!,
       //  auth: PusherAuth(
       //       pusher_authurl,
       //       headers: {
-      //         'Content-Type': 'application/json',
-      //         'Authorization': 'Bearer '+token!
+      //         'Authorization': token!
       //       },
       //     ),
     );
-   
     pusher = FlutterPusher(pusher_key, options, enableLogging: false,  onConnectionStateChange: (ConnectionStateChange x) async {
-     print(x.currentState);
-},onError: (ConnectionError y)=>{
-  print(y.exception)
-});
-    echo =new Echo({
-      'broadcaster':'pusher',
-      'client':pusher,
-    });
-    echo.private('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (e) {
-      print(e);
+        print(x.currentState);
+         if (pusher != null && x.currentState == 'CONNECTED') {
+          final String socketId = pusher.getSocketId();
+          print('pusher socket id: $socketId');
+           echo =new Echo({
+              'broadcaster':'pusher',
+              'client':pusher,
+              'key': pusher_key,
+              'cluster':pusher_cluseter
+              // 'host':"sockjs-ap3.pusher.com/pusher",
+              // 'auth': {
+              //       'headers': {
+              //           'Authorization': '$token',
+              //       }
+              //   }
+            });
+            echo.channel('Chat.'+widget.mailbox_id.toString()).listen('.private-chat-event', (res) {
+               res['message']['is_mine']=false;
+               
+               setState(() {
+                new_message=Message_Model.fromJson(res['message']);
+                print(new_message.toString());
+                 messages.add(res['message']);
+               });
+               scrollcontroller.jumpTo(scrollcontroller.position.maxScrollExtent);
+            });
+            print('Chat.'+widget.mailbox_id.toString());
+         }
+    },onError: (ConnectionError y)=>{
+        print(y.exception)
     });
     
+    // pusher.subscribe('private-Chat.109').bind('.private-chat-event', (){
+    //   print('e');
+    // });
     // print('Chat.'+widget.mailbox_id.toString());
   }
   @override
   void initState() {
+    getmessages();
     initEcho();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    int? prevUserId;
-    return Scaffold(
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
@@ -97,19 +165,16 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: [
-          // Expanded(
-          //     child: Container(
-          //       color: Color.fromARGB(255, 240, 242, 245),
-          //       child: ListView.builder(
-          //           reverse: true,
-          //           itemCount: messages.length,
-          //           itemBuilder: (BuildContext context, int index) {
-          //             final Message message = messages[index];
-          //             final bool isMe = message.sender!.id == currentUser.id;
-          //             prevUserId = message.sender!.id;
-          //             return ChatSlot(message: message, isMe: isMe);
-          //           }),
-          //     )),
+          Expanded(
+              child: Container(
+                color: Color.fromARGB(255, 240, 242, 245),
+                child: ListView.builder(
+                    controller: scrollcontroller,
+                    itemCount: messages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ChatSlot(message: messages[index]);
+                    }),
+              )),
          
         ],
       ),
@@ -172,7 +237,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 size: 22,
               ),
               alignment: Alignment.bottomCenter,
-              onPressed: () {},
+              onPressed: () {
+                postMessage(value: contentChat);
+              },
             )
           ],
         ),

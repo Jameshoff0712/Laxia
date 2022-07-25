@@ -118,7 +118,6 @@ class _HomeScreenState extends State<HomeScreen>
               tabMenus: tabMenus,
               tabController: _tabController, 
               onpress: () {
-                print('eee');
                 searchProvider.initSelected();
                 prefyprovider.initSelected();
                 surgeryprovider.initSelected();

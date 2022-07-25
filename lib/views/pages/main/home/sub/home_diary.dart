@@ -6,6 +6,7 @@ import 'package:laxia/models/diary/diary_model.dart';
 import 'package:laxia/models/diary_model.dart';
 import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/provider/search_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -33,7 +34,7 @@ class Home_Diary extends StatefulWidget {
 }
 
 class _Home_DiaryState extends State<Home_Diary> {
-  String filter='',city_id='';
+  String filter='',city_id='',category_id="";
   String searchdata = "";
   int page = 0;
   bool isend = false, isloading = true, isexpanding = true;
@@ -59,10 +60,7 @@ class _Home_DiaryState extends State<Home_Diary> {
           setState(() {
             isexpanding = false;
           });
-          print(minprice.toString()+"   "+maxprice.toString());
-          print(selectstar.join(",")+year.join(','));
-        final mid = await _con.getDiaryData(page: page, q: searchdata,filter:filter,city_id:city_id,price_min:minprice.toString(),price_max:maxprice.toString(),rate:selectstar.join(","),year:year.join(','));
-        print(mid);
+        final mid = await _con.getDiaryData(page: page,category_id:category_id, q: searchdata,filter:filter,city_id:city_id,price_min:minprice.toString(),price_max:maxprice.toString(),rate:selectstar.join(","),year:year.join(','));
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -113,6 +111,8 @@ class _Home_DiaryState extends State<Home_Diary> {
         Provider.of<PrefProvider>(context, listen: true);
     SearchProvider searchprovider =
         Provider.of<SearchProvider>(context, listen: true);
+    SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
@@ -136,6 +136,14 @@ class _Home_DiaryState extends State<Home_Diary> {
         year=searchprovider.year;
         getData(page: page.toString());
       });
+    }
+     if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
+      if(!isloading)
+      {init();
+      setState(() {
+        category_id = surgeryprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
+      });}
     }
     return Container(
       color: Helper.homeBgColor,

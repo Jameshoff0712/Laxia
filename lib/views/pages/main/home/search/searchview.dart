@@ -29,6 +29,7 @@ class _SearchViewState extends State<SearchView> {
   Future<void> searchList() async {
     try {
       final mid = await _con.getSearch();
+      
       setState(() {
         search=mid;
         isloading = false;
@@ -42,7 +43,6 @@ class _SearchViewState extends State<SearchView> {
   Future<void> midSearch(String q) async {
     try {
       final mid = await _con.midSearch(q);
-      print('wwwww');
       setState(() {
         midsearch=mid;
         unchange = false;
@@ -376,25 +376,21 @@ class _SearchViewState extends State<SearchView> {
                                       const AlwaysScrollableScrollPhysics(),
                                   children: [
                                     SearchResult(
-                                      count: midsearch.menus,
+                                      count: midsearch.categories,
                                       index: 1,
                                     ),
                                     SearchResult(
-                                      count: midsearch.clinics,
+                                      count: midsearch.menus,
                                       index: 2,
                                     ),
                                     SearchResult(
-                                      count: midsearch.doctors,
+                                      count: midsearch.clinics,
                                       index: 3,
                                     ),
                                     SearchResult(
-                                      count: midsearch.diaries,
+                                      count: midsearch.doctors,
                                       index: 4,
                                     ),
-                                    SearchResult(
-                                      count: midsearch.cases,
-                                      index: 5,
-                                    )
                                   ],),
                             ),
                           ],

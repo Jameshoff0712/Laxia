@@ -23,16 +23,16 @@ class QuestionDetail extends StatefulWidget {
 }
 
 class _QuestionDetailState extends State<QuestionDetail> {
-  bool isloading = true, isfavorite = false, islike = false;
+  bool isloading = true, isfavorite = false,isfollow=false, islike = false;
   final _con = HomeController();
   late Question_Sub_Model question_detail;
   Future<void> getData({required int index}) async {
     try {
       final mid = await _con.getQuestionDetail(index: index);
-      print(mid);
       setState(() {
         question_detail = mid;
         isfavorite = question_detail.is_favorite!;
+        isfollow = isfollow;
         islike = question_detail.is_like!;
         isloading = false;
       });
@@ -40,7 +40,17 @@ class _QuestionDetailState extends State<QuestionDetail> {
       print(e.toString());
     }
   }
-
+  Future<void> postToogleFollow(index) async {
+    try {
+      final res=await _con.postToogleFollow(index:question_detail.owner!.id);
+      if(res==true){
+        setState(() {
+          isfollow=!isfollow;
+        });
+      }
+    } catch (e) {
+    }
+  }
   Future<void> postToogleFavorite(index) async {
     try {
       final res =
@@ -130,29 +140,23 @@ class _QuestionDetailState extends State<QuestionDetail> {
                   Row(
                     children: [
                       !widget.isMyDiary
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 30),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .pushNamed("/AddDiaryProgress");
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: Helper.mainColor),
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(12, 3, 12, 3),
-                                    child: Text(
-                                      'フォロー',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                          color: Helper.mainColor),
-                                    ),
+                          ? InkWell(
+                              onTap: () {
+                                postToogleFollow(question_detail.owner!.id);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(color:Color.fromARGB(255, 110, 198, 210),width: 2,style: BorderStyle.solid),
+                                    color: isfollow? Color.fromARGB(255, 110, 198, 210):Colors.white
+                                ),
+                                child: Padding(
+                                  padding:  const EdgeInsets.fromLTRB(12, 2, 12, 3),
+                                  child: Text(
+                                    'フォロー',
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        color: isfollow?Helper.whiteColor : Color.fromARGB(255, 110, 198, 210),),
                                   ),
                                 ),
                               ),

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:laxia/models/case/Owner_model.dart';
 import 'package:laxia/models/diary/diary/comment_model.dart';
 import 'package:laxia/models/diary/diary/progress.dart';
 import 'package:laxia/models/diary/diary/status_model.dart';
@@ -13,7 +14,9 @@ class ProgressDetail_Model extends Equatable {
   final Diary_Sub_Model diary;
   final Menu_Sub_Model menu;
   final List<Diary_Sub_Model> diaries;
+  final Owner owner;
   const ProgressDetail_Model({
+    required this.owner,
     required this.comments,
     required this.statuses,
     required this.progress,
@@ -35,7 +38,8 @@ class ProgressDetail_Model extends Equatable {
               as Iterable<dynamic>),
       comments: List<Comment_Model>.from(json["comments"]
                   .map((x) => Comment_Model.fromJson(x as Map<String, dynamic>))
-              as Iterable<dynamic>),
+              as Iterable<dynamic>), 
+      owner:Owner.fromJson(json['diary']["owner"]),
     );
   }
   @override

@@ -3,6 +3,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/clinic/clinic_model.dart';
 import 'package:laxia/provider/pref_provider.dart';
+import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -28,7 +29,7 @@ class Home_Clinic extends StatefulWidget {
 }
 
 class _Home_ClinicState extends State<Home_Clinic> {
-  String searchdata = "";
+  String searchdata = "" ,category_id="";
   String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
@@ -49,7 +50,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
             isexpanding = false;
           });
         final mid = await _con.getclinicData(
-            page: page, pref_id: pref_id!, city_id: city_id, q: searchdata,filter:filter);
+            page: page, category_id: category_id, city_id: city_id, q: searchdata,filter:filter);
         setState(() {
           if (isloading) {
             clinic_data = mid;
@@ -90,6 +91,8 @@ class _Home_ClinicState extends State<Home_Clinic> {
 
   @override
   Widget build(BuildContext context) {
+    SurGeryProvider surgeryprovider =
+        Provider.of<SurGeryProvider>(context, listen: true);
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
     PrefProvider prefyprovider =
@@ -107,6 +110,14 @@ class _Home_ClinicState extends State<Home_Clinic> {
         city_id = prefyprovider.getSelectedCurePos.join(",");
         getData(page: page.toString());
       });
+    }
+    if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
+      if(!isloading)
+      {init();
+      setState(() {
+        category_id = surgeryprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
+      });}
     }
     return Container(
       color: Helper.homeBgColor,
