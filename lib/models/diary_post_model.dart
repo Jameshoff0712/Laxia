@@ -6,7 +6,7 @@ class DiaryPostModel extends Equatable {
   final String doctor_id;
   final String date;
   final List<int> categories;
-  final List<int> imageIds;
+  final List<List<int>> imageIds;
   final List<String> questions;
   final List<int> rates;
   final int cost_op;

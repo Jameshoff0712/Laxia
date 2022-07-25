@@ -9,6 +9,8 @@ import 'package:laxia/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class AddDiaryStep5Page extends StatefulWidget {
+  String? diary_id;
+  AddDiaryStep5Page({Key? key, this.diary_id = ''}) : super(key: key);
   @override
   _AddDiaryStep5PageState createState() => _AddDiaryStep5PageState();
 }
@@ -139,7 +141,10 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                         cost_drug: diaryProperties.getCostDrug, 
                         cost_other: diaryProperties.getCostOther
                       );
-                      dynamic result = await _conMy.postDiary(newDiary);
+                      if(widget.diary_id != '')
+                        dynamic result = await _conMy.editDiary(newDiary, widget.diary_id!);
+                      else
+                        dynamic result = await _conMy.postDiary(newDiary);
                       // print(result.data);
 
 

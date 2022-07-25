@@ -8,11 +8,13 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/controllers/my_controller.dart';
 import 'package:laxia/models/clinic/clinic_model.dart';
+import 'package:laxia/models/diary/diary/diarydetail_model.dart';
 import 'package:laxia/models/question/media_model.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step2.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step4.dart';
 import 'package:laxia/views/pages/main/contribution/select_clinic.dart';
 import 'package:laxia/views/pages/main/contribution/select_doctor.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
@@ -25,8 +27,9 @@ import 'package:laxia/models/doctor_model.dart';
 import 'package:flutter_datetime_picker_forked/flutter_datetime_picker_forked.dart';
 
 class AddDiaryStep1Page extends StatefulWidget {
+  String? diary_id;
   final bool? isMyDiary;
-  const AddDiaryStep1Page({Key? key, this.isMyDiary = false}) : super(key: key);
+  AddDiaryStep1Page({Key? key, this.isMyDiary = false, this.diary_id = ''}) : super(key: key);
   @override
   _AddDiaryStep1PageState createState() => _AddDiaryStep1PageState();
 }
@@ -41,13 +44,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
     "",
   ];
   String date_diary = '';
-
+  bool initDetail = true;
+  bool isloadingDetail = true;
+  late DiaryDetail_Model diaryDetail;
   bool isAddEnabled = true, isUsed = false;
   TextEditingController filter = new TextEditingController();
   MyController _conMy = MyController();
   int index = 0;
-  List<String> images = [];
-  List<int> imageIds = [];
+  List<List<String>> images = [[], []];
+  List<List<int>> imageIds = [[], []];
+  // List<String> images = [];
+  // List<int> imageIds = [];
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
     try{
@@ -58,12 +65,22 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       print(pickedImage.path);
       print(res);
       setState(() {
-        images.add(pickedImage.path);
-        imageIds.add(res.id);
+        images[index].add(pickedImage.path);
+        imageIds[index].add(res.id);
+        // images.add(pickedImage.path);
+        // imageIds.add(res.id);
       });
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
+  }
+  Future<void> getDiaryDetail() async {
+    final res = await _conMy.getDiaryDetail(widget.diary_id!);
+    // print(res.diary);
+    setState(() {
+      diaryDetail = res;
+      isloadingDetail = false;
+    });
   }
 
   enableAddButton() {
@@ -170,6 +187,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => AddDiaryStep2Page(
+                                  diary_id: widget.diary_id,
                                   operationName: surgeryProvider.getSelectedCurePosStr,
                             )));
                           },
@@ -258,6 +276,12 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
   void initState() {
     isUsed = false;
     getclinicData(page: page.toString());
+    if(widget.diary_id != '')
+      getDiaryDetail();
+    else 
+      setState(() {
+        isloadingDetail = false;
+      });
     super.initState();
   }
 
@@ -276,6 +300,67 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
     List listOperationTypes = diaryProperties.getOperationTypes;
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if (searchdata != userProperties.searchtext) {
+      init();
+      setState(() {
+        searchdata = userProperties.searchtext;
+        getclinicData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
+
+    if(initDetail && widget.diary_id != ''&& !isloadingDetail) {
+      surgeryProvider.selectedCurePos = [];
+      surgeryProvider.selectedCurePosStr = [];
+      for(int i =0; i< diaryDetail.diary.categories!.length; i++){
+        surgeryProvider.selectedCurePos.add(diaryDetail.diary.categories![i].id);
+        surgeryProvider.selectedCurePosStr.add(diaryDetail.diary.categories![i].name);
+      }
+      diaryProperties.clinic_id = diaryDetail.diary.clinic_id.toString();
+      userProperties.selectedClinic = diaryDetail.diary.clinic_name!;
+      diaryProperties.doctor_id = diaryDetail.diary.clinic_id.toString();
+      userProperties.selectedDoctor = diaryDetail.diary.doctor_name!;
+      diaryProperties.date = diaryDetail.diary.treat_date!;
+
+      // setState(() {
+      //   imageIds = [[], []];
+      //   for(int i=0; i< diaryDetail.beforemedias!.length; i++)
+      //     imageIds[0].add(diaryDetail.beforemedias![i].id);
+      //   for(int i=0; i< diaryDetail.aftermedias!.length; i++)
+      //     imageIds[0].add(diaryDetail.aftermedias![i].id);
+
+      //   images = [[], []];
+      //   for(int j = 0; j< diaryDetail.beforemedias!.length; j++)
+      //     images[0].add(diaryDetail.beforemedias![j].path);
+      //   for(int j = 0; j< diaryDetail.aftermedias!.length; j++)
+      //     images[0].add(diaryDetail.aftermedias![j].path);
+      // });
+
+      diaryProperties.cost_op = diaryDetail.diary.price!;
+      diaryProperties.cost_anesthetic = diaryDetail.diary.cost_anesthetic!;
+      diaryProperties.cost_drug = diaryDetail.diary.cost_drug!;
+      diaryProperties.cost_other = diaryDetail.diary.cost_other!;
+
+      diaryProperties.rates = [0,0,0,0,0,0,0,0,0];
+      diaryProperties.rates[0] = diaryDetail.diary.rate_01!;
+      diaryProperties.rates[1] = diaryDetail.diary.rate_02!;
+      diaryProperties.rates[2] = diaryDetail.diary.rate_03!;
+      diaryProperties.rates[3] = diaryDetail.diary.rate_04!;
+      diaryProperties.rates[4] = diaryDetail.diary.rate_05!;
+      diaryProperties.rates[5] = diaryDetail.diary.rate_06!;
+      diaryProperties.rates[6] = diaryDetail.diary.rate_07!;
+      diaryProperties.rates[7] = diaryDetail.diary.rate_08!;
+      diaryProperties.rates[8] = diaryDetail.diary.rate_09!;
+
+      diaryProperties.questions = ['', '', '', '', '', ''];
+      for(int i=0; i< 6; i++)
+        diaryProperties.questions[i] = diaryDetail.text_questions[i].pivot!.answer != null ? diaryDetail.text_questions[i].pivot!.answer! : '';
+      setState(() {
+        initDetail = false;
+      });
+    }
+
     if (diaryProperties.getDate != "" 
         && surgeryProvider.getSelectedCurePos.length != 0 
         && diaryProperties.getClinicID != ''
@@ -288,15 +373,6 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
     } else {
       setState(() {
         isAddEnabled = false;
-      });
-    }
-    UserProvider userProperties =
-        Provider.of<UserProvider>(context, listen: true);
-    if (searchdata != userProperties.searchtext) {
-      init();
-      setState(() {
-        searchdata = userProperties.searchtext;
-        getclinicData(page: page.toString(), q: userProperties.searchtext);
       });
     }
     return Scaffold(
@@ -331,7 +407,15 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
             highlightColor: Colors.transparent,  
         ),
       ),
-      body: Container(
+      body: isloadingDetail 
+      ? Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          )
+      :Container(
         color: Color.fromARGB(255, 240, 242, 245),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -727,7 +811,20 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                     ),
               ),
             ),
-            imagePicker(context),
+            imagePicker(context, 1),
+            Container(
+              padding: const EdgeInsets.only(left: 16, top: 23, bottom: 10),
+              child: Text(
+                '施術前の写真',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 102, 110, 110),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    ),
+              ),
+            ),
+            imagePicker(context, 0),
             !widget.isMyDiary!
                 ? Center(
                     child: Container(
@@ -815,7 +912,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
     );
   }
 
-  Widget imagePicker(BuildContext context) {
+  Widget imagePicker(BuildContext context, int subindex) {
     return Container(
       padding: const EdgeInsets.only(left: 16.0, top: 0, right: 12, bottom: 0),
       child: GestureDetector(
@@ -823,6 +920,9 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
           children: <Widget>[
             GestureDetector(
               onTap: () {
+                setState(() {
+                  index = subindex;
+                });
                 _openImagePicker();
               },
               child: Container(
@@ -862,11 +962,11 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     PhotoCarouselWidget(
-                      ImageList: images,
+                      ImageList: images[subindex],
                       onRemove: (int) {
                         setState(() {
-                          images.removeAt(int);
-                          imageIds.removeAt(int);
+                          images[subindex].removeAt(int);
+                          imageIds[subindex].removeAt(int);
                         });
                       },
                       bRemove: true,

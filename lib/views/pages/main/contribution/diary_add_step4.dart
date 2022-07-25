@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_step5.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +9,23 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class AddDiaryStep4Page extends StatefulWidget {
+  String? diary_id;
   final bool? isMyDiary;
-  const AddDiaryStep4Page({Key? key, this.isMyDiary = false}) : super(key: key);
+  AddDiaryStep4Page({Key? key, this.isMyDiary = false, this.diary_id = ''}) : super(key: key);
   @override
   _AddDiaryStep4PageState createState() => _AddDiaryStep4PageState();
 }
 
 class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
-  List<String> questions = ['', '', '', '', '', ''];
+  // List<String> questions = ['', '', '', '', '', ''];
+  TextEditingController con1 = TextEditingController();
+  TextEditingController con2 = TextEditingController();
+  TextEditingController con3 = TextEditingController();
+  TextEditingController con4 = TextEditingController();
+  TextEditingController con5 = TextEditingController();
+  TextEditingController con6 = TextEditingController();
   bool isAddEnabled = true;
+  bool initDetail = true;
   // late OfferController _con;
 
   // _AddDiaryStep4PageState() : super(OfferController()) {
@@ -35,9 +44,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
     });
   }
 
-  AddDiaryStep5Page() {
-    Navigator.of(context).pushNamed("/AddDiaryStep5");
-  }
+  // AddDiaryStep5Page() {
+  //   Navigator.of(context).pushNamed("/AddDiaryStep5");
+  // }
 
   editTitle(String title) {
     if (title.isNotEmpty) isAddEnabled = true;
@@ -60,18 +69,47 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
   Widget build(BuildContext context) {
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
-    for(int i = 0; i < 6; i++){
-      if(questions[i] == '') {
-        setState(() {
-          isAddEnabled = false;
-        });
-        break;
-      }
-      else 
+    // for(int i = 0; i < 6; i++){
+    //   if(questions[i] == '') {
+    //     setState(() {
+    //       isAddEnabled = false;
+    //     });
+    //     break;
+    //   }
+    //   else 
+    //     setState(() {
+    //       isAddEnabled = true;
+    //     });
+    // }
+
+    if(initDetail && widget.diary_id != '') {
+      print(diaryProperties.questions);
+      setState(() {
+        con1.text = diaryProperties.questions[0];
+        con2.text = diaryProperties.questions[1];
+        con3.text = diaryProperties.questions[2];
+        con4.text = diaryProperties.questions[3];
+        con5.text = diaryProperties.questions[4];
+        con6.text = diaryProperties.questions[5];
+        // questions = diaryProperties.questions;
+        initDetail = false;
+      });
+    }
+    if(con1.text != ''
+      && con2.text != ''
+      && con3.text != ''
+      && con4.text != ''
+      && con5.text != ''
+      && con6.text != '') {
         setState(() {
           isAddEnabled = true;
         });
+    } else {
+      setState(() {
+        isAddEnabled = false;
+      });
     }
+    // print('123');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -120,11 +158,12 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: con1,
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      questions[0] = text;
+                      con1.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -156,11 +195,12 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: con2,
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      questions[1] = text;
+                      con2.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -192,11 +232,12 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: con3,
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      questions[2] = text;
+                      con3.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -228,11 +269,12 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: con4,
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      questions[3] = text;
+                      con4.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -264,11 +306,12 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: con5,
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      questions[4] = text;
+                      con5.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -300,11 +343,12 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: con6,
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      questions[5] = text;
+                      con6.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -334,8 +378,13 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                           child: ElevatedButton(
                             onPressed:
                                 isAddEnabled ? () { 
-                                  diaryProperties.setQuestions(questions);
-                                  AddDiaryStep5Page();
+                                  diaryProperties.setQuestions([con1.text,con2.text,con3.text,con4.text,con5.text,con6.text]);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AddDiaryStep5Page(
+                                        diary_id: widget.diary_id,
+                                  )));
                                 } : null,
                             style: ElevatedButton.styleFrom(
                               elevation: 0,

@@ -15,23 +15,29 @@ import '../../../../provider/surgery_provider.dart';
 import '../../../../provider/user_provider.dart';
 
 class AddCounselStep2Page extends StatefulWidget {
+  final String? counsel_id;
   final bool? isMyDiary;
-  const AddCounselStep2Page({Key? key, this.isMyDiary = false})
+  const AddCounselStep2Page({Key? key, this.isMyDiary = false, this.counsel_id = ''})
       : super(key: key);
   @override
   _AddCounselStep2PageState createState() => _AddCounselStep2PageState();
 }
 
 class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
+  bool initDetail = true;
   bool isAddEnabled = true;
   int selectstar = 0;
   bool _notificationStatus = true;
   MyController _conMy = MyController();
   List<CounselQuestion_Model> CounselQuestion_list = [];
 
-  String reason = '';
-  String feeling = '';
-  String impress = '';
+  TextEditingController conReason = TextEditingController();
+  TextEditingController conBefore = TextEditingController();
+  TextEditingController conAfter = TextEditingController();
+
+  // String reason = '';
+  // String feeling = '';
+  // String impress = '';
 
   String doctor_id = '';
   String clinic_id = '';
@@ -53,15 +59,21 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         content: content,
         categories: categories,
         imageIds: imageIds,
-        reason: reason,
-        before_counsel: feeling,
-        after_counsel: impress,
+        reason: conReason.text,
+        before_counsel: conBefore.text,
+        after_counsel: conAfter.text,
         rate: selectstar.toString(),
         question: CounselQuestion_list
         );
-
-    dynamic result = _conMy.postCounsel(newQuestion);
-    print(result.data);
+    if(widget.counsel_id != ''){
+      dynamic result = _conMy.editCounsel(newQuestion, widget.counsel_id!);
+      print(result.data);
+    }
+    else{
+      dynamic result = _conMy.postCounsel(newQuestion);
+      print(result.data);
+    }
+    // print(result.data);
   }
   enableAddButton() {
     setState(() {
@@ -108,7 +120,27 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         Provider.of<UserProvider>(context, listen: true);
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
-    if (reason != '' && feeling != '' && impress != '' && selectstar != 0 ) {
+    // if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 ) {
+    //   setState(() {
+    //     isAddEnabled = true;
+    //   });
+    // } else {
+    //   setState(() {
+    //     isAddEnabled = false;
+    //   });
+    // }
+
+    if(initDetail && widget.counsel_id != '') {
+      setState(() {
+        conReason.text = diaryProperties.getCounselReason;
+        conBefore.text = diaryProperties.getCounselBefore;
+        conAfter.text = diaryProperties.getCounselAfter;
+        selectstar = diaryProperties.getCounselRate;
+        CounselQuestion_list = diaryProperties.getCounselQuestions;
+        initDetail = false;
+      });
+    }
+    if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 ) {
       setState(() {
         isAddEnabled = true;
       });
@@ -166,12 +198,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: conReason,
                   cursorColor: Helper.mainColor,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      reason = text;
+                      conReason.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -293,12 +326,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: conBefore,
                   cursorColor: Helper.mainColor,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      feeling = text;
+                      conBefore.text= text;
                     });
                   },
                   decoration: InputDecoration(
@@ -330,12 +364,13 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: conAfter,
                   cursorColor: Helper.mainColor,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
                     setState(() {
-                      impress = text;
+                      conAfter.text = text;
                     });
                   },
                   decoration: InputDecoration(
@@ -430,6 +465,12 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                                   surgeryProvider.selectedCurePos = [];
                                   surgeryProvider.selectedCurePosStr = [];
                                   diaryProperties.counsel_imageIds = [[], [], []];
+
+                                  diaryProperties.counsel_reason = '';
+                                  diaryProperties.counsel_before = '';
+                                  diaryProperties.counsel_after = '';
+                                  diaryProperties.counsel_rate = 0;
+                                  diaryProperties.counsel_questions = [];
                                   post();
                                   AddCounselPage(); 
                                   } : null,

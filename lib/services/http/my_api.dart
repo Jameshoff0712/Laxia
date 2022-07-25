@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:laxia/models/counsel_post_model.dart';
+import 'package:laxia/models/counseling/councelingdetail_model.dart';
+import 'package:laxia/models/diary/diary/diarydetail_model.dart';
 import 'package:laxia/models/diary_post_model.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
@@ -65,8 +67,41 @@ class MyApi extends Api {
           "diaries[cost_anesthetic]": newDiary.cost_anes.toString(),
           "diaries[cost_drug]": newDiary.cost_drug.toString(),
           "diaries[cost_other]": newDiary.cost_other.toString(),
-          for (int i = 0; i < newDiary.imageIds.length; i++)
-            "medias[]": newDiary.imageIds[i].toString(),
+          // for (int i = 0; i < newDiary.imageIds.length; i++)
+          //   "medias[]": newDiary.imageIds[i].toString(),
+          for (int i = 0; i < newDiary.imageIds[0].length; i++)
+            "before_medias[]": newDiary.imageIds[0][i].toString(),
+          for (int i = 0; i < newDiary.imageIds[1].length; i++)
+            "after_medias[]": newDiary.imageIds[1][i].toString(),
+          "menus[0][cost]": newDiary.cost_op.toString(),
+          "menus[0][id]": newDiary.categories[0].toString(),
+        },
+        token);
+    
+  }
+  Future<void> editDiary(DiaryPostModel newDiary, String diary_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.put(
+        "$apiUrl/diaries/" + diary_id,
+        <String, String>{
+          "diaries[clinic_id]": newDiary.clinic_id,
+          "diaries[treat_date]": newDiary.date,
+          "diaries[doctor_id]": newDiary.doctor_id,
+          for (int i = 0; i < newDiary.categories.length; i++)
+            "categories[]": newDiary.categories[i].toString(),
+          for (int j = 0; j < newDiary.questions.length; j++)
+            "diary_tqs[" + (j + 1).toString() + "]": newDiary.questions[j],
+          for (int k = 0; k < newDiary.rates.length; k++)
+            "diaries[rate_0" + (k + 1).toString() + "]": newDiary.rates[k].toString(),
+          "diaries[cost_anesthetic]": newDiary.cost_anes.toString(),
+          "diaries[cost_drug]": newDiary.cost_drug.toString(),
+          "diaries[cost_other]": newDiary.cost_other.toString(),
+          // for (int i = 0; i < newDiary.imageIds.length; i++)
+          //   "medias[]": newDiary.imageIds[i].toString(),
+          for (int i = 0; i < newDiary.imageIds[0].length; i++)
+            "before_medias[]": newDiary.imageIds[0][i].toString(),
+          for (int i = 0; i < newDiary.imageIds[1].length; i++)
+            "after_medias[]": newDiary.imageIds[1][i].toString(),
           "menus[0][cost]": newDiary.cost_op.toString(),
           "menus[0][id]": newDiary.categories[0].toString(),
         },
@@ -94,6 +129,36 @@ class MyApi extends Api {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
       "$apiUrl/counselings", 
+      <String, String> {
+        'counselings[clinic_id]': newCounsel.clinic_id,
+        'counselings[doctor_id]': newCounsel.doctor_id,
+        'counselings[counseling_date]': newCounsel.date,
+        'counselings[content]': newCounsel.content,
+        'counselings[reason]': newCounsel.reason,
+        'counselings[before_counseling]': newCounsel.before_counsel,
+        'counselings[after_ccounseling]': newCounsel.after_counsel,
+        'counselings[rate]': newCounsel.rate,
+        for(int i = 0; i < newCounsel.categories.length; i++)
+          'categories[]': newCounsel.categories[i].toString(),
+        for(int j = 0; j < newCounsel.imageIds[0].length; j++)
+          'medias[self][]': newCounsel.imageIds[0][j].toString(),
+        for(int j = 0; j < newCounsel.imageIds[1].length; j++)
+          'medias[like][]': newCounsel.imageIds[1][j].toString(),
+        for(int j = 0; j < newCounsel.imageIds[2].length; j++)
+          'medias[dislike][]': newCounsel.imageIds[2][j].toString(),
+        for(int i = 0; i < newCounsel.question.length; i++)
+          'questions[' + (i+1).toString() + '][question]': newCounsel.question[i].question,
+        for(int i = 0; i < newCounsel.question.length; i++)
+          'questions[' + (i+1).toString() + '][answer]': newCounsel.question[i].answer,
+      } ,
+      token
+    );
+    return res;
+  }
+  Future<dynamic> editCounsel(CounselPostModel newCounsel, String counsel_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.put(
+      "$apiUrl/counselings/" + counsel_id, 
       <String, String> {
         'counselings[clinic_id]': newCounsel.clinic_id,
         'counselings[doctor_id]': newCounsel.doctor_id,
@@ -150,5 +215,20 @@ class MyApi extends Api {
       token
     );
     return Media_model.fromJson(res!.data['media']);
+  }
+
+  Future<CouncelingDetail_Model> getCounselDetail(String counsel_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get(
+        "$apiUrl/counselings/" + counsel_id,
+        token);
+    return CouncelingDetail_Model.fromJson(res.data["data"]["counseling"]);
+  }
+  Future<DiaryDetail_Model> getDiaryDetail(String diary_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get(
+        "$apiUrl/diaries/" + diary_id,
+        token);
+    return DiaryDetail_Model.fromJson(res.data["data"]["diary"]);
   }
 }

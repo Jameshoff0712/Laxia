@@ -13,12 +13,16 @@ class DiaryDetail_Model extends Equatable {
   final List<Menu_Sub_Model>? menus;
   final List<Test_Question> text_questions;
   final List<Media_model>? medias;
+  final List<Media_model>? beforemedias;
+  final List<Media_model>? aftermedias;
   final List<Progress>? progresses;
   final List<Diary_Sub_Model> diaries;
   const DiaryDetail_Model( {
     required this.diaries,
     this.progresses,
     this.medias,
+    this.beforemedias,
+    this.aftermedias,
     required this.diary,
     required this.owner,
     this.menus,
@@ -36,6 +40,12 @@ class DiaryDetail_Model extends Equatable {
               .map((x) => Test_Question.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
       medias:json["medias"]==null?[]: List<Media_model>.from(json["medias"]
+              .map((x) => Media_model.fromJson(x as Map<String, dynamic>))
+          as Iterable<dynamic>),
+      beforemedias:json["beforemedias"]==null?[]: List<Media_model>.from(json["beforemedias"]
+              .map((x) => Media_model.fromJson(x as Map<String, dynamic>))
+          as Iterable<dynamic>),
+      aftermedias:json["aftermedias"]==null?[]: List<Media_model>.from(json["aftermedias"]
               .map((x) => Media_model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
       diaries:json["menus"][0][["diaries"]]==null?[]: List<Diary_Sub_Model>.from(json["menus"][0][["diaries"]]
