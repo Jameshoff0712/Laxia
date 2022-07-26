@@ -258,7 +258,6 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                 return Doctor_Card(
                                     onpress: () {},
                                     image: widget.model[2][index]["image"],
-                                    post: widget.model[2][index]["post"],
                                     name: widget.model[2][index]["name"],
                                     mark: widget.model[2][index]["mark"],
                                     day: widget.model[2][index]["day"],

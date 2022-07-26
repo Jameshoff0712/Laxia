@@ -27,13 +27,18 @@ class Menu_Sub_Model extends Equatable {
   final int? status;
   final String? created_at;
   final String? updated_at;
+  final double avg_rate;
   final bool? is_favorite;
   final List<Category>? categories;
   final Clinic_Sub_Model? clinic;
   final List<Image_model>? images;
+  final int alltime;
+
 
   const Menu_Sub_Model(
       {required this.id,
+      required this.alltime,      
+      required this.avg_rate,
       this.clinic_id,
       required this.name,
       this.price,
@@ -64,6 +69,7 @@ class Menu_Sub_Model extends Equatable {
   factory Menu_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Menu_Sub_Model(
       id: json["id"],
+      alltime: json['alltime'],
       clinic_id: json["clinic_id"],
       name: json["name"],
       price: json["price"] == null ? 0 : json["price"],
@@ -97,7 +103,8 @@ class Menu_Sub_Model extends Equatable {
           : Clinic_Sub_Model.fromJson(json["clinic"]),
       images:json["images"]==null?[]: List<Image_model>.from(json["images"]
               .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
-          as Iterable<dynamic>),
+          as Iterable<dynamic>), 
+      avg_rate: json["avg_rate"] as double,
     );
   }
   @override

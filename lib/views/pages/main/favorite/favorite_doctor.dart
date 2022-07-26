@@ -59,7 +59,6 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
                                     index: mid[index].id)));
                       },
                       image: mid[index].photo!,
-                      post: mid[index].job_name!,
                       name: mid[index].name!,
                       mark: mid[index].likes_count.toString(),
                       day: mid[index].experience_year.toString(),

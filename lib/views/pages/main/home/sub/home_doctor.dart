@@ -213,8 +213,6 @@ class _Home_DoctorState extends State<Home_Doctor> {
                                     image: doctor_data.data[index].photo == null
                                         ? "http://error.png"
                                         : doctor_data.data[index].photo!,
-                                    post:
-                                        "院長", //doctor_data.data[index]["post"],
                                     name: doctor_data.data[index].hira_name,
                                     mark: 4.8
                                         .toString(), //doctor_data.data[index]["mark"],

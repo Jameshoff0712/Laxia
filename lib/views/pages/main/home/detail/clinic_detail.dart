@@ -66,6 +66,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       }
     } catch (e) {}
   }
+  String getFreeday(){
+    String mid='';
+    for(int i=0;i<clinic_detail.clinic.work_times!.length; i++)
+      if(clinic_detail.clinic.work_times![i].type==1){
+        mid+=clinic_detail.clinic.work_times![i].weekday+' ';
+      }
+    return mid;
+  }
   void addCategory(Category cate){
     for(int i=0;i<categories.length;i++){
       if(cate.id==categories[i].id){
@@ -196,7 +204,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
                                       clinic_Detail: clinic_detail,
-                                      index: 2,
+                                      index: 2, categories: categories,
                                     )));
                           },
                           child: Column(
@@ -226,6 +234,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
+                                      categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 3,
                                     )));
@@ -256,6 +265,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
+                                   categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 4,
                                     )));
@@ -286,6 +296,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
+                                   categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 1,
                                     )));
@@ -340,6 +351,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Clinic_Sub_Detail(
+                                       categories: categories,
                                           clinic_Detail: clinic_detail,
                                           index: 1,
                                         )));
@@ -434,6 +446,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             MaterialPageRoute(
                                                 builder: (_) =>
                                                     Clinic_Sub_Detail(
+                                                       categories: categories,
                                                       clinic_Detail:
                                                           clinic_detail,
                                                       index: 2,
@@ -527,6 +540,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
+                                                             categories: categories,
                                                             clinic_Detail:
                                                                 clinic_detail,
                                                             index: 2,
@@ -596,6 +610,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             MaterialPageRoute(
                                                 builder: (_) =>
                                                     Clinic_Sub_Detail(
+                                                       categories: categories,
                                                       clinic_Detail:
                                                           clinic_detail,
                                                       index: 3,
@@ -747,6 +762,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             MaterialPageRoute(
                                                 builder: (_) =>
                                                     Clinic_Sub_Detail(
+                                                       categories: categories,
                                                       clinic_Detail:
                                                           clinic_detail,
                                                       index: 3,
@@ -760,6 +776,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
+                                                             categories: categories,
                                                             clinic_Detail:
                                                                 clinic_detail,
                                                             index: 3,
@@ -907,7 +924,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 fontWeight: FontWeight.w700))),
                                     DataColumn(
                                         label: Text(
-                                            'clinic_detail["clinicname"]',
+                                            clinic_detail.clinic.name!,
                                             style: TextStyle(
                                                 
                                                 fontSize: 14,
@@ -926,7 +943,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
-                                      DataCell(Text('clinic_detail["access"]',
+                                      DataCell(Text( clinic_detail.clinic.nearest_station==null?"":clinic_detail.clinic.nearest_station!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -944,7 +961,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
-                                      DataCell(Text('clinic_detail["access"]',
+                                      DataCell(Text(clinic_detail.clinic.access==null?"":clinic_detail.clinic.access!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -975,7 +992,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text(' clinic_detail["workday"]',
+                                      DataCell(Text(getFreeday(),
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -987,11 +1004,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: Helper.headFontFamily,
-                                              
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text(
-                                          'clinic_detail["phonenumber"]',
+                                          clinic_detail.clinic.phone_number==null?"":clinic_detail.clinic.phone_number.toString(),
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -1006,7 +1022,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               fontFamily: Helper.headFontFamily,
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text('clinic_detail["card"]',
+                                      DataCell(Text(clinic_detail.clinic.credit_card==null?"":clinic_detail.clinic.credit_card!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               
@@ -1021,7 +1037,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text('clinic_detail["park"]',
+                                      DataCell(Text(clinic_detail.clinic.parking==null?"":clinic_detail.clinic.parking!,
                                           style: TextStyle(
                                               fontSize: 14,
                                               

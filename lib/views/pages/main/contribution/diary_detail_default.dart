@@ -102,7 +102,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              children: [
+              children: [     
                 SizedBox(
                   height: 32,
                   width: 32,
@@ -120,7 +120,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ),
+                  ), 
                 ),
                 SizedBox(width: 5),
                 Column(
@@ -219,7 +219,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
             highlightColor: Colors.transparent,  
         ),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Container(    
         padding: EdgeInsets.symmetric(vertical: 5),
         height: 60,
         decoration: BoxDecoration(color: Helper.whiteColor),
@@ -305,7 +305,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                     ),
                     context: context,
                     builder: (context) {
-                      return CommentDialogSheet(count: 0, index: 0, domain: 'progress',);
+                      return CommentDialogSheet( index: widget.index, domain: 'progress',);
                     });
               },
               child: Column(
@@ -323,7 +323,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                           size: 30,
                         ),
                   Text(
-                    "20",
+                    "コメント",
                     style: TextStyle(
                         color: isfavorite
                             ? Helper.btnBgYellowColor
@@ -461,9 +461,9 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                           ),
                       ],
                     ),
-                    StateSliderWidget(state_str: "痛み", state_val:  progress_detail.statuses[0].pivot.value),
-                    StateSliderWidget(state_str: "腫れ", state_val: progress_detail.statuses[1].pivot.value),
-                    StateSliderWidget(state_str: "傷あと", state_val: progress_detail.statuses[2].pivot.value),
+                    StateSliderWidget(state_str: "痛み", state_val:  progress_detail.statuses[0].pivot.value,isenable: false,),
+                    StateSliderWidget(state_str: "腫れ", state_val: progress_detail.statuses[1].pivot.value,isenable: false),
+                    StateSliderWidget(state_str: "傷あと", state_val: progress_detail.statuses[2].pivot.value,isenable: false),
                     Text(
                       progress_detail.progress.content!,
                       style: TextStyle(color: Helper.extraGrey, fontSize: 14),
@@ -528,7 +528,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                                     ),
                                     context: context,
                                     builder: (context) {
-                                      return CommentDialogSheet(count: 0, index: 0, domain: 'diaries',);
+                                      return CommentDialogSheet( index: widget.index, domain: 'diaries',);
                                     });
                                   },
                                 decoration: InputDecoration(

@@ -44,7 +44,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
           if(widget.part_id== master_model.all_childrens![i].id)
           {
             willSelect.add(true);
-          }
+          }else
             willSelect.add(false);
         });
       }

@@ -4,13 +4,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class Comment_Card extends StatefulWidget {
   final String name, ename, avatar, comment, date;
+  final VoidCallback onpress;
   const Comment_Card({
     Key? key,
     required this.name,
     required this.ename,
     required this.avatar,
     required this.comment,
-    required this.date,
+    required this.date, 
+    required this.onpress,
   }) : super(key: key);
 
   @override
@@ -93,6 +95,7 @@ class _Comment_CardState extends State<Comment_Card> {
                   style: TextStyle( fontWeight: FontWeight.w400,fontSize: 12, color: Color.fromARGB(255, 197, 199, 199)),
                 ),
                 GestureDetector(
+                  onTap:widget.onpress,
                   child: Text(
                     '返信',
                     style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12, color: Helper.mainColor),
