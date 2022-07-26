@@ -203,9 +203,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
-                    setState(() {
-                      conReason.text = text;
-                    });
+                    // setState(() {
+                    //   conReason.text = text;
+                    // });
                   },
                   decoration: InputDecoration(
                     hintText: '例)ラシアの他の口コミをみて、ここのクリニックの田中先生に相談してみようと思い選択しました。',
@@ -331,9 +331,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
-                    setState(() {
-                      conBefore.text= text;
-                    });
+                    // setState(() {
+                    //   conBefore.text= text;
+                    // });
                   },
                   decoration: InputDecoration(
                     hintText:
@@ -369,9 +369,9 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (text) {
-                    setState(() {
-                      conAfter.text = text;
-                    });
+                    // setState(() {
+                    //   conAfter.text = text;
+                    // });
                   },
                   decoration: InputDecoration(
                     hintText: '例)自分にあった二重幅を知ることができた。料金も良心的であると思いました。',
