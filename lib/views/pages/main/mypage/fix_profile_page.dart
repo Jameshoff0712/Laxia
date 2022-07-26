@@ -39,6 +39,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
   final _conAuth = AuthController();
   late Me myInfo;
   bool isloading = true;
+  bool isfirst = true;
   MyController _con = new MyController();
   final _conStatic = StaticController();
   TextEditingController _conNickname = TextEditingController();
@@ -56,12 +57,14 @@ class _FixProfilePageState extends State<FixProfilePage> {
     if (pickedImage != null) {
       setState(() {
         _image = pickedImage.path;
+        print(pickedImage.path);
       });
     }
   }
   Future<void> getMe() async {
     try {
       final mid = await _conAuth.getMe();
+      print(mid);
       // if (me.id != 0) {
       //   userProperties.setMe(me);
       // }
@@ -132,7 +135,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
         _conSurgery.text = _enteredText;
       });
     }
-    if(!isloading){
+    if(isfirst && !isloading){
       setState(() {
       _image = myInfo.photo;
       _conNickname.text = myInfo.nickname!;
@@ -151,7 +154,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
       _conSurgery.text = surgery_names.join(', ');
 
 
-      // isloading = false;
+      isfirst = false;
     });
     }
     
@@ -194,6 +197,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
                           surgery_ids = surgeryProvider.getSelectedCurePos;
                         });
                         post();
+                        Navigator.of(context).pop();
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => Mypage()),
+                        // );
                         // Navigator.of(context).pushNamed("/Mypage");
                       },
                       child: Text(
@@ -234,10 +242,13 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                             width: 80,
                                             height: 80,
                                             fit: BoxFit.cover)
-                                        : Image.file(File(_image!),
+                                        : (!_image!.contains('http')?Image.file(File(_image!),
                                             width: 80,
                                             height: 80,
-                                            fit: BoxFit.cover)),
+                                            fit: BoxFit.cover):Image.network(_image!,
+                                            width: 80,
+                                            height: 80,
+                                            fit: BoxFit.cover))),
                               ),
                               GestureDetector(
                                 onTap: _openImagePicker,

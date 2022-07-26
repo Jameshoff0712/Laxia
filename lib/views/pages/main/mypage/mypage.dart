@@ -42,6 +42,7 @@ class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
 Future<void> getMe() async {
     try {
       final me = await _con.getMe();
+      // print(me);
       if (me.id != 0) {
         setState(() {
           myInfo = me;
@@ -388,7 +389,7 @@ Future<void> getMe() async {
                           ),
                           OutlinedButton(
                             
-                              onPressed: () {
+                              onPressed: () async {
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
@@ -396,7 +397,7 @@ Future<void> getMe() async {
                                 //             FixProfilePage()));
 
 
-                                showModalBottomSheet(
+                                await showModalBottomSheet(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(10.0),
@@ -418,6 +419,11 @@ Future<void> getMe() async {
                                   },
                                   isScrollControlled: true,
                                 );
+                                setState(() {
+                                  isloading=true;
+                                });
+                                getMe();
+                                // print("object");
                               },
                               style: OutlinedButton.styleFrom(
                                 splashFactory: NoSplash.splashFactory,
