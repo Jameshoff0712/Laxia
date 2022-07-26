@@ -41,6 +41,7 @@ class _SelectBoxWidgetState extends State<SelectBoxWidget> {
             ),
           ),
           DropdownButtonFormField<String>(
+            value: widget.chosenValue,
               items: widget.items
                   .map((item) => DropdownMenuItem<String>(
                         value: item.id.toString(),

@@ -35,12 +35,18 @@ class Mypage extends StatefulWidget {
 class _MypageState extends State<Mypage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
    bool isfirst=true;
+   bool isloading = true;
     final _con = AuthController();
+    late Me myInfo;
   late UserProvider userProperties;
-Future<void> Me() async {
+Future<void> getMe() async {
     try {
       final me = await _con.getMe();
       if (me.id != 0) {
+        setState(() {
+          myInfo = me;
+          isloading = false;
+        });
         userProperties.setMe(me);
       }
     } catch (e) {
@@ -51,6 +57,7 @@ Future<void> Me() async {
   }
   @override
   initState() {
+    getMe();
     _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
     super.initState();
   }
@@ -77,19 +84,20 @@ Future<void> Me() async {
   @override
   Widget build(BuildContext context) {
     userProperties = Provider.of<UserProvider>(context, listen: true);
-    if(isfirst==true){
-      Me();
-      setState(() {
-        isfirst=false;
-      });
-    }
+    // if(isfirst==true){
+    //   getMe();
+    //   setState(() {
+    //     isfirst=false;
+    //   });
+    // }
     // print(userProperties.getMe.diaries);
-    return Scaffold(
+    return !isloading
+    ? Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
         title: Text(
-          userProperties.getMe.nickname!,
+          myInfo.nickname!,
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
@@ -124,7 +132,15 @@ Future<void> Me() async {
           ),
         ),
       ),
-    );
+    )
+    : Container(
+            child: Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ));
   }
 
   TabBar _buildTabBar() {
@@ -177,9 +193,9 @@ Future<void> Me() async {
       child: TabBarView(
         controller: _tabController,
         children: [
-          buildDiaryPage(userProperties.getMe.diaries),
-          buildCounselingPage(userProperties.getMe.counselings),
-          buildQuestionPage(userProperties.getMe.favorite_questions)
+          buildDiaryPage(myInfo.diaries!),
+          buildCounselingPage(myInfo.counselings!),
+          buildQuestionPage(myInfo.favorite_questions!)
         ],
       ),
     );
@@ -344,7 +360,7 @@ Future<void> Me() async {
                         child: CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(
-                            userProperties.getMe.photo!,
+                            myInfo.photo!,
                           ),
                         ),
                       ),
@@ -361,7 +377,7 @@ Future<void> Me() async {
                                 flex: 1,
                                 fit: FlexFit.tight,
                                 child: Text(
-                                  userProperties.getMe.name,
+                                  myInfo.name!,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 18,
@@ -445,7 +461,7 @@ Future<void> Me() async {
                                 // height: 24,
                                 // width: 24,
                                 child: Text(
-                                  userProperties.getMe.followsCount.toString(),
+                                  myInfo.followsCount.toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
@@ -485,7 +501,7 @@ Future<void> Me() async {
                                 // height: 24,
                                 // width: 24,
                                 child: Text(
-                                  userProperties.getMe.followersCount
+                                  myInfo.followersCount
                                       .toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
@@ -521,7 +537,7 @@ Future<void> Me() async {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            userProperties.getMe.intro,
+                            myInfo.intro!,
                             overflow: TextOverflow.clip,
                             textAlign: TextAlign.justify,
                             maxLines: 4,
@@ -563,7 +579,7 @@ Future<void> Me() async {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "${userProperties.getMe.point} p",
+                              "${myInfo.point} p",
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16,
