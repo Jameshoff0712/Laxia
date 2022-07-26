@@ -710,7 +710,9 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   ],
                 ),
               ),
+              diary_detail.beforemedias!.isEmpty?Container():
               SizedBox(height: 19,),
+              diary_detail.beforemedias!.isEmpty?Container():
               Text(
                 "施術前",
                 style: TextStyle(
@@ -719,7 +721,9 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   color: Helper.titleColor,
                 ),
               ),
+              diary_detail.beforemedias!.isEmpty?Container():
               SizedBox(height: 4,),
+              diary_detail.beforemedias!.isEmpty?Container():
               Container(
                 alignment: Alignment.center,
                 height: 120,
@@ -762,7 +766,9 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       );
                   }),
               ), 
+              diary_detail.progresses!.isEmpty?Container():
               SizedBox(height: 24,),
+              diary_detail.progresses!.isEmpty?Container():
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -803,6 +809,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   )
                 ],
               ),
+              diary_detail.progresses!.isEmpty?Container():
               Container(
                 child: ListView.builder(
                   itemCount:(!isPostVisible&&(diary_detail.progresses!.length>3))? 3: diary_detail.progresses!.length,
@@ -839,7 +846,9 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         ],
                       ),
                     ),
+              diary_detail.diaries.isEmpty?Container():
               SizedBox(height: 19,),
+              diary_detail.diaries.isEmpty?Container():
               Text(
                 "この施術の日記",
                 style: TextStyle(
@@ -852,18 +861,10 @@ class _Diary_DetailState extends State<Diary_Detail> {
               Container(
                 decoration: BoxDecoration(color: Helper.homeBgColor),
                 child: Column(children: [
-                  GridView.builder(
+                  ListView.builder(
+                    padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                    scrollDirection: Axis.vertical,
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio:175/291,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10),
                     itemCount: diary_detail.diaries.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Diary_Card(

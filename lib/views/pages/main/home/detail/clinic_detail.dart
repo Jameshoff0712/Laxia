@@ -162,7 +162,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     ? ""
                                     : clinic_detail.clinic.name!,
                                 mark:
-                                    4.8.toString(), // clinic_detail.clinic.mark
+                                    clinic_detail.clinic.avg_rate.toString(), // clinic_detail.clinic.mark
                                 day: "",
                                 post: "")
                           ],
@@ -412,9 +412,11 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       )
                     ]),
                   ),
+                  clinic_detail.menu.isEmpty?Container():
                   SizedBox(
                     height: 5,
                   ),
+                  clinic_detail.menu.isEmpty?Container():
                   Container(
                     decoration: BoxDecoration(color: Helper.whiteColor),
                     child: Column(
@@ -576,9 +578,11 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       ],
                     ),
                   ),
+                  clinic_detail.diaries.isEmpty?Container():
                   SizedBox(
                     height: 5,
                   ),
+                  clinic_detail.diaries.isEmpty?Container():
                   Container(
                     decoration: BoxDecoration(color: Helper.whiteColor),
                     child: Column(
@@ -639,18 +643,11 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   ],
                                 ),
                               ),
-                              GridView.builder(
+                              ListView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 8),
-                                  scrollDirection: Axis.vertical,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio: 175 / 291,
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 10,
-                                          mainAxisSpacing: 10),
+                                  // physics: const AlwaysScrollableScrollPhysics(),
+                                  // scrollDirection: Axis.horizontal,
                                   itemCount: clinic_detail.diaries.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {

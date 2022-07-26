@@ -104,7 +104,7 @@ class Menu_Sub_Model extends Equatable {
       images:json["images"]==null?[]: List<Image_model>.from(json["images"]
               .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>), 
-      avg_rate: json["avg_rate"] as double,
+      avg_rate: (json["avg_rate"]as num).toDouble(),
     );
   }
   @override

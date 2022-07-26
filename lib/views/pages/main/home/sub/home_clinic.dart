@@ -216,7 +216,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                                       mark: clinic_data
                                                   .data[index].avg_rate ==
                                               null
-                                          ? ""
+                                          ? "11"
                                           : clinic_data.data[index].diaries_count
                                               .toString(),
                                       day: clinic_data

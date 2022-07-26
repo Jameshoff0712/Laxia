@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class Status_Model extends Equatable {
   final int id;
-  final int name;
+  final String name;
   final Pivot pivot;
 
   const Status_Model(

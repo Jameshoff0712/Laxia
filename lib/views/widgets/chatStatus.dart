@@ -108,7 +108,7 @@ class _chatStatusState extends State<chatStatus> {
                     ),
                   ),
                 ),
-                if (widget.notificCount == null)
+                if (widget.notificCount == null||widget.notificCount==0)
                   Container()
                 else
                   Expanded(

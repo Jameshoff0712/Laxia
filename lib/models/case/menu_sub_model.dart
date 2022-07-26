@@ -55,6 +55,7 @@ class Menu_Sub_Model extends Equatable {
        this.pivot});
 
   factory Menu_Sub_Model.fromJson(Map<String, dynamic> json) {
+    
     return Menu_Sub_Model(
           id:json["id"],
           clinic_id:json["clinic_id"],
