@@ -6,6 +6,8 @@ import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/menu/menu_sub_model.dart';
 import 'package:laxia/models/question/question_sub_model.dart';
 
+import 'home/category_model.dart';
+
 
 class Me extends Equatable {
   int id;
@@ -40,6 +42,8 @@ class Me extends Equatable {
   List<Menu_Sub_Model>? favorite_menus;
   List<Clinic_Sub_Model>? favorite_clinics;
   bool? isfollow;
+  final List<Category>? categories;
+  
 
   Me({
     required this.id,
@@ -74,6 +78,7 @@ class Me extends Equatable {
     this.favorite_menus,
     this.favorite_clinics,
     this.isfollow,
+    this.categories,
   });
 
   factory Me.fromJson(Map<String, dynamic> json) {
@@ -129,6 +134,9 @@ class Me extends Equatable {
       favorite_clinics:json["favorite_clinics"]==null?[]:List<Clinic_Sub_Model>.from(json["favorite_clinics"]
               .map((x) => Clinic_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
+      categories: json["categories"] == null ? [] : List<Category>.from(json["categories"]
+                .map((x) => Category.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>)
     );
   }
   @override
@@ -162,5 +170,6 @@ class Me extends Equatable {
         favorite_counseling_reports,
         favorite_menus,
         favorite_clinics,
+        categories,
       ];
 }
