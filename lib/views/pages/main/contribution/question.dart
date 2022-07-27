@@ -61,8 +61,9 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
         content: _con.question_contentCtrl.text,
         imageID_list: imageIds
         );
-
-    dynamic result = _conMy.postQuestion(newQuestion);
+    print(newQuestion);
+    print(imageIds.length);
+    dynamic result = await _conMy.postQuestion(newQuestion);
     print(result.data);
   }
 
@@ -161,9 +162,9 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               )),
-                          onPressed: () {
+                          onPressed: () async{
                             // diaryProperties.setMedias(images);
-                            post();
+                            await post();
                             surgeryProvider.selectedCurePosStr.clear();
                             surgeryProvider.selectedCurePos.clear();
                             Navigator.of(context).pop();
