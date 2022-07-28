@@ -50,7 +50,7 @@ class MyApi extends Api {
     }
     return false;
   }
-  Future<void> postDiary(DiaryPostModel newDiary) async {
+  Future<dynamic> postDiary(DiaryPostModel newDiary) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
         "$apiUrl/diaries",
@@ -59,7 +59,7 @@ class MyApi extends Api {
           "diaries[treat_date]": newDiary.date,
           "diaries[doctor_id]": newDiary.doctor_id,
           for (int i = 0; i < newDiary.categories.length; i++)
-            "categories[]": newDiary.categories[i].toString(),
+            'categories[' + (i+1).toString() +']': newDiary.categories[i].toString(),
           for (int j = 0; j < newDiary.questions.length; j++)
             "diary_tqs[" + (j + 1).toString() + "]": newDiary.questions[j],
           for (int k = 0; k < newDiary.rates.length; k++)
@@ -67,19 +67,19 @@ class MyApi extends Api {
           "diaries[cost_anesthetic]": newDiary.cost_anes.toString(),
           "diaries[cost_drug]": newDiary.cost_drug.toString(),
           "diaries[cost_other]": newDiary.cost_other.toString(),
-          // for (int i = 0; i < newDiary.imageIds.length; i++)
-          //   "medias[]": newDiary.imageIds[i].toString(),
+          // // for (int i = 0; i < newDiary.imageIds.length; i++)
+          // //   "medias[]": newDiary.imageIds[i].toString(),
           for (int i = 0; i < newDiary.imageIds[0].length; i++)
             "before_medias[]": newDiary.imageIds[0][i].toString(),
           for (int i = 0; i < newDiary.imageIds[1].length; i++)
             "after_medias[]": newDiary.imageIds[1][i].toString(),
           "menus[0][cost]": newDiary.cost_op.toString(),
-          "menus[0][id]": newDiary.categories[0].toString(),
+          "menus[0][id]": '9'//newDiary.categories[0].toString(),
         },
         token);
-    
+    return res;
   }
-  Future<void> editDiary(DiaryPostModel newDiary, String diary_id) async {
+  Future<dynamic> editDiary(DiaryPostModel newDiary, String diary_id) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.put(
         "$apiUrl/diaries/" + diary_id,
@@ -88,7 +88,7 @@ class MyApi extends Api {
           "diaries[treat_date]": newDiary.date,
           "diaries[doctor_id]": newDiary.doctor_id,
           for (int i = 0; i < newDiary.categories.length; i++)
-            "categories[]": newDiary.categories[i].toString(),
+            'categories[' + (i+1).toString() +']': newDiary.categories[i].toString(),
           for (int j = 0; j < newDiary.questions.length; j++)
             "diary_tqs[" + (j + 1).toString() + "]": newDiary.questions[j],
           for (int k = 0; k < newDiary.rates.length; k++)
@@ -106,7 +106,7 @@ class MyApi extends Api {
           "menus[0][id]": newDiary.categories[0].toString(),
         },
         token);
-    
+    return res;
   }
 
   Future<dynamic> postQuestion(QuestionPostModel newQuestion) async {
@@ -117,9 +117,9 @@ class MyApi extends Api {
         'questions[title]': newQuestion.title,
         'questions[content]': newQuestion.content,
         for(int i = 0; i < newQuestion.categories.length; i++)
-          'categories[]': newQuestion.categories[i].toString(),
-        for(int j = 0; j < newQuestion.imageID_list!.length; j++)
-          'medias[]': newQuestion.imageID_list![j].toString(),
+          'categories[' + (i+1).toString() +']': newQuestion.categories[i].toString(),
+        for(int j = 0; j < newQuestion.imageID_list.length; j++)
+          'medias[]': newQuestion.imageID_list[j].toString(),
       } ,
       token
     );
@@ -139,7 +139,7 @@ class MyApi extends Api {
         'counselings[after_ccounseling]': newCounsel.after_counsel,
         'counselings[rate]': newCounsel.rate,
         for(int i = 0; i < newCounsel.categories.length; i++)
-          'categories[]': newCounsel.categories[i].toString(),
+          'categories[' + (i+1).toString() +']': newCounsel.categories[i].toString(),
         for(int j = 0; j < newCounsel.imageIds[0].length; j++)
           'medias[self][]': newCounsel.imageIds[0][j].toString(),
         for(int j = 0; j < newCounsel.imageIds[1].length; j++)
@@ -169,7 +169,7 @@ class MyApi extends Api {
         'counselings[after_ccounseling]': newCounsel.after_counsel,
         'counselings[rate]': newCounsel.rate,
         for(int i = 0; i < newCounsel.categories.length; i++)
-          'categories[]': newCounsel.categories[i].toString(),
+          'categories[' + (i+1).toString() +']': newCounsel.categories[i].toString(),
         for(int j = 0; j < newCounsel.imageIds[0].length; j++)
           'medias[self][]': newCounsel.imageIds[0][j].toString(),
         for(int j = 0; j < newCounsel.imageIds[1].length; j++)

@@ -76,7 +76,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
   }
   Future<void> getDiaryDetail() async {
     final res = await _conMy.getDiaryDetail(widget.diary_id!);
-    // print(res.diary);
+    print(res.doctor);
     setState(() {
       diaryDetail = res;
       isloadingDetail = false;
@@ -320,22 +320,22 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       diaryProperties.clinic_id = diaryDetail.diary.clinic_id.toString();
       userProperties.selectedClinic = diaryDetail.diary.clinic_name!;
       diaryProperties.doctor_id = diaryDetail.diary.clinic_id.toString();
-      userProperties.selectedDoctor = diaryDetail.diary.doctor_name!;
+      userProperties.selectedDoctor = diaryDetail.doctor.hira_name;
       diaryProperties.date = diaryDetail.diary.treat_date!;
 
-      // setState(() {
-      //   imageIds = [[], []];
-      //   for(int i=0; i< diaryDetail.beforemedias!.length; i++)
-      //     imageIds[0].add(diaryDetail.beforemedias![i].id);
-      //   for(int i=0; i< diaryDetail.aftermedias!.length; i++)
-      //     imageIds[0].add(diaryDetail.aftermedias![i].id);
+      setState(() {
+        imageIds = [[], []];
+        for(int i=0; i< diaryDetail.beforemedias!.length; i++)
+          imageIds[0].add(diaryDetail.beforemedias![i].id);
+        for(int i=0; i< diaryDetail.aftermedias!.length; i++)
+          imageIds[0].add(diaryDetail.aftermedias![i].id);
 
-      //   images = [[], []];
-      //   for(int j = 0; j< diaryDetail.beforemedias!.length; j++)
-      //     images[0].add(diaryDetail.beforemedias![j].path);
-      //   for(int j = 0; j< diaryDetail.aftermedias!.length; j++)
-      //     images[0].add(diaryDetail.aftermedias![j].path);
-      // });
+        images = [[], []];
+        for(int j = 0; j< diaryDetail.beforemedias!.length; j++)
+          images[0].add(diaryDetail.beforemedias![j].path);
+        for(int j = 0; j< diaryDetail.aftermedias!.length; j++)
+          images[0].add(diaryDetail.aftermedias![j].path);
+      });
 
       diaryProperties.cost_op = diaryDetail.diary.price!;
       diaryProperties.cost_anesthetic = diaryDetail.diary.cost_anesthetic!;
@@ -811,7 +811,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                     ),
               ),
             ),
-            imagePicker(context, 1),
+            imagePicker(context, 0),
             Container(
               padding: const EdgeInsets.only(left: 16, top: 23, bottom: 10),
               child: Text(
@@ -824,7 +824,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                     ),
               ),
             ),
-            imagePicker(context, 0),
+            imagePicker(context, 1),
             !widget.isMyDiary!
                 ? Center(
                     child: Container(

@@ -141,13 +141,22 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                         cost_drug: diaryProperties.getCostDrug, 
                         cost_other: diaryProperties.getCostOther
                       );
-                      if(widget.diary_id != '')
+                      print(newDiary);
+                      if(widget.diary_id != ''){
                         dynamic result = await _conMy.editDiary(newDiary, widget.diary_id!);
-                      else
+                        print('edit');
+                        print(result.data);
+                      }
+                      else{
                         dynamic result = await _conMy.postDiary(newDiary);
-                      // print(result.data);
+                        print('post');
+                        print(result.data);
+                      }
 
-
+                      // Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => AddDiaryPage()));
                       diaryProperties.clinic_id = '';
                       diaryProperties.doctor_id = '';
                       diaryProperties.date = '';
@@ -160,10 +169,15 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                       diaryProperties.cost_anesthetic = 0;
                       diaryProperties.cost_drug = 0;
                       diaryProperties.cost_other = 0;
-                      Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AddDiaryPage()));
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      // Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => AddDiaryPage()));
                     } : null,
                     style: ElevatedButton.styleFrom(
                       elevation: 0,

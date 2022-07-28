@@ -24,6 +24,7 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
   TextEditingController con4 = TextEditingController();
   TextEditingController con5 = TextEditingController();
   TextEditingController con6 = TextEditingController();
+  bool status = true;
   bool isAddEnabled = true;
   bool initDetail = true;
   // late OfferController _con;
@@ -162,9 +163,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    // setState(() {
-                    //   con1.text = text;
-                    // });
+                    setState(() {
+                      status = true;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)目が一重で目つきがキツイことで悩んでいました。',
@@ -199,9 +200,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    // setState(() {
-                    //   con2.text = text;
-                    // });
+                    setState(() {
+                      status = true;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)二重部門でラシアでの評価も高く信頼できると思ったからです。',
@@ -236,9 +237,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    // setState(() {
-                    //   con3.text = text;
-                    // });
+                    setState(() {
+                      status = true;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)二重切開が良いと思ったのですが、私のまぶただと埋没でも大丈夫ということで、埋没にしました。',
@@ -273,9 +274,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    // setState(() {
-                    //   con4.text = text;
-                    // });
+                    setState(() {
+                      status = true;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)施術は15分ほどで終わりました。麻酔をしていたので特に痛みはなかったです。',
@@ -310,9 +311,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    // setState(() {
-                    //   con5.text = text;
-                    // });
+                    setState(() {
+                      status = true;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)ドクターもスタッフの方も優しく声をかけていただき、安心して施術に向かうことができきました。',
@@ -347,9 +348,9 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                   keyboardType: TextInputType.text,
                   maxLines: 3,
                   onChanged: (text) {
-                    // setState(() {
-                    //   con6.text = text;
-                    // });
+                    setState(() {
+                      status = true;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: '例)毎日自分の顔が見るのが楽しみになりました。もし迷っているなら、是非オススメします。',
