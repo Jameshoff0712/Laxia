@@ -69,6 +69,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
     if(widget.counsel_id != ''){
       dynamic result = await _conMy.editCounsel(newQuestion, widget.counsel_id!);
       print('edit');
+      print(widget.counsel_id);
       print(result.data);
     }
     else{
