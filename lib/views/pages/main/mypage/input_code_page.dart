@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/my_controller.dart';
 import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
 
 class InputCodePage extends StatefulWidget {
@@ -11,6 +12,66 @@ class InputCodePage extends StatefulWidget {
 
 class _InputCodePageState extends State<InputCodePage> {
   String content = '';
+  final _con = MyController();
+  Future<void> getinvitation(String code) async {
+    try {
+      final res=await _con.getinvitation(code);
+      if(res==1){
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => new AlertDialog(
+                title: new Text('成功'),
+                content:
+                    new Text('ポイント 3000が追加されました。'),
+                actions: <Widget>[
+                  new IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,  
+                      icon: new Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      })
+                ],
+            ));
+      }else if(res==0){
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => new AlertDialog(
+                title: new Text('成功'),
+                content:
+                    new Text('すでに進んでいます。'),
+                actions: <Widget>[
+                  new IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,  
+                      icon: new Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      })
+                ],
+            ));
+      }else{
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => new AlertDialog(
+                title: new Text('成功'),
+                content:
+                    new Text('招待コードを確認してください。'),
+                actions: <Widget>[
+                  new IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,  
+                      icon: new Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      })
+                ],
+            ));
+      }
+      
+    } catch (e) {
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -107,25 +168,9 @@ class _InputCodePageState extends State<InputCodePage> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    if (content.isNotEmpty) {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) => new AlertDialog(
-                                title: new Text('成功'),
-                                content:
-                                    new Text('ポイント＊＊＊＊が追加されました。'),
-                                actions: <Widget>[
-                                  new IconButton(
-                                    splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,  
-                                      icon: new Icon(Icons.close),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      })
-                                ],
-                              ));
-                    }
-                  },
+                    if(content.isNotEmpty){}
+                      getinvitation(content);
+                    },
                   child: Text(
                     '登録',
                     textAlign: TextAlign.center,

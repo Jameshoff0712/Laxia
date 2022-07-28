@@ -14,12 +14,9 @@ import 'package:provider/provider.dart';
 
 class Home_Menu extends StatefulWidget {
   final bool? isScrollable, isdrawer;
-  final bool issearch;
-  final List? model, last;
+  final List? last;
   Home_Menu(
       {Key? key,
-      this.model,
-      required this.issearch,
       this.isScrollable = true,
       this.isdrawer = true,
       this.last})

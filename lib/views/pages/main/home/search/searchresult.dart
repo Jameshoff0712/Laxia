@@ -1,37 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/models/home/home_search_model.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:laxia/views/pages/main/home/detail/clinic_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
+import 'package:laxia/views/pages/main/home/detail/menu_detail.dart';
+import 'package:laxia/views/pages/main/home/home.dart';
 import 'package:laxia/views/widgets/clinic_card.dart';
-import 'package:laxia/views/widgets/counseling_card%20.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/doctor_card.dart';
 import 'package:laxia/views/widgets/menu_card.dart';
-import 'package:laxia/views/widgets/question_card.dart';
+import 'package:provider/provider.dart';
 
 class SearchResultAll extends StatefulWidget {
   final TabController tabController;
-  final List model;
   const SearchResultAll(
-      {Key? key, required this.model, required this.tabController})
+      {Key? key, required this.tabController})
       : super(key: key);
 
   @override
   State<SearchResultAll> createState() => _SearchResultAllState();
 }
-// Future<void> getData({required int index}) async {
-//     try {
-//       final mid = await _con.getDiaryDetail(index: index);
-//       setState(() {
-//         diary_detail = mid;
-//          isfavorite=diary_detail.diary.is_favorite==null?false:diary_detail.diary.is_favorite!;
-//          islike=diary_detail.diary.is_like!;
-//          isfollow=diary_detail.owner.is_follow!;
-//          isloading = false;
-//       });
-//     } catch (e) {
-//       print(e.toString());
-//     }
-//   }
+
 class _SearchResultAllState extends State<SearchResultAll> {
+  bool isloading=true,isfirst=true;
+  final _con = HomeController();
+  late Home_Search_Model home_search;
+  Future<void> getData(String searchtext) async {
+    try {
+      final mid = await _con.getHomeSearch(q: searchtext, perpage: 4.toString());
+      setState(() {
+         home_search = mid;
+         isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
   final List<String> tabMenus = [
     'メニュー',
     'クリニック',
@@ -42,8 +49,29 @@ class _SearchResultAllState extends State<SearchResultAll> {
     // '質問',
   ];
   @override
+  void initState(){
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
+    if(isfirst){
+          getData(userProperties.searchtext);
+          setState(() {
+            isfirst=false;
+          });
+    }
+    return isloading
+    ? Container(
+        child: Container(
+        height: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        child: Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ))
+    :((home_search.clinics.isNotEmpty||home_search.menus.isNotEmpty||home_search.doctors.isNotEmpty)?Container(
       decoration: BoxDecoration(
         color: Color.fromARGB(250, 240, 242, 245),
       ),
@@ -57,7 +85,7 @@ class _SearchResultAllState extends State<SearchResultAll> {
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
-                    Container(
+                    home_search.menus.isEmpty?Container():Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
@@ -107,35 +135,42 @@ class _SearchResultAllState extends State<SearchResultAll> {
                                   ),
                                 ),
                                 ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: widget.model[0].length,
-                                    // physics: const AlwaysScrollableScrollPhysics(),
-                                    // scrollDirection: Axis.horizontal,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Menu_Card(
-                                          onpress: () {},
-                                          image: widget.model[0][index]
-                                              ["image"],
-                                          heading: widget.model[0][index]
-                                              ["heading"],
-                                          price: widget.model[0][index]
-                                              ["price"],
-                                          tax: widget.model[0][index]["tax"],
-                                          clinic: widget.model[0][index]
-                                              ["clinic"]);
-                                    }),
+                                  padding: const EdgeInsets.symmetric(vertical: 4),
+                                  itemCount: home_search.menus.length,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Menu_Card(
+                                        onpress: () {
+                                          //Navigator.of(context).pushNamed("/Menu_Detail");
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (_) => Menu_Detail(
+                                                      index:
+                                                          home_search.menus[index].id)));
+                                        },
+                                        image: home_search.menus[index].images!.isEmpty
+                                            ? "http://error.png"
+                                            : home_search.menus[index].images![0].path,
+                                        heading:
+                                            home_search.menus[index].description == null
+                                                ? ""
+                                                : home_search.menus[index].description!,
+                                        price: home_search.menus[index].price == 0
+                                            ? ""
+                                            : home_search.menus[index].price!.toString(),
+                                        clinic: home_search.menus[index].clinic == null ? '' : home_search.menus[index].clinic!.name!);
+                                  }),
                               ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
+                    home_search.menus.isEmpty?Container():SizedBox(
                       height: 10,
                     ),
-                    Container(
+                    home_search.clinics.isEmpty?Container():Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
@@ -179,33 +214,54 @@ class _SearchResultAllState extends State<SearchResultAll> {
                             ),
                           ),
                           ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: widget.model[1].length,
-                              // physics: const AlwaysScrollableScrollPhysics(),
-                              // scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Clinic_Card(
-                                    onpress: () {
-                                      // print("object");
-                                      Navigator.of(context)
-                                          .pushNamed("/Clinic_Datail");
-                                    },
-                                    image: widget.model[1][index]["image"],
-                                    post: widget.model[1][index]["post"],
-                                    name: widget.model[1][index]["name"],
-                                    mark: widget.model[1][index]["mark"],
-                                    day: widget.model[1][index]["day"],
-                                    location: widget.model[1][index]
-                                        ["location"]);
-                              }),
+                            padding:
+                                const EdgeInsets.symmetric(vertical: 4),
+                            itemCount: home_search.clinics.length,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Clinic_Card(
+                                  onpress: () {
+                                    // print("object");
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Clinic_Detail(
+                                                    index: home_search.clinics[index].id)));
+                                  },
+                                  image:
+                                      home_search.clinics[index].photo == null
+                                          ? "http://error.png"
+                                          : home_search.clinics[index].photo!,
+                                  post: "",
+                                  name: home_search.clinics[index].name==null?"":home_search.clinics[index].name!,
+                                  mark: home_search.clinics[index].avg_rate ==
+                                          null
+                                      ? ""
+                                      : home_search.clinics[index].diaries_count
+                                          .toString(),
+                                  day: home_search.clinics[index].diaries_count ==
+                                          null
+                                      ? ""
+                                      : home_search.clinics[index].diaries_count
+                                          .toString(),
+                                  location: (home_search.clinics[index].addr01 ==
+                                              null
+                                          ? ""
+                                          : home_search.clinics[index].addr01!) +
+                                      " " +
+                                      (home_search.clinics[index].addr02 == null
+                                          ? ""
+                                          : home_search.clinics[index].addr02!));
+                            }),
                         ],
                       ),
                     ),
-                    SizedBox(
+                    home_search.clinics.isEmpty?Container():SizedBox(
                       height: 10,
                     ),
-                    Container(
+                    home_search.doctors.isEmpty?Container():Container(
                       decoration: BoxDecoration(color: Helper.whiteColor),
                       child: Column(
                         children: [
@@ -251,311 +307,34 @@ class _SearchResultAllState extends State<SearchResultAll> {
                           ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
-                              itemCount: widget.model[2].length,
+                              itemCount: home_search.doctors.length,
                               // physics: const AlwaysScrollableScrollPhysics(),
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return Doctor_Card(
-                                    onpress: () {},
-                                    image: widget.model[2][index]["image"],
-                                    name: widget.model[2][index]["name"],
-                                    mark: widget.model[2][index]["mark"],
-                                    day: widget.model[2][index]["day"],
-                                    clinic: widget.model[2][index]["clinic"]);
+                                    onpress: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Doctor_Detail(
+                                                      index: home_search.doctors[index].id)));
+                                      // Navigator.of(context).pushNamed("/Doctor_Detail");
+                                    },
+                                    image: home_search.doctors[index].photo == null
+                                        ? "http://error.png"
+                                        : home_search.doctors[index].photo!,
+                                    name: home_search.doctors[index].hira_name,
+                                    mark: home_search.doctors[index].avg_rate.toString(), //home_search.doctors[index]["mark"],
+                                    day: home_search.doctors[index].views_count
+                                        .toString(), //home_search.doctors[index]["day"],
+                                    clinic:
+                                        "湘南美容クリニック 新宿院" //home_search.doctors[index].clinic_id .toString()
+                                    );
                               }),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(color: Helper.whiteColor),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  tabMenus[3],
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 51, 51, 51),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    widget.tabController.animateTo(4);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "もっと見る",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 156, 161, 161),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Icon(
-                                        Icons.navigate_next,
-                                        size: 15,
-                                        color:
-                                            Color.fromARGB(255, 156, 161, 161),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: widget.model[3].length,
-                              // physics: const AlwaysScrollableScrollPhysics(),
-                              // scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Diary_Card(
-                                  avator: widget.model[3][index]["avator"],
-                                  check: widget.model[3][index]["check"],
-                                  image2: widget.model[3][index]["image2"],
-                                  image1: widget.model[3][index]["image1"],
-                                  eyes: widget.model[3][index]["eyes"],
-                                  clinic: widget.model[3][index]["clinic"],
-                                  name: widget.model[3][index]["name"],
-                                  onpress: () {},
-                                  price: widget.model[3][index]["price"],
-                                  sentence: widget.model[3][index]["sentence"],
-                                  type: widget.model[3][index]["type"],
-                                );
-                              }),
-                        ],
-                      ),
-                    ),
-                    // SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Container(
-                    //   decoration: BoxDecoration(color: Helper.whiteColor),
-                    //   child: Column(
-                    //     children: [
-                    //       Padding(
-                    //         padding: EdgeInsets.symmetric(
-                    //             horizontal: 16, vertical: 12),
-                    //         child: Row(
-                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //           children: [
-                    //             Text(
-                    //               tabMenus[4],
-                    //               style: TextStyle(
-                    //                   color: Color.fromARGB(255, 51, 51, 51),
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.w700),
-                    //             ),
-                    //             GestureDetector(
-                    //               onTap: () {
-                    //                 widget.tabController.animateTo(5);
-                    //               },
-                    //               child: Row(
-                    //                 children: [
-                    //                   Text(
-                    //                     "もっと見る",
-                    //                     style: TextStyle(
-                    //                         color: Color.fromARGB(
-                    //                             255, 156, 161, 161),
-                    //                         fontSize: 14,
-                    //                         fontWeight: FontWeight.w400),
-                    //                   ),
-                    //                   Icon(
-                    //                     Icons.navigate_next,
-                    //                     size: 15,
-                    //                     color:
-                    //                         Color.fromARGB(255, 156, 161, 161),
-                    //                   )
-                    //                 ],
-                    //               ),
-                    //             )
-                    //           ],
-                    //         ),
-                    //       ),
-                    //       ListView.builder(
-                    //           physics: NeverScrollableScrollPhysics(),
-                    //           shrinkWrap: true,
-                    //           itemCount: widget.model[4].length,
-                    //           // physics: const AlwaysScrollableScrollPhysics(),
-                    //           // scrollDirection: Axis.horizontal,
-                    //           itemBuilder: (BuildContext context, int index) {
-                    //             return Diary_Card(
-                    //               buttoncolor:
-                    //                   Helper.btnBgMainColor,
-                    //               buttontext: widget.model[4][index]
-                    //                   ["buttontext"],
-                    //               hearts: widget.model[4][index]["hearts"],
-                    //               chats: widget.model[4][index]["chats"],
-                    //               avator: widget.model[4][index]["avator"],
-                    //               check: widget.model[4][index]["check"],
-                    //               image2: widget.model[4][index]["image2"],
-                    //               image1: widget.model[4][index]["image1"],
-                    //               eyes: widget.model[4][index]["eyes"],
-                    //               name: widget.model[4][index]["name"],
-                    //               onpress: () {},
-                    //               price: widget.model[4][index]["price"],
-                    //               sentence: widget.model[4][index]["sentence"],
-                    //               type: widget.model[4][index]["type"],
-                    //             );
-                    //           }),
-                    //     ],
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Container(
-                    //   decoration: BoxDecoration(color: Helper.whiteColor),
-                    //   child: Column(
-                    //     children: [
-                    //       Padding(
-                    //         padding: EdgeInsets.symmetric(
-                    //             horizontal: 16, vertical: 12),
-                    //         child: Row(
-                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //           children: [
-                    //             Text(
-                    //               tabMenus[5],
-                    //               style: TextStyle(
-                    //                   color: Color.fromARGB(255, 51, 51, 51),
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.w700),
-                    //             ),
-                    //             GestureDetector(
-                    //               onTap: () {
-                    //                 widget.tabController.animateTo(6);
-                    //               },
-                    //               child: Row(
-                    //                 children: [
-                    //                   Text(
-                    //                     "もっと見る",
-                    //                     style: TextStyle(
-                    //                         color: Color.fromARGB(
-                    //                             255, 156, 161, 161),
-                    //                         fontSize: 14,
-                    //                         fontWeight: FontWeight.w400),
-                    //                   ),
-                    //                   Icon(
-                    //                     Icons.navigate_next,
-                    //                     size: 15,
-                    //                     color:
-                    //                         Color.fromARGB(255, 156, 161, 161),
-                    //                   )
-                    //                 ],
-                    //               ),
-                    //             )
-                    //           ],
-                    //         ),
-                    //       ),
-                    //       ListView.builder(
-                    //           physics: NeverScrollableScrollPhysics(),
-                    //           shrinkWrap: true,
-                    //           itemCount: widget.model[5].length,
-                    //           // physics: const AlwaysScrollableScrollPhysics(),
-                    //           // scrollDirection: Axis.horizontal,
-                    //           itemBuilder: (BuildContext context, int index) {
-                    //             return SizedBox();
-                    //             // return Counseling_Card(
-                    //             //   hearts: widget.model[5][index]["hearts"],
-                    //             //   chats: widget.model[5][index]["chats"],
-                    //             //   avator: widget.model[5][index]["avator"],
-                    //             //   check: widget.model[5][index]["check"],
-                    //             //   image2: widget.model[5][index]["image2"],
-                    //             //   image1: widget.model[5][index]["image1"],
-                    //             //   image3: widget.model[5][index]["image3"],
-                    //             //   image4: widget.model[5][index]["image4"],
-                    //             //   eyes: widget.model[5][index]["eyes"],
-                    //             //   name: widget.model[5][index]["name"],
-                    //             //   onpress: () {},
-                    //             //   sentence: widget.model[5][index]["sentence"],
-                    //             //   type: widget.model[5][index]["type"],
-                    //             //   clinic: widget.model[5][index]["clinic"],
-                    //             // );
-                    //           }),
-                    //     ],
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Container(
-                    //   decoration: BoxDecoration(color: Helper.whiteColor),
-                    //   child: Column(
-                    //     children: [
-                    //       Padding(
-                    //         padding: EdgeInsets.symmetric(
-                    //             horizontal: 16, vertical: 12),
-                    //         child: Row(
-                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //           children: [
-                    //             Text(
-                    //               tabMenus[6],
-                    //               style: TextStyle(
-                    //                   color: Color.fromARGB(255, 51, 51, 51),
-                    //                   fontSize: 18,
-                    //                   fontWeight: FontWeight.w700),
-                    //             ),
-                    //             GestureDetector(
-                    //               onTap: () {
-                    //                 widget.tabController.animateTo(7);
-                    //               },
-                    //               child: Row(
-                    //                 children: [
-                    //                   Text(
-                    //                     "もっと見る",
-                    //                     style: TextStyle(
-                    //                         color: Color.fromARGB(
-                    //                             255, 156, 161, 161),
-                    //                         fontSize: 14,
-                    //                         fontWeight: FontWeight.w400),
-                    //                   ),
-                    //                   Icon(
-                    //                     Icons.navigate_next,
-                    //                     size: 15,
-                    //                     color:
-                    //                         Color.fromARGB(255, 156, 161, 161),
-                    //                   )
-                    //                 ],
-                    //               ),
-                    //             )
-                    //           ],
-                    //         ),
-                    //       ),
-                    //       ListView.builder(
-                    //           physics: NeverScrollableScrollPhysics(),
-                    //           shrinkWrap: true,
-                    //           itemCount: widget.model[6].length,
-                    //           // physics: const AlwaysScrollableScrollPhysics(),
-                    //           // scrollDirection: Axis.horizontal,
-                    //           itemBuilder: (BuildContext context, int index) {
-                    //             return SizedBox();
-                    //             // return Question_Card(
-                    //             //   isanswer: true,
-                    //             //   hearts: widget.model[6][index]["hearts"],
-                    //             //   chats: widget.model[6][index]["chats"],
-                    //             //   avator: widget.model[6][index]["avator"],
-                    //             //   image2: widget.model[6][index]["image2"],
-                    //             //   image1: widget.model[6][index]["image1"],
-                    //             //   eyes: widget.model[6][index]["eyes"],
-                    //             //   name: widget.model[6][index]["name"],
-                    //             //   onpress: () {},
-                    //             //   sentence: widget.model[6][index]["sentence"],
-                    //             //   type: widget.model[6][index]["type"],
-                    //             // );
-                    //           }),
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 ),
               );
@@ -563,6 +342,34 @@ class _SearchResultAllState extends State<SearchResultAll> {
           ),
         ),
       ]),
+    )
+    : Align(
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 60,
+            ),
+            SvgPicture.asset(
+              "assets/images/LAXIA.svg",
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+              '検索結果がありません',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                height: 1.6,
+                fontWeight: FontWeight.w700,
+                color: Helper.txtColor,
+              ),
+            )
+          ],
+        ),
+      )
     );
   }
 }

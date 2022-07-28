@@ -13,13 +13,10 @@ import 'package:laxia/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class Home_Case extends StatefulWidget {
-  final bool issearch;
   final bool? isdrawer;
-  final List? model, last;
+  final List? last;
   const Home_Case(
       {Key? key,
-      required this.issearch,
-      this.model,
       this.isdrawer = true,
       this.last})
       : super(key: key);

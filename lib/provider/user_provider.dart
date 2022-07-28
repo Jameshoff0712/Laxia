@@ -25,6 +25,13 @@ class UserProvider extends ChangeNotifier {
     searchtext = value;
     notifyListeners();
   }
+  late bool completed = false;
+
+  get getcompleted => completed;
+  void setCompleted(bool value) {
+    completed = value;
+    notifyListeners();
+  }
 
   late Me currentMe;
   get getMe => currentMe;
@@ -51,6 +58,10 @@ class UserProvider extends ChangeNotifier {
   get getSelectedDoctor => selectedDoctor;
   void setSelectedDoctor(String newSelectedDoctor) {
     selectedDoctor = newSelectedDoctor;
+    notifyListeners();
+  }
+  void initSelected() {
+    searchtext='';
     notifyListeners();
   }
 }

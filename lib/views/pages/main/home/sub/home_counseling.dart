@@ -5,20 +5,17 @@ import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
-import 'package:laxia/views/widgets/counseling_card%20.dart';
+import 'package:laxia/views/widgets/counseling_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class Home_Counseling extends StatefulWidget {
-  final bool issearch;
   final bool? isdrawer;
-  final List? model, last;
+  final List?  last;
   const Home_Counseling(
       {Key? key,
-      required this.issearch,
-      this.model,
       this.isdrawer = true,
       this.last})
       : super(key: key);
