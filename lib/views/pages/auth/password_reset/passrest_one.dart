@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/generated/l10n.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_two.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 // import '../common/app_config.dart' as config;
 import './passrest_three.dart';
@@ -20,11 +21,24 @@ class _PassRest_OneState extends State<PassRest_One> {
   final _emailController = TextEditingController();
   final _con = AuthController();
   String _errorMsg = "";
+  
   Future<void> sendEmail() async {
     try {
-      var email = _emailController.text.trim();
-      await _con.sendEmail(email);
+      var emailAddress = _emailController.text.trim();
+      final Email email = Email(
+      body:
+      'Hello World',
+      subject: 'Testing email on flutter',
+      recipients: ['queeNbee90125@gmail.com'],
+      //cc: ['cc@example.com'],
+      //bcc: ['bcc@example.com'],
+      //attachmentPaths: ['/path/to/attachment.zip'],
+      isHTML: false,
+      );
+      await FlutterEmailSender.send(email);
+      // await _con.sendEmail(email);
     } catch (e) {
+      print(e.toString());
       setState(() {
         _errorMsg = "メールアドレスに一致するユーザーは存在していません。";
       });
