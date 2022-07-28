@@ -10,7 +10,7 @@ class Message_Model extends Equatable {
   final String created_at;
   final String updated_at;
   final bool is_mine;
-  final String file_thumb_url;
+  final String? file_thumb_url;
   final String display_time_lable;
   final Sender? sender;
 
@@ -23,7 +23,7 @@ class Message_Model extends Equatable {
     required this.created_at,
     required this.updated_at,
     required this.is_mine,
-    required this.file_thumb_url,
+    this.file_thumb_url,
     required this.display_time_lable,
     this.sender,
   });

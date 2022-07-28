@@ -127,7 +127,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    Text(progress_detail.diary.patient_nickname==null?"":
                       progress_detail.diary.patient_nickname!,
                       style: TextStyle(
                           color: Helper.titleColor, fontWeight: FontWeight.bold,fontSize: 12),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/models/point/point_sub_model.dart';
 import 'package:laxia/models/point_model.dart';
@@ -21,11 +23,15 @@ class _PointPageState extends State<PointPage> {
   final MyController _con = MyController();
   late UserProvider userProperties;
 
+  final _conAuth = AuthController();
+    late Me myInfo;
+
   List<PointForDay> allPointsInfo = [];
   String tmpDate = "";
   String dateForDay = "";
   Future<void> getPointInfo() async {
     try {
+      final me = await _conAuth.getMe();
       final res = await _con.getPointInfo();
       setState(() {
         mid.addAll(res.data!);
@@ -61,6 +67,7 @@ class _PointPageState extends State<PointPage> {
         });
       }
       setState(() {
+        myInfo = me;
         allPointsInfo.add(pointForDay);
         isLoading = false;
       });
@@ -79,7 +86,8 @@ class _PointPageState extends State<PointPage> {
   @override
   Widget build(BuildContext context) {
     userProperties = Provider.of<UserProvider>(context, listen: true);
-    return Scaffold(
+    return !isLoading ?
+    Scaffold(
       appBar: AppBar(
         backgroundColor: Helper.whiteColor,
         shadowColor: Helper.whiteColor,
@@ -126,7 +134,7 @@ class _PointPageState extends State<PointPage> {
                   ),
                 ),
                 Text(
-                  '${userProperties.getMe.point} P',
+                  '${myInfo.point} P',
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -203,7 +211,15 @@ class _PointPageState extends State<PointPage> {
                 )),
         ],
       ),
-    );
+    )
+    : Container(
+            child: Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ));
   }
 
   Column _buildPointHistoryInfo(int index) {

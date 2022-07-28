@@ -138,7 +138,7 @@ class _Doctor_DetailCardState extends State<Doctor_DetailCard> {
                             for (int i = 0; i < 5; i++)
                               Icon(
                                 Icons.star_rounded,
-                                color: Color.fromARGB(255, 206, 176, 88),
+                                color:double.parse(widget.mark).round()>=i+1?Helper.starColor:Color.fromARGB(255, 222, 222, 222),
                                 size: 18,
                               ),
                             SizedBox(

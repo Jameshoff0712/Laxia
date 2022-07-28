@@ -120,7 +120,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                         children: [
                           for (int i = 0; i < 5; i++)
                             Icon(Icons.star_rounded,
-                                color: Helper.starColor,
+                                color:double.parse(widget.mark).round()>=i+1?Helper.starColor:Color.fromARGB(255, 222, 222, 222),
                                 size: widget.image != "none" ? 16 : 20),
                           Text(
                             widget.mark,

@@ -49,9 +49,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,
         onPageChanged: (value) => {userProperties.setCurrentPageIndex(value)},
-        children: const [
+        children: [
           HomeScreen(),
-          Appointment(),
+          Appointment(id: userProperties.currentMe.userId),
           SizedBox(
             width: 20,
           ),

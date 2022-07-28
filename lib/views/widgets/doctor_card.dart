@@ -110,7 +110,7 @@ class _Doctor_CardState extends State<Doctor_Card> {
                         for (int i = 0; i < 5; i++)
                           Icon(
                             Icons.star_rounded,
-                            color: Helper.starColor,
+                            color:double.parse(widget.mark).round()>=i+1?Helper.starColor:Color.fromARGB(255, 222, 222, 222),
                             size: 16,
                           ),
                         Text(

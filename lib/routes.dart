@@ -105,8 +105,8 @@ class RouteGenerator {
       //   return MaterialPageRoute(builder: (_) => Doctor_Detail());
       // case '/Diary_Detail':
       //   return MaterialPageRoute(builder: (_) => Diary_Detail());
-      case '/Appointment':
-        return MaterialPageRoute(builder: (_) => Appointment());
+      // case '/Appointment':
+      //   return MaterialPageRoute(builder: (_) => Appointment());
       // case '/Chat':
       //   return MaterialPageRoute(
       //       builder: (_) => ChatScreen(user: favorites[0]));

@@ -30,7 +30,9 @@ class _AddCounselPageState extends State<AddCounselPage> {
           });
         myInfo = await _con.getMe();
         mid = myInfo.counselings!;
-        print(mid);
+        // print('hhhhhhhhhhhhhhhhhhhh');
+        print(mid.length);
+        // print(mid[2].categories);
         // mid = await _con.getDiaryData(page: page, q: q, filter: '', city_id: '');
         // for (int i = 0; i < mid.data.length; i++) {
         //   categoryList.addAll(mid.data[i].categories!);
@@ -83,7 +85,7 @@ class _AddCounselPageState extends State<AddCounselPage> {
         ),
         leading: IconButton(
           icon: Icon(Icons.close, size: 25, color: Helper.titleColor),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.of(context).pushNamed("/Pages"),
           splashColor: Colors.transparent,
             highlightColor: Colors.transparent,  
         ),
@@ -156,14 +158,17 @@ class _AddCounselPageState extends State<AddCounselPage> {
                 counsel_data.length > 0
                   ? Padding(
                       padding: const EdgeInsets.only(top: 27, left: 16, bottom: 17),
-                      child: Text(
-                        '全てのカウンセリングレポート',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: Helper.maintxtColor,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            height: 1.5),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '全てのカウンセリングレポート',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: Helper.maintxtColor,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              height: 1.5),
+                        ),
                       ),
                     )
                   : SizedBox(),

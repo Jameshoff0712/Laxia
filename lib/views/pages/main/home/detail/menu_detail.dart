@@ -103,7 +103,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                           child: Detail_Image(
                             insidestar: true,
                             height: 375,
-                            imageList: [],
+                            imageList: menu_detail.menu.images!,
                             onPressUpRight: () {},
                             onPressBack: () {
                               Navigator.of(context).pop();
@@ -165,8 +165,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                       for (int i = 0; i < 5; i++)
                                         Icon(
                                           Icons.star,
-                                          color:
-                                              Color.fromARGB(255, 206, 176, 88),
+                                          color:menu_detail.menu.avg_rate.round()>=i+1?Helper.starColor:Color.fromARGB(255, 222, 222, 222),
                                           size: 18,
                                         ),
                                       Text(
@@ -739,7 +738,8 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                 ),
                                 child: Column(
                                   children: [
-                                    Container(
+                                    menu_detail.diaries.isEmpty?Container()
+                                    :Container(
                                       color: Helper.whiteColor,
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
@@ -766,18 +766,10 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                         ),
                                       ),
                                     ),
-                                    GridView.builder(
+                                    ListView.builder(
+                                        padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                                         physics: NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 0),
-                                        scrollDirection: Axis.vertical,
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                childAspectRatio: 175 / 291,
-                                                crossAxisCount: 2,
-                                                crossAxisSpacing: 10,
-                                                mainAxisSpacing: 10),
                                         itemCount:
                                             menu_detail.diaries.length,
                                         itemBuilder:
@@ -838,7 +830,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
               color: Helper.whiteColor,
               child: SafeArea(
                 child: Container(
-                  height: 66,
+                  height: 76,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(color: Helper.whiteColor),
                   child: Row(
@@ -853,7 +845,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                menu_detail.menu.price.toString(),
+                                menu_detail.menu.price.toString()+"円",
                                 style: defaultTextStyle(
                                     Helper.priceColor, FontWeight.w700,
                                     size: 18.0),
@@ -875,6 +867,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
                             ],
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               GestureDetector(
                                   onTap: () {
@@ -886,31 +879,25 @@ class _Menu_DetailState extends State<Menu_Detail> {
                                       islike
                                           ? SvgPicture.asset(
                                               "assets/icons/star.svg",
-                                              width: 22,
-                                              height: 22,
+                                              width: 16,
+                                              height: 16,
                                               color: Helper.starColor,
                                             )
                                           : SvgPicture.asset(
                                               "assets/icons/borderstar.svg",
-                                              width: 22,
-                                              height: 22,
+                                              width: 16,
+                                              height: 16,
                                               // color: Colors.red,
                                               color: Color.fromARGB(255, 155, 155, 155),
                                             ),
-                                      Text(
-                                        "お気に入り",
-                                        style: TextStyle(
-                                            color:Helper.txtColor,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400),
-                                      ),
                                     ],
                                   ),
                                 ),
+                              SizedBox(width: 5,),
                               Text(
                                 menu_detail.menu.avg_rate.toString()+"("+menu_detail.diaries.length.toString()+")",
                                 style: TextStyle(
-                                    
+                                  height: 1,
                                     color: Helper.titleColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400),

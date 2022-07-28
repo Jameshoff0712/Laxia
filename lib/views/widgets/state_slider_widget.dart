@@ -30,14 +30,17 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
 
     setState(() {
       isBorder = widget.bBorder! ? true : false;
-
       if (widget.state_val == 0) {
+        _value=0;
         stateval.add(0);
       } else if (widget.state_val == 1) {
+        _value=1;
         stateval.add(33);
       } else if (widget.state_val == 2) {
+        _value=2;
         stateval.add(66);
       } else {
+        _value=3;
         stateval.add(100);
       }
       //print(stateval);
@@ -46,6 +49,7 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       height: 74,
       color: Colors.white,

@@ -5,13 +5,13 @@ class QuestionPostModel extends Equatable {
   final List<int> categories;
   final String title;
   final String content;
-  List<int>? imageID_list;
+  List<int> imageID_list;
 
   QuestionPostModel(
       {required this.categories,
       required this.title,
       required this.content,
-      this.imageID_list,
+      required this.imageID_list,
       });
 
   @override

@@ -34,7 +34,7 @@ class _Home_DiaryState extends State<Home_Diary> {
   String filter='',city_id='',category_id="";
   String searchdata = "";
   int page = 0;
-  bool isend = false, isloading = true, isexpanding = true;
+  bool isend = false, isloading = true, isexpanding = true,isfirst=true;
   bool expanded = true;
   int index = -1;
   late Diary diary_data;
@@ -50,10 +50,10 @@ class _Home_DiaryState extends State<Home_Diary> {
   ];
   int minprice=0,maxprice=0;
   final _con = HomeController();
-  Future<void> getData({required String page}) async {
+  Future<void> getData({required String page, required isload}) async {
     try {
       if (!isend) {
-        if (!isloading)
+        if (!isload)
           setState(() {
             isexpanding = false;
           });
@@ -62,10 +62,11 @@ class _Home_DiaryState extends State<Home_Diary> {
           setState(() {
             isexpanding = true;
             isend = true;
+            
           });
         }
         setState(() {
-          if (isloading) {
+          if (isload) {
             diary_data = mid;
             isloading = false;
           } else {
@@ -85,21 +86,24 @@ class _Home_DiaryState extends State<Home_Diary> {
 
   void init() {
     setState(() {
+      if(!isfirst)
+        diary_data.data.clear();
       isloading = true;
       isexpanding = true;
       isend = false;
       page = 1;
       expanded = false;
       index = -1;
+      isfirst=false;
     });
   }
 
   @override
   void initState() {
-    getData(page: page.toString());
+    getData(page: page.toString(),isload: true);
     super.initState();
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     UserProvider userProperties =
@@ -110,39 +114,40 @@ class _Home_DiaryState extends State<Home_Diary> {
         Provider.of<SearchProvider>(context, listen: true);
     SurGeryProvider surgeryprovider =
         Provider.of<SurGeryProvider>(context, listen: true);
-    if (searchdata != userProperties.searchtext) {
+    if (isloading == false&&searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
-        getData(page: page.toString());
+        getData(page: page.toString(), isload: true);
       });
     }
-    if (city_id != prefyprovider.getSelectedCurePos.join(",")) {
+    if (isloading == false&&city_id != prefyprovider.getSelectedCurePos.join(",")) {
       init();
       setState(() {
         city_id = prefyprovider.getSelectedCurePos.join(",");
-        getData(page: page.toString());
+        getData(page: page.toString(), isload: true);
       });
     }
-    if (!selectstar.any((item) => searchprovider.mark.contains(item))|| minprice!=searchprovider.minprice||maxprice!=searchprovider.maxprice||year!=searchprovider.year) {
+    if (isloading == false&&!selectstar.any((item) => searchprovider.mark.contains(item))|| minprice!=searchprovider.minprice||maxprice!=searchprovider.maxprice||year!=searchprovider.year) {
       init();
       setState(() {
         selectstar=searchprovider.mark;
         minprice=searchprovider.minprice;
         maxprice=searchprovider.maxprice;
         year=searchprovider.year;
-        getData(page: page.toString());
+        getData(page: page.toString(), isload: true);
       });
     }
-     if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
+     if (isloading == false&&category_id != surgeryprovider.getSelectedCurePos.join(",")) {
       if(!isloading)
       {init();
       setState(() {
         category_id = surgeryprovider.getSelectedCurePos.join(",");
-        getData(page: page.toString());
+        getData(page: page.toString(), isload: true);
       });}
     }
-    return Container(
+    return 
+    Container(
       color: Helper.homeBgColor,
       child: Column(
         children: [
@@ -180,7 +185,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                                 isloading = true;
                               });
                               // print(val);
-                              getData(page: page.toString());
+                              getData(page: page.toString(), isload: true);
                             },
                             items: <String>["人気投稿順", "満足度が高い順", "新着順"],
                             hintText: "並び替え",
@@ -198,7 +203,7 @@ class _Home_DiaryState extends State<Home_Diary> {
               if (scrollInfo.metrics.pixels ==
                   scrollInfo.metrics.maxScrollExtent) {
                 if (isexpanding && !isend) {
-                  getData(page: (page + 1).toString());
+                  getData(page: (page + 1).toString(), isload: false);
                   setState(() {
                     page += 1;
                   });
@@ -283,7 +288,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                             ],
                           ),
                         ),
-                  isloading
+                      isloading
                       ? Container(
                           child: Container(
                           height: MediaQuery.of(context).size.width,

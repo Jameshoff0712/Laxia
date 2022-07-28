@@ -180,9 +180,9 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val){
-                              setState(() {
-                                conOp.text = val;
-                              });
+                              // setState(() {
+                              //   conOp.text = val;
+                              // });
                               diaryProperties.setCostOp(int.parse(val));
                             },
                             style: TextStyle(
@@ -241,9 +241,9 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val) {
-                              setState(() {
-                                conAnes.text = val;
-                              });
+                              // setState(() {
+                              //   conAnes.text = val;
+                              // });
                               diaryProperties.setCostAnesthetic(int.parse(val));
                             },
                             style: TextStyle(
@@ -302,9 +302,9 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val) {
-                              setState(() {
-                                conDrug.text = val;
-                              });
+                              // setState(() {
+                              //   conDrug.text = val;
+                              // });
                               diaryProperties.setCostDrug(int.parse(val));
                             },
                             style: TextStyle(
@@ -363,9 +363,9 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
                             onChanged: (val) {
-                              setState(() {
-                                conOther.text = val;
-                              });
+                              // setState(() {
+                              //   conOther.text = val;
+                              // });
                               diaryProperties.setCostOther(int.parse(val));
                             },
                             style: TextStyle(

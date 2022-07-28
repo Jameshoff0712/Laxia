@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:equatable/equatable.dart';
 import 'package:laxia/models/clinic/worktime_model.dart';
 
@@ -21,7 +23,7 @@ class Clinic_Sub_Model extends Equatable {
   final String? created_at;
   final String? updated_at;
   final String? firebase_key;
-  final int? avg_rate;
+  final double? avg_rate;
   final int? diaries_count;
   final int? counselings_count;
   final int? menus_count;
@@ -89,7 +91,7 @@ class Clinic_Sub_Model extends Equatable {
           created_at:json["created_at"],
           updated_at:json["updated_at"],
           firebase_key:json["firebase_key"],
-          avg_rate: json["avg_rate"],
+          avg_rate:json["ave_rate"]==null?0.0: (json["ave_rate"] as num).toDouble(),
           diaries_count:json["diaries_count"],
           counselings_count:json["counselings_count"],
           menus_count:json["menus_count"],

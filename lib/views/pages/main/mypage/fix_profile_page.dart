@@ -6,8 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker_forked/flutter_datetime_picker_forked.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/controllers/my_controller.dart';
 import 'package:laxia/controllers/static_controller.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/profile_model.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/views/pages/main/mypage/input_text_widget.dart';
@@ -31,8 +33,13 @@ class _FixProfilePageState extends State<FixProfilePage> {
   // List<String> _cities = [];
   List<Area_Model> areas = [];
   late List<int> surgery_ids;
-  File? _image;
+  late List<String> surgery_names;
+  String? _image;
   final _picker = ImagePicker();
+  final _conAuth = AuthController();
+  late Me myInfo;
+  bool isloading = true;
+  bool isfirst = true;
   MyController _con = new MyController();
   final _conStatic = StaticController();
   TextEditingController _conNickname = TextEditingController();
@@ -40,6 +47,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
   TextEditingController _conDate = TextEditingController();
   TextEditingController _conIntro = TextEditingController();
   String valPrefecture = '';
+  // String namePrefecture = '';
   TextEditingController _conGender = TextEditingController();
   TextEditingController _conSurgery = TextEditingController();
 
@@ -48,11 +56,28 @@ class _FixProfilePageState extends State<FixProfilePage> {
         await _picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
-        _image = File(pickedImage.path);
+        _image = pickedImage.path;
+        print(pickedImage.path);
       });
     }
   }
-
+  Future<void> getMe() async {
+    try {
+      final mid = await _conAuth.getMe();
+      print(mid);
+      // if (me.id != 0) {
+      //   userProperties.setMe(me);
+      // }
+      setState(() {
+        myInfo = mid;
+        isloading = false;
+      });
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+      });
+    }
+  }
   Future<void> post() async {
     ProfileModel profile = new ProfileModel(
         birthday: _conDate.text,
@@ -60,7 +85,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
         unique_id: _conId.text,
         nick_name: _conNickname.text,
         intro: _conIntro.text,
-        photo: _image!.path,
+        photo: _image,
         area_id: int.parse(valPrefecture),
         patient_categories: surgery_ids);
     dynamic result = await _con.editProfile(profile);
@@ -82,7 +107,20 @@ class _FixProfilePageState extends State<FixProfilePage> {
 
   @override
   void initState() {
-    _conSurgery.text = _enteredText;
+    getMe();
+    // setState(() {
+    //   _image = myInfo.photo;
+    //   _conNickname.text = myInfo.nickname!;
+    //   _conId.text = myInfo.uniqueId!;
+    //   _conDate.text = myInfo.birthday!;
+    //   _conIntro.text = myInfo.intro!;
+    //   _conGender.text = myInfo.gender!;
+    //   valPrefecture = myInfo.areaId.toString();
+    //   // _conSurgery.text = 
+    // });
+    // _image = myInfo.photo;
+
+    // _conSurgery.text = _enteredText;
     super.initState();
     readAreas();
   }
@@ -91,14 +129,37 @@ class _FixProfilePageState extends State<FixProfilePage> {
   Widget build(BuildContext context) {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
-    if (_enteredText != surgeryProvider.selectedCurePosStr.join(' ')) {
+    if (_enteredText != surgeryProvider.selectedCurePosStr.join(', ')) {
       setState(() {
-        _enteredText = surgeryProvider.selectedCurePosStr.join(' ');
+        _enteredText = surgeryProvider.selectedCurePosStr.join(', ');
         _conSurgery.text = _enteredText;
       });
     }
+    if(isfirst && !isloading){
+      setState(() {
+      _image = myInfo.photo;
+      _conNickname.text = myInfo.nickname!;
+      _conId.text = myInfo.uniqueId!;
+      _conDate.text = myInfo.birthday!;
+      _conIntro.text = myInfo.intro!;
+      _conGender.text = myInfo.gender!;
+      valPrefecture = myInfo.areaId.toString();
+
+      surgery_ids = [];
+      surgery_names = [];
+      for(int i=0; i<myInfo.categories!.length; i++){
+        surgery_ids.add(myInfo.categories![i].id);
+        surgery_names.add(myInfo.categories![i].name);
+      }
+      _conSurgery.text = surgery_names.join(', ');
+
+
+      isfirst = false;
+    });
+    }
+    
     // TODO: implement build
-    return areas.isNotEmpty
+    return !isloading
         ? Container(
             padding: EdgeInsets.only(top: 10),
             height: MediaQuery.of(context).size.height - 54,
@@ -136,6 +197,11 @@ class _FixProfilePageState extends State<FixProfilePage> {
                           surgery_ids = surgeryProvider.getSelectedCurePos;
                         });
                         post();
+                        Navigator.of(context).pop();
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => Mypage()),
+                        // );
                         // Navigator.of(context).pushNamed("/Mypage");
                       },
                       child: Text(
@@ -176,10 +242,13 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                             width: 80,
                                             height: 80,
                                             fit: BoxFit.cover)
-                                        : Image.file(_image!,
+                                        : (!_image!.contains('http')?Image.file(File(_image!),
                                             width: 80,
                                             height: 80,
-                                            fit: BoxFit.cover)),
+                                            fit: BoxFit.cover):Image.network(_image!,
+                                            width: 80,
+                                            height: 80,
+                                            fit: BoxFit.cover))),
                               ),
                               GestureDetector(
                                 onTap: _openImagePicker,
@@ -394,7 +463,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                 },
                                 name: "施術希望エリア",
                                 items: areas,
-                                chosenValue: "",
+                                chosenValue: valPrefecture
                               ),
                               SizedBox(
                                 height: 10.0,
@@ -472,6 +541,13 @@ class _FixProfilePageState extends State<FixProfilePage> {
               ),
             ),
           )
-        : Scaffold();
+        : Container(
+            child: Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          ));
   }
 }

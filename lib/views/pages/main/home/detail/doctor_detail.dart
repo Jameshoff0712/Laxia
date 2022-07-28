@@ -226,9 +226,11 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                         day: doctor_detail.clinic.diaries_count.toString(),
                         location: doctor_detail.clinic.address!),
                   ),
+                  doctor_detail.diaries.isEmpty?Container():
                   SizedBox(
                     height: 5,
                   ),
+                  doctor_detail.diaries.isEmpty?Container():
                   Container(
                     color: Helper.whiteColor,
                     child: Column(
@@ -406,9 +408,11 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                       ],
                     ),
                   ),
+                  doctor_detail.cases.isEmpty?Container():
                   SizedBox(
                     height: 5,
                   ),
+                  doctor_detail.cases.isEmpty?Container():
                   Container(
                     color: Helper.whiteColor,
                     child: Column(
@@ -581,9 +585,11 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                       ],
                     ),
                   ),
+                  doctor_detail.questions.isEmpty?Container():
                   SizedBox(
                     height: 5,
                   ),
+                  doctor_detail.questions.isEmpty?Container():
                   Container(
                     color: Helper.whiteColor,
                     child: Column(

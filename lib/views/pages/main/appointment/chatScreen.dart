@@ -52,6 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
       try{
         new_message=await _con.postMessage(value,isfile,widget.mailbox_id.toString());
         textController.text='';
+        print(new_message.display_time_lable.toString());
         setState(() {
           messages.add(new_message);
         });
@@ -102,8 +103,8 @@ class _ChatScreenState extends State<ChatScreen> {
                
                setState(() {
                 new_message=Message_Model.fromJson(res['message']);
-                print(new_message.toString());
-                 messages.add(res['message']);
+                if(new_message.sender!.photo!=null)
+                  messages.add(new_message);
                });
                scrollcontroller.jumpTo(scrollcontroller.position.maxScrollExtent);
             });
