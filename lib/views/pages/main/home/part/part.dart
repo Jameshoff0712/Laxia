@@ -244,16 +244,12 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                                   physics: NeverScrollableScrollPhysics(),
                                   children: [
                                     Home_Diary(
-                                      issearch: true,
                                     ),
                                     Home_Menu(
-                                      issearch: true,
                                     ),
                                     Home_Clinic(
-                                      issearch: true,
                                     ),
                                     Home_Doctor(
-                                      issearch: true,
                                     ),
                                   ],
                                   controller: _tabController,

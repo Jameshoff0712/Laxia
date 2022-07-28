@@ -14,12 +14,8 @@ import 'package:provider/provider.dart';
 class Home_Clinic extends StatefulWidget {
   final bool? isScrollable;
   final VoidCallback? scrollTop;
-  final bool issearch;
-  final List? model;
   const Home_Clinic(
       {Key? key,
-      required this.issearch,
-      this.model,
       this.isScrollable = true,
       this.scrollTop = null})
       : super(key: key);

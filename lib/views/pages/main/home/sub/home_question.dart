@@ -10,10 +10,9 @@ import 'package:laxia/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class Home_Question extends StatefulWidget {
-  final bool issearch;
-  final List? model,last;
+  final List? last;
   final bool?isdrawer;
-  const Home_Question({Key? key, required this.issearch, this.model, this.isdrawer=true, this.last})
+  const Home_Question({Key? key, this.isdrawer=true, this.last})
       : super(key: key);
 
   @override

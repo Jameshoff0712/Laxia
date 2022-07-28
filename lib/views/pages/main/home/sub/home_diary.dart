@@ -17,12 +17,9 @@ import 'package:provider/provider.dart';
 class Home_Diary extends StatefulWidget {
   final bool? isScrollable, isdrawer;
   final VoidCallback? scrollTop;
-  final bool issearch;
-  final List? model, last;
+  final List? last;
   const Home_Diary(
       {Key? key,
-      required this.issearch,
-      this.model,
       this.isScrollable = true,
       this.scrollTop = null,
       this.isdrawer = true,

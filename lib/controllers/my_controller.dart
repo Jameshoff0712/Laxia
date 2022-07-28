@@ -42,6 +42,9 @@ class MyController extends BaseController {
   Future<dynamic> postCounsel(CounselPostModel newCounsel) async {
     return await api.postCounsel(newCounsel);
   }
+  Future<int> getinvitation(String code) async {
+    return await api.getinvitation(code);
+  }
   Future<dynamic> editCounsel(CounselPostModel newCounsel, String counsel_id) async {
     return await api.editCounsel(newCounsel, counsel_id);
   }

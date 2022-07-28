@@ -125,8 +125,7 @@ class _SearchViewState extends State<SearchView> {
                               },
                               oncompleted: () {
                                 midSearch(filter.text);
-                                
-                                // userProperties.setSearchtext(filter.text);
+                                userProperties.setSearchtext(filter.text);
                                 // Navigator.pop(context);
                               },
                             ),
@@ -147,6 +146,8 @@ class _SearchViewState extends State<SearchView> {
                                 child: Center(
                                     child: GestureDetector(
                                         onTap: () {
+                                          userProperties.setSearchtext(filter.text);
+                                          userProperties.setCompleted(true);
                                           Navigator.pop(context);
                                         },
                                         child: Text(
@@ -203,7 +204,7 @@ class _SearchViewState extends State<SearchView> {
                 : SizedBox(
                     width: 0,
                   ),
-            unchange
+                unchange
                 ? Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -235,10 +236,6 @@ class _SearchViewState extends State<SearchView> {
                                                 onTap: () {
                                                   filter.text =
                                                       search.recent[j].text;
-                                                  setState(() {
-                                                    unchange = false;
-                                                    flag = true;
-                                                  });
                                                   userProperties.setSearchtext(
                                                       filter.text);
                                                   Navigator.of(context)
@@ -298,10 +295,6 @@ class _SearchViewState extends State<SearchView> {
                                                 onTap: () {
                                                   filter.text =
                                                       search.global[j].text;;
-                                                  setState(() {
-                                                    unchange = false;
-                                                    flag = true;
-                                                  });
                                                   userProperties.setSearchtext(
                                                       filter.text);
                                                   Navigator.of(context)

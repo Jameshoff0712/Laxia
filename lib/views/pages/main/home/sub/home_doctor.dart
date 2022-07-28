@@ -14,12 +14,8 @@ import 'package:laxia/views/pages/main/home/detail/doctor_detail.dart';
 class Home_Doctor extends StatefulWidget {
   final bool? isScrollable, isdrawer;
   final VoidCallback? scrollTop;
-  final bool issearch;
-  final List? model;
   const Home_Doctor(
       {Key? key,
-      required this.issearch,
-      this.model,
       this.isScrollable = true,
       this.scrollTop = null,
       this.isdrawer = true})
@@ -214,9 +210,8 @@ class _Home_DoctorState extends State<Home_Doctor> {
                                         ? "http://error.png"
                                         : doctor_data.data[index].photo!,
                                     name: doctor_data.data[index].hira_name,
-                                    mark: 4.8
-                                        .toString(), //doctor_data.data[index]["mark"],
-                                    day: 222
+                                    mark: doctor_data.data[index].avg_rate.toString(), //doctor_data.data[index]["mark"],
+                                    day: doctor_data.data[index].views_count
                                         .toString(), //doctor_data.data[index]["day"],
                                     clinic:
                                         "湘南美容クリニック 新宿院" //doctor_data.data[index].clinic_id .toString()

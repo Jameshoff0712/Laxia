@@ -21,11 +21,11 @@ class Home_Search_Model extends Equatable {
 
   factory Home_Search_Model.fromJson(Map<String, dynamic> json) {
     return Home_Search_Model(
-      menus: List<Menu_Sub_Model>.from(json["menus"].map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
-      clinics: List<Clinic_Sub_Model>.from(json["clinics"].map((x) => Clinic_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
-      doctors: List<Doctor_Sub_Model>.from(json["doctors"].map((x) => Doctor_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
-      diaries: List<Diary_Sub_Model>.from(json["diaries"].map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
-      cases: List<Case_Sub_Model>.from(json["cases"].map((x) => Case_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
+      menus: List<Menu_Sub_Model>.from(json["menus"]["data"].map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
+      clinics: List<Clinic_Sub_Model>.from(json["clinics"]["data"].map((x) => Clinic_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
+      doctors: List<Doctor_Sub_Model>.from(json["doctors"]["data"].map((x) => Doctor_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
+      diaries:json["diaries"]==null?[]: List<Diary_Sub_Model>.from(json["diaries"]["data"].map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
+      cases:json["cases"]==null?[]: List<Case_Sub_Model>.from(json["cases"]["data"].map((x) => Case_Sub_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>) ,
     );
   }
   @override

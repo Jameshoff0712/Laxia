@@ -50,6 +50,11 @@ class MyApi extends Api {
     }
     return false;
   }
+  Future<int> getinvitation(String code) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/invite?code=${code}", token);
+    return res.data["status"];
+  }
   Future<void> postDiary(DiaryPostModel newDiary) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
