@@ -18,7 +18,7 @@ import 'package:laxia/views/pages/main/mypage/following_list_page.dart';
 import 'package:laxia/views/pages/main/mypage/invite_page.dart';
 import 'package:laxia/views/pages/main/mypage/point_page.dart';
 import 'package:laxia/views/pages/main/mypage/setting_page.dart';
-import 'package:laxia/views/widgets/counseling_card%20.dart';
+import 'package:laxia/views/widgets/counseling_card.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
 import 'package:laxia/views/widgets/indicator.dart';
 import 'package:laxia/views/widgets/question_card.dart';

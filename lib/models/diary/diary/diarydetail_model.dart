@@ -61,7 +61,7 @@ class DiaryDetail_Model extends Equatable {
       progresses:json["progresses"]==null?[]: List<Progress>.from(json["progresses"]
               .map((x) => Progress.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      process: json["menus"][0][["process"]] == null
+       process: json["menus"][0][["process"]] == null
           ? []
           : List<Process_Model>.from(json["menus"][0][["process"]]
                   .map((x) => Process_Model.fromJson(x as Map<String, dynamic>))

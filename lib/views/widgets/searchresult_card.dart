@@ -44,7 +44,7 @@ class _SearchResultState extends State<SearchResult> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 9),
             child: Text(
-              tabMenus[widget.index],
+              tabMenus[widget.index-1],
               style: TextStyle(
                   fontFamily: Helper.headFontFamily,
                   

@@ -112,12 +112,12 @@ class _Home_SubState extends State<Home_Sub>
                     child: TabBarView(
                       physics: NeverScrollableScrollPhysics(),
                       children: [
-                        Subscrollbarbody(),
-                        Subscrollbarbody(),
-                        Subscrollbarbody(),
-                        Subscrollbarbody(),
-                        Subscrollbarbody(),
-                        Subscrollbarbody(),
+                        Subscrollbarbody(flag),
+                        Subscrollbarbody(flag),
+                        Subscrollbarbody(flag),
+                        Subscrollbarbody(flag),
+                        Subscrollbarbody(flag),
+                        Subscrollbarbody(flag),
                       ],
                       controller: _tabController,
                     ),
@@ -159,8 +159,8 @@ class _Home_SubState extends State<Home_Sub>
     ];
   }
 
-  Widget Subscrollbarbody() {
-    return flag
+  Widget Subscrollbarbody(bool flags) {
+    return flags
         ? Container(
             child: Container(
             height: isLoading ? MediaQuery.of(context).size.width * 0.5 : 0,

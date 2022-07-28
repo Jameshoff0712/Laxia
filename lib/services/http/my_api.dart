@@ -50,7 +50,12 @@ class MyApi extends Api {
     }
     return false;
   }
-  Future<dynamic> postDiary(DiaryPostModel newDiary) async {
+  Future<int> getinvitation(String code) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/invite?code=${code}", token);
+    return res.data["status"];
+  }
+  Future<void> postDiary(DiaryPostModel newDiary) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(
         "$apiUrl/diaries",
@@ -77,7 +82,6 @@ class MyApi extends Api {
           "menus[0][id]": '9'//newDiary.categories[0].toString(),
         },
         token);
-    return res;
   }
   Future<dynamic> editDiary(DiaryPostModel newDiary, String diary_id) async {
     String? token = await preferenceUtil.getToken();

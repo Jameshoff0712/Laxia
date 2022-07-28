@@ -42,16 +42,7 @@ class _HomeScreenState extends State<HomeScreen>
   ];
   late TabController _tabController;
   bool isvisible=true,searchbarstate=true;
-  List searchResult = [];
   TextEditingController filter = new TextEditingController();
-  Future<void> initSettings() async {
-    String countyText =
-        await rootBundle.loadString("assets/cfg/searchresult.json");
-    setState(() {
-      searchResult.addAll(json.decode(countyText));
-    });
-  }
-
   @override
   void initState() {
     _tabController = new TabController(length: 8, vsync: this);
@@ -87,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen>
     if (userProperties.searchtext != "") {
           isvisible=true;
       tabMenus[0]="総合";
-      initSettings();
     }
     if(_tabController.index==0){
       filter.value=TextEditingValue(text: userProperties.searchtext);
@@ -121,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen>
                 searchProvider.initSelected();
                 prefyprovider.initSelected();
                 surgeryprovider.initSelected();
+                userProperties.initSelected();
               },
             ),
           ),
@@ -132,29 +123,29 @@ class _HomeScreenState extends State<HomeScreen>
                       Home_Sub(isvisible: isvisible, onpress: () {  setState(() {
                         isvisible=!isvisible;
                       });},),
-                      Home_Menu(issearch: false,),
-                      Home_Clinic(issearch: false,),
-                      Home_Doctor(issearch: false,),
-                      Home_Diary(issearch: false,),
-                      Home_Case(issearch: false,),
-                      Home_Counseling(issearch: false,),
-                      Home_Question(issearch: false,),
+                      Home_Menu(),
+                      Home_Clinic(),
+                      Home_Doctor(),
+                      Home_Diary(),
+                      Home_Case(),
+                      Home_Counseling(),
+                      Home_Question(),
                     ],
                     controller: _tabController,
                   ),
                 )
               : Expanded(
-                  child: searchResult.isNotEmpty? TabBarView(
+                  child:userProperties.completed?TabBarView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                     SearchResultAll(model:searchResult, tabController: _tabController,),
-                      Home_Menu(issearch: true,model: searchResult[0],),
-                      Home_Clinic(issearch: true,model: searchResult[1],),
-                      Home_Doctor(issearch: true,model: searchResult[2],),
-                      Home_Diary(issearch: true,model: searchResult[3],),
-                      Home_Case(issearch: true,model: searchResult[4],),
-                      Home_Counseling(issearch: true,model: searchResult[5],),
-                      Home_Question(issearch: true,model: searchResult[6],),
+                     SearchResultAll(tabController: _tabController),
+                      Home_Menu(),
+                      Home_Clinic(),
+                      Home_Doctor(),
+                      Home_Diary(),
+                      Home_Case(),
+                      Home_Counseling(),
+                      Home_Question(),
                     ],
                     controller: _tabController,
                   ):Container(),

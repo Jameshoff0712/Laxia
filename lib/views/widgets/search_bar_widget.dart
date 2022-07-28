@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class SearchbarWidget extends StatefulWidget {
   final String? hinttext;
@@ -33,6 +35,8 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProperties =
+        Provider.of<UserProvider>(context, listen: true);
     return TextField(
       cursorColor: Helper.mainColor,
       readOnly: widget.state ? true : false,
@@ -40,6 +44,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
       onTap: () {
         FocusScope.of(context).unfocus();
         if (widget.state) {
+          userProperties.setCompleted(false);
           Navigator.of(context).pushNamed("/SearchView");
         }
       },

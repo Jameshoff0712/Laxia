@@ -5,7 +5,7 @@ import 'package:laxia/controllers/favorite_controller.dart';
 import 'package:laxia/models/counseling/counceling_sub_model.dart';
 import 'package:laxia/models/counseling_model.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
-import 'package:laxia/views/widgets/counseling_card%20.dart';
+import 'package:laxia/views/widgets/counseling_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
 import 'package:laxia/views/widgets/textbutton_drawer.dart';
 

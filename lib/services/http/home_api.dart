@@ -31,7 +31,7 @@ class HomeApi extends Api {
   }
   Future<Home_Search_Model> homeSearchData(String q, String perpage) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.get("$apiUrl/search?q="+q+"?perpage="+perpage, token);
+    final res = await Api.get("$apiUrl/search?q="+q+"&perpage="+perpage, token);
     return Home_Search_Model.fromJson(res.data);
   }
   Future<Clinic> getclinicData(String per_page, String page, String q, String favorite, String category_id, String city_id,String filter) async {
