@@ -65,12 +65,15 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         rate: selectstar.toString(),
         question: CounselQuestion_list
         );
+        print(newQuestion);
     if(widget.counsel_id != ''){
-      dynamic result = _conMy.editCounsel(newQuestion, widget.counsel_id!);
+      dynamic result = await _conMy.editCounsel(newQuestion, widget.counsel_id!);
+      print('edit');
       print(result.data);
     }
     else{
-      dynamic result = _conMy.postCounsel(newQuestion);
+      dynamic result = await _conMy.postCounsel(newQuestion);
+      print('post');
       print(result.data);
     }
     // print(result.data);
@@ -140,7 +143,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         initDetail = false;
       });
     }
-    if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 ) {
+    if (conReason.text != '' && conBefore.text != '' && conAfter.text != '' && selectstar != 0 && CounselQuestion_list.length > 0) {
       setState(() {
         isAddEnabled = true;
       });
@@ -446,7 +449,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                           padding: EdgeInsets.only(top: 0, left: 16, right: 16),
                           child: ElevatedButton(
                             onPressed:
-                                isAddEnabled ? () { 
+                                isAddEnabled ? () async{ 
                                   setState(() {
                                     doctor_id = diaryProperties.getDoctorID;
                                     clinic_id = diaryProperties.getClinicID;
@@ -471,7 +474,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                                   diaryProperties.counsel_after = '';
                                   diaryProperties.counsel_rate = 0;
                                   diaryProperties.counsel_questions = [];
-                                  post();
+                                  await post();
                                   AddCounselPage(); 
                                   } : null,
                             style: ElevatedButton.styleFrom(

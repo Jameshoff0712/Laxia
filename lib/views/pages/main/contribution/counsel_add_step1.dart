@@ -151,6 +151,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                           onPressed: () {
                             // diaryProperties.setMedias(images);
                             diaryProperties.setCounselImageIds(imageIds);
+                            print(imageIds);
                             Navigator.of(context).pop();
                             Navigator.push(
                               context,
