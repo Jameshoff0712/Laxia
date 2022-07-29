@@ -239,7 +239,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
       }
       diaryProperties.clinic_id = counselDetail.counceling.clinic_id.toString();
       userProperties.selectedClinic = counselDetail.counceling.clinic_name!;
-      diaryProperties.doctor_id = counselDetail.counceling.clinic_id.toString();
+      diaryProperties.doctor_id = counselDetail.counceling.doctor_id.toString();
       userProperties.selectedDoctor = counselDetail.doctor.hira_name;
       diaryProperties.date = counselDetail.counceling.counseling_date!;
       diaryProperties.counsel_content = counselDetail.counceling.content!;

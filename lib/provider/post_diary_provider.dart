@@ -41,7 +41,7 @@ class PostDiaryProvider extends ChangeNotifier {
   List<List<int>> diary_imageIds = [[], []];
   get getDiaryImageIds => diary_imageIds;
   void setDiaryImageIds(List<List<int>> postMedias) {
-    print(diary_imageIds);
+    print(postMedias);
     for(int i=0; i<postMedias.length; i++){
       diary_imageIds.add([]);
       if(postMedias[i].length > 0) {

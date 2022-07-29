@@ -320,7 +320,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       }
       diaryProperties.clinic_id = diaryDetail.diary.clinic_id.toString();
       userProperties.selectedClinic = diaryDetail.diary.clinic_name!;
-      diaryProperties.doctor_id = diaryDetail.diary.clinic_id.toString();
+      diaryProperties.doctor_id = diaryDetail.diary.doctor_id.toString();
       userProperties.selectedDoctor = diaryDetail.doctor.hira_name;
       diaryProperties.date = diaryDetail.diary.treat_date!;
 
@@ -329,13 +329,13 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
         for(int i=0; i< diaryDetail.beforemedias!.length; i++)
           imageIds[0].add(diaryDetail.beforemedias![i].id);
         for(int i=0; i< diaryDetail.aftermedias!.length; i++)
-          imageIds[0].add(diaryDetail.aftermedias![i].id);
+          imageIds[1].add(diaryDetail.aftermedias![i].id);
 
         images = [[], []];
         for(int j = 0; j< diaryDetail.beforemedias!.length; j++)
           images[0].add(diaryDetail.beforemedias![j].path);
         for(int j = 0; j< diaryDetail.aftermedias!.length; j++)
-          images[0].add(diaryDetail.aftermedias![j].path);
+          images[1].add(diaryDetail.aftermedias![j].path);
       });
 
       diaryProperties.cost_op = diaryDetail.diary.price!;

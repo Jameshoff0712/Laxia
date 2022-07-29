@@ -65,7 +65,6 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         rate: selectstar.toString(),
         question: CounselQuestion_list
         );
-        print(newQuestion);
     if(widget.counsel_id != ''){
       dynamic result = await _conMy.editCounsel(newQuestion, widget.counsel_id!);
       print('edit');

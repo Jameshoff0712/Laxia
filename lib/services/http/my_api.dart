@@ -85,7 +85,7 @@ class MyApi extends Api {
   }
   Future<dynamic> editDiary(DiaryPostModel newDiary, String diary_id) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.put(
+    final res = await Api.post(
         "$apiUrl/diaries/" + diary_id,
         <String, String>{
           "diaries[clinic_id]": newDiary.clinic_id,
@@ -108,6 +108,7 @@ class MyApi extends Api {
             "after_medias["+i.toString()+"]": newDiary.imageIds[1][i].toString(),
           "menus[0][cost]": newDiary.cost_op.toString(),
           "menus[0][id]": 9.toString(),
+          "_method":"PUT"
         },
         token);
     return res;
@@ -161,7 +162,8 @@ class MyApi extends Api {
   }
   Future<dynamic> editCounsel(CounselPostModel newCounsel, String counsel_id) async {
     String? token = await preferenceUtil.getToken();
-    final res = await Api.put(
+    print(newCounsel.toString());
+    final res = await Api.post(
       "$apiUrl/counselings/" + counsel_id, 
       <String, String> {
         'counselings[clinic_id]': newCounsel.clinic_id,
@@ -184,9 +186,11 @@ class MyApi extends Api {
           'questions[' + (i+1).toString() + '][question]': newCounsel.question[i].question,
         for(int i = 0; i < newCounsel.question.length; i++)
           'questions[' + (i+1).toString() + '][answer]': newCounsel.question[i].answer,
+        "_method":"PUT"
       } ,
       token
     );
+    print("____"+res!.data.toString());
     return res;
   }
   Future<dynamic> editProfile(ProfileModel profile) async {
