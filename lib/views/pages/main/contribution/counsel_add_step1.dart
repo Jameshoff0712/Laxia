@@ -44,6 +44,8 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
   List<List<int>> imageIds = [[], [], []];
   final _picker = ImagePicker();
   late CouncelingDetail_Model counselDetail;
+  bool isloading = true;
+  TextEditingController con_content = TextEditingController();
   Future<void> _openImagePicker() async {
     try{
       final XFile? pickedImage =
@@ -62,7 +64,11 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
 
   Future<void> getCounselDetail() async {
     counselDetail = await _conMy.getCounselDetail(widget.counsel_id!);
-    
+    print('tttttttttttt');
+    print(counselDetail.questions);
+    setState(() {
+      isloading = false;
+    });
   }
 
   _AddCounselStep2Page() {
@@ -194,6 +200,11 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
     // images.add([]);
     if(widget.counsel_id != '')
       getCounselDetail();
+    else{
+      setState(() {
+        isloading = false;
+      });
+    }
     super.initState();
   }
 
@@ -218,6 +229,56 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
         Provider.of<UserProvider>(context, listen: true);
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
+
+    if(initDetail && widget.counsel_id != '' && !isloading){
+      surgeryProvider.selectedCurePos = [];
+      surgeryProvider.selectedCurePosStr = [];
+      for(int i =0; i< counselDetail.counceling.categories!.length; i++){
+        surgeryProvider.selectedCurePos.add(counselDetail.counceling.categories![i].id);
+        surgeryProvider.selectedCurePosStr.add(counselDetail.counceling.categories![i].name);
+      }
+      diaryProperties.clinic_id = counselDetail.counceling.clinic_id.toString();
+      userProperties.selectedClinic = counselDetail.counceling.clinic_name!;
+      diaryProperties.doctor_id = counselDetail.counceling.clinic_id.toString();
+      userProperties.selectedDoctor = counselDetail.doctor.hira_name;
+      diaryProperties.date = counselDetail.counceling.counseling_date!;
+      diaryProperties.counsel_content = counselDetail.counceling.content!;
+      setState(() {
+        con_content.text = counselDetail.counceling.content!;
+      });
+      setState(() {
+        imageIds = [[], [], []];
+        for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
+          imageIds[0].add(counselDetail.counceling.media_self![i].id);
+        for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
+          imageIds[1].add(counselDetail.counceling.media_like![i].id);
+        for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
+          imageIds[2].add(counselDetail.counceling.media_dislike![i].id);
+
+        images = [[], [], []];
+        for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
+          images[0].add(counselDetail.counceling.media_self![i].path);
+        for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
+          images[1].add(counselDetail.counceling.media_like![i].path);
+        for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
+          images[2].add(counselDetail.counceling.media_dislike![i].path);
+      });
+
+      diaryProperties.counsel_reason = counselDetail.counceling.reason!;
+      diaryProperties.counsel_before = counselDetail.counceling.before_counseling!;
+      diaryProperties.counsel_after = counselDetail.counceling.after_ccounseling!;
+      diaryProperties.counsel_rate = counselDetail.counceling.rate!;
+      diaryProperties.counsel_questions = [];
+      for(int i=0; i< counselDetail.questions.length; i++){
+        diaryProperties.counsel_questions.add(new CounselQuestion_Model(counselDetail.questions[i].question!, counselDetail.questions[i].answer!));
+      }
+      
+      setState(() {
+        initDetail = false;
+      });
+
+    }
+
     if (surgeryProvider.selectedCurePos.isNotEmpty 
         && diaryProperties.clinic_id != '' 
         && diaryProperties.doctor_id != '' 
@@ -231,51 +292,6 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
       setState(() {
         isAddEnabled = false;
       });
-    }
-
-    if(initDetail && widget.counsel_id != ''){
-      surgeryProvider.selectedCurePos = [];
-      surgeryProvider.selectedCurePosStr = [];
-      for(int i =0; i< counselDetail.counceling.categories!.length; i++){
-        surgeryProvider.selectedCurePos.add(counselDetail.counceling.categories![i].id);
-        surgeryProvider.selectedCurePosStr.add(counselDetail.counceling.categories![i].name);
-      }
-      diaryProperties.clinic_id = counselDetail.counceling.clinic_id.toString();
-      userProperties.selectedClinic = counselDetail.counceling.clinic_name!;
-      diaryProperties.doctor_id = counselDetail.counceling.clinic_id.toString();
-      userProperties.selectedDoctor = counselDetail.counceling.doctor_name!;
-      diaryProperties.date = counselDetail.counceling.counseling_date!;
-      diaryProperties.counsel_content = counselDetail.counceling.content!;
-      // setState(() {
-      //   imageIds = [[], [], []];
-      //   for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
-      //     imageIds[0].add(counselDetail.counceling.media_self![i].id);
-      //   for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
-      //     imageIds[1].add(counselDetail.counceling.media_like![i].id);
-      //   for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
-      //     imageIds[2].add(counselDetail.counceling.media_dislike![i].id);
-
-      //   images = [[], [], []];
-      //   for(int i=0; i<counselDetail.counceling.media_self!.length; i++)
-      //     images[0].add(counselDetail.counceling.media_self![i].path);
-      //   for(int i=0; i<counselDetail.counceling.media_like!.length; i++)
-      //     images[1].add(counselDetail.counceling.media_like![i].path);
-      //   for(int i=0; i<counselDetail.counceling.media_dislike!.length; i++)
-      //     images[2].add(counselDetail.counceling.media_dislike![i].path);
-      // });
-
-      diaryProperties.counsel_reason = counselDetail.counceling.reason!;
-      diaryProperties.counsel_before = counselDetail.counceling.before_counseling!;
-      diaryProperties.counsel_after = counselDetail.counceling.after_ccounseling!;
-      diaryProperties.counsel_rate = counselDetail.counceling.rate!;
-      for(int i=0; i< counselDetail.questions.length; i++){
-        diaryProperties.counsel_questions.add(new CounselQuestion_Model(counselDetail.questions[i].question!, counselDetail.questions[i].answer!));
-      }
-      
-      setState(() {
-        initDetail = false;
-      });
-
     }
     
     return Scaffold(
@@ -310,7 +326,15 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
             highlightColor: Colors.transparent,  
         ),
       ),
-      body: Container(
+      body: isloading
+      ? Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          )
+      :Container(
         color: Color.fromARGB(255, 240, 242, 245),
         child: SingleChildScrollView(
           child: Column(
@@ -652,6 +676,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: con_content,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   onChanged: (val) {

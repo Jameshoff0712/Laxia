@@ -514,7 +514,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                         ],
                       ),
                     ),
-                    Container(
+                    counceling_detail.counceling.media_self!.isEmpty?Container():Container(
                       padding: const EdgeInsets.only(top: 15, bottom: 10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -536,8 +536,9 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     children: [
                                       PhotoCarouselWidget(
                                         bRemove: false,
-                                        ImageList: counceling_detail
-                                            .counceling.media_self!,
+                                        ImageList: [for(int i=0;i<counceling_detail.counceling.media_self!.length;i++)
+                                                counceling_detail.counceling.media_self![i].path,
+                                        ],
                                         onRemove: (int) {}, 
                                       )
                                     ],
@@ -549,7 +550,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                         ],
                       ),
                     ),
-                    Container(
+                    counceling_detail.counceling.media_like!.isEmpty?Container():Container(
                       padding: const EdgeInsets.only(top: 15, bottom: 10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -571,8 +572,9 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     children: [
                                       PhotoCarouselWidget(
                                         bRemove: false,
-                                        ImageList: counceling_detail
-                                            .counceling.media_like!,
+                                        ImageList: [for(int i=0;i<counceling_detail.counceling.media_like!.length;i++)
+                                                counceling_detail.counceling.media_like![i].path,
+                                        ],
                                         onRemove: (int) {},
                                       )
                                     ],
@@ -584,7 +586,7 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                         ],
                       ),
                     ),
-                    Container(
+                    counceling_detail.counceling.media_dislike!.isEmpty?Container(): Container(
                       padding: const EdgeInsets.only(top: 15, bottom: 10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -606,8 +608,9 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                                     children: [
                                       PhotoCarouselWidget(
                                         bRemove: false,
-                                        ImageList: counceling_detail
-                                            .counceling.media_dislike!,
+                                        ImageList: [for(int i=0;i<counceling_detail.counceling.media_dislike!.length;i++)
+                                                counceling_detail.counceling.media_dislike![i].path,
+                                        ],
                                         onRemove: (int) {},
                                       )
                                     ],

@@ -21,50 +21,21 @@ class _AddCounselPageState extends State<AddCounselPage> {
   late List<Counceling_Sub_Model> mid;
   late Me myInfo;
   List categoryList = [];
-  Future<void> getData({required String page, String? q = ""}) async {
+  Future<void> getData() async {
     try {
-      if (!isend) {
-        if (!isloading)
-          setState(() {
-            isexpanding = false;
-          });
-        myInfo = await _con.getMe();
-        mid = myInfo.counselings!;
-        // print('hhhhhhhhhhhhhhhhhhhh');
-        print(mid.length);
-        // print(mid[2].categories);
-        // mid = await _con.getDiaryData(page: page, q: q, filter: '', city_id: '');
-        // for (int i = 0; i < mid.data.length; i++) {
-        //   categoryList.addAll(mid.data[i].categories!);
-        // }
-        if (mid.isEmpty) {
-          setState(() {
-            isexpanding = true;
-            isend = true;
-            // isloading = false;
-          });
-        }
-        setState(() {
-          if (isloading) {
-            counsel_data = mid;
-            isloading = false;
-          } else {
-            counsel_data.addAll(mid);
-            isexpanding = true;
-          }
-        });
-      }
-    } catch (e) {
+      myInfo = await _con.getMe();
       setState(() {
-        isexpanding = true;
-        isend = true;
-        print(e.toString());
+        counsel_data = myInfo.counselings!;
+        print(myInfo.counselings?.length);
+        isloading = false;
       });
+    } catch (e) {
+      print(e.toString());
     }
   }
   @override
   void initState() {
-    getData(page: page.toString());
+    getData();
     super.initState();
   }
 
@@ -174,25 +145,12 @@ class _AddCounselPageState extends State<AddCounselPage> {
                   : SizedBox(),
             
                 counsel_data.length > 0 ?
-                NotificationListener<ScrollNotification>(
-                  onNotification: (ScrollNotification scrollInfo) {
-                        if (scrollInfo.metrics.pixels ==
-                            scrollInfo.metrics.maxScrollExtent) {
-                          if (isexpanding) {
-                            getData(page: (page + 1).toString());
-                            setState(() {
-                              page += 1;
-                            });
-                          }
-                        }
-                        return true;
-                      },
-                  child: Column(
+                Column(
                     children: [
                       // menuAppBar(context),
                       ListView.builder(
                           shrinkWrap: true,
-                          itemCount: counseling_list.length,
+                          itemCount: counsel_data.length,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
                             return CounselAddPage_Card(
@@ -221,18 +179,10 @@ class _AddCounselPageState extends State<AddCounselPage> {
                               //     : Color.fromARGB(50, 240, 154, 55)),
                             );
                           }),
-                      isexpanding
-                              ? Container()
-                              : Container(
-                                  height: 100,
-                                  color: Colors.transparent,
-                                  child: Center(
-                                    child: new CircularProgressIndicator(),
-                                  ),
-                                )
+                      
                     ],
-                  ),
-                )
+                  )
+                
                 : SizedBox(),
               ],
             ),

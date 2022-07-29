@@ -47,7 +47,7 @@ class _chatStatusState extends State<chatStatus> {
             statusColor = Color.fromARGB(255, 245, 184, 91);
           }
           break;
-        case 4:
+        case 25:
           {
             statusText = '施術完';
             statusColor = Color.fromARGB(255, 241, 85, 85);

@@ -26,36 +26,15 @@ class _DiaryPageState extends State<DiaryPage> {
   late List<Diary_Sub_Model> mid;
   late Me myInfo;
   List categoryList = [];
-  Future<void> getData({required String page, String? q = ""}) async {
+  Future<void> getData() async {
     try {
-      if (!isend) {
-        if (!isloading)
-          setState(() {
-            isexpanding = false;
-          });
-        myInfo = await _con.getMe();
-        mid = myInfo.diaries!;
-        print(mid);
-        // mid = await _con.getDiaryData(page: page, q: q, filter: '', city_id: '');
-        // for (int i = 0; i < mid.data.length; i++) {
-        //   categoryList.addAll(mid.data[i].categories!);
-        // }
-        if (mid.isEmpty) {
-          setState(() {
-            isexpanding = true;
-            isend = true;
-          });
-        }
-        setState(() {
-          if (isloading) {
-            diary_data = mid;
-            isloading = false;
-          } else {
-            diary_data.addAll(mid);
-            isexpanding = true;
-          }
-        });
-      }
+      myInfo = await _con.getMe();
+      setState(() {
+        diary_data = myInfo.diaries!;
+        print(myInfo.counselings?.length);
+        isloading = false;
+      });
+    
     } catch (e) {
       setState(() {
         isexpanding = true;
@@ -67,7 +46,7 @@ class _DiaryPageState extends State<DiaryPage> {
 
   @override
   void initState() {
-    getData(page: page.toString());
+    getData();
     super.initState();
   }
 
@@ -105,8 +84,12 @@ class _DiaryPageState extends State<DiaryPage> {
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.only(top: 31, left: 16, right: 16),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed("/AddDiaryStep1");
+                  onPressed: () async{
+                    await Navigator.of(context).pushNamed("/AddDiaryStep1");
+                    setState(() {
+                      isloading = true;
+                    });
+                    getData();
                   },
                   style: ElevatedButton.styleFrom(
                     splashFactory: NoSplash.splashFactory,
@@ -169,20 +152,7 @@ class _DiaryPageState extends State<DiaryPage> {
                             ),
                           )
                         : SizedBox(),
-                    NotificationListener<ScrollNotification>(
-                      onNotification: (ScrollNotification scrollInfo) {
-                        if (scrollInfo.metrics.pixels ==
-                            scrollInfo.metrics.maxScrollExtent) {
-                          if (isexpanding) {
-                            getData(page: (page + 1).toString());
-                            setState(() {
-                              page += 1;
-                            });
-                          }
-                        }
-                        return true;
-                      },
-                      child: Column(
+                    Column(
                         children: [
                           ListView.builder(
                               shrinkWrap: true,
@@ -225,18 +195,10 @@ class _DiaryPageState extends State<DiaryPage> {
                                   //         : Color.fromARGB(50, 240, 154, 55)),
                                 );
                               }),
-                          isexpanding
-                              ? Container()
-                              : Container(
-                                  height: 100,
-                                  color: Colors.transparent,
-                                  child: Center(
-                                    child: new CircularProgressIndicator(),
-                                  ),
-                                )
+                          
                         ],
                       ),
-                    ),
+                    
                   ]),
           ],
         ),

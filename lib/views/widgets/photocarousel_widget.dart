@@ -57,11 +57,15 @@ class _PhotoCarouselWidgetState extends State<PhotoCarouselWidget> {
                                 topLeft: Radius.circular(5),
                                 topRight: Radius.circular(5)),
                             child: widget.bRemove!
-                                ? Image.file(File(widget.ImageList[i]!),
+                                ? (!widget.ImageList[i]!.contains('http') ? Image.file(File(widget.ImageList[i]!),
                                     width: 80, height: 80, fit: BoxFit.cover)
+                                  : Image.network(widget.ImageList[i]!,
+                                            width: 80,
+                                            height: 80,
+                                            fit: BoxFit.cover))
                                 : CachedNetworkImage(
                                     fit: BoxFit.cover,
-                                    imageUrl: widget.ImageList[i]!.path.contains('http')?widget.ImageList[i]!.path:"http://test.clinic.lxa.jp"+widget.ImageList[i]!.path,
+                                    imageUrl: widget.ImageList[i]!.contains('http')?widget.ImageList[i]!:"http://test.clinic.lxa.jp"+widget.ImageList[i]!,
                                     placeholder: (context, url) => Image.asset(
                                       'assets/images/loading.gif',
                                       fit: BoxFit.cover,
