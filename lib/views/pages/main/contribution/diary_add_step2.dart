@@ -480,13 +480,13 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                       height: 45,
                     margin: EdgeInsets.only(top: 40),
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: isAddEnabled ? () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => AddDiaryStep4Page(
                                     isMyDiary: widget.isMyDiary)));
-                      },
+                      } : null,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         padding: const EdgeInsets.symmetric(
