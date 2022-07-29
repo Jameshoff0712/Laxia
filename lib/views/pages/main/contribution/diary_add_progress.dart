@@ -5,6 +5,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/views/widgets/select_numberDays.dart';
 import 'package:laxia/views/widgets/state_slider_widget.dart';
 
 class AddDiaryProgressPage extends StatefulWidget {
@@ -141,22 +142,19 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  // showModalBottomSheet(
-                                  //     constraints: BoxConstraints(
-                                  //       maxHeight:
-                                  //           MediaQuery.of(context).size.height *
-                                  //               0.9,
-                                  //     ),
-                                  //     isScrollControlled: true,
-                                  //     shape: RoundedRectangleBorder(
-                                  //       borderRadius: BorderRadius.only(
-                                  //           topLeft: Radius.circular(15.0),
-                                  //           topRight: Radius.circular(15.0)),
-                                  //     ),
-                                  //     context: context,
-                                  //     builder: (context) {
-                                  //       return SelectDoctor();
-                                  //     });
+                                  showModalBottomSheet(
+                                      
+                                      shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10.0),
+                                        topRight: Radius.circular(10.0)),
+                                  ),
+                                  backgroundColor: Colors.white,
+                                  context: context,
+                                  builder: (context) {
+                                    return SelectNumberDays();
+                                  },
+                                  isScrollControlled: true,);
                                 },
                                 child: Icon(
                                   Icons.arrow_forward_ios,
