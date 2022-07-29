@@ -103,11 +103,11 @@ class MyApi extends Api {
           // for (int i = 0; i < newDiary.imageIds.length; i++)
           //   "medias[]": newDiary.imageIds[i].toString(),
           for (int i = 0; i < newDiary.imageIds[0].length; i++)
-            "before_medias[]": newDiary.imageIds[0][i].toString(),
+            "before_medias["+i.toString()+"]": newDiary.imageIds[0][i].toString(),
           for (int i = 0; i < newDiary.imageIds[1].length; i++)
-            "after_medias[]": newDiary.imageIds[1][i].toString(),
+            "after_medias["+i.toString()+"]": newDiary.imageIds[1][i].toString(),
           "menus[0][cost]": newDiary.cost_op.toString(),
-          "menus[0][id]": newDiary.categories[0].toString(),
+          "menus[0][id]": 9.toString(),
         },
         token);
     return res;

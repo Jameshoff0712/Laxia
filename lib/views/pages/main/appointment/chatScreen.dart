@@ -52,7 +52,6 @@ class _ChatScreenState extends State<ChatScreen> {
       try{
         new_message=await _con.postMessage(value,isfile,widget.mailbox_id.toString());
         textController.text='';
-        print(new_message.display_time_lable.toString());
         setState(() {
           messages.add(new_message);
         });

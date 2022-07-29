@@ -180,16 +180,17 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               )),
-                          onPressed: () {
+                          onPressed: () async{
                             diaryProperties.setDiaryImageIds(imageIds);
                             Navigator.of(context).pop();
-                            Navigator.push(
+                            await Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => AddDiaryStep2Page(
                                   diary_id: widget.diary_id,
                                   operationName: surgeryProvider.getSelectedCurePosStr,
                             )));
+                            diaryProperties.init();
                           },
                         )
                       ],
@@ -871,6 +872,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                     margin: EdgeInsets.only(top: 40),
                     child: ElevatedButton(
                       onPressed: () {
+                       
                         Navigator.push(
                             context,
                             MaterialPageRoute(

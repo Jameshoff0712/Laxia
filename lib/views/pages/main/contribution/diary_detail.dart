@@ -820,7 +820,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   }
                 ),
               ),
-              GestureDetector(
+               diary_detail.diaries.isEmpty?Container():GestureDetector(
                       onTap: (){
                         setState(() {
                           isPostVisible = !isPostVisible;

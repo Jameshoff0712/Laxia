@@ -217,28 +217,50 @@ Future<void> getMe() async {
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Diary_Card(
-                      avator: mid[index].patient_photo!,
-                      name: mid[index].patient_nickname!,
-                      image1: mid[index].before_image!,
-                      image2: mid[index].after_image!,
-                      sentence: mid[index].last_content!.toString(),
-                      type: mid[index].patient_gender!,
-                      clinic: mid[index].clinic_name,
-                      check: mid[index].doctor_name!,
-                      price: mid[index].price.toString(),
-                      eyes: mid[index].views_count.toString(),
-                      hearts: mid[index].likes_count.toString(),
-                      chats: mid[index].comments_count.toString(),
+                      avator:
+                          mid[index].patient_photo == null
+                              ? "http://error.png"
+                              : mid[index].patient_photo!,
+                      check: mid[index].doctor_name == null
+                          ? ""
+                          : mid[index].doctor_name!,
+                      image2: mid[index].after_image == null
+                          ? "http://error.png"
+                          : mid[index].after_image!,
+                      image1:
+                          mid[index].before_image == null
+                              ? "http://error.png"
+                              : mid[index].before_image!,
+                      eyes: mid[index].views_count == null
+                          ? ""
+                          : mid[index].views_count!
+                              .toString(),
+                      clinic: mid[index].clinic_name == null
+                          ? ""
+                          : mid[index].clinic_name!,
+                      name: mid[index].patient_nickname ==
+                              null
+                          ? ""
+                          : mid[index].patient_nickname!,
                       onpress: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Diary_Detail(
-                                      isMyDiary: true, index: 1,
+                                      isMyDiary: true, index: mid[index].id,
                                     ))
                         );
                       },
-                      isPublic: true,
+                      price: mid[index].price == null
+                          ? ""
+                          : mid[index].price.toString(),
+                      sentence:
+                          mid[index].doctor_name == null
+                              ? ""
+                              : mid[index].doctor_name!,
+                      type: mid[index].doctor_name == null
+                          ? ""
+                          : mid[index].doctor_name!,
                     );
                   });
             }),
@@ -263,16 +285,34 @@ Future<void> getMe() async {
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Counseling_Card(
-                      avator: mid[index].patient_photo!,
-                      name: mid[index].patient_nickname!,
-                      sentence: mid[index].content!,
-                      images: mid[index].media_self!,
-                      type: mid[index].categories!,
-                      clinic: mid[index].clinic_name!,
-                      check: mid[index].doctor_name!,
-                      eyes: mid[index].views_count.toString(),
-                      hearts: mid[index].likes_count.toString(),
-                      chats: mid[index].comments_count.toString(),
+                      hearts: mid[index].likes_count ==
+                              null
+                          ? ""
+                          : mid[index].likes_count!
+                              .toString(),
+                      chats: mid[index].comments_count ==
+                              null
+                          ? ""
+                          : mid[index].comments_count
+                              .toString(),
+                      avator: mid[index].patient_photo ==
+                              null
+                          ? "http://error.png"
+                          : mid[index].patient_photo!,
+                      check: mid[index].doctor_name ==
+                              null
+                          ? ""
+                          : mid[index].doctor_name!,
+                      images:mid[index].media_self!,
+                      eyes: mid[index].views_count ==
+                              null
+                          ? ""
+                          : mid[index].views_count!
+                              .toString(),
+                      name: mid[index].patient_nickname ==
+                              null
+                          ? ""
+                          : mid[index].patient_nickname!,
                       onpress: () {
                         Navigator.push(
                             context,
@@ -281,6 +321,16 @@ Future<void> getMe() async {
                                       isMyDiary: true, index: mid[index].id,
                                     )));
                       },
+                      sentence:
+                          mid[index].content == null
+                              ? ""
+                              : mid[index].content!,
+                      type:
+                          mid[index].categories!,
+                      clinic: mid[index].clinic_name ==
+                              null
+                          ? ""
+                          : mid[index].clinic_name!,
                     );
                   });
             }),
@@ -307,22 +357,23 @@ Future<void> getMe() async {
                     itemBuilder: (BuildContext context, int index) {
                       return Question_Card(
                         isanswer: mid[index].answers.isNotEmpty,
-                        avator: mid[index].owner!.photo!,
-                        name: mid[index].owner!.kana!,
-                        sentence: mid[index].content!,
+                        hearts: mid[index].likes_count==null?"":mid[index].likes_count!.toString(),
+                        chats: mid[index].comments_count==null?"":mid[index].comments_count.toString(),
+                        avator:mid[index].owner!.photo==null?"http://error.png": mid[index].owner!.photo!,
                         images: mid[index].medias!,
-                        type: mid[index].categories!,
-                        eyes: mid[index].views_count.toString(),
-                        hearts: mid[index].likes_count.toString(),
-                        chats: mid[index].comments_count.toString(),
-                        onpress: () {
-                          Navigator.push(
+                        eyes: mid[index].views_count==null?"":mid[index].views_count!.toString(),
+                        name:mid[index].owner!.name==null?"": mid[index].owner!.name!,
+                        onpress: () { 
+                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => QuestionDetail(
                                         isMyDiary: true, index: mid[index].id,
                                       )));
+                          //Navigator.of(context).pushNamed("/QuestionDetail");
                         },
+                        sentence:mid[index].content==null?"": mid[index].content!,
+                        type:mid[index].categories!,
                       );
                     });
               },
