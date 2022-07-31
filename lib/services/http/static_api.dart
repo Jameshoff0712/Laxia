@@ -1,6 +1,7 @@
 import 'package:laxia/models/static/Search_Model.dart';
 import 'package:laxia/models/static/areas_model.dart';
 import 'package:laxia/models/static/master_model.dart';
+import 'package:laxia/models/static/menulist_model.dart';
 import 'package:laxia/models/static/message_model.dart';
 import 'package:laxia/models/static/midsearch_model.dart';
 import 'package:laxia/services/http/api.dart';
@@ -12,6 +13,12 @@ class HomeApi extends Api {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/load/master", token);
     return List<Master_Model>.from(res.data["data"]["treatCategories"].map((x) => Master_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>);
+  }
+  Future<List<Menulist_Model>> getMenuList() async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get("$apiUrl/load/master/partmenu", token);
+    print(res.data);
+    return List<Menulist_Model>.from(res.data["data"].map((x) => Menulist_Model.fromJson(x as Map<String, dynamic>)) as Iterable<dynamic>);
   }
   Future<List<Message_Model>> getMessages(String mailbox) async {
     String? token = await preferenceUtil.getToken();
