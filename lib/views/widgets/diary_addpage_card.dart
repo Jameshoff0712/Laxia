@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_progress.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:laxia/common/helper.dart';
@@ -231,7 +232,8 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.only(left: 32, right: 32),
                     child: ElevatedButton(
-                      onPressed: () { Navigator.of(context).pushNamed("/AddDiaryProgress"); },
+                      onPressed: () { Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AddDiaryProgressPage(diary_id: widget.diary_id.toString(),)));},
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         splashFactory: NoSplash.splashFactory,

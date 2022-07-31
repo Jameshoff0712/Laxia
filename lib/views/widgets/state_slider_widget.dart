@@ -8,12 +8,14 @@ class StateSliderWidget extends StatefulWidget {
   final int state_val;
   final bool? bBorder;
   final bool? isenable;
-  const StateSliderWidget(
+  Function? onChanged;
+  StateSliderWidget(
       {Key? key,
       required this.state_str,
       required this.state_val,
       this.bBorder = false, 
-      this.isenable=true})
+      this.isenable=true,
+      this.onChanged})
       : super(key: key);
 
   @override
@@ -23,24 +25,24 @@ class StateSliderWidget extends StatefulWidget {
 class _StateSliderWidgetState extends State<StateSliderWidget> {
   bool isBorder = false;
   List<double> stateval = [];
-  double _value = 0;
+  double _value = 1;
   @override
   void initState() {
     super.initState();
 
     setState(() {
       isBorder = widget.bBorder! ? true : false;
-      if (widget.state_val == 0) {
-        _value=0;
-        stateval.add(0);
-      } else if (widget.state_val == 1) {
+      if (widget.state_val == 1) {
         _value=1;
-        stateval.add(33);
+        stateval.add(0);
       } else if (widget.state_val == 2) {
         _value=2;
+        stateval.add(33);
+      } else if (widget.state_val == 3) {
+        _value=3;
         stateval.add(66);
       } else {
-        _value=3;
+        _value=4;
         stateval.add(100);
       }
       //print(stateval);
@@ -95,8 +97,8 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
                       inactiveLabelStyle: TextStyle(color: Color.fromARGB(255, 18, 18, 18), fontSize: 12, fontWeight: FontWeight.w700, height: 1.5),
                     ),
                     child: SfSlider(
-                      min: 0.0,
-                      max: 3.0,
+                      min: 1.0,
+                      max: 4.0,
                       interval: 1,
                       stepSize: 1,
                       showDividers: true,
@@ -105,11 +107,11 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
                       labelFormatterCallback:
                           (dynamic actualValue, String formattedText) {
                         String strLabel;
-                        if (actualValue == 0)
+                        if (actualValue == 1)
                           strLabel = "なし";
-                        else if (actualValue == 1)
-                          strLabel = "少しある";
                         else if (actualValue == 2)
+                          strLabel = "少しある";
+                        else if (actualValue == 3)
                           strLabel = "ある";
                         else
                           strLabel = "かなりある";
@@ -122,6 +124,7 @@ class _StateSliderWidgetState extends State<StateSliderWidget> {
                            setState(() {
                               _value = newValue;
                             });
+                            widget.onChanged!(newValue);
                         }
                       },
                     ))),

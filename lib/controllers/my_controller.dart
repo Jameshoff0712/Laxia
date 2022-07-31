@@ -8,6 +8,7 @@ import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/models/profile_model.dart';
+import 'package:laxia/models/progess_post_model.dart';
 import 'package:laxia/models/question_post_model.dart';
 import 'package:laxia/services/http/my_api.dart';
 
@@ -53,6 +54,9 @@ class MyController extends BaseController {
   }
   Future<dynamic> editDiary(DiaryPostModel newDiary, String diary_id) async {
     return await api.editDiary(newDiary, diary_id);
+  }
+  Future<dynamic> postProgress(ProgressPostModel newProgress, String diary_id) async {
+    return await api.postProgress(newProgress, diary_id);
   }
   Future<Media_model> imageUpload(String imagePicked) {
     return api.imageUpload(imagePicked);

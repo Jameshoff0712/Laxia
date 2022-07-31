@@ -1,16 +1,24 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/home_controller.dart';
+import 'package:laxia/controllers/my_controller.dart';
+import 'package:laxia/models/diary/diary/diarydetail_model.dart';
+import 'package:laxia/models/question/media_model.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/views/widgets/select_numberDays.dart';
 import 'package:laxia/views/widgets/state_slider_widget.dart';
+import 'package:provider/provider.dart';
 
 class AddDiaryProgressPage extends StatefulWidget {
   final bool? isMyDiary;
-  const AddDiaryProgressPage({Key? key, this.isMyDiary = false}) : super(key: key);
+  final String diary_id;
+  const AddDiaryProgressPage({Key? key, this.isMyDiary = false, required this.diary_id}) : super(key: key);
   @override
   _AddDiaryProgressPageState createState() => _AddDiaryProgressPageState();
 }
@@ -18,18 +26,48 @@ class AddDiaryProgressPage extends StatefulWidget {
 class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
   bool isAddEnabled = true;
   int index = 0;
+  HomeController _conHome = HomeController();
+  late DiaryDetail_Model info;
+  late DiaryDetail_Model mid;
+  late String treat_date;
+  int status1 = 1;
+  int status2 = 1;
+  int status3 = 1;
+  TextEditingController _conPro = TextEditingController();
+  bool isPro = true;
+
+  MyController _conMy = MyController();
   List images = [];
+  List<int> imageIds = [];
   final _picker = ImagePicker();
+
+  late List<int> qst_categories;
   Future<void> _openImagePicker() async {
-    final XFile? pickedImage =
+    try{
+      final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
+      if(pickedImage == null) return;
+
+      final Media_model res = await _conMy.imageUpload(pickedImage.path);
+      print(pickedImage.path);
+      print(res);
       setState(() {
-        images.add(File(pickedImage.path));
+        images.add(pickedImage.path);
+        imageIds.add(res.id);
       });
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
     }
   }
 
+  Future<void> getData() async {
+    mid = await _conHome.getDiaryDetail(index: int.parse(widget.diary_id));
+    print(mid.diary.treat_date!);
+    setState(() {
+      info = mid;
+      treat_date = mid.diary.treat_date!;
+    });
+  }
   AddDiaryPage() {
     Navigator.of(context).pushNamed("/AddDiaryList");
   }
@@ -41,19 +79,26 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
 
   @override
   void initState() {
+    getData();
     super.initState();
   }
 
-  Future getImageFromGallery() async {
-    // var image = await AddDiaryProgressPage.pickImage(source: ImageSource.gallery);
-
-    // setState(() {
-    //   imageURI = image;
-    // });
-  }
 
   @override
   Widget build(BuildContext context) {
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
+
+    if(diaryProperties.numbers_date != '' && _conPro.text != '') {
+      print('yyyyyyyyyyyyyyyyy');
+      print(status1);
+       setState(() {
+        isAddEnabled = true;
+      });
+    }  else
+      setState(() {
+        isAddEnabled = false;
+      });
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -105,7 +150,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border(
-                    bottom: BorderSide(color: Helper.txtColor),
+                    bottom: BorderSide(color: Color.fromARGB(255, 198, 198, 200)),
                   ),
                 ),
                 child: Padding(
@@ -129,10 +174,10 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                "選択してください",
+                                diaryProperties.numbers_date != '' ? diaryProperties.numbers_date + '日目' : "選択してください",
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                    color: Helper.txtColor,
+                                    color: diaryProperties.numbers_date != '' ? Helper.titleColor : Helper.txtColor,
                                     fontWeight: FontWeight.w400,
                                     fontSize: 12,
                                     height: 1.5),
@@ -152,7 +197,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                                   backgroundColor: Colors.white,
                                   context: context,
                                   builder: (context) {
-                                    return SelectNumberDays();
+                                    return SelectNumberDays(diary_id: widget.diary_id,);
                                   },
                                   isScrollControlled: true,);
                                 },
@@ -196,15 +241,30 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
             ),
             StateSliderWidget(
               state_str: "痛み",
-              state_val: 0,
+              state_val: status1,
+              onChanged: (double val) {
+                setState(() {
+                  status1 = val.toInt();
+                });
+              },
             ),
             StateSliderWidget(
               state_str: "腫れ",
-              state_val: 0,
+              state_val: status2,
+              onChanged: (double val) {
+                setState(() {
+                  status2 = val.toInt();
+                });
+              },
             ),
             StateSliderWidget(
               state_str: "傷あと",
-              state_val: 0,
+              state_val: status3,
+              onChanged: (double val) {
+                setState(() {
+                  status3 = val.toInt();
+                });
+              },
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -225,18 +285,13 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
               color: Colors.white,
               padding: EdgeInsets.only(left: 16, right: 16),
               child: TextFormField(
+                controller: _conPro,
                 keyboardType: TextInputType.multiline,
                 maxLines: 3,
                 onChanged: (text) {
-                  if (text.isNotEmpty) {
-                    setState(() {
-                      isAddEnabled = true;
-                    });
-                  } else {
-                    setState(() {
-                      isAddEnabled = false;
-                    });
-                  }
+                  setState(() {
+                    isPro = true;
+                  });
                 },
                 decoration: InputDecoration(
                   hintText: '施術5日目の経過です。腫れもだいふひいてきました。',
@@ -330,7 +385,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
 
   Widget imagePicker(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 16.0, top: 0, right: 12, bottom: 0),
+      padding: const EdgeInsets.only(left: 16.0, top: 0, right: 16, bottom: 0),
       child: GestureDetector(
         child: Row(
           children: <Widget>[
@@ -344,7 +399,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 height: 80,
                 width: 80,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 194, 194, 194),
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Column(
@@ -361,7 +416,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                               color: Colors.white,
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
-                              height: 1.5)),
+                              )),
                     ),
                   ],
                 ),
@@ -379,6 +434,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                       onRemove: (int) {
                         setState(() {
                           images.removeAt(int);
+                          imageIds.removeAt(int);
                         });
                       },
                       bRemove: true,

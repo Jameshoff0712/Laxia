@@ -8,6 +8,7 @@ import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/models/profile_model.dart';
+import 'package:laxia/models/progess_post_model.dart';
 import 'package:laxia/services/http/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:nb_utils/nb_utils.dart';
@@ -191,6 +192,23 @@ class MyApi extends Api {
       token
     );
     print("____"+res!.data.toString());
+    return res;
+  }
+  Future<dynamic> postProgress(ProgressPostModel newProgress, String diary_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.post(
+      "$apiUrl/diaries/" + diary_id + '/progresses', 
+      <String, String> {
+        'progresses[from_treat_day]': newProgress.from_treat_day,
+        'progresses[content]': newProgress.content,
+        'status[1]': newProgress.status1.toString(),
+        'status[2]': newProgress.status2.toString(),
+        'status[3]': newProgress.status3.toString(),
+        for(int j = 0; j < newProgress.imageIds.length; j++)
+          'medias[]': newProgress.imageIds[j].toString(),
+      } ,
+      token
+    );
     return res;
   }
   Future<dynamic> editProfile(ProfileModel profile) async {

@@ -96,9 +96,38 @@ class PostDiaryProvider extends ChangeNotifier {
     questions.addAll(postQuestions);
     notifyListeners();
   }
-
-
-
+  ////////////////////////Progress
+  String numbers_date = '';
+  get getNumbersDate => numbers_date;
+  void setNumbersDate(String num) {
+    numbers_date = num;
+    notifyListeners();
+  }
+  int status1 = 1;
+  get getStatus1 => status1;
+  void setStatus1(int val) {
+    status1 = val;
+    notifyListeners();
+  }
+  int status2 = 1;
+  get getStatus2 => status1;
+  void setStatus2(int val) {
+    status2 = val;
+    notifyListeners();
+  }
+  int status3 = 1;
+  get getStatus3 => status1;
+  void setStatus3(int val) {
+    status3 = val;
+    notifyListeners();
+  }
+  List<int> progress_images = [];
+  get getProgressImages => progress_images;
+  void setProgressImages(List<int> images) {
+    progress_images.clear();
+    progress_images = images;
+    notifyListeners();
+  }
 
 
 
