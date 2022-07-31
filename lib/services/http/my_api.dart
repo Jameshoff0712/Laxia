@@ -123,8 +123,8 @@ class MyApi extends Api {
         'questions[content]': newQuestion.content,
         for(int i = 0; i < newQuestion.categories.length; i++)
           'categories[]': newQuestion.categories[i].toString(),
-        for(int j = 0; j < newQuestion.imageID_list!.length; j++)
-          'medias[]': newQuestion.imageID_list![j].toString(),
+        for(int j = 0; j < newQuestion.imageID_list.length; j++)
+          'medias[]': newQuestion.imageID_list[j].toString(),
       } ,
       token
     );

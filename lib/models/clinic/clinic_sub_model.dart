@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:equatable/equatable.dart';
 import 'package:laxia/models/clinic/worktime_model.dart';
