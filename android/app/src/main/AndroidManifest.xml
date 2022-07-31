@@ -32,9 +32,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:host="deeplinking.example"
-                    android:pathPrefix="/"
-                    android:scheme="https" />
+                    android:scheme="poc"
+                    android:host="deeplink.flutter.dev" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
@@ -46,4 +45,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD5UN2xZnkINI0cKc74RUaq9jUqKthp4eo" />
     </application>
+     <queries>
+        <intent>
+        <action android:name="android.intent.action.SENDTO" />
+        <data android:scheme="mailto" />
+        </intent>
+    </queries>
 </manifest>

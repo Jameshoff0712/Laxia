@@ -3,6 +3,7 @@ import 'package:laxia/models/case/Owner_model.dart';
 import 'package:laxia/models/diary/diary/progress.dart';
 import 'package:laxia/models/diary/diary/text_question.dart';
 import 'package:laxia/models/diary/diary_sub_model.dart';
+import 'package:laxia/models/doctor/doctor_sub_model.dart';
 import 'package:laxia/models/menu/menudetail_model.dart';
 import 'package:laxia/models/question/media_model.dart';
 
@@ -19,6 +20,7 @@ class DiaryDetail_Model extends Equatable {
   final List<Progress>? progresses;
   final List<Diary_Sub_Model> diaries;
   final List<Process_Model> process;
+  final Doctor_Sub_Model doctor;
   const DiaryDetail_Model({
     this.beforemedias,
     this.aftermedias,
@@ -29,11 +31,13 @@ class DiaryDetail_Model extends Equatable {
     required this.diary,
     required this.owner,
     this.menus,
+    required this.doctor,
     required this.text_questions,
   });
 
   factory DiaryDetail_Model.fromJson(Map<String, dynamic> json) {
     return DiaryDetail_Model(
+      doctor: Doctor_Sub_Model.fromJson(json["doctor"]),
       diary: Diary_Sub_Model.fromJson(json),
       owner:Owner.fromJson(json["owner"]),
       menus: List<Menu_Sub_Model>.from(json["menus"].map(
@@ -57,9 +61,9 @@ class DiaryDetail_Model extends Equatable {
       progresses:json["progresses"]==null?[]: List<Progress>.from(json["progresses"]
               .map((x) => Progress.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-       process: json["menus"][0][["process"]] == null
+       process: json["menus"][0]["process"] == null
           ? []
-          : List<Process_Model>.from(json["menus"][0][["process"]]
+          : List<Process_Model>.from(json["menus"][0]["process"]
                   .map((x) => Process_Model.fromJson(x as Map<String, dynamic>))
               as Iterable<dynamic>),
     );
@@ -69,5 +73,6 @@ class DiaryDetail_Model extends Equatable {
         owner,
         menus,
         text_questions,
+        doctor
       ];
 }

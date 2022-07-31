@@ -270,13 +270,22 @@ class _AppointmentState extends State<Appointment>
                         Expanded(
                           child: Container(
                             color: Color.fromARGB(255, 240, 242, 245),
-                            // child: ListView(
-                            //   physics: const AlwaysScrollableScrollPhysics(),
-                            //   children: [
-                            //     chatStatus(
-                            //         statusCode: 4, clinicName: '湘南美容クリニック 銀座院'),
-                            //   ],
-                            // ),
+                            child: ListView.builder(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemCount: statusInfo.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return statusInfo[index].status!=25?
+                                    Container()
+                                  :chatStatus(
+                                    notificCount:counts[index] ,
+                                    statusCode: statusInfo[index].status,
+                                    clinicName: statusInfo[index].clinic_name,
+                                    bookDate: statusInfo[index].visit_time +
+                                        "~" +
+                                        statusInfo[index].visit_date, 
+                                    mailbox:  statusInfo[index].mailbox,
+                                  );
+                                }),
                           ),
                         ),
                       ],

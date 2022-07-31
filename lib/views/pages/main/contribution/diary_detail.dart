@@ -205,11 +205,15 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   ),
                 )
                 : ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
+                  onPressed: () async{
+                    await Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddDiaryStep1Page(isMyDiary: widget.isMyDiary)));
+                            builder: (context) => AddDiaryStep1Page(isMyDiary: widget.isMyDiary, diary_id: widget.index.toString(),)));
+                    setState(() {
+                      isloading = false;
+                    });
+                    getData(index: widget.index);
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -820,7 +824,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   }
                 ),
               ),
-              GestureDetector(
+               diary_detail.diaries.isEmpty?Container():GestureDetector(
                       onTap: (){
                         setState(() {
                           isPostVisible = !isPostVisible;

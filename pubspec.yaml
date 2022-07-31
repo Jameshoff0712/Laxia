@@ -86,6 +86,7 @@ dependencies:
   laravel_echo: ^0.2.9
   flutter_pusher_client: ^0.3.1
   collection: ^1.15.0
+  flutter_email_sender: ^5.1.0
 
 dev_dependencies:
   flutter_test:
