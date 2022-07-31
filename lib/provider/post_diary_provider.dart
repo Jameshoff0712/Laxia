@@ -195,4 +195,16 @@ class PostDiaryProvider extends ChangeNotifier {
     counsel_questions = questions;
     notifyListeners();
   }
+  int menu_id=-1;
+  String menu_name='';
+  void setmenu(int id ,String name) {
+    menu_id=id;
+    menu_name=name;
+    notifyListeners();
+  }
+  void clearmenu() {
+    menu_id=-1;
+    menu_name='';
+    notifyListeners();
+  }
 }
