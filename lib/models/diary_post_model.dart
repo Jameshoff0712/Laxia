@@ -13,10 +13,12 @@ class DiaryPostModel extends Equatable {
   final int cost_anes;
   final int cost_drug;
   final int cost_other;
+  final int menu_id;
 
 
   DiaryPostModel(
       {
+        required this.menu_id,
         required this.clinic_id,
         required this.doctor_id,
         required this.date,

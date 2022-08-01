@@ -81,7 +81,7 @@ class MyApi extends Api {
           for (int i = 0; i < newDiary.imageIds[1].length; i++)
             "after_medias[]": newDiary.imageIds[1][i].toString(),
           "menus[0][cost]": newDiary.cost_op.toString(),
-          "menus[0][id]": '9'//newDiary.categories[0].toString(),
+          "menus[0][id]": newDiary.menu_id.toString(),
         },
         token);
   }
@@ -109,7 +109,7 @@ class MyApi extends Api {
           for (int i = 0; i < newDiary.imageIds[1].length; i++)
             "after_medias["+i.toString()+"]": newDiary.imageIds[1][i].toString(),
           "menus[0][cost]": newDiary.cost_op.toString(),
-          "menus[0][id]": 9.toString(),
+          "menus[0][id]": newDiary.menu_id.toString(),
           "_method":"PUT"
         },
         token);

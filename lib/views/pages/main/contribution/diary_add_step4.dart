@@ -439,7 +439,8 @@ class _AddDiaryStep4PageState extends State<AddDiaryStep4Page> {
                             cost_op: diaryProperties.getCostOp,
                             cost_anes: diaryProperties.getCostAnesthetic, 
                             cost_drug: diaryProperties.getCostDrug, 
-                            cost_other: diaryProperties.getCostOther
+                            cost_other: diaryProperties.getCostOther, 
+                            menu_id: diaryProperties.menu_id
                           );
                           // if(widget.diary_id != '')
                             dynamic result = await _conMy.editDiary(newDiary, widget.diary_id!);
