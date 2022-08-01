@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/counseling/councelingdetail_model.dart';
 import 'package:laxia/models/diary/diary/diarydetail_model.dart';
+import 'package:laxia/models/diary/diary/progress_detail_model.dart';
 import 'package:laxia/models/diary_post_model.dart';
 import 'package:laxia/models/follow/follow_model.dart';
 import 'package:laxia/models/me_model.dart';
@@ -68,5 +69,8 @@ class MyController extends BaseController {
   }
   Future<DiaryDetail_Model> getDiaryDetail(String diary_id) async {
     return await api.getDiaryDetail(diary_id);
+  }
+  Future<ProgressDetail_Model> getProgressDetail(String progress_id) async {
+    return await api.getProgressDetail(progress_id);
   }
 }

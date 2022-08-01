@@ -65,6 +65,7 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
         rate: selectstar.toString(),
         question: CounselQuestion_list
         );
+        print(newQuestion);
     if(widget.counsel_id != ''){
       dynamic result = await _conMy.editCounsel(newQuestion, widget.counsel_id!);
       print('edit');
@@ -76,6 +77,29 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
       print('post');
       print(result.data);
     }
+    // print(result.data);
+  }
+
+  Future<void> fix() async {
+    CounselPostModel newQuestion = new CounselPostModel(
+        clinic_id: clinic_id,
+        doctor_id: doctor_id,
+        date: date,
+        content: content,
+        categories: categories,
+        imageIds: imageIds,
+        reason: conReason.text,
+        before_counsel: conBefore.text,
+        after_counsel: conAfter.text,
+        rate: selectstar.toString(),
+        question: CounselQuestion_list,
+        isPublic: _notificationStatus
+        );
+        print(newQuestion);
+    
+      dynamic result = await _conMy.editCounsel(newQuestion, widget.counsel_id!);
+      
+    
     // print(result.data);
   }
   enableAddButton() {
@@ -598,7 +622,32 @@ class _AddCounselStep2PageState extends State<AddCounselStep2Page> {
                         Align(
                           alignment: Alignment.center,
                           child: GestureDetector(
-                            onTap: () {
+                            onTap: () async{
+                                  setState(() {
+                                    doctor_id = diaryProperties.getDoctorID;
+                                    clinic_id = diaryProperties.getClinicID;
+                                    date = diaryProperties.getDate;
+                                    categories.addAll(surgeryProvider.getSelectedCurePos);
+                                    content = diaryProperties.getCounselContent;
+                                    for(int i = 0; i<3; i++)
+                                      imageIds[i].addAll(diaryProperties.getCounselImageIds[i]);
+                                  });
+                                  diaryProperties.clinic_id = '';
+                                  userProperties.selectedClinic = '';
+                                  diaryProperties.doctor_id = '';
+                                  userProperties.selectedDoctor = '';
+                                  diaryProperties.date = '';
+                                  diaryProperties.counsel_content = '';
+                                  surgeryProvider.selectedCurePos = [];
+                                  surgeryProvider.selectedCurePosStr = [];
+                                  diaryProperties.counsel_imageIds = [[], [], []];
+
+                                  diaryProperties.counsel_reason = '';
+                                  diaryProperties.counsel_before = '';
+                                  diaryProperties.counsel_after = '';
+                                  diaryProperties.counsel_rate = 0;
+                                  diaryProperties.counsel_questions = [];
+                                  await fix();
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
                             },

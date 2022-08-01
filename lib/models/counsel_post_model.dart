@@ -14,6 +14,7 @@ class CounselPostModel extends Equatable {
   final List<int> categories;
   final List<CounselQuestion_Model> question;
   final List<List<int>> imageIds;
+  bool? isPublic;
 
 
   CounselPostModel(
@@ -27,7 +28,8 @@ class CounselPostModel extends Equatable {
       required this.after_counsel,
       required this.rate,
       required this.question,
-      required this.imageIds
+      required this.imageIds,
+      this.isPublic
       });
 
   @override
@@ -43,6 +45,7 @@ class CounselPostModel extends Equatable {
         after_counsel,
         rate,
         question,
-        imageIds
+        imageIds,
+        isPublic
       ];
 }

@@ -485,7 +485,7 @@ class _AddDiaryStep2PageState extends State<AddDiaryStep2Page> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => AddDiaryStep4Page(
-                                    isMyDiary: widget.isMyDiary)));
+                                    isMyDiary: widget.isMyDiary, diary_id: widget.diary_id,)));
                       } : null,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
