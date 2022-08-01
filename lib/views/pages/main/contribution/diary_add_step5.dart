@@ -139,7 +139,8 @@ class _AddDiaryStep5PageState extends State<AddDiaryStep5Page> {
                         cost_op: diaryProperties.getCostOp,
                         cost_anes: diaryProperties.getCostAnesthetic, 
                         cost_drug: diaryProperties.getCostDrug, 
-                        cost_other: diaryProperties.getCostOther
+                        cost_other: diaryProperties.getCostOther,
+                        menu_id: diaryProperties.menu_id
                       );
                       print(newDiary);
                       if(widget.diary_id != ''){

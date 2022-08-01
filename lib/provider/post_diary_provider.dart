@@ -203,6 +203,9 @@ class PostDiaryProvider extends ChangeNotifier {
     notifyListeners();
   }
   void clearmenu() {
+    counsel_rate=0;
+    
+    counsel_questions.clear();
     menu_id=-1;
     menu_name='';
     notifyListeners();

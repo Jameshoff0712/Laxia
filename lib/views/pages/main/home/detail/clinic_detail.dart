@@ -60,7 +60,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       final res =
           await _con.postToogleFavorite(index: index, domain: 'clinics');
       if (res == true) {
-        setState(() {
+        setState(() { 
           isfavourite = !isfavourite;
         });
       }

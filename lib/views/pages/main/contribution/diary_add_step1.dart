@@ -322,7 +322,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       diaryProperties.doctor_id = diaryDetail.diary.doctor_id.toString();
       userProperties.selectedDoctor = diaryDetail.doctor.hira_name;
       diaryProperties.date = diaryDetail.diary.treat_date!;
-
+      diaryProperties.menu_id=diaryDetail.menus![0].id;
+      diaryProperties.menu_name=diaryDetail.menus![0].name;
       setState(() {
         imageIds = [[], []];
         for(int i=0; i< diaryDetail.beforemedias!.length; i++)

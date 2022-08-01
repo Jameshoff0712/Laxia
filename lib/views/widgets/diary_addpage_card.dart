@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laxia/provider/post_diary_provider.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_progress.dart';
 import 'package:laxia/views/pages/main/contribution/diary_add_step1.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:provider/provider.dart';
 
 class DiaryAddPage_Card extends StatefulWidget {
   final VoidCallback onpress;
@@ -53,6 +55,8 @@ class DiaryAddPage_Card extends StatefulWidget {
 class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
   @override
   Widget build(BuildContext context) {
+    PostDiaryProvider diaryProperties =
+        Provider.of<PostDiaryProvider>(context, listen: true);
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 14),
       child: Container(
@@ -232,7 +236,9 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.only(left: 32, right: 32),
                     child: ElevatedButton(
-                      onPressed: () { Navigator.of(context).push(MaterialPageRoute(
+                      onPressed: () { 
+                        diaryProperties.clearmenu();
+                        Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => AddDiaryProgressPage(diary_id: widget.diary_id.toString(),)));},
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
@@ -277,6 +283,7 @@ class _DiaryAddPage_CardState extends State<DiaryAddPage_Card> {
                     padding: EdgeInsets.only(left: 32, right: 32),
                     child: ElevatedButton(
                       onPressed: () {
+                        diaryProperties.clearmenu();
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => AddDiaryStep1Page(diary_id: widget.diary_id.toString(),)));
                       },
