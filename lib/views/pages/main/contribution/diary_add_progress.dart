@@ -6,8 +6,11 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/controllers/my_controller.dart';
 import 'package:laxia/models/diary/diary/diarydetail_model.dart';
+import 'package:laxia/models/diary/diary/progress_detail_model.dart';
+import 'package:laxia/models/progess_post_model.dart';
 import 'package:laxia/models/question/media_model.dart';
 import 'package:laxia/provider/post_diary_provider.dart';
+import 'package:laxia/views/pages/main/contribution/diary_list.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,24 +21,28 @@ import 'package:provider/provider.dart';
 class AddDiaryProgressPage extends StatefulWidget {
   final bool? isMyDiary;
   final String diary_id;
-  const AddDiaryProgressPage({Key? key, this.isMyDiary = false, required this.diary_id}) : super(key: key);
+  String? progress_id;
+  AddDiaryProgressPage({Key? key, this.isMyDiary = false, required this.diary_id, this.progress_id = ''}) : super(key: key);
   @override
   _AddDiaryProgressPageState createState() => _AddDiaryProgressPageState();
 }
 
 class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
+  bool initDetail = true;
+  bool isloading = true;
   bool isAddEnabled = true;
   int index = 0;
   HomeController _conHome = HomeController();
   late DiaryDetail_Model info;
   late DiaryDetail_Model mid;
   late String treat_date;
-  int status1 = 1;
-  int status2 = 1;
-  int status3 = 1;
+  int status1 = 0;
+  int status2 = 0;
+  int status3 = 0;
   TextEditingController _conPro = TextEditingController();
   bool isPro = true;
 
+  late ProgressDetail_Model progressDetail;
   MyController _conMy = MyController();
   List images = [];
   List<int> imageIds = [];
@@ -83,12 +90,38 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
     super.initState();
   }
 
+  Future<void> getProgressDetail() async {
+    final res = await _conMy.getProgressDetail(widget.progress_id!);
+    // print(res.doctor);
+    setState(() {
+      progressDetail = res;
+      isloading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     PostDiaryProvider diaryProperties =
         Provider.of<PostDiaryProvider>(context, listen: true);
+    if(initDetail && widget.isMyDiary! && widget.progress_id != '' && !isloading) {
+      diaryProperties.numbers_date = progressDetail.progress.from_treat_day.toString();
+      setState(() {
+        imageIds = [];
+        images = [];
+        for(int i = 0; i< progressDetail.progress.medias.length; i++){
+          imageIds.add(progressDetail.progress.medias[i].id);
+          images.add(progressDetail.progress.medias[i].path);
+        }
 
+        _conPro.text = progressDetail.progress.content!;
+        status1 = progressDetail.statuses[0].pivot.value;
+        status2 = progressDetail.statuses[1].pivot.value;
+        status3 = progressDetail.statuses[2].pivot.value;
+      });
+      setState(() {
+        initDetail = false;
+      });
+    }
     if(diaryProperties.numbers_date != '' && _conPro.text != '') {
       print('yyyyyyyyyyyyyyyyy');
       print(status1);
@@ -118,13 +151,22 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
             color: Helper.titleColor,
           ),
           onPressed: () {
+            diaryProperties.numbers_date = '';
             Navigator.pop(context);
           },
           splashColor: Colors.transparent,
             highlightColor: Colors.transparent,  
         ),
       ),
-      body: SingleChildScrollView(
+      body: isloading
+      ? Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          )
+      : SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -312,7 +354,25 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                 height: 85,
                 padding: EdgeInsets.only(top: 40, left: 16, right: 16),
                 child: ElevatedButton(
-                  onPressed: isAddEnabled ? () => AddDiaryPage() : null,
+                  onPressed: isAddEnabled ? () async{
+                    ProgressPostModel newProgress = new ProgressPostModel(
+                      from_treat_day: diaryProperties.numbers_date, 
+                      content: _conPro.text, 
+                      status1: status1, 
+                      status2: status2, 
+                      status3: status3, 
+                      imageIds: imageIds
+                    );
+                    final result = await _conMy.postProgress(newProgress, widget.diary_id);
+                    print(result.data);
+
+                    diaryProperties.numbers_date = '';
+                    Navigator.pop(context);
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => DiaryPage()));
+                  } : null,
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -327,7 +387,7 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Text(
-                      '次に進む',
+                      '施術経過を投稿する',
                       style: TextStyle(
                           fontSize: 14,
                           
@@ -342,13 +402,21 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                     height: 45,
                     margin: EdgeInsets.only(top: 40),
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => AddDiaryStep2Page(
-                        //             isMyDiary: widget.isMyDiary)));
-                      },
+                      onPressed: isAddEnabled ? () async{
+                        ProgressPostModel newProgress = new ProgressPostModel(
+                          from_treat_day: diaryProperties.numbers_date, 
+                          content: _conPro.text, 
+                          status1: status1, 
+                          status2: status2, 
+                          status3: status3, 
+                          imageIds: imageIds
+                        );
+                        final result = await _conMy.postProgress(newProgress, widget.diary_id);
+                        print(result.data);
+
+                        diaryProperties.numbers_date = '';
+                        Navigator.pop(context);
+                      } : null,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
                         padding: const EdgeInsets.symmetric(

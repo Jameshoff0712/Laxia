@@ -211,13 +211,17 @@ class _CounselDetailState extends StateMVC<CounselDetail> {
                               ),
                             )
                           : ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
+                              onPressed: () async{
+                                await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             AddCounselStep1Page(
                                                 isMyDiary: widget.isMyDiary, counsel_id: widget.index.toString(),)));
+                                setState(() {
+                                  isloading = true;
+                                });
+                                getData(index: widget.index);
                               },
                               style: ElevatedButton.styleFrom(
                                 padding:

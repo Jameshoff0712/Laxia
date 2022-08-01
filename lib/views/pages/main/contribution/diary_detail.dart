@@ -211,7 +211,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                         MaterialPageRoute(
                             builder: (context) => AddDiaryStep1Page(isMyDiary: widget.isMyDiary, diary_id: widget.index.toString(),)));
                     setState(() {
-                      isloading = false;
+                      isloading = true;
                     });
                     getData(index: widget.index);
                   },

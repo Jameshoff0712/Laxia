@@ -239,7 +239,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
       }
       diaryProperties.clinic_id = counselDetail.counceling.clinic_id.toString();
       userProperties.selectedClinic = counselDetail.counceling.clinic_name!;
-      diaryProperties.doctor_id = counselDetail.counceling.doctor_id.toString();
+      diaryProperties.doctor_id = counselDetail.counceling.clinic_id.toString();
       userProperties.selectedDoctor = counselDetail.doctor.hira_name;
       diaryProperties.date = counselDetail.counceling.counseling_date!;
       diaryProperties.counsel_content = counselDetail.counceling.content!;
@@ -787,13 +787,13 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                       child: Container(
                       height: 45,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: isAddEnabled ? () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AddCounselStep2Page(
-                                      isMyDiary: widget.isMyDiary)));
-                        },
+                                      isMyDiary: widget.isMyDiary, counsel_id: widget.counsel_id,)));
+                        } : null,
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(

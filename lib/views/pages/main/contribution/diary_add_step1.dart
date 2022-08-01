@@ -21,7 +21,6 @@ import 'package:laxia/views/widgets/photocarousel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/views/widgets/search_bar_widget.dart';
-import 'package:laxia/views/widgets/selectmenu.dart';
 import 'package:provider/provider.dart';
 import 'package:laxia/models/clinic_model.dart';
 import 'package:laxia/models/doctor_model.dart';
@@ -63,6 +62,8 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
         await _picker.pickImage(source: ImageSource.gallery);
       if(pickedImage == null) return;
       final Media_model res = await _conMy.imageUpload(pickedImage.path);
+      print(pickedImage.path);
+      print(res);
       setState(() {
         images[index].add(pickedImage.path);
         imageIds[index].add(res.id);
@@ -319,7 +320,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
       }
       diaryProperties.clinic_id = diaryDetail.diary.clinic_id.toString();
       userProperties.selectedClinic = diaryDetail.diary.clinic_name!;
-      diaryProperties.doctor_id = diaryDetail.diary.doctor_id.toString();
+      diaryProperties.doctor_id = diaryDetail.diary.clinic_id.toString();
       userProperties.selectedDoctor = diaryDetail.doctor.hira_name;
       diaryProperties.date = diaryDetail.diary.treat_date!;
       diaryProperties.menu_id=diaryDetail.menus![0].id;
@@ -329,13 +330,13 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
         for(int i=0; i< diaryDetail.beforemedias!.length; i++)
           imageIds[0].add(diaryDetail.beforemedias![i].id);
         for(int i=0; i< diaryDetail.aftermedias!.length; i++)
-          imageIds[1].add(diaryDetail.aftermedias![i].id);
+          imageIds[0].add(diaryDetail.aftermedias![i].id);
 
         images = [[], []];
         for(int j = 0; j< diaryDetail.beforemedias!.length; j++)
           images[0].add(diaryDetail.beforemedias![j].path);
         for(int j = 0; j< diaryDetail.aftermedias!.length; j++)
-          images[1].add(diaryDetail.aftermedias![j].path);
+          images[0].add(diaryDetail.aftermedias![j].path);
       });
 
       diaryProperties.cost_op = diaryDetail.diary.price!;
@@ -760,44 +761,35 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Expanded(
-                                child: Text(
-                                     diaryProperties.menu_name == ""?"選択してください":diaryProperties.menu_name,
-                                  softWrap: true,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      color: diaryProperties.menu_name != ""? Helper.titleColor : Helper.txtColor,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12,
-                                      ),
-                                ),
+                              Text(
+                                '選択してください',
+                                style: TextStyle(
+                                    color: Helper.txtColor,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12,
+                                    ),
                               ),
                               SizedBox(
                                 width: 16,
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                    builder: (context) => SelectMenu()));
-                                  // showModalBottomSheet(
-                                  //     constraints: BoxConstraints(
-                                  //       maxHeight:
-                                  //           MediaQuery.of(context).size.height *
-                                  //               0.9,
-                                  //     ),
-                                  //     isScrollControlled: true,
-                                  //     shape: RoundedRectangleBorder(
-                                  //       borderRadius: BorderRadius.only(
-                                  //           topLeft: Radius.circular(15.0),
-                                  //           topRight: Radius.circular(15.0)),
-                                  //     ),
-                                  //     context: context,
-                                  //     builder: (context) {
-                                  //       return Container();
-                                  //     });
+                                  showModalBottomSheet(
+                                      constraints: BoxConstraints(
+                                        maxHeight:
+                                            MediaQuery.of(context).size.height *
+                                                0.9,
+                                      ),
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(15.0),
+                                            topRight: Radius.circular(15.0)),
+                                      ),
+                                      context: context,
+                                      builder: (context) {
+                                        return Container();
+                                      });
                                 },
                                 child: Icon(Icons.arrow_forward_ios,
                                     color: Helper.txtColor, size: 15),
@@ -886,7 +878,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
                             MaterialPageRoute(
                                 builder: (context) => AddDiaryStep2Page(
                                   operationName: surgeryProvider.getSelectedCurePosStr,
-                                    isMyDiary: widget.isMyDiary)));
+                                    isMyDiary: widget.isMyDiary, diary_id: widget.diary_id,)));
                       } : null,
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
