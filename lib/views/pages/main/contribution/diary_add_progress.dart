@@ -87,12 +87,15 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
   @override
   void initState() {
     getData();
+    if(widget.progress_id != '')
+      getProgressDetail();
     super.initState();
   }
 
   Future<void> getProgressDetail() async {
     final res = await _conMy.getProgressDetail(widget.progress_id!);
-    // print(res.doctor);
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    print(res.progress.medias);
     setState(() {
       progressDetail = res;
       isloading = false;
@@ -123,8 +126,6 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
       });
     }
     if(diaryProperties.numbers_date != '' && _conPro.text != '') {
-      print('yyyyyyyyyyyyyyyyy');
-      print(status1);
        setState(() {
         isAddEnabled = true;
       });
@@ -411,7 +412,9 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
                           status3: status3, 
                           imageIds: imageIds
                         );
-                        final result = await _conMy.postProgress(newProgress, widget.diary_id);
+                        print(widget.diary_id);
+                        print(widget.progress_id);
+                        final result = await _conMy.editProgress(newProgress, widget.progress_id!);
                         print(result.data);
 
                         diaryProperties.numbers_date = '';

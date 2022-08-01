@@ -59,6 +59,9 @@ class MyController extends BaseController {
   Future<dynamic> postProgress(ProgressPostModel newProgress, String diary_id) async {
     return await api.postProgress(newProgress, diary_id);
   }
+  Future<dynamic> editProgress(ProgressPostModel newProgress, String progress_id) async {
+    return await api.editProgress(newProgress, progress_id);
+  }
   Future<Media_model> imageUpload(String imagePicked) {
     return api.imageUpload(imagePicked);
   }

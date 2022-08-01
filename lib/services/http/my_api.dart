@@ -212,6 +212,24 @@ class MyApi extends Api {
     );
     return res;
   }
+  Future<dynamic> editProgress(ProgressPostModel newProgress, String progress_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.post(
+      "$apiUrl/progresses/" + progress_id, 
+      <String, String> {
+        'progresses[from_treat_day]': newProgress.from_treat_day,
+        'progresses[content]': newProgress.content,
+        'status[1]': newProgress.status1.toString(),
+        'status[2]': newProgress.status2.toString(),
+        'status[3]': newProgress.status3.toString(),
+        for(int j = 0; j < newProgress.imageIds.length; j++)
+          'medias[]': newProgress.imageIds[j].toString(),
+        "_method":"PUT",
+      } ,
+      token
+    );
+    return res;
+  }
   Future<dynamic> editProfile(ProfileModel profile) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.post(

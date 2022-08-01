@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/diary/diary/progress_detail_model.dart';
 import 'package:laxia/provider/user_provider.dart';
+import 'package:laxia/views/pages/main/contribution/diary_add_progress.dart';
 import 'package:laxia/views/pages/main/contribution/diary_detail.dart';
 import 'package:laxia/views/widgets/state_slider_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -18,7 +19,8 @@ import 'package:provider/provider.dart';
 class DiaryDetailDefault extends StatefulWidget {
   final bool isMyDiary;
   final int index;
-  const DiaryDetailDefault({ Key? key, this.isMyDiary = false, required this.index }) : super(key: key);
+  final String diary_id;
+  const DiaryDetailDefault({ Key? key, this.isMyDiary = false, required this.index, required this.diary_id }) : super(key: key);
   @override
   _DiaryDetailDefaultState createState() => _DiaryDetailDefaultState();
 }
@@ -172,7 +174,8 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                 )
                 : ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed("/AddDiaryProgress");
+                    Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AddDiaryProgressPage(isMyDiary: widget.isMyDiary, progress_id: widget.index.toString(), diary_id: widget.diary_id,)));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -21,7 +21,8 @@ class ReservationApi extends Api {
         <String, String>{
           "rsv[clinic_id]": rsv.clinic_id.toString(),
           // rsv.opertion_type
-          "rsv[type]": rsv.opertion_type.toString(),
+          if(rsv.opertion_type != null)
+            "rsv[type]": rsv.opertion_type.toString(),
           "rsv[doctor_id]": rsv.doctor_id.toString(),
           "rsv[note]": rsv.question_content,
           "rsv[hope_treat]": rsv.decision_type_today.toString(),

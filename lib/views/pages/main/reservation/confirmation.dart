@@ -130,7 +130,7 @@ class _ConfirmationState extends State<Confirmation> {
             ),
           ),
           _buildConfirmRow('クリニック', widget.clinic.name),
-          _buildConfirmRow('施術', widget.treat?.name),
+          widget.treat != null ? _buildConfirmRow('施術', widget.treat!.name) : SizedBox(),
           _buildConfirmRow('ご希望のドクター', widget.doctor.hira_name),
           _buildConfirmRow('ご相談・ご要望', widget.wantedValue),
           _buildConfirmRow('当日施術', widget.todayValue.name),
