@@ -52,6 +52,7 @@ class HomeApi extends Api {
   Future<Master_Model> getIndexPartCategories(int index) async {
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/load/master/part/$index", token);
+    print(res.data);
     return Master_Model.fromJson(res.data["data"]["treatCategories"]);
   }
   Future<List<Area_Model>> getAreas() async {

@@ -484,7 +484,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     PhotoCarouselWidget(
-                                      ImageList: question_detail.medias!,
+                                      ImageList: [
+                                        for(int i=0;i<question_detail.medias!.length;i++)
+                                          question_detail.medias![i].path
+                                      ],
                                       bRemove: false,
                                       onRemove: (int) {},
                                     )

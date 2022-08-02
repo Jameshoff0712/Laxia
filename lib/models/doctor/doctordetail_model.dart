@@ -27,10 +27,11 @@ class DoctorDetail_Model extends Equatable {
 
   factory DoctorDetail_Model.fromJson(Map<String, dynamic> json) {
     return DoctorDetail_Model(
-      questions:List<Question_Sub_Model>.from(json["counselings"].map(
+      clinic: Clinic_Sub_Model.fromJson(json["clinic"]),
+      questions:List<Question_Sub_Model>.from(json["questions"].map(
               (x) => Question_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      diaries: List<Diary_Sub_Model>.from(json["counselings"].map(
+      diaries: List<Diary_Sub_Model>.from(json["diaries"].map(
               (x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
       doctor: Doctor_Sub_Model.fromJson(json),
@@ -40,7 +41,6 @@ class DoctorDetail_Model extends Equatable {
       cases: List<Case_Sub_Model>.from(json["cases"]
               .map((x) => Case_Sub_Model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),
-      clinic: Clinic_Sub_Model.fromJson(json["clinic"]), 
       images: List<Image_model>.from(json["images"]
               .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
           as Iterable<dynamic>),

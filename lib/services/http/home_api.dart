@@ -76,6 +76,7 @@ class HomeApi extends Api {
     return Doctor.fromJson(res.data["doctors"]);
   }
   Future<DoctorDetail_Model> getDoctorDetail(int index) async {
+    print(index.toString());
     String? token = await preferenceUtil.getToken();
     final res = await Api.get("$apiUrl/doctors/"+index.toString(), token);
     return DoctorDetail_Model.fromJson(res.data["doctor"]);

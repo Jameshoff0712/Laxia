@@ -55,6 +55,7 @@ class Case_Sub_Model extends Equatable {
       this.doctor});
 
   factory Case_Sub_Model.fromJson(Map<String, dynamic> json) {
+    print('case'+json.toString());
     return Case_Sub_Model(
         id: json["id"],
         clinic_id: json["clinic_id"],
@@ -71,11 +72,11 @@ class Case_Sub_Model extends Equatable {
         case_description: json["case_description"],
         treat_risk: json["treat_risk"],
         doctor_option: json["doctor_option"],
-        clinic: Clinic_Sub_Model.fromJson(json["clinic"]),
-        categories: List<Category>.from(json["categories"]
+        clinic:json["clinic"]==null?null:Clinic_Sub_Model.fromJson(json["clinic"]),
+        categories:json["categories"]==null?[]: List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
-        menus: List<Menu_Sub_Model>.from(json["menus"]
+        menus: json["menus"]==null?[]:List<Menu_Sub_Model>.from(json["menus"]
                 .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>),
         beforeimage:json["beforeimage"]==null?[] :List<Image_model>.from(json["beforeimage"]

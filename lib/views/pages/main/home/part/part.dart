@@ -39,6 +39,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
   Future<void> getData() async {
     try {
       master_model = await _con.getIndexPartCategories(widget.index);
+      print(master_model);
       for (int i = 0; i < master_model.all_childrens!.length; i++) {
         setState(() {
           if(widget.part_id== master_model.all_childrens![i].id)
@@ -107,14 +108,13 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                     child: Stack(
                       alignment: Alignment.centerLeft,
                       children: [
-                        // Center(
-                        //   child: Text(
-                        //       treatment[userProperties.currentPartIndex]
-                        //           ["label"],
-                        //       style: defaultTextStyle(
-                        //           Helper.blackColor, FontWeight.w700,
-                        //           size: 20)),
-                        // ),
+                        Center(
+                          child: Text(
+                              master_model.name!,
+                              style: defaultTextStyle(
+                                  Helper.blackColor, FontWeight.w700,
+                                  size: 20)),
+                        ),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: IconButton(
