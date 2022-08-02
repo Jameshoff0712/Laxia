@@ -10,6 +10,7 @@ import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/models/profile_model.dart';
 import 'package:laxia/models/progess_post_model.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/models/question_post_model.dart';
 import 'package:laxia/services/http/my_api.dart';
 
@@ -72,5 +73,8 @@ class MyController extends BaseController {
   }
   Future<ProgressDetail_Model> getProgressDetail(String progress_id) async {
     return await api.getProgressDetail(progress_id);
+  }
+  Future<Question_Sub_Model> getQuestionDetail(String question_id) async {
+    return await api.getQuestionDetail(question_id);
   }
 }

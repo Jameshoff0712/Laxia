@@ -10,6 +10,7 @@ import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/point/point_model.dart';
 import 'package:laxia/models/profile_model.dart';
 import 'package:laxia/models/progess_post_model.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/services/http/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:nb_utils/nb_utils.dart';
@@ -264,5 +265,12 @@ class MyApi extends Api {
         "$apiUrl/progresses/" + progress_id,
         token);
     return ProgressDetail_Model.fromJson(res.data["progress"]);
+  }
+  Future<Question_Sub_Model> getQuestionDetail(String question_id) async {
+    String? token = await preferenceUtil.getToken();
+    final res = await Api.get(
+        "$apiUrl/questions/" + question_id,
+        token);
+    return Question_Sub_Model.fromJson(res.data["data"]["question"]);
   }
 }
