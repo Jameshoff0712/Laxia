@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/my_controller.dart';
 import 'package:laxia/models/question/media_model.dart';
+import 'package:laxia/models/question/question_sub_model.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:laxia/views/widgets/photocarousel_widget.dart';
@@ -16,13 +17,19 @@ import 'package:laxia/controllers/question_controller.dart';
 import '../../../../models/question_post_model.dart';
 
 class AddQuestion extends StatefulWidget {
+  String? question_id;
+  bool? isMyDiary;
+  AddQuestion({Key? key, this.isMyDiary = false, this.question_id = ''}) : super(key: key);
   @override
   _AddQuestionState createState() => _AddQuestionState();
 }
 
 class _AddQuestionState extends StateMVC<AddQuestion> {
+  bool isloading = true;
   bool isAddEnabled = false;
+  late Question_Sub_Model questionDetail;
   bool isUsed = false;
+  bool initDetail = true;
   //File imageURI;
   late QuestionController _con;
   MyController _conMy = MyController();
@@ -76,6 +83,14 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
   disableAddButton() {
     setState(() {
       isAddEnabled = false;
+    });
+  }
+
+  Future<void> getQuestionDetail() async {
+    final res = await _conMy.getQuestionDetail(widget.question_id!);
+    setState(() {
+      questionDetail = res;
+      isloading = false;
     });
   }
 
@@ -219,6 +234,12 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
 
   @override
   void initState() {
+    if(widget.question_id != '' && widget.isMyDiary!)
+      getQuestionDetail();
+    else 
+      setState(() {
+        isloading = false;
+      });
     super.initState();
   }
 
@@ -235,6 +256,29 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
     SurGeryProvider surgeryProvider =
         Provider.of<SurGeryProvider>(context, listen: true);
 
+    if(initDetail && widget.question_id != '' && !isloading) {
+      surgeryProvider.selectedCurePos = [];
+      surgeryProvider.selectedCurePosStr = [];
+      for(int i =0; i< questionDetail.categories!.length; i++){
+        surgeryProvider.selectedCurePos.add(questionDetail.categories![i].id);
+        surgeryProvider.selectedCurePosStr.add(questionDetail.categories![i].name);
+      }
+      setState(() {
+        imageIds = [];
+        images = [];
+        for(int i = 0; i< questionDetail.medias!.length; i++){
+          imageIds.add(questionDetail.medias![i].id);
+          images.add(questionDetail.medias![i].path);
+        }
+
+        _con.question_titleCtrl.text = questionDetail.title!;
+        _con.question_contentCtrl.text = questionDetail.content!;
+      });
+
+      setState(() {
+        initDetail = false;
+      });
+    }
     if (surgeryProvider.selectedCurePos.isNotEmpty &&
         _con.question_titleCtrl.text.isNotEmpty &&
         _con.question_contentCtrl.text.isNotEmpty) {
@@ -271,7 +315,15 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
             highlightColor: Colors.transparent,  
         ),
       ),
-      body: Container(
+      body: isloading
+      ? Container(
+            height: MediaQuery.of(context).size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: new CircularProgressIndicator(),
+            ),
+          )
+      : Container(
         color: Color.fromARGB(255, 240, 242, 245),
         child: SingleChildScrollView(
           child: Column(
@@ -509,7 +561,8 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                 height: 16,
               ),
               imagePicker(context),
-              Center(
+              !widget.isMyDiary!
+              ? Center(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 85,
@@ -554,6 +607,46 @@ class _AddQuestionState extends StateMVC<AddQuestion> {
                   ),
                 ),
               )
+              : Center(
+                    child: Container(
+                    height: 45,
+                    margin: EdgeInsets.only(top: 40),
+                    child: ElevatedButton(
+                      onPressed: isAddEnabled ? () async{
+                        setState(() {
+                          qst_categories = surgeryProvider.getSelectedCurePos;
+                        });
+                        await post();
+                        Navigator.of(context).pop();
+                      } : null,
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 70),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        side: const BorderSide(
+                            color: Helper.mainColor,
+                            width: 1,
+                            style: BorderStyle.solid),
+                        primary: Helper.whiteColor,
+                        splashFactory: NoSplash.splashFactory,
+                            shadowColor: Colors.transparent,
+                      ),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          '編集を完了',
+                          style: TextStyle(
+                              fontSize: 14,
+                              
+                              fontWeight: FontWeight.w700,
+                              color: Helper.mainColor),
+                        ),
+                      ),
+                    ),
+                  )),
             ],
           ),
         ),
