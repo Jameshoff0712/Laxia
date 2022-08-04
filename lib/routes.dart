@@ -136,8 +136,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ContactPage());
       case '/TermsOfServiceWeb':
         return MaterialPageRoute(builder: (_) => TermsOfServiceWeb());
-      case '/Invite':
-        return MaterialPageRoute(builder: (_) => InvitePage());
+      // case '/Invite':
+      //   return MaterialPageRoute(builder: (_) => InvitePage());
       case '/NoticeList':
         return MaterialPageRoute(builder: (_) => NoticeListPage());
       case '/DiaryFix':

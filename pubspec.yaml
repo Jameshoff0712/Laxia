@@ -84,11 +84,10 @@ dependencies:
   uni_links: ^0.5.1
   bottom_picker: ^1.9.1
   laravel_echo: ^0.2.9
-  flutter_pusher_client: ^0.3.1
   collection: ^1.15.0
   flutter_email_sender: ^5.1.0
   date_format: ^2.0.6
-  flutter_google_places: ^0.2.8
+  flutter_pusher_client: ^0.3.1
 
 dev_dependencies:
   flutter_test:

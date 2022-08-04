@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/mypage/input_code_page.dart';
 import 'package:laxia/views/pages/main/mypage/invite_share_page.dart';
+import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class InvitePage extends StatefulWidget {
-  const InvitePage({Key? key}) : super(key: key);
-
+  final String text;
+  const InvitePage({Key? key, required this.text}) : super(key: key);
   @override
   State<InvitePage> createState() => _InvitePageState();
 }
@@ -15,6 +18,8 @@ class _InvitePageState extends State<InvitePage> {
   bool isCopied = false;
   @override
   Widget build(BuildContext context) {
+    // UserProvider userProperties =
+    //     Provider.of<UserProvider>(context, listen: true);
     return Container(
       padding: EdgeInsets.only(top: 10),
       height: MediaQuery.of(context).size.height - 54,
@@ -134,7 +139,7 @@ class _InvitePageState extends State<InvitePage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
-                              "T43Fa2G",
+                              widget.text,
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16,
@@ -220,15 +225,21 @@ class _InvitePageState extends State<InvitePage> {
                         height: 20,
                       ),
                       GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            backgroundColor: Colors.white,
-                            context: context,
-                            builder: (context) {
-                              return InviteSharePage();
-                            },
-                            isScrollControlled: true,
-                          );
+                        onTap: () async {
+                          final box = context.findRenderObject() as RenderBox?;
+                          await  Share.share( widget.text,
+                              subject: 'invite',
+                              sharePositionOrigin:
+                              box!.localToGlobal(Offset.zero) &
+                              box.size);
+                          // showModalBottomSheet(
+                          //   backgroundColor: Colors.white,
+                          //   context: context,
+                          //   builder: (context) {
+                          //     return InviteSharePage();
+                          //   },
+                          //   isScrollControlled: true,
+                          // );
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(

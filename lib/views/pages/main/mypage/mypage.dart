@@ -685,7 +685,7 @@ Future<void> getMe() async {
                                   backgroundColor: Colors.white,
                                   context: context,
                                   builder: (context) {
-                                    return InvitePage();
+                                    return InvitePage(text: myInfo.uniqueId.toString());
                                   },
                                   isScrollControlled: true,
                                 );
