@@ -162,12 +162,12 @@ class _QuestionDetailState extends State<QuestionDetail> {
                               ),
                             )
                           : ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
+                              onPressed: () async {
+                                await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            QuestionFixPostPage()));
+                                            AddQuestion(isMyDiary: widget.isMyDiary, question_id: question_detail.id.toString())));
                               },
                               style: ElevatedButton.styleFrom(
                                 padding:
