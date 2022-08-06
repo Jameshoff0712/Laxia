@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>170160487343-dtqq7ntmtgu7pjn840e2e6jbqh7jrbc3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.170160487343-dtqq7ntmtgu7pjn840e2e6jbqh7jrbc3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>170160487343-1jv3jsiol07pah7p15118eptqvccu48h.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCL8yE3321KB5a0yrZQFo7sjag6522BZDc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>170160487343</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.rashia.laxia</string>
+	<key>PROJECT_ID</key>
+	<string>laxia-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>laxia-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:170160487343:ios:5cd04947584ba43f4f0d5a</string>
+</dict>
+</plist>

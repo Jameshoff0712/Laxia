@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/models/res_model.dart';
 import 'package:laxia/models/token_model.dart';
@@ -19,6 +21,29 @@ class AuthApi extends Api {
           throw Exception("Unauthorized");
         }
 
+        throw Exception("Unknown error");
+      }
+    } else {
+      throw Exception("Unknown error");
+    }
+  }
+
+  Future<String> socialAuthorize(String provider, String email, String providerId) async{
+    
+    var users = {"provider": provider, "email": email, "provider_id": providerId};
+    
+    var data = <String, dynamic>{"users": users};
+    
+    final res = await Api.post("$apiUrl/login/sns", data, "");
+    if (res != null) {
+      if (res.status != null) {
+        String newToken = Token.fromJson(res.data).token;
+        await preferenceUtil.setToken("Bearer $newToken");
+        return newToken;
+      } else {
+        if (res.code == 401) {
+          throw Exception("Unauthorized");
+        }
         throw Exception("Unknown error");
       }
     } else {

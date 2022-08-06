@@ -90,6 +90,9 @@ dependencies:
   date_format: ^2.0.6
   flutter_google_places: ^0.2.8
   share_plus: ^4.0.10
+  firebase_core: ^1.14.1
+  flutter_facebook_auth: ^3.5.0
+  firebase_auth: ^3.3.14
 
 dev_dependencies:
   flutter_test:
