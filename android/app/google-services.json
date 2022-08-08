@@ -37,6 +37,13 @@
             {
               "client_id": "170160487343-9estqiqfq3sk41t1i7mf8mdmv3kt3cla.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "170160487343-dtqq7ntmtgu7pjn840e2e6jbqh7jrbc3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rashia.laxia"
+              }
             }
           ]
         }

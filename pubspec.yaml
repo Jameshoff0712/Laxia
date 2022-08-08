@@ -93,6 +93,7 @@ dependencies:
   firebase_core: ^1.14.1
   flutter_facebook_auth: ^3.5.0
   firebase_auth: ^3.3.14
+  twitter_login: ^4.0.1
 
 dev_dependencies:
   flutter_test:

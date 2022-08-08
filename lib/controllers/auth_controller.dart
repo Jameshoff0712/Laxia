@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/services/http/auth_api.dart';
+import 'package:twitter_login/twitter_login.dart';
 
 class AuthController extends BaseController {
   AuthApi api = AuthApi();
@@ -71,15 +72,46 @@ class AuthController extends BaseController {
       print("FB error: ${loginResult.message}");
       return null;
     }
-
   }
 
   void appleLogin() async {
 
   }
 
-  void twitterLogin() async {
-    
+  Future<UserCredential?> twitterLogin() async {
+    var twitterApiKey = "VhIcmCFIMAta3ltaDTrVyJQub";
+    var twitterApiSecret = "zo2OIjgrno1jEP0l0t7haaWaNzMNRkGpPCrY9srA3YvgJYT2oQ";
+    var redirectURI = "https://laxia-app.firebaseapp.com/__/auth/handler";
+
+    final twitterLogin = new TwitterLogin(
+      apiKey: twitterApiKey,
+      apiSecretKey: twitterApiSecret,
+      redirectURI: redirectURI,
+    );
+
+    final authResult = await twitterLogin.login();
+
+    if(authResult.status == TwitterLoginStatus.loggedIn) {
+      final twitterAuthCredential = TwitterAuthProvider.credential(
+      accessToken: authResult.authToken!, 
+      secret: authResult.authTokenSecret!
+      );
+      final email = "email";
+      final providerId = "providerId";
+      await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+
+      try {
+        this._login("twitter", email, providerId);
+      } catch(e) {
+
+      }
+    } else if(authResult.status == TwitterLoginStatus.cancelledByUser) {
+      print("Twitter cancelled");
+      return null;
+    } else if(authResult.status == TwitterLoginStatus.error) {
+      print("Twitter cancelled");
+      return null;
+    }
   }
 
   Future<String> _login(String provider, String email, String providerId) async {

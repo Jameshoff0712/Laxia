@@ -93,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 11,
                     ),
                     TwitterButton(
+                        event: 'twitter',
                         name: "Twitter" + Trans.of(context).continues,
                         icon: Icons.man),
                     const SizedBox(
@@ -177,15 +178,19 @@ class LoginButton extends StatelessWidget {
 
   Future<void> socialLogin(String social, BuildContext context) async {
     try {
+      var result;
       if(social == "facebook") {
-        con.googleLogin();
+        result = await con.facebookLogin();
       }
-      final me = await con.getMe();
-      if (me.id != 0) {
-        provider.setMe(me);
-        provider.setIsAuthorized(true);
-        Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+      if (result != null) {
+        final me = await con.getMe();
+        if (me.id != 0) {
+          provider.setMe(me);
+          provider.setIsAuthorized(true);
+          Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+        }
       }
+      
     } catch (e) {
       print(e.toString());
     }
@@ -235,17 +240,43 @@ class LoginButton extends StatelessWidget {
 }
 
 class TwitterButton extends StatelessWidget {
+  String event;
   String name;
   IconData icon;
   MaterialColor? color;
-  TwitterButton({Key? key, required this.name, required this.icon, this.color})
+  TwitterButton({Key? key, required this.name, required this.icon, this.color, this.event = "default"})
       : super(key: key);
 
+  late UserProvider provider;
+  final con = AuthController();
+
+  Future<void> socialLogin(String social, BuildContext context) async {
+    try {
+      var result;
+      if(social == "twitter") {
+        result = await con.twitterLogin();
+      }
+      if (result != null) {
+        final me = await con.getMe();
+        if (me.id != 0) {
+          provider.setMe(me);
+          provider.setIsAuthorized(true);
+          Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+        }
+      }
+      
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
 @override
   Widget build(BuildContext context) {
+    provider = Provider.of<UserProvider>(context, listen: true);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        socialLogin(event, context);
+      },
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Helper.txtColor, width: 1),
