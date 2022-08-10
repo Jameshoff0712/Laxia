@@ -181,6 +181,8 @@ class LoginButton extends StatelessWidget {
       var result;
       if(social == "facebook") {
         result = await con.facebookLogin();
+      } else if(social == "apple") {
+        result = await con.appleLogin();
       }
       if (result != null) {
         final me = await con.getMe();

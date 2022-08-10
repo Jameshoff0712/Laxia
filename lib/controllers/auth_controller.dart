@@ -1,10 +1,16 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:laxia/controllers/base_controller.dart';
 import 'package:laxia/models/me_model.dart';
 import 'package:laxia/services/http/auth_api.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:twitter_login/twitter_login.dart';
 
 class AuthController extends BaseController {
@@ -56,12 +62,15 @@ class AuthController extends BaseController {
       final useData = await FacebookAuth.instance.getUserData();
 
       final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-      final providerId = facebookAuthCredential.providerId;
+      // final providerId = facebookAuthCredential.providerId;
 
       await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
 
+      final email = FirebaseAuth.instance.currentUser!.email!;
+      final providerId = FirebaseAuth.instance.currentUser!.uid;
+
       try {
-        this._login("facebook", useData['email'], providerId);
+        this._login("facebook", email, providerId);
       } catch(e) {
 
       }
@@ -74,8 +83,46 @@ class AuthController extends BaseController {
     }
   }
 
-  void appleLogin() async {
+  String generateNoce([int length = 32]) {
+    final charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+    final random = Random.secure();
+    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
+      .join();
+  }
 
+  String sha256ofString(String input) {
+  final bytes = utf8.encode(input);
+  final digest = sha256.convert(bytes);
+  return digest.toString();
+  }
+
+  Future<UserCredential?> appleLogin() async {
+    final rawNonce = generateNonce();
+    final nonce = sha256ofString(rawNonce);
+
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: nonce,
+    );
+
+    final oauthCredential = OAuthProvider("apple.com").credential(
+      idToken: appleCredential.identityToken,
+      rawNonce: rawNonce,
+    );
+    
+    await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+
+    final email = FirebaseAuth.instance.currentUser!.email!;
+    final providerId = FirebaseAuth.instance.currentUser!.uid;
+
+    try {
+        this._login("apple", email, providerId);
+      } catch(e) {
+
+      }
   }
 
   Future<UserCredential?> twitterLogin() async {
@@ -96,9 +143,13 @@ class AuthController extends BaseController {
       accessToken: authResult.authToken!, 
       secret: authResult.authTokenSecret!
       );
-      final email = "email";
-      final providerId = "providerId";
-      await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+      
+      final userCredential = FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+
+      //final email = authResult.user!.email;
+      
+      final email = FirebaseAuth.instance.currentUser!.email!;
+      final providerId = FirebaseAuth.instance.currentUser!.uid;
 
       try {
         this._login("twitter", email, providerId);

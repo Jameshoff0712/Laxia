@@ -94,6 +94,8 @@ dependencies:
   flutter_facebook_auth: ^3.5.0
   firebase_auth: ^3.3.14
   twitter_login: ^4.0.1
+  sign_in_with_apple: ^3.0.0
+  crypto: ^3.0.1
 
 dev_dependencies:
   flutter_test:
