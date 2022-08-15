@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>170160487343-dtqq7ntmtgu7pjn840e2e6jbqh7jrbc3.apps.googleusercontent.com</string>
+	<string>170160487343-jngkm422pgdvbfc201gmsclpvadglknl.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.170160487343-dtqq7ntmtgu7pjn840e2e6jbqh7jrbc3</string>
+	<string>com.googleusercontent.apps.170160487343-jngkm422pgdvbfc201gmsclpvadglknl</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>170160487343-1jv3jsiol07pah7p15118eptqvccu48h.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.rashia.laxia</string>
+	<string>com.laxia.laxia</string>
 	<key>PROJECT_ID</key>
 	<string>laxia-app</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:170160487343:ios:5cd04947584ba43f4f0d5a</string>
+	<string>1:170160487343:ios:def81ba143e4ae364f0d5a</string>
 </dict>
 </plist>
