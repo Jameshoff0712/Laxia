@@ -39,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "170160487343-dtqq7ntmtgu7pjn840e2e6jbqh7jrbc3.apps.googleusercontent.com",
+              "client_id": "170160487343-9tfhan1ldrda78mdgt83do964gv2knlv.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.rashia.laxia"
+                "bundle_id": "com.laxia.laxia-ios"
               }
             }
           ]
