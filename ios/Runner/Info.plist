@@ -28,6 +28,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb348275150664927</string>
+				<string>laxia://</string>
 			</array>
 		</dict>
 	</array>
