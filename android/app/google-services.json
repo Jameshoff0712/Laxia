@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "170160487343",
+    "project_id": "laxia-app",
+    "storage_bucket": "laxia-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170160487343:android:5743e88c78eb800d4f0d5a",
+        "android_client_info": {
+          "package_name": "com.rashia.laxia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170160487343-1jv3jsiol07pah7p15118eptqvccu48h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rashia.laxia",
+            "certificate_hash": "912e0f5e017d97d2d8e990617076586b14aa3b72"
+          }
+        },
+        {
+          "client_id": "170160487343-9estqiqfq3sk41t1i7mf8mdmv3kt3cla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAWW0ZDWrFdDidJQC-U9AdPkhbwbRqPS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170160487343-9estqiqfq3sk41t1i7mf8mdmv3kt3cla.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "170160487343-9tfhan1ldrda78mdgt83do964gv2knlv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.laxia.laxia-ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

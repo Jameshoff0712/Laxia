@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nb_utils/nb_utils.dart';
+import 'package:laxia/controllers/auth_controller.dart';
+import 'package:laxia/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -14,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  final _con = AuthController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,15 +93,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 11,
                     ),
                     TwitterButton(
+                        event: 'twitter',
                         name: "Twitter" + Trans.of(context).continues,
                         icon: Icons.man),
                     const SizedBox(
                       height: 11,
                     ),
                     LoginButton(
+                        event: "facebook",
                         name: "Facebook" + Trans.of(context).continues,
                         icon: Icons.facebook,
-                        color: Colors.blue)
+                        color: Colors.blue,
+                        )
                   ],
                 ),
               ),
@@ -149,6 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
           )),
     );
   }
+
 }
 
 class LoginButton extends StatelessWidget {
@@ -156,6 +164,7 @@ class LoginButton extends StatelessWidget {
   String name;
   IconData icon;
   MaterialColor? color;
+
   LoginButton(
       {Key? key,
       required this.name,
@@ -164,11 +173,45 @@ class LoginButton extends StatelessWidget {
       this.event = "default"})
       : super(key: key);
 
+  late UserProvider provider;
+  final con = AuthController();
+
+  Future<void> socialLogin(String social, BuildContext context) async {
+    try {
+      var result;
+      if(social == "facebook") {
+        result = await con.facebookLogin();
+      } else if(social == "apple") {
+        result = await con.appleLogin();
+      }
+      if (result != null) {
+        final me = await con.getMe();
+        if (me.id != 0) {
+          provider.setMe(me);
+          provider.setIsAuthorized(true);
+          Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+        }
+      }
+      
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<UserProvider>(context, listen: true);
+
     return GestureDetector(
       onTap: () {
-        if (event == "email") Navigator.of(context).pushNamed("/EmailLogin");
+        if (event == "email") 
+          Navigator.of(context).pushNamed("/EmailLogin");
+        else if(event == "facebook")
+          socialLogin(event, context);
+        else if(event == "twitter")
+          socialLogin(event, context);
+        else if(event == "apple")
+          socialLogin(event, context);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -199,17 +242,43 @@ class LoginButton extends StatelessWidget {
 }
 
 class TwitterButton extends StatelessWidget {
+  String event;
   String name;
   IconData icon;
   MaterialColor? color;
-  TwitterButton({Key? key, required this.name, required this.icon, this.color})
+  TwitterButton({Key? key, required this.name, required this.icon, this.color, this.event = "default"})
       : super(key: key);
 
+  late UserProvider provider;
+  final con = AuthController();
+
+  Future<void> socialLogin(String social, BuildContext context) async {
+    try {
+      var result;
+      if(social == "twitter") {
+        result = await con.twitterLogin();
+      }
+      if (result != null) {
+        final me = await con.getMe();
+        if (me.id != 0) {
+          provider.setMe(me);
+          provider.setIsAuthorized(true);
+          Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+        }
+      }
+      
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
 @override
   Widget build(BuildContext context) {
+    provider = Provider.of<UserProvider>(context, listen: true);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        socialLogin(event, context);
+      },
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Helper.txtColor, width: 1),
