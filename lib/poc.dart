@@ -15,7 +15,7 @@ class PocWidget extends StatelessWidget {
         if (!snapshot.hasData) {
           return OnBoardingScreen();
         } else {
-          return PassRest_Three(val: snapshot.data!);
+          return PassRest_Three(val: snapshot.data!.split('?')[1]);
         }
       },
     );
