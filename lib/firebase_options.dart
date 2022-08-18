@@ -17,17 +17,11 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
@@ -51,6 +45,23 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAV_Cr_rZ0ipvIW1E4e-87cFKB9fT5xt0g',
+    appId: '1:170160487343:web:370456ae2c88701a4f0d5a',
+    messagingSenderId: '170160487343',
+    projectId: 'laxia-app',
+    authDomain: 'laxia-app.firebaseapp.com',
+    storageBucket: 'laxia-app.appspot.com',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyCAWW0ZDWrFdDidJQC-U9AdPkhbwbRqPS0',
+    appId: '1:170160487343:android:5743e88c78eb800d4f0d5a',
+    messagingSenderId: '170160487343',
+    projectId: 'laxia-app',
+    storageBucket: 'laxia-app.appspot.com',
+  );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCL8yE3321KB5a0yrZQFo7sjag6522BZDc',
