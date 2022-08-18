@@ -18,6 +18,9 @@ import 'services/geolocation-service.dart';
 import 'services/settings_service.dart' as settingRepo;
 import 'package:global_configuration/global_configuration.dart';
 
+import 'bloc.dart';
+import 'package:laxia/poc.dart';
+
 Future<void> main() async {
   await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized(); //async program
@@ -63,6 +66,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    DeepLinkBloc _bloc = DeepLinkBloc();
     return FutureProvider(
       create: (context) => locationService.getLocation(),
       initialData: 0,
@@ -70,20 +74,23 @@ class _MyAppState extends State<MyApp> {
         valueListenable: settingRepo.setting,
         builder: (context, Setting _setting, _) {
           return MaterialApp(
-            theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W3'),
-            navigatorKey: settingRepo.navigatorKey,
-            debugShowCheckedModeBanner: false,
-            initialRoute: '/Splash', //EmailLogin
-            onGenerateRoute: RouteGenerator.generateRoute,
-            locale: _setting.mobileLanguage.value,
-            localizationsDelegates: const [
-              Trans.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-            supportedLocales: Trans.delegate.supportedLocales,
-            title: Helper.appTitle,
-          );
+              theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W3'),
+              navigatorKey: settingRepo.navigatorKey,
+              debugShowCheckedModeBanner: false,
+              onGenerateRoute: RouteGenerator.generateRoute,
+              locale: _setting.mobileLanguage.value,
+              localizationsDelegates: const [
+                Trans.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              supportedLocales: Trans.delegate.supportedLocales,
+              title: Helper.appTitle,
+              home: Scaffold(
+                  body: Provider<DeepLinkBloc>(
+                      create: (context) => _bloc,
+                      dispose: (context, bloc) => bloc.dispose(),
+                      child: PocWidget())));
         },
       ),
     );

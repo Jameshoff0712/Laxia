@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/generated/l10n.dart';
 import 'package:laxia/views/pages/auth/emaillogin.dart';
+import 'package:laxia/views/pages/auth/login.dart';
 // import '../common/app_config.dart' as config;
 
 class PassRest_Four extends StatefulWidget {
@@ -33,8 +34,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
               ),
               Center(
                   child: Text(Trans.of(context).complete_reset,
-                      style: defaultTextStyle(
-                          Helper.mainColor, FontWeight.w700,
+                      style: defaultTextStyle(Helper.mainColor, FontWeight.w700,
                           size: 18))),
               SizedBox(
                 height: 20,
@@ -42,8 +42,10 @@ class _PassRest_FourState extends State<PassRest_Four> {
               Center(
                   child: Text(Trans.of(context).reset_password_end,
                       style: TextStyle(
-                          color: Helper.maintxtColor, fontWeight: FontWeight.w400,
-                          fontSize: 14, height: 1.5))),
+                          color: Helper.maintxtColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          height: 1.5))),
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 77, right: 77),
                 child: ElevatedButton(
@@ -53,7 +55,7 @@ class _PassRest_FourState extends State<PassRest_Four> {
                       borderRadius: BorderRadius.circular(40.0),
                     ),
                     splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -64,16 +66,18 @@ class _PassRest_FourState extends State<PassRest_Four> {
                           alignment: Alignment.center,
                           child: Text(
                             Trans.of(context).login,
-                            style: TextStyle(color: Helper.whiteColor, fontSize: 12, fontWeight: FontWeight.w700),
+                            style: TextStyle(
+                                color: Helper.whiteColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
                     ],
                   ),
                   onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
                 ),
               ),

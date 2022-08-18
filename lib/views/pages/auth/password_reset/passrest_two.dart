@@ -45,14 +45,13 @@ class _PassRest_TwoState extends State<PassRest_Two> {
               Center(
                   child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DeepLink()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => DeepLink()),
+                  // );
                 },
                 child: Text(Trans.of(context).verify_email,
-                    style: defaultTextStyle(
-                        Helper.txtColor, FontWeight.w400,
+                    style: defaultTextStyle(Helper.txtColor, FontWeight.w400,
                         size: 14)),
               )),
             ],

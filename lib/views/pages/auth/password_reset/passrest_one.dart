@@ -21,27 +21,30 @@ class _PassRest_OneState extends State<PassRest_One> {
   final _emailController = TextEditingController();
   final _con = AuthController();
   String _errorMsg = "";
-  
-  Future<void> sendEmail() async {
+
+  Future<bool> sendEmail() async {
     try {
       var emailAddress = _emailController.text.trim();
-      final Email email = Email(
-      body:
-      'Hello World',
-      subject: 'Testing email on flutter',
-      recipients: ['queeNbee90125@gmail.com'],
-      //cc: ['cc@example.com'],
-      //bcc: ['bcc@example.com'],
-      //attachmentPaths: ['/path/to/attachment.zip'],
-      isHTML: false,
-      );
-      await FlutterEmailSender.send(email);
-      // await _con.sendEmail(email);
+      // final Email email = Email(
+      // body:
+      // 'Hello World',
+      // subject: 'Testing email on flutter',
+      // recipients: ['queeNbee90125@gmail.com'],
+      // //cc: ['cc@example.com'],
+      // //bcc: ['bcc@example.com'],
+      // //attachmentPaths: ['/path/to/attachment.zip'],
+      // isHTML: false,
+      // );
+      // await FlutterEmailSender.send(email);
+      final send_flag = await _con.sendEmail(emailAddress);
+      if (send_flag == 'successed') return true;
+      return false;
     } catch (e) {
       print(e.toString());
       setState(() {
         _errorMsg = "メールアドレスに一致するユーザーは存在していません。";
       });
+      return false;
     }
   }
 
@@ -69,15 +72,17 @@ class _PassRest_OneState extends State<PassRest_One> {
                                   color: Helper.blackColor),
                               iconSize: 20,
                               splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                              highlightColor: Colors.transparent,
                             ))),
                     Expanded(
                         flex: 6,
                         child: Center(
                             child: Text(Trans.of(context).reset_password,
                                 style: TextStyle(
-                                    color: Helper.titleColor, fontWeight: FontWeight.w700,
-                                    fontSize: 16, height: 1.5)))),
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    height: 1.5)))),
                     Expanded(
                         flex: 2,
                         child: SizedBox(
@@ -96,7 +101,8 @@ class _PassRest_OneState extends State<PassRest_One> {
                         style: TextStyle(
                             color: Helper.maintxtColor,
                             fontWeight: FontWeight.w400,
-                            fontSize: 14, height: 1.5)),
+                            fontSize: 14,
+                            height: 1.5)),
                   ]),
                 ),
                 const SizedBox(
@@ -191,7 +197,9 @@ class _PassRest_OneState extends State<PassRest_One> {
                             child: Text(
                               Trans.of(context).send_url_for_reset,
                               style: TextStyle(
-                                  color: Helper.whiteColor, fontSize: 12, fontWeight: FontWeight.w700),
+                                  color: Helper.whiteColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),
@@ -216,11 +224,13 @@ class _PassRest_OneState extends State<PassRest_One> {
     if (!form!.validate()) {
       return;
     }
-    await sendEmail();
+    final flag = await sendEmail();
+    if (flag) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PassRest_Two()),
+      );
+    }
     if (_errorMsg != "") return;
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PassRest_Two()),
-    );
   }
 }
