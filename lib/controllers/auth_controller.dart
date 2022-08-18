@@ -128,14 +128,14 @@ class AuthController extends BaseController {
   Future<UserCredential?> twitterLogin() async {
     var twitterApiKey = "VhIcmCFIMAta3ltaDTrVyJQub";
     var twitterApiSecret = "zo2OIjgrno1jEP0l0t7haaWaNzMNRkGpPCrY9srA3YvgJYT2oQ";
-    var redirectURI = "https://laxia-app.firebaseapp.com/__/auth/handler";
-
+    // var redirectURI = "https://laxia-app.firebaseapp.com/__/auth/handler";
+    var redirectURI = "laxia://";
     final twitterLogin = new TwitterLogin(
       apiKey: twitterApiKey,
       apiSecretKey: twitterApiSecret,
       redirectURI: redirectURI,
     );
-
+    
     final authResult = await twitterLogin.login();
 
     if(authResult.status == TwitterLoginStatus.loggedIn) {
