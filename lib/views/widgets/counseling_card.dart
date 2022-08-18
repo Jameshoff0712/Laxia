@@ -104,16 +104,19 @@ class _Counseling_CardState extends State<Counseling_Card> {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  widget.sentence,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontFamily: Helper.headFontFamily,
-                      fontSize: 14,
-                      height: 1.3,
-                      fontWeight: FontWeight.w400,
-                      color: Helper.titleColor),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.sentence,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontFamily: Helper.headFontFamily,
+                        fontSize: 14,
+                        height: 1.3,
+                        fontWeight: FontWeight.w400,
+                        color: Helper.titleColor),
+                  ),
                 ),
                 Container(
                   child: GridView.builder(
@@ -125,13 +128,13 @@ class _Counseling_CardState extends State<Counseling_Card> {
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 5,
                         crossAxisCount: 4,
-                        childAspectRatio: 1),
+                        childAspectRatio: 1
+                        ),
                     itemBuilder: (BuildContext context, int index) {
                       return SizedBox(
-                        height: 78,
                         width: 78,
-                        child: Stack(
-                          children: [
+                        height: 78,
+                        child: 
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: CachedNetworkImage(
@@ -148,8 +151,8 @@ class _Counseling_CardState extends State<Counseling_Card> {
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          
+                        
                       );
                     }
                   ),

@@ -73,7 +73,7 @@ class _AppointmentState extends State<Appointment>
     );
     pusher = FlutterPusher(pusher_key, options, enableLogging: false,  onConnectionStateChange: (ConnectionStateChange x) async {
         print(x.currentState);
-         if (pusher != null && x.currentState == 'CONNECTED') {
+         if (pusher != null && (x.currentState == 'CONNECTED'|| x.currentState == 'connected')) {
           final String socketId = pusher.getSocketId();
           print('pusher socket id: $socketId');
            echo =new Echo({

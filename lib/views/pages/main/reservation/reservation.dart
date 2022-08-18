@@ -1,9 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/controllers/auth_controller.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/clinic/clinicdetail_model.dart';
 import 'package:laxia/models/doctor/doctor_sub_model.dart';
+import 'package:laxia/models/me_model.dart';
 import 'package:laxia/views/pages/main/reservation/confirmation.dart';
 import 'package:laxia/views/widgets/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -64,12 +66,16 @@ class _ReservationState extends State<Reservation> {
   
   bool isfavourite = false, isloading = true;
   final _con = HomeController();
+  final _conAuth = AuthController();
   late ClinicDetail_Model clinic_detail;
+  late Me myInfo;
   Future<void> getData({required int index}) async {
     try {
       final mid = await _con.getClinicDetail(index: index);
+      final me = await _conAuth.getMe();
       setState(() {
         clinic_detail = mid;
+        myInfo = me;
         isloading = false;
       });
       doctors.addAll(clinic_detail.doctors);
@@ -1143,9 +1149,9 @@ class _ReservationState extends State<Reservation> {
                                   
                                   decoration: TextDecoration.none,
                                 ),
-                                children: const <TextSpan>[
+                                children: <TextSpan>[
                                   TextSpan(
-                                      text: '2400',
+                                      text: '${myInfo.point}',
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 0, 184, 169),
                                         fontSize: 14,
@@ -1163,6 +1169,7 @@ class _ReservationState extends State<Reservation> {
                             children: [
                               Expanded(
                                 child: TextFormField(
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     contentPadding: const EdgeInsets.only(
                                         top: 14, bottom: 8, left: 10, right: 10),
@@ -1196,6 +1203,8 @@ class _ReservationState extends State<Reservation> {
                                     final regex = RegExp('^[1-9]+[0-9]*');
                                     if (!regex.hasMatch(v))
                                       return 'Enter a valid point value';
+                                    if (int.parse(v) > myInfo.point!)
+                                      return 'Point is bigger than owned point';
                                     return null;
                                   },
                                   onChanged: (value) {
@@ -1413,13 +1422,23 @@ class _ReservationState extends State<Reservation> {
               selectedTime[i] = false;
           }
           if (selectedTime[index] == true && list_ReservedTime.length < 6) {
-            list_ReservedTime.add('$year年$month月$day日($weekday) $time');
-            var item = new Map();
-            item['year'] = year;
-            item['month'] = month;
-            item['day'] = day;
-            item['time'] = time;
-            list_ReservedRealTime.add(item);
+            bool isNewTime = true;
+            for(int j = 0; j < list_ReservedTime.length; j++){
+              if(list_ReservedTime[j] == '$year年$month月$day日($weekday) $time'){
+                isNewTime = false;
+                selectedTime[index] = false;
+                break;
+              }
+            }
+            if (isNewTime) {
+              list_ReservedTime.add('$year年$month月$day日($weekday) $time');
+              var item = new Map();
+              item['year'] = year;
+              item['month'] = month;
+              item['day'] = day;
+              item['time'] = time;
+              list_ReservedRealTime.add(item);
+            }
           }
           if (list_ReservedTime.length != 0 && isReservedTime != true) {
             progress += 0.1;

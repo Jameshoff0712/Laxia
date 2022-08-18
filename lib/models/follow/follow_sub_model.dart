@@ -15,7 +15,7 @@ class Follow_Sub_Model extends Equatable {
   final String? intro;
   final String? photo;
   final int? point;
-  final String? area_id;
+  final int? area_id;
   final String? firebase_key;
   final int? age;
   final String? area;

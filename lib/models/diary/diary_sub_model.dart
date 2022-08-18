@@ -75,7 +75,8 @@ class Diary_Sub_Model extends Equatable {
       this.doctor_name,
       this.last_content,
       this.is_favorite,
-      this.categories});
+      this.categories
+    });
 
   factory Diary_Sub_Model.fromJson(Map<String, dynamic> json) {
     return Diary_Sub_Model(
@@ -116,7 +117,8 @@ class Diary_Sub_Model extends Equatable {
         is_favorite: json["is_favorite"],
         categories: json["categories"] == null ? [] : List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>));
+            as Iterable<dynamic>)
+            );
   }
   @override
   List<Object?> get props => [

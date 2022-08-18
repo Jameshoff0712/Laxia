@@ -144,15 +144,18 @@ class _Question_CardState extends State<Question_Card> {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  widget.sentence,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 3,
-                  style: TextStyle(
-                      fontSize: 14,
-                      height: 1.3,
-                      fontWeight: FontWeight.w400,
-                      color: Helper.titleColor),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.sentence,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                    style: TextStyle(
+                        fontSize: 14,
+                        height: 1.3,
+                        fontWeight: FontWeight.w400,
+                        color: Helper.titleColor),
+                  ),
                 ),
                 Container(
                   child: GridView.builder(
