@@ -18,6 +18,7 @@ class Favorite_Question extends StatefulWidget {
 }
 
 class _Favorite_QuestionState extends State<Favorite_Question> {
+  bool isloading = true;
   List<Question_Sub_Model> mid = [];
   FavoriteController _con = FavoriteController();
   Future<void> getFavQuestion() async {
@@ -25,6 +26,7 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
     setState(() {
       for (int i = 0; i < listFavQuestion.length; i++)
         mid.add(listFavQuestion[i]);
+      isloading = false;
     });
     print(mid);
   }
@@ -43,7 +45,16 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
         children: [
           Expanded(
               child: SingleChildScrollView(
-            child: ListView.builder(
+            child: isloading
+                        ? Container(
+                            child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
+                            ),
+                          ))
+                        : ListView.builder(
                 padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                 itemCount: mid.length,
                 physics: NeverScrollableScrollPhysics(),

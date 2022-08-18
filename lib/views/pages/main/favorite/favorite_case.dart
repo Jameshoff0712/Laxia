@@ -1,6 +1,7 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/models/case/case_sub_model.dart';
 import 'package:laxia/models/case_model.dart';
 import 'package:laxia/views/pages/main/contribution/case_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
@@ -19,14 +20,12 @@ class Favorite_Case extends StatefulWidget {
 class _Favorite_CaseState extends State<Favorite_Case> {
   bool expanded = true;
   int index = -1;
-  List mid = [];
+  bool isloading = true;
+  List<Case_Sub_Model> mid = [];
   @override
+  
   void initState() {
-    for (int i = 0; i < case_list.length; i++)
-      setState(() {
-        mid.add(case_list[i]);
-      });
-
+    isloading = false;
     super.initState();
   }
 
@@ -38,33 +37,22 @@ class _Favorite_CaseState extends State<Favorite_Case> {
         children: [
           Expanded(
               child: SingleChildScrollView(
-            child: ListView.builder(
+            child: isloading
+                        ? Container(
+                            child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
+                            ),
+                          ))
+                        : ListView.builder(
                 shrinkWrap: true,
                 padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                 itemCount: mid.length,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
-                  return Diary_Card(
-                    onpress: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  CaseDetail(index: mid[index].id)));
-                    },
-                    buttoncolor: Helper.btnBgMainColor,
-                    buttontext: mid[index]["buttontext"],
-                    avator: mid[index]["avator"],
-                    check: mid[index]["check"],
-                    image2: mid[index]["image2"],
-                    image1: mid[index]["image1"],
-                    eyes: mid[index]["eyes"],
-                    name: mid[index]["name"],
-                    price: mid[index]["price"],
-                    sentence: mid[index]["sentence"],
-                    type: mid[index]["type"],
-                    isFavorite: true,
-                  );
+                  return Container();
                 }),
           )),
         ],

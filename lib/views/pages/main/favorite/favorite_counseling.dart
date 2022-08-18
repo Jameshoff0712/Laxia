@@ -21,6 +21,7 @@ class Favorite_Counseling extends StatefulWidget {
 class _Favorite_CounselingState extends State<Favorite_Counseling> {
   bool expanded = true;
   int index = -1;
+  bool isloading = true;
   List<Counceling_Sub_Model> mid = [];
   FavoriteController _con = FavoriteController();
 
@@ -29,6 +30,7 @@ class _Favorite_CounselingState extends State<Favorite_Counseling> {
     setState(() {
       for (int i = 0; i < listFavCounseling.length; i++)
         mid.add(listFavCounseling[i]);
+      isloading = false;
     });
   }
 
@@ -46,7 +48,16 @@ class _Favorite_CounselingState extends State<Favorite_Counseling> {
         children: [
           Expanded(
               child: SingleChildScrollView(
-            child: ListView.builder(
+            child: isloading
+                        ? Container(
+                            child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
+                            ),
+                          ))
+                        : ListView.builder(
                 padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                 itemCount: mid.length,
                 shrinkWrap: true,

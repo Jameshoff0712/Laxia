@@ -19,6 +19,7 @@ class Favorite_Diary extends StatefulWidget {
 class _Favorite_DiaryState extends State<Favorite_Diary> {
   bool expanded = true;
   int index = -1;
+  bool isloading = true;
   List<Diary_Sub_Model> mid = [];
   late ScrollController scrollController;
   FavoriteController _con = FavoriteController();
@@ -27,6 +28,7 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
     final listFavDiary = await _con.getFavDiary();
     setState(() {
       for (int i = 0; i < listFavDiary.length; i++) mid.add(listFavDiary[i]);
+      isloading = false;
     });
     print(mid);
   }
@@ -45,7 +47,16 @@ class _Favorite_DiaryState extends State<Favorite_Diary> {
         children: [
           Expanded(
               child: SingleChildScrollView(
-            child: ListView.builder(
+            child: isloading
+                        ? Container(
+                            child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
+                            ),
+                          ))
+                        : ListView.builder(
                 padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                 itemCount: mid.length,
                 physics: NeverScrollableScrollPhysics(),

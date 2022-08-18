@@ -18,6 +18,7 @@ class Favorite_Doctor extends StatefulWidget {
 }
 
 class _Favorite_DoctorState extends State<Favorite_Doctor> {
+  bool isloading = true;
   List<Doctor_Sub_Model> mid = [];
   late ScrollController scrollController;
   FavoriteController _con = FavoriteController();
@@ -26,6 +27,7 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
     final listFavDoctor = await _con.getFavDoctor();
     setState(() {
       for (int i = 0; i < listFavDoctor.length; i++) mid.add(listFavDoctor[i]);
+      isloading = false;
     });
     print(mid[0].photo);
   }
@@ -44,7 +46,16 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
         children: [
           Expanded(
               child: SingleChildScrollView(
-            child: ListView.builder(
+            child: isloading
+                        ? Container(
+                            child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
+                            ),
+                          ))
+                        : ListView.builder(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 itemCount: mid.length,
                 physics: NeverScrollableScrollPhysics(),

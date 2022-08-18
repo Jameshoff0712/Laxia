@@ -16,6 +16,7 @@ class Favorite_Clinic extends StatefulWidget {
 }
 
 class _Favorite_ClinicState extends State<Favorite_Clinic> {
+  bool isloading = true;
   List<Clinic_Sub_Model> mid = [];
   late ScrollController scrollController;
   FavoriteController _con = FavoriteController();
@@ -24,6 +25,7 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
     final listFavClinic = await _con.getFavClinic();
     setState(() {
       for (int i = 0; i < listFavClinic.length; i++) mid.add(listFavClinic[i]);
+      isloading = false;
     });
   }
 
@@ -41,7 +43,16 @@ class _Favorite_ClinicState extends State<Favorite_Clinic> {
         children: [
           Expanded(
               child: SingleChildScrollView(
-            child: ListView.builder(
+            child: isloading
+                        ? Container(
+                            child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
+                            ),
+                          ))
+                        : ListView.builder(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 itemCount: mid.length,
                 physics: NeverScrollableScrollPhysics(),

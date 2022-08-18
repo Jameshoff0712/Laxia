@@ -19,6 +19,7 @@ class Favorite_Menu extends StatefulWidget {
 }
 
 class _Favorite_MenuState extends State<Favorite_Menu> {
+  bool isloading = true;
   List<Menu_Sub_Model> mid = [];
   FavoriteController _con = FavoriteController();
 
@@ -26,6 +27,7 @@ class _Favorite_MenuState extends State<Favorite_Menu> {
     final listFavMenu = await _con.getFavMenu();
     setState(() {
       for (int i = 0; i < listFavMenu.length; i++) mid.add(listFavMenu[i]);
+      isloading = false;
     });
   }
 
@@ -43,7 +45,16 @@ class _Favorite_MenuState extends State<Favorite_Menu> {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              child: ListView.builder(
+              child: isloading
+                        ? Container(
+                            child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            color: Colors.transparent,
+                            child: Center(
+                              child: new CircularProgressIndicator(),
+                            ),
+                          ))
+                        : ListView.builder(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   itemCount: mid.length,
                   physics: NeverScrollableScrollPhysics(),
