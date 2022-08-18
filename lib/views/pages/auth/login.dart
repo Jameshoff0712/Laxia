@@ -16,7 +16,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final _con = AuthController();
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
           icon: const Icon(Icons.clear, color: Helper.titleColor),
           iconSize: 28,
           splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+          highlightColor: Colors.transparent,
         ),
         shadowColor: Helper.whiteColor,
       ),
@@ -100,11 +99,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 11,
                     ),
                     LoginButton(
-                        event: "facebook",
-                        name: "Facebook" + Trans.of(context).continues,
-                        icon: Icons.facebook,
-                        color: Colors.blue,
-                        )
+                      event: "facebook",
+                      name: "Facebook" + Trans.of(context).continues,
+                      icon: Icons.facebook,
+                      color: Colors.blue,
+                    )
                   ],
                 ),
               ),
@@ -112,10 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Container(
-                    color: Color.fromARGB(
-                      255,
-                      239, 242, 245
-                    ),
+                    color: Color.fromARGB(255, 239, 242, 245),
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 50, top: 33),
                       child: Row(
@@ -156,7 +152,6 @@ class _LoginScreenState extends State<LoginScreen> {
           )),
     );
   }
-
 }
 
 class LoginButton extends StatelessWidget {
@@ -179,9 +174,9 @@ class LoginButton extends StatelessWidget {
   Future<void> socialLogin(String social, BuildContext context) async {
     try {
       var result;
-      if(social == "facebook") {
+      if (social == "facebook") {
         result = await con.facebookLogin();
-      } else if(social == "apple") {
+      } else if (social == "apple") {
         result = await con.appleLogin();
       }
       if (result != null) {
@@ -189,10 +184,10 @@ class LoginButton extends StatelessWidget {
         if (me.id != 0) {
           provider.setMe(me);
           provider.setIsAuthorized(true);
-          Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+              context, "/Pages", (route) => false);
         }
       }
-      
     } catch (e) {
       print(e.toString());
     }
@@ -204,14 +199,13 @@ class LoginButton extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        if (event == "email") 
+        if (event == "email")
           Navigator.of(context).pushNamed("/EmailLogin");
-        else if(event == "facebook")
+        else if (event == "facebook")
           socialLogin(event, context);
-        else if(event == "twitter")
+        else if (event == "twitter")
           socialLogin(event, context);
-        else if(event == "apple")
-          socialLogin(event, context);
+        else if (event == "apple") socialLogin(event, context);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -246,7 +240,12 @@ class TwitterButton extends StatelessWidget {
   String name;
   IconData icon;
   MaterialColor? color;
-  TwitterButton({Key? key, required this.name, required this.icon, this.color, this.event = "default"})
+  TwitterButton(
+      {Key? key,
+      required this.name,
+      required this.icon,
+      this.color,
+      this.event = "default"})
       : super(key: key);
 
   late UserProvider provider;
@@ -255,7 +254,7 @@ class TwitterButton extends StatelessWidget {
   Future<void> socialLogin(String social, BuildContext context) async {
     try {
       var result;
-      if(social == "twitter") {
+      if (social == "twitter") {
         result = await con.twitterLogin();
       }
       if (result != null) {
@@ -263,16 +262,16 @@ class TwitterButton extends StatelessWidget {
         if (me.id != 0) {
           provider.setMe(me);
           provider.setIsAuthorized(true);
-          Navigator.pushNamedAndRemoveUntil(context, "/Pages", (route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+              context, "/Pages", (route) => false);
         }
       }
-      
     } catch (e) {
       print(e.toString());
     }
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     provider = Provider.of<UserProvider>(context, listen: true);
     return GestureDetector(
@@ -281,9 +280,9 @@ class TwitterButton extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Helper.txtColor, width: 1),
-            borderRadius: BorderRadius.circular(5.0),
-          ),
+          border: Border.all(color: Helper.txtColor, width: 1),
+          borderRadius: BorderRadius.circular(5.0),
+        ),
         child: Padding(
           padding: EdgeInsets.only(top: 12, bottom: 11),
           child: Row(
@@ -302,7 +301,6 @@ class TwitterButton extends StatelessWidget {
             ],
           ),
         ),
-        
       ),
     );
   }
