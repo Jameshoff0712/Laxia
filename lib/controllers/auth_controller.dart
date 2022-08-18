@@ -41,11 +41,13 @@ class AuthController extends BaseController {
     return await api.registerEmail(email, password);
   }
 
-  Future<void> sendEmail(String email) async{
+  Future<String> sendEmail(String email) async {
     return await api.sendEmail(email);
   }
-  Future<void> resetPassword(String password, String code) async{
-    return await api.resetPassword(password, code);
+
+  Future<bool> resetPassword(
+      String password, String email, String token) async {
+    return await api.resetPassword(password, email, token);
   }
 
   Future<UserCredential?> facebookLogin() async {

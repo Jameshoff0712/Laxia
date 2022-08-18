@@ -50,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               controller: _pageController,
               itemCount: onBoardingInstructions.length,
               itemBuilder: (context, i) => Padding(
-                padding: const EdgeInsets.only(top:16),
+                padding: const EdgeInsets.only(top: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -89,7 +89,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
           SafeArea(
             child: Padding(
-                padding: const EdgeInsets.only(bottom:40, top: 0),
+                padding: const EdgeInsets.only(bottom: 40, top: 0),
                 child: Column(
                   children: [
                     Row(
@@ -119,8 +119,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               children: [
                                 TextButton(
                                   style: ButtonStyle(
-                splashFactory: NoSplash.splashFactory,
-              ),
+                                    splashFactory: NoSplash.splashFactory,
+                                  ),
                                   child: Text("スキップ",
                                       style: TextStyle(
                                           fontSize: 16,
@@ -157,8 +157,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             ),
                           )
                         : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 20),
                               decoration: BoxDecoration(
@@ -180,7 +180,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 ),
                               ),
                             ),
-                        )
+                          )
                   ],
                 )),
           ),

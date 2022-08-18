@@ -8,7 +8,8 @@ import '../../../../common/helper.dart';
 
 // import '../common/app_config.dart' as config;
 class PassRest_Three extends StatefulWidget {
-  const PassRest_Three({Key? key}) : super(key: key);
+  final String val;
+  const PassRest_Three({Key? key, required this.val}) : super(key: key);
 
   @override
   _PassRest_ThreeState createState() => _PassRest_ThreeState();
@@ -18,16 +19,19 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
   final _formKey = GlobalKey<FormState>();
   final _con = AuthController();
   final _passwordController = TextEditingController();
-  Future<void> resetPassword() async {
+  Future<bool> resetPassword() async {
     try {
+      print(widget.val);
+      var email = widget.val.split(':')[0];
+      var token = widget.val.split(':')[1];
       var password = _passwordController.text;
-      var code = "";
-      await _con.resetPassword(password, code);
+      return await _con.resetPassword(password, email, token);
     } catch (e) {
-      setState(() {
-      });
+      setState(() {});
+      return false;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +39,8 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
       body: Form(
         key: _formKey,
         child: Padding(
-            padding:
-                const EdgeInsets.only(top: 57.0, left: 16, right: 16, bottom: 65),
+            padding: const EdgeInsets.only(
+                top: 57.0, left: 16, right: 16, bottom: 65),
             child: Column(
               children: <Widget>[
                 Row(
@@ -52,15 +56,17 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                                   color: Helper.blackColor),
                               iconSize: 25,
                               splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                              highlightColor: Colors.transparent,
                             ))),
                     Expanded(
                         flex: 6,
                         child: Center(
                             child: Text(Trans.of(context).reset_password_res,
                                 style: TextStyle(
-                                    color: Helper.titleColor, fontWeight: FontWeight.w700,
-                                    fontSize: 16, height: 1.5)))),
+                                    color: Helper.titleColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    height: 1.5)))),
                     Expanded(
                         flex: 2,
                         child: SizedBox(
@@ -77,7 +83,8 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                         style: TextStyle(
                             color: Color.fromARGB(250, 102, 110, 110),
                             fontWeight: FontWeight.w400,
-                            fontSize: 14, height: 1.5))),
+                            fontSize: 14,
+                            height: 1.5))),
                 const SizedBox(
                   height: 45,
                 ),
@@ -87,14 +94,14 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                   obscureText: _con.hidePassword,
                   // onSaved: (input) => _con.user.password = input,
                   validator: (pwd) {
-                      if(pwd!.isEmpty) {
-                        return "パスワードを入力してください";
-                      }
-                      if(pwd.length < 8) {
-                        return "パスワードは、英数字/記号で8文字以上必要です";
-                      }
-                      return null;
-                    },
+                    if (pwd!.isEmpty) {
+                      return "パスワードを入力してください";
+                    }
+                    if (pwd.length < 8) {
+                      return "パスワードは、英数字/記号で8文字以上必要です";
+                    }
+                    return null;
+                  },
                   // obscureText: _con.hidePassword,
                   decoration: InputDecoration(
                     filled: true,
@@ -106,8 +113,8 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                     contentPadding:
                         EdgeInsets.only(left: 16, top: 16, bottom: 16),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Helper.mainColor.withOpacity(0.5))),
+                        borderSide: BorderSide(
+                            color: Helper.mainColor.withOpacity(0.5))),
                     // hintText: '••••••••••••',
                     // errorStyle: TextStyle(color: Helper.whiteColor.withOpacity(0.7)),
                     // errorBorder: OutlineInputBorder(
@@ -140,7 +147,7 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                           ? Icons.visibility
                           : Icons.visibility_off),
                       splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+                      highlightColor: Colors.transparent,
                     ),
                     // border: OutlineInputBorder(
                     //     borderRadius: BorderRadius.all(Radius.circular(100)), borderSide: BorderSide(color: Helper.whiteColor.withOpacity(0.2))),
@@ -170,7 +177,7 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                         borderRadius: BorderRadius.circular(40.0),
                       ),
                       splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -182,7 +189,9 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                             child: Text(
                               Trans.of(context).update_password,
                               style: TextStyle(
-                                  color: Helper.whiteColor, fontSize: 12, fontWeight: FontWeight.w700),
+                                  color: Helper.whiteColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),
@@ -204,10 +213,12 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
     if (!form!.validate()) {
       return;
     }
-    await resetPassword();
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PassRest_Four()),
-    );
+    final flag = await resetPassword();
+    print(flag);
+    if (flag)
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PassRest_Four()),
+      );
   }
 }

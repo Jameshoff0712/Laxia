@@ -86,25 +86,26 @@ class AuthApi extends Api {
     }
   }
 
-  Future<void> sendEmail(String email) async {
+  Future<String> sendEmail(String email) async {
     final res = await Api.post(
         "$apiUrl/password/email", <String, String>{"email": email}, "");
-    if(res != null) {
-      print(res.data["email"]);
-      if(res.data["email"] != "" && res.data["email"] != null)
-        throw Exception("email error");
-    }else {
+    if (res != null) {
+      return res.data['send_flag'];
+      // throw Exception("email error");
+    } else {
       throw Exception("Unknown error");
     }
   }
-  Future<void> resetPassword(String password, String code) async {
+
+  Future<bool> resetPassword(String password, String email, token) async {
     final res = await Api.post(
-        "$apiUrl/password/email", <String, String>{"password": password, "code": code}, "");
-    if(res != null) {
-      print(res.data["email"]);
-      if(res.data["email"] != "" && res.data["email"] != null)
-        throw Exception("email error");
-    }else {
+        "$apiUrl/password/reset",
+        <String, String>{"password": password, "email": email, "token": token},
+        "");
+    if (res != null) {
+      print(res.data);
+      return res.data['success'];
+    } else {
       throw Exception("Unknown error");
     }
   }

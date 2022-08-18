@@ -67,8 +67,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/passwordResetone':
         return MaterialPageRoute(builder: (_) => PassRest_One());
-      case '/PassRest_Three':
-        return MaterialPageRoute(builder: (_) => PassRest_Three());
+      // case '/PassRest_Three':
+      //   return MaterialPageRoute(builder: (_) => PassRest_Three());
       case '/PassRest_Four':
         return MaterialPageRoute(builder: (_) => PassRest_Four());
       case '/Registration':
