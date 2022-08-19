@@ -39,7 +39,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
   bool isfavourite = false, isloading = true;
   final _con = HomeController();
   late ClinicDetail_Model clinic_detail;
-  List<Category> categories=[];
+  List<Category> categories = [];
   Future<void> getData({required int index}) async {
     try {
       final mid = await _con.getClinicDetail(index: index);
@@ -60,23 +60,25 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       final res =
           await _con.postToogleFavorite(index: index, domain: 'clinics');
       if (res == true) {
-        setState(() { 
+        setState(() {
           isfavourite = !isfavourite;
         });
       }
     } catch (e) {}
   }
-  String getFreeday(){
-    String mid='';
-    for(int i=0;i<clinic_detail.clinic.work_times!.length; i++)
-      if(clinic_detail.clinic.work_times![i].type==1){
-        mid+=clinic_detail.clinic.work_times![i].weekday+' ';
+
+  String getFreeday() {
+    String mid = '';
+    for (int i = 0; i < clinic_detail.clinic.work_times!.length; i++)
+      if (clinic_detail.clinic.work_times![i].type == 1) {
+        mid += clinic_detail.clinic.work_times![i].weekday + ' ';
       }
     return mid;
   }
-  void addCategory(Category cate){
-    for(int i=0;i<categories.length;i++){
-      if(cate.id==categories[i].id){
+
+  void addCategory(Category cate) {
+    for (int i = 0; i < categories.length; i++) {
+      if (cate.id == categories[i].id) {
         return;
       }
     }
@@ -84,6 +86,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       categories.add(cate);
     });
   }
+
   @override
   void initState() {
     getData(index: widget.index);
@@ -97,9 +100,9 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
       statusBarIconBrightness: Brightness.dark,
       statusBarColor: Helper.whiteColor,
     ));
-    if(!isloading){
-      for(int i=0;i<clinic_detail.doctors.length;i++){
-        for(int j=0;j<clinic_detail.doctors[i].categories!.length;j++){
+    if (!isloading) {
+      for (int i = 0; i < clinic_detail.doctors.length; i++) {
+        for (int j = 0; j < clinic_detail.doctors[i].categories!.length; j++) {
           addCategory(clinic_detail.doctors[i].categories![j]);
         }
       }
@@ -161,8 +164,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 name: clinic_detail.clinic.name == null
                                     ? ""
                                     : clinic_detail.clinic.name!,
-                                mark:
-                                    clinic_detail.clinic.avg_rate.toString(), // clinic_detail.clinic.mark
+                                mark: double.parse(
+                                        (clinic_detail.clinic.avg_rate)!
+                                            .toStringAsFixed(2))
+                                    .toString(),
                                 day: "",
                                 post: "")
                           ],
@@ -204,7 +209,8 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
                                       clinic_Detail: clinic_detail,
-                                      index: 2, categories: categories,
+                                      index: 2,
+                                      categories: categories,
                                     )));
                           },
                           child: Column(
@@ -215,7 +221,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     fontFamily: Helper.headFontFamily,
                                     color: Helper.blackColor,
                                     fontSize: 14,
-                                    
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(height: 2),
@@ -224,7 +229,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -245,7 +249,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 clinic_detail.diaries.length.toString(),
                                 style: TextStyle(
                                     color: Helper.blackColor,
-                                    
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700),
                               ),
@@ -255,7 +258,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -265,7 +267,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
-                                   categories: categories,
+                                      categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 4,
                                     )));
@@ -277,7 +279,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.blackColor,
                                     fontSize: 14,
-                                    
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(height: 2),
@@ -286,7 +287,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -296,7 +296,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => Clinic_Sub_Detail(
-                                   categories: categories,
+                                      categories: categories,
                                       clinic_Detail: clinic_detail,
                                       index: 1,
                                     )));
@@ -308,7 +308,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.blackColor,
                                     fontSize: 14,
-                                    
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(height: 2),
@@ -317,7 +316,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                 style: TextStyle(
                                     color: Helper.titleColor,
                                     fontSize: 12,
-                                    
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -351,7 +349,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Clinic_Sub_Detail(
-                                       categories: categories,
+                                          categories: categories,
                                           clinic_Detail: clinic_detail,
                                           index: 1,
                                         )));
@@ -412,403 +410,423 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       )
                     ]),
                   ),
-                  clinic_detail.menu.isEmpty?Container():
-                  SizedBox(
-                    height: 5,
-                  ),
-                  clinic_detail.menu.isEmpty?Container():
-                  Container(
-                    decoration: BoxDecoration(color: Helper.whiteColor),
-                    child: Column(
-                      children: [
-                        Container(
+                  clinic_detail.menu.isEmpty
+                      ? Container()
+                      : SizedBox(
+                          height: 5,
+                        ),
+                  clinic_detail.menu.isEmpty
+                      ? Container()
+                      : Container(
                           decoration: BoxDecoration(color: Helper.whiteColor),
                           child: Column(
                             children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 12),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              Container(
+                                decoration:
+                                    BoxDecoration(color: Helper.whiteColor),
+                                child: Column(
                                   children: [
-                                    Text(
-                                      "メニュー",
-                                      style: TextStyle(
-                                          fontFamily: Helper.headFontFamily,
-                                          color:
-                                              Color.fromARGB(255, 51, 51, 51),
-                                          fontSize: 18,
-                                          
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    Clinic_Sub_Detail(
-                                                       categories: categories,
-                                                      clinic_Detail:
-                                                          clinic_detail,
-                                                      index: 2,
-                                                    )));
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 12),
                                       child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "すべてのメニュー",
+                                            "メニュー",
                                             style: TextStyle(
-                                                color: Helper.maintxtColor,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400),
+                                                fontFamily:
+                                                    Helper.headFontFamily,
+                                                color: Color.fromARGB(
+                                                    255, 51, 51, 51),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700),
                                           ),
-                                          Icon(
-                                            Icons.navigate_next,
-                                            size: 20,
-                                            color: Helper.maintxtColor,
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: clinic_detail.menu.length,
-                                  // physics: const AlwaysScrollableScrollPhysics(),
-                                  // scrollDirection: Axis.horizontal,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Menu_Card(
-                                        shadow: BoxShadow(
-                                          color: Color.fromARGB(255, 238, 238,
-                                              238), //color of shadow
-                                          spreadRadius: 1, //spread radius
-                                          offset: Offset(0,
-                                              0), // changes position of shadow
-                                          //first paramerter of offset is left-right
-                                          //second parameter is top to down
-                                        ),
-                                        onpress: () {
-                                          // Navigator.of(context).pushNamed("/Menu_Detail");
-                                          // Navigator.of(context).push( MaterialPageRoute(builder: (_) => Menu_Detail(Menu_Datails: clinic_detail.menu[index])));
-                                        },
-                                        image: clinic_detail
-                                                .menu[index].images!.isEmpty
-                                            ? "http://error.png"
-                                            : clinic_detail
-                                                .menu[index].images![0].path,
-                                        heading: clinic_detail
-                                                    .menu[index].description ==
-                                                null
-                                            ? ""
-                                            : clinic_detail
-                                                .menu[index].description!,
-                                        price:
-                                            clinic_detail.menu[index].price == 0
-                                                ? ""
-                                                : clinic_detail
-                                                    .menu[index].price!
-                                                    .toString(),
-                                        clinic: clinic_detail.menu[index].name);
-                                  }),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        // Navigator.of(context).push(
-                                        //     MaterialPageRoute(
-                                        //         builder: (_) =>
-                                        //             Clinic_Sub_Detail(
-                                        //               clinic_Detail:
-                                        //                   clinic_Details[
-                                        //                       0],
-                                        //               index: 2,
-                                        //             )));
-                                      },
-                                      child: Row(
-                                        children: [
                                           GestureDetector(
                                             onTap: () {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
-                                                             categories: categories,
+                                                            categories:
+                                                                categories,
                                                             clinic_Detail:
                                                                 clinic_detail,
                                                             index: 2,
                                                           )));
                                             },
-                                            child: Text(
-                                              "すべてのメニュー",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
-                                                  fontSize: 14,
-                                                  
-                                                  fontWeight: FontWeight.w400),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "すべてのメニュー",
+                                                  style: TextStyle(
+                                                      color:
+                                                          Helper.maintxtColor,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                                Icon(
+                                                  Icons.navigate_next,
+                                                  size: 20,
+                                                  color: Helper.maintxtColor,
+                                                )
+                                              ],
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: 19,
-                                          ),
-                                          Icon(
-                                            Icons.navigate_next,
-                                            size: 20,
-                                            color: Helper.maintxtColor,
                                           )
                                         ],
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    ListView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: clinic_detail.menu.length,
+                                        // physics: const AlwaysScrollableScrollPhysics(),
+                                        // scrollDirection: Axis.horizontal,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Menu_Card(
+                                              shadow: BoxShadow(
+                                                color: Color.fromARGB(255, 238,
+                                                    238, 238), //color of shadow
+                                                spreadRadius: 1, //spread radius
+                                                offset: Offset(0,
+                                                    0), // changes position of shadow
+                                                //first paramerter of offset is left-right
+                                                //second parameter is top to down
+                                              ),
+                                              onpress: () {
+                                                // Navigator.of(context).pushNamed("/Menu_Detail");
+                                                // Navigator.of(context).push( MaterialPageRoute(builder: (_) => Menu_Detail(Menu_Datails: clinic_detail.menu[index])));
+                                              },
+                                              image: clinic_detail.menu[index]
+                                                      .images!.isEmpty
+                                                  ? "http://error.png"
+                                                  : clinic_detail.menu[index]
+                                                      .images![0].path,
+                                              heading: clinic_detail.menu[index]
+                                                          .description ==
+                                                      null
+                                                  ? ""
+                                                  : clinic_detail
+                                                      .menu[index].description!,
+                                              price: clinic_detail
+                                                          .menu[index].price ==
+                                                      0
+                                                  ? ""
+                                                  : clinic_detail
+                                                      .menu[index].price!
+                                                      .toString(),
+                                              clinic: clinic_detail
+                                                  .menu[index].name);
+                                        }),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              // Navigator.of(context).push(
+                                              //     MaterialPageRoute(
+                                              //         builder: (_) =>
+                                              //             Clinic_Sub_Detail(
+                                              //               clinic_Detail:
+                                              //                   clinic_Details[
+                                              //                       0],
+                                              //               index: 2,
+                                              //             )));
+                                            },
+                                            child: Row(
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.of(context).push(
+                                                        MaterialPageRoute(
+                                                            builder: (_) =>
+                                                                Clinic_Sub_Detail(
+                                                                  categories:
+                                                                      categories,
+                                                                  clinic_Detail:
+                                                                      clinic_detail,
+                                                                  index: 2,
+                                                                )));
+                                                  },
+                                                  child: Text(
+                                                    "すべてのメニュー",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 156, 161, 161),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 19,
+                                                ),
+                                                Icon(
+                                                  Icons.navigate_next,
+                                                  size: 20,
+                                                  color: Helper.maintxtColor,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  clinic_detail.diaries.isEmpty?Container():
-                  SizedBox(
-                    height: 5,
-                  ),
-                  clinic_detail.diaries.isEmpty?Container():
-                  Container(
-                    decoration: BoxDecoration(color: Helper.whiteColor),
-                    child: Column(
-                      children: [
-                        Container(
+                  clinic_detail.diaries.isEmpty
+                      ? Container()
+                      : SizedBox(
+                          height: 5,
+                        ),
+                  clinic_detail.diaries.isEmpty
+                      ? Container()
+                      : Container(
                           decoration: BoxDecoration(color: Helper.whiteColor),
                           child: Column(
                             children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 12),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              Container(
+                                decoration:
+                                    BoxDecoration(color: Helper.whiteColor),
+                                child: Column(
                                   children: [
-                                    Text(
-                                      "日記",
-                                      style: TextStyle(
-                                          fontFamily: Helper.headFontFamily,
-                                          color:
-                                              Color.fromARGB(255, 51, 51, 51),
-                                          fontSize: 18,
-                                          
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    Clinic_Sub_Detail(
-                                                       categories: categories,
-                                                      clinic_Detail:
-                                                          clinic_detail,
-                                                      index: 3,
-                                                    )));
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 12),
                                       child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "すべての日記",
+                                            "日記",
                                             style: TextStyle(
-                                                color: Helper.maintxtColor,
-                                                fontSize: 12,
-                                                
-                                                fontWeight: FontWeight.w400),
+                                                fontFamily:
+                                                    Helper.headFontFamily,
+                                                color: Color.fromARGB(
+                                                    255, 51, 51, 51),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w700),
                                           ),
-                                          Icon(
-                                            Icons.navigate_next,
-                                            size: 20,
-                                            color: Helper.maintxtColor,
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  // physics: const AlwaysScrollableScrollPhysics(),
-                                  // scrollDirection: Axis.horizontal,
-                                  itemCount: clinic_detail.diaries.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    // return Home_Card(
-                                    //   onpress: () {
-                                    //     // Navigator.of(context).push(
-                                    //     //     MaterialPageRoute(
-                                    //     //         builder: (_) =>
-                                    //     //             Clinic_Sub_Detail(
-                                    //     //               clinic_Detail:
-                                    //     //                   clinic_Details[
-                                    //     //                       0],
-                                    //     //               index: 3,
-                                    //     //             )));
-                                    //   },
-                                    //   title: clinic_detail["home"]
-                                    //       [index]["title"],
-                                    //   type: clinic_detail["home"]
-                                    //       [index]["type"],
-                                    //   clinic: clinic_detail["home"]
-                                    //       [index]["clinic"],
-                                    //   recommend: clinic_detail["home"]
-                                    //       [index]["recommend"],
-                                    //   source: clinic_detail["home"]
-                                    //       [index]["source"],
-                                    //   name: clinic_detail["home"]
-                                    //       [index]["name"],
-                                    //   doctorimage: clinic_detail
-                                    //       ["home"][index]["doctorimage"],
-                                    //   chat: clinic_detail["home"]
-                                    //       [index]["chat"],
-                                    // );
-                                    return Diary_Card(
-                                      avator: clinic_detail.diaries[index]
-                                                  .patient_photo ==
-                                              null
-                                          ? "http://error.png"
-                                          : clinic_detail
-                                              .diaries[index].patient_photo!,
-                                      check: clinic_detail
-                                                  .diaries[index].doctor_name ==
-                                              null
-                                          ? ""
-                                          : clinic_detail
-                                              .diaries[index].doctor_name!,
-                                      image2: clinic_detail
-                                                  .diaries[index].after_image ==
-                                              null
-                                          ? "http://error.png"
-                                          : clinic_detail
-                                              .diaries[index].after_image!,
-                                      image1: clinic_detail.diaries[index]
-                                                  .before_image ==
-                                              null
-                                          ? "http://error.png"
-                                          : clinic_detail
-                                              .diaries[index].before_image!,
-                                      eyes: clinic_detail
-                                                  .diaries[index].views_count ==
-                                              null
-                                          ? ""
-                                          : clinic_detail
-                                              .diaries[index].views_count!
-                                              .toString(),
-                                      clinic: clinic_detail
-                                                  .diaries[index].clinic_name ==
-                                              null
-                                          ? ""
-                                          : clinic_detail
-                                              .diaries[index].clinic_name!,
-                                      name: clinic_detail.diaries[index]
-                                                  .patient_nickname ==
-                                              null
-                                          ? ""
-                                          : clinic_detail
-                                              .diaries[index].patient_nickname!,
-                                      onpress: () {
-                                        Navigator.of(context)
-                                            .pushNamed("/Diary_Detail");
-                                      },
-                                      price: clinic_detail
-                                                  .diaries[index].price ==
-                                              null
-                                          ? ""
-                                          : clinic_detail.diaries[index].price
-                                              .toString(),
-                                      sentence: clinic_detail
-                                                  .diaries[index].doctor_name ==
-                                              null
-                                          ? ""
-                                          : clinic_detail
-                                              .diaries[index].doctor_name!,
-                                      type: clinic_detail
-                                                  .diaries[index].doctor_name ==
-                                              null
-                                          ? ""
-                                          : clinic_detail
-                                              .diaries[index].doctor_name!,
-                                    );
-                                  }),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    Clinic_Sub_Detail(
-                                                       categories: categories,
-                                                      clinic_Detail:
-                                                          clinic_detail,
-                                                      index: 3,
-                                                    )));
-                                      },
-                                      child: Row(
-                                        children: [
                                           GestureDetector(
                                             onTap: () {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (_) =>
                                                           Clinic_Sub_Detail(
-                                                             categories: categories,
+                                                            categories:
+                                                                categories,
                                                             clinic_Detail:
                                                                 clinic_detail,
                                                             index: 3,
                                                           )));
                                             },
-                                            child: Text(
-                                              "すべての日記",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 156, 161, 161),
-                                                  fontSize: 14,
-                                                  
-                                                  fontWeight: FontWeight.w400),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "すべての日記",
+                                                  style: TextStyle(
+                                                      color:
+                                                          Helper.maintxtColor,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                                Icon(
+                                                  Icons.navigate_next,
+                                                  size: 20,
+                                                  color: Helper.maintxtColor,
+                                                )
+                                              ],
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: 19,
-                                          ),
-                                          Icon(
-                                            Icons.navigate_next,
-                                            size: 20,
-                                            color: Helper.maintxtColor,
                                           )
                                         ],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              )
+                                    ListView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        // physics: const AlwaysScrollableScrollPhysics(),
+                                        // scrollDirection: Axis.horizontal,
+                                        itemCount: clinic_detail.diaries.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          // return Home_Card(
+                                          //   onpress: () {
+                                          //     // Navigator.of(context).push(
+                                          //     //     MaterialPageRoute(
+                                          //     //         builder: (_) =>
+                                          //     //             Clinic_Sub_Detail(
+                                          //     //               clinic_Detail:
+                                          //     //                   clinic_Details[
+                                          //     //                       0],
+                                          //     //               index: 3,
+                                          //     //             )));
+                                          //   },
+                                          //   title: clinic_detail["home"]
+                                          //       [index]["title"],
+                                          //   type: clinic_detail["home"]
+                                          //       [index]["type"],
+                                          //   clinic: clinic_detail["home"]
+                                          //       [index]["clinic"],
+                                          //   recommend: clinic_detail["home"]
+                                          //       [index]["recommend"],
+                                          //   source: clinic_detail["home"]
+                                          //       [index]["source"],
+                                          //   name: clinic_detail["home"]
+                                          //       [index]["name"],
+                                          //   doctorimage: clinic_detail
+                                          //       ["home"][index]["doctorimage"],
+                                          //   chat: clinic_detail["home"]
+                                          //       [index]["chat"],
+                                          // );
+                                          return Diary_Card(
+                                            avator: clinic_detail.diaries[index]
+                                                        .patient_photo ==
+                                                    null
+                                                ? "http://error.png"
+                                                : clinic_detail.diaries[index]
+                                                    .patient_photo!,
+                                            check: clinic_detail.diaries[index]
+                                                        .doctor_name ==
+                                                    null
+                                                ? ""
+                                                : clinic_detail.diaries[index]
+                                                    .doctor_name!,
+                                            image2: clinic_detail.diaries[index]
+                                                        .after_image ==
+                                                    null
+                                                ? "http://error.png"
+                                                : clinic_detail.diaries[index]
+                                                    .after_image!,
+                                            image1: clinic_detail.diaries[index]
+                                                        .before_image ==
+                                                    null
+                                                ? "http://error.png"
+                                                : clinic_detail.diaries[index]
+                                                    .before_image!,
+                                            eyes: clinic_detail.diaries[index]
+                                                        .views_count ==
+                                                    null
+                                                ? ""
+                                                : clinic_detail
+                                                    .diaries[index].views_count!
+                                                    .toString(),
+                                            clinic: clinic_detail.diaries[index]
+                                                        .clinic_name ==
+                                                    null
+                                                ? ""
+                                                : clinic_detail.diaries[index]
+                                                    .clinic_name!,
+                                            name: clinic_detail.diaries[index]
+                                                        .patient_nickname ==
+                                                    null
+                                                ? ""
+                                                : clinic_detail.diaries[index]
+                                                    .patient_nickname!,
+                                            onpress: () {
+                                              Navigator.of(context)
+                                                  .pushNamed("/Diary_Detail");
+                                            },
+                                            price: clinic_detail
+                                                        .diaries[index].price ==
+                                                    null
+                                                ? ""
+                                                : clinic_detail
+                                                    .diaries[index].price
+                                                    .toString(),
+                                            sentence: clinic_detail
+                                                        .diaries[index]
+                                                        .doctor_name ==
+                                                    null
+                                                ? ""
+                                                : clinic_detail.diaries[index]
+                                                    .doctor_name!,
+                                            type: clinic_detail.diaries[index]
+                                                        .doctor_name ==
+                                                    null
+                                                ? ""
+                                                : clinic_detail.diaries[index]
+                                                    .doctor_name!,
+                                          );
+                                        }),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          Clinic_Sub_Detail(
+                                                            categories:
+                                                                categories,
+                                                            clinic_Detail:
+                                                                clinic_detail,
+                                                            index: 3,
+                                                          )));
+                                            },
+                                            child: Row(
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.of(context).push(
+                                                        MaterialPageRoute(
+                                                            builder: (_) =>
+                                                                Clinic_Sub_Detail(
+                                                                  categories:
+                                                                      categories,
+                                                                  clinic_Detail:
+                                                                      clinic_detail,
+                                                                  index: 3,
+                                                                )));
+                                                  },
+                                                  child: Text(
+                                                    "すべての日記",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 156, 161, 161),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 19,
+                                                ),
+                                                Icon(
+                                                  Icons.navigate_next,
+                                                  size: 20,
+                                                  color: Helper.maintxtColor,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                   SizedBox(
                     height: 5,
                   ),
@@ -826,7 +844,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                   fontFamily: Helper.headFontFamily,
                                   color: Helper.blackColor,
                                   fontSize: 18,
-                                  
                                   fontWeight: FontWeight.w700),
                             ),
                           ),
@@ -842,7 +859,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       color: Color.fromARGB(255, 51, 51, 51),
                                       fontSize: 14,
                                       fontFamily: Helper.headFontFamily,
-                                      
                                       fontWeight: FontWeight.w700),
                                 ),
                                 GestureDetector(
@@ -859,7 +875,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                             color: Color.fromARGB(
                                                 255, 156, 161, 161),
                                             fontSize: 14,
-                                            
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Icon(
@@ -917,13 +932,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                     Helper.headFontFamily,
                                                 fontSize: 14,
                                                 color: Helper.titleColor,
-                                                
                                                 fontWeight: FontWeight.w700))),
                                     DataColumn(
-                                        label: Text(
-                                            clinic_detail.clinic.name!,
+                                        label: Text(clinic_detail.clinic.name!,
                                             style: TextStyle(
-                                                
                                                 fontSize: 14,
                                                 color: Helper.maintxtColor,
                                                 fontWeight: FontWeight.w400))),
@@ -936,14 +948,18 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 fontFamily:
                                                     Helper.headFontFamily,
                                                 fontSize: 14,
-                                                
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
-                                      DataCell(Text( clinic_detail.clinic.nearest_station==null?"":clinic_detail.clinic.nearest_station!,
+                                      DataCell(Text(
+                                          clinic_detail
+                                                      .clinic.nearest_station ==
+                                                  null
+                                              ? ""
+                                              : clinic_detail
+                                                  .clinic.nearest_station!,
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -954,14 +970,15 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                                 fontFamily:
                                                     Helper.headFontFamily,
                                                 fontSize: 14,
-                                                
                                                 color: Helper.titleColor,
                                                 fontWeight: FontWeight.w700)),
                                       ),
-                                      DataCell(Text(clinic_detail.clinic.access==null?"":clinic_detail.clinic.access!,
+                                      DataCell(Text(
+                                          clinic_detail.clinic.access == null
+                                              ? ""
+                                              : clinic_detail.clinic.access!,
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -969,7 +986,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       DataCell(Text(
                                         '営業時間',
                                         style: TextStyle(
-                                            
                                             fontSize: 14,
                                             color: Helper.titleColor,
                                             fontWeight: FontWeight.w700),
@@ -977,7 +993,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       DataCell(Text('clinic_detail["times"]',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -986,13 +1001,11 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: Helper.headFontFamily,
-                                              
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text(getFreeday(),
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -1004,10 +1017,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
                                       DataCell(Text(
-                                          clinic_detail.clinic.phone_number==null?"":clinic_detail.clinic.phone_number.toString(),
+                                          clinic_detail.clinic.phone_number ==
+                                                  null
+                                              ? ""
+                                              : clinic_detail
+                                                  .clinic.phone_number
+                                                  .toString(),
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -1015,14 +1032,17 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                       DataCell(Text('クレジットカード',
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               fontFamily: Helper.headFontFamily,
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text(clinic_detail.clinic.credit_card==null?"":clinic_detail.clinic.credit_card!,
+                                      DataCell(Text(
+                                          clinic_detail.clinic.credit_card ==
+                                                  null
+                                              ? ""
+                                              : clinic_detail
+                                                  .clinic.credit_card!,
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ]),
@@ -1031,13 +1051,14 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: Helper.headFontFamily,
-                                              
                                               color: Helper.titleColor,
                                               fontWeight: FontWeight.w700))),
-                                      DataCell(Text(clinic_detail.clinic.parking==null?"":clinic_detail.clinic.parking!,
+                                      DataCell(Text(
+                                          clinic_detail.clinic.parking == null
+                                              ? ""
+                                              : clinic_detail.clinic.parking!,
                                           style: TextStyle(
                                               fontSize: 14,
-                                              
                                               color: Helper.maintxtColor,
                                               fontWeight: FontWeight.w400))),
                                     ])
@@ -1091,7 +1112,6 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           splashFactory: NoSplash.splashFactory,
-                              
                           shadowColor: Colors.transparent,
                           elevation: 0,
                           padding:
@@ -1114,7 +1134,10 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                         ),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => Reservation(clinic_id: widget.index, treat: null, )));
+                              builder: (_) => Reservation(
+                                    clinic_id: widget.index,
+                                    treat: null,
+                                  )));
                         },
                       ),
                     ],
