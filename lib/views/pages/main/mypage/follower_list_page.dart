@@ -63,14 +63,13 @@ class _FollowerListPageState extends State<FollowerListPage> {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              
               color: Helper.titleColor,
             ),
           ),
           centerTitle: true,
           leading: IconButton(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -117,7 +116,7 @@ class _FollowerListPageState extends State<FollowerListPage> {
                                 },
                                 child: Column(children: [
                                   ListView.builder(
-                                    itemCount: 5,
+                                    itemCount: follower_data.data.length,
                                     itemBuilder: (context, index) {
                                       return Container(
                                         padding: EdgeInsets.symmetric(

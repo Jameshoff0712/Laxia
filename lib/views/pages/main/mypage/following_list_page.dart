@@ -46,6 +46,18 @@ class _FollowingListPageState extends State<FollowingListPage> {
     }
   }
 
+  Future<void> postTooglefollow(int index) async {
+    try {
+      final res =
+          await _con.postTooglefollow(index: follow_data.data[index].id);
+      if (res == true) {
+        setState(() {
+          follow_data.data.removeAt(index);
+        });
+      }
+    } catch (e) {}
+  }
+
   @override
   void initState() {
     getFollows(page: page.toString());
@@ -61,16 +73,15 @@ class _FollowingListPageState extends State<FollowingListPage> {
         title: Text(
           'フォロー中',
           style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 16,
-              
-              color: Helper.titleColor,
-            ),
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            color: Helper.titleColor,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
-          splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,  
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -122,10 +133,14 @@ class _FollowingListPageState extends State<FollowingListPage> {
                                       padding: EdgeInsets.symmetric(
                                           vertical: 8, horizontal: 16),
                                       child: FollowingCardWidget(
-                                          photo: follow_data.data[index].photo!,
-                                          name: follow_data.data[index].name!,
-                                          nickname:
-                                              follow_data.data[index].nickname!),
+                                        photo: follow_data.data[index].photo!,
+                                        name: follow_data.data[index].name!,
+                                        nickname:
+                                            follow_data.data[index].nickname!,
+                                        onPress: () {
+                                          postTooglefollow(index);
+                                        },
+                                      ),
                                     );
                                   },
                                   shrinkWrap: true,

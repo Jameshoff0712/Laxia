@@ -5,11 +5,13 @@ import 'package:laxia/models/m_user.dart';
 
 class FollowingCardWidget extends StatefulWidget {
   final String photo, name, nickname;
-  const FollowingCardWidget(
+  final VoidCallback onPress;
+  FollowingCardWidget(
       {Key? key,
       required this.photo,
       required this.name,
-      required this.nickname})
+      required this.nickname,
+      required this.onPress})
       : super(key: key);
 
   @override
@@ -75,7 +77,7 @@ class _FollowingCardWidgetState extends State<FollowingCardWidget> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: widget.onPress,
                 child: Container(
                   margin: EdgeInsets.only(right: 4),
                   padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 4),
