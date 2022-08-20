@@ -27,67 +27,190 @@ class HomeController extends BaseController {
   Future<Home> getHomeDate(String id) async {
     return await api.homeData(id);
   }
-  Future<Home_Search_Model> getHomeSearch({required String q, required String perpage}) async {
-    return await api.homeSearchData(q,perpage);
+
+  Future<Home_Search_Model> getHomeSearch(
+      {required String q, required String perpage}) async {
+    return await api.homeSearchData(q, perpage);
   }
-  Future<Clinic> getclinicData({String? per_page="10", required String page, String? q="", String? favorite="", String? category_id="", String? city_id="",required String filter}) async {
-    return await api.getclinicData( per_page!,  page,  q!,  favorite!,  category_id!,  city_id!,filter);
+
+  Future<Clinic> getclinicData(
+      {String? per_page = "10",
+      required String page,
+      String? q = "",
+      String? favorite = "",
+      String? category_id = "",
+      String? city_id = "",
+      required String filter}) async {
+    return await api.getclinicData(
+        per_page!, page, q!, favorite!, category_id!, city_id!, filter);
   }
-   Future<ClinicDetail_Model> getClinicDetail({required int index}) async {
+
+  Future<ClinicDetail_Model> getClinicDetail({required int index}) async {
     return await api.getClinicDetail(index);
   }
+
   Future<MenuDetail_Model> getMenuDetail({required int index}) async {
     return await api.getMenuDetail(index);
   }
+
   Future<ProgressDetail_Model> getProgressDetail({required int index}) async {
     return await api.getProgressDetail(index);
   }
-  Future<Menu> getMenuData({String per_page="10",required String city_id,required String filter, required String page, String? category_id="", String? clinic_id="", String? q=""}) async {
-    return await api.getMenuData( per_page,  page,  category_id!,  clinic_id!,  q!,filter,city_id);
+
+  Future<Menu> getMenuData(
+      {String per_page = "10",
+      required String city_id,
+      required String filter,
+      required String page,
+      String? category_id = "",
+      String? clinic_id = "",
+      String? q = ""}) async {
+    return await api.getMenuData(
+        per_page, page, category_id!, clinic_id!, q!, filter, city_id);
   }
-   Future<Diary> getDiaryData({required String city_id, String per_page="10", required String page, String? category_id="", String? clinic_id="", String? patient_id="", String? favorote="", String? orderby="", String? menu_id="", String? price_min="", String? price_max="", String? rate="", String? q="",required String filter,String year=''}) async {
-    return await api.getDiaryData( per_page,  page,  category_id!,  patient_id!,  favorote!,  orderby!,  menu_id!,  price_min!,  price_max!,  rate!,  q!,filter,city_id,year);
+
+  Future<Diary> getDiaryData(
+      {required String city_id,
+      String per_page = "10",
+      required String page,
+      String? category_id = "",
+      String? clinic_id = "",
+      String? patient_id = "",
+      String? favorote = "",
+      String? orderby = "",
+      String? menu_id = "",
+      String? price_min = "",
+      String? price_max = "",
+      String? rate = "",
+      String? q = "",
+      required String filter,
+      String year = ''}) async {
+    return await api.getDiaryData(
+        per_page,
+        page,
+        category_id!,
+        patient_id!,
+        favorote!,
+        orderby!,
+        menu_id!,
+        price_min!,
+        price_max!,
+        rate!,
+        q!,
+        filter,
+        city_id,
+        year);
   }
+
   Future<DiaryDetail_Model> getDiaryDetail({required int index}) async {
     return await api.getDiaryDetail(index);
   }
-  Future<Doctor> getDoctorData({String per_page="10", String? category_id="", required String page,required String city_id, String? clinic_id="", String? favorite="", String? q="",required String filter}) async {
-    return await api.getDoctorData( per_page,  page, favorite!,  clinic_id!,  q!,filter,category_id!,city_id);
+
+  Future<Doctor> getDoctorData(
+      {String per_page = "10",
+      String? category_id = "",
+      required String page,
+      required String city_id,
+      String? clinic_id = "",
+      String? favorite = "",
+      String? q = "",
+      required String filter}) async {
+    return await api.getDoctorData(per_page, page, favorite!, clinic_id!, q!,
+        filter, category_id!, city_id);
   }
+
   Future<DoctorDetail_Model> getDoctorDetail({required int index}) async {
     return await api.getDoctorDetail(index);
   }
-  Future<bool> postToogleFavorite({required int index, required String domain}) async{
-     return api.postToogleFavorite(index,domain);
+
+  Future<bool> postToogleFavorite(
+      {required int index, required String domain}) async {
+    return api.postToogleFavorite(index, domain);
   }
-  Future<bool> postToogleFollow({required int index}) async{
-     return api.postToogleFollow(index);
+
+  Future<bool> postToogleFollow({required int index}) async {
+    return api.postToogleFollow(index);
   }
-  Future<bool> postToogleLike({required int index, required String domain}) async{
-     return api.postToogleLike(index,domain);
+
+  Future<bool> postToogleLike(
+      {required int index, required String domain}) async {
+    return api.postToogleLike(index, domain);
   }
-  Future<Case> getCaseData({String per_page="10", required String page, String? clinic_id="", String? doctor_id="", String? q="",required String filter,required String price_min, required String price_max, required String year,}) async {
-    return await api.getCaseData( per_page,  page, doctor_id!,  clinic_id!,  q!, filter,price_min,price_max,year);
+
+  Future<Case> getCaseData({
+    required String city_id,
+    String per_page = "10",
+    required String page,
+    String? clinic_id = "",
+    String? doctor_id = "",
+    String? q = "",
+    required String filter,
+    required String price_min,
+    required String price_max,
+    required String year,
+  }) async {
+    return await api.getCaseData(per_page, page, doctor_id!, clinic_id!, q!,
+        filter, price_min, price_max, year, city_id);
   }
+
   Future<Case_Sub_Model> getCaseDetail({required int index}) async {
     return await api.getCaseDetail(index);
   }
-   Future<Counceling> getCouncelingData({String per_page="10", required String page, String? category_id="", String? patient_id="", String? favorote="", String? pref_id="", String? city="", String? orderby="",String? q="",required String filter}) async {
-    return await api.getCouncelingData( per_page,  page,  category_id!,  patient_id!,  favorote!,  pref_id!,  city!,  orderby!,filter);
+
+  Future<Counceling> getCouncelingData(
+      {String per_page = "10",
+      required String city_id,
+      required String page,
+      String? category_id = "",
+      String? patient_id = "",
+      String? favorote = "",
+      String? pref_id = "",
+      String? city = "",
+      String? orderby = "",
+      String? q = "",
+      required String filter}) async {
+    return await api.getCouncelingData(per_page, page, category_id!,
+        patient_id!, favorote!, pref_id!, city!, orderby!, filter, city_id);
   }
-  Future<CouncelingDetail_Model> getCouncelingDetail({required int index}) async {
+
+  Future<CouncelingDetail_Model> getCouncelingDetail(
+      {required int index}) async {
     return await api.getCouncelingDetail(index);
   }
-   Future<Question> getQuestionData({String per_page="10", required String page, String? category_id="", String? patient_id="", String? favorote="", String? pref_id="", String? city="", String? orderby="",String ? q="",required String filter,required String isanswer}) async {
-    return await api.getQuestionData( per_page,  page,  category_id!,  patient_id!,  favorote!,  pref_id!,  city!,  orderby!,filter,isanswer);
+
+  Future<Question> getQuestionData(
+      {String per_page = "10",
+      required String page,
+      String? category_id = "",
+      String? patient_id = "",
+      String? favorote = "",
+      String? pref_id = "",
+      String? city = "",
+      String? orderby = "",
+      String? q = "",
+      required String filter,
+      required String isanswer}) async {
+    return await api.getQuestionData(per_page, page, category_id!, patient_id!,
+        favorote!, pref_id!, city!, orderby!, filter, isanswer);
   }
+
   Future<Question_Sub_Model> getQuestionDetail({required int index}) async {
     return await api.getQuestionDetail(index);
   }
-  Future<Comment> getCommentList({required int index, required String domain,String per_page="50", required String page}) async {
-    return await api.getCommentList(index,domain,page,per_page);
+
+  Future<Comment> getCommentList(
+      {required int index,
+      required String domain,
+      String per_page = "50",
+      required String page}) async {
+    return await api.getCommentList(index, domain, page, per_page);
   }
-  Future<Comment_Sub_Model> postComment({required int index, required String domain,required String comment, String? parent_id}) async {
-    return await api.postComment(index,domain,comment,parent_id);
+
+  Future<Comment_Sub_Model> postComment(
+      {required int index,
+      required String domain,
+      required String comment,
+      String? parent_id}) async {
+    return await api.postComment(index, domain, comment, parent_id);
   }
 }

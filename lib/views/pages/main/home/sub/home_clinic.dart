@@ -14,10 +14,7 @@ import 'package:provider/provider.dart';
 class Home_Clinic extends StatefulWidget {
   final bool? isScrollable;
   final VoidCallback? scrollTop;
-  const Home_Clinic(
-      {Key? key,
-      this.isScrollable = true,
-      this.scrollTop = null})
+  const Home_Clinic({Key? key, this.isScrollable = true, this.scrollTop = null})
       : super(key: key);
 
   @override
@@ -25,20 +22,18 @@ class Home_Clinic extends StatefulWidget {
 }
 
 class _Home_ClinicState extends State<Home_Clinic> {
-  String searchdata = "" ,category_id="";
-  String filter='';
+  String searchdata = "", category_id = "";
+  String filter = '';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
   bool expanded = false;
   int index = -1;
   late int pref_id;
-  String city_id='';
+  String city_id = '';
   List mid = [];
   late Clinic clinic_data;
   final _con = HomeController();
-  Future<void> getData(
-      {required String page,
-      String? pref_id = ""}) async {
+  Future<void> getData({required String page, String? pref_id = ""}) async {
     try {
       if (!isend) {
         if (!isloading)
@@ -46,7 +41,11 @@ class _Home_ClinicState extends State<Home_Clinic> {
             isexpanding = false;
           });
         final mid = await _con.getclinicData(
-            page: page, category_id: category_id, city_id: city_id, q: searchdata,filter:filter);
+            page: page,
+            category_id: category_id,
+            city_id: city_id,
+            q: searchdata,
+            filter: filter);
         setState(() {
           if (isloading) {
             clinic_data = mid;
@@ -108,12 +107,13 @@ class _Home_ClinicState extends State<Home_Clinic> {
       });
     }
     if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
-      if(!isloading)
-      {init();
-      setState(() {
-        category_id = surgeryprovider.getSelectedCurePos.join(",");
-        getData(page: page.toString());
-      });}
+      if (!isloading) {
+        init();
+        setState(() {
+          category_id = surgeryprovider.getSelectedCurePos.join(",");
+          getData(page: page.toString());
+        });
+      }
     }
     return Container(
       color: Helper.homeBgColor,
@@ -135,16 +135,16 @@ class _Home_ClinicState extends State<Home_Clinic> {
                 Expanded(
                   flex: 3,
                   child: Dropdownbutton(
-                      onpress: (val){
+                      onpress: (val) {
                         setState(() {
-                              filter=val;
-                              page=1;
-                              isend = false;
-                              isloading = true;
-                              searchdata=userProperties.searchtext;
-                            });
-                            // print(val);
-                            getData(page: page.toString());
+                          filter = val;
+                          page = 1;
+                          isend = false;
+                          isloading = true;
+                          searchdata = userProperties.searchtext;
+                        });
+                        // print(val);
+                        getData(page: page.toString());
                       },
                       width: 123,
                       items: <String>["評価が高い順", "日記の多い順"],
@@ -208,15 +208,14 @@ class _Home_ClinicState extends State<Home_Clinic> {
                                               ? "http://error.png"
                                               : clinic_data.data[index].photo!,
                                       post: "",
-                                      name: clinic_data.data[index].name==null?"":clinic_data.data[index].name!,
-                                      mark: clinic_data
-                                                  .data[index].avg_rate ==
-                                              null
-                                          ? "11"
-                                          : clinic_data.data[index].diaries_count
+                                      name: clinic_data.data[index].name == null
+                                          ? ""
+                                          : clinic_data.data[index].name!,
+                                      mark: clinic_data.data[index].avg_rate == null
+                                          ? "0"
+                                          : double.parse((clinic_data.data[index].avg_rate)!.toStringAsFixed(2))
                                               .toString(),
-                                      day: clinic_data
-                                                  .data[index].diaries_count ==
+                                      day: clinic_data.data[index].diaries_count ==
                                               null
                                           ? ""
                                           : clinic_data.data[index].diaries_count

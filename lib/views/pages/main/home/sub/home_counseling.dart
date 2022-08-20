@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/counseling/counceling_model.dart';
 import 'package:laxia/models/counseling_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/views/pages/main/contribution/counsel_detail.dart';
 import 'package:laxia/views/widgets/counseling_card.dart';
 import 'package:laxia/views/widgets/dropdownbutton_widget.dart';
@@ -13,11 +14,8 @@ import 'package:provider/provider.dart';
 
 class Home_Counseling extends StatefulWidget {
   final bool? isdrawer;
-  final List?  last;
-  const Home_Counseling(
-      {Key? key,
-      this.isdrawer = true,
-      this.last})
+  final List? last;
+  const Home_Counseling({Key? key, this.isdrawer = true, this.last})
       : super(key: key);
 
   @override
@@ -25,8 +23,8 @@ class Home_Counseling extends StatefulWidget {
 }
 
 class _Home_CounselingState extends State<Home_Counseling> {
-  String searchdata = "";
-  String filter='';
+  String searchdata = "", city_id = '';
+  String filter = '';
   bool expanded = true;
   int index = -1, page = 0;
   bool isend = false, isloading = true, isexpanding = true;
@@ -39,7 +37,8 @@ class _Home_CounselingState extends State<Home_Counseling> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCouncelingData(page: page, q: q,filter:filter);
+        final mid = await _con.getCouncelingData(
+            page: page, q: q, filter: filter, city_id: city_id);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -87,11 +86,21 @@ class _Home_CounselingState extends State<Home_Counseling> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
         getData(page: page.toString(), q: userProperties.searchtext);
+      });
+    }
+    if (isloading == false &&
+        city_id != prefyprovider.getSelectedCurePos.join(",")) {
+      init();
+      setState(() {
+        city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
       });
     }
     return Container(
@@ -116,15 +125,17 @@ class _Home_CounselingState extends State<Home_Counseling> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
-                            onpress: (val){
+                            onpress: (val) {
                               setState(() {
-                                filter=val;
-                                page=1;
+                                filter = val;
+                                page = 1;
                                 isend = false;
                                 isloading = true;
                               });
                               // print(val);
-                              getData(page: page.toString(), q: userProperties.searchtext);
+                              getData(
+                                  page: page.toString(),
+                                  q: userProperties.searchtext);
                             },
                             items: <String>["人気投稿順", "新着順"],
                             hintText: "並び替え",
@@ -261,7 +272,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                                       null
                                   ? ""
                                   : counceling_data.data[index].doctor_name!,
-                              images:counceling_data.data[index].media_self!,
+                              images: counceling_data.data[index].media_self!,
                               eyes: counceling_data.data[index].views_count ==
                                       null
                                   ? ""
@@ -285,8 +296,7 @@ class _Home_CounselingState extends State<Home_Counseling> {
                                   counceling_data.data[index].content == null
                                       ? ""
                                       : counceling_data.data[index].content!,
-                              type:
-                                  counceling_data.data[index].categories!,
+                              type: counceling_data.data[index].categories!,
                               clinic: counceling_data.data[index].clinic_name ==
                                       null
                                   ? ""
