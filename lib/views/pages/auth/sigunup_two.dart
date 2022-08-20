@@ -128,7 +128,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                               onTap: () {
                                 DatePicker.showDatePicker(context,
                                     showTitleActions: true,
-                                    minTime: DateTime(2018, 3, 5),
+                                    minTime: DateTime(1900, 1, 1),
                                     maxTime: DateTime(2200, 6, 7),
                                     onChanged: (date) {}, onConfirm: (date) {
                                   _conDate.text = date.year.toString() +

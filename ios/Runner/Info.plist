@@ -23,13 +23,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeRole</key>
+		<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>laxiadeeplink.com</string>
+			<string>deeplink.flutter.dev</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb348275150664927</string>
+				<string>poc</string>
+  			    <string>fb348275150664927</string>
 				<string>laxia://</string>
 			</array>
 		</dict>

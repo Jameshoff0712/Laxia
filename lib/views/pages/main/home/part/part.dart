@@ -39,6 +39,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
   Future<void> getData() async {
     try {
       master_model = await _con.getIndexPartCategories(widget.index);
+      print('--------------------------------');
       print(master_model);
       for (int i = 0; i < master_model.all_childrens!.length; i++) {
         setState(() {

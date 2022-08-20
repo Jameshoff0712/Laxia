@@ -14,7 +14,7 @@ class DeepLinkBloc extends Bloc {
   //Method channel creation
   static const platform = const MethodChannel('poc.deeplink.flutter.dev/channel');
 
-  StreamController<String> _stateController = StreamController();
+  StreamController<String> _stateController = StreamController<String>.broadcast();
 
   Stream<String> get state => _stateController.stream;
 
@@ -39,6 +39,7 @@ class DeepLinkBloc extends Bloc {
 
   @override
   void dispose() {
+    print('objecasast');
     _stateController.close();
   }
 

@@ -200,7 +200,7 @@ class _Clinic_CardState extends State<Clinic_Card> {
                                   color: Helper.maintxtColor,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12.0,
-                                  height: 1.5),
+                                ),
                             ),
                           ],
                         ),

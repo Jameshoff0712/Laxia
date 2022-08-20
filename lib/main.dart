@@ -11,6 +11,7 @@ import 'package:laxia/provider/question_provider.dart';
 import 'package:laxia/provider/search_provider.dart';
 import 'package:laxia/provider/surgery_provider.dart';
 import 'package:laxia/provider/user_provider.dart';
+import 'package:laxia/views/onboarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
@@ -82,7 +83,10 @@ class _MyAppState extends State<MyApp> {
       child: ValueListenableBuilder(
         valueListenable: settingRepo.setting,
         builder: (context, Setting _setting, _) {
-          return MaterialApp(
+          return  Provider<DeepLinkBloc>(
+                      create: (context) => _bloc,
+                      dispose: (context, bloc) => bloc.dispose(),
+          child:MaterialApp(
               theme: ThemeData(fontFamily: 'Hiragino Kaku Gothic Pro W3'),
               navigatorKey: settingRepo.navigatorKey,
               debugShowCheckedModeBanner: false,
@@ -96,10 +100,8 @@ class _MyAppState extends State<MyApp> {
               supportedLocales: Trans.delegate.supportedLocales,
               title: Helper.appTitle,
               home: Scaffold(
-                  body: Provider<DeepLinkBloc>(
-                      create: (context) => _bloc,
-                      dispose: (context, bloc) => bloc.dispose(),
-                      child: PocWidget())));
+                  body:
+                      PocWidget(MidScreen: OnBoardingScreen(),))));
         },
       ),
     );

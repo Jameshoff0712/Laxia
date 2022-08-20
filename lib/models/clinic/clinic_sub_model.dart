@@ -75,7 +75,7 @@ class Clinic_Sub_Model extends Equatable {
     return Clinic_Sub_Model(
           id:json["id"],
           user_id:json["user_id"],
-          name:json["name"],
+          name:json["name"] == null ? '' : json["name"],
           pref_id:json["pref_id"],
           city_id:json["city_id"],
           town_id:json["town_id"],

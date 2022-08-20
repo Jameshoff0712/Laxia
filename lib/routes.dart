@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/models/m_message.dart';
+import 'package:laxia/poc.dart';
 import 'package:laxia/views/pages/auth/sigunup_two.dart';
 import 'package:laxia/views/pages/main/appointment/chatScreen.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_four.dart';
@@ -64,9 +65,9 @@ class RouteGenerator {
     final args = settings.arguments;
     switch (settings.name) {
       case '/Login':
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => PocWidget(MidScreen: LoginScreen(),));
       case '/passwordResetone':
-        return MaterialPageRoute(builder: (_) => PassRest_One());
+        return MaterialPageRoute(builder: (_) => PocWidget(MidScreen: PassRest_One(),));
       // case '/PassRest_Three':
       //   return MaterialPageRoute(builder: (_) => PassRest_Three());
       case '/PassRest_Four':
@@ -74,15 +75,15 @@ class RouteGenerator {
       case '/Registration':
         return MaterialPageRoute(builder: (_) => Registration());
       case '/EmailLogin':
-        return MaterialPageRoute(builder: (_) => EMLoginScreen());
+        return MaterialPageRoute(builder: (_) => PocWidget(MidScreen: EMLoginScreen(),));
       case '/Splash':
-        return MaterialPageRoute(builder: (_) => OnBoardingScreen());
+        return MaterialPageRoute(builder: (_) => PocWidget(MidScreen: OnBoardingScreen(),));
       case '/Signup':
-        return MaterialPageRoute(builder: (_) => SignUpScreen());
+        return MaterialPageRoute(builder: (_) => PocWidget(MidScreen: SignUpScreen(),));
       case '/SignupTwo':
-        return MaterialPageRoute(builder: (_) => Signup_Two());
+        return MaterialPageRoute(builder: (_) => PocWidget(MidScreen: Signup_Two(),));
       case '/Pages':
-        return MaterialPageRoute(builder: (_) => DashboardScreen());
+        return MaterialPageRoute(builder: (_) => PocWidget(MidScreen: DashboardScreen(),));
       case '/Home':
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case '/SearchView':
