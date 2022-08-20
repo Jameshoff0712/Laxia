@@ -4,6 +4,7 @@ import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/case/case_model.dart';
 import 'package:laxia/models/case_model.dart';
+import 'package:laxia/provider/pref_provider.dart';
 import 'package:laxia/provider/search_provider.dart';
 import 'package:laxia/views/pages/main/contribution/case_detail.dart';
 import 'package:laxia/views/widgets/diray_card.dart';
@@ -15,10 +16,7 @@ import 'package:provider/provider.dart';
 class Home_Case extends StatefulWidget {
   final bool? isdrawer;
   final List? last;
-  const Home_Case(
-      {Key? key,
-      this.isdrawer = true,
-      this.last})
+  const Home_Case({Key? key, this.isdrawer = true, this.last})
       : super(key: key);
 
   @override
@@ -26,16 +24,15 @@ class Home_Case extends StatefulWidget {
 }
 
 class _Home_CaseState extends State<Home_Case> {
-  String filter='';
+  String filter = '', city_id = '';
+
   String searchdata = "";
   bool expanded = true;
   int page = 0, index = -1;
   bool isend = false, isloading = true, isexpanding = true;
   late Case case_data;
-  int minprice=0,maxprice=0;
-  List<int> year=[
-    0,0,0,0,0,0
-  ];
+  int minprice = 0, maxprice = 0;
+  List<int> year = [0, 0, 0, 0, 0, 0];
   final _con = HomeController();
   Future<void> getData({required String page}) async {
     try {
@@ -44,7 +41,14 @@ class _Home_CaseState extends State<Home_Case> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getCaseData(page: page, q: searchdata,filter:filter,price_min:minprice.toString(),price_max:maxprice.toString(),year:year.join(','));
+        final mid = await _con.getCaseData(
+            page: page,
+            q: searchdata,
+            filter: filter,
+            price_min: minprice.toString(),
+            price_max: maxprice.toString(),
+            year: year.join(','),
+            city_id: city_id);
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -91,6 +95,8 @@ class _Home_CaseState extends State<Home_Case> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    PrefProvider prefyprovider =
+        Provider.of<PrefProvider>(context, listen: true);
     SearchProvider searchprovider =
         Provider.of<SearchProvider>(context, listen: true);
     if (searchdata != userProperties.searchtext) {
@@ -100,12 +106,22 @@ class _Home_CaseState extends State<Home_Case> {
         getData(page: page.toString());
       });
     }
-    if (minprice!=searchprovider.minprice||maxprice!=searchprovider.maxprice||year!=searchprovider.year) {
+    if (isloading == false &&
+        city_id != prefyprovider.getSelectedCurePos.join(",")) {
       init();
       setState(() {
-        minprice=searchprovider.minprice;
-        maxprice=searchprovider.maxprice;
-        year=searchprovider.year;
+        city_id = prefyprovider.getSelectedCurePos.join(",");
+        getData(page: page.toString());
+      });
+    }
+    if (minprice != searchprovider.minprice ||
+        maxprice != searchprovider.maxprice ||
+        year != searchprovider.year) {
+      init();
+      setState(() {
+        minprice = searchprovider.minprice;
+        maxprice = searchprovider.maxprice;
+        year = searchprovider.year;
         getData(page: page.toString());
       });
     }
@@ -139,10 +155,10 @@ class _Home_CaseState extends State<Home_Case> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
-                            onpress: (val){
+                            onpress: (val) {
                               setState(() {
-                                filter=val;
-                                page=1;
+                                filter = val;
+                                page = 1;
                                 isend = false;
                                 isloading = true;
                               });

@@ -31,10 +31,10 @@ class Home_Diary extends StatefulWidget {
 }
 
 class _Home_DiaryState extends State<Home_Diary> {
-  String filter='',city_id='',category_id="";
+  String filter = '', city_id = '', category_id = "";
   String searchdata = "";
   int page = 0;
-  bool isend = false, isloading = true, isexpanding = true,isfirst=true;
+  bool isend = false, isloading = true, isexpanding = true, isfirst = true;
   bool expanded = true;
   int index = -1;
   late Diary diary_data;
@@ -45,10 +45,8 @@ class _Home_DiaryState extends State<Home_Diary> {
     6,
     6,
   ];
-  List<int> year=[
-    0,0,0,0,0,0
-  ];
-  int minprice=0,maxprice=0;
+  List<int> year = [0, 0, 0, 0, 0, 0];
+  int minprice = 0, maxprice = 0;
   final _con = HomeController();
   Future<void> getData({required String page, required isload}) async {
     try {
@@ -57,12 +55,20 @@ class _Home_DiaryState extends State<Home_Diary> {
           setState(() {
             isexpanding = false;
           });
-        final mid = await _con.getDiaryData(page: page,category_id:category_id, q: searchdata,filter:filter,city_id:city_id,price_min:minprice.toString(),price_max:maxprice.toString(),rate:selectstar.join(","),year:year.join(','));
+        final mid = await _con.getDiaryData(
+            page: page,
+            category_id: category_id,
+            q: searchdata,
+            filter: filter,
+            city_id: city_id,
+            price_min: minprice.toString(),
+            price_max: maxprice.toString(),
+            rate: selectstar.join(","),
+            year: year.join(','));
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
             isend = true;
-            
           });
         }
         setState(() {
@@ -86,24 +92,23 @@ class _Home_DiaryState extends State<Home_Diary> {
 
   void init() {
     setState(() {
-      if(!isfirst)
-        diary_data.data.clear();
+      if (!isfirst) diary_data.data.clear();
       isloading = true;
       isexpanding = true;
       isend = false;
       page = 1;
       expanded = false;
       index = -1;
-      isfirst=false;
+      isfirst = false;
     });
   }
 
   @override
   void initState() {
-    getData(page: page.toString(),isload: true);
+    getData(page: page.toString(), isload: true);
     super.initState();
   }
- 
+
   @override
   Widget build(BuildContext context) {
     UserProvider userProperties =
@@ -114,40 +119,46 @@ class _Home_DiaryState extends State<Home_Diary> {
         Provider.of<SearchProvider>(context, listen: true);
     SurGeryProvider surgeryprovider =
         Provider.of<SurGeryProvider>(context, listen: true);
-    if (isloading == false&&searchdata != userProperties.searchtext) {
+    if (isloading == false && searchdata != userProperties.searchtext) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
         getData(page: page.toString(), isload: true);
       });
     }
-    if (isloading == false&&city_id != prefyprovider.getSelectedCurePos.join(",")) {
+    if (isloading == false &&
+        city_id != prefyprovider.getSelectedCurePos.join(",")) {
       init();
       setState(() {
         city_id = prefyprovider.getSelectedCurePos.join(",");
         getData(page: page.toString(), isload: true);
       });
     }
-    if (isloading == false&&!selectstar.any((item) => searchprovider.mark.contains(item))|| minprice!=searchprovider.minprice||maxprice!=searchprovider.maxprice||year!=searchprovider.year) {
+    if (isloading == false &&
+            !selectstar.any((item) => searchprovider.mark.contains(item)) ||
+        minprice != searchprovider.minprice ||
+        maxprice != searchprovider.maxprice ||
+        year != searchprovider.year) {
       init();
       setState(() {
-        selectstar=searchprovider.mark;
-        minprice=searchprovider.minprice;
-        maxprice=searchprovider.maxprice;
-        year=searchprovider.year;
+        selectstar = searchprovider.mark;
+        minprice = searchprovider.minprice;
+        maxprice = searchprovider.maxprice;
+        year = searchprovider.year;
         getData(page: page.toString(), isload: true);
       });
     }
-     if (isloading == false&&category_id != surgeryprovider.getSelectedCurePos.join(",")) {
-      if(!isloading)
-      {init();
-      setState(() {
-        category_id = surgeryprovider.getSelectedCurePos.join(",");
-        getData(page: page.toString(), isload: true);
-      });}
+    if (isloading == false &&
+        category_id != surgeryprovider.getSelectedCurePos.join(",")) {
+      if (!isloading) {
+        init();
+        setState(() {
+          category_id = surgeryprovider.getSelectedCurePos.join(",");
+          getData(page: page.toString(), isload: true);
+        });
+      }
     }
-    return 
-    Container(
+    return Container(
       color: Helper.homeBgColor,
       child: Column(
         children: [
@@ -177,11 +188,11 @@ class _Home_DiaryState extends State<Home_Diary> {
                       Expanded(
                         flex: 3,
                         child: Dropdownbutton(
-                            onpress: (val){
+                            onpress: (val) {
                               setState(() {
-                                page=1;
+                                page = 1;
                                 isend = false;
-                                filter=val;
+                                filter = val;
                                 isloading = true;
                               });
                               // print(val);
@@ -288,7 +299,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                             ],
                           ),
                         ),
-                      isloading
+                  isloading
                       ? Container(
                           child: Container(
                           height: MediaQuery.of(context).size.width,

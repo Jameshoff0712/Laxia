@@ -32,8 +32,8 @@ class Case_Sub_Model extends Equatable {
 
   const Case_Sub_Model(
       {required this.id,
-      this.beforeimage, 
-      this.afterimage, 
+      this.beforeimage,
+      this.afterimage,
       this.clinic_id,
       this.name,
       this.diaries,
@@ -55,41 +55,55 @@ class Case_Sub_Model extends Equatable {
       this.doctor});
 
   factory Case_Sub_Model.fromJson(Map<String, dynamic> json) {
-    print('case'+json.toString());
+    // print('case'+json.toString());
     return Case_Sub_Model(
-        id: json["id"],
-        clinic_id: json["clinic_id"],
-        name: json["name"],
-        patient_age: json["patient_age"],
-        created_at: json["created_at"],
-        updated_at: json["updated_at"],
-        comments_count: json["comments_count"],
-        views_count: json["views_count"],
-        likes_count: json["likes_count"],
-        is_like: json["is_like"],
-        doctor_id: json["doctor_id"],
-        patient_gender: json["patient_gender"],
-        case_description: json["case_description"],
-        treat_risk: json["treat_risk"],
-        doctor_option: json["doctor_option"],
-        clinic:json["clinic"]==null?null:Clinic_Sub_Model.fromJson(json["clinic"]),
-        categories:json["categories"]==null?[]: List<Category>.from(json["categories"]
-                .map((x) => Category.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>),
-        menus: json["menus"]==null?[]:List<Menu_Sub_Model>.from(json["menus"]
-                .map((x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>),
-        beforeimage:json["beforeimage"]==null?[] :List<Image_model>.from(json["beforeimage"]
-                .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>),
-        afterimage:json["afterimage"]==null?[] :List<Image_model>.from(json["afterimage"]
-                .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>),
-        diaries:json["diaries"]==null?[] :List<Diary_Sub_Model>.from(json["diaries"]
-                .map((x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
-            as Iterable<dynamic>),
-        doctor:json["doctor"]==null?null: Doctor_Sub_Model.fromJson(json["doctor"]),
-        );
+      id: json["id"],
+      clinic_id: json["clinic_id"],
+      name: json["name"],
+      patient_age: json["patient_age"],
+      created_at: json["created_at"],
+      updated_at: json["updated_at"],
+      comments_count: json["comments_count"],
+      views_count: json["views_count"],
+      likes_count: json["likes_count"],
+      is_like: json["is_like"],
+      doctor_id: json["doctor_id"],
+      patient_gender: json["patient_gender"],
+      case_description: json["case_description"],
+      treat_risk: json["treat_risk"],
+      doctor_option: json["doctor_option"],
+      clinic: json["clinic"] == null
+          ? null
+          : Clinic_Sub_Model.fromJson(json["clinic"]),
+      categories: json["categories"] == null
+          ? []
+          : List<Category>.from(json["categories"]
+                  .map((x) => Category.fromJson(x as Map<String, dynamic>))
+              as Iterable<dynamic>),
+      menus: json["menus"] == null
+          ? []
+          : List<Menu_Sub_Model>.from(json["menus"].map(
+                  (x) => Menu_Sub_Model.fromJson(x as Map<String, dynamic>))
+              as Iterable<dynamic>),
+      beforeimage: json["beforeimage"] == null
+          ? []
+          : List<Image_model>.from(json["beforeimage"]
+                  .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
+              as Iterable<dynamic>),
+      afterimage: json["afterimage"] == null
+          ? []
+          : List<Image_model>.from(json["afterimage"]
+                  .map((x) => Image_model.fromJson(x as Map<String, dynamic>))
+              as Iterable<dynamic>),
+      diaries: json["diaries"] == null
+          ? []
+          : List<Diary_Sub_Model>.from(json["diaries"].map(
+                  (x) => Diary_Sub_Model.fromJson(x as Map<String, dynamic>))
+              as Iterable<dynamic>),
+      doctor: json["doctor"] == null
+          ? null
+          : Doctor_Sub_Model.fromJson(json["doctor"]),
+    );
   }
   @override
   List<Object?> get props => [
