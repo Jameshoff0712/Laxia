@@ -37,10 +37,12 @@ class Diary_Sub_Model extends Equatable {
   final String? doctor_name;
   final String? last_content;
   final bool? is_favorite;
+  final bool is_mine;
   final List<Category>? categories;
 
   const Diary_Sub_Model(
       {required this.id,
+      required this.is_mine,
       this.patient_id,
       this.clinic_id,
       this.treat_date,
@@ -115,6 +117,7 @@ class Diary_Sub_Model extends Equatable {
         doctor_name: json["doctor_name"],
         last_content:json["last_content"],
         is_favorite: json["is_favorite"],
+        is_mine: json["is_mine"],
         categories: json["categories"] == null ? [] : List<Category>.from(json["categories"]
                 .map((x) => Category.fromJson(x as Map<String, dynamic>))
             as Iterable<dynamic>)
@@ -159,6 +162,7 @@ class Diary_Sub_Model extends Equatable {
         doctor_name,
         last_content,
         is_favorite,
-        categories
+        categories,
+        is_mine,
       ];
 }

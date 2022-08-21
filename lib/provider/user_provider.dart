@@ -39,6 +39,9 @@ class UserProvider extends ChangeNotifier {
     currentMe = me;
     notifyListeners();
   }
+  void logout(){
+    isAuthorized = false;
+  }
 
   late bool isAuthorized = false;
 

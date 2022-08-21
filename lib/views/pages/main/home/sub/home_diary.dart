@@ -343,6 +343,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                               onpress: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Diary_Detail(
+                                        isMyDiary: diary_data.data[index].is_mine,
                                         index: diary_data.data[index].id)));
                               },
                               price: diary_data.data[index].price == null

@@ -76,7 +76,6 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
   }
   Future<void> getDiaryDetail() async {
     final res = await _conMy.getDiaryDetail(widget.diary_id!);
-    print(res.doctor);
     setState(() {
       diaryDetail = res;
       isloadingDetail = false;
@@ -241,7 +240,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
             isexpanding = false;
           });
         final mid = await _con.getclinicData(
-            page: page, city_id: city_id!, q: q!,filter:'');
+            page: page, city_id: city_id!, q: q!,filter:'',per_page: 200.toString());
         setState(() {
           if (isloading) {
             clinic_data = mid;
@@ -336,7 +335,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
         for(int j = 0; j< diaryDetail.beforemedias!.length; j++)
           images[0].add(diaryDetail.beforemedias![j].path);
         for(int j = 0; j< diaryDetail.aftermedias!.length; j++)
-          images[0].add(diaryDetail.aftermedias![j].path);
+          images[1].add(diaryDetail.aftermedias![j].path);
       });
 
       diaryProperties.cost_op = diaryDetail.diary.price!;
@@ -357,7 +356,7 @@ class _AddDiaryStep1PageState extends State<AddDiaryStep1Page> {
 
       diaryProperties.questions = ['', '', '', '', '', ''];
       for(int i=0; i< 6; i++)
-        diaryProperties.questions[i] = diaryDetail.text_questions[i].pivot!.answer != null ? diaryDetail.text_questions[i].pivot!.answer! : '';
+        diaryProperties.questions[i] = diaryDetail.text_questions.length>i ? diaryDetail.text_questions[i].pivot!.answer! : '';
       setState(() {
         initDetail = false;
       });

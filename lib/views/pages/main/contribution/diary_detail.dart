@@ -90,6 +90,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
   }
   @override
   void initState() {
+    print(widget.isMyDiary);
     getData(index: widget.index);
     super.initState();
   }
@@ -204,8 +205,8 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     ),
                   ),
                 )
-                : ElevatedButton(
-                  onPressed: () async{
+                : InkWell(
+                  onTap: () async{
                     await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -215,31 +216,28 @@ class _Diary_DetailState extends State<Diary_Detail> {
                     });
                     getData(index: widget.index);
                   },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    primary: Color.fromARGB(255, 249, 161, 56),
-                    onPrimary: Colors.white,
-                    onSurface: Color.fromARGB(255, 110, 198, 210),
-                    splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "投稿を修正",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                            
-                            color: Color.fromARGB(255, 26, 16, 16),
+              
+                  child: Container(
+                    decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    color: Color.fromARGB(255, 249, 161, 56)
+                                ),
+                    child: Padding(
+                      padding:EdgeInsets.symmetric(horizontal: 5,vertical: 2),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "投稿を修正",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              
+                              color: Color.fromARGB(255, 26, 16, 16),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -268,7 +266,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
           decoration: BoxDecoration(color: Helper.whiteColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(width: 16.5,),
               GestureDetector(
@@ -337,33 +335,34 @@ class _Diary_DetailState extends State<Diary_Detail> {
                       ),
                     ),
               SizedBox(width: 29,),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Helper.btnBgYellowColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                  splashFactory: NoSplash.splashFactory,
-                              shadowColor: Colors.transparent,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6),
-                      child: Text(
-                        "同じクリニックを予約",
-                        style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
-                            size: 16),
+              InkWell(
+        
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 2),
+                  decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    color:Helper.btnBgYellowColor,
+                                ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: Text(
+                          "同じクリニックを予約",
+                          style: defaultTextStyle(Helper.whiteColor, FontWeight.w700,
+                              size: 16),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                onPressed: () {
+                onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Reservation(clinic_id: diary_detail.diary.clinic_id!, treat: diary_detail.menus![0] )));
                 },
               ),
+              SizedBox(width: 16.5,),
             ],
           ),
         ),
@@ -820,7 +819,7 @@ class _Diary_DetailState extends State<Diary_Detail> {
                   physics:NeverScrollableScrollPhysics(),
                   shrinkWrap:true,
                   itemBuilder: (BuildContext context, int index) {
-                    return Post_Treatment_Card(post_treatment:diary_detail.progresses![index]);
+                    return Post_Treatment_Card(post_treatment:diary_detail.progresses![index], ismydiary: widget.isMyDiary!,);
                   }
                 ),
               ),

@@ -213,7 +213,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                                           : clinic_data.data[index].name!,
                                       mark: clinic_data.data[index].avg_rate == null
                                           ? "0"
-                                          : double.parse((clinic_data.data[index].avg_rate)!.toStringAsFixed(2))
+                                          : double.parse((clinic_data.data[index].avg_rate)!.toStringAsFixed(1))
                                               .toString(),
                                       day: clinic_data.data[index].diaries_count ==
                                               null

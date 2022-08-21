@@ -28,7 +28,6 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
         mid.add(listFavQuestion[i]);
       isloading = false;
     });
-    print(mid);
   }
 
   @override
@@ -62,21 +61,21 @@ class _Favorite_QuestionState extends State<Favorite_Question> {
                 itemBuilder: (BuildContext context, int index) {
                   return Question_Card(
                     isanswer: mid[index].answers.isNotEmpty,
-                    avator: mid[index].owner!.photo!,
-                    name: mid[index].owner!.kana!,
-                    sentence: mid[index].content!,
+                    hearts: mid[index].likes_count==null?"":mid[index].likes_count!.toString(),
+                    chats: mid[index].comments_count==null?"":mid[index].comments_count.toString(),
+                    avator:mid[index].owner!.photo==null?"http://error.png": mid[index].owner!.photo!,
                     images: mid[index].medias!,
-                    type: mid[index].categories!,
-                    eyes: mid[index].views_count.toString(),
-                    hearts: mid[index].likes_count.toString(),
-                    chats: mid[index].comments_count.toString(),
-                    onpress: () {
-                      Navigator.push(
+                    eyes: mid[index].views_count==null?"":mid[index].views_count!.toString(),
+                    name:mid[index].owner!.name==null?"": mid[index].owner!.name!,
+                    onpress: () { 
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => QuestionDetail(
-                                  index: mid[index].id)));
+                            builder: (context) => QuestionDetail(index:  mid[index].id)));
+                      //Navigator.of(context).pushNamed("/QuestionDetail");
                     },
+                    sentence:mid[index].content==null?"": mid[index].content!,
+                    type:mid[index].categories!,
                   );
                 }),
           )),

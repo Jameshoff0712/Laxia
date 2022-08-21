@@ -1,6 +1,7 @@
 import 'package:laxia/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:laxia/poc.dart';
+import 'package:laxia/views/onboarding.dart';
 import 'package:provider/provider.dart';
 
 import 'bloc.dart';
@@ -27,6 +28,6 @@ class PocApp extends StatelessWidget {
             body: Provider<DeepLinkBloc>(
                 create: (context) => _bloc,
                 dispose: (context, bloc) => bloc.dispose(),
-                child: PocWidget())));
+                child: PocWidget(MidScreen: OnBoardingScreen(),))));
   }
 }

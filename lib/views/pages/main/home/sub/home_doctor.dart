@@ -210,7 +210,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                                         ? "http://error.png"
                                         : doctor_data.data[index].photo!,
                                     name: doctor_data.data[index].hira_name,
-                                    mark:  double.parse((doctor_data.data[index].avg_rate).toStringAsFixed(2)).toString(), //doctor_data.data[index]["mark"],
+                                    mark:  double.parse((doctor_data.data[index].avg_rate).toStringAsFixed(1)).toString(), //doctor_data.data[index]["mark"],
                                     day: doctor_data.data[index].views_count==null?"0":doctor_data.data[index].views_count
                                         .toString(), //doctor_data.data[index]["day"],
                                     clinic:

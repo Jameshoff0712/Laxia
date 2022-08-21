@@ -4,6 +4,7 @@ import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/home/home_model.dart';
 import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/home/part/part.dart';
+import 'package:laxia/views/pages/main/home/sub/home_sub_scroll.dart';
 import 'package:laxia/views/widgets/home_card.dart';
 import 'package:laxia/views/widgets/home_sub_horizonalbar.dart';
 import 'package:laxia/views/widgets/tabbar.dart';
@@ -67,17 +68,6 @@ class _Home_SubState extends State<Home_Sub>
   @override
   void initState() {
     _tabController = new TabController(length: 6, vsync: this);
-    getData("");
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) {
-        getData(_tabController.index.toString());
-      }
-    });
-    _pageController.addListener(() {
-      setState(() {
-        currentPageValue = _pageController.page;
-      });
-    });
     scrollController.addListener(() {
       if (scrollController.offset >=
               scrollController.position.maxScrollExtent &&
@@ -112,12 +102,12 @@ class _Home_SubState extends State<Home_Sub>
                     child: TabBarView(
                       physics: NeverScrollableScrollPhysics(),
                       children: [
-                        Subscrollbarbody(flag),
-                        Subscrollbarbody(flag),
-                        Subscrollbarbody(flag),
-                        Subscrollbarbody(flag),
-                        Subscrollbarbody(flag),
-                        Subscrollbarbody(flag),
+                        Home_Sub_Scroll(index: "",),
+                        Home_Sub_Scroll(index: "1",),
+                        Home_Sub_Scroll(index: "2",),
+                        Home_Sub_Scroll(index: "3",),
+                        Home_Sub_Scroll(index: "4",),
+                        Home_Sub_Scroll(index: "5",),
                       ],
                       controller: _tabController,
                     ),
@@ -159,68 +149,7 @@ class _Home_SubState extends State<Home_Sub>
     ];
   }
 
-  Widget Subscrollbarbody(bool flags) {
-    return flags
-        ? Container(
-            child: Container(
-            height: isLoading ? MediaQuery.of(context).size.width * 0.5 : 0,
-            color: Colors.transparent,
-            child: Center(
-              child: new CircularProgressIndicator(),
-            ),
-          ))
-        : Container(
-            child: NotificationListener<ScrollNotification>(
-              onNotification: (ScrollNotification scrollInfo) {
-                if (scrollInfo.metrics.pixels ==
-                    scrollInfo.metrics.maxScrollExtent) {
-                  // getData(page: (page+1).toString());
-                  // setState(() {
-                  //   page+=1;
-                  // });
-                }
-                return true;
-              },
-              child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                  scrollDirection: Axis.vertical,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 175 / 291,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 9,
-                      mainAxisSpacing: 9),
-                  itemCount: home_data.data.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Home_Card(
-                      onpress: () {},
-                      title: home_data.data[index].first_content == null
-                          ? ""
-                          : home_data.data[index].first_content!,
-                      type: home_data.data[index].type == null
-                          ? ""
-                          : home_data.data[index].type!,
-                      clinic: home_data.data[index].clinic == null
-                          ? ""
-                          : home_data.data[index].clinic!,
-                      recommend: home_data.data[index].comments_count == null
-                          ? " "
-                          : home_data.data[index].comments_count.toString(),
-                      source: home_data.data[index].photo!,
-                      name: home_data.data[index].nickname == null
-                          ? ""
-                          : home_data.data[index].nickname!,
-                      doctorimage: home_data.data[index].photo!,
-                      chat: home_data.data[index].views_count == null
-                          ? " "
-                          : home_data.data[index].views_count.toString(),
-                    );
-                  }),
-            ),
-          );
-  }
-}
+ }
 
 class DockBar_Bottom extends StatelessWidget {
   const DockBar_Bottom({

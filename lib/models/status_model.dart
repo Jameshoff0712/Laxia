@@ -8,7 +8,9 @@ class StatusInfo extends Equatable {
   final String updated_at;
   final String visit_date;
   final String visit_time;
+  final bool is_now;
   const StatusInfo({
+    required this.is_now,
     required this.clinic_name,
     required this.created_at,
     required this.mailbox,
@@ -19,10 +21,12 @@ class StatusInfo extends Equatable {
   });
 
   factory StatusInfo.fromJson(Map<String, dynamic> json) {
+    print(json);
     return StatusInfo(
       clinic_name:json['clinic_name'],
       created_at:json['created_at'],
       mailbox:json['mailbox'],
+      is_now:json['is_now'],
       updated_at:json['updated_at'],
       visit_date:json['visit_date']==null?"":json['visit_date'],
       visit_time:json['visit_time']==null?"":json['visit_time'],
