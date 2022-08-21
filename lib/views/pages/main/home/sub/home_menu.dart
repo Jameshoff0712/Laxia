@@ -1,5 +1,6 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/menu/menu_model.dart';
@@ -264,7 +265,7 @@ class _Home_MenuState extends State<Home_Menu> {
                               child: new CircularProgressIndicator(),
                             ),
                           ))
-                        : ListView.builder(
+                        : menu_data.data.isNotEmpty? ListView.builder(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             itemCount: menu_data.data.length,
                             physics: NeverScrollableScrollPhysics(),
@@ -290,7 +291,34 @@ class _Home_MenuState extends State<Home_Menu> {
                                       ? ""
                                       : menu_data.data[index].price!.toString(),
                                   clinic: menu_data.data[index].clinic == null ? '' : menu_data.data[index].clinic!.name!);
-                            }),
+                            })
+                            : Align(
+                                alignment: Alignment.center,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: 60,
+                                    ),
+                                    SvgPicture.asset(
+                                      "assets/images/LAXIA.svg",
+                                    ),
+                                    SizedBox(
+                                      height: 50,
+                                    ),
+                                    Text(
+                                      '検索結果がありません',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        height: 1.6,
+                                        fontWeight: FontWeight.w700,
+                                        color: Helper.txtColor,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                     Container(
                       height: isexpanding ? 0 : 100,
                       color: Colors.transparent,
