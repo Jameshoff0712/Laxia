@@ -61,6 +61,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
       });
     }
   }
+
   Future<void> getMe() async {
     try {
       final mid = await _conAuth.getMe();
@@ -74,10 +75,10 @@ class _FixProfilePageState extends State<FixProfilePage> {
       });
     } catch (e) {
       print(e.toString());
-      setState(() {
-      });
+      setState(() {});
     }
   }
+
   Future<void> post() async {
     ProfileModel profile = new ProfileModel(
         birthday: _conDate.text,
@@ -116,7 +117,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
     //   _conIntro.text = myInfo.intro!;
     //   _conGender.text = myInfo.gender!;
     //   valPrefecture = myInfo.areaId.toString();
-    //   // _conSurgery.text = 
+    //   // _conSurgery.text =
     // });
     // _image = myInfo.photo;
 
@@ -135,29 +136,28 @@ class _FixProfilePageState extends State<FixProfilePage> {
         _conSurgery.text = _enteredText;
       });
     }
-    if(isfirst && !isloading){
+    if (isfirst && !isloading) {
       setState(() {
-      _image = myInfo.photo;
-      _conNickname.text = myInfo.nickname!;
-      _conId.text = myInfo.uniqueId!;
-      _conDate.text = myInfo.birthday!;
-      _conIntro.text = myInfo.intro!;
-      _conGender.text = myInfo.gender!;
-      valPrefecture = myInfo.areaId.toString();
+        _image = myInfo.photo;
+        _conNickname.text = myInfo.nickname!;
+        _conId.text = myInfo.uniqueId!;
+        _conDate.text = myInfo.birthday!;
+        _conIntro.text = myInfo.intro!;
+        _conGender.text = myInfo.gender!;
+        valPrefecture = myInfo.areaId.toString();
 
-      surgery_ids = [];
-      surgery_names = [];
-      for(int i=0; i<myInfo.categories!.length; i++){
-        surgery_ids.add(myInfo.categories![i].id);
-        surgery_names.add(myInfo.categories![i].name);
-      }
-      _conSurgery.text = surgery_names.join(', ');
+        surgery_ids = [];
+        surgery_names = [];
+        for (int i = 0; i < myInfo.categories!.length; i++) {
+          surgery_ids.add(myInfo.categories![i].id);
+          surgery_names.add(myInfo.categories![i].name);
+        }
+        _conSurgery.text = surgery_names.join(', ');
 
-
-      isfirst = false;
-    });
+        isfirst = false;
+      });
     }
-    
+
     // TODO: implement build
     return !isloading
         ? Container(
@@ -242,13 +242,15 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                             width: 80,
                                             height: 80,
                                             fit: BoxFit.cover)
-                                        : (!_image!.contains('http')?Image.file(File(_image!),
-                                            width: 80,
-                                            height: 80,
-                                            fit: BoxFit.cover):Image.network(_image!,
-                                            width: 80,
-                                            height: 80,
-                                            fit: BoxFit.cover))),
+                                        : (!_image!.contains('http')
+                                            ? Image.file(File(_image!),
+                                                width: 80,
+                                                height: 80,
+                                                fit: BoxFit.cover)
+                                            : Image.network(_image!,
+                                                width: 80,
+                                                height: 80,
+                                                fit: BoxFit.cover))),
                               ),
                               GestureDetector(
                                 onTap: _openImagePicker,
@@ -320,7 +322,7 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                     onTap: () {
                                       DatePicker.showDatePicker(context,
                                           showTitleActions: true,
-                                          minTime: DateTime(2018, 3, 5),
+                                          minTime: DateTime(1900, 1, 1),
                                           maxTime: DateTime(2200, 6, 7),
                                           onChanged: (date) {},
                                           onConfirm: (date) {
@@ -456,15 +458,14 @@ class _FixProfilePageState extends State<FixProfilePage> {
                                 height: 10.0,
                               ),
                               SelectBoxWidget(
-                                onChange: (val) {
-                                  setState(() {
-                                    valPrefecture = val;
-                                  });
-                                },
-                                name: "施術希望エリア",
-                                items: areas,
-                                chosenValue: valPrefecture
-                              ),
+                                  onChange: (val) {
+                                    setState(() {
+                                      valPrefecture = val;
+                                    });
+                                  },
+                                  name: "施術希望エリア",
+                                  items: areas,
+                                  chosenValue: valPrefecture),
                               SizedBox(
                                 height: 10.0,
                               ),

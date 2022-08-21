@@ -28,7 +28,7 @@ class _Signup_TwoState extends State<Signup_Two> {
   TextEditingController controller = TextEditingController();
   TextEditingController _conDate = TextEditingController();
   TextEditingController _conPrefecture = TextEditingController();
-  int  genderId = -1;
+  int genderId = -1;
   Future<void> initSettings() async {
     String countyText =
         await rootBundle.loadString("assets/cfg/japanese-city-data.json");
@@ -128,7 +128,7 @@ class _Signup_TwoState extends State<Signup_Two> {
                               onTap: () {
                                 DatePicker.showDatePicker(context,
                                     showTitleActions: true,
-                                    minTime: DateTime(2018, 3, 5),
+                                    minTime: DateTime(1900, 1, 1),
                                     maxTime: DateTime(2200, 6, 7),
                                     onChanged: (date) {}, onConfirm: (date) {
                                   _conDate.text = date.year.toString() +
