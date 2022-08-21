@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/clinic/clinic_model.dart';
@@ -165,7 +166,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                       ),
                     ),
                   )
-                : LayoutBuilder(
+                : clinic_data.data.isNotEmpty? LayoutBuilder(
                     builder: (context, BoxConstraints viewportConstraints) {
                     return NotificationListener<ScrollNotification>(
                       onNotification: (ScrollNotification scrollInfo) {
@@ -241,7 +242,34 @@ class _Home_ClinicState extends State<Home_Clinic> {
                         ],
                       ),
                     );
-                  }),
+                  })
+                  : Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 60,
+                        ),
+                        SvgPicture.asset(
+                          "assets/images/LAXIA.svg",
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Text(
+                          '検索結果がありません',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            height: 1.6,
+                            fontWeight: FontWeight.w700,
+                            color: Helper.txtColor,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
           ),
         ],
       ),

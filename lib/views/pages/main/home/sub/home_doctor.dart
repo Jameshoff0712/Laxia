@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/doctor/doctor_model.dart';
@@ -187,7 +188,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
                                 child: new CircularProgressIndicator(),
                               ),
                             ))
-                          : ListView.builder(
+                          :doctor_data.data.isNotEmpty?  ListView.builder(
                               padding: const EdgeInsets.symmetric(vertical: 4),
                               itemCount: doctor_data.data.length,
                               physics: widget.isScrollable!
@@ -216,7 +217,34 @@ class _Home_DoctorState extends State<Home_Doctor> {
                                     clinic:
                                         "湘南美容クリニック 新宿院" //doctor_data.data[index].clinic_id .toString()
                                     );
-                              }),
+                              })
+                              : Align(
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 60,
+                                      ),
+                                      SvgPicture.asset(
+                                        "assets/images/LAXIA.svg",
+                                      ),
+                                      SizedBox(
+                                        height: 50,
+                                      ),
+                                      Text(
+                                        '検索結果がありません',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          height: 1.6,
+                                          fontWeight: FontWeight.w700,
+                                          color: Helper.txtColor,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                     ),
                     Container(
                       height: isexpanding ? 0 : 100,
