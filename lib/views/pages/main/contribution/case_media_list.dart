@@ -4,43 +4,38 @@ import 'package:flutter/services.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:laxia/models/instructions.dart';
+import 'package:laxia/models/menu/image_model.dart';
 import 'package:laxia/views/widgets/generated_plugin_registrant.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:image_viewer/image_viewer.dart';
 
 class CaseMediaList extends StatefulWidget {
+  final List<Image_model> beforeimage,afterimage;
+  final String name;
+  const CaseMediaList({Key? key, required this.beforeimage, required this.afterimage, required this.name}) : super(key: key);
   @override
   _CaseMediaListState createState() => _CaseMediaListState();
 }
 
 class _CaseMediaListState extends StateMVC<CaseMediaList> {
-  List disease_Details = [];
   bool isfavourite = false;
-
-  Future<void> get_disease_info() async {
-    String mid = await rootBundle.loadString("assets/cfg/detail_disease.json");
-    setState(() {
-      disease_Details.addAll(json.decode(mid));
-    });
-  }
 
   @override
   void initState() {
-    get_disease_info();
+    print('object');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return disease_Details.isNotEmpty? Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
         title: Center(
           child: Text(
-            disease_Details[0]["name"],
+            widget.name,
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
@@ -80,7 +75,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                       childAspectRatio: 1),
                   children: [
                     for (int i = 0;
-                        i < disease_Details[0]["image_before"].length;
+                        i < widget.beforeimage.length;
                         i++)
                       FittedBox(
                         fit: BoxFit.fill,
@@ -92,10 +87,10 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                               onBoardingInstructions: [
                                 for (int j = 0;
                                     j <
-                                        disease_Details[0]["image_before"]
+                                        widget.beforeimage
                                             .length;
                                     j++)
-                                  disease_Details[0]["image_before"][j],
+                                   widget.beforeimage[j].path,
                               ],
                               startindex: i,
                             )));
@@ -104,7 +99,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                             borderRadius: BorderRadius.circular(30),
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
-                              imageUrl: disease_Details[0]["image_before"][i],
+                              imageUrl:  widget.beforeimage[i].path,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.fill,
@@ -139,7 +134,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                       childAspectRatio: 1),
                   children: [
                     for (int i = 0;
-                        i < disease_Details[0]["image_after"].length;
+                        i < widget.afterimage.length;
                         i++)
                       FittedBox(
                         fit: BoxFit.fill,
@@ -150,10 +145,10 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                             builder: (context) => PageViewWidget(onBoardingInstructions: [
                                 for (int j = 0;
                                     j <
-                                        disease_Details[0]["image_after"]
+                                         widget.afterimage
                                             .length;
                                     j++)
-                                  disease_Details[0]["image_after"][j],
+                                  widget.beforeimage[j].path,
                               ],
                               startindex: 1,)));
                           },
@@ -161,7 +156,7 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
                             borderRadius: BorderRadius.circular(30),
                             child: CachedNetworkImage(
                               fit: BoxFit.fill,
-                              imageUrl: disease_Details[0]["image_after"][i],
+                              imageUrl:  widget.afterimage[i].path,
                               placeholder: (context, url) => Image.asset(
                                 'assets/images/loading.gif',
                                 fit: BoxFit.fill,
@@ -181,6 +176,6 @@ class _CaseMediaListState extends StateMVC<CaseMediaList> {
           ),
         ),
       ),
-    ):Scaffold();
+    );
   }
 }

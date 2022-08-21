@@ -100,7 +100,6 @@ class _AppointmentState extends State<Appointment>
   }
   Future<void> getStatusInfo() async {
     final info = await _con.getAllStatus();
-   
     setState(() {
        for(int i=0;i<info.length;i++){
         counts.add(0);
@@ -187,12 +186,12 @@ class _AppointmentState extends State<Appointment>
                                       return chatStatus(
                                         notificCount:counts[index] ,
                                         mailbox:  statusInfo[index].mailbox,
+                                        is_now:  statusInfo[index].is_now,
                                         statusCode: statusInfo[index].status,
                                         clinicName:
                                             statusInfo[index].clinic_name,
-                                        bookDate: statusInfo[index].visit_time +
-                                            "~" +
-                                            statusInfo[index].visit_date,
+                                        bookDate:'予約日時：'+statusInfo[index].visit_date+':'+
+                                        statusInfo[index].visit_time+"~", 
                                       );
                                     }),
                           ),
@@ -215,9 +214,8 @@ class _AppointmentState extends State<Appointment>
                                     mailbox:  statusInfo[index].mailbox,
                                     statusCode: statusInfo[index].status,
                                     clinicName: statusInfo[index].clinic_name,
-                                    bookDate: statusInfo[index].visit_time +
-                                        "~" +
-                                        statusInfo[index].visit_date,
+                                    bookDate: '予約日時：'+statusInfo[index].visit_date+':'+
+                                        statusInfo[index].visit_time+"~", 
                                   );
                                 }),
                           ),
@@ -233,15 +231,14 @@ class _AppointmentState extends State<Appointment>
                                 physics: const AlwaysScrollableScrollPhysics(),
                                 itemCount: statusInfo.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return statusInfo[index].status!=15?
+                                  return statusInfo[index].status!=15&&statusInfo[index].is_now?
                                     Container()
                                   :chatStatus(
                                     notificCount:counts[index] ,
                                     statusCode: statusInfo[index].status,
                                     clinicName: statusInfo[index].clinic_name,
-                                    bookDate: statusInfo[index].visit_time +
-                                        "~" +
-                                        statusInfo[index].visit_date, 
+                                    bookDate:'予約日時：'+statusInfo[index].visit_date+':'+
+                                        statusInfo[index].visit_time+"~", 
                                     mailbox:  statusInfo[index].mailbox,
                                   );
                                 }),
@@ -254,13 +251,22 @@ class _AppointmentState extends State<Appointment>
                         Expanded(
                           child: Container(
                             color: Color.fromARGB(255, 240, 242, 245),
-                            // child: ListView(
-                            //   physics: const AlwaysScrollableScrollPhysics(),
-                            //   children: [
-                            //     chatStatus(
-                            //         statusCode: 3, clinicName: '湘南美容クリニック 銀座院'),
-                            //   ],
-                            // ),
+                            child: ListView.builder(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemCount: statusInfo.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return statusInfo[index].status!=15&&!statusInfo[index].is_now?
+                                    Container()
+                                  :chatStatus(
+                                    is_now: true,
+                                    notificCount:counts[index] ,
+                                    statusCode: statusInfo[index].status,
+                                    clinicName: statusInfo[index].clinic_name,
+                                    bookDate:'予約日時：'+statusInfo[index].visit_date+':'+
+                                        statusInfo[index].visit_time+"~", 
+                                    mailbox:  statusInfo[index].mailbox,
+                                  );
+                                }),
                           ),
                         ),
                       ],
@@ -280,9 +286,8 @@ class _AppointmentState extends State<Appointment>
                                     notificCount:counts[index] ,
                                     statusCode: statusInfo[index].status,
                                     clinicName: statusInfo[index].clinic_name,
-                                    bookDate: statusInfo[index].visit_time +
-                                        "~" +
-                                        statusInfo[index].visit_date, 
+                                    bookDate:'予約日時：'+statusInfo[index].visit_date+':'+
+                                        statusInfo[index].visit_time+"~", 
                                     mailbox:  statusInfo[index].mailbox,
                                   );
                                 }),

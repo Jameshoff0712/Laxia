@@ -47,7 +47,7 @@ class _Menu_DetailState extends State<Menu_Detail> {
   }
   Future<void> postToogleLike(index) async {
     try {
-      final res=await _con.postToogleLike(index:index, domain: 'diaries');
+      final res=await _con.postToogleFavorite(index:index, domain: 'menus');
       if(res==true){
         setState(() {
           islike=!islike;

@@ -194,6 +194,7 @@ class _SelectClinicState extends State<SelectClinic> {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 19, vertical: 16),
                                             child: Text(
+                                              // 'ryu',
                                               clinic_data.data[index].name!,
                                               style: TextStyle(
                                                   color: Color.fromARGB(255, 51, 51, 51),

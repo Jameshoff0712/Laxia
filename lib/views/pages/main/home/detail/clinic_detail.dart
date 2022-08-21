@@ -166,7 +166,7 @@ class _Clinic_DetailState extends State<Clinic_Detail> {
                                     : clinic_detail.clinic.name!,
                                 mark: double.parse(
                                         (clinic_detail.clinic.avg_rate)!
-                                            .toStringAsFixed(2))
+                                            .toStringAsFixed(1))
                                     .toString(),
                                 day: "",
                                 post: "")

@@ -37,82 +37,85 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
-    return TextField(
-      cursorColor: Helper.mainColor,
-      readOnly: widget.state ? true : false,
-      autofocus: false,
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        if (widget.state) {
-          userProperties.setCompleted(false);
-          Navigator.of(context).pushNamed("/SearchView");
-        }
-      },
-      onChanged: (value) {
-        if (widget.state == false) {
-          widget.onchange!();
-        }
-      },
-      onEditingComplete: () {
-        if (widget.state == false) {
-          widget.oncompleted!();
-        }
-      },
-      controller: widget.filter,
-      //Display the keyboard when TextField is displayed
-      style: TextStyle(
-        color: Helper.blackColor,
-        fontSize: 14,
-      ),
-      textInputAction: TextInputAction.search,
-      decoration: InputDecoration(
-        suffixIcon: widget.issuffixicon!
-            ? Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: GestureDetector(
-                  onTap: () {
-                    widget.onpress!();
-                  },
-                  child: Container(
-                    width: 13,
-                    height: 13,
-                    child: SvgPicture.asset(
-                      "assets/icons/close.svg",
-                      width: 3,
-                      height: 3,
+    return SizedBox(
+      height: 36,
+      child: TextField(
+        cursorColor: Helper.mainColor,
+        readOnly: widget.state ? true : false,
+        autofocus: false,
+        onTap: () {
+          FocusScope.of(context).unfocus();
+          if (widget.state) {
+            userProperties.setCompleted(false);
+            Navigator.of(context).pushNamed("/SearchView");
+          }
+        },
+        onChanged: (value) {
+          if (widget.state == false) {
+            widget.onchange!();
+          }
+        },
+        onEditingComplete: () {
+          if (widget.state == false) {
+            widget.oncompleted!();
+          }
+        },
+        controller: widget.filter,
+        //Display the keyboard when TextField is displayed
+        style: TextStyle(
+          color: Helper.blackColor,
+          fontSize: 14,
+        ),
+        textInputAction: TextInputAction.search,
+        decoration: InputDecoration(
+          suffixIcon: widget.issuffixicon!
+              ? Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      widget.onpress!();
+                    },
+                    child: Container(
+                      width: 13,
+                      height: 13,
+                      child: SvgPicture.asset(
+                        "assets/icons/close.svg",
+                        width: 3,
+                        height: 3,
+                      ),
                     ),
                   ),
+                )
+              : SizedBox(
+                  width: 0,
                 ),
-              )
-            : SizedBox(
-                width: 0,
-              ),
-        fillColor: Helper.searchBarBgColor,
-        filled: true,
-        prefixIconConstraints: BoxConstraints(maxHeight: 30),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 11),
-          child: Icon(
-            Icons.search,
-            color: Helper.searchBartxtColor,
-            size: 23,
+          fillColor: Helper.searchBarBgColor,
+          filled: true,
+          prefixIconConstraints: BoxConstraints(maxHeight: 30),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.only(left: 7, right: 7),
+            child: Icon(
+              Icons.search,
+              color: Helper.searchBartxtColor,
+              size: 23,
+            ),
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-            gapPadding: 0,
-            borderSide: BorderSide(color: Helper.whiteColor),
-            borderRadius: BorderRadius.all(Radius.circular(5.0))),
-        focusedBorder: OutlineInputBorder(
-            gapPadding: 0,
-            borderSide: BorderSide(color: Helper.whiteColor),
-            borderRadius: BorderRadius.all(Radius.circular(5.0))),
-        isDense: true,
-        contentPadding: EdgeInsets.only(left: 12, top: 9, bottom: 6),
-        hintText: widget.hinttext!,
-        hintStyle: TextStyle(
-          color: Helper.searchBartxtColor,
-          fontSize: 14,
-          fontWeight: FontWeight.w400
+          enabledBorder: OutlineInputBorder(
+              gapPadding: 0,
+              borderSide: BorderSide(color: Helper.whiteColor),
+              borderRadius: BorderRadius.all(Radius.circular(5.0))),
+          focusedBorder: OutlineInputBorder(
+              gapPadding: 0,
+              borderSide: BorderSide(color: Helper.whiteColor),
+              borderRadius: BorderRadius.all(Radius.circular(5.0))),
+          isDense: true,
+          contentPadding: EdgeInsets.only(left: 2, top: 8, bottom: 7),
+          hintText: widget.hinttext!,
+          hintStyle: TextStyle(
+            color: Helper.searchBartxtColor,
+            fontSize: 14,
+            fontWeight: FontWeight.w400
+          ),
         ),
       ),
     );

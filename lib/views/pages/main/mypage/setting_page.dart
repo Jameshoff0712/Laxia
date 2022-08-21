@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:laxia/common/helper.dart';
+import 'package:laxia/provider/user_provider.dart';
 import 'package:laxia/views/pages/main/mypage/contact_page.dart';
 import 'package:laxia/views/pages/main/mypage/deletion_guide_web.dart';
 import 'package:laxia/views/pages/main/mypage/fix_profile_page.dart';
 import 'package:laxia/views/pages/main/mypage/privacy_policy_web.dart';
 import 'package:laxia/views/pages/main/mypage/terms_of_service.dart';
+import 'package:laxia/services/http/api.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   String appVersion = '1.1.0';
+  late UserProvider provider;
   List setting_itmes = [
     {
       'item_text': '運営ポリシー',
@@ -229,14 +232,19 @@ class _SettingPageState extends State<SettingPage> {
                       bottom: BorderSide(
                         color: Color.fromARGB(255, 200, 199, 204),
                       ))),
-              child: Text(
-                'ログアウト',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  height: 1.2,
-                  color: Color.fromARGB(255, 18, 18, 18),
+              child: InkWell(
+                onTap: (){
+                  Navigator.pushNamedAndRemoveUntil(context, "/Splash", (route) => false);
+                },
+                child: Text(
+                  'ログアウト',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    height: 1.2,
+                    color: Color.fromARGB(255, 18, 18, 18),
+                  ),
                 ),
               ),
             ),
@@ -279,13 +287,14 @@ class _SettingPageState extends State<SettingPage> {
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
             text,
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,
-              height: 1.14,
+              height: 0,
               color: Color.fromARGB(255, 18, 18, 18),
             ),
           ),

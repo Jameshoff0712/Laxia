@@ -235,12 +235,12 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        postToogleLike(widget.index);
+                        postToogleFavorite(widget.index);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          islike
+                          isfavorite
                               ? SvgPicture.asset(
                                   "assets/icons/star.svg",
                                   width: 22,
@@ -269,12 +269,12 @@ class _QuestionDetailState extends State<QuestionDetail> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        postToogleFavorite(widget.index);
+                        postToogleLike(widget.index);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          isfavorite
+                          islike
                               ? SvgPicture.asset(
                                   "assets/icons/red_heart.svg",
                                   width: 22,

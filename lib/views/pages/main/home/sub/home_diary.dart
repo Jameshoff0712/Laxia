@@ -1,5 +1,6 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/diary/diary_model.dart';
@@ -308,7 +309,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                             child: new CircularProgressIndicator(),
                           ),
                         ))
-                      : ListView.builder(
+                      : diary_data.data.isNotEmpty? ListView.builder(
                           padding: EdgeInsets.only(top: 8, left: 8, right: 8),
                           itemCount: diary_data.data.length,
                           physics: NeverScrollableScrollPhysics(),
@@ -343,6 +344,7 @@ class _Home_DiaryState extends State<Home_Diary> {
                               onpress: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Diary_Detail(
+                                        isMyDiary: diary_data.data[index].is_mine,
                                         index: diary_data.data[index].id)));
                               },
                               price: diary_data.data[index].price == null
@@ -356,7 +358,34 @@ class _Home_DiaryState extends State<Home_Diary> {
                                   ? ""
                                   : diary_data.data[index].doctor_name!,
                             );
-                          }),
+                          })
+                          : Align(
+                              alignment: Alignment.center,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 60,
+                                  ),
+                                  SvgPicture.asset(
+                                    "assets/images/LAXIA.svg",
+                                  ),
+                                  SizedBox(
+                                    height: 50,
+                                  ),
+                                  Text(
+                                    '検索結果がありません',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      height: 1.6,
+                                      fontWeight: FontWeight.w700,
+                                      color: Helper.txtColor,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                   Container(
                     height: isexpanding ? 0 : 100,
                     color: Colors.transparent,

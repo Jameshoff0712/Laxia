@@ -61,19 +61,26 @@ class _Favorite_DoctorState extends State<Favorite_Doctor> {
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
-                  return Doctor_Card(
-                      onpress: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Doctor_Detail(
-                                    index: mid[index].id)));
-                      },
-                      image: mid[index].photo!,
-                      name: mid[index].name!,
-                      mark: mid[index].likes_count.toString(),
-                      day: mid[index].experience_year.toString(),
-                      clinic: mid[index].kata_name);
+                 return Doctor_Card(
+                    onpress: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Doctor_Detail(
+                                      index: mid[index].id)));
+                      // Navigator.of(context).pushNamed("/Doctor_Detail");
+                    },
+                    image: mid[index].photo == null
+                        ? "http://error.png"
+                        : mid[index].photo!,
+                    name: mid[index].hira_name,
+                    mark:  double.parse((mid[index].avg_rate).toStringAsFixed(1)).toString(), //mid[index]["mark"],
+                    day: mid[index].views_count==null?"0":mid[index].views_count
+                        .toString(), //mid[index]["day"],
+                    clinic:
+                        "湘南美容クリニック 新宿院" //mid[index].clinic_id .toString()
+                    );
                 }),
           )),
         ],

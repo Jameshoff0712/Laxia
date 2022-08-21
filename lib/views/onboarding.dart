@@ -1,3 +1,4 @@
+import 'package:laxia/poc.dart';
 import 'package:laxia/views/pages/auth/login.dart';
 import 'package:laxia/views/pages/auth/signup.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -128,11 +129,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                           height: 24 / 16,
                                           letterSpacing: -0.54,
                                           color: Helper.maintxtColor)),
-                                  onPressed: () => Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen())),
-                                ),
+                                  onPressed: () =>   Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(builder: (context) => PocWidget(MidScreen: LoginScreen(),)),
+                                                    ),
+                                                            ),
                                 Container(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 20),

@@ -180,7 +180,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                                             Color.fromARGB(255, 110, 198, 210),
                                         width: 2,
                                         style: BorderStyle.solid),
-                                    color: progress_detail.owner.is_follow!
+                                    color: isfollow
                                         ? Color.fromARGB(255, 110, 198, 210)
                                         : Colors.white),
                                 child: Padding(
@@ -190,7 +190,7 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                                     'フォロー',
                                     style: TextStyle(
                                       fontSize: 13,
-                                      color: progress_detail.owner.is_follow!
+                                      color: isfollow
                                           ? Helper.whiteColor
                                           : Color.fromARGB(255, 110, 198, 210),
                                     ),
@@ -198,8 +198,8 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                                 ),
                               ),
                             )
-                          : ElevatedButton(
-                              onPressed: () {
+                          : InkWell(
+                              onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => AddDiaryProgressPage(
                                           isMyDiary: widget.isMyDiary,
@@ -207,33 +207,27 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                                           diary_id: widget.diary_id,
                                         )));
                               },
-                              style: ElevatedButton.styleFrom(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                primary: Color.fromARGB(255, 249, 161, 56),
-                                onPrimary: Colors.white,
-                                onSurface: Color.fromARGB(255, 110, 198, 210),
-                                splashFactory: NoSplash.splashFactory,
-                                shadowColor: Colors.transparent,
-                              ),
-                              child: FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "投稿を修正",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                        color: Helper.whiteColor,
+                              child: Container(
+                                 decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    color: Color.fromARGB(255, 249, 161, 56)
+                                ),
+                                child: Padding(
+                                 padding: EdgeInsets.symmetric(horizontal:5,vertical: 2),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "投稿を修正",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12,
+                                          color: Helper.whiteColor,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -262,141 +256,144 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
               decoration: BoxDecoration(color: Helper.whiteColor),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      postToogleLike(progress_detail.diary.id);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        islike
-                            ? SvgPicture.asset(
-                                "assets/icons/star.svg",
-                                width: 22,
-                                height: 22,
-                                color: Helper.starColor,
-                              )
-                            : SvgPicture.asset(
-                                "assets/icons/borderstar.svg",
-                                width: 22,
-                                height: 22,
-                                // color: Colors.red,
-                                color: Color.fromARGB(255, 155, 155, 155),
-                              ),
-                        Text(
-                          "お気に入り",
-                          style: TextStyle(
-                              color: isfavorite
-                                  ? Helper.btnBgYellowColor
-                                  : Helper.txtColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 21,
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      postToogleFavorite(progress_detail.diary.id);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        isfavorite
-                            ? SvgPicture.asset(
-                                "assets/icons/red_heart.svg",
-                                width: 22,
-                                height: 22,
-                                color: Colors.red,
-                              )
-                            : SvgPicture.asset(
-                                "assets/icons/heart.svg",
-                                width: 22,
-                                height: 22,
-                                color: Color.fromARGB(255, 155, 155, 155),
-                              ),
-                        Text(
-                          progress_detail.diary.likes_count!.toString(),
-                          style: TextStyle(
-                              color: Helper.txtColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isfavorite = !isfavorite;
-                      });
-
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(15.0),
-                                topRight: Radius.circular(15.0)),
-                          ),
-                          context: context,
-                          builder: (context) {
-                            return CommentDialogSheet(
-                              index: widget.index,
-                              domain: 'progress',
-                            );
-                          });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        isfavorite
-                            ? Icon(
-                                FontAwesomeIcons.commentDots,
-                                color: Helper.btnBgYellowColor,
-                                size: 30,
-                              )
-                            : Icon(
-                                FontAwesomeIcons.commentDots,
+                    GestureDetector(
+                      onTap: () {
+                        postToogleLike(widget.index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          islike
+                              ? SvgPicture.asset(
+                                  "assets/icons/star.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Helper.starColor,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/borderstar.svg",
+                                  width: 22,
+                                  height: 22,
+                                  // color: Colors.red,
+                                  color: Color.fromARGB(255, 155, 155, 155),
+                                ),
+                          Text(
+                            "お気に入り",
+                            style: TextStyle(
                                 color: Helper.txtColor,
-                                size: 30,
-                              ),
-                        Text(
-                          "コメント",
-                          style: TextStyle(
-                              color: isfavorite
-                                  ? Helper.btnBgYellowColor
-                                  : Helper.txtColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Helper.btnBgYellowColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
-                      splashFactory: NoSplash.splashFactory,
-                      shadowColor: Colors.transparent,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "コメントする",
-                          style: defaultTextStyle(
-                              Helper.whiteColor, FontWeight.w700,
-                              size: 14),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        postToogleFavorite(widget.index);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          isfavorite
+                              ? SvgPicture.asset(
+                                  "assets/icons/red_heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Colors.red,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/heart.svg",
+                                  width: 22,
+                                  height: 22,
+                                  color: Color.fromARGB(255, 155, 155, 155),
+                                ),
+                          Text(
+                            progress_detail.diary.likes_count!
+                                .toString(),
+                            style: TextStyle(
+                                color: Helper.txtColor,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                            constraints: BoxConstraints(
+                              maxHeight:
+                                  MediaQuery.of(context).size.height * 0.9,
+                            ),
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15.0),
+                                  topRight: Radius.circular(15.0)),
+                            ),
+                            context: context,
+                            builder: (context) {
+                              return CommentDialogSheet(
+                                index: widget.index,
+                                domain: 'progresses',
+                              );
+                            });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            "assets/icons/chat.svg",
+                            width: 22,
+                            height: 22,
+                            color: Color.fromARGB(255, 155, 155, 155),
+                          ),
+                          Text(
+                            progress_detail.diary.comments_count
+                                .toString(),
+                            style: TextStyle(
+                                color: Helper.txtColor,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 21,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 243, 243, 243),
+                          borderRadius: BorderRadius.circular(40.0),
                         ),
-                      ],
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 12, top: 7, bottom: 7, right: 100),
+                          child: Text(
+                            "コメントする",
+                            style: TextStyle(
+                                color: Helper.txtColor,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14),
+                          ),
+                        ),
+                      ),
                     ),
-                    onPressed: () {},
-                  ),
-                ],
+                  ],
               ),
             ),
             body: SingleChildScrollView(
@@ -599,19 +596,21 @@ class _DiaryDetailDefaultState extends StateMVC<DiaryDetailDefault> {
                                     child: TextField(
                                       onTap: () {
                                         showModalBottomSheet(
+                                           constraints: BoxConstraints(
+                                              maxHeight:
+                                                  MediaQuery.of(context).size.height * 0.9,
+                                            ),
                                             isScrollControlled: true,
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.only(
-                                                  topLeft:
-                                                      Radius.circular(15.0),
-                                                  topRight:
-                                                      Radius.circular(15.0)),
+                                                  topLeft: Radius.circular(15.0),
+                                                  topRight: Radius.circular(15.0)),
                                             ),
                                             context: context,
                                             builder: (context) {
                                               return CommentDialogSheet(
                                                 index: widget.index,
-                                                domain: 'diaries',
+                                                domain: 'progresses',
                                               );
                                             });
                                       },

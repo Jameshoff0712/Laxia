@@ -9,6 +9,7 @@ class chatStatus extends StatefulWidget {
   final String clinicName;
   final String? bookDate;
   final int? notificCount;
+  final bool? is_now;
 
   const chatStatus(
       {Key? key,
@@ -16,7 +17,7 @@ class chatStatus extends StatefulWidget {
       required this.statusCode,
       required this.clinicName,
       this.bookDate,
-      this.notificCount})
+      this.notificCount, this.is_now=false})
       : super(key: key);
 
   @override
@@ -39,6 +40,10 @@ class _chatStatusState extends State<chatStatus> {
           {
             statusText = '予約済';
             statusColor = Color.fromARGB(255, 0, 184, 169);
+            if(widget.is_now!){
+              statusText = '来院済';
+              statusColor = Color.fromARGB(255,245, 184, 91);
+            }
           }
           break;
         case 3:
@@ -143,7 +148,7 @@ class _chatStatusState extends State<chatStatus> {
                 ? Container()
                 : Container(
                     child: Text(
-                      widget.bookDate!,
+                       widget.statusCode!=15?"": widget.bookDate!,
                       style: TextStyle(
                         fontSize: 12,
                         

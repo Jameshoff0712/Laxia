@@ -157,8 +157,8 @@ class _CaseDetailState extends State<CaseDetail> {
                         ],
                       ),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => Reservation(clinic_id: case_detail.clinic_id!, treat: case_detail.menus![0] )));
+                        // Navigator.of(context).push(MaterialPageRoute(
+                                    // builder: (_) => Reservation(clinic_id: case_detail.clinic_id!, treat: case_detail.menus![0] )));
                       },
                     ),
                   ),
@@ -177,7 +177,7 @@ class _CaseDetailState extends State<CaseDetail> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => CaseMediaList())),
+                          MaterialPageRoute(builder: (_) => CaseMediaList(afterimage: case_detail.afterimage!, beforeimage:case_detail.beforeimage!, name: (case_detail.doctor==null?"XX":case_detail.doctor!.name!)+'の症例写真',))),
                       child: Container(
                         child: GridView(
                           physics: NeverScrollableScrollPhysics(),
@@ -556,9 +556,9 @@ class _CaseDetailState extends State<CaseDetail> {
                                       ? ""
                                       : case_detail.diaries![midindex].patient_nickname!,
                                   onpress: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (_) => Diary_Detail(
-                                            index: case_detail.diaries![midindex].id)));
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (_) => Diary_Detail(
+                                    //         index: case_detail.diaries![midindex].id)));
                                   },
                                   price: case_detail.diaries![midindex].price == null
                                       ? ""

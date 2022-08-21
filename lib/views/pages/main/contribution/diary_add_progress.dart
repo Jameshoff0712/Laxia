@@ -105,7 +105,6 @@ class _AddDiaryProgressPageState extends State<AddDiaryProgressPage> {
 
   Future<void> getProgressDetail() async {
     final res = await _conMy.getProgressDetail(widget.progress_id!);
-    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     print(res.progress.medias);
     setState(() {
       progressDetail = res;

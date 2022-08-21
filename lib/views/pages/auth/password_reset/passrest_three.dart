@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxia/views/pages/auth/password_reset/passrest_four.dart';
@@ -50,7 +52,7 @@ class _PassRest_ThreeState extends State<PassRest_Three> {
                         child: Align(
                             alignment: Alignment.topLeft,
                             child: IconButton(
-                              onPressed: () => SystemNavigator.pop(),
+                              onPressed: () =>exit(0),
                               padding: EdgeInsets.only(left: 7),
                               icon: const Icon(Icons.clear,
                                   color: Helper.blackColor),

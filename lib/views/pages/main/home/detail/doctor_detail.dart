@@ -160,7 +160,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                                       name: doctor_detail.doctor.hira_name,
                                       mark: double.parse(
                                               (doctor_detail.doctor.avg_rate)
-                                                  .toStringAsFixed(2))
+                                                  .toStringAsFixed(1))
                                           .toString(),
                                       post:
                                           doctor_detail.doctor.job_name == null
@@ -225,7 +225,7 @@ class _Doctor_DetailState extends State<Doctor_Detail> {
                         post: doctor_detail.clinic.diaries_count!.toString(),
                         name: doctor_detail.clinic.name!,
                         mark: double.parse((doctor_detail.clinic.avg_rate)!
-                                .toStringAsFixed(2))
+                                .toStringAsFixed(1))
                             .toString(),
                         day: doctor_detail.clinic.diaries_count.toString(),
                         location: doctor_detail.clinic.address!),

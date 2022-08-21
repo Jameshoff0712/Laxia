@@ -1,5 +1,6 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laxia/common/helper.dart';
 import 'package:laxia/controllers/home_controller.dart';
 import 'package:laxia/models/question/question_model.dart';
@@ -219,7 +220,7 @@ class _Home_QuestionState extends State<Home_Question> {
                   child: Center(
                     child: new CircularProgressIndicator(),
                   ),
-                )):NotificationListener<ScrollNotification>(
+                )):question_data.data.isNotEmpty? NotificationListener<ScrollNotification>(
                   onNotification: (ScrollNotification scrollInfo) {
                       if (scrollInfo.metrics.pixels ==scrollInfo.metrics.maxScrollExtent) {
                         if(isexpanding&&!isend){
@@ -261,7 +262,34 @@ class _Home_QuestionState extends State<Home_Question> {
                       });
                               },
                             ),
-                ),
+                )
+                : Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 60,
+                        ),
+                        SvgPicture.asset(
+                          "assets/images/LAXIA.svg",
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Text(
+                          '検索結果がありません',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            height: 1.6,
+                            fontWeight: FontWeight.w700,
+                            color: Helper.txtColor,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
           ),
           Container(
                     height: isexpanding ? 0 : 100,
