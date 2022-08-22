@@ -66,7 +66,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
   Future<void> getCounselDetail() async {
     counselDetail = await _conMy.getCounselDetail(widget.counsel_id!);
     print('tttttttttttt');
-    print(counselDetail.counceling.media_like);
+    print(counselDetail.counceling.media_like!.length);
     setState(() {
       isloading = false;
     });
@@ -671,7 +671,7 @@ class _AddCounselStep1PageState extends State<AddCounselStep1Page> {
                                         onTap: () {
                                           DatePicker.showDatePicker(context,
                                               showTitleActions: true,
-                                              minTime: DateTime(2018, 3, 5),
+                                              minTime: DateTime(1900, 1, 1),
                                               maxTime: DateTime(2200, 6, 7),
                                               onChanged: (date) {},
                                               onConfirm: (date) {
