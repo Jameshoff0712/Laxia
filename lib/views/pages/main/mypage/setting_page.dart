@@ -148,7 +148,7 @@ class _SettingPageState extends State<SettingPage> {
               height: 24,
             ),
             Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.only(left: 16, top: 12, bottom: 12, right: 16),
               height: 48,
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -198,7 +198,7 @@ class _SettingPageState extends State<SettingPage> {
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      padding: EdgeInsets.all(16),
+                      padding: EdgeInsets.only(left: 16, top: 12, bottom: 12, right: 16),
                       height: 48,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -287,14 +287,13 @@ class _SettingPageState extends State<SettingPage> {
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             text,
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,
-              height: 0,
               color: Color.fromARGB(255, 18, 18, 18),
             ),
           ),

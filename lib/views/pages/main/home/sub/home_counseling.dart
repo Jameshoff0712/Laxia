@@ -26,7 +26,7 @@ class Home_Counseling extends StatefulWidget {
 class _Home_CounselingState extends State<Home_Counseling> {
   String searchdata = "", city_id = '';
   String filter = '';
-  bool expanded = true;
+  bool expanded = true,first=true;
   int index = -1, page = 0;
   bool isend = false, isloading = true, isexpanding = true;
   late Counceling counceling_data;
@@ -77,11 +77,11 @@ class _Home_CounselingState extends State<Home_Counseling> {
     });
   }
 
-  @override
-  void initState() {
-    getData(page: page.toString());
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   getData(page: page.toString());
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +89,13 @@ class _Home_CounselingState extends State<Home_Counseling> {
         Provider.of<UserProvider>(context, listen: true);
     PrefProvider prefyprovider =
         Provider.of<PrefProvider>(context, listen: true);
+    if(first){
+      setState(() {
+        searchdata = userProperties.searchtext;
+         getData(page: page.toString());
+        first=false;
+      });
+    } 
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {

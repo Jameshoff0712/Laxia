@@ -26,6 +26,7 @@ class _Home_Sub_ScrollState extends State<Home_Sub_Scroll> {
         flag = true;
       });
       Home mid = await _con.getHomeDate(widget.index);
+      print(mid.data[0].toString());
       setState(() {
           home_data = mid;
           flag = false;
@@ -92,11 +93,12 @@ class _Home_Sub_ScrollState extends State<Home_Sub_Scroll> {
                       recommend: home_data.data[index].comments_count == null
                           ? " "
                           : home_data.data[index].comments_count.toString(),
-                      source: home_data.data[index].photo!,
+                      source:home_data.data[index].photo==null?'https://error.png'
+                          :home_data.data[index].photo!,
                       name: home_data.data[index].nickname == null
                           ? ""
                           : home_data.data[index].nickname!,
-                      doctorimage: home_data.data[index].photo!,
+                      doctorimage: home_data.data[index].photo==null?"": home_data.data[index].photo!,
                       chat: home_data.data[index].views_count == null
                           ? " "
                           : home_data.data[index].views_count.toString(),

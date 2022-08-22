@@ -26,7 +26,7 @@ class _Home_QuestionState extends State<Home_Question> {
   String isanswer='';
   bool isloading = true,isexpanding=true,isend=false;
   int page = 1;
-  bool expanded=false;
+  bool expanded=false,first=true;
   int index=-1;
   late Question question_data;
   final _con = HomeController();
@@ -38,6 +38,7 @@ class _Home_QuestionState extends State<Home_Question> {
             isexpanding = false;
           });
         final mid = await _con.getQuestionData(page: page,q: searchdata,filter:filter,isanswer:isanswer);
+        
         if (mid.data.isEmpty) {
           setState(() {
             isexpanding = true;
@@ -82,6 +83,13 @@ class _Home_QuestionState extends State<Home_Question> {
   Widget build(BuildContext context) {
     UserProvider userProperties =
         Provider.of<UserProvider>(context, listen: true);
+    if(first){
+      setState(() {
+        searchdata = userProperties.searchtext;
+        getData(page: page.toString());
+        first=false;
+      });
+    } 
     if(searchdata!=userProperties.searchtext){
       init();
       setState(() {
@@ -102,11 +110,12 @@ class _Home_QuestionState extends State<Home_Question> {
                   child: Dropdownbutton(
                       onpress: (val){
                         setState(() {
-                          filter=val;
+                          isanswer=val;
                           page=1;
                           isend = false;
                           isloading = true;
                         });
+                        getData(page: page.toString());
                       },
                       items: <String>["回答あり", "回答なし"],
                       hintText: "絞り込み",

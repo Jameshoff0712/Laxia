@@ -27,7 +27,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
   String filter = '';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
-  bool expanded = false;
+  bool expanded = false,first=true;
   int index = -1;
   late int pref_id;
   String city_id = '';
@@ -81,7 +81,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
 
   @override
   void initState() {
-    getData(page: page.toString());
+    // getData(page: page.toString());
     super.initState();
   }
 
@@ -93,6 +93,13 @@ class _Home_ClinicState extends State<Home_Clinic> {
         Provider.of<UserProvider>(context, listen: true);
     PrefProvider prefyprovider =
         Provider.of<PrefProvider>(context, listen: true);
+    if(first){
+      setState(() {
+        searchdata = userProperties.searchtext;
+        getData(page: page.toString());
+        first=false;
+      });
+    }    
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {
@@ -166,7 +173,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                       ),
                     ),
                   )
-                : clinic_data.data.isNotEmpty? LayoutBuilder(
+                : (clinic_data.data.isNotEmpty? LayoutBuilder(
                     builder: (context, BoxConstraints viewportConstraints) {
                     return NotificationListener<ScrollNotification>(
                       onNotification: (ScrollNotification scrollInfo) {
@@ -269,7 +276,7 @@ class _Home_ClinicState extends State<Home_Clinic> {
                         )
                       ],
                     ),
-                  ),
+                  )),
           ),
         ],
       ),
