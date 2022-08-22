@@ -40,7 +40,7 @@ class _chatStatusState extends State<chatStatus> {
           {
             statusText = '予約済';
             statusColor = Color.fromARGB(255, 0, 184, 169);
-            if(widget.is_now!){
+            if(widget.is_now!=null&&widget.is_now!){
               statusText = '来院済';
               statusColor = Color.fromARGB(255,245, 184, 91);
             }

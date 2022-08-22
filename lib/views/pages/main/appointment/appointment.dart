@@ -231,7 +231,7 @@ class _AppointmentState extends State<Appointment>
                                 physics: const AlwaysScrollableScrollPhysics(),
                                 itemCount: statusInfo.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return statusInfo[index].status!=15&&statusInfo[index].is_now?
+                                  return statusInfo[index].status!=15||statusInfo[index].is_now?
                                     Container()
                                   :chatStatus(
                                     notificCount:counts[index] ,

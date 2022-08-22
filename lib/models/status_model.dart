@@ -26,7 +26,7 @@ class StatusInfo extends Equatable {
       clinic_name:json['clinic_name'],
       created_at:json['created_at'],
       mailbox:json['mailbox'],
-      is_now:json['is_now'],
+      is_now:json['is_now']==null?false:json['is_now'],
       updated_at:json['updated_at'],
       visit_date:json['visit_date']==null?"":json['visit_date'],
       visit_time:json['visit_time']==null?"":json['visit_time'],
