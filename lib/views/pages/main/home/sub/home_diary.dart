@@ -189,8 +189,12 @@ class _Home_DiaryState extends State<Home_Diary> {
                         child: TextButton_Drawer(
                             width: 123,
                             textname: "絞り込み",
-                            onpress: () {
-                              Navigator.of(context).pushNamed("/NarrowDiary");
+                            onpress: () async{
+                              await Navigator.of(context).pushNamed("/NarrowDiary");
+                              setState(() {
+                                first=true;
+                                init();
+                              });
                             }),
                       ),
                       Expanded(

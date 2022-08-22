@@ -86,11 +86,11 @@ class _Home_CaseState extends State<Home_Case> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   getData(page: page.toString());
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    getData(page: page.toString());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,11 +126,12 @@ class _Home_CaseState extends State<Home_Case> {
     if (minprice != searchprovider.minprice ||
         maxprice != searchprovider.maxprice ||
         year != searchprovider.year) {
+      print(year.toString());
       init();
       setState(() {
         minprice = searchprovider.minprice;
         maxprice = searchprovider.maxprice;
-        year = searchprovider.year;
+        year=searchprovider.year;
         getData(page: page.toString());
       });
     }
@@ -149,7 +150,7 @@ class _Home_CaseState extends State<Home_Case> {
                               width: 123,
                               textname: "エリア選択",
                               onpress: () {
-                                Navigator.of(context)
+                                 Navigator.of(context)
                                     .pushNamed("/SelectPrefecture");
                               })),
                       Expanded(
@@ -157,8 +158,12 @@ class _Home_CaseState extends State<Home_Case> {
                         child: TextButton_Drawer(
                             width: 123,
                             textname: "絞り込み",
-                            onpress: () {
-                              Navigator.of(context).pushNamed("/NarrowCase");
+                            onpress: () async{
+                              await Navigator.of(context).pushNamed("/NarrowCase");
+                              setState(() {
+                                first=true;
+                                init();
+                              });
                             }),
                       ),
                       Expanded(

@@ -80,7 +80,7 @@ class _SelectAgeState extends State<SelectAge> {
                         onTap: () {
                           setState(() {
                             if(age_state_list[i]==0){
-                              age_state_list[i]=i+1;
+                              age_state_list[i]=(i+1)*10;
                             }else{
                               age_state_list[i]=0;
                             }

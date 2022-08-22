@@ -221,7 +221,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                         children: [
                           Text(year.equals([0,0,0,0,0,0])?
                           "指定しない":
-                            (year.join('0代,')+'0代').replaceAll('00代,', '').replaceAll(',00代', ''),
+                            (','+(year.join('代, ')+'代')).replaceAll(', 0代', '').replaceAll(',0代, ', '').replaceAll(',10代', '10代'),
                               style: TextStyle(
                                   color: Color.fromARGB(255, 156, 161, 161),
                                   fontSize: 16,
@@ -274,6 +274,7 @@ class _NarrowDownnState extends State<NarrowDownn> {
                   searchProvider.setminprice(_currentRangeValues.start.round());
                   searchProvider.setmaxprice(_currentRangeValues.end.round()*40000);
                   searchProvider.setMark(selectstar);
+                  searchProvider.setYear(year);
                   Navigator.pop(context);
                 },
                 child: Container(
