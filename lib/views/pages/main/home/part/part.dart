@@ -19,9 +19,10 @@ import 'package:extended_wrap/extended_wrap.dart';
 import 'package:provider/provider.dart';
 
 class Part extends StatefulWidget {
+  final name;
   final int index ;
   final int? part_id;
-  const Part({Key? key, required this.index, this.part_id=0}) : super(key: key);
+  const Part({Key? key, required this.index, this.part_id=0,required this.name}) : super(key: key);
 
   @override
   State<Part> createState() => _PartState();
@@ -110,7 +111,7 @@ class _PartState extends State<Part> with SingleTickerProviderStateMixin {
                       children: [
                         Center(
                           child: Text(
-                              master_model.name!,
+                              widget.name,
                               style: defaultTextStyle(
                                   Helper.blackColor, FontWeight.w700,
                                   size: 20)),

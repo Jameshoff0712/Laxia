@@ -249,7 +249,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 1)));
+                                        index: 1, name:'二重')));
                       },
                       text: "二重",
                     ),
@@ -260,7 +260,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 2)));
+                                        index: 1, name:'輪郭・小顔')));
                       },
                       text: "輪郭・小顔",
                     ),
@@ -271,7 +271,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 3)));
+                                        index: 3, name: '鼻を高く',)));
                       },
                       text: "鼻を高く",
                     ),
@@ -282,7 +282,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 4)));
+                                        index: 4, name: 'タレ目',)));
                       },
                       text: "タレ目",
                     ),
@@ -293,7 +293,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 5)));
+                                        index: 5, name: '脱毛',)));
                       },
                       text: "脱毛",
                     ),
@@ -304,7 +304,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 6)));
+                                        index: 6, name: '胸',)));
                       },
                       text: "胸",
                     ),
@@ -315,7 +315,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 7)));
+                                        index: 7, name: 'ボディ',)));
                       },
                       text: "ボディ",
                     ),
@@ -326,7 +326,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 8)));
+                                        index: 8, name: '小鼻',)));
                       },
                       text: "小鼻",
                     ),
@@ -337,7 +337,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 9)));
+                                        index: 9, name: 'しわ',)));
                       },
                       text: "しわ",
                     ),
@@ -348,7 +348,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 10)));
+                                        index: 10, name: 'しみ・そばかす',)));
                       },
                       text: "しみ・そばかす",
                     ),
@@ -375,7 +375,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 11)));
+                                        index: 11, name: '口元',)));
                       },
                       text: "口元",
                     ),
@@ -386,7 +386,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 12)));
+                                        index: 12, name: '目頭',)));
                       },
                       text: "目頭",
                     ),
@@ -397,7 +397,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 13)));
+                                        index: 13, name: '毛穴',)));
                       },
                       text: "毛穴",
                     ),
@@ -408,7 +408,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 14)));
+                                        index: 14, name: 'たるみ',)));
                       },
                       text: "たるみ",
                     ),
@@ -419,7 +419,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 15)));
+                                        index: 15, name: '目元',)));
                       },
                       text: "目元",
                     ),
@@ -430,7 +430,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 16)));
+                                        index: 16, name: 'ホクロ・イボ',)));
                       },
                       text: "ホクロ・イボ",
                     ),
@@ -441,7 +441,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 17)));
+                                        index: 17, name: 'アートメイク',)));
                       },
                       text: "アートメイク",
                     ),
@@ -452,7 +452,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 18)));
+                                        index: 18, name: '鼻先',)));
                       },
                       text: "鼻先",
                     ),
@@ -463,7 +463,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 19)));
+                                        index: 19, name: '審美歯科',)));
                       },
                       text: "審美歯科",
                     ),
@@ -474,7 +474,7 @@ class Horizontal_Dockbar extends StatelessWidget {
                       onpress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => Part(
-                                        index: 20)));
+                                        index: 20, name: 'すべて',)));
                       },
                       text: "すべて",
                     ),
