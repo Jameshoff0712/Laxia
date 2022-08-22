@@ -28,7 +28,7 @@ class _Home_CaseState extends State<Home_Case> {
   String filter = '', city_id = '';
 
   String searchdata = "";
-  bool expanded = true;
+  bool expanded = true,first=true;
   int page = 0, index = -1;
   bool isend = false, isloading = true, isexpanding = true;
   late Case case_data;
@@ -86,11 +86,11 @@ class _Home_CaseState extends State<Home_Case> {
     });
   }
 
-  @override
-  void initState() {
-    getData(page: page.toString());
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   getData(page: page.toString());
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +100,14 @@ class _Home_CaseState extends State<Home_Case> {
         Provider.of<PrefProvider>(context, listen: true);
     SearchProvider searchprovider =
         Provider.of<SearchProvider>(context, listen: true);
+     if(first){
+       init();
+      setState(() {
+        searchdata = userProperties.searchtext;
+         getData(page: page.toString());
+        first=false;
+      });
+    } 
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {

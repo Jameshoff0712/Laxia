@@ -122,10 +122,14 @@ class _SearchViewState extends State<SearchView> {
                                     issuffixicon = true;
                                   });
                                 }
-                              },
-                              oncompleted: () {
                                 midSearch(filter.text);
                                 userProperties.setSearchtext(filter.text);
+                              },
+                              oncompleted: () {
+                                userProperties.setSearchtext(filter.text);
+                                userProperties.setCompleted(true);
+                                Navigator.pop(context);
+                               
                                 // Navigator.pop(context);
                               },
                             ),
@@ -146,9 +150,12 @@ class _SearchViewState extends State<SearchView> {
                                 child: Center(
                                     child: GestureDetector(
                                         onTap: () {
-                                          userProperties.setSearchtext(filter.text);
-                                          userProperties.setCompleted(true);
-                                          Navigator.pop(context);
+                                          setState(() {
+                                              flag = true;
+                                              unchange = true;
+                                              issuffixicon = false;
+                                            });
+                                            filter.clear();
                                         },
                                         child: Text(
                                           "キャンセル",
@@ -236,10 +243,8 @@ class _SearchViewState extends State<SearchView> {
                                                 onTap: () {
                                                   filter.text =
                                                       search.recent[j].text;
-                                                  userProperties.setSearchtext(
-                                                      filter.text);
-                                                  Navigator.of(context)
-                                                      .pushNamed("/Pages");
+                                                  midSearch(filter.text);
+                                                  userProperties.setSearchtext(filter.text);
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -295,10 +300,8 @@ class _SearchViewState extends State<SearchView> {
                                                 onTap: () {
                                                   filter.text =
                                                       search.global[j].text;;
-                                                  userProperties.setSearchtext(
-                                                      filter.text);
-                                                  Navigator.of(context)
-                                                      .pushNamed("/Pages");
+                                                  midSearch(filter.text);
+                                                  userProperties.setSearchtext(filter.text);;
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(

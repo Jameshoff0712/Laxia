@@ -32,7 +32,7 @@ class _Home_MenuState extends State<Home_Menu> {
   String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
-  bool expanded = false;
+  bool expanded = false,first=true;
   int index = -1;
   late Menu menu_data;
   final _con = HomeController();
@@ -43,7 +43,7 @@ class _Home_MenuState extends State<Home_Menu> {
           setState(() {
             isexpanding = false;
           });
-          print(category_id);
+          print(searchdata);
         final mid = await _con.getMenuData(page: page, q: searchdata,filter:filter,city_id:city_id,category_id:category_id);
         print(mid.data.length);
         setState(() {
@@ -78,7 +78,6 @@ class _Home_MenuState extends State<Home_Menu> {
 
   @override
   void initState() {
-    getData(page: page.toString());
     super.initState();
   }
 
@@ -90,23 +89,31 @@ class _Home_MenuState extends State<Home_Menu> {
         Provider.of<SurGeryProvider>(context, listen: true);
   PrefProvider prefyprovider =
         Provider.of<PrefProvider>(context, listen: true);
-    if (searchdata != userProperties.searchtext) {
+    if(first){
+      setState(() {
+        searchdata = userProperties.searchtext;
+        getData(page: page.toString());
+        first=false;
+      });
+    }
+    if (!isloading&&(searchdata != userProperties.searchtext)) {
       init();
       setState(() {
         searchdata = userProperties.searchtext;
         getData(page: page.toString());
       });
     }
-    if (city_id != prefyprovider.getSelectedCurePos.join(",")) {
+    if (!isloading&&(city_id != prefyprovider.getSelectedCurePos.join(","))) {
       init();
       setState(() {
         city_id = prefyprovider.getSelectedCurePos.join(",");
         getData(page: page.toString());
       });
     }
-    if (category_id != surgeryprovider.getSelectedCurePos.join(",")) {
+    if(!isloading&&(category_id != surgeryprovider.getSelectedCurePos.join(","))) {
       if(!isloading)
-      {init();
+      {
+        init();
       setState(() {
         category_id = surgeryprovider.getSelectedCurePos.join(",");
         getData(page: page.toString());

@@ -111,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen>
                 searchProvider.initSelected();
                 prefyprovider.initSelected();
                 surgeryprovider.initSelected();
-                userProperties.initSelected();
               },
             ),
           ),

@@ -31,7 +31,7 @@ class _Home_DoctorState extends State<Home_Doctor> {
   String filter='';
   bool isloading = true, isexpanding = true, isend = false;
   int page = 1;
-  bool expanded = false;
+  bool expanded = false,first=true;
   int index = -1;
   late Doctor doctor_data;
   final _con = HomeController();
@@ -79,11 +79,11 @@ class _Home_DoctorState extends State<Home_Doctor> {
     });
   }
 
-  @override
-  void initState() {
-    getData(page: page.toString());
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   getData(page: page.toString());
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +93,13 @@ class _Home_DoctorState extends State<Home_Doctor> {
         Provider.of<PrefProvider>(context, listen: true);
     SurGeryProvider surgeryprovider =
         Provider.of<SurGeryProvider>(context, listen: true);
+    if(first){
+      setState(() {
+        searchdata = userProperties.searchtext;
+        getData(page: page.toString());
+        first=false;
+      });
+    } 
     if (searchdata != userProperties.searchtext) {
       init();
       setState(() {

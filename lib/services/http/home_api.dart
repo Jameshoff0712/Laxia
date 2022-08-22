@@ -349,7 +349,7 @@ class HomeApi extends Api {
             "&isanswer=" +
             isanswer,
         token);
-    //  print(res.data["data"]["questions"]);
+     print(res.data["data"]["questions"]);
     return Question.fromJson(res.data["data"]["questions"]);
   }
 

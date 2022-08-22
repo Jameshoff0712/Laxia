@@ -36,7 +36,7 @@ class _Home_DiaryState extends State<Home_Diary> {
   String searchdata = "";
   int page = 0;
   bool isend = false, isloading = true, isexpanding = true, isfirst = true;
-  bool expanded = true;
+  bool expanded = true,first=true;
   int index = -1;
   late Diary diary_data;
   List<int> selectstar = [
@@ -104,11 +104,11 @@ class _Home_DiaryState extends State<Home_Diary> {
     });
   }
 
-  @override
-  void initState() {
-    getData(page: page.toString(), isload: true);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   getData(page: page.toString(), isload: true);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +120,13 @@ class _Home_DiaryState extends State<Home_Diary> {
         Provider.of<SearchProvider>(context, listen: true);
     SurGeryProvider surgeryprovider =
         Provider.of<SurGeryProvider>(context, listen: true);
+    if(first){
+      setState(() {
+        searchdata = userProperties.searchtext;
+         getData(page: page.toString(), isload: true);
+        first=false;
+      });
+    } 
     if (isloading == false && searchdata != userProperties.searchtext) {
       init();
       setState(() {
