@@ -28,7 +28,7 @@ class _Signup_TwoState extends State<Signup_Two> {
   TextEditingController controller = TextEditingController();
   TextEditingController _conDate = TextEditingController();
   TextEditingController _conPrefecture = TextEditingController();
-  int  genderId = -1;
+  int genderId = -1;
   Future<void> initSettings() async {
     String countyText =
         await rootBundle.loadString("assets/cfg/japanese-city-data.json");
